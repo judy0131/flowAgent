@@ -1,0 +1,8 @@
+{
+  "name": "Image Colorizer",
+  "description": "Adds color to a black and white input image using deep learning techniques.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: image"
+  },
+  "executor": "executor.py:run"
+}

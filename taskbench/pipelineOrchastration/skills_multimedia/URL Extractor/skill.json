@@ -1,0 +1,8 @@
+{
+  "name": "URL Extractor",
+  "description": "Extracts URL from text",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Video-to-Audio",
+  "description": "Extracts the audio track from a given video file.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: video"
+  },
+  "executor": "executor.py:run"
+}

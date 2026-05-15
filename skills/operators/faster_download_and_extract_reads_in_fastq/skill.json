@@ -1,0 +1,11 @@
+{
+  "name": "faster_download_and_extract_reads_in_fastq",
+  "description": "WorkflowHub step 'Faster Download and Extract Reads in FASTQ' generated from toolshed_g2_bx_psu_edu_repos_iuc_sra_tools_fasterq_dump_2_10_4+galaxy1.",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": []
+}

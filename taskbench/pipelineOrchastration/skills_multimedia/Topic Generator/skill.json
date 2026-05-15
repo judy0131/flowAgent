@@ -1,0 +1,8 @@
+{
+  "name": "Topic Generator",
+  "description": "Generates a list of relevant topics or ideas based on a given input.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "filter_sam_or_bam_output_sam_or_bam",
+  "description": "WorkflowHub step 'Filter SAM or BAM, output SAM or BAM' generated from toolshed_g2_bx_psu_edu_repos_devteam_samtool_filter2_samtool_filter2_1_8+galaxy1.",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": [
+    "map_with_bwa_mem",
+    "map_with_minimap2"
+  ]
+}

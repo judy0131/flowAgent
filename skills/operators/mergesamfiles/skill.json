@@ -1,0 +1,13 @@
+{
+  "name": "mergesamfiles",
+  "description": "WorkflowHub step 'MergeSamFiles' generated from toolshed_g2_bx_psu_edu_repos_devteam_picard_picard_MergeSamFiles_2_18_2_1.",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": [
+    "filter_sam_or_bam_output_sam_or_bam"
+  ]
+}

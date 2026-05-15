@@ -1,0 +1,8 @@
+{
+  "name": "Audio-to-Text",
+  "description": "Transcribes speech from an audio file into text.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: audio"
+  },
+  "executor": "executor.py:run"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Text-to-Video",
+  "description": "Generates a video based on a given text description.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

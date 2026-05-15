@@ -1,0 +1,8 @@
+{
+  "name": "Audio-to-Image",
+  "description": "Generates an image that visually represents a given audio, such as a waveform or spectrogram.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: audio"
+  },
+  "executor": "executor.py:run"
+}

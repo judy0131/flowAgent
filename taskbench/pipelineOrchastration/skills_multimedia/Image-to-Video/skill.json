@@ -1,0 +1,9 @@
+{
+  "name": "Image-to-Video",
+  "description": "Creates a slideshow video using two input images.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: image",
+    "arg2": "Input parameter 2, expected type: image"
+  },
+  "executor": "executor.py:run"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "filter_rows",
+  "description": "Filter rows in context.data by field/operator/value.",
+  "input_schema": {
+    "field": "str",
+    "op": "str",
+    "value": "str"
+  },
+  "executor": "executor.py:run"
+}

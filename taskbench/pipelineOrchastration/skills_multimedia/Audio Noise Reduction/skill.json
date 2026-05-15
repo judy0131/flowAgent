@@ -1,0 +1,8 @@
+{
+  "name": "Audio Noise Reduction",
+  "description": "Reduces background noise or unwanted sounds from a given audio file.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: audio"
+  },
+  "executor": "executor.py:run"
+}

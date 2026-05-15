@@ -1,0 +1,8 @@
+{
+  "name": "Video-to-Image",
+  "description": "Extracts a still image from a given video.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: video"
+  },
+  "executor": "executor.py:run"
+}

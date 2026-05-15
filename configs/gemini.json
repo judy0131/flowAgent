@@ -1,0 +1,7 @@
+{
+  "provider": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "temperature": 0,
+  "api_key_envs": ["GEMINI_API_KEY", "GOOGLE_API_KEY"],
+  "base_url_env": ["GEMINI_BASE_URL","GOOGLE_BASE_URL"]
+}

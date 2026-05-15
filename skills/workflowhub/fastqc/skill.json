@@ -1,0 +1,33 @@
+{
+  "name": "fastqc",
+  "description": "[Genomics - Read pre-processing] WorkflowHub step 'FastQC' generated from toolshed_g2_bx_psu_edu_repos_devteam_fastqc_fastqc_0_72+galaxy1. Context: Preprocessing of raw SARS-CoV-2 reads. More info can be found at https://covid19.galaxyproject.org/genomics/",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": [],
+  "meta": {
+    "source": "workflowhub",
+    "workflow_names": [
+      "Genomics - Read pre-processing",
+      "Genomics - Read pre-processing without downloading from SRA"
+    ],
+    "workflow_licenses": [
+      "https://spdx.org/licenses/MIT"
+    ],
+    "workflow_keywords": [
+      "covid-19"
+    ],
+    "source_cwls": [
+      "workflow-2-1.crate/Genomics-1-PreProcessing_with_download.cwl",
+      "workflow-4-1.crate/Genomics-1-PreProcessing_without_downloading_from_SRA.cwl"
+    ],
+    "more_info_urls": [
+      "https://covid19.galaxyproject.org/genomics/",
+      "https://workflowhub.eu/workflows/2?version=1",
+      "https://workflowhub.eu/workflows/4?version=1"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "load_csv",
+  "description": "Load csv rows into runtime context.",
+  "input_schema": {
+    "path": "str"
+  },
+  "executor": "executor.py:run"
+}

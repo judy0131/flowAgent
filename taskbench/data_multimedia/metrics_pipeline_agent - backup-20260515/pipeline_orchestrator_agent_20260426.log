@@ -1,0 +1,1323 @@
+2026-04-26 17:09:07,319 - [ pipeline_orchestrator_agent ] - INFO - Starts with: {'data_dir': 'data_multimedia', 'prediction_dir': 'predictions_pipeline_agent', 'save_dir': None, 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'pipeline_orchestrator_agent', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-04-26 17:09:07,320 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:07,320 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: overall
+2026-04-26 17:09:07,620 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 3
+2026-04-26 17:09:07,628 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 3 / 3
+2026-04-26 17:09:07,628 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 3 / 3
+2026-04-26 17:09:07,628 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 3 / 3
+2026-04-26 17:09:07,636 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 17:09:07,636 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 0.9230769230769231
+2026-04-26 17:09:07,636 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 0.96
+2026-04-26 17:09:07,637 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.25
+2026-04-26 17:09:07,637 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.25
+2026-04-26 17:09:07,637 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.25
+2026-04-26 17:09:07,637 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 17:09:07,637 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 17:09:07,637 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:07,637 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:07,637 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:07,637 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:07,637 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            1
+2026-04-26 17:09:07,637 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 17:09:07,638 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 17:09:07,638 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 17:09:07,638 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 17:09:07,638 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-04-26 17:09:07,638 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 17:09:07,638 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 17:09:07,639 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:07,639 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-04-26 17:09:07,639 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:07,640 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-04-26 17:09:07,640 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            2
+2026-04-26 17:09:07,640 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-04-26 17:09:07,640 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            2
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 17:09:07,642 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 17:09:07,643 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 17:09:07,643 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00        92.31        96.00           13
+2026-04-26 17:09:07,643 - [ pipeline_orchestrator_agent ] - INFO -                          macro        25.00        25.00        25.00           13
+2026-04-26 17:09:07,645 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9285714285714286
+2026-04-26 17:09:07,647 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.7741935483870968
+2026-04-26 17:09:07,647 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.03703703703703709
+2026-04-26 17:09:07,650 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.7368421052631579
+2026-04-26 17:09:07,650 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:07,650 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: single
+2026-04-26 17:09:07,844 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 17:09:07,844 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 17:09:07,844 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 17:09:07,844 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 17:09:07,844 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 17:09:07,844 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:07,845 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: chain
+2026-04-26 17:09:08,023 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 2
+2026-04-26 17:09:08,023 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 2 / 2
+2026-04-26 17:09:08,024 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 2 / 2
+2026-04-26 17:09:08,024 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 2 / 2
+2026-04-26 17:09:08,033 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 17:09:08,033 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 0.875
+2026-04-26 17:09:08,033 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 0.9333333333333333
+2026-04-26 17:09:08,033 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.175
+2026-04-26 17:09:08,033 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.175
+2026-04-26 17:09:08,033 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.175
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            1
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-04-26 17:09:08,034 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            1
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 17:09:08,035 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 17:09:08,036 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 17:09:08,037 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00        87.50        93.33            8
+2026-04-26 17:09:08,037 - [ pipeline_orchestrator_agent ] - INFO -                          macro        17.50        17.50        17.50            8
+2026-04-26 17:09:08,040 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9411764705882353
+2026-04-26 17:09:08,043 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.7058823529411765
+2026-04-26 17:09:08,043 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.05555555555555558
+2026-04-26 17:09:08,045 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.7272727272727273
+2026-04-26 17:09:08,045 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:08,045 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: dag
+2026-04-26 17:09:08,246 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 1
+2026-04-26 17:09:08,246 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 1 / 1
+2026-04-26 17:09:08,246 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 1 / 1
+2026-04-26 17:09:08,247 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 1 / 1
+2026-04-26 17:09:08,252 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 17:09:08,252 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-04-26 17:09:08,252 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-04-26 17:09:08,252 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.125
+2026-04-26 17:09:08,252 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.125
+2026-04-26 17:09:08,252 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.125
+2026-04-26 17:09:08,252 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 17:09:08,252 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 17:09:08,252 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,252 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,252 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            1
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 17:09:08,253 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 17:09:08,258 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-04-26 17:09:08,258 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-04-26 17:09:08,258 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 17:09:08,258 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 17:09:08,258 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 17:09:08,258 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00       100.00       100.00            5
+2026-04-26 17:09:08,259 - [ pipeline_orchestrator_agent ] - INFO -                          macro        12.50        12.50        12.50            5
+2026-04-26 17:09:08,262 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9090909090909091
+2026-04-26 17:09:08,265 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.8571428571428571
+2026-04-26 17:09:08,265 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.0
+2026-04-26 17:09:08,267 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.75
+2026-04-26 17:09:08,268 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:08,268 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 1, Task Split: overall
+2026-04-26 17:09:08,507 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 17:09:08,507 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 17:09:08,507 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 17:09:08,507 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 17:09:08,508 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 17:09:08,508 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:08,508 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 2, Task Split: overall
+2026-04-26 17:09:08,690 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 17:09:08,691 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 17:09:08,691 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 17:09:08,691 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 17:09:08,691 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 17:09:08,691 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:08,691 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 3, Task Split: overall
+2026-04-26 17:09:08,916 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 1
+2026-04-26 17:09:08,916 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 1 / 1
+2026-04-26 17:09:08,916 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 1 / 1
+2026-04-26 17:09:08,916 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 1 / 1
+2026-04-26 17:09:08,922 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.075
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.075
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.075
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 17:09:08,923 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            1
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,924 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,925 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 17:09:08,926 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 17:09:08,926 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 17:09:08,926 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 17:09:08,926 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00       100.00       100.00            3
+2026-04-26 17:09:08,926 - [ pipeline_orchestrator_agent ] - INFO -                          macro         7.50         7.50         7.50            3
+2026-04-26 17:09:08,928 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 1.0
+2026-04-26 17:09:08,929 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 1.0
+2026-04-26 17:09:08,930 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.0
+2026-04-26 17:09:08,931 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 1.0
+2026-04-26 17:09:08,931 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:08,932 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 4, Task Split: overall
+2026-04-26 17:09:09,144 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 17:09:09,144 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 17:09:09,144 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 17:09:09,145 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 17:09:09,145 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 17:09:09,146 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:09,147 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 5, Task Split: overall
+2026-04-26 17:09:09,377 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 2
+2026-04-26 17:09:09,377 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 2 / 2
+2026-04-26 17:09:09,377 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 2 / 2
+2026-04-26 17:09:09,379 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 2 / 2
+2026-04-26 17:09:09,384 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 17:09:09,384 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 0.9
+2026-04-26 17:09:09,384 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 0.9473684210526315
+2026-04-26 17:09:09,384 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.225
+2026-04-26 17:09:09,384 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.225
+2026-04-26 17:09:09,384 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.225
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            1
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 17:09:09,386 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            1
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 17:09:09,387 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 17:09:09,388 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-04-26 17:09:09,388 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-04-26 17:09:09,388 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 17:09:09,388 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 17:09:09,389 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 17:09:09,389 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 17:09:09,389 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-04-26 17:09:09,389 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-04-26 17:09:09,389 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 17:09:09,389 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-04-26 17:09:09,389 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 17:09:09,389 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 17:09:09,389 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 17:09:09,391 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 17:09:09,391 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 17:09:09,391 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 17:09:09,391 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 17:09:09,391 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 17:09:09,391 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 17:09:09,391 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00        90.00        94.74           10
+2026-04-26 17:09:09,391 - [ pipeline_orchestrator_agent ] - INFO -                          macro        22.50        22.50        22.50           10
+2026-04-26 17:09:09,394 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9
+2026-04-26 17:09:09,396 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6956521739130435
+2026-04-26 17:09:09,396 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.05555555555555558
+2026-04-26 17:09:09,399 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.6666666666666666
+2026-04-26 17:09:09,399 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:09,399 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 6, Task Split: overall
+2026-04-26 17:09:09,595 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 17:09:09,597 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 17:09:09,597 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 17:09:09,597 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 17:09:09,597 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 17:09:09,597 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:09,597 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 7, Task Split: overall
+2026-04-26 17:09:09,757 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 17:09:09,758 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 17:09:09,758 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 17:09:09,759 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 17:09:09,759 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 17:09:09,759 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:09,759 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 8, Task Split: overall
+2026-04-26 17:09:09,952 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 17:09:09,952 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 17:09:09,954 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 17:09:09,954 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 17:09:09,954 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 17:09:09,954 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:09,954 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 9, Task Split: overall
+2026-04-26 17:09:10,153 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 17:09:10,154 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 17:09:10,154 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 17:09:10,154 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 17:09:10,154 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 17:09:10,154 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 17:09:10,154 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 10, Task Split: overall
+2026-04-26 17:09:10,334 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 17:09:10,334 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 17:09:10,334 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 17:09:10,334 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 17:09:10,334 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 18:24:08,337 - [ pipeline_orchestrator_agent ] - INFO - Starts with: {'data_dir': 'data_multimedia', 'prediction_dir': 'predictions_pipeline_agent', 'save_dir': None, 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'pipeline_orchestrator_agent', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-04-26 18:24:08,339 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:08,340 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: overall
+2026-04-26 18:24:08,799 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 3
+2026-04-26 18:24:08,800 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 3 / 3
+2026-04-26 18:24:08,800 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 3 / 3
+2026-04-26 18:24:08,800 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 3 / 3
+2026-04-26 18:24:08,847 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 18:24:08,848 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-04-26 18:24:08,848 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-04-26 18:24:08,848 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.275
+2026-04-26 18:24:08,849 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.275
+2026-04-26 18:24:08,849 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.275
+2026-04-26 18:24:08,849 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 18:24:08,849 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 18:24:08,850 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:08,850 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:08,850 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:08,850 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:08,850 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-04-26 18:24:08,850 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 18:24:08,851 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 18:24:08,851 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 18:24:08,851 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 18:24:08,851 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-04-26 18:24:08,851 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 18:24:08,851 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 18:24:08,852 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:08,852 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-04-26 18:24:08,852 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:08,852 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-04-26 18:24:08,852 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            2
+2026-04-26 18:24:08,852 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-04-26 18:24:08,853 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 18:24:08,853 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 18:24:08,853 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 18:24:08,854 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 18:24:08,854 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-04-26 18:24:08,854 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-04-26 18:24:08,854 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 18:24:08,854 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 18:24:08,855 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 18:24:08,855 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 18:24:08,855 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-04-26 18:24:08,855 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-04-26 18:24:08,855 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 18:24:08,856 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            2
+2026-04-26 18:24:08,856 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 18:24:08,856 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 18:24:08,856 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 18:24:08,856 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 18:24:08,857 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 18:24:08,857 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 18:24:08,857 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 18:24:08,857 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 18:24:08,858 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 18:24:08,858 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00       100.00       100.00           13
+2026-04-26 18:24:08,858 - [ pipeline_orchestrator_agent ] - INFO -                          macro        27.50        27.50        27.50           13
+2026-04-26 18:24:08,874 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9655172413793104
+2026-04-26 18:24:08,888 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.875
+2026-04-26 18:24:08,889 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.0
+2026-04-26 18:24:08,905 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.9
+2026-04-26 18:24:08,906 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:08,906 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: single
+2026-04-26 18:24:09,281 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 18:24:09,281 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 18:24:09,282 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 18:24:09,282 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 18:24:09,282 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 18:24:09,283 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:09,283 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: chain
+2026-04-26 18:24:09,620 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 2
+2026-04-26 18:24:09,621 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 2 / 2
+2026-04-26 18:24:09,621 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 2 / 2
+2026-04-26 18:24:09,621 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 2 / 2
+2026-04-26 18:24:09,658 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 18:24:09,658 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-04-26 18:24:09,658 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-04-26 18:24:09,658 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.2
+2026-04-26 18:24:09,658 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.2
+2026-04-26 18:24:09,658 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.2
+2026-04-26 18:24:09,660 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 18:24:09,660 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 18:24:09,661 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:09,661 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:09,661 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:09,661 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:09,661 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-04-26 18:24:09,662 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 18:24:09,662 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 18:24:09,662 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 18:24:09,662 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 18:24:09,663 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-04-26 18:24:09,663 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 18:24:09,663 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 18:24:09,663 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:09,663 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:09,663 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:09,664 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-04-26 18:24:09,664 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            1
+2026-04-26 18:24:09,664 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-04-26 18:24:09,664 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 18:24:09,664 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 18:24:09,664 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 18:24:09,665 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 18:24:09,665 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-04-26 18:24:09,665 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-04-26 18:24:09,665 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 18:24:09,665 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 18:24:09,665 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 18:24:09,666 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 18:24:09,666 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-04-26 18:24:09,666 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-04-26 18:24:09,666 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 18:24:09,666 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-04-26 18:24:09,666 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 18:24:09,666 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 18:24:09,667 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 18:24:09,667 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 18:24:09,667 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 18:24:09,667 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 18:24:09,667 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 18:24:09,667 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 18:24:09,668 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 18:24:09,669 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00       100.00       100.00            8
+2026-04-26 18:24:09,669 - [ pipeline_orchestrator_agent ] - INFO -                          macro        20.00        20.00        20.00            8
+2026-04-26 18:24:09,686 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 1.0
+2026-04-26 18:24:09,699 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.8888888888888888
+2026-04-26 18:24:09,700 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.0
+2026-04-26 18:24:09,712 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 1.0
+2026-04-26 18:24:09,713 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:09,713 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: dag
+2026-04-26 18:24:10,058 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 1
+2026-04-26 18:24:10,058 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 1 / 1
+2026-04-26 18:24:10,058 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 1 / 1
+2026-04-26 18:24:10,059 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 1 / 1
+2026-04-26 18:24:10,097 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 18:24:10,110 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-04-26 18:24:10,110 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-04-26 18:24:10,110 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.125
+2026-04-26 18:24:10,111 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.125
+2026-04-26 18:24:10,111 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.125
+2026-04-26 18:24:10,111 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 18:24:10,111 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 18:24:10,111 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:10,111 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:10,112 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:10,112 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:10,112 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-04-26 18:24:10,112 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 18:24:10,112 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 18:24:10,112 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 18:24:10,113 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 18:24:10,113 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-04-26 18:24:10,113 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 18:24:10,113 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 18:24:10,113 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:10,113 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-04-26 18:24:10,113 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:10,114 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-04-26 18:24:10,114 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            1
+2026-04-26 18:24:10,114 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-04-26 18:24:10,114 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 18:24:10,114 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 18:24:10,114 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 18:24:10,114 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 18:24:10,115 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-04-26 18:24:10,115 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-04-26 18:24:10,115 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 18:24:10,115 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 18:24:10,115 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 18:24:10,115 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 18:24:10,116 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-04-26 18:24:10,116 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-04-26 18:24:10,116 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 18:24:10,116 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-04-26 18:24:10,118 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 18:24:10,118 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 18:24:10,118 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 18:24:10,118 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 18:24:10,119 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 18:24:10,119 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 18:24:10,119 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 18:24:10,119 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 18:24:10,120 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 18:24:10,120 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00       100.00       100.00            5
+2026-04-26 18:24:10,120 - [ pipeline_orchestrator_agent ] - INFO -                          macro        12.50        12.50        12.50            5
+2026-04-26 18:24:10,135 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9090909090909091
+2026-04-26 18:24:10,151 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.8571428571428571
+2026-04-26 18:24:10,151 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.0
+2026-04-26 18:24:10,168 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.75
+2026-04-26 18:24:10,168 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:10,169 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 1, Task Split: overall
+2026-04-26 18:24:10,549 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 18:24:10,549 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 18:24:10,550 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 18:24:10,550 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 18:24:10,550 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 18:24:10,550 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:10,550 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 2, Task Split: overall
+2026-04-26 18:24:10,804 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 18:24:10,805 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 18:24:10,805 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 18:24:10,805 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 18:24:10,805 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 18:24:10,805 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:10,807 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 3, Task Split: overall
+2026-04-26 18:24:11,170 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 1
+2026-04-26 18:24:11,170 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 1 / 1
+2026-04-26 18:24:11,170 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 1 / 1
+2026-04-26 18:24:11,171 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 1 / 1
+2026-04-26 18:24:11,209 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 18:24:11,210 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-04-26 18:24:11,210 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-04-26 18:24:11,210 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.075
+2026-04-26 18:24:11,210 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.075
+2026-04-26 18:24:11,211 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.075
+2026-04-26 18:24:11,211 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 18:24:11,211 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 18:24:11,211 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:11,211 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:11,211 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:11,212 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:11,212 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-04-26 18:24:11,212 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 18:24:11,212 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 18:24:11,212 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 18:24:11,212 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 18:24:11,212 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-04-26 18:24:11,213 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 18:24:11,213 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 18:24:11,213 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:11,214 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:11,214 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:11,214 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-04-26 18:24:11,214 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            1
+2026-04-26 18:24:11,214 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-04-26 18:24:11,214 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 18:24:11,215 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 18:24:11,215 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 18:24:11,215 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 18:24:11,215 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-04-26 18:24:11,215 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-04-26 18:24:11,215 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 18:24:11,215 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 18:24:11,216 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 18:24:11,216 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 18:24:11,216 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-04-26 18:24:11,216 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-04-26 18:24:11,216 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 18:24:11,216 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-04-26 18:24:11,217 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 18:24:11,217 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 18:24:11,217 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 18:24:11,217 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 18:24:11,217 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 18:24:11,217 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 18:24:11,217 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 18:24:11,218 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 18:24:11,218 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 18:24:11,218 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00       100.00       100.00            3
+2026-04-26 18:24:11,218 - [ pipeline_orchestrator_agent ] - INFO -                          macro         7.50         7.50         7.50            3
+2026-04-26 18:24:11,231 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 1.0
+2026-04-26 18:24:11,243 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 1.0
+2026-04-26 18:24:11,244 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.0
+2026-04-26 18:24:11,256 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 1.0
+2026-04-26 18:24:11,257 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:11,257 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 4, Task Split: overall
+2026-04-26 18:24:11,646 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 18:24:11,647 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 18:24:11,647 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 18:24:11,647 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 18:24:11,648 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 18:24:11,649 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:11,649 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 5, Task Split: overall
+2026-04-26 18:24:12,002 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 2
+2026-04-26 18:24:12,002 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 2 / 2
+2026-04-26 18:24:12,003 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 2 / 2
+2026-04-26 18:24:12,003 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 2 / 2
+2026-04-26 18:24:12,039 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 18:24:12,039 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-04-26 18:24:12,039 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-04-26 18:24:12,040 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.25
+2026-04-26 18:24:12,040 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.25
+2026-04-26 18:24:12,041 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.25
+2026-04-26 18:24:12,041 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 18:24:12,042 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 18:24:12,043 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:12,043 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:12,044 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:12,045 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 18:24:12,045 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-04-26 18:24:12,046 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 18:24:12,046 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 18:24:12,047 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 18:24:12,047 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 18:24:12,047 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-04-26 18:24:12,048 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 18:24:12,048 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 18:24:12,048 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:12,048 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-04-26 18:24:12,049 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 18:24:12,049 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-04-26 18:24:12,049 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            1
+2026-04-26 18:24:12,049 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-04-26 18:24:12,049 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 18:24:12,049 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 18:24:12,050 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 18:24:12,050 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 18:24:12,050 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-04-26 18:24:12,050 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-04-26 18:24:12,050 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 18:24:12,050 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 18:24:12,050 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 18:24:12,051 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 18:24:12,051 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-04-26 18:24:12,051 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-04-26 18:24:12,051 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 18:24:12,051 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-04-26 18:24:12,051 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 18:24:12,052 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 18:24:12,052 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 18:24:12,052 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 18:24:12,052 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 18:24:12,052 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 18:24:12,053 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 18:24:12,053 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 18:24:12,053 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 18:24:12,053 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00       100.00       100.00           10
+2026-04-26 18:24:12,053 - [ pipeline_orchestrator_agent ] - INFO -                          macro        25.00        25.00        25.00           10
+2026-04-26 18:24:12,066 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9523809523809523
+2026-04-26 18:24:12,079 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.8333333333333334
+2026-04-26 18:24:12,079 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.0
+2026-04-26 18:24:12,094 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.875
+2026-04-26 18:24:12,094 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:12,094 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 6, Task Split: overall
+2026-04-26 18:24:12,438 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 18:24:12,438 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 18:24:12,440 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 18:24:12,440 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 18:24:12,440 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 18:24:12,440 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:12,440 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 7, Task Split: overall
+2026-04-26 18:24:12,764 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 18:24:12,764 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 18:24:12,764 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 18:24:12,764 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 18:24:12,765 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 18:24:12,765 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:12,765 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 8, Task Split: overall
+2026-04-26 18:24:13,109 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 18:24:13,110 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 18:24:13,110 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 18:24:13,111 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 18:24:13,111 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 18:24:13,111 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:13,111 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 9, Task Split: overall
+2026-04-26 18:24:13,393 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 18:24:13,393 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 18:24:13,394 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 18:24:13,394 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 18:24:13,395 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 18:24:13,396 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 18:24:13,396 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 10, Task Split: overall
+2026-04-26 18:24:13,722 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 18:24:13,722 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 18:24:13,722 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 18:24:13,722 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 18:24:13,723 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 19:21:30,341 - [ pipeline_orchestrator_agent ] - INFO - Starts with: {'data_dir': 'data_multimedia', 'prediction_dir': 'predictions_pipeline_agent', 'save_dir': None, 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'pipeline_orchestrator_agent', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-04-26 19:21:30,343 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:30,343 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: overall
+2026-04-26 19:21:30,456 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 16
+2026-04-26 19:21:30,456 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 16 / 16
+2026-04-26 19:21:30,456 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 16 / 16
+2026-04-26 19:21:30,456 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 16 / 16
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 0.9183673469387755
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 0.7894736842105263
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 0.8490566037735849
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.5958333333333333
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.5220833333333333
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.5386507936507937
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,459 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader       100.00       100.00       100.00            1
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search       100.00        66.67        80.00            3
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search       100.00       100.00       100.00            1
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image        50.00       100.00        66.67            1
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio        33.33       100.00        50.00            1
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            5
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            2
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00        80.00        88.89            5
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer       100.00       100.00       100.00            2
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer       100.00        50.00        66.67            2
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer       100.00        66.67        80.00            3
+2026-04-26 19:21:30,460 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            2
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            2
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier       100.00        66.67        80.00            3
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander       100.00        66.67        80.00            3
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor       100.00        33.33        50.00            3
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator       100.00        66.67        80.00            3
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image       100.00        66.67        80.00            3
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00        75.00        85.71            4
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer       100.00       100.00       100.00            1
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover       100.00        50.00        66.67            2
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                          micro        91.84        78.95        84.91           57
+2026-04-26 19:21:30,461 - [ pipeline_orchestrator_agent ] - INFO -                          macro        59.58        52.21        53.87           57
+2026-04-26 19:21:30,462 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8
+2026-04-26 19:21:30,463 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5454545454545454
+2026-04-26 19:21:30,463 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.21119227994227996
+2026-04-26 19:21:30,464 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.5633802816901409
+2026-04-26 19:21:30,464 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:30,464 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: single
+2026-04-26 19:21:30,529 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 2
+2026-04-26 19:21:30,529 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 2 / 2
+2026-04-26 19:21:30,529 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 2 / 2
+2026-04-26 19:21:30,529 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 2 / 2
+2026-04-26 19:21:30,532 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 19:21:30,532 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-04-26 19:21:30,532 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-04-26 19:21:30,532 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.05
+2026-04-26 19:21:30,532 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.05
+2026-04-26 19:21:30,532 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.05
+2026-04-26 19:21:30,532 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 19:21:30,532 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 19:21:30,532 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,532 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-04-26 19:21:30,533 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,535 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 19:21:30,535 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,535 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,535 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer       100.00       100.00       100.00            1
+2026-04-26 19:21:30,535 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,535 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 19:21:30,535 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 19:21:30,535 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 19:21:30,535 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00       100.00       100.00            2
+2026-04-26 19:21:30,535 - [ pipeline_orchestrator_agent ] - INFO -                          macro         5.00         5.00         5.00            2
+2026-04-26 19:21:30,536 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 1.0
+2026-04-26 19:21:30,537 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 1.0
+2026-04-26 19:21:30,537 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.0
+2026-04-26 19:21:30,537 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: skipped (empty support)
+2026-04-26 19:21:30,537 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:30,537 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: chain
+2026-04-26 19:21:30,610 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 11
+2026-04-26 19:21:30,610 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 11 / 11
+2026-04-26 19:21:30,610 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 11 / 11
+2026-04-26 19:21:30,610 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 11 / 11
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 0.9142857142857143
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 0.7441860465116279
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 0.8205128205128205
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.4708333333333333
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.4208333333333333
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.42833333333333334
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader       100.00       100.00       100.00            1
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search       100.00        66.67        80.00            3
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search       100.00       100.00       100.00            1
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image        50.00       100.00        66.67            1
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio        33.33       100.00        50.00            1
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            3
+2026-04-26 19:21:30,613 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00        66.67        80.00            3
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            1
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer       100.00        66.67        80.00            3
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            2
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            2
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier       100.00       100.00       100.00            2
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander       100.00        66.67        80.00            3
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor       100.00        33.33        50.00            3
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator       100.00        66.67        80.00            3
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            1
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00        66.67        80.00            3
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover       100.00        50.00        66.67            2
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                          micro        91.43        74.42        82.05           43
+2026-04-26 19:21:30,614 - [ pipeline_orchestrator_agent ] - INFO -                          macro        47.08        42.08        42.83           43
+2026-04-26 19:21:30,615 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7727272727272727
+2026-04-26 19:21:30,615 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5161290322580645
+2026-04-26 19:21:30,617 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.25870392234028605
+2026-04-26 19:21:30,617 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.5925925925925926
+2026-04-26 19:21:30,618 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:30,618 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: overall, Task Split: dag
+2026-04-26 19:21:30,682 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 3
+2026-04-26 19:21:30,682 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 3 / 3
+2026-04-26 19:21:30,682 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 3 / 3
+2026-04-26 19:21:30,683 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 3 / 3
+2026-04-26 19:21:30,684 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 0.9166666666666666
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 0.9166666666666666
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 0.9166666666666666
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.2
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.2
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.2
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            2
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer       100.00       100.00       100.00            2
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer       100.00       100.00       100.00            1
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-04-26 19:21:30,686 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier         0.00         0.00         0.00            1
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            2
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                          micro        91.67        91.67        91.67           12
+2026-04-26 19:21:30,687 - [ pipeline_orchestrator_agent ] - INFO -                          macro        20.00        20.00        20.00           12
+2026-04-26 19:21:30,688 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8571428571428571
+2026-04-26 19:21:30,689 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5714285714285714
+2026-04-26 19:21:30,689 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.1777777777777777
+2026-04-26 19:21:30,690 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.47058823529411764
+2026-04-26 19:21:30,690 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:30,690 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 1, Task Split: overall
+2026-04-26 19:21:30,777 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 2
+2026-04-26 19:21:30,777 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 2 / 2
+2026-04-26 19:21:30,777 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 2 / 2
+2026-04-26 19:21:30,777 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 2 / 2
+2026-04-26 19:21:30,779 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 19:21:30,779 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-04-26 19:21:30,779 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-04-26 19:21:30,779 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.05
+2026-04-26 19:21:30,779 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.05
+2026-04-26 19:21:30,779 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.05
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:30,780 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer       100.00       100.00       100.00            1
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00       100.00       100.00            2
+2026-04-26 19:21:30,781 - [ pipeline_orchestrator_agent ] - INFO -                          macro         5.00         5.00         5.00            2
+2026-04-26 19:21:30,782 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 1.0
+2026-04-26 19:21:30,782 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 1.0
+2026-04-26 19:21:30,783 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.0
+2026-04-26 19:21:30,783 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: skipped (empty support)
+2026-04-26 19:21:30,783 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:30,783 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 2, Task Split: overall
+2026-04-26 19:21:30,844 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 19:21:30,844 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 19:21:30,844 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 19:21:30,844 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 19:21:30,844 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 19:21:30,844 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:30,845 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 3, Task Split: overall
+2026-04-26 19:21:30,911 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 6
+2026-04-26 19:21:30,911 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 6 / 6
+2026-04-26 19:21:30,911 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 6 / 6
+2026-04-26 19:21:30,911 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 6 / 6
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 0.8571428571428571
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 0.6666666666666666
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 0.75
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.225
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.1958333333333333
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.20666666666666664
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader       100.00       100.00       100.00            1
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            1
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00        66.67        80.00            3
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,914 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            1
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier         0.00         0.00         0.00            1
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            1
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00        66.67        80.00            3
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover       100.00        50.00        66.67            2
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                          micro        85.71        66.67        75.00           18
+2026-04-26 19:21:30,915 - [ pipeline_orchestrator_agent ] - INFO -                          macro        22.50        19.58        20.67           18
+2026-04-26 19:21:30,916 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6666666666666666
+2026-04-26 19:21:30,917 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6190476190476191
+2026-04-26 19:21:30,917 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.27222222222222214
+2026-04-26 19:21:30,918 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.5263157894736842
+2026-04-26 19:21:30,918 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:30,918 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 4, Task Split: overall
+2026-04-26 19:21:30,983 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 2
+2026-04-26 19:21:30,983 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 2 / 2
+2026-04-26 19:21:30,984 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 2 / 2
+2026-04-26 19:21:30,984 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 2 / 2
+2026-04-26 19:21:30,985 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 0.7142857142857143
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 0.8333333333333334
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 0.7692307692307693
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.125
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.125
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.125
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,987 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer       100.00       100.00       100.00            1
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer       100.00       100.00       100.00            1
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            1
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                          micro        71.43        83.33        76.92            6
+2026-04-26 19:21:30,988 - [ pipeline_orchestrator_agent ] - INFO -                          macro        12.50        12.50        12.50            6
+2026-04-26 19:21:30,989 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.75
+2026-04-26 19:21:30,990 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.10526315789473684
+2026-04-26 19:21:30,990 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.46666666666666656
+2026-04-26 19:21:30,991 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.0
+2026-04-26 19:21:30,991 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:30,991 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 5, Task Split: overall
+2026-04-26 19:21:31,054 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 4
+2026-04-26 19:21:31,054 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 4 / 4
+2026-04-26 19:21:31,054 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 4 / 4
+2026-04-26 19:21:31,054 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 4 / 4
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 0.85
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 0.918918918918919
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.35
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.3375
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.3416666666666667
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search       100.00       100.00       100.00            1
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            2
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects       100.00       100.00       100.00            2
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-04-26 19:21:31,058 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer         0.00         0.00         0.00            1
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander       100.00        50.00        66.67            2
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor         0.00         0.00         0.00            1
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator       100.00       100.00       100.00            2
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00        85.00        91.89           20
+2026-04-26 19:21:31,059 - [ pipeline_orchestrator_agent ] - INFO -                          macro        35.00        33.75        34.17           20
+2026-04-26 19:21:31,060 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9047619047619048
+2026-04-26 19:21:31,061 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.7391304347826086
+2026-04-26 19:21:31,061 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.1071428571428572
+2026-04-26 19:21:31,062 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.8
+2026-04-26 19:21:31,062 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:31,062 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 6, Task Split: overall
+2026-04-26 19:21:31,127 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 2
+2026-04-26 19:21:31,127 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 2 / 2
+2026-04-26 19:21:31,127 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 2 / 2
+2026-04-26 19:21:31,127 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 2 / 2
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO - Node Micro Recall [ No Matching ]: 0.8181818181818182
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO - Node Micro F1 [ No Matching ]: 0.9
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Precision [ No Matching ]: 0.225
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO - Node Macro Recall [ No Matching ]: 0.225
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO - Node Macro F1 [ No Matching ]: 0.225
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                           type    precision       recall     f1-score      support
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                  Text-to-Audio       100.00       100.00       100.00            1
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-04-26 19:21:31,129 - [ pipeline_orchestrator_agent ] - INFO -                  Voice Changer         0.00         0.00         0.00            1
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                Text Summarizer       100.00       100.00       100.00            1
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            1
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                Topic Generator         0.00         0.00         0.00            1
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO - 
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                          micro       100.00        81.82        90.00           11
+2026-04-26 19:21:31,131 - [ pipeline_orchestrator_agent ] - INFO -                          macro        22.50        22.50        22.50           11
+2026-04-26 19:21:31,132 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8421052631578947
+2026-04-26 19:21:31,133 - [ pipeline_orchestrator_agent ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.2857142857142857
+2026-04-26 19:21:31,133 - [ pipeline_orchestrator_agent ] - INFO - Edit Distance: 0.19191919191919193
+2026-04-26 19:21:31,134 - [ pipeline_orchestrator_agent ] - INFO - Link Binary F1: 0.5
+2026-04-26 19:21:31,134 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:31,134 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 7, Task Split: overall
+2026-04-26 19:21:31,197 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 19:21:31,197 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 19:21:31,197 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 19:21:31,197 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 19:21:31,197 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 19:21:31,197 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:31,197 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 8, Task Split: overall
+2026-04-26 19:21:31,259 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 19:21:31,259 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 19:21:31,259 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 19:21:31,259 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 19:21:31,259 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 19:21:31,259 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:31,259 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 9, Task Split: overall
+2026-04-26 19:21:31,324 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 19:21:31,325 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 19:21:31,325 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 19:21:31,325 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 19:21:31,325 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip
+2026-04-26 19:21:31,325 - [ pipeline_orchestrator_agent ] - INFO - ---------------
+2026-04-26 19:21:31,325 - [ pipeline_orchestrator_agent ] - INFO - Tools Number: 10, Task Split: overall
+2026-04-26 19:21:31,395 - [ pipeline_orchestrator_agent ] - INFO - Step Supports: 0 / 0
+2026-04-26 19:21:31,396 - [ pipeline_orchestrator_agent ] - INFO - Node Support: 0 / 0
+2026-04-26 19:21:31,396 - [ pipeline_orchestrator_agent ] - INFO - Link Support: 0 / 0
+2026-04-26 19:21:31,396 - [ pipeline_orchestrator_agent ] - INFO - Argument Support: 0 / 0
+2026-04-26 19:21:31,396 - [ pipeline_orchestrator_agent ] - INFO - No supports, skip

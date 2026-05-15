@@ -1,0 +1,8 @@
+{
+  "name": "Video-to-Text",
+  "description": "Transcribes speech from a video file into text.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: video"
+  },
+  "executor": "executor.py:run"
+}

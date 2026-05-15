@@ -1,0 +1,39 @@
+{
+  "name": "collapse_collection",
+  "description": "[Genomics - MRCA analysis] WorkflowHub step 'Collapse Collection' generated from toolshed_g2_bx_psu_edu_repos_nml_collapse_collections_collapse_dataset_4_1. Context: Dating the most recent common ancestor (MRCA) of SARS-CoV-2. The workflow is used to extract full length sequences of SARS-CoV-2, tidy up their names in FASTA files, produce a multiple sequences al...",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": [
+    "snpsift_extract_fields",
+    "text_transformation"
+  ],
+  "meta": {
+    "source": "workflowhub",
+    "workflow_names": [
+      "Genomics - MRCA analysis",
+      "Genomics - PE Variation",
+      "Genomics - SE Variation"
+    ],
+    "workflow_licenses": [
+      "https://spdx.org/licenses/MIT"
+    ],
+    "workflow_keywords": [
+      "covid-19"
+    ],
+    "source_cwls": [
+      "workflow-6-1.crate/Genomics-3-MRCA.cwl",
+      "workflow-7-1.crate/Genomics-4-PE_Variation.cwl",
+      "workflow-8-1.crate/Genomics-4-SE_Variation.cwl"
+    ],
+    "more_info_urls": [
+      "https://covid19.galaxyproject.org/genomics/",
+      "https://workflowhub.eu/workflows/6?version=1",
+      "https://workflowhub.eu/workflows/7?version=1",
+      "https://workflowhub.eu/workflows/8?version=1"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "map_with_bwa_mem",
+  "description": "WorkflowHub step 'Map with BWA-MEM' generated from toolshed_g2_bx_psu_edu_repos_devteam_bwa_bwa_mem_0_7_17_1.",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": [
+    "fastp"
+  ]
+}

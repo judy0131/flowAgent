@@ -1,0 +1,22 @@
+LLM_PROVIDER: alibaba
+TONGYI_API_KEY: sk-cae36f7e2598438baa34502c5259e53d
+TONGYI_MODEL_NAME: qwen-plus
+
+APP_HOST: 0.0.0.0
+APP_PORT: 8080
+
+PIFLOW_URL: http://10.0.87.109:6005
+UPLOAD_FILE_PATH: /piflow-web/file/uploadFile
+
+DEBUG: True
+
+fastmcp:
+  SERVER_URL: http://127.0.0.1:8000
+  CLIENT_ENDPOINT: /mcp
+
+database:
+  host: '10.0.87.113'
+  port: 3306
+  user: 'root'
+  password: 'flow@*^#2025@'  # **注意：不建议将密码放在 config.yaml 中，最好通过 .env 或环境变量注入！**
+  database_name: 'ecoflowdb'

@@ -1,0 +1,9 @@
+{
+  "name": "Video Speed Changer",
+  "description": "Adjusts the playback speed of a given video according to human instruction, either speeding it up or slowing it down.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: video",
+    "arg2": "Input parameter 2, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

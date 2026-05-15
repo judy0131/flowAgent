@@ -1,0 +1,8 @@
+{
+  "name": "Video Stabilizer",
+  "description": "Stabilizes a shaky input video to produce a smoother output video.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: video"
+  },
+  "executor": "executor.py:run"
+}

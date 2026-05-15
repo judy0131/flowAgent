@@ -1,0 +1,11 @@
+{
+  "name": "map_with_minimap2",
+  "description": "WorkflowHub step 'Map with minimap2' generated from toolshed_g2_bx_psu_edu_repos_iuc_minimap2_minimap2_2_17+galaxy0.",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": []
+}

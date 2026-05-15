@@ -1,0 +1,9 @@
+{
+  "name": "Image Stitcher",
+  "description": "Stitches together two input images to create a panorama or collage.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: image",
+    "arg2": "Input parameter 2, expected type: image"
+  },
+  "executor": "executor.py:run"
+}

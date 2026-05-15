@@ -1,0 +1,8 @@
+{
+  "name": "Keyword Extractor",
+  "description": "Extracts the most important keywords and phrases from a given text.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

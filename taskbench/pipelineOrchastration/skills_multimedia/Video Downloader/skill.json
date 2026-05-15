@@ -1,0 +1,8 @@
+{
+  "name": "Video Downloader",
+  "description": "Downloads a video from a given URL.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: url"
+  },
+  "executor": "executor.py:run"
+}

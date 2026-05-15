@@ -1,0 +1,8 @@
+{
+  "name": "Article Spinner",
+  "description": "Rewrites a given article using synonyms and syntax changes to create a new, unique version.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "fastqc",
+  "description": "WorkflowHub step 'FastQC' generated from toolshed_g2_bx_psu_edu_repos_devteam_fastqc_fastqc_0_72+galaxy1.",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": []
+}

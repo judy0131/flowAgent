@@ -1,0 +1,50 @@
+{
+  "data_dir": "D:\\大数据部\\大数据技术创新组\\project\\flow-agent\\taskbench\\data_multimedia",
+  "pred_file": "D:\\大数据部\\大数据技术创新组\\project\\flow-agent\\taskbench\\data_multimedia\\predictions_pipeline_agent\\pipeline_orchestrator_agent_20260511.json",
+  "gold_file": "D:\\大数据部\\大数据技术创新组\\project\\flow-agent\\taskbench\\data_multimedia\\data.json",
+  "metrics_file": "D:\\大数据部\\大数据技术创新组\\project\\flow-agent\\taskbench\\data_multimedia\\metrics_pipeline_agent\\pipeline_orchestrator_agent_20260511.json",
+  "step_ref_base": "one",
+  "rows": {
+    "experiment_comparison": 1,
+    "structure_breakdown": 4,
+    "badcase_report": 12
+  },
+  "badcase_stats": {
+    "total_predictions": 20,
+    "goodcase_count": 8,
+    "badcase_count": 12,
+    "badcase_rate": 0.6,
+    "node_ok_in_badcase_count": 3,
+    "node_mismatch_in_badcase_count": 9,
+    "link_ok_in_badcase_count": 3,
+    "link_mismatch_in_badcase_count": 9,
+    "arg_mismatch_case_count": 12,
+    "total_arg_mismatch_steps": 28,
+    "error_combo_distribution": {
+      "arg": 2,
+      "link+arg": 1,
+      "node+arg": 1,
+      "node+link+arg": 8
+    },
+    "badcase_by_type": {
+      "chain": {
+        "badcase_count": 9,
+        "node_mismatch_count": 7,
+        "link_mismatch_count": 7,
+        "arg_mismatch_case_count": 9
+      },
+      "dag": {
+        "badcase_count": 3,
+        "node_mismatch_count": 2,
+        "link_mismatch_count": 2,
+        "arg_mismatch_case_count": 3
+      }
+    }
+  },
+  "outputs": {
+    "experiment_comparison_csv": "D:\\大数据部\\大数据技术创新组\\project\\flow-agent\\taskbench\\data_multimedia\\metrics_pipeline_agent\\three_tables\\01_experiment_comparison_20260511.csv",
+    "structure_breakdown_csv": "D:\\大数据部\\大数据技术创新组\\project\\flow-agent\\taskbench\\data_multimedia\\metrics_pipeline_agent\\three_tables\\02_structure_breakdown_20260511.csv",
+    "badcase_report_csv": "D:\\大数据部\\大数据技术创新组\\project\\flow-agent\\taskbench\\data_multimedia\\metrics_pipeline_agent\\three_tables\\03_badcase_report_20260511.csv",
+    "badcase_report_json": "D:\\大数据部\\大数据技术创新组\\project\\flow-agent\\taskbench\\data_multimedia\\metrics_pipeline_agent\\three_tables\\03_badcase_report_20260511.json"
+  }
+}

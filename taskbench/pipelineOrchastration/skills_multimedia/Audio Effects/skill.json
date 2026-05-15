@@ -1,0 +1,9 @@
+{
+  "name": "Audio Effects",
+  "description": "Applies various audio effects to a given audio file according to human instruction, such as reverb, chorus, or equalization.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: audio",
+    "arg2": "Input parameter 2, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

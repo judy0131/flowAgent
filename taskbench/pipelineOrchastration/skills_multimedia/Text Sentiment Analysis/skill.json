@@ -1,0 +1,8 @@
+{
+  "name": "Text Sentiment Analysis",
+  "description": "Analyzes the sentiment of a given text, identifying if it is positive, negative, or neutral.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

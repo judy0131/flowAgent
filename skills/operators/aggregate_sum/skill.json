@@ -1,0 +1,8 @@
+{
+  "name": "aggregate_sum",
+  "description": "Sum a numeric field in context.data.",
+  "input_schema": {
+    "field": "str"
+  },
+  "executor": "executor.py:run"
+}

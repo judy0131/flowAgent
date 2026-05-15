@@ -1,0 +1,8 @@
+{
+  "name": "Text Grammar Checker",
+  "description": "Checks a given text for grammatical errors and suggests corrections.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

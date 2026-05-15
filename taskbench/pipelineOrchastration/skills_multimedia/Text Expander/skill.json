@@ -1,0 +1,8 @@
+{
+  "name": "Text Expander",
+  "description": "Expands a given short text into a more detailed and descriptive version.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

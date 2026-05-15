@@ -1,0 +1,47 @@
+source_tool,target_tool,count,workflows
+"Filter SAM or BAM, output SAM or BAM",MergeSamFiles,4,"Genomics-1-PreProcessing_with_download,Genomics-1-PreProcessing_without_downloading_from_SRA"
+MergeSamFiles,Samtools fastx,4,"Genomics-1-PreProcessing_with_download,Genomics-1-PreProcessing_without_downloading_from_SRA"
+fastp,MultiQC,4,"Genomics-1-PreProcessing_with_download,Genomics-1-PreProcessing_without_downloading_from_SRA,Genomics-4-PE_Variation,Genomics-4-SE_Variation"
+Map with BWA-MEM,"Filter SAM or BAM, output SAM or BAM",3,"Genomics-1-PreProcessing_with_download,Genomics-1-PreProcessing_without_downloading_from_SRA,Genomics-4-PE_Variation"
+fastp,Map with BWA-MEM,3,"Genomics-1-PreProcessing_with_download,Genomics-1-PreProcessing_without_downloading_from_SRA,Genomics-4-PE_Variation"
+Call variants,SnpEff eff:,2,"Genomics-4-PE_Variation,Genomics-4-SE_Variation"
+FastQC,MultiQC,2,"Genomics-1-PreProcessing_with_download,Genomics-1-PreProcessing_without_downloading_from_SRA"
+MAFFT,tranalign,2,"Genomics-5-S-analysis,Genomics-6-RecombinationSelection"
+Map with minimap2,"Filter SAM or BAM, output SAM or BAM",2,"Genomics-1-PreProcessing_with_download,Genomics-1-PreProcessing_without_downloading_from_SRA"
+MarkDuplicates,MultiQC,2,"Genomics-4-PE_Variation,Genomics-4-SE_Variation"
+MarkDuplicates,Realign reads,2,"Genomics-4-PE_Variation,Genomics-4-SE_Variation"
+Realign reads,Call variants,2,"Genomics-4-PE_Variation,Genomics-4-SE_Variation"
+SnpEff build:,Call variants,2,"Genomics-4-PE_Variation,Genomics-4-SE_Variation"
+SnpEff build:,Realign reads,2,"Genomics-4-PE_Variation,Genomics-4-SE_Variation"
+SnpEff build:,SnpEff eff:,2,"Genomics-4-PE_Variation,Genomics-4-SE_Variation"
+SnpEff eff:,SnpSift Extract Fields,2,"Genomics-4-PE_Variation,Genomics-4-SE_Variation"
+SnpSift Extract Fields,Collapse Collection,2,"Genomics-4-PE_Variation,Genomics-4-SE_Variation"
+transeq,MAFFT,2,"Genomics-5-S-analysis,Genomics-6-RecombinationSelection"
+Bowtie2,MarkDuplicates,1,Genomics-4-SE_Variation
+Bowtie2,MultiQC,1,Genomics-4-SE_Variation
+Collapse Collection,MAFFT,1,Genomics-3-MRCA
+Convert,Cut,1,Genomics-3-MRCA
+Create assemblies with Unicycler,Bandage Image,1,Genomics-2-Assembly
+Create assemblies with Unicycler,Bandage Info,1,Genomics-2-Assembly
+Cut,NCBI Accession Download,1,Genomics-3-MRCA
+FASTTREE,HyPhy-aBSREL,1,Genomics-6-RecombinationSelection
+Faster Download and Extract Reads in FASTQ,FastQC,1,Genomics-1-PreProcessing_with_download
+Faster Download and Extract Reads in FASTQ,Map with minimap2,1,Genomics-1-PreProcessing_with_download
+Faster Download and Extract Reads in FASTQ,NanoPlot,1,Genomics-1-PreProcessing_with_download
+Faster Download and Extract Reads in FASTQ,fastp,1,Genomics-1-PreProcessing_with_download
+"Filter SAM or BAM, output SAM or BAM",MarkDuplicates,1,Genomics-4-PE_Variation
+"Filter SAM or BAM, output SAM or BAM",Samtools stats,1,Genomics-4-PE_Variation
+MAFFT,FASTTREE,1,Genomics-3-MRCA
+NCBI Accession Download,NormalizeFasta,1,Genomics-3-MRCA
+NormalizeFasta,Text transformation,1,Genomics-3-MRCA
+Remove beginning,Convert,1,Genomics-3-MRCA
+SPAdes,Bandage Image,1,Genomics-2-Assembly
+SPAdes,Bandage Info,1,Genomics-2-Assembly
+Samtools stats,MultiQC,1,Genomics-4-PE_Variation
+SnpEff build:,Bowtie2,1,Genomics-4-SE_Variation
+SnpEff build:,Map with BWA-MEM,1,Genomics-4-PE_Variation
+Text transformation,Collapse Collection,1,Genomics-3-MRCA
+fastp,Bowtie2,1,Genomics-4-SE_Variation
+tranalign,FASTTREE,1,Genomics-6-RecombinationSelection
+tranalign,HyPhy-GARD,1,Genomics-6-RecombinationSelection
+tranalign,HyPhy-aBSREL,1,Genomics-6-RecombinationSelection

@@ -1,0 +1,9 @@
+{
+  "name": "Video Synchronization",
+  "description": "Synchronizes the timing of an existing voiceover or audio file with the visuals of a given video.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: video",
+    "arg2": "Input parameter 2, expected type: audio"
+  },
+  "executor": "executor.py:run"
+}

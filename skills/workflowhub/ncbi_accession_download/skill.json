@@ -1,0 +1,32 @@
+{
+  "name": "ncbi_accession_download",
+  "description": "[Genomics - MRCA analysis] WorkflowHub step 'NCBI Accession Download' generated from toolshed_g2_bx_psu_edu_repos_iuc_ncbi_acc_download_ncbi_acc_download_0_2_5+galaxy0. Context: Dating the most recent common ancestor (MRCA) of SARS-CoV-2. The workflow is used to extract full length sequences of SARS-CoV-2, tidy up their names in FASTA files, produce a multiple sequences al...",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": [
+    "cut"
+  ],
+  "meta": {
+    "source": "workflowhub",
+    "workflow_names": [
+      "Genomics - MRCA analysis"
+    ],
+    "workflow_licenses": [
+      "https://spdx.org/licenses/MIT"
+    ],
+    "workflow_keywords": [
+      "covid-19"
+    ],
+    "source_cwls": [
+      "workflow-6-1.crate/Genomics-3-MRCA.cwl"
+    ],
+    "more_info_urls": [
+      "https://covid19.galaxyproject.org/genomics/",
+      "https://workflowhub.eu/workflows/6?version=1"
+    ]
+  }
+}

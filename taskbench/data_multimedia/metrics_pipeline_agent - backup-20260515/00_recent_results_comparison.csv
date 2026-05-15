@@ -1,0 +1,13 @@
+﻿Date,OutputSet,RunTag,Model,LLM,Domain,Overall n-F1,Overall Node Macro-F1,Overall e-F1,Chain n-F1,Chain e-F1,Chain NED,DAG n-F1,DAG e-F1,Total Predictions,Badcase Count,Badcase Rate,Node OK in Badcase,Node Mismatch in Badcase
+2026-05-14,three_tables,20260514,gpt-5.4-xhigh,FlowAgent(qianwen),Multimedia Tool,89.36,71.43,60.61,87.27,62.50,19.73,96.00,52.63,20,14,70.00,5,9
+2026-05-13,three_tables,20260513,gpt-5.4-xhigh,FlowAgent(qianwen),Multimedia Tool,90.65,75.43,74.23,89.91,73.42,15.44,91.67,77.78,20,12,60.00,4,8
+2026-05-12,three_tables,20260512,gpt-5.4-xhigh,FlowAgent(qianwen),Multimedia Tool,91.43,76.79,71.43,90.91,70.00,16.12,91.67,77.78,20,12,60.00,4,8
+2026-05-11,three_tables,gpt5.4_multi_memory_op_20260511,gpt-5.4-xhigh,FlowAgent(qianwen),Multimedia Tool,92.09,76.45,74.23,91.74,73.42,15.44,91.67,77.78,20,12,60.00,4,8
+2026-05-11,three_tables,gpt5.4_multi_memory_20260511,gpt-5.4-xhigh,FlowAgent(qianwen),Multimedia Tool,91.43,77.29,72.16,90.91,70.00,16.24,91.67,82.35,20,12,60.00,3,9
+2026-05-11,three_tables,gpt5.4_multi_20260511,gpt-5.4-xhigh,FlowAgent(qianwen),Multimedia Tool,90.14,77.29,62.00,90.09,64.20,15.46,88.00,52.63,20,12,60.00,3,9
+2026-05-08,three_tables,20260508,gpt-5.4-xhigh,FlowAgent(qianwen),Multimedia Tool,87.77,73.23,60.42,85.45,60.00,23.58,95.65,62.50,20,14,70.00,5,9
+2026-05-08,three_tables,gpt5.4_multi_20260508,gpt-5.4-xhigh,FlowAgent(qianwen),Multimedia Tool,90.00,73.23,59.79,88.29,59.26,17.25,95.65,62.50,20,14,70.00,4,10
+2026-05-07,three_tables,gpt5.4_multi_20260507,gpt-5.4-xhigh,FlowAgent(qianwen),Multimedia Tool,92.20,76.81,62.63,90.91,65.00,15.03,96.00,52.63,20,14,70.00,6,8
+2026-05-07,three_tables,gpt5.4_single_20260507,gpt-5.4-xhigh,FlowAgent(qianwen),Multimedia Tool,92.86,76.81,70.10,90.91,72.50,14.66,100.00,58.82,20,13,65.00,5,8
+2026-05-07,three_tables,gemini_20260507,gemini-2.5-flash,FlowAgent(qianwen),Multimedia Tool,91.85,76.29,61.54,90.57,61.33,15.33,95.65,62.50,20,11,55.00,2,9
+2026-04-30,three_tables,20260430,qwen-max,FlowAgent(qianwen),Multimedia Tool,85.48,67.42,58.54,82.98,61.54,21.42,91.67,47.06,19,14,73.68,5,9

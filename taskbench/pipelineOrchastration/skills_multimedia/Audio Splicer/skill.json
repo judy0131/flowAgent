@@ -1,0 +1,9 @@
+{
+  "name": "Audio Splicer",
+  "description": "Combines two audio files into a single output file.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: audio",
+    "arg2": "Input parameter 2, expected type: audio"
+  },
+  "executor": "executor.py:run"
+}

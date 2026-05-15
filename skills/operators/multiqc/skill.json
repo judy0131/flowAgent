@@ -1,0 +1,14 @@
+{
+  "name": "multiqc",
+  "description": "WorkflowHub step 'MultiQC' generated from toolshed_g2_bx_psu_edu_repos_iuc_multiqc_multiqc_1_7.",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": [
+    "fastp",
+    "fastqc"
+  ]
+}

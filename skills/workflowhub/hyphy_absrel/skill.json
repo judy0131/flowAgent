@@ -1,0 +1,33 @@
+{
+  "name": "hyphy_absrel",
+  "description": "[Genomics - Recombination and selection analysis] WorkflowHub step 'HyPhy-aBSREL' generated from toolshed_g2_bx_psu_edu_repos_iuc_hyphy_absrel_hyphy_absrel_2_5_4+galaxy0. Context: This workflow employs a recombination detection algorithm (GARD) developed by Kosakovsky Pond et al. and implemented in the hyphy package. More info can be found at https://covid19.galaxyproject.or...",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": [
+    "fasttree",
+    "tranalign"
+  ],
+  "meta": {
+    "source": "workflowhub",
+    "workflow_names": [
+      "Genomics - Recombination and selection analysis"
+    ],
+    "workflow_licenses": [
+      "https://spdx.org/licenses/MIT"
+    ],
+    "workflow_keywords": [
+      "covid-19"
+    ],
+    "source_cwls": [
+      "workflow-10-1.crate/Genomics-6-RecombinationSelection.cwl"
+    ],
+    "more_info_urls": [
+      "https://covid19.galaxyproject.org/genomics/",
+      "https://workflowhub.eu/workflows/10?version=1"
+    ]
+  }
+}

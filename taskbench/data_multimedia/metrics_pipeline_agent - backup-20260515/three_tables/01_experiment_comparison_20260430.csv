@@ -1,0 +1,2 @@
+﻿Domain,LLM,Node n-F1,Chain n-F1,Chain e-F1,Chain NED,DAG n-F1,DAG e-F1,Overall n-F1,Overall e-F1
+Multimedia Tool,FlowAgent(qianwen),85.48,82.98,61.54,21.42,91.67,47.06,85.48,58.54

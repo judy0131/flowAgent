@@ -1,0 +1,8 @@
+{
+  "name": "generate_report",
+  "description": "Build a final report from runtime context.",
+  "input_schema": {
+    "title": "str"
+  },
+  "executor": "executor.py:run"
+}

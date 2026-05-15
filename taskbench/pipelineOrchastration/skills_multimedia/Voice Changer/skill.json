@@ -1,0 +1,9 @@
+{
+  "name": "Voice Changer",
+  "description": "Modifies the characteristics of a recorded voice according to human instruction, such as tone, pitch, or gender.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: audio",
+    "arg2": "Input parameter 2, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

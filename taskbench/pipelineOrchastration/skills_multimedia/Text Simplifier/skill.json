@@ -1,0 +1,8 @@
+{
+  "name": "Text Simplifier",
+  "description": "Rewrites a given text in a simpler and more understandable manner.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

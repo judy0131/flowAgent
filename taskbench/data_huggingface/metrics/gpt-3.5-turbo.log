@@ -1,0 +1,15 @@
+2026-03-30 17:45:22,890 - [ gpt-3.5-turbo ] - INFO - Starts with: {'data_dir': 'data_huggingface', 'prediction_dir': 'predictions', 'save_dir': None, 'splits': ('overall',), 'n_tools': ('overall',), 'mode': 'add', 'metric': ('all',), 'llm': 'gpt-3.5-turbo', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-03-30 17:45:22,912 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-03-30 17:45:22,913 - [ gpt-3.5-turbo ] - INFO - Tools Number: overall, Task Split: overall
+2026-03-30 17:49:27,461 - [ gpt-3.5-turbo ] - INFO - Starts with: {'data_dir': 'data_huggingface', 'prediction_dir': 'predictions', 'save_dir': None, 'splits': ('overall',), 'n_tools': ('overall',), 'mode': 'add', 'metric': ('all',), 'llm': 'gpt-3.5-turbo', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-03-30 17:49:27,463 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-03-30 17:49:27,464 - [ gpt-3.5-turbo ] - INFO - Tools Number: overall, Task Split: overall
+2026-03-30 17:52:09,039 - [ gpt-3.5-turbo ] - INFO - Starts with: {'data_dir': 'data_huggingface', 'prediction_dir': 'predictions', 'save_dir': None, 'splits': ('overall',), 'n_tools': ('overall',), 'mode': 'add', 'metric': ('all',), 'llm': 'gpt-3.5-turbo', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-03-30 17:52:09,040 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-03-30 17:52:09,041 - [ gpt-3.5-turbo ] - INFO - Tools Number: overall, Task Split: overall
+2026-03-30 17:53:19,431 - [ gpt-3.5-turbo ] - INFO - Starts with: {'data_dir': 'data_huggingface', 'prediction_dir': 'predictions', 'save_dir': None, 'splits': ('overall',), 'n_tools': ('overall',), 'mode': 'add', 'metric': ('all',), 'llm': 'gpt-3.5-turbo', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-03-30 17:53:19,433 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-03-30 17:53:19,434 - [ gpt-3.5-turbo ] - INFO - Tools Number: overall, Task Split: overall
+2026-04-01 10:52:07,378 - [ gpt-3.5-turbo ] - INFO - Starts with: {'data_dir': 'data_huggingface', 'prediction_dir': 'predictions', 'save_dir': None, 'splits': ('overall',), 'n_tools': ('overall',), 'mode': 'add', 'metric': ('all',), 'llm': 'gpt-3.5-turbo', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-04-01 10:52:07,452 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-04-01 10:52:07,454 - [ gpt-3.5-turbo ] - INFO - Tools Number: overall, Task Split: overall

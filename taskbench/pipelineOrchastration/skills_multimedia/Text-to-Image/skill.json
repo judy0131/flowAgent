@@ -1,0 +1,8 @@
+{
+  "name": "Text-to-Image",
+  "description": "Generates an image based on a given text description.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: text"
+  },
+  "executor": "executor.py:run"
+}

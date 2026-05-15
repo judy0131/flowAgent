@@ -1,0 +1,2 @@
+﻿Domain,LLM,Model,Node n-F1,Chain n-F1,Chain e-F1,Chain NED,DAG n-F1,DAG e-F1,Overall n-F1,Overall e-F1
+Multimedia Tool,FlowAgent(qianwen),gpt-5.4-xhigh,88.73,86.49,66.67,20.41,96.00,52.63,88.73,64.00

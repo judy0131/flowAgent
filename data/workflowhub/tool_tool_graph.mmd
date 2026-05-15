@@ -1,0 +1,82 @@
+flowchart LR
+  n_bandage_image["Bandage Image"]
+  n_bandage_info["Bandage Info"]
+  n_bowtie2["Bowtie2"]
+  n_call_variants["Call variants"]
+  n_collapse_collection["Collapse Collection"]
+  n_convert["Convert"]
+  n_create_assemblies_with_unicycler["Create assemblies with Unicycler"]
+  n_cut["Cut"]
+  n_fasttree["FASTTREE"]
+  n_fastqc["FastQC"]
+  n_faster_download_and_extract_reads_in_fastq["Faster Download and Extract Reads in FASTQ"]
+  n_filter_sam_or_bam_output_sam_or_bam["Filter SAM or BAM, output SAM or BAM"]
+  n_hyphy_gard["HyPhy-GARD"]
+  n_hyphy_absrel["HyPhy-aBSREL"]
+  n_mafft["MAFFT"]
+  n_map_with_bwa_mem["Map with BWA-MEM"]
+  n_map_with_minimap2["Map with minimap2"]
+  n_markduplicates["MarkDuplicates"]
+  n_mergesamfiles["MergeSamFiles"]
+  n_multiqc["MultiQC"]
+  n_ncbi_accession_download["NCBI Accession Download"]
+  n_nanoplot["NanoPlot"]
+  n_normalizefasta["NormalizeFasta"]
+  n_realign_reads["Realign reads"]
+  n_remove_beginning["Remove beginning"]
+  n_spades["SPAdes"]
+  n_samtools_fastx["Samtools fastx"]
+  n_samtools_stats["Samtools stats"]
+  n_snpeff_build["SnpEff build:"]
+  n_snpeff_eff["SnpEff eff:"]
+  n_snpsift_extract_fields["SnpSift Extract Fields"]
+  n_text_transformation["Text transformation"]
+  n_fastp["fastp"]
+  n_tranalign["tranalign"]
+  n_transeq["transeq"]
+  n_filter_sam_or_bam_output_sam_or_bam -->|4| n_mergesamfiles
+  n_mergesamfiles -->|4| n_samtools_fastx
+  n_fastp -->|4| n_multiqc
+  n_map_with_bwa_mem -->|3| n_filter_sam_or_bam_output_sam_or_bam
+  n_fastp -->|3| n_map_with_bwa_mem
+  n_call_variants -->|2| n_snpeff_eff
+  n_fastqc -->|2| n_multiqc
+  n_mafft -->|2| n_tranalign
+  n_map_with_minimap2 -->|2| n_filter_sam_or_bam_output_sam_or_bam
+  n_markduplicates -->|2| n_multiqc
+  n_markduplicates -->|2| n_realign_reads
+  n_realign_reads -->|2| n_call_variants
+  n_snpeff_build -->|2| n_call_variants
+  n_snpeff_build -->|2| n_realign_reads
+  n_snpeff_build -->|2| n_snpeff_eff
+  n_snpeff_eff -->|2| n_snpsift_extract_fields
+  n_snpsift_extract_fields -->|2| n_collapse_collection
+  n_transeq -->|2| n_mafft
+  n_bowtie2 -->|1| n_markduplicates
+  n_bowtie2 -->|1| n_multiqc
+  n_collapse_collection -->|1| n_mafft
+  n_convert -->|1| n_cut
+  n_create_assemblies_with_unicycler -->|1| n_bandage_image
+  n_create_assemblies_with_unicycler -->|1| n_bandage_info
+  n_cut -->|1| n_ncbi_accession_download
+  n_fasttree -->|1| n_hyphy_absrel
+  n_faster_download_and_extract_reads_in_fastq -->|1| n_fastqc
+  n_faster_download_and_extract_reads_in_fastq -->|1| n_map_with_minimap2
+  n_faster_download_and_extract_reads_in_fastq -->|1| n_nanoplot
+  n_faster_download_and_extract_reads_in_fastq -->|1| n_fastp
+  n_filter_sam_or_bam_output_sam_or_bam -->|1| n_markduplicates
+  n_filter_sam_or_bam_output_sam_or_bam -->|1| n_samtools_stats
+  n_mafft -->|1| n_fasttree
+  n_ncbi_accession_download -->|1| n_normalizefasta
+  n_normalizefasta -->|1| n_text_transformation
+  n_remove_beginning -->|1| n_convert
+  n_spades -->|1| n_bandage_image
+  n_spades -->|1| n_bandage_info
+  n_samtools_stats -->|1| n_multiqc
+  n_snpeff_build -->|1| n_bowtie2
+  n_snpeff_build -->|1| n_map_with_bwa_mem
+  n_text_transformation -->|1| n_collapse_collection
+  n_fastp -->|1| n_bowtie2
+  n_tranalign -->|1| n_fasttree
+  n_tranalign -->|1| n_hyphy_gard
+  n_tranalign -->|1| n_hyphy_absrel

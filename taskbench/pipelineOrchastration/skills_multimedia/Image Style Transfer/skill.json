@@ -1,0 +1,9 @@
+{
+  "name": "Image Style Transfer",
+  "description": "Applies the visual style of one image (style) to the content of another image (content) using neural style transfer techniques.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: image",
+    "arg2": "Input parameter 2, expected type: image"
+  },
+  "executor": "executor.py:run"
+}

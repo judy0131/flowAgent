@@ -1,0 +1,33 @@
+{
+  "name": "bowtie2",
+  "description": "[Genomics - SE Variation] WorkflowHub step 'Bowtie2' generated from toolshed_g2_bx_psu_edu_repos_devteam_bowtie2_bowtie2_2_3_4_3+galaxy0. Context: Analysis of variation within individual COVID-19 samples using Illumina Single End data. More info can be found at https://covid19.galaxyproject.org/genomics/",
+  "input_schema": {
+    "source_ref": "str",
+    "output_key": "str"
+  },
+  "executor": "executor.py:run",
+  "depends_on_all": [],
+  "depends_on_any": [
+    "fastp",
+    "snpeff_build"
+  ],
+  "meta": {
+    "source": "workflowhub",
+    "workflow_names": [
+      "Genomics - SE Variation"
+    ],
+    "workflow_licenses": [
+      "https://spdx.org/licenses/MIT"
+    ],
+    "workflow_keywords": [
+      "covid-19"
+    ],
+    "source_cwls": [
+      "workflow-8-1.crate/Genomics-4-SE_Variation.cwl"
+    ],
+    "more_info_urls": [
+      "https://covid19.galaxyproject.org/genomics/",
+      "https://workflowhub.eu/workflows/8?version=1"
+    ]
+  }
+}

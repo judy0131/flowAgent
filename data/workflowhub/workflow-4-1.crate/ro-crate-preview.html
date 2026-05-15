@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Research Object Crate for Genomics - Read pre-processing without downloading from SRA</title>
+  <script type="application/ld+json">{
+  "@context": "https://w3id.org/ro/crate/1.1/context",
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      },
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.1"
+      }
+    },
+    {
+      "@id": "ro-crate-preview.html",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "conformsTo": [
+        {
+          "@id": "https://w3id.org/ro/crate/1.1"
+        },
+        {
+          "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"
+        }
+      ],
+      "mainEntity": {
+        "@id": "Genomics-1-PreProcessing_without_downloading_from_SRA.ga"
+      },
+      "author": [
+        {
+          "@id": "#creator-1"
+        },
+        {
+          "@id": "#creator-2"
+        },
+        {
+          "@id": "#creator-3"
+        },
+        {
+          "@id": "#creator-4"
+        },
+        {
+          "@id": "#creator-5"
+        },
+        {
+          "@id": "#creator-6"
+        },
+        {
+          "@id": "#creator-7"
+        },
+        {
+          "@id": "#creator-8"
+        },
+        {
+          "@id": "#creator-9"
+        },
+        {
+          "@id": "#creator-10"
+        },
+        {
+          "@id": "#creator-11"
+        },
+        {
+          "@id": "#creator-12"
+        },
+        {
+          "@id": "#creator-13"
+        },
+        {
+          "@id": "#creator-14"
+        },
+        {
+          "@id": "#creator-15"
+        },
+        {
+          "@id": "#creator-16"
+        },
+        {
+          "@id": "#creator-17"
+        },
+        {
+          "@id": "#creator-18"
+        },
+        {
+          "@id": "#creator-19"
+        }
+      ],
+      "license": "MIT",
+      "identifier": "https://workflowhub.eu/workflows/4?version=1",
+      "url": "https://workflowhub.eu/workflows/4/ro_crate?version=1",
+      "name": "Research Object Crate for Genomics - Read pre-processing without downloading from SRA",
+      "description": "Preprocessing of raw SARS-CoV-2 reads. This workflow contains an alternate starting point to avoid the data to be downloaded from the NCBI SRA. More info can be found at https://covid19.galaxyproject.org/genomics/",
+      "sdDatePublished": "2025-09-26 04:16:24 +0100",
+      "hasPart": [
+        {
+          "@id": "Genomics-1-PreProcessing_without_downloading_from_SRA.ga"
+        },
+        {
+          "@id": "Genomics-1-PreProcessing_without_downloading_from_SRA.svg"
+        },
+        {
+          "@id": "Genomics-1-PreProcessing_without_downloading_from_SRA.cwl"
+        }
+      ]
+    },
+    {
+      "@id": "Genomics-1-PreProcessing_without_downloading_from_SRA.ga",
+      "@type": [
+        "File",
+        "SoftwareSourceCode",
+        "ComputationalWorkflow"
+      ],
+      "contentSize": 35202,
+      "programmingLanguage": {
+        "@id": "#galaxy"
+      },
+      "image": {
+        "@id": "Genomics-1-PreProcessing_without_downloading_from_SRA.svg"
+      },
+      "subjectOf": {
+        "@id": "Genomics-1-PreProcessing_without_downloading_from_SRA.cwl"
+      },
+      "dct:conformsTo": "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/",
+      "description": "Preprocessing of raw SARS-CoV-2 reads. This workflow contains an alternate starting point to avoid the data to be downloaded from the NCBI SRA. More info can be found at https://covid19.galaxyproject.org/genomics/",
+      "name": "Genomics - Read pre-processing without downloading from SRA",
+      "url": "https://workflowhub.eu/workflows/4?version=1",
+      "keywords": "covid-19",
+      "version": 1,
+      "license": "https://spdx.org/licenses/MIT",
+      "creator": [
+        {
+          "@id": "#Dannon%20Baker"
+        },
+        {
+          "@id": "#Marius%20van%20den%20Beek"
+        },
+        {
+          "@id": "#Dave%20Bouvier"
+        },
+        {
+          "@id": "#John%20Chilton"
+        },
+        {
+          "@id": "#Nate%20Coraor"
+        },
+        {
+          "@id": "#Frederik%20Coppens"
+        },
+        {
+          "@id": "#Bert%20Droesbeke"
+        },
+        {
+          "@id": "#Ignacio%20Eguinoa"
+        },
+        {
+          "@id": "#Simon%20Gladman"
+        },
+        {
+          "@id": "#Bj%C3%B6rn%20Gr%C3%BCning"
+        },
+        {
+          "@id": "#Delphine%20Larivi%C3%A8re"
+        },
+        {
+          "@id": "#Gildas%20Le%20Corguill%C3%A9"
+        },
+        {
+          "@id": "#Andrew%20Lonie"
+        },
+        {
+          "@id": "#Nicholas%20Keener"
+        },
+        {
+          "@id": "#Sergei%20Kosakovsky%20Pond"
+        },
+        {
+          "@id": "#Wolfgang%20Maier"
+        },
+        {
+          "@id": "#Anton%20Nekrutenko"
+        },
+        {
+          "@id": "#James%20Taylor"
+        },
+        {
+          "@id": "#Steven%20Weaver"
+        }
+      ],
+      "producer": {
+        "@id": "https://workflowhub.eu/projects/3"
+      },
+      "dateCreated": "2020-04-10T12:06:00Z",
+      "dateModified": "2023-01-16T13:39:49Z",
+      "isPartOf": [
+
+      ],
+      "input": [
+        {
+          "@id": "#genomics___read_pre_processing_without_downloading_from_sra-inputs-0_Input%20Dataset%20Collection"
+        },
+        {
+          "@id": "#genomics___read_pre_processing_without_downloading_from_sra-inputs-1_Input%20Dataset%20Collection"
+        }
+      ],
+      "output": [
+
+      ],
+      "sdPublisher": {
+        "@id": "https://about.workflowhub.eu/"
+      }
+    },
+    {
+      "@id": "Genomics-1-PreProcessing_without_downloading_from_SRA.svg",
+      "@type": [
+        "File",
+        "ImageObject",
+        "WorkflowSketch"
+      ],
+      "contentSize": 10958
+    },
+    {
+      "@id": "Genomics-1-PreProcessing_without_downloading_from_SRA.cwl",
+      "@type": [
+        "File",
+        "SoftwareSourceCode",
+        "HowTo"
+      ],
+      "programmingLanguage": {
+        "@id": "#cwl"
+      },
+      "contentSize": 6333
+    },
+    {
+      "@id": "#cwl",
+      "@type": "ComputerLanguage",
+      "name": "Common Workflow Language",
+      "alternateName": "CWL",
+      "identifier": {
+        "@id": "https://w3id.org/cwl/v1.0/"
+      },
+      "url": {
+        "@id": "https://www.commonwl.org/"
+      }
+    },
+    {
+      "@id": "#creator-1",
+      "@type": "Person",
+      "name": "Dannon Baker"
+    },
+    {
+      "@id": "#creator-2",
+      "@type": "Person",
+      "name": "Marius van den Beek"
+    },
+    {
+      "@id": "#creator-3",
+      "@type": "Person",
+      "name": "Dave Bouvier"
+    },
+    {
+      "@id": "#creator-4",
+      "@type": "Person",
+      "name": "John Chilton"
+    },
+    {
+      "@id": "#creator-5",
+      "@type": "Person",
+      "name": "Nate Coraor"
+    },
+    {
+      "@id": "#creator-6",
+      "@type": "Person",
+      "name": "Frederik Coppens"
+    },
+    {
+      "@id": "#creator-7",
+      "@type": "Person",
+      "name": "Bert Droesbeke"
+    },
+    {
+      "@id": "#creator-8",
+      "@type": "Person",
+      "name": "Ignacio Eguinoa"
+    },
+    {
+      "@id": "#creator-9",
+      "@type": "Person",
+      "name": "Simon Gladman"
+    },
+    {
+      "@id": "#creator-10",
+      "@type": "Person",
+      "name": "Björn Grüning"
+    },
+    {
+      "@id": "#creator-11",
+      "@type": "Person",
+      "name": "Delphine Larivière"
+    },
+    {
+      "@id": "#creator-12",
+      "@type": "Person",
+      "name": "Gildas Le Corguillé"
+    },
+    {
+      "@id": "#creator-13",
+      "@type": "Person",
+      "name": "Andrew Lonie"
+    },
+    {
+      "@id": "#creator-14",
+      "@type": "Person",
+      "name": "Nicholas Keener"
+    },
+    {
+      "@id": "#creator-15",
+      "@type": "Person",
+      "name": "Sergei Kosakovsky Pond"
+    },
+    {
+      "@id": "#creator-16",
+      "@type": "Person",
+      "name": "Wolfgang Maier"
+    },
+    {
+      "@id": "#creator-17",
+      "@type": "Person",
+      "name": "Anton Nekrutenko"
+    },
+    {
+      "@id": "#creator-18",
+      "@type": "Person",
+      "name": "James Taylor"
+    },
+    {
+      "@id": "#creator-19",
+      "@type": "Person",
+      "name": "Steven Weaver"
+    },
+    {
+      "@id": "#Dannon Baker",
+      "@type": "Person",
+      "name": "Dannon Baker"
+    },
+    {
+      "@id": "#Marius van den Beek",
+      "@type": "Person",
+      "name": "Marius van den Beek"
+    },
+    {
+      "@id": "#Dave Bouvier",
+      "@type": "Person",
+      "name": "Dave Bouvier"
+    },
+    {
+      "@id": "#John Chilton",
+      "@type": "Person",
+      "name": "John Chilton"
+    },
+    {
+      "@id": "#Nate Coraor",
+      "@type": "Person",
+      "name": "Nate Coraor"
+    },
+    {
+      "@id": "#Frederik Coppens",
+      "@type": "Person",
+      "name": "Frederik Coppens"
+    },
+    {
+      "@id": "#Bert Droesbeke",
+      "@type": "Person",
+      "name": "Bert Droesbeke"
+    },
+    {
+      "@id": "#Ignacio Eguinoa",
+      "@type": "Person",
+      "name": "Ignacio Eguinoa"
+    },
+    {
+      "@id": "#Simon Gladman",
+      "@type": "Person",
+      "name": "Simon Gladman"
+    },
+    {
+      "@id": "#Björn Grüning",
+      "@type": "Person",
+      "name": "Björn Grüning"
+    },
+    {
+      "@id": "#Delphine Larivière",
+      "@type": "Person",
+      "name": "Delphine Larivière"
+    },
+    {
+      "@id": "#Gildas Le Corguillé",
+      "@type": "Person",
+      "name": "Gildas Le Corguillé"
+    },
+    {
+      "@id": "#Andrew Lonie",
+      "@type": "Person",
+      "name": "Andrew Lonie"
+    },
+    {
+      "@id": "#Nicholas Keener",
+      "@type": "Person",
+      "name": "Nicholas Keener"
+    },
+    {
+      "@id": "#Sergei Kosakovsky Pond",
+      "@type": "Person",
+      "name": "Sergei Kosakovsky Pond"
+    },
+    {
+      "@id": "#Wolfgang Maier",
+      "@type": "Person",
+      "name": "Wolfgang Maier"
+    },
+    {
+      "@id": "#Anton Nekrutenko",
+      "@type": "Person",
+      "name": "Anton Nekrutenko"
+    },
+    {
+      "@id": "#James Taylor",
+      "@type": "Person",
+      "name": "James Taylor"
+    },
+    {
+      "@id": "#Steven Weaver",
+      "@type": "Person",
+      "name": "Steven Weaver"
+    },
+    {
+      "@id": "https://workflowhub.eu/projects/3",
+      "@type": [
+        "Project",
+        "Organization"
+      ],
+      "name": "GalaxyProject SARS-CoV-2"
+    },
+    {
+      "@id": "#galaxy",
+      "@type": "ComputerLanguage",
+      "name": "Galaxy",
+      "identifier": {
+        "@id": "https://galaxyproject.org/"
+      },
+      "url": {
+        "@id": "https://galaxyproject.org/"
+      }
+    },
+    {
+      "@id": "#genomics___read_pre_processing_without_downloading_from_sra-inputs-0_Input Dataset Collection",
+      "@type": "FormalParameter",
+      "name": "0_Input Dataset Collection",
+      "dct:conformsTo": "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/"
+    },
+    {
+      "@id": "#genomics___read_pre_processing_without_downloading_from_sra-inputs-1_Input Dataset Collection",
+      "@type": "FormalParameter",
+      "name": "1_Input Dataset Collection",
+      "dct:conformsTo": "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/"
+    },
+    {
+      "@id": "https://about.workflowhub.eu/",
+      "@type": "Organization",
+      "name": "WorkflowHub",
+      "url": "https://about.workflowhub.eu/"
+    }
+  ]
+}</script>
+  <meta name="generator" content="https://github.com/fbacall/ro-crate-ruby">
+  <meta name="keywords" content="RO-Crate">
+  <style type="text/css">
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      color: #333;
+      font-size: 14px;
+      background: #eee;
+      margin: 0;
+      padding: 0;
+    }
+
+    #wrapper {
+      max-width: 1200px;
+      margin: auto;
+      background: #fff;
+      padding: 1em;
+    }
+
+    .data-entity {
+      margin: 0.5em 0;
+      background: #fafafa;
+      border-left: 3px solid #ddd;
+      padding: 0.5em;
+    }
+
+    .main-workflow {
+      background: #bddfff;
+      border-color: #a2cdff !important;
+    }
+
+    dt {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<div id="wrapper">
+<h1>Research Object Crate for Genomics - Read pre-processing without downloading from SRA</h1>
+
+  Original URL: <a href="https://workflowhub.eu/workflows/4/ro_crate?version=1" target="_blank">https://workflowhub.eu/workflows/4/ro_crate?version=1</a>
+
+
+  <img src="Genomics-1-PreProcessing_without_downloading_from_SRA.svg" style="width: 100%;"/>
+
+<p>
+  Preprocessing of raw SARS-CoV-2 reads. This workflow contains an alternate starting point to avoid the data to be downloaded from the NCBI SRA. More info can be found at https://covid19.galaxyproject.org/genomics/
+</p>
+  
+<dl>
+  
+    <dt>Author</dt>
+    <dd>Dannon Baker, Marius van den Beek, Dave Bouvier, John Chilton, Nate Coraor, Frederik Coppens, Bert Droesbeke, Ignacio Eguinoa, Simon Gladman, Björn Grüning, Delphine Larivière, Gildas Le Corguillé, Andrew Lonie, Nicholas Keener, Sergei Kosakovsky Pond, Wolfgang Maier, Anton Nekrutenko, James Taylor, Steven Weaver</dd>
+  
+  
+  
+  
+    <dt>License</dt>
+    <dd>MIT</dd>
+  
+</dl>
+
+<h2>Contents</h2>
+<div id="contents">
+  
+    <div class="data-entity main-workflow" id="__data_entity_Genomics-1-PreProcessing_without_downloading_from_SRA.ga">
+      
+        <strong>Main Workflow: </strong>
+      
+      
+      
+      <a class="data-entity-link" href="Genomics-1-PreProcessing_without_downloading_from_SRA.ga">Genomics - Read pre-processing without downloading from SRA</a>
+      
+        <br/>Size: 35202 bytes
+      
+      
+    </div>
+  
+    <div class="data-entity" id="__data_entity_Genomics-1-PreProcessing_without_downloading_from_SRA.svg">
+      
+      
+        <strong>Main Workflow Diagram: </strong>
+      
+      
+      <a class="data-entity-link" href="Genomics-1-PreProcessing_without_downloading_from_SRA.svg">Genomics-1-PreProcessing_without_downloading_from_SRA.svg</a>
+      
+        <br/>Size: 10958 bytes
+      
+      
+    </div>
+  
+    <div class="data-entity" id="__data_entity_Genomics-1-PreProcessing_without_downloading_from_SRA.cwl">
+      
+      
+      
+        <strong>Main Workflow Description: </strong>
+      
+      <a class="data-entity-link" href="Genomics-1-PreProcessing_without_downloading_from_SRA.cwl">Genomics-1-PreProcessing_without_downloading_from_SRA.cwl</a>
+      
+        <br/>Size: 6333 bytes
+      
+      
+    </div>
+  
+</div>
+</div>
+</body>
+</html>

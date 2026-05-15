@@ -1,0 +1,8 @@
+{
+  "name": "Image Search (by Image)",
+  "description": "Performs a similar image search using an input image.",
+  "input_schema": {
+    "arg1": "Input parameter 1, expected type: image"
+  },
+  "executor": "executor.py:run"
+}
