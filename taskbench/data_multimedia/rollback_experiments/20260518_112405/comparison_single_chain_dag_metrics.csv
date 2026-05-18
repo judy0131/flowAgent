@@ -1,0 +1,6 @@
+﻿Tag,Label,SuccessfulPredictions,ValidationFailures,Single_nF1,Single_eF1,Single_NED,Chain_nF1,Chain_eF1,Chain_NED,DAG_nF1,DAG_eF1,DAG_NED,Overall_nF1,Overall_eF1,Overall_NED
+A,original_single,18,2,100.0,,0.0,88.64,60.32,17.17,91.67,82.35,10.37,89.83,65.0,13.18
+B,multi_first_original,18,2,100.0,,0.0,91.11,65.62,15.52,95.65,87.5,6.67,92.44,70.0,11.46
+C,multi_rerank_only,19,1,85.71,0.0,11.11,86.6,60.87,19.53,95.65,87.5,6.67,88.19,65.12,16.17
+D,multi_rerank_verifier_repair,18,2,85.71,0.0,11.11,92.31,67.69,15.24,91.67,77.78,10.37,91.8,69.05,13.74
+E,multi_rerank_verifier_repair_memory,18,2,100.0,,0.0,82.0,56.34,22.89,93.33,80.0,10.0,84.3,59.26,17.65
