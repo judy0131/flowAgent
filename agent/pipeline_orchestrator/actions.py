@@ -4,9 +4,7 @@ from typing import Dict, List, Optional, Set, Tuple
 
 ACTION_CANONICAL_ORDER: Tuple[str, ...] = (
     "retrieval",
-    "transcribe",
     "simplify",
-    "expand",
     "summarize",
     "sentiment",
     "keywords",
@@ -15,6 +13,7 @@ ACTION_CANONICAL_ORDER: Tuple[str, ...] = (
     "image",
     "denoise",
     "voice_change",
+    "transcribe",
     "translate",
     "combine",
     "audio_effect",
@@ -53,8 +52,6 @@ def _infer_skill_action_tags(
         or re.search(r"\b(paraphras(?:e|er)|rewrit(?:e|er)|spinner)\b", text)
     ):
         tags.add("simplify")
-    if "text expander" in text or ("text" in text and re.search(r"\bexpand(?:ed|er|ing|s|ion)?\b", text)):
-        tags.add("expand")
     if re.search(r"\b(summar(?:y|ies|ize|izer|ization)|main ideas?)\b", text):
         tags.add("summarize")
     if "sentiment" in text:
@@ -98,7 +95,6 @@ def _infer_skill_action_tags(
         or "merge" in text
         or "mix" in text
         or "synchronization" in text
-        or "voiceover" in text
     ):
         tags.add("combine")
     if "effect" in text and "audio" in text:
@@ -107,7 +103,6 @@ def _infer_skill_action_tags(
         re.search(r"\b(image|text)\s+to\s+video\b", text)
         or re.search(r"\b(video\s+(generator|creator)|slideshow)\b", text)
         or re.search(r"\bcreate\s+slideshow\b", text)
-        or "video voiceover" in text
     ):
         tags.add("video")
 

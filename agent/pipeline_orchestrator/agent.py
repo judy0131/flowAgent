@@ -9,18 +9,14 @@ from zoneinfo import available_timezones
 
 from pydantic import Field, create_model
 
-from .actions import _infer_skill_action_tags, _ordered_action_tags
+from agent.tool_graph_planner import ToolGraphPlanner
+from .actions import ACTION_CANONICAL_ORDER, _infer_skill_action_tags
 from .models import LLMRuntimeConfig, SkillMetadata
-from .paths import AGENT_ROOT, DEFAULT_SKILLS_ROOT, REPO_ROOT
+from .paths import AGENT_ROOT, DEFAULT_SKILLS_ROOT, REPO_ROOT, TOOL_GRAPH_EDGES_PATH
 from .planning_mixin import PlanningMixin
+from .retrieval import WorkflowMemoryRetriever, format_workflow_memory_prompt_block
 from .serialization import _safe_json_dumps
 from .skill_registry import SkillRegistry
-from .workflow_prior import (
-    TaskBenchPrior,
-    TaskBenchPriorIndex,
-    format_taskbench_prior_prompt_block,
-    score_workflow_with_taskbench_prior_context,
-)
 from .workflow_mixin import WorkflowMixin
 from .workflow_memory import WorkflowMemoryIndex
 
@@ -366,8 +362,15 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         llm_config: Optional[Dict[str, Any]] = None,
         llm_config_path: Optional[Any] = None,
         workflow_memory_path: Optional[Any] = None,
-        enable_workflow_memory: bool = False,
+        enable_workflow_memory: bool = True,
+        enable_candidate_verifier: bool = True,
+        enable_candidate_repair: bool = True,
+        candidate_selection_mode: str = "rerank",
+        include_original_candidate: bool = False,
+        fixed_candidate_temperature: Optional[float] = None,
     ):
+        if candidate_selection_mode not in {"rerank", "first"}:
+            raise ValueError("candidate_selection_mode must be 'rerank' or 'first'")
         self.llm_config = self._resolve_llm_runtime_config(
             model_name=model_name,
             provider=provider,
@@ -377,21 +380,27 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         )
         self.llm = self._build_llm_client(self.llm_config)
         self._candidate_llm_cache: Dict[float, Any] = {round(float(self.llm_config.temperature), 2): self.llm}
+        self._enable_workflow_memory = bool(enable_workflow_memory)
+        self._enable_candidate_verifier = bool(enable_candidate_verifier)
+        self._enable_candidate_repair = bool(enable_candidate_repair)
+        self._candidate_selection_mode = candidate_selection_mode
+        self._include_original_candidate = bool(include_original_candidate)
+        self._fixed_candidate_temperature = (
+            None if fixed_candidate_temperature is None else float(fixed_candidate_temperature)
+        )
 
         default_root = DEFAULT_SKILLS_ROOT
         self.registry = SkillRegistry(skills_root or default_root)
         if not self.registry.skills:
             raise RuntimeError(f"no skills discovered under: {self.registry.skills_root}")
-        self._tool_graph_planner = None
+        self._tool_graph_planner: Optional[ToolGraphPlanner] = None
         self._tool_graph_alias_to_skill: Dict[str, str] = {}
         self._skill_to_tool_graph_name: Dict[str, str] = {}
         self._workflow_memory: Optional[WorkflowMemoryIndex] = None
-        self._workflow_retriever = None
-        self._taskbench_prior_index: Optional[TaskBenchPriorIndex] = None
-        self._taskbench_prior: Optional[TaskBenchPrior] = None
+        self._workflow_retriever: Optional[WorkflowMemoryRetriever] = None
         self._workflow_retrieval_cache: Dict[Tuple[str, Tuple[str, ...]], Dict[str, Any]] = {}
-        self._enable_workflow_memory = bool(enable_workflow_memory)
-        self._load_taskbench_prior(workflow_memory_path)
+        self._load_tool_graph()
+        self._load_workflow_memory(workflow_memory_path)
         self._deep_agent_import_error: Optional[str] = None
         self._preference_logger = None
         try:
@@ -407,47 +416,46 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         return re.sub(r"[^a-z0-9]+", "", name.lower())
 
     def _load_tool_graph(self) -> None:
-        # Static WorkflowHub graph loading is intentionally retired from the
-        # main orchestration path. Keep the hook as a no-op for compatibility.
-        self._tool_graph_planner = None
-        self._tool_graph_alias_to_skill = {}
-        self._skill_to_tool_graph_name = {}
+        edges_path = TOOL_GRAPH_EDGES_PATH
+        if not edges_path.exists():
+            return
+        try:
+            planner = ToolGraphPlanner.from_csv(edges_path)
+        except Exception:
+            return
+
+        self._tool_graph_planner = planner
+        norm_to_tools: Dict[str, List[str]] = {}
+        for tool in sorted(planner.tools):
+            norm = self._normalize_graph_name(tool)
+            norm_to_tools.setdefault(norm, []).append(tool)
+
+        for skill_name in self.registry.skills.keys():
+            norm_skill = self._normalize_graph_name(skill_name)
+            matched_tools = norm_to_tools.get(norm_skill, [])
+            if len(matched_tools) == 1:
+                tool = matched_tools[0]
+                self._skill_to_tool_graph_name[skill_name] = tool
+                self._tool_graph_alias_to_skill[tool] = skill_name
 
     def _graph_tool_for_skill(self, skill_name: str) -> Optional[str]:
         mapping = getattr(self, "_skill_to_tool_graph_name", {})
         return mapping.get(skill_name)
 
-    def _load_taskbench_prior(self, workflow_memory_path: Optional[Any]) -> None:
-        if not self._workflow_memory_enabled():
-            self._taskbench_prior_index = None
-            self._taskbench_prior = None
-            self._workflow_memory = None
-            self._workflow_retriever = None
-            self._workflow_retrieval_cache = {}
-            return
+    def _load_workflow_memory(self, workflow_memory_path: Optional[Any]) -> None:
         raw_path = workflow_memory_path or os.getenv("PIPELINE_ORCHESTRATOR_WORKFLOW_MEMORY")
         if not raw_path:
             return
         path = self._resolve_llm_config_path(raw_path)
-        prior_index = TaskBenchPriorIndex.from_json(path)
-        prior = TaskBenchPrior(prior_index)
-        self._taskbench_prior_index = prior_index
-        self._taskbench_prior = prior
-        self._workflow_memory = prior_index.memory_index
-        self._workflow_retriever = prior.retriever
-
-    def _load_workflow_memory(self, workflow_memory_path: Optional[Any]) -> None:
-        self._load_taskbench_prior(workflow_memory_path)
-
-    def _workflow_memory_enabled(self) -> bool:
-        return bool(getattr(self, "_enable_workflow_memory", False))
+        memory = WorkflowMemoryIndex.from_json(path)
+        self._workflow_memory = memory
+        self._workflow_retriever = WorkflowMemoryRetriever(memory)
 
     def _get_workflow_memory_context(self, user_requirement: str) -> Dict[str, Any]:
-        if not self._workflow_memory_enabled():
+        if not getattr(self, "_enable_workflow_memory", True):
             return {}
-        prior = getattr(self, "_taskbench_prior", None)
         retriever = getattr(self, "_workflow_retriever", None)
-        if prior is None and retriever is None:
+        if retriever is None:
             return {}
         requirement = str(user_requirement or "").strip()
         if not requirement:
@@ -460,35 +468,23 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
             self._workflow_retrieval_cache = cache
         cache_key = (requirement, query_actions)
         if cache_key not in cache:
-            if prior is not None:
-                cache[cache_key] = prior.retrieve(requirement, detected_actions=query_actions)
-            else:
-                cache[cache_key] = retriever.retrieve(requirement, detected_actions=query_actions)
+            cache[cache_key] = retriever.retrieve(requirement, detected_actions=query_actions)
         return cache[cache_key]
 
     def _format_workflow_memory_prompt_block(self, user_requirement: str) -> str:
-        if not self._workflow_memory_enabled():
-            return ""
-        return format_taskbench_prior_prompt_block(self._get_workflow_memory_context(user_requirement))
+        return format_workflow_memory_prompt_block(self._get_workflow_memory_context(user_requirement))
 
     def recommend_memory_start_skills(
         self,
         user_requirement: str,
         top_k: int = 5,
     ) -> List[Dict[str, Any]]:
-        if not self._workflow_memory_enabled():
+        if not getattr(self, "_enable_workflow_memory", True):
             return []
-        prior = getattr(self, "_taskbench_prior", None)
         retriever = getattr(self, "_workflow_retriever", None)
         requirement = str(user_requirement or "").strip()
-        if (prior is None and retriever is None) or not requirement:
+        if retriever is None or not requirement:
             return []
-        if prior is not None:
-            return prior.recommend_start_skills(
-                requirement,
-                detected_actions=self._match_requirement_actions(requirement),
-                top_k=top_k,
-            )
         return retriever.recommend_start_tools(
             requirement,
             detected_actions=self._match_requirement_actions(requirement),
@@ -502,22 +498,13 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         top_k: int = 5,
         visited_skills: Optional[Set[str]] = None,
     ) -> List[Dict[str, Any]]:
-        if not self._workflow_memory_enabled():
+        if not getattr(self, "_enable_workflow_memory", True):
             return []
-        prior = getattr(self, "_taskbench_prior", None)
         retriever = getattr(self, "_workflow_retriever", None)
         requirement = str(user_requirement or "").strip()
         current = str(current_skill or "").strip()
-        if (prior is None and retriever is None) or not requirement:
+        if retriever is None or not requirement:
             return []
-        if prior is not None:
-            return prior.recommend_next_skills(
-                requirement,
-                current,
-                detected_actions=self._match_requirement_actions(requirement),
-                visited_skills={str(skill).strip() for skill in (visited_skills or set()) if str(skill).strip()},
-                top_k=top_k,
-            )
         return retriever.recommend_next_tools(
             requirement,
             current,
@@ -526,40 +513,33 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
             top_k=top_k,
         )
 
-    def _score_taskbench_prior_compiled(
-        self,
-        compiled_nodes: List[Dict[str, Any]],
-        user_requirement: str,
-    ) -> Dict[str, float]:
-        if not self._workflow_memory_enabled():
-            return {
-                "bonus": 0.0,
-                "penalty": 0.0,
-                "transition_bonus": 0.0,
-                "transition_penalty": 0.0,
-                "motif_bonus": 0.0,
-                "start_bonus": 0.0,
-                "end_bonus": 0.0,
-            }
-        prior = getattr(self, "_taskbench_prior", None)
-        if prior is None and getattr(self, "_workflow_retriever", None) is None:
-            return {
-                "bonus": 0.0,
-                "penalty": 0.0,
-                "transition_bonus": 0.0,
-                "transition_penalty": 0.0,
-                "motif_bonus": 0.0,
-                "start_bonus": 0.0,
-                "end_bonus": 0.0,
-            }
-        context = self._get_workflow_memory_context(user_requirement)
-        if prior is not None:
-            return prior.score_compiled_workflow(compiled_nodes, context)
-        return score_workflow_with_taskbench_prior_context(compiled_nodes, context)
-
     def _graph_score_compiled(self, compiled_nodes: List[Dict[str, Any]]) -> Dict[str, float]:
-        del compiled_nodes
-        return {"graph_transition_bonus": 0.0, "graph_transition_penalty": 0.0}
+        planner = getattr(self, "_tool_graph_planner", None)
+        if planner is None:
+            return {"graph_transition_bonus": 0.0, "graph_transition_penalty": 0.0}
+
+        graph_bonus = 0.0
+        graph_penalty = 0.0
+        mapped_tools: List[Optional[str]] = []
+        for node in compiled_nodes:
+            skill_name = str(node.get("task", ""))
+            mapped_tools.append(self._graph_tool_for_skill(skill_name))
+
+        for idx in range(1, len(mapped_tools)):
+            prev_tool = mapped_tools[idx - 1]
+            cur_tool = mapped_tools[idx]
+            if not prev_tool or not cur_tool:
+                continue
+            explain = planner.explain_transition(prev_tool, cur_tool)
+            if explain.get("valid"):
+                count = int(explain.get("count", 0))
+                graph_bonus += min(float(count), 5.0)
+            else:
+                graph_penalty -= 4.0
+        return {
+            "graph_transition_bonus": graph_bonus,
+            "graph_transition_penalty": graph_penalty,
+        }
 
     def _graph_score_plan(self, workflow: Dict[str, Any]) -> Dict[str, float]:
         _, compiled_nodes = self._prepare_workflow(workflow)
@@ -568,50 +548,7 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
     @staticmethod
     def _match_requirement_actions(user_requirement: str) -> List[str]:
         text = " ".join(str(user_requirement or "").lower().split())
-        actions: Set[str] = set()
-        media_extension_pattern = r"\.(?:wav|mp3|m4a|aac|flac|ogg|mp4|mov|avi|mkv|webm)\b"
-        explicit_language_pattern = (
-            r"\b(english|spanish|chinese|french|german|japanese|korean|"
-            r"italian|portuguese|arabic|russian|hindi)\b"
-        )
-        mentions_media_file = bool(re.search(media_extension_pattern, text))
-        mentions_source_media = bool(
-            re.search(r"\b(audio|video|speech|podcast|record(?:ed|ing)|voice(?:over)?|narration|seminar|interview)\b", text)
-            or mentions_media_file
-        )
-        requests_source_media_content = bool(
-            re.search(
-                r"\b("
-                r"content of the (?:speech|audio|video)|speech content|spoken content|"
-                r"based on the content|what(?:'s| is) being said|sourced from|"
-                r"transcribed text|transcribed content"
-                r")\b",
-                text,
-            )
-        )
-        requests_text_derivation_from_media = bool(
-            re.search(
-                r"\b("
-                r"explanation|detailed|descriptive|plain english|grammar|proofread|"
-                r"summar(?:y|ize|ies)|main ideas?|sentiment|keywords?|key phrases?|"
-                r"topic|understand it better"
-                r")\b",
-                text,
-            )
-        )
-        conceptual_translate = bool(
-            re.search(r"\btranslat\w*\b", text)
-            and not re.search(r"\b(?:into|to)\s+" + explicit_language_pattern, text)
-            and not re.search(r"\bforeign languages?\b|\bnot in english\b", text)
-            and re.search(
-                r"\b("
-                r"simpler|simple|plain english|easy[- ]to[- ]understand|"
-                r"understandable(?: enough)?|detailed explanation|descriptive version|"
-                r"understand it better"
-                r")\b",
-                text,
-            )
-        )
+        actions: List[str] = []
 
         if (
             re.search(r"\b(find|search|look up|lookup|browse|get|collect|research)\b", text)
@@ -619,68 +556,23 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         ) or re.search(r"\bsearch for information\b", text) or (
             re.search(r"\b(find|search|look up|lookup|browse|research)\b", text)
             and re.search(r"\b(on the internet|online|on the web|web)\b", text)
-        ) or (
-            re.search(r"(?:https?://|www\.)", text)
-            and re.search(r"\b(article|web ?page|website|url|online article|page)\b", text)
         ):
-            actions.add("retrieval")
+            actions.append("retrieval")
 
-        if re.search(r"\b(transcrib|speech[- ]to[- ]text|audio[- ]to[- ]text|caption)\w*\b", text):
-            actions.add("transcribe")
-        elif requests_source_media_content:
-            actions.add("transcribe")
-        elif requests_text_derivation_from_media and (
-            "sourced from" in text
-            or (
-                mentions_media_file
-                and re.search(
-                    r"\b(speech|spoken|podcast|record(?:ed|ing)|voice(?:over)?|narration|seminar|interview)\b",
-                    text,
-                )
-            )
-            or (
-                mentions_source_media
-                and re.search(r"\bfrom (?:my |the )?(?:audio|video|recording|podcast|speech)\b", text)
-            )
-        ):
-            actions.add("transcribe")
-
-        if (
-            "easy-to-understand" in text
-            or "easy to understand" in text
-            or "simplif" in text
-            or re.search(
-                r"\b("
-                r"simple language|plain language|understandable(?: enough)?|"
-                r"easier for (?:my )?(?:software )?tools?|tool understands?"
-                r")\b",
-                text,
-            )
-        ):
-            actions.add("simplify")
-
-        if (
-            re.search(r"\bexpand(?:ed|er|ing|s|ion)?\b", text)
-            or (
-                re.search(r"\b(detailed|descriptive|elaborat\w*|comprehensive)\b", text)
-                and re.search(r"\b(explanation|version|walkthrough|description)\b", text)
-            )
-            or re.search(r"\bplain english\b", text)
-            and re.search(r"\b(explanation|walkthrough|description)\b", text)
-        ):
-            actions.add("expand")
+        if "easy-to-understand" in text or "easy to understand" in text or "simplif" in text:
+            actions.append("simplify")
 
         if re.search(r"\b(summar(?:ize|y|ies|ized|izing)|main ideas?)\b", text):
-            actions.add("summarize")
+            actions.append("summarize")
 
         if re.search(r"\b(sentiment|emotional tone|tone analysis|tone classification)\b", text):
-            actions.add("sentiment")
+            actions.append("sentiment")
 
         if re.search(r"\b(keywords?|key words?|key phrases?|important keywords?|important terms?)\b", text):
-            actions.add("keywords")
+            actions.append("keywords")
 
         if "grammar" in text or "grammatically correct" in text or "proofread" in text:
-            actions.add("grammar")
+            actions.append("grammar")
 
         if (
             "related topic" in text
@@ -693,66 +585,63 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
             or "vague idea" in text
             or "idea of what i want to write" in text
         ):
-            actions.add("topic")
+            actions.append("topic")
 
         if re.search(r"\b(create|generate|produce|draw)\b", text) and re.search(
             r"\b(image|illustration|illustrative|picture|artwork|visual)\b",
             text,
         ):
-            actions.add("image")
+            actions.append("image")
 
         if (
-            re.search(r"\b(background noise|ambient noise|disruptive noise|noise)\b", text)
-            and re.search(r"\b(remove|reduce|clean|denois|noise reduction|get rid of|eliminate)\b", text)
+            re.search(r"\b(background noise|noise)\b", text)
+            and re.search(r"\b(remove|reduce|clean|denois|noise reduction)\b", text)
         ) or "noise reduction" in text:
-            actions.add("denoise")
+            actions.append("denoise")
 
         if (
             "modify the voice" in text
             or "voice changer" in text
             or "voice change" in text
             or ("sound like" in text and "voice" in text)
-            or re.search(r"\b(female|male)\s+(voice|tone)\b", text)
-            or re.search(r"\b(female|male)\s+narration\b", text)
-            or ("feminine" in text and "voice" in text)
-            or ("masculine" in text and "voice" in text)
+            or re.search(r"\b(female voice|male voice)\b", text)
         ):
-            actions.add("voice_change")
+            actions.append("voice_change")
 
-        if (
-            re.search(r"\btranslat\w*\b", text)
-            and not conceptual_translate
-        ) or re.search(r"\b(?:into|to)\s+" + explicit_language_pattern, text) or re.search(
-            r"\bforeign languages?\b|\bnot in english\b",
+        if re.search(r"\b(transcrib|speech[- ]to[- ]text|audio[- ]to[- ]text|caption)\w*\b", text):
+            actions.append("transcribe")
+        elif (
+            "content of the speech" in text
+            or "speech content" in text
+            or ("based on the content" in text and "speech" in text)
+        ):
+            actions.append("transcribe")
+
+        if re.search(
+            r"\btranslat\w*\b|\binto\s+(english|spanish|chinese|french|german|japanese|korean)\b",
             text,
         ):
-            actions.add("translate")
+            actions.append("translate")
 
-        if re.search(r"\b(combine|merge|mix|splice|synchroniz)\w*\b", text) or (
-            re.search(r"\b(add|overlay|integrat(?:e|ing)|blend)\b", text)
-            and re.search(r"\b(to|into|with)\b", text)
-            and re.search(r"\bvideo\b|\.mp4\b", text)
-        ) or ("voiceover" in text and re.search(r"\bvideo\b|\.mp4\b", text)):
-            actions.add("combine")
+        if re.search(r"\b(combine|merge|mix|splice|synchroniz)\w*\b", text):
+            actions.append("combine")
 
         if re.search(r"\b(reverb|echo|audio effects?|sound effects?|enhance with some effects)\b", text):
-            actions.add("audio_effect")
+            actions.append("audio_effect")
 
         if re.search(r"\b(waveform|spectrogram)\b", text):
-            actions.add("waveform")
+            actions.append("waveform")
 
         if re.search(r"\b(slideshow video|create a slideshow video|generate a video|create a video)\b", text):
-            actions.add("video")
+            actions.append("video")
 
-        return _ordered_action_tags(actions)
+        return actions
 
     @staticmethod
     def _action_prompt_text(action: str) -> str:
         mapping = {
             "retrieval": "Include a retrieval/search step for information about the topic.",
-            "transcribe": "Include a transcription step when the request derives new text or narration from spoken audio/video content.",
             "simplify": "Include a simplification step for easy-to-understand text if the request asks for it.",
-            "expand": "Include a text-expansion step when the request asks for a more detailed explanation or fuller wording.",
             "summarize": "Include a summarization step when the request asks for a summary or the main ideas.",
             "sentiment": "Include a sentiment-analysis step when the request asks for sentiment or tone.",
             "keywords": "Include a keyword-extraction step when the request asks for important keywords or key phrases.",
@@ -761,6 +650,7 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
             "image": "Include an image-generation step representing the topic or processed text.",
             "denoise": "Include a noise-reduction step when the request asks to remove or reduce background noise.",
             "voice_change": "Include a voice-changing step when the request asks to modify the voice or change gender/tone.",
+            "transcribe": "Include a transcription step when the request asks for speech or audio to be converted to text.",
             "translate": "Include a translation step when the request asks to convert content into another language.",
             "combine": "Include an explicit combine/merge/splice step when the request asks to combine multiple media inputs.",
             "audio_effect": "Include an audio-effects step when the request asks for reverb, echo, or audio enhancement.",
@@ -772,16 +662,9 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
     def _action_tags_for_skill_name(self, skill_name: str) -> Set[str]:
         meta = self.registry.get(skill_name)
         action_tags = getattr(meta, "action_tags", None) if meta is not None else None
-        inferred = set(
-            _infer_skill_action_tags(
-                skill_name,
-                getattr(meta, "description", "") if meta is not None else "",
-                getattr(meta, "input_schema", None) if meta is not None else None,
-            )
-        )
         if action_tags:
-            return set(action_tags) | inferred
-        return inferred
+            return set(action_tags)
+        return set(_infer_skill_action_tags(skill_name))
 
     def _workflow_action_tags(self, skill_names: List[str]) -> Set[str]:
         tags: Set[str] = set()
@@ -841,9 +724,7 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         actions = self._match_requirement_actions(user_requirement)
         action_weights: Dict[str, Tuple[float, float]] = {
             "retrieval": (10.0, 24.0),
-            "transcribe": (8.0, 16.0),
             "simplify": (6.0, 10.0),
-            "expand": (8.0, 14.0),
             "summarize": (8.0, 14.0),
             "sentiment": (8.0, 14.0),
             "keywords": (8.0, 14.0),
@@ -852,6 +733,7 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
             "image": (8.0, 16.0),
             "denoise": (8.0, 14.0),
             "voice_change": (8.0, 14.0),
+            "transcribe": (8.0, 16.0),
             "translate": (6.0, 12.0),
             "combine": (8.0, 16.0),
             "audio_effect": (6.0, 12.0),
@@ -1035,6 +917,7 @@ Execution JSON:
         planning_mode: str = "single",
         execution_mode: str = "best",
         candidate_count: int = 3,
+        include_summary: bool = True,
     ) -> Dict[str, Any]:
         if planning_mode not in {"single", "multi"}:
             raise ValueError("planning_mode must be 'single' or 'multi'")
@@ -1042,8 +925,16 @@ Execution JSON:
             raise ValueError("execution_mode must be 'best' or 'all'")
 
         if planning_mode == "multi":
-            candidates = await self.plan_candidates(user_requirement, candidate_count=candidate_count)
-            selected = self._select_best_candidate(candidates)
+            selection_mode = getattr(self, "_candidate_selection_mode", "rerank")
+            if selection_mode == "first":
+                candidates = await self.generate_candidate_pool(
+                    user_requirement,
+                    candidate_count=candidate_count,
+                )
+                selected = candidates[0]
+            else:
+                candidates = await self.plan_candidates(user_requirement, candidate_count=candidate_count)
+                selected = self._select_best_candidate(candidates)
             print("\n=== selected Plan ===")
             print(_safe_json_dumps(selected, ensure_ascii=True))
 
@@ -1065,7 +956,11 @@ Execution JSON:
                         )
                     except Exception:
                         pass
-                summary = await self.summarize(user_requirement, executions[0]["execution"])
+                summary = (
+                    await self.summarize(user_requirement, executions[0]["execution"])
+                    if include_summary
+                    else ""
+                )
                 return {
                     "candidate_plans": candidates,
                     "selected_plan_id": selected["id"],
@@ -1087,7 +982,7 @@ Execution JSON:
                     )
                 except Exception:
                     pass
-            summary = await self.summarize(user_requirement, execution)
+            summary = await self.summarize(user_requirement, execution) if include_summary else ""
             return {
                 "candidate_plans": candidates,
                 "selected_plan_id": selected["id"],
@@ -1105,7 +1000,7 @@ Execution JSON:
         workflow = await self.plan(user_requirement)
         self.validate_plan(workflow)
         execution = await self.execute_plan(workflow)
-        summary = await self.summarize(user_requirement, execution)
+        summary = await self.summarize(user_requirement, execution) if include_summary else ""
         return {"plan": workflow, "workflow": workflow, "execution": execution, "summary": summary}
 
 

@@ -497,12 +497,14 @@ async def _run_one(
     planning_mode: str,
     execution_mode: str,
     candidate_count: int,
+    include_summary: bool,
 ) -> Dict[str, Any]:
     return await agent.run(
         user_requirement=user_request,
         planning_mode=planning_mode,
         execution_mode=execution_mode,
         candidate_count=candidate_count,
+        include_summary=include_summary,
     )
 
 
@@ -537,6 +539,22 @@ def _load_requests(data_dir: Path) -> List[Dict[str, Any]]:
     return items
 
 
+def _load_case_ids(path: Path) -> List[str]:
+    case_ids: List[str] = []
+    with path.open("r", encoding="utf-8") as f:
+        for line in f:
+            text = line.strip()
+            if not text or text.startswith("#"):
+                continue
+            case_ids.append(text)
+    return case_ids
+
+
+def _open_prediction_output(output_path: Path, *, resume: bool):
+    mode = "a" if resume else "w"
+    return output_path.open(mode, encoding="utf-8")
+
+
 def _load_tool_map_override(path: Optional[Path]) -> Dict[str, str]:
     if path is None:
         return {}
@@ -548,6 +566,21 @@ def _load_tool_map_override(path: Optional[Path]) -> Dict[str, str]:
 
 def _stringify_json_field(value: Any) -> str:
     return json.dumps(value, ensure_ascii=False)
+
+
+def _classify_case_failure(error: Exception) -> str:
+    if isinstance(error, ValueError):
+        lowered = str(error).strip().lower()
+        validation_prefixes = (
+            "workflow output invalid:",
+            "workflow task_steps",
+            "workflow task_links inconsistent with task_nodes:",
+            "workflow must contain",
+            "task_nodes[",
+        )
+        if any(lowered.startswith(prefix) for prefix in validation_prefixes):
+            return "validation_failure"
+    return "other_failure"
 
 
 def _build_prediction_record(
@@ -573,7 +606,7 @@ def _build_prediction_record(
     }
 
 
-async def _run(args: argparse.Namespace) -> None:
+async def _run(args: argparse.Namespace) -> Dict[str, Any]:
     data_dir = _resolve_data_dir(args.data_dir)
     llm_config_path = _resolve_existing_file(args.llm_config_path, label="llm_config_path") if args.llm_config_path else None
     enable_workflow_memory = bool(getattr(args, "enable_workflow_memory", False))
@@ -584,6 +617,11 @@ async def _run(args: argparse.Namespace) -> None:
     )
     tool_map_override_path = (
         _resolve_existing_file(args.tool_map_override, label="tool_map_override") if args.tool_map_override else None
+    )
+    case_ids_file = (
+        _resolve_existing_file(args.case_ids_file, label="case_ids_file")
+        if getattr(args, "case_ids_file", None)
+        else None
     )
 
     dependency_type = args.dependency_type
@@ -598,6 +636,13 @@ async def _run(args: argparse.Namespace) -> None:
 
     done_ids = _load_existing_ids(output_path) if args.resume else set()
     requests = _load_requests(data_dir)
+    selected_case_ids: List[str] = []
+    if case_ids_file is not None:
+        selected_case_ids = _load_case_ids(case_ids_file)
+        selected_case_id_set = set(selected_case_ids)
+        requests = [x for x in requests if str(x.get("id", "")) in selected_case_id_set]
+        order_map = {case_id: idx for idx, case_id in enumerate(selected_case_ids)}
+        requests.sort(key=lambda item: order_map.get(str(item.get("id", "")), 10**9))
     if args.offset > 0:
         requests = requests[args.offset :]
     if args.limit is not None:
@@ -633,11 +678,19 @@ async def _run(args: argparse.Namespace) -> None:
         llm_config_path=llm_config_path,
         workflow_memory_path=workflow_memory_path,
         enable_workflow_memory=enable_workflow_memory,
+        enable_candidate_verifier=bool(getattr(args, "enable_candidate_verifier", True)),
+        enable_candidate_repair=bool(getattr(args, "enable_candidate_repair", True)),
+        candidate_selection_mode=str(getattr(args, "candidate_selection_mode", "rerank")),
+        include_original_candidate=bool(getattr(args, "include_original_candidate", False)),
+        fixed_candidate_temperature=getattr(args, "fixed_candidate_temperature", None),
     )
     success = 0
     failed = 0
+    validation_failed = 0
+    failure_counts: Dict[str, int] = {}
+    failure_details: List[Dict[str, str]] = []
 
-    with output_path.open("a", encoding="utf-8") as wf:
+    with _open_prediction_output(output_path, resume=args.resume) as wf:
         for idx, item in enumerate(requests, start=1):
             sid = str(item.get("id", ""))
             user_request = str(item.get("user_request", "")).strip()
@@ -653,6 +706,7 @@ async def _run(args: argparse.Namespace) -> None:
                     planning_mode=args.planning_mode,
                     execution_mode=args.execution_mode,
                     candidate_count=args.candidate_count,
+                    include_summary=bool(getattr(args, "include_summary", False)),
                 )
                 plan = _extract_selected_plan(raw_result)
                 taskbench_result = _convert_plan_to_taskbench_result(
@@ -674,11 +728,36 @@ async def _run(args: argparse.Namespace) -> None:
                     print(f"[INFO] progress={idx}/{len(requests)} success={success} failed={failed}")
             except Exception as e:
                 failed += 1
-                print(f"[ERROR] id={sid} failed: {type(e).__name__}: {e}")
+                failure_category = _classify_case_failure(e)
+                failure_counts[failure_category] = failure_counts.get(failure_category, 0) + 1
+                if failure_category == "validation_failure":
+                    validation_failed += 1
+                failure_details.append(
+                    {
+                        "id": sid,
+                        "category": failure_category,
+                        "error_type": type(e).__name__,
+                        "error": str(e),
+                    }
+                )
+                print(f"[ERROR] id={sid} failed ({failure_category}): {type(e).__name__}: {e}")
                 if args.stop_on_error:
                     raise
 
     print(f"[DONE] success={success}, failed={failed}, output={output_path}")
+    return {
+        "data_dir": str(data_dir),
+        "output_path": str(output_path),
+        "prediction_dir": str(prediction_dir),
+        "success": success,
+        "failed": failed,
+        "validation_failed": validation_failed,
+        "other_failed": failed - validation_failed,
+        "failure_counts": failure_counts,
+        "failure_details": failure_details,
+        "total_to_run": len(requests),
+        "selected_case_ids": selected_case_ids,
+    }
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -715,9 +794,61 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--planning_mode", type=str, default="single", choices=["single", "multi"])
     parser.add_argument("--execution_mode", type=str, default="best", choices=["best", "all"])
     parser.add_argument("--candidate_count", type=int, default=3)
+    parser.add_argument(
+        "--candidate_selection_mode",
+        type=str,
+        default="rerank",
+        choices=["rerank", "first"],
+        help="How to choose the final plan from the generated candidate pool.",
+    )
+    parser.add_argument(
+        "--include_original_candidate",
+        action="store_true",
+        default=False,
+        help="Prepend the original no-hint planning call into the multi-candidate pool.",
+    )
+    parser.add_argument(
+        "--fixed_candidate_temperature",
+        type=float,
+        default=None,
+        help="If set, force every candidate generation call to use the same temperature.",
+    )
+    parser.add_argument(
+        "--enable_candidate_verifier",
+        dest="enable_candidate_verifier",
+        action="store_true",
+        default=True,
+        help="Enable verifier signals during candidate selection.",
+    )
+    parser.add_argument(
+        "--disable_candidate_verifier",
+        dest="enable_candidate_verifier",
+        action="store_false",
+        help="Disable verifier signals during candidate selection.",
+    )
+    parser.add_argument(
+        "--enable_candidate_repair",
+        dest="enable_candidate_repair",
+        action="store_true",
+        default=True,
+        help="Enable LLM-based repair for verifier-marked candidates.",
+    )
+    parser.add_argument(
+        "--disable_candidate_repair",
+        dest="enable_candidate_repair",
+        action="store_false",
+        help="Disable LLM-based repair for verifier-marked candidates.",
+    )
     parser.add_argument("--dependency_type", type=str, default="auto", choices=["auto", "resource", "temporal"])
     parser.add_argument("--link_mode", type=str, default="chain_fallback", choices=["explicit_only", "chain_fallback"])
     parser.add_argument("--tool_map_override", type=str, default=None, help="JSON file: {skill_name: task_name}.")
+    parser.add_argument("--case_ids_file", type=str, default=None, help="Optional newline-delimited case-id file.")
+    parser.add_argument(
+        "--include_summary",
+        action="store_true",
+        default=False,
+        help="Request a final natural-language summary from the LLM after execution.",
+    )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--offset", type=int, default=0)
     parser.add_argument("--resume", action="store_true", default=True)

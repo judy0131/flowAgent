@@ -6,6 +6,9 @@ from pathlib import Path
 
 
 _UNSET = object()
+DEFAULT_CASE_IDS_FILE = "taskbench/data_multimedia/rollback_experiments/20260515_172328/case_ids.txt"
+DEFAULT_PREDICTION_DIR = "predictions_pipeline_agent_grounding_fix_E"
+DEFAULT_SKILLS_ROOT = "skills_multimedia"
 
 
 def _load_base_module():
@@ -51,12 +54,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser = _BASE.build_parser()
     parser.description = "Run TaskBench inference with PipelineOrchestratorAgent using OpenAI."
     _update_action(parser, "provider", default="openai", choices=["openai", "tongyi", "gemini"])
-    _update_action(parser, "model_name", default="gpt-5.4-xhigh")
+    _update_action(parser, "model_name", default="gpt-4.1")
     _update_action(parser, "planning_mode", default="multi")
     _update_action(
         parser,
         "llm_config_path",
-        default="configs/openai_gpt54_xhigh.json",
+        default="configs/openai.json",
         help_text="Path to JSON config containing OpenAI LLM settings. Defaults to gpt-5.4-xhigh.",
     )
     _update_action(
@@ -65,11 +68,23 @@ def build_parser() -> argparse.ArgumentParser:
         default="taskbench/data_multimedia/workflow_memory_fold0_excluded.json",
         help_text="Default workflow memory for OpenAI runner.",
     )
+    parser.set_defaults(
+        prediction_dir=DEFAULT_PREDICTION_DIR,
+        skills_root=DEFAULT_SKILLS_ROOT,
+        case_ids_file=DEFAULT_CASE_IDS_FILE,
+        planning_mode="multi",
+        candidate_count=3,
+        candidate_selection_mode="rerank",
+        include_original_candidate=True,
+        enable_candidate_verifier=True,
+        enable_candidate_repair=True,
+        enable_workflow_memory=True,
+        fixed_candidate_temperature=0.0,
+        resume=False,
+    )
     return parser
 
 
 if __name__ == "__main__":
-    cli_args = build_parser().parse_args(["--limit", "20", *sys.argv[1:]])
-    if not cli_args.skills_root:
-        cli_args.skills_root = "skills_multimedia"
+    cli_args = build_parser().parse_args(sys.argv[1:])
     asyncio.run(_run(cli_args))

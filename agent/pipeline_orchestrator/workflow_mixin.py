@@ -2,42 +2,84 @@ import re
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 from .models import SkillMetadata
-from .workflow_memory import _edge_is_schema_compatible, _infer_task_modalities
 
 
 class WorkflowMixin:
-    MEDIA_EXTENSION_MODALITIES: Dict[str, str] = {
-        ".wav": "audio",
-        ".mp3": "audio",
-        ".m4a": "audio",
-        ".aac": "audio",
-        ".flac": "audio",
-        ".ogg": "audio",
-        ".mp4": "video",
-        ".mov": "video",
-        ".avi": "video",
-        ".mkv": "video",
-        ".webm": "video",
-        ".png": "image",
-        ".jpg": "image",
-        ".jpeg": "image",
-        ".gif": "image",
-        ".bmp": "image",
-        ".webp": "image",
-        ".txt": "text",
-        ".md": "text",
-        ".csv": "text",
-        ".json": "text",
-        ".html": "text",
-        ".htm": "text",
-    }
-
     def _validate_step_args(self, skill: SkillMetadata, args: Dict[str, Any]) -> List[str]:
         missing = []
         for key in skill.input_schema.keys():
             if key not in args:
                 missing.append(key)
         return missing
+
+    @staticmethod
+    def _normalize_declared_types(raw_types: Any) -> Set[str]:
+        normalized: Set[str] = set()
+        if isinstance(raw_types, str):
+            raw_values = [raw_types]
+        elif isinstance(raw_types, (list, tuple, set)):
+            raw_values = list(raw_types)
+        else:
+            raw_values = []
+
+        for raw in raw_values:
+            text = str(raw).strip().lower()
+            if text:
+                normalized.add(text)
+        return normalized
+
+    @staticmethod
+    def _infer_output_types_from_skill_name(skill_name: str) -> Set[str]:
+        text = re.sub(r"[_\-]+", " ", str(skill_name).strip().lower())
+        match = re.search(r"\b(audio|video|image|text|url)\b\s+(?:to|2)\s+\b(audio|video|image|text|url)\b", text)
+        if match:
+            return {match.group(2)}
+
+        found = re.findall(r"\b(audio|video|image|text|url)\b", text)
+        unique_found: List[str] = []
+        for item in found:
+            if item not in unique_found:
+                unique_found.append(item)
+        if len(unique_found) == 1:
+            return {unique_found[0]}
+        return set()
+
+    def _skill_input_types_for_arg(self, skill: Any, arg_name: str) -> Set[str]:
+        input_types = getattr(skill, "input_types", {}) or {}
+        if not isinstance(input_types, dict):
+            return set()
+        return self._normalize_declared_types(input_types.get(str(arg_name)))
+
+    def _skill_output_types(self, skill_name: str, skill: Any) -> Set[str]:
+        declared = self._normalize_declared_types(getattr(skill, "output_types", []))
+        if declared:
+            return declared
+        return self._infer_output_types_from_skill_name(skill_name)
+
+    def _validate_dependency(
+        self,
+        source_skill_name: str,
+        source_skill: Any,
+        target_skill_name: str,
+        target_skill: Any,
+        target_arg_name: str,
+    ) -> Optional[str]:
+        expected_input_types = self._skill_input_types_for_arg(target_skill, target_arg_name)
+        if not expected_input_types:
+            return None
+
+        source_output_types = self._skill_output_types(source_skill_name, source_skill)
+        if not source_output_types:
+            return None
+
+        if source_output_types.isdisjoint(expected_input_types):
+            source_types = ", ".join(sorted(source_output_types))
+            target_types = ", ".join(sorted(expected_input_types))
+            return (
+                f"{source_skill_name} outputs [{source_types}] but "
+                f"{target_skill_name}.{target_arg_name} expects [{target_types}]"
+            )
+        return None
 
     @staticmethod
     def _get_step_output_key(step: Dict[str, Any]) -> Optional[str]:
@@ -493,253 +535,6 @@ class WorkflowMixin:
         _, compiled_nodes = self._prepare_workflow(workflow)
         return compiled_nodes
 
-    def _build_compiled_workflow_graph(self, compiled_nodes: List[Dict[str, Any]]) -> Dict[str, Any]:
-        node_count = len(compiled_nodes)
-        adjacency: Dict[int, Set[int]] = {idx: set() for idx in range(node_count)}
-        reverse: Dict[int, Set[int]] = {idx: set() for idx in range(node_count)}
-        invalid_references: List[str] = []
-
-        for target_idx, node in enumerate(compiled_nodes):
-            upstream_inputs = node.get("upstream_inputs", {})
-            if not isinstance(upstream_inputs, dict):
-                invalid_references.append(f"invalid_upstream_inputs:{target_idx}")
-                continue
-            for arg_name, source_idx in upstream_inputs.items():
-                if not isinstance(source_idx, int):
-                    invalid_references.append(f"invalid_reference:{target_idx}:{arg_name}:{source_idx}")
-                    continue
-                if source_idx < 0 or source_idx >= node_count:
-                    invalid_references.append(f"out_of_range_reference:{target_idx}:{arg_name}:{source_idx}")
-                    continue
-                if source_idx >= target_idx:
-                    invalid_references.append(f"non_earlier_reference:{target_idx}:{arg_name}:{source_idx}")
-                    continue
-                adjacency[source_idx].add(target_idx)
-                reverse[target_idx].add(source_idx)
-
-        indegree = {idx: len(reverse[idx]) for idx in range(node_count)}
-        outdegree = {idx: len(adjacency[idx]) for idx in range(node_count)}
-        roots = [idx for idx in range(node_count) if indegree[idx] == 0]
-        leaves = [idx for idx in range(node_count) if outdegree[idx] == 0]
-        isolated = [idx for idx in range(node_count) if indegree[idx] == 0 and outdegree[idx] == 0 and node_count > 1]
-
-        remaining_indegree = dict(indegree)
-        frontier = [idx for idx in range(node_count) if remaining_indegree[idx] == 0]
-        topo_order: List[int] = []
-        while frontier:
-            current = frontier.pop(0)
-            topo_order.append(current)
-            for neighbor in adjacency[current]:
-                remaining_indegree[neighbor] -= 1
-                if remaining_indegree[neighbor] == 0:
-                    frontier.append(neighbor)
-        has_cycle = len(topo_order) != node_count
-
-        undirected: Dict[int, Set[int]] = {idx: set() for idx in range(node_count)}
-        for source_idx, targets in adjacency.items():
-            for target_idx in targets:
-                undirected[source_idx].add(target_idx)
-                undirected[target_idx].add(source_idx)
-
-        components: List[List[int]] = []
-        remaining_nodes = set(range(node_count))
-        while remaining_nodes:
-            start = min(remaining_nodes)
-            stack = [start]
-            component: List[int] = []
-            remaining_nodes.remove(start)
-            while stack:
-                current = stack.pop()
-                component.append(current)
-                for neighbor in undirected[current]:
-                    if neighbor in remaining_nodes:
-                        remaining_nodes.remove(neighbor)
-                        stack.append(neighbor)
-            components.append(sorted(component))
-
-        edges = sorted(
-            (source_idx, target_idx)
-            for source_idx, targets in adjacency.items()
-            for target_idx in targets
-        )
-        return {
-            "node_count": node_count,
-            "edge_count": len(edges),
-            "edges": edges,
-            "roots": roots,
-            "leaves": leaves,
-            "isolated_nodes": isolated,
-            "invalid_references": invalid_references,
-            "has_cycle": has_cycle,
-            "topological_order": topo_order,
-            "component_count": len(components),
-            "components": components,
-        }
-
-    @classmethod
-    def _infer_literal_modalities(cls, value: Any) -> Set[str]:
-        if not isinstance(value, str):
-            return set()
-        text = value.strip().lower()
-        if not text:
-            return set()
-        for suffix, modality in cls.MEDIA_EXTENSION_MODALITIES.items():
-            if text.endswith(suffix):
-                return {modality}
-        if re.search(r"(?:https?://|www\.)", text):
-            return {"text"}
-        return set()
-
-    def _primary_literal_input(self, skill: SkillMetadata, args: Dict[str, Any], upstream_inputs: Dict[str, int]) -> Tuple[Optional[str], Any]:
-        candidate_keys: List[str] = []
-        for preferred in ("arg1", "source_ref", "path", "url", "file", "input", "text", "audio", "image", "video"):
-            if preferred not in candidate_keys:
-                candidate_keys.append(preferred)
-        for key in skill.input_schema.keys():
-            text = str(key)
-            if text not in candidate_keys:
-                candidate_keys.append(text)
-        for key in args.keys():
-            text = str(key)
-            if text not in candidate_keys:
-                candidate_keys.append(text)
-
-        for key in candidate_keys:
-            if key in upstream_inputs:
-                if key == "arg1":
-                    return None, None
-                continue
-            if key not in args:
-                continue
-            value = args[key]
-            if self._parse_workflow_node_ref(value) is not None:
-                continue
-            if isinstance(value, str) and value.strip():
-                return key, value
-        return None, None
-
-    def _analyze_compiled_workflow(self, compiled_nodes: List[Dict[str, Any]]) -> Dict[str, Any]:
-        failures: List[str] = []
-        warnings: List[str] = []
-        graph = self._build_compiled_workflow_graph(compiled_nodes)
-        schema_failures: List[str] = []
-        schema_warnings: List[str] = []
-        dependency_failures: List[str] = []
-        modality_failures: List[str] = []
-        modality_warnings: List[str] = []
-
-        if not isinstance(compiled_nodes, list) or not compiled_nodes:
-            failures.append("empty_workflow")
-            return {
-                "failures": failures,
-                "warnings": warnings,
-                "schema_failures": schema_failures,
-                "schema_warnings": schema_warnings,
-                "dependency_failures": dependency_failures,
-                "modality_failures": modality_failures,
-                "modality_warnings": modality_warnings,
-                "graph": graph,
-                "schema_ok": False,
-                "dependency_ok": False,
-                "modality_ok": False,
-                "dag_ok": False,
-            }
-
-        if graph["invalid_references"]:
-            failures.extend(graph["invalid_references"])
-        if graph["has_cycle"]:
-            failures.append("graph_cycle")
-        if graph["isolated_nodes"]:
-            failures.append(f"isolated_nodes:{','.join(str(idx) for idx in graph['isolated_nodes'])}")
-        if graph["component_count"] > 1:
-            failures.append(f"disconnected_components:{graph['component_count']}")
-
-        seen: set[str] = set()
-        for idx, node in enumerate(compiled_nodes):
-            skill_name = node.get("task")
-            args = node.get("args", {})
-            upstream_inputs = node.get("upstream_inputs", {})
-            if not isinstance(args, dict):
-                schema_failures.append(f"invalid_args_object:{idx}")
-                continue
-            if not isinstance(upstream_inputs, dict):
-                schema_failures.append(f"invalid_upstream_inputs_object:{idx}")
-                continue
-
-            skill = self.registry.get(str(skill_name))
-            if skill is None:
-                schema_warnings.append(f"unknown_skill:{idx}:{skill_name}")
-                continue
-
-            provided_arg_keys = set(args.keys()) | set(upstream_inputs.keys())
-            provided_arg_keys.add("output_key")
-            if "source_ref" in skill.input_schema and upstream_inputs and "source_ref" not in provided_arg_keys:
-                provided_arg_keys.add("source_ref")
-
-            missing = [key for key in skill.input_schema.keys() if key not in provided_arg_keys]
-            if missing:
-                schema_failures.append(f"missing_args:{idx}:{skill_name}:{','.join(str(key) for key in missing)}")
-
-            if skill.depends_on_all:
-                missed_all = [s for s in skill.depends_on_all if s not in seen]
-                if missed_all:
-                    dependency_failures.append(
-                        f"depends_on_all:{idx}:{skill_name}:{','.join(str(item) for item in missed_all)}"
-                    )
-
-            if skill.depends_on_any and not any(s in seen for s in skill.depends_on_any):
-                source_ref = args.get("source_ref")
-                source_ref_idx = self._parse_workflow_node_ref(source_ref)
-                source_from_plan = source_ref_idx is not None and source_ref_idx < idx
-                source_external = isinstance(source_ref, str) and source_ref.strip() == "external_input"
-                has_upstream_input = bool(upstream_inputs)
-                if not (has_upstream_input or source_from_plan or source_external):
-                    dependency_failures.append(
-                        f"depends_on_any:{idx}:{skill_name}:{','.join(str(item) for item in skill.depends_on_any)}"
-                    )
-
-            for arg_name, source_idx in upstream_inputs.items():
-                if not isinstance(source_idx, int) or source_idx < 0 or source_idx >= len(compiled_nodes):
-                    continue
-                source_task = str(compiled_nodes[source_idx].get("task", "")).strip()
-                target_task = str(skill_name).strip()
-                if not _edge_is_schema_compatible(source_task, target_task):
-                    modality_warnings.append(
-                        f"modality_edge:{source_idx}->{idx}:{source_task}->{target_task}:{arg_name}"
-                    )
-
-            _, primary_value = self._primary_literal_input(skill, args, upstream_inputs)
-            literal_modalities = self._infer_literal_modalities(primary_value)
-            expected_inputs = set(_infer_task_modalities(str(skill_name)).get("inputs", tuple()))
-            if literal_modalities and expected_inputs and not (literal_modalities & expected_inputs):
-                modality_failures.append(
-                    f"root_input_modality_mismatch:{idx}:{skill_name}:{','.join(sorted(literal_modalities))}->{','.join(sorted(expected_inputs))}"
-                )
-
-            seen.add(str(skill_name))
-
-        failures.extend(schema_failures)
-        failures.extend(dependency_failures)
-        failures.extend(modality_failures)
-        warnings.extend(schema_warnings)
-        warnings.extend(modality_warnings)
-        return {
-            "failures": failures,
-            "warnings": warnings,
-            "schema_failures": schema_failures,
-            "schema_warnings": schema_warnings,
-            "dependency_failures": dependency_failures,
-            "modality_failures": modality_failures,
-            "modality_warnings": modality_warnings,
-            "graph": graph,
-            "schema_ok": not schema_failures,
-            "dependency_ok": not dependency_failures,
-            "modality_ok": not modality_failures,
-            "dag_ok": not (
-                graph["invalid_references"] or graph["has_cycle"] or graph["isolated_nodes"] or graph["component_count"] > 1
-            ),
-        }
-
     def _infer_workflow_links(self, compiled_nodes: List[Dict[str, Any]]) -> List[Dict[str, str]]:
         links: List[Dict[str, str]] = []
         task_names = [str(node["task"]) for node in compiled_nodes]
@@ -956,6 +751,30 @@ class WorkflowMixin:
             missing = [key for key in skill.input_schema.keys() if key not in provided_arg_keys]
             if missing:
                 raise ValueError(f"task_nodes[{idx}] missing args for {skill_name}: {missing}")
+
+            for arg_name, source_idx in upstream_inputs.items():
+                if not isinstance(source_idx, int) or source_idx < 0 or source_idx >= idx:
+                    raise ValueError(
+                        f"task_nodes[{idx}] upstream input {arg_name} for {skill_name} "
+                        f"references invalid source index {source_idx}"
+                    )
+                source_node = compiled_nodes[source_idx]
+                source_skill_name = str(source_node.get("task", "")).strip()
+                source_skill = self.registry.get(source_skill_name)
+                if source_skill is None:
+                    raise ValueError(
+                        f"task_nodes[{idx}] upstream input {arg_name} for {skill_name} "
+                        f"references unknown skill: {source_skill_name}"
+                    )
+                dependency_error = self._validate_dependency(
+                    source_skill_name=source_skill_name,
+                    source_skill=source_skill,
+                    target_skill_name=str(skill_name),
+                    target_skill=skill,
+                    target_arg_name=str(arg_name),
+                )
+                if dependency_error:
+                    raise ValueError(f"task_nodes[{idx}] invalid dependency grounding: {dependency_error}")
 
             if skill.depends_on_all:
                 missed_all = [s for s in skill.depends_on_all if s not in seen]

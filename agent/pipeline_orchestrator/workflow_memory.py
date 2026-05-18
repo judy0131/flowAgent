@@ -12,10 +12,6 @@ from .actions import _infer_skill_action_tags, _ordered_action_tags
 
 
 NODE_REF_PATTERN = re.compile(r"<node-(\d+)>", re.IGNORECASE)
-DEFAULT_TRUSTED_PRIOR_MIN_SUPPORT = 3
-DEFAULT_TRUSTED_PRIOR_REQUIRE_ACTION_TAGS = True
-DEFAULT_TRUSTED_PRIOR_DROP_EDGE_WITHOUT_ACTION_TAGS = True
-DEFAULT_TRUSTED_PRIOR_ENFORCE_SCHEMA_COMPATIBILITY = True
 
 
 def _load_jsonish(value: Any) -> Any:
@@ -225,113 +221,6 @@ def _action_tags_for_tasks(tasks: Sequence[str]) -> Tuple[str, ...]:
     )
 
 
-def _normalize_task_name_for_inference(value: Any) -> str:
-    text = str(value or "").strip().lower()
-    text = re.sub(r"[\(\)\[\]\{\}/]+", " ", text)
-    text = re.sub(r"[_\-]+", " ", text)
-    text = re.sub(r"\s+", " ", text)
-    return text
-
-
-def _ordered_modalities(values: Iterable[str]) -> Tuple[str, ...]:
-    canonical_order = ("text", "audio", "image", "video")
-    normalized = {str(value).strip().lower() for value in values if str(value).strip()}
-    ordered = [modality for modality in canonical_order if modality in normalized]
-    extras = sorted(modality for modality in normalized if modality not in canonical_order)
-    return tuple(ordered + extras)
-
-
-def _infer_task_modalities(task_name: str) -> Dict[str, Tuple[str, ...]]:
-    text = _normalize_task_name_for_inference(task_name)
-    modality_pattern = r"(audio|video|image|text)"
-
-    conversion_match = re.search(
-        rf"\b(?P<input>{modality_pattern})\b\s+(?:to|2)\s+\b(?P<output>{modality_pattern})\b",
-        text,
-    )
-    if conversion_match:
-        return {
-            "inputs": (conversion_match.group("input"),),
-            "outputs": (conversion_match.group("output"),),
-        }
-
-    if "video voiceover" in text:
-        return {"inputs": ("video", "audio", "text"), "outputs": ("video",)}
-    if "video synchronization" in text:
-        return {"inputs": ("video", "audio"), "outputs": ("video",)}
-    if "audio effects" in text or ("effect" in text and "audio" in text):
-        return {"inputs": ("audio", "text"), "outputs": ("audio",)}
-    if "voice changer" in text:
-        return {"inputs": ("audio", "text"), "outputs": ("audio",)}
-    if "audio noise reduction" in text or ("noise reduction" in text and "audio" in text):
-        return {"inputs": ("audio",), "outputs": ("audio",)}
-    if "audio splicer" in text:
-        return {"inputs": ("audio",), "outputs": ("audio",)}
-    if "image stitcher" in text or "image style transfer" in text or "image colorizer" in text:
-        return {"inputs": ("image",), "outputs": ("image",)}
-    if "video stabilizer" in text or "video speed" in text:
-        return {"inputs": ("video",), "outputs": ("video",)}
-    if "url extractor" in text:
-        return {"inputs": ("text",), "outputs": ("text",)}
-    if "text downloader" in text:
-        return {"inputs": ("text",), "outputs": ("text",)}
-    if "audio downloader" in text:
-        return {"inputs": ("text",), "outputs": ("audio",)}
-    if "image downloader" in text:
-        return {"inputs": ("text",), "outputs": ("image",)}
-    if "video downloader" in text:
-        return {"inputs": ("text",), "outputs": ("video",)}
-    if "text search" in text:
-        return {"inputs": ("text",), "outputs": ("text",)}
-    if "video search" in text:
-        return {"inputs": ("text",), "outputs": ("video",)}
-    if "audio search" in text:
-        return {"inputs": ("text",), "outputs": ("audio",)}
-    if "image search" in text:
-        if "by image" in text:
-            return {"inputs": ("image",), "outputs": ("image",)}
-        return {"inputs": ("text",), "outputs": ("image",)}
-    if (
-        "text simplifier" in text
-        or "text summarizer" in text
-        or "text grammar checker" in text
-        or "text sentiment analysis" in text
-        or "keyword extractor" in text
-        or "topic generator" in text
-        or "text expander" in text
-        or "article spinner" in text
-        or "text paraphraser" in text
-        or "text translator" in text
-    ):
-        return {"inputs": ("text",), "outputs": ("text",)}
-
-    found_modalities = re.findall(rf"\b{modality_pattern}\b", text)
-    unique_modalities = _ordered_modalities(found_modalities)
-    if len(unique_modalities) == 1:
-        modality = unique_modalities[0]
-        return {"inputs": (modality,), "outputs": (modality,)}
-
-    return {"inputs": tuple(), "outputs": tuple()}
-
-
-def _edge_action_tags(source_task: str, target_task: str) -> Tuple[str, ...]:
-    return tuple(
-        _ordered_action_tags(
-            set(_infer_skill_action_tags(source_task)) | set(_infer_skill_action_tags(target_task))
-        )
-    )
-
-
-def _edge_is_schema_compatible(source_task: str, target_task: str) -> bool:
-    source_modalities = _infer_task_modalities(source_task)
-    target_modalities = _infer_task_modalities(target_task)
-    source_outputs = set(source_modalities.get("outputs", tuple()))
-    target_inputs = set(target_modalities.get("inputs", tuple()))
-    if not source_outputs or not target_inputs:
-        return True
-    return bool(source_outputs & target_inputs)
-
-
 def _extract_path_motifs(
     tasks: Sequence[str],
     index_edges: Sequence[Tuple[int, int]],
@@ -446,23 +335,6 @@ class WorkflowMemoryMotif:
     support: int
 
 
-@dataclass(frozen=True)
-class WorkflowStartPrior:
-    skill: str
-    support: int
-    probability: float
-    action_tags: Tuple[str, ...]
-
-
-@dataclass(frozen=True)
-class WorkflowTransitionPrior:
-    source: str
-    target: str
-    support: int
-    probability: float
-    action_tags: Tuple[str, ...]
-
-
 class WorkflowMemoryIndex:
     def __init__(
         self,
@@ -471,210 +343,11 @@ class WorkflowMemoryIndex:
         transition_counts: Optional[Dict[Tuple[str, str], int]] = None,
         start_counts: Optional[Dict[str, int]] = None,
         end_counts: Optional[Dict[str, int]] = None,
-        motif_prior: Optional[Sequence[WorkflowMemoryMotif]] = None,
-        start_prior: Optional[Sequence[WorkflowStartPrior]] = None,
-        transition_prior: Optional[Sequence[WorkflowTransitionPrior]] = None,
-        prior_filters: Optional[Dict[str, Any]] = None,
-        prior_stats: Optional[Dict[str, Any]] = None,
     ) -> None:
         self.motifs: List[WorkflowMemoryMotif] = list(motifs)
         self.transition_counts: Dict[Tuple[str, str], int] = dict(transition_counts or {})
         self.start_counts: Dict[str, int] = dict(start_counts or {})
         self.end_counts: Dict[str, int] = dict(end_counts or {})
-        self.prior_filters: Dict[str, Any] = self._normalize_prior_filters(prior_filters)
-
-        computed_motif_prior: Optional[List[WorkflowMemoryMotif]] = None
-        computed_start_prior: Optional[List[WorkflowStartPrior]] = None
-        computed_transition_prior: Optional[List[WorkflowTransitionPrior]] = None
-        computed_stats: Optional[Dict[str, Any]] = None
-        if motif_prior is None or start_prior is None or transition_prior is None or prior_stats is None:
-            (
-                computed_motif_prior,
-                computed_start_prior,
-                computed_transition_prior,
-                computed_stats,
-            ) = self._build_trusted_prior_tables(
-                self.motifs,
-                prior_filters=self.prior_filters,
-                raw_start_counts=self.start_counts,
-            )
-
-        self.motif_prior: List[WorkflowMemoryMotif] = list(
-            motif_prior if motif_prior is not None else computed_motif_prior or []
-        )
-        self.start_prior: List[WorkflowStartPrior] = list(
-            start_prior if start_prior is not None else computed_start_prior or []
-        )
-        self.transition_prior: List[WorkflowTransitionPrior] = list(
-            transition_prior if transition_prior is not None else computed_transition_prior or []
-        )
-        self.prior_stats: Dict[str, Any] = dict(prior_stats if prior_stats is not None else computed_stats or {})
-
-    @staticmethod
-    def _default_prior_filters() -> Dict[str, Any]:
-        return {
-            "min_support": DEFAULT_TRUSTED_PRIOR_MIN_SUPPORT,
-            "require_action_tags": DEFAULT_TRUSTED_PRIOR_REQUIRE_ACTION_TAGS,
-            "drop_edge_without_action_tags": DEFAULT_TRUSTED_PRIOR_DROP_EDGE_WITHOUT_ACTION_TAGS,
-            "enforce_schema_compatibility": DEFAULT_TRUSTED_PRIOR_ENFORCE_SCHEMA_COMPATIBILITY,
-        }
-
-    @classmethod
-    def _normalize_prior_filters(cls, payload: Optional[Dict[str, Any]]) -> Dict[str, Any]:
-        filters = cls._default_prior_filters()
-        if isinstance(payload, dict):
-            filters.update(
-                {
-                    "min_support": max(1, int(payload.get("min_support", filters["min_support"]))),
-                    "require_action_tags": bool(payload.get("require_action_tags", filters["require_action_tags"])),
-                    "drop_edge_without_action_tags": bool(
-                        payload.get("drop_edge_without_action_tags", filters["drop_edge_without_action_tags"])
-                    ),
-                    "enforce_schema_compatibility": bool(
-                        payload.get("enforce_schema_compatibility", filters["enforce_schema_compatibility"])
-                    ),
-                }
-            )
-        return filters
-
-    @staticmethod
-    def _build_trusted_prior_tables(
-        motifs: Sequence[WorkflowMemoryMotif],
-        *,
-        prior_filters: Dict[str, Any],
-        raw_start_counts: Optional[Dict[str, int]] = None,
-    ) -> Tuple[List[WorkflowMemoryMotif], List[WorkflowStartPrior], List[WorkflowTransitionPrior], Dict[str, Any]]:
-        min_support = max(1, int(prior_filters.get("min_support", DEFAULT_TRUSTED_PRIOR_MIN_SUPPORT)))
-        require_action_tags = bool(prior_filters.get("require_action_tags", DEFAULT_TRUSTED_PRIOR_REQUIRE_ACTION_TAGS))
-        drop_edge_without_action_tags = bool(
-            prior_filters.get(
-                "drop_edge_without_action_tags",
-                DEFAULT_TRUSTED_PRIOR_DROP_EDGE_WITHOUT_ACTION_TAGS,
-            )
-        )
-        enforce_schema_compatibility = bool(
-            prior_filters.get(
-                "enforce_schema_compatibility",
-                DEFAULT_TRUSTED_PRIOR_ENFORCE_SCHEMA_COMPATIBILITY,
-            )
-        )
-
-        trusted_motifs: List[WorkflowMemoryMotif] = []
-        transition_support: Counter[Tuple[str, str]] = Counter()
-        transition_action_tags: Dict[Tuple[str, str], Set[str]] = defaultdict(set)
-
-        stats: Dict[str, Any] = {
-            "raw_motif_count": len(motifs),
-            "raw_transition_instance_count": sum(len(motif.links) for motif in motifs),
-            "dropped_low_support": 0,
-            "dropped_missing_action_tags": 0,
-            "dropped_edge_without_action_tags": 0,
-            "dropped_incompatible_edge": 0,
-        }
-
-        for motif in motifs:
-            inferred_motif_tags = tuple(
-                _ordered_action_tags(
-                    set(motif.action_tags)
-                    | {
-                        tag
-                        for task in motif.tasks
-                        for tag in _infer_skill_action_tags(task)
-                    }
-                )
-            )
-            if int(motif.support) < min_support:
-                stats["dropped_low_support"] += 1
-                continue
-            if require_action_tags and not inferred_motif_tags:
-                stats["dropped_missing_action_tags"] += 1
-                continue
-
-            trusted_edges: List[Tuple[str, str, Tuple[str, ...]]] = []
-            motif_rejected = False
-            for source_task, target_task in motif.links:
-                edge_tags = _edge_action_tags(source_task, target_task)
-                if enforce_schema_compatibility and not _edge_is_schema_compatible(source_task, target_task):
-                    stats["dropped_incompatible_edge"] += 1
-                    motif_rejected = True
-                    break
-                if drop_edge_without_action_tags and not edge_tags:
-                    stats["dropped_edge_without_action_tags"] += 1
-                    continue
-                trusted_edges.append((source_task, target_task, edge_tags))
-
-            if motif_rejected:
-                continue
-
-            trusted_motif = WorkflowMemoryMotif(
-                motif_id=motif.motif_id,
-                tasks=motif.tasks,
-                links=motif.links,
-                action_tags=inferred_motif_tags,
-                support=int(motif.support),
-            )
-            trusted_motifs.append(trusted_motif)
-
-            for source_task, target_task, edge_tags in trusted_edges:
-                transition_support[(source_task, target_task)] += trusted_motif.support
-                transition_action_tags[(source_task, target_task)].update(edge_tags)
-
-        trusted_start_skills = {
-            motif.tasks[0]
-            for motif in trusted_motifs
-            if motif.tasks and motif.tasks[0]
-        }
-        start_support: Counter[str] = Counter()
-        if raw_start_counts:
-            for skill, support in raw_start_counts.items():
-                if skill in trusted_start_skills and int(support) >= min_support:
-                    start_support[skill] += int(support)
-        else:
-            for skill in trusted_start_skills:
-                start_support[skill] = sum(
-                    motif.support
-                    for motif in trusted_motifs
-                    if motif.tasks and motif.tasks[0] == skill
-                )
-
-        total_start_support = float(sum(start_support.values()) or 1.0)
-        start_prior = [
-            WorkflowStartPrior(
-                skill=skill,
-                support=int(support),
-                probability=float(support) / total_start_support,
-                action_tags=tuple(_infer_skill_action_tags(skill)),
-            )
-            for skill, support in sorted(
-                start_support.items(),
-                key=lambda item: (-item[1], item[0]),
-            )
-        ]
-
-        outgoing_support: Counter[str] = Counter()
-        for (source_task, _), support in transition_support.items():
-            outgoing_support[source_task] += support
-
-        transition_prior = [
-            WorkflowTransitionPrior(
-                source=source_task,
-                target=target_task,
-                support=int(support),
-                probability=float(support) / float(outgoing_support[source_task] or 1.0),
-                action_tags=tuple(_ordered_action_tags(transition_action_tags.get((source_task, target_task), set()))),
-            )
-            for (source_task, target_task), support in sorted(
-                transition_support.items(),
-                key=lambda item: (-item[1], item[0][0], item[0][1]),
-            )
-        ]
-
-        stats["trusted_motif_count"] = len(trusted_motifs)
-        stats["trusted_start_count"] = len(start_prior)
-        stats["trusted_transition_count"] = len(transition_prior)
-        stats["trusted_start_support_total"] = int(sum(start_support.values()))
-        stats["trusted_transition_support_total"] = int(sum(transition_support.values()))
-        return trusted_motifs, start_prior, transition_prior, stats
 
     @classmethod
     def from_dict(cls, payload: Dict[str, Any]) -> "WorkflowMemoryIndex":
@@ -682,7 +355,6 @@ class WorkflowMemoryIndex:
         raw_transition_counts = payload.get("transition_counts", [])
         raw_start_counts = payload.get("start_counts", {})
         raw_end_counts = payload.get("end_counts", {})
-        raw_trusted_priors = payload.get("trusted_priors", {})
 
         motifs = [
             WorkflowMemoryMotif(
@@ -716,83 +388,11 @@ class WorkflowMemoryIndex:
         start_counts = {str(k): int(v) for k, v in dict(raw_start_counts).items()} if isinstance(raw_start_counts, dict) else {}
         end_counts = {str(k): int(v) for k, v in dict(raw_end_counts).items()} if isinstance(raw_end_counts, dict) else {}
 
-        prior_filters = {}
-        prior_stats = {}
-        motif_prior: Optional[List[WorkflowMemoryMotif]] = None
-        start_prior: Optional[List[WorkflowStartPrior]] = None
-        transition_prior: Optional[List[WorkflowTransitionPrior]] = None
-        if isinstance(raw_trusted_priors, dict):
-            prior_filters = dict(raw_trusted_priors.get("config", {})) if isinstance(raw_trusted_priors.get("config", {}), dict) else {}
-            prior_stats = dict(raw_trusted_priors.get("stats", {})) if isinstance(raw_trusted_priors.get("stats", {}), dict) else {}
-
-            if "motif_prior" in raw_trusted_priors and isinstance(raw_trusted_priors.get("motif_prior"), list):
-                raw_motif_prior = raw_trusted_priors.get("motif_prior", [])
-                motif_prior = [
-                    WorkflowMemoryMotif(
-                        motif_id=str(item.get("motif_id", "")),
-                        tasks=tuple(
-                            _normalize_task_name(task)
-                            for task in item.get("tasks", [])
-                            if _normalize_task_name(task)
-                        ),
-                        links=tuple(
-                            (
-                                _normalize_task_name(link[0]),
-                                _normalize_task_name(link[1]),
-                            )
-                            for link in item.get("links", [])
-                            if isinstance(link, (list, tuple)) and len(link) == 2
-                        ),
-                        action_tags=tuple(
-                            str(tag)
-                            for tag in item.get("action_tags", item.get("scenario_tags", []))
-                            if str(tag).strip()
-                        ),
-                        support=int(item.get("support", 0)),
-                    )
-                    for item in raw_motif_prior
-                    if isinstance(item, dict)
-                ]
-
-            if "start_prior" in raw_trusted_priors and isinstance(raw_trusted_priors.get("start_prior"), list):
-                raw_start_prior = raw_trusted_priors.get("start_prior", [])
-                start_prior = [
-                    WorkflowStartPrior(
-                        skill=_normalize_task_name(item.get("skill")),
-                        support=int(item.get("support", 0)),
-                        probability=float(item.get("probability", 0.0)),
-                        action_tags=tuple(str(tag) for tag in item.get("action_tags", []) if str(tag).strip()),
-                    )
-                    for item in raw_start_prior
-                    if isinstance(item, dict) and _normalize_task_name(item.get("skill"))
-                ]
-
-            if "transition_prior" in raw_trusted_priors and isinstance(raw_trusted_priors.get("transition_prior"), list):
-                raw_transition_prior = raw_trusted_priors.get("transition_prior", [])
-                transition_prior = [
-                    WorkflowTransitionPrior(
-                        source=_normalize_task_name(item.get("source")),
-                        target=_normalize_task_name(item.get("target")),
-                        support=int(item.get("support", 0)),
-                        probability=float(item.get("probability", 0.0)),
-                        action_tags=tuple(str(tag) for tag in item.get("action_tags", []) if str(tag).strip()),
-                    )
-                    for item in raw_transition_prior
-                    if isinstance(item, dict)
-                    and _normalize_task_name(item.get("source"))
-                    and _normalize_task_name(item.get("target"))
-                ]
-
         return cls(
             motifs=motifs,
             transition_counts=transition_counts,
             start_counts=start_counts,
             end_counts=end_counts,
-            motif_prior=motif_prior,
-            start_prior=start_prior,
-            transition_prior=transition_prior,
-            prior_filters=prior_filters,
-            prior_stats=prior_stats,
         )
 
     @classmethod
@@ -811,7 +411,7 @@ class WorkflowMemoryIndex:
             )
         ]
         return {
-            "version": 4,
+            "version": 3,
             "motifs": [
                 {
                     "motif_id": motif.motif_id,
@@ -825,40 +425,6 @@ class WorkflowMemoryIndex:
             "transition_counts": transition_counts,
             "start_counts": dict(sorted(self.start_counts.items())),
             "end_counts": dict(sorted(self.end_counts.items())),
-            "trusted_priors": {
-                "config": dict(self.prior_filters),
-                "stats": dict(self.prior_stats),
-                "start_prior": [
-                    {
-                        "skill": item.skill,
-                        "support": item.support,
-                        "probability": item.probability,
-                        "action_tags": list(item.action_tags),
-                    }
-                    for item in self.start_prior
-                ],
-                "transition_prior": [
-                    {
-                        "source": item.source,
-                        "target": item.target,
-                        "support": item.support,
-                        "probability": item.probability,
-                        "action_tags": list(item.action_tags),
-                    }
-                    for item in self.transition_prior
-                ],
-                "motif_prior": [
-                    {
-                        "motif_id": motif.motif_id,
-                        "tasks": list(motif.tasks),
-                        "links": [list(link) for link in motif.links],
-                        "action_tags": list(motif.action_tags),
-                        "scenario_tags": list(motif.action_tags),
-                        "support": motif.support,
-                    }
-                    for motif in self.motif_prior
-                ],
-            },
         }
 
     def to_json(self, path: Path) -> None:
@@ -896,13 +462,11 @@ class WorkflowMemoryIndex:
         *,
         source_name: str = "taskbench",
         max_motif_size: int = 4,
-        trusted_min_support: int = DEFAULT_TRUSTED_PRIOR_MIN_SUPPORT,
     ) -> "WorkflowMemoryIndex":
         return cls.build_from_taskbench_records(
             cls._iter_json_records(path),
             source_name=source_name,
             max_motif_size=max_motif_size,
-            trusted_min_support=trusted_min_support,
         )
 
     @classmethod
@@ -912,7 +476,6 @@ class WorkflowMemoryIndex:
         *,
         source_name: str = "taskbench",
         max_motif_size: int = 4,
-        trusted_min_support: int = DEFAULT_TRUSTED_PRIOR_MIN_SUPPORT,
     ) -> "WorkflowMemoryIndex":
         transition_counts: Counter[Tuple[str, str]] = Counter()
         start_counts: Counter[str] = Counter()
@@ -971,5 +534,4 @@ class WorkflowMemoryIndex:
             transition_counts=dict(transition_counts),
             start_counts=dict(start_counts),
             end_counts=dict(end_counts),
-            prior_filters={"min_support": max(1, int(trusted_min_support))},
         )

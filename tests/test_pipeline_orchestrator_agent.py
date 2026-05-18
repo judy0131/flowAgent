@@ -17,6 +17,7 @@ from agent.pipeline_orchestrator.workflow_memory import WorkflowMemoryIndex, Wor
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = PROJECT_ROOT / "skills" / "operators"
+MULTIMEDIA_SKILLS_ROOT = PROJECT_ROOT / "taskbench" / "pipelineOrchastration" / "skills_multimedia"
 
 
 class TestSkillRegistry(unittest.TestCase):
@@ -37,6 +38,14 @@ class TestSkillRegistry(unittest.TestCase):
         self.assertGreater(out["rows"], 0)
         self.assertIn("data", ctx)
 
+    def test_discover_multimedia_skill_io_types(self) -> None:
+        registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+        skill = registry.get("Audio-to-Text")
+        self.assertIsNotNone(skill)
+        assert skill is not None
+        self.assertEqual(skill.input_types.get("arg1"), ["audio"])
+        self.assertEqual(skill.output_types, ["text"])
+
 
 class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
     def setUp(self) -> None:
@@ -46,13 +55,11 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.agent.llm_config = LLMRuntimeConfig(provider="openai", model_name="gpt-4.1", temperature=0.0)
         self.agent.llm = object()
         self.agent._candidate_llm_cache = {0.0: self.agent.llm}
-        self.agent._enable_workflow_memory = False
         self.agent._workflow_memory = None
         self.agent._workflow_retriever = None
         self.agent._workflow_retrieval_cache = {}
 
     def _attach_test_workflow_memory(self, memory: WorkflowMemoryIndex) -> None:
-        self.agent._enable_workflow_memory = True
         self.agent._workflow_memory = memory
         self.agent._workflow_retriever = WorkflowMemoryRetriever(memory)
         self.agent._workflow_retrieval_cache = {}
@@ -77,6 +84,43 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         ]
         with self.assertRaises(ValueError):
             self.agent.validate_plan(self.agent._build_workflow_view(plan))
+
+    def test_validate_plan_rejects_type_incompatible_upstream_link(self) -> None:
+        self.agent.registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+        workflow = {
+            "task_steps": [
+                "Step 1: Call Audio-to-Text with arg1=example.wav.",
+                "Step 2: Call Audio Effects with arg1=<node-0>, arg2=reverb.",
+            ],
+            "task_nodes": [
+                {"task": "Audio-to-Text", "arguments": ["example.wav"]},
+                {"task": "Audio Effects", "arguments": ["<node-0>", "reverb"]},
+            ],
+            "task_links": [
+                {"source": "Audio-to-Text", "target": "Audio Effects"},
+            ],
+        }
+
+        with self.assertRaisesRegex(ValueError, "invalid dependency grounding"):
+            self.agent.validate_plan(workflow)
+
+    def test_validate_plan_accepts_type_compatible_upstream_link(self) -> None:
+        self.agent.registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+        workflow = {
+            "task_steps": [
+                "Step 1: Call Video-to-Audio with arg1=example.mp4.",
+                "Step 2: Call Audio Effects with arg1=<node-0>, arg2=reverb.",
+            ],
+            "task_nodes": [
+                {"task": "Video-to-Audio", "arguments": ["example.mp4"]},
+                {"task": "Audio Effects", "arguments": ["<node-0>", "reverb"]},
+            ],
+            "task_links": [
+                {"source": "Video-to-Audio", "target": "Audio Effects"},
+            ],
+        }
+
+        self.agent.validate_plan(workflow)
 
     def test_compile_workflow_resolves_upstream_refs_and_output_keys(self) -> None:
         workflow = {
@@ -247,46 +291,7 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         )
 
         actions = self.agent._match_requirement_actions(requirement)
-        self.assertEqual(actions, ["transcribe", "expand", "grammar", "voice_change"])
-        self.assertNotIn("sentiment", actions)
-
-    def test_match_requirement_actions_treats_plain_english_translate_as_rewrite_not_language_translation(self) -> None:
-        requirement = (
-            "I'm preparing for a presentation on 'Economic Globalization' and I'd like to understand it better in plain English. "
-            "Could you translate the content from my example.wav file into a detailed explanation with female narration?"
-        )
-
-        actions = self.agent._match_requirement_actions(requirement)
-        self.assertIn("transcribe", actions)
-        self.assertIn("expand", actions)
-        self.assertIn("voice_change", actions)
-        self.assertNotIn("translate", actions)
-
-    def test_match_requirement_actions_detects_instruction_simplification_branch(self) -> None:
-        requirement = (
-            "I'm working on a personal project and I've recorded two separate audio clips, 'example.wav' and 'example2.wav'. "
-            "To create a smooth sequence, I'd like to merge them. Additionally, to spice things up, can we enhance the resulting "
-            "audio by adding a reverb effect with a 2-second decay and use an equalizer to amplify the bass frequencies by 3dB? "
-            "Could you make sure the instructions are understandable enough for my software tools?"
-        )
-
-        actions = self.agent._match_requirement_actions(requirement)
-        self.assertIn("simplify", actions)
-        self.assertIn("combine", actions)
-        self.assertIn("audio_effect", actions)
-        self.assertNotIn("transcribe", actions)
-        self.assertNotIn("translate", actions)
-
-    def test_match_requirement_actions_detects_direct_url_download_as_retrieval(self) -> None:
-        requirement = (
-            "I've come across this intriguing article online, and I felt it would make a compelling voiceover for my upcoming "
-            "video project. Could you create an audio voiceover using the article at https://example-article.com and integrate "
-            "it into my video file named 'example.mp4'?"
-        )
-
-        actions = self.agent._match_requirement_actions(requirement)
-        self.assertIn("retrieval", actions)
-        self.assertIn("combine", actions)
+        self.assertEqual(actions, ["grammar"])
 
     def test_match_requirement_actions_detects_brainstorming_topic_request(self) -> None:
         requirement = (
@@ -341,32 +346,6 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.assertIn("waveform", tags)
         self.assertIn("image", tags)
         self.assertIn("video", tags)
-
-    def test_workflow_action_tags_infer_expansion_and_voiceover_actions(self) -> None:
-        tags = self.agent._workflow_action_tags(["Text Expander", "Video Voiceover"])
-
-        self.assertIn("expand", tags)
-        self.assertIn("combine", tags)
-        self.assertIn("video", tags)
-
-    def test_requirement_coverage_penalizes_missing_expand_step(self) -> None:
-        requirement = (
-            "Provide a detailed and grammatically correct explanation in English audio "
-            "with a female tone for the phrase 'Economic globalization' sourced from example.wav."
-        )
-
-        incomplete = self.agent._score_requirement_action_coverage(
-            requirement,
-            ["Audio-to-Text", "Text Grammar Checker", "Text-to-Audio", "Voice Changer"],
-        )
-        complete = self.agent._score_requirement_action_coverage(
-            requirement,
-            ["Audio-to-Text", "Text Expander", "Text Grammar Checker", "Text-to-Audio", "Voice Changer"],
-        )
-
-        self.assertIn("expand", incomplete["missing_actions"])
-        self.assertNotIn("expand", complete["missing_actions"])
-        self.assertGreater(complete["bonus"] + complete["penalty"], incomplete["bonus"] + incomplete["penalty"])
 
     def test_requirement_coverage_penalizes_missing_analysis_steps(self) -> None:
         requirement = (
@@ -957,91 +936,6 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(any(item.startswith("missing_action:retrieval") for item in selection_meta["failures"]))
         self.assertFalse(selection_meta["repairable"])
 
-    def test_candidate_selection_meta_marks_root_input_modality_mismatch_as_failure(self) -> None:
-        fake_skill = lambda action_tags=None, schema=None: type(
-            "Skill",
-            (),
-            {
-                "input_schema": dict(schema or {"arg1": "str"}),
-                "depends_on_all": [],
-                "depends_on_any": [],
-                "action_tags": list(action_tags or []),
-            },
-        )()
-        self.agent.registry._meta_by_name.update(
-            {
-                "Video-to-Audio": fake_skill(),
-                "Audio-to-Text": fake_skill(["transcribe"]),
-            }
-        )
-
-        requirement = "Transcribe the speech from example.wav into text."
-        workflow = {
-            "task_steps": [],
-            "task_nodes": [
-                {"task": "Video-to-Audio", "arguments": ["example.wav"]},
-                {"task": "Audio-to-Text", "arguments": ["<node-0>"]},
-            ],
-            "task_links": [
-                {"source": "Video-to-Audio", "target": "Audio-to-Text"},
-            ],
-        }
-
-        normalized, compiled = self.agent._prepare_workflow(workflow)
-        selection_meta = self.agent._candidate_selection_meta(
-            normalized,
-            compiled,
-            user_requirement=requirement,
-            score_details={},
-        )
-
-        self.assertEqual(selection_meta["hard_filter_tier"], 0)
-        self.assertFalse(selection_meta["modality_ok"])
-        self.assertTrue(
-            any(item.startswith("root_input_modality_mismatch:0:Video-to-Audio") for item in selection_meta["failures"])
-        )
-
-    def test_candidate_selection_meta_marks_disconnected_candidate_dag_as_failure(self) -> None:
-        fake_skill = lambda action_tags=None, schema=None: type(
-            "Skill",
-            (),
-            {
-                "input_schema": dict(schema or {"arg1": "str"}),
-                "depends_on_all": [],
-                "depends_on_any": [],
-                "action_tags": list(action_tags or []),
-            },
-        )()
-        self.agent.registry._meta_by_name.update(
-            {
-                "Text Simplifier": fake_skill(["simplify"]),
-                "Text Search": fake_skill(["retrieval"]),
-            }
-        )
-
-        requirement = "Simplify this article and then search online for related topics."
-        workflow = {
-            "task_steps": [],
-            "task_nodes": [
-                {"task": "Text Simplifier", "arguments": ["article text"]},
-                {"task": "Text Search", "arguments": ["related climate topics"]},
-            ],
-            "task_links": [],
-        }
-
-        normalized, compiled = self.agent._prepare_workflow(workflow)
-        selection_meta = self.agent._candidate_selection_meta(
-            normalized,
-            compiled,
-            user_requirement=requirement,
-            score_details={},
-        )
-
-        self.assertEqual(selection_meta["hard_filter_tier"], 0)
-        self.assertFalse(selection_meta["dag_ok"])
-        self.assertTrue(any(item.startswith("isolated_nodes:") for item in selection_meta["failures"]))
-        self.assertTrue(any(item.startswith("disconnected_components:") for item in selection_meta["failures"]))
-
     def test_candidate_selection_meta_marks_late_search_source_as_suspicious(self) -> None:
         requirement = (
             "I have a long article about the effects of climate change on biodiversity. "
@@ -1289,80 +1183,6 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
 
         self.assertGreater(complete_score["score"], incomplete_score["score"])
 
-    def test_score_compiled_workflow_reports_composite_prior_and_executability_scores(self) -> None:
-        fake_skill = lambda: type(
-            "Skill",
-            (),
-            {"input_schema": {"arg1": "str"}, "depends_on_all": [], "depends_on_any": [], "action_tags": []},
-        )()
-        self.agent.registry._meta_by_name.update(
-            {
-                "Text Simplifier": fake_skill(),
-                "Text Search": fake_skill(),
-                "Text Grammar Checker": fake_skill(),
-            }
-        )
-        memory = WorkflowMemoryIndex(
-            motifs=[
-                WorkflowMemoryMotif(
-                    motif_id="Text Simplifier -> Text Search -> Text Grammar Checker",
-                    tasks=("Text Simplifier", "Text Search", "Text Grammar Checker"),
-                    links=(
-                        ("Text Simplifier", "Text Search"),
-                        ("Text Search", "Text Grammar Checker"),
-                    ),
-                    action_tags=("simplify", "retrieval", "grammar"),
-                    support=14,
-                ),
-            ],
-            transition_counts={
-                ("Text Simplifier", "Text Search"): 14,
-                ("Text Search", "Text Grammar Checker"): 11,
-            },
-            start_counts={"Text Simplifier": 11},
-            end_counts={"Text Grammar Checker": 11},
-        )
-        self._attach_test_workflow_memory(memory)
-
-        requirement = "Make this easy to understand, search online, and check the grammar."
-        workflow = {
-            "task_steps": [
-                "Step 1: Call Text Simplifier with arg1=climate change article.",
-                "Step 2: Call Text Search with arg1=<node-0>.",
-                "Step 3: Call Text Grammar Checker with arg1=<node-1>.",
-            ],
-            "task_nodes": [
-                {"task": "Text Simplifier", "arguments": ["climate change article"]},
-                {"task": "Text Search", "arguments": ["<node-0>"]},
-                {"task": "Text Grammar Checker", "arguments": ["<node-1>"]},
-            ],
-            "task_links": [
-                {"source": "Text Simplifier", "target": "Text Search"},
-                {"source": "Text Search", "target": "Text Grammar Checker"},
-            ],
-        }
-
-        normalized, compiled = self.agent._prepare_workflow(workflow)
-        verification = self.agent._verify_candidate_workflow(normalized, compiled, requirement)
-        score_meta = self.agent._score_compiled_workflow(
-            normalized,
-            compiled,
-            user_requirement=requirement,
-            verification_meta=verification,
-        )
-        details = score_meta["details"]
-
-        self.assertGreater(details["action_coverage_score"], 0.0)
-        self.assertGreater(details["schema_validity_score"], 0.0)
-        self.assertGreater(details["dependency_correctness_score"], 0.0)
-        self.assertGreater(details["modality_consistency_score"], 0.0)
-        self.assertGreater(details["dag_validity_score"], 0.0)
-        self.assertGreater(details["executability_score"], 0.0)
-        self.assertGreater(details["start_prior_score"], 0.0)
-        self.assertGreater(details["transition_prior_score"], 0.0)
-        self.assertGreater(details["motif_match_score"], 0.0)
-        self.assertGreater(details["memory_prior_score"], 0.0)
-
     def test_validate_plan_accepts_workflow(self) -> None:
         workflow = {
             "task_steps": [
@@ -1609,7 +1429,7 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(next_recs[0]["skill"], "Text-to-Audio")
         self.assertNotIn("Article Spinner", [str(item.get("skill", "")) for item in next_recs[:2]])
 
-    def test_build_candidate_strategy_specs_does_not_include_memory_graph_guidance(self) -> None:
+    def test_build_candidate_strategy_specs_includes_memory_graph_guidance(self) -> None:
         memory = WorkflowMemoryIndex(
             motifs=[
                 WorkflowMemoryMotif(
@@ -1638,31 +1458,14 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         specs = self.agent._build_candidate_strategy_specs(requirement)
 
         names = [str(spec.get("name", "")) for spec in specs]
-        self.assertNotIn("memory_graph_guided", names)
-        self.assertFalse(any(name.startswith("memory_graph_start_") for name in names))
-        self.assertFalse(any(name.startswith("memory_graph_motif_") for name in names))
+        self.assertIn("memory_graph_guided", names)
+        self.assertTrue(any(name.startswith("memory_graph_start_") for name in names))
+        memory_spec = next(spec for spec in specs if spec.get("name") == "memory_graph_guided")
+        self.assertIn("Preferred start tools", str(memory_spec.get("hint", "")))
+        self.assertIn("Text Simplifier", str(memory_spec.get("hint", "")))
+        self.assertIn("Text Search", str(memory_spec.get("hint", "")))
 
-    def test_build_candidate_strategy_specs_adds_source_media_clause_coverage(self) -> None:
-        requirement = (
-            "Provide a detailed and grammatically correct explanation in English audio "
-            "with a female tone for the phrase 'Economic globalization' sourced from example.wav."
-        )
-
-        specs = self.agent._build_candidate_strategy_specs(requirement)
-        names = [str(spec.get("name", "")) for spec in specs]
-        self.assertIn("source_media_clause_coverage", names)
-
-    def test_build_candidate_strategy_specs_adds_instruction_branch_preserving(self) -> None:
-        requirement = (
-            "I've recorded two separate audio clips, 'example.wav' and 'example2.wav'. "
-            "Please merge them, add a reverb effect, and make sure the instructions are understandable enough for my software tools."
-        )
-
-        specs = self.agent._build_candidate_strategy_specs(requirement)
-        names = [str(spec.get("name", "")) for spec in specs]
-        self.assertIn("instruction_branch_preserving", names)
-
-    async def test_plan_candidates_does_not_pass_memory_graph_hint_to_generator(self) -> None:
+    async def test_plan_candidates_passes_memory_graph_hint_to_generator(self) -> None:
         memory = WorkflowMemoryIndex(
             motifs=[
                 WorkflowMemoryMotif(
@@ -1714,9 +1517,12 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         await self.agent.plan_candidates("Load not_exists.csv and sum the sales field.", candidate_count=1)
 
         self.assertTrue(captured_hints)
-        self.assertNotIn("query-conditioned workflow memory priors", captured_hints[0])
-        self.assertFalse(any("query-conditioned workflow memory priors" in hint for hint in captured_hints))
-        self.assertFalse(any("Try a valid workflow that starts from" in hint for hint in captured_hints))
+        self.assertIn("query-conditioned workflow memory graph", captured_hints[0])
+        self.assertIn("load_csv", captured_hints[0])
+        self.assertGreater(len(captured_hints), 1)
+        self.assertTrue(
+            any("Try a valid workflow that starts from" in hint for hint in captured_hints[1:])
+        )
 
     async def test_plan_candidates_deduplicates(self) -> None:
         plans = [
@@ -1895,57 +1701,6 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(candidates[0]["repair_meta"]["applied"])
         self.assertEqual(candidates[0]["selection_meta"]["hard_filter_tier"], 2)
 
-    async def test_plan_candidates_filters_hard_fail_candidates_when_executable_candidate_exists(self) -> None:
-        bad_plan = {
-            "task_steps": [
-                "Step 1: Call load_csv with path=not_exists.csv.",
-                "Step 2: Call aggregate_sum with arg1=<node-3>, field=sales.",
-            ],
-            "task_nodes": [
-                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
-                {
-                    "task": "aggregate_sum",
-                    "arguments": [
-                        {"name": "arg1", "value": "<node-3>"},
-                        {"name": "field", "value": "sales"},
-                    ],
-                },
-            ],
-            "task_links": [{"source": "load_csv", "target": "aggregate_sum"}],
-        }
-        good_plan = {
-            "task_steps": [
-                "Step 1: Call load_csv with path=not_exists.csv.",
-                "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
-            ],
-            "task_nodes": [
-                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
-                {
-                    "task": "aggregate_sum",
-                    "arguments": [
-                        {"name": "arg1", "value": "<node-0>"},
-                        {"name": "field", "value": "sales"},
-                    ],
-                },
-            ],
-            "task_links": [{"source": "load_csv", "target": "aggregate_sum"}],
-        }
-        state = {"calls": 0}
-
-        async def fake_plan(_req: str, strategy_hint: str | None = None, llm_client=None):
-            _ = (strategy_hint, llm_client)
-            state["calls"] += 1
-            return bad_plan if state["calls"] == 1 else good_plan
-
-        self.agent._plan_with_client = fake_plan  # type: ignore[method-assign]
-        self.agent._get_candidate_llm = lambda _temp: object()  # type: ignore[method-assign]
-
-        candidates = await self.agent.plan_candidates("Load not_exists.csv and sum the sales field.", candidate_count=2)
-
-        self.assertEqual(len(candidates), 1)
-        self.assertTrue(all(candidate["selection_meta"]["hard_filter_tier"] > 0 for candidate in candidates))
-        self.assertEqual(candidates[0]["workflow"]["task_nodes"][0]["task"], "load_csv")
-
     async def test_select_best_candidate_prefers_shorter_plan(self) -> None:
         long_plan = {
             "task_steps": [
@@ -2058,85 +1813,6 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         selected = self.agent._select_best_candidate(candidates)
         self.assertEqual(selected["id"], 2)
 
-    async def test_select_best_candidate_breaks_ties_with_memory_prior_score(self) -> None:
-        candidates = [
-            {
-                "id": 1,
-                "workflow": {"task_steps": [], "task_nodes": [], "task_links": []},
-                "score": 120.0,
-                "score_details": {
-                    "action_coverage_score": 24.0,
-                    "executability_score": 22.0,
-                    "memory_prior_score": 1.0,
-                    "text_preference_bonus": 0.0,
-                    "text_preference_penalty": 0.0,
-                    "name_modality_bonus": 0.0,
-                    "name_modality_penalty": 0.0,
-                    "transition_bonus": 0.0,
-                    "transition_penalty": 0.0,
-                    "redundancy_penalty": 0.0,
-                    "extra_action_penalty": 0.0,
-                    "length_penalty": -6.0,
-                    "missing_actions": [],
-                },
-                "selection_meta": {
-                    "hard_filter_tier": 2,
-                    "coverage_complete": True,
-                    "dag_ok": True,
-                    "schema_ok": True,
-                    "dependency_ok": True,
-                    "modality_ok": True,
-                    "bridge_tool_ok": True,
-                    "unrequested_bridge_tool_count": 0,
-                    "search_source_ok": True,
-                    "retrieval_before_topic_ok": True,
-                    "grammar_after_retrieval_ok": True,
-                    "video_after_waveform_ok": True,
-                    "warning_count": 0,
-                    "extra_actions": [],
-                },
-            },
-            {
-                "id": 2,
-                "workflow": {"task_steps": [], "task_nodes": [], "task_links": []},
-                "score": 120.0,
-                "score_details": {
-                    "action_coverage_score": 24.0,
-                    "executability_score": 22.0,
-                    "memory_prior_score": 5.0,
-                    "text_preference_bonus": 0.0,
-                    "text_preference_penalty": 0.0,
-                    "name_modality_bonus": 0.0,
-                    "name_modality_penalty": 0.0,
-                    "transition_bonus": 0.0,
-                    "transition_penalty": 0.0,
-                    "redundancy_penalty": 0.0,
-                    "extra_action_penalty": 0.0,
-                    "length_penalty": -6.0,
-                    "missing_actions": [],
-                },
-                "selection_meta": {
-                    "hard_filter_tier": 2,
-                    "coverage_complete": True,
-                    "dag_ok": True,
-                    "schema_ok": True,
-                    "dependency_ok": True,
-                    "modality_ok": True,
-                    "bridge_tool_ok": True,
-                    "unrequested_bridge_tool_count": 0,
-                    "search_source_ok": True,
-                    "retrieval_before_topic_ok": True,
-                    "grammar_after_retrieval_ok": True,
-                    "video_after_waveform_ok": True,
-                    "warning_count": 0,
-                    "extra_actions": [],
-                },
-            },
-        ]
-
-        selected = self.agent._select_best_candidate(candidates)
-        self.assertEqual(selected["id"], 2)
-
     async def test_select_best_candidate_prefers_fewer_unrequested_bridge_warnings_over_higher_score(self) -> None:
         candidates = [
             {
@@ -2190,6 +1866,40 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(all(spec.get("name") for spec in specs))
         self.assertTrue(any("structurally distinct" in spec["hint"] for spec in specs))
         self.assertTrue(any("analysis coverage" in spec["hint"] for spec in specs))
+
+    def test_build_candidate_strategy_specs_can_prepend_original_candidate(self) -> None:
+        self.agent._include_original_candidate = True
+
+        specs = self.agent._build_candidate_strategy_specs("Load a csv file and sum the sales field.")
+
+        self.assertTrue(specs)
+        self.assertEqual(specs[0]["name"], "original")
+        self.assertEqual(specs[0]["hint"], "")
+
+    async def test_finalize_candidate_workflow_skips_verifier_and_repair_when_disabled(self) -> None:
+        self.agent._enable_candidate_verifier = False
+        self.agent._enable_candidate_repair = False
+
+        workflow = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+            ],
+            "task_links": [],
+        }
+
+        candidate = await self.agent._finalize_candidate_workflow(
+            workflow,
+            user_requirement="Load not_exists.csv.",
+            strategy_name="original",
+            strategy_hint="",
+            sampling_temperature=0.0,
+        )
+
+        self.assertFalse(candidate["verification_meta"]["verifier_enabled"])
+        self.assertFalse(candidate["repair_meta"]["attempted"])
 
 
 class TestSafeJson(unittest.TestCase):

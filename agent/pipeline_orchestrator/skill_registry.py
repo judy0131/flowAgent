@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import re
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional
 
@@ -8,6 +9,8 @@ from .models import SkillMetadata, SkillPackage
 
 
 class SkillRegistry:
+    _KNOWN_TYPES = ("audio", "video", "image", "text", "url")
+
     def __init__(self, skills_root: Path):
         self.skills_root = skills_root
         self._meta_by_name: Dict[str, SkillMetadata] = {}
@@ -21,10 +24,11 @@ class SkillRegistry:
             skill_dir = skill_json.parent
             with skill_json.open("r", encoding="utf-8") as f:
                 payload = json.load(f)
+            input_schema = payload.get("input_schema", {})
             meta = SkillMetadata(
                 name=payload["name"],
                 description=payload["description"],
-                input_schema=payload.get("input_schema", {}),
+                input_schema=input_schema,
                 executor=payload.get("executor", "executor.py:run"),
                 depends_on_all=payload.get("depends_on_all", []),
                 depends_on_any=payload.get("depends_on_any", []),
@@ -33,11 +37,59 @@ class SkillRegistry:
                     _infer_skill_action_tags(
                         payload["name"],
                         payload.get("description", ""),
-                        payload.get("input_schema", {}),
+                        input_schema,
                     ),
                 ),
+                input_types=self._extract_input_types(input_schema),
+                output_types=self._extract_output_types(skill_dir, payload["name"]),
             )
             self._meta_by_name[meta.name] = meta
+
+    @classmethod
+    def _extract_known_types(cls, text: str) -> List[str]:
+        found: List[str] = []
+        lowered = str(text or "").lower()
+        for token in cls._KNOWN_TYPES:
+            if re.search(rf"\b{re.escape(token)}\b", lowered) and token not in found:
+                found.append(token)
+        return found
+
+    @classmethod
+    def _extract_input_types(cls, input_schema: Dict[str, Any]) -> Dict[str, List[str]]:
+        input_types: Dict[str, List[str]] = {}
+        for key, description in input_schema.items():
+            types = cls._extract_known_types(str(description))
+            if types:
+                input_types[str(key)] = types
+        return input_types
+
+    @classmethod
+    def _infer_output_types_from_name(cls, skill_name: str) -> List[str]:
+        text = re.sub(r"[_\-]+", " ", str(skill_name).strip().lower())
+        modality_pattern = r"(audio|video|image|text|url)"
+        conversion_match = re.search(
+            rf"\b(?:{modality_pattern})\b\s+(?:to|2)\s+\b(?P<output>{modality_pattern})\b",
+            text,
+        )
+        if conversion_match:
+            return [conversion_match.group("output")]
+
+        found = cls._extract_known_types(text)
+        if len(found) == 1:
+            return found
+        return []
+
+    @classmethod
+    def _extract_output_types(cls, skill_dir: Path, skill_name: str) -> List[str]:
+        skill_md_path = skill_dir / "SKILL.md"
+        if skill_md_path.exists():
+            skill_md = skill_md_path.read_text(encoding="utf-8")
+            match = re.search(r"(?im)^\s*-\s*output\s+types:\s*(.+?)\s*$", skill_md)
+            if match:
+                types = cls._extract_known_types(match.group(1))
+                if types:
+                    return types
+        return cls._infer_output_types_from_name(skill_name)
 
     @property
     def skills(self) -> Dict[str, SkillMetadata]:

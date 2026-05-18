@@ -4,7 +4,6 @@ from .models import LLMRuntimeConfig, SkillMetadata, SkillPackage
 from .retrieval import WorkflowMemoryRetriever
 from .serialization import _safe_json_dumps
 from .skill_registry import SkillRegistry
-from .workflow_prior import TaskBenchPrior, TaskBenchPriorIndex
 from .workflow_memory import WorkflowMemoryIndex
 
 __all__ = [
@@ -14,8 +13,6 @@ __all__ = [
     "SkillMetadata",
     "SkillPackage",
     "SkillRegistry",
-    "TaskBenchPrior",
-    "TaskBenchPriorIndex",
     "WorkflowMemoryIndex",
     "WorkflowMemoryRetriever",
     "_infer_skill_action_tags",

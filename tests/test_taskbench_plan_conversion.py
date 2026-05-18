@@ -1,7 +1,14 @@
+import tempfile
 import unittest
+import argparse
 from pathlib import Path
 from unittest.mock import patch
 
+from taskbench.pipelineOrchastration.run_minimal_rollback_experiment import _build_runner_args
+from taskbench.pipelineOrchastration.run_with_pipeline_agent_base import (
+    _classify_case_failure,
+    _open_prediction_output,
+)
 from taskbench.pipelineOrchastration.run_with_pipeline_agent_openAI import (
     _build_prediction_record,
     _convert_plan_to_taskbench_result,
@@ -166,6 +173,65 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
         self.assertEqual(result["tool_links"], "[]")
         self.assertNotIn("task_steps", result)
         self.assertNotIn("user_request", result)
+
+    def test_open_prediction_output_truncates_when_resume_disabled(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            output_path = Path(tmpdir) / "predictions.jsonl"
+            output_path.write_text("old\n", encoding="utf-8")
+
+            with _open_prediction_output(output_path, resume=False) as wf:
+                wf.write("new\n")
+
+            self.assertEqual(output_path.read_text(encoding="utf-8"), "new\n")
+
+    def test_open_prediction_output_appends_when_resume_enabled(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            output_path = Path(tmpdir) / "predictions.jsonl"
+            output_path.write_text("old\n", encoding="utf-8")
+
+            with _open_prediction_output(output_path, resume=True) as wf:
+                wf.write("new\n")
+
+            self.assertEqual(output_path.read_text(encoding="utf-8"), "old\nnew\n")
+
+    def test_classify_case_failure_marks_workflow_validation_errors(self) -> None:
+        error = ValueError(
+            "task_nodes[4] invalid dependency grounding: "
+            "Text-to-Audio outputs [audio] but Video Voiceover.arg1 expects [video]"
+        )
+
+        self.assertEqual(_classify_case_failure(error), "validation_failure")
+
+    def test_classify_case_failure_leaves_non_validation_errors_separate(self) -> None:
+        self.assertEqual(_classify_case_failure(RuntimeError("boom")), "other_failure")
+        self.assertEqual(_classify_case_failure(ValueError("plain conversion failure")), "other_failure")
+
+    def test_build_runner_args_keeps_continue_on_error_default(self) -> None:
+        base_args = argparse.Namespace(
+            stop_on_error=False,
+            workflow_memory_path=None,
+            execution_mode="best",
+        )
+        group_spec = {
+            "planning_mode": "multi",
+            "candidate_selection_mode": "rerank",
+            "enable_candidate_verifier": True,
+            "enable_candidate_repair": True,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+        }
+
+        args = _build_runner_args(
+            runner_parser=argparse.ArgumentParser(),
+            base_args=base_args,
+            group_spec=group_spec,
+            prediction_dir="predictions",
+            case_ids_file=Path("case_ids.txt"),
+            candidate_count=3,
+            fixed_temperature=0.0,
+        )
+
+        self.assertFalse(args.stop_on_error)
 
 
 if __name__ == "__main__":

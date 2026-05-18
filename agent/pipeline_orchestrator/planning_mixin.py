@@ -3,6 +3,7 @@ import re
 from dataclasses import replace
 from typing import Any, Dict, List, Optional, Set, Tuple
 
+from .retrieval import score_workflow_with_retrieval_context
 from .serialization import _safe_json_dumps
 
 
@@ -10,6 +11,7 @@ class PlanningMixin:
     def _build_plan_prompt(self, user_requirement: str, strategy_hint: Optional[str] = None) -> str:
         strategy_line = f"\nPlanning strategy hint:\n{strategy_hint}\n" if strategy_hint else ""
         required_actions = self._match_requirement_actions(user_requirement)
+        workflow_memory_block = self._format_workflow_memory_prompt_block(user_requirement)
         coverage_checklist = ""
         if required_actions:
             coverage_lines = "\n".join(f"- {self._action_prompt_text(action)}" for action in required_actions)
@@ -217,6 +219,8 @@ Good examples:
 
 Available skills:
 {json.dumps(self.registry.list_for_prompt())}
+
+{workflow_memory_block}
 
 User requirement:
 {user_requirement}
@@ -481,7 +485,6 @@ User requirement:
         workflow: Dict[str, Any],
         compiled_nodes: List[Dict[str, Any]],
         user_requirement: str = "",
-        verification_meta: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         score = 100.0
         details: Dict[str, Any] = {
@@ -501,13 +504,6 @@ User requirement:
             "graph_transition_penalty": 0.0,
             "text_preference_bonus": 0.0,
             "text_preference_penalty": 0.0,
-            "taskbench_prior_bonus": 0.0,
-            "taskbench_prior_penalty": 0.0,
-            "taskbench_prior_transition_bonus": 0.0,
-            "taskbench_prior_transition_penalty": 0.0,
-            "taskbench_prior_motif_bonus": 0.0,
-            "taskbench_prior_start_bonus": 0.0,
-            "taskbench_prior_end_bonus": 0.0,
             "memory_bonus": 0.0,
             "memory_penalty": 0.0,
             "memory_transition_bonus": 0.0,
@@ -515,24 +511,7 @@ User requirement:
             "memory_motif_bonus": 0.0,
             "memory_start_bonus": 0.0,
             "memory_end_bonus": 0.0,
-            "action_coverage_score": 0.0,
-            "schema_validity_score": 0.0,
-            "dependency_correctness_score": 0.0,
-            "modality_consistency_score": 0.0,
-            "dag_validity_score": 0.0,
-            "executability_score": 0.0,
-            "extra_action_penalty": 0.0,
-            "memory_prior_score": 0.0,
-            "memory_prior_raw_score": 0.0,
-            "start_prior_score": 0.0,
-            "transition_prior_score": 0.0,
-            "motif_match_score": 0.0,
-            "end_prior_score": 0.0,
-            "extra_node_count": 0,
         }
-        verification = verification_meta if isinstance(verification_meta, dict) else None
-        if verification is None:
-            verification = self._verify_candidate_workflow(workflow, compiled_nodes, user_requirement)
 
         skill_names = [str(node.get("task", "")).lower() for node in compiled_nodes]
         action_coverage = self._score_requirement_action_coverage(user_requirement, skill_names)
@@ -541,7 +520,6 @@ User requirement:
         details["required_actions"] = action_coverage["required_actions"]
         details["covered_actions"] = action_coverage["covered_actions"]
         details["missing_actions"] = action_coverage["missing_actions"]
-        details["action_coverage_score"] = action_coverage["bonus"] + action_coverage["penalty"]
 
         steps_count = len(compiled_nodes)
         if steps_count > 1:
@@ -549,8 +527,7 @@ User requirement:
             if required_action_count > 0:
                 expected_step_ceiling = required_action_count + 1
                 extra_steps = max(steps_count - expected_step_ceiling, 0)
-                penalty = float(extra_steps * 6)
-                details["extra_node_count"] = int(extra_steps)
+                penalty = float(extra_steps * 3)
             else:
                 penalty = float((steps_count - 1) * 2)
             score -= penalty
@@ -659,48 +636,6 @@ User requirement:
 
         score += action_coverage["bonus"] + action_coverage["penalty"]
 
-        schema_failures = [
-            str(item)
-            for item in verification.get("schema_failures", [])
-            if isinstance(item, str) and item
-        ]
-        dependency_failures = [
-            str(item)
-            for item in verification.get("dependency_failures", [])
-            if isinstance(item, str) and item
-        ]
-        modality_failures = [
-            str(item)
-            for item in verification.get("modality_failures", [])
-            if isinstance(item, str) and item
-        ]
-        modality_warnings = [
-            str(item)
-            for item in verification.get("modality_warnings", [])
-            if isinstance(item, str) and item
-        ]
-        dag_failures = [
-            str(item)
-            for item in verification.get("dag_failures", [])
-            if isinstance(item, str) and item
-        ]
-
-        schema_score = 6.0 if verification.get("schema_ok", False) else -12.0 - max(len(schema_failures) - 1, 0) * 3.0
-        dependency_score = (
-            5.0 if verification.get("dependency_ok", False) else -10.0 - max(len(dependency_failures) - 1, 0) * 3.0
-        )
-        modality_score = 5.0 if verification.get("modality_ok", False) else -12.0 - max(len(modality_failures) - 1, 0) * 4.0
-        if modality_warnings:
-            modality_score -= float(len(modality_warnings)) * 1.5
-        dag_score = 6.0 if verification.get("dag_ok", False) else -16.0 - max(len(dag_failures) - 1, 0) * 4.0
-        executability_score = schema_score + dependency_score + modality_score + dag_score
-        details["schema_validity_score"] = schema_score
-        details["dependency_correctness_score"] = dependency_score
-        details["modality_consistency_score"] = modality_score
-        details["dag_validity_score"] = dag_score
-        details["executability_score"] = executability_score
-        score += executability_score
-
         graph_meta = self._graph_score_compiled(compiled_nodes)
         details["graph_transition_bonus"] = graph_meta["graph_transition_bonus"]
         details["graph_transition_penalty"] = graph_meta["graph_transition_penalty"]
@@ -711,51 +646,22 @@ User requirement:
         details["text_preference_penalty"] = text_pref_meta["penalty"]
         score += text_pref_meta["bonus"] + text_pref_meta["penalty"]
 
-        prior_meta = self._score_taskbench_prior_compiled(compiled_nodes, user_requirement)
-        details["taskbench_prior_bonus"] = prior_meta["bonus"]
-        details["taskbench_prior_penalty"] = prior_meta["penalty"]
-        details["taskbench_prior_transition_bonus"] = prior_meta["transition_bonus"]
-        details["taskbench_prior_transition_penalty"] = prior_meta["transition_penalty"]
-        details["taskbench_prior_motif_bonus"] = prior_meta["motif_bonus"]
-        details["taskbench_prior_start_bonus"] = prior_meta["start_bonus"]
-        details["taskbench_prior_end_bonus"] = prior_meta["end_bonus"]
-        # Keep the older memory_* fields populated for downstream consumers that
-        # still read them while the unified TaskBench prior becomes the only
-        # structure-aware scoring source.
-        details["memory_bonus"] = prior_meta["bonus"]
-        details["memory_penalty"] = prior_meta["penalty"]
-        details["memory_transition_bonus"] = prior_meta["transition_bonus"]
-        details["memory_transition_penalty"] = prior_meta["transition_penalty"]
-        details["memory_motif_bonus"] = prior_meta["motif_bonus"]
-        details["memory_start_bonus"] = prior_meta["start_bonus"]
-        details["memory_end_bonus"] = prior_meta["end_bonus"]
-        details["transition_prior_score"] = prior_meta["transition_bonus"] + prior_meta["transition_penalty"]
-        details["motif_match_score"] = prior_meta["motif_bonus"]
-        details["start_prior_score"] = prior_meta["start_bonus"]
-        details["end_prior_score"] = prior_meta["end_bonus"]
-        raw_memory_prior_score = (
-            details["transition_prior_score"]
-            + details["motif_match_score"]
-            + details["start_prior_score"]
-            + details["end_prior_score"]
+        memory_meta = score_workflow_with_retrieval_context(
+            compiled_nodes,
+            self._get_workflow_memory_context(user_requirement),
         )
-        details["memory_prior_raw_score"] = raw_memory_prior_score
-        details["memory_prior_score"] = raw_memory_prior_score * 0.5
-        score += details["memory_prior_score"]
-
-        extra_actions = [
-            str(item)
-            for item in verification.get("extra_actions", [])
-            if isinstance(item, str) and item
-        ]
-        if extra_actions:
-            extra_penalty = float(len(extra_actions)) * 7.0
-            details["extra_action_penalty"] = -extra_penalty
-            score -= extra_penalty
+        details["memory_bonus"] = memory_meta["bonus"]
+        details["memory_penalty"] = memory_meta["penalty"]
+        details["memory_transition_bonus"] = memory_meta["transition_bonus"]
+        details["memory_transition_penalty"] = memory_meta["transition_penalty"]
+        details["memory_motif_bonus"] = memory_meta["motif_bonus"]
+        details["memory_start_bonus"] = memory_meta["start_bonus"]
+        details["memory_end_bonus"] = memory_meta["end_bonus"]
+        score += memory_meta["bonus"] + memory_meta["penalty"]
 
         return {
             "score": round(score, 3),
-            "details": {**details, "final_score": round(score, 3)},
+            "details": details,
         }
 
     def _score_plan(self, workflow: Dict[str, Any], user_requirement: str = "") -> Dict[str, Any]:
@@ -778,29 +684,57 @@ User requirement:
         cache[rounded] = self._build_llm_client(cfg)
         return cache[rounded]
 
+    def _candidate_temperature_for_spec(self, spec: Dict[str, Any], round_idx: int) -> float:
+        fixed_temperature = getattr(self, "_fixed_candidate_temperature", None)
+        if fixed_temperature is not None:
+            return float(fixed_temperature)
+        base_temperature = float(spec.get("temperature", 0.0))
+        return min(base_temperature + round_idx * 0.1, 0.6)
+
+    def _candidate_verifier_enabled(self) -> bool:
+        return bool(getattr(self, "_enable_candidate_verifier", True))
+
+    def _candidate_repair_enabled(self) -> bool:
+        return self._candidate_verifier_enabled() and bool(
+            getattr(self, "_enable_candidate_repair", True)
+        )
+
+    @staticmethod
+    def _default_candidate_selection_meta() -> Dict[str, Any]:
+        return {
+            "hard_filter_tier": 1,
+            "coverage_complete": True,
+            "search_source_ok": True,
+            "retrieval_before_topic_ok": True,
+            "grammar_after_retrieval_ok": True,
+            "video_after_waveform_ok": True,
+            "bridge_tool_ok": True,
+            "unrequested_bridge_tool_count": 0,
+            "required_actions": [],
+            "missing_actions": [],
+            "failures": [],
+            "warnings": [],
+            "warning_count": 0,
+            "validation_error": None,
+            "verifier_pass": True,
+            "repairable": False,
+            "verifier_enabled": False,
+        }
+
     @staticmethod
     def _strategy_slug(text: str) -> str:
         slug = re.sub(r"[^a-z0-9]+", "_", str(text or "").strip().lower()).strip("_")
         return slug or "memory_graph"
 
     def _build_memory_graph_strategy_specs(self, user_requirement: str) -> List[Dict[str, Any]]:
-        get_context = getattr(self, "_get_workflow_memory_context", None)
         recommend_starts = getattr(self, "recommend_memory_start_skills", None)
         recommend_next = getattr(self, "recommend_memory_next_skills", None)
-        if not callable(get_context) or not callable(recommend_starts):
+        if not callable(recommend_starts) or not callable(recommend_next):
             return []
 
-        context = get_context(user_requirement)
-        if not isinstance(context, dict):
-            return []
-        start_recs = context.get("start_skills")
-        if not isinstance(start_recs, list) or not start_recs:
-            start_recs = recommend_starts(user_requirement, top_k=4)
+        start_recs = recommend_starts(user_requirement, top_k=4)
         if not isinstance(start_recs, list) or not start_recs:
             return []
-
-        transitions = context.get("transitions", [])
-        motifs = context.get("motifs", [])
 
         specs: List[Dict[str, Any]] = []
         start_labels = [
@@ -811,37 +745,31 @@ User requirement:
         if not start_labels:
             return []
 
-        transition_labels = [
-            (
-                f"{str(item.get('source', '')).strip()} -> "
-                f"{str(item.get('target', '')).strip()} "
-                f"({float(item.get('score', 0.0)):.2f})"
-            )
-            for item in transitions[:4]
-            if str(item.get("source", "")).strip() and str(item.get("target", "")).strip()
-        ]
-        motif_labels = []
-        for motif in motifs[:3]:
-            if not isinstance(motif, dict):
-                continue
-            tasks = " -> ".join(str(task).strip() for task in motif.get("tasks", []) if str(task).strip())
-            if not tasks:
-                continue
-            motif_labels.append(
-                f"{tasks} (support={int(motif.get('support', 0))})"
-            )
-
         summary_lines = [
-            "Use the query-conditioned workflow memory priors only as soft candidate-generation hints.",
+            "Use the query-conditioned workflow memory graph as a soft generation prior.",
             f"Preferred start tools: {', '.join(start_labels)}.",
+            "After selecting a tool, prefer semantically valid downstream neighbors suggested by this graph before unrelated tools.",
         ]
-        if transition_labels:
-            summary_lines.append(f"Likely transitions for this request: {'; '.join(transition_labels)}.")
-        if motif_labels:
-            summary_lines.append(f"Likely reusable motifs for this request: {'; '.join(motif_labels)}.")
-        summary_lines.append(
-            "Do not force these priors if they conflict with the user request, required actions, or skill schemas."
-        )
+
+        for start in start_recs[:3]:
+            start_skill = str(start.get("skill", "")).strip()
+            if not start_skill:
+                continue
+            next_recs = recommend_next(
+                user_requirement,
+                start_skill,
+                top_k=3,
+                visited_skills={start_skill},
+            )
+            next_labels = [
+                f"{str(item.get('skill', '')).strip()} ({float(item.get('score', 0.0)):.2f})"
+                for item in next_recs
+                if str(item.get("skill", "")).strip()
+            ]
+            if next_labels:
+                summary_lines.append(
+                    f"If you choose {start_skill}, likely next tools are {', '.join(next_labels)}."
+                )
 
         specs.append(
             {
@@ -851,81 +779,96 @@ User requirement:
             }
         )
 
-        transitions_by_source: Dict[str, List[Dict[str, Any]]] = {}
-        for item in transitions:
-            if not isinstance(item, dict):
-                continue
-            source = str(item.get("source", "")).strip()
-            if not source:
-                continue
-            transitions_by_source.setdefault(source, []).append(item)
-
         for idx, start in enumerate(start_recs[:3]):
             start_skill = str(start.get("skill", "")).strip()
             if not start_skill:
                 continue
-            local_next_recs = transitions_by_source.get(start_skill, [])
-            if not local_next_recs and callable(recommend_next):
-                local_next_recs = recommend_next(
-                    user_requirement,
-                    start_skill,
-                    top_k=3,
-                    visited_skills={start_skill},
-                )
+            visited = {start_skill}
+            next_recs = recommend_next(
+                user_requirement,
+                start_skill,
+                top_k=3,
+                visited_skills=visited,
+            )
             branch_lines = [
-                f"Try a valid workflow that starts from {start_skill} if it is compatible with the user request.",
-                "Follow user intents and required action coverage first. Memory is only a soft prior.",
+                f"Try a valid workflow that starts from {start_skill} if it is semantically compatible with the user request.",
             ]
-            next_labels = [
-                (
-                    f"{str(item.get('skill', item.get('target', ''))).strip()} "
-                    f"({float(item.get('score', 0.0)):.2f})"
-                )
-                for item in local_next_recs[:3]
-                if str(item.get("skill", item.get("target", ""))).strip()
-            ]
-            if next_labels:
-                branch_lines.append(
-                    f"Preferred downstream continuation after {start_skill}: {', '.join(next_labels)}."
-                )
+            if next_recs:
+                next_labels = [
+                    f"{str(item.get('skill', '')).strip()} ({float(item.get('score', 0.0)):.2f})"
+                    for item in next_recs
+                    if str(item.get("skill", "")).strip()
+                ]
+                if next_labels:
+                    branch_lines.append(
+                        f"Preferred downstream neighbors after {start_skill}: {', '.join(next_labels)}."
+                    )
+                first_next_skill = str(next_recs[0].get("skill", "")).strip()
+                if first_next_skill:
+                    visited.add(first_next_skill)
+                    follow_recs = recommend_next(
+                        user_requirement,
+                        first_next_skill,
+                        top_k=2,
+                        visited_skills=visited,
+                    )
+                    follow_labels = [
+                        f"{str(item.get('skill', '')).strip()} ({float(item.get('score', 0.0)):.2f})"
+                        for item in follow_recs
+                        if str(item.get("skill", "")).strip()
+                    ]
+                    if follow_labels:
+                        branch_lines.append(
+                            f"Likely continuation after {first_next_skill}: {', '.join(follow_labels)}."
+                        )
             branch_lines.append(
-                "Abandon this start if it introduces extra tools, misses required actions, or breaks schema compatibility."
+                "Use these graph priors as soft hints only. Follow the user request and skill schemas when they conflict."
             )
             specs.append(
                 {
                     "name": f"memory_graph_start_{self._strategy_slug(start_skill)}",
                     "hint": "\n".join(branch_lines),
-                    "temperature": 0.15 + idx * 0.05,
+                    "temperature": 0.12 + idx * 0.08,
                 }
             )
 
-        for idx, motif in enumerate(motifs[:3]):
-            if not isinstance(motif, dict):
-                continue
-            tasks = [str(task).strip() for task in motif.get("tasks", []) if str(task).strip()]
-            if len(tasks) < 2:
-                continue
-            motif_text = " -> ".join(tasks)
-            support = int(motif.get("support", 0))
-            action_tags = [str(tag).strip() for tag in motif.get("action_tags", []) if str(tag).strip()]
-            motif_lines = [
-                "Try to reuse this historical motif only if it fits the current request:",
-                motif_text,
-            ]
-            if support > 0:
-                motif_lines.append(f"Historical support: {support}.")
-            if action_tags:
-                motif_lines.append(f"Associated action tags: {', '.join(action_tags)}.")
-            motif_lines.append(
-                "Do not force this motif if it introduces unrequested actions, extra conversions, or schema mismatches."
-            )
-            specs.append(
-                {
-                    "name": f"memory_graph_motif_{self._strategy_slug(tasks[0])}_{idx + 1}",
-                    "hint": "\n".join(motif_lines),
-                    "temperature": min(0.25 + idx * 0.05, 0.35),
-                }
-            )
+            for edge_idx, next_item in enumerate(next_recs[:2]):
+                next_skill = str(next_item.get("skill", "")).strip()
+                if not next_skill:
+                    continue
+                edge_visited = {start_skill, next_skill}
+                edge_lines = [
+                    f"Explore a branch that begins with the graph prior {start_skill} -> {next_skill} if it fits the request.",
+                    f"Treat {start_skill} as one possible start, not the only valid start. If it conflicts with clause coverage or skill schemas, abandon this branch.",
+                ]
+                follow_recs = recommend_next(
+                    user_requirement,
+                    next_skill,
+                    top_k=2,
+                    visited_skills=edge_visited,
+                )
+                follow_labels = [
+                    f"{str(item.get('skill', '')).strip()} ({float(item.get('score', 0.0)):.2f})"
+                    for item in follow_recs
+                    if str(item.get("skill", "")).strip()
+                ]
+                if follow_labels:
+                    edge_lines.append(
+                        f"Likely continuation after {start_skill} -> {next_skill}: {', '.join(follow_labels)}."
+                    )
+                edge_lines.append(
+                    "Keep alternative starts available if this branch introduces unnecessary tools or misses required actions."
+                )
+                specs.append(
+                    {
+                        "name": (
+                            f"memory_graph_edge_{self._strategy_slug(start_skill)}"
+                            f"_{self._strategy_slug(next_skill)}"
+                        ),
+                        "hint": "\n".join(edge_lines),
+                        "temperature": min(0.18 + idx * 0.08 + edge_idx * 0.04, 0.45),
+                    }
+                )
 
         return specs
 
@@ -946,7 +889,6 @@ User requirement:
 
     def _build_candidate_strategy_specs(self, user_requirement: str) -> List[Dict[str, Any]]:
         detected_actions = self._match_requirement_actions(user_requirement)
-        requirement_text = " ".join(str(user_requirement or "").lower().split())
         specs = [
             {
                 "name": "minimal",
@@ -965,96 +907,75 @@ User requirement:
             },
         ]
 
-        if "transcribe" in detected_actions and any(
-            action in detected_actions for action in {"expand", "grammar", "summarize", "sentiment", "keywords", "topic"}
-        ):
-            specs.insert(
-                0,
-                {
-                    "name": "source_media_clause_coverage",
-                    "hint": (
-                        "If the request derives rewritten text or regenerated narration from existing audio or video content, "
-                        "keep the transcription step explicit before downstream text rewriting, grammar correction, search, "
-                        "analysis, or speech regeneration. Do not introduce extra video-conversion steps unless the request "
-                        "explicitly provides video input or asks for a video output."
-                    ),
-                    "temperature": 0.1,
-                },
-            )
-        if (
-            "simplify" in detected_actions
-            and any(action in detected_actions for action in {"audio_effect", "combine"})
-            and re.search(r"\b(instructions?|settings?|parameters?|software tools?)\b", requirement_text)
-        ):
-            specs.insert(
-                0,
-                {
-                    "name": "instruction_branch_preserving",
-                    "hint": (
-                        "If the request separately provides media files and asks to make textual instructions easier for tools "
-                        "to understand, keep that instruction-simplification branch explicit and feed it into the effect or "
-                        "combine step instead of dropping it."
-                    ),
-                    "temperature": 0.12,
-                },
-            )
+        # if any(action in detected_actions for action in {"summarize", "sentiment", "keywords"}):
+        #     specs.insert(
+        #         0,
+        #         {
+        #             "name": "analysis_coverage",
+        #             "hint": "Preserve analysis coverage. If the request asks for summaries, sentiment, or keywords, keep each required analysis step explicit instead of collapsing them.",
+        #             "temperature": 0.1,
+        #         },
+        #     )
+        # if self._has_explicit_source_text(user_requirement) and "retrieval" in detected_actions:
+        #     source_text_name = (
+        #         "source_text_summary_search"
+        #         if "summarize" in detected_actions
+        #         else "source_text_simplify_search"
+        #     )
+        #     source_text_hint = (
+        #         "When the request includes source text and later asks to search after summarizing, "
+        #         "prefer searching from the summary rather than from later analysis outputs unless the request explicitly says otherwise."
+        #         if "summarize" in detected_actions
+        #         else
+        #         "When the request includes source text and later asks to search, prefer searching from the simplified source text rather than from later analysis outputs unless the request explicitly says otherwise."
+        #     )
+        #     specs.insert(
+        #         0,
+        #         {
+        #             "name": source_text_name,
+        #             "hint": source_text_hint,
+        #             "temperature": 0.1,
+        #         },
+        #     )
+        # if "retrieval" in detected_actions:
+        #     specs.insert(
+        #         0,
+        #         {
+        #             "name": "retrieval_guardrail",
+        #             "hint": "Do not omit retrieval. If the request asks to find or search for information, include an explicit search step before later topic or image generation steps.",
+        #             "temperature": 0.0,
+        #         },
+        #     )
+        # if "grammar" in detected_actions and "topic" in detected_actions:
+        #     specs.insert(
+        #         1,
+        #         {
+        #             "name": "grammar_topic_clause_coverage",
+        #             "hint": "Preserve clause coverage. If the request asks to search, then grammar-check, then generate topics, keep those as separate sequential steps unless one tool explicitly combines them.",
+        #             "temperature": 0.15,
+        #         },
+        #     )
+        # if "combine" in detected_actions or "video" in detected_actions:
+        #     specs.append(
+        #         {
+        #             "name": "multimodal_branch_preserving",
+        #             "hint": "Prefer a multimodal plan that preserves each media branch until the explicit combine or video step, instead of collapsing branches prematurely.",
+        #             "temperature": 0.4,
+        #         }
+        #     )
 
-        if any(action in detected_actions for action in {"summarize", "sentiment", "keywords"}):
-            specs.insert(
-                0,
+        memory_graph_specs = self._build_memory_graph_strategy_specs(user_requirement)
+        if memory_graph_specs:
+            specs = memory_graph_specs + specs
+
+        if getattr(self, "_include_original_candidate", False):
+            specs = [
                 {
-                    "name": "analysis_coverage",
-                    "hint": "Preserve analysis coverage. If the request asks for summaries, sentiment, or keywords, keep each required analysis step explicit instead of collapsing them.",
-                    "temperature": 0.1,
-                },
-            )
-        if self._has_explicit_source_text(user_requirement) and "retrieval" in detected_actions:
-            source_text_name = (
-                "source_text_summary_search"
-                if "summarize" in detected_actions
-                else "source_text_simplify_search"
-            )
-            source_text_hint = (
-                "When the request includes source text and later asks to search after summarizing, "
-                "prefer searching from the summary rather than from later analysis outputs unless the request explicitly says otherwise."
-                if "summarize" in detected_actions
-                else
-                "When the request includes source text and later asks to search, prefer searching from the simplified source text rather than from later analysis outputs unless the request explicitly says otherwise."
-            )
-            specs.insert(
-                0,
-                {
-                    "name": source_text_name,
-                    "hint": source_text_hint,
-                    "temperature": 0.1,
-                },
-            )
-        if "retrieval" in detected_actions:
-            specs.insert(
-                0,
-                {
-                    "name": "retrieval_guardrail",
-                    "hint": "Do not omit retrieval. If the request asks to find or search for information, include an explicit search step before later topic or image generation steps.",
-                    "temperature": 0.0,
-                },
-            )
-        if "grammar" in detected_actions and "topic" in detected_actions:
-            specs.insert(
-                1,
-                {
-                    "name": "grammar_topic_clause_coverage",
-                    "hint": "Preserve clause coverage. If the request asks to search, then grammar-check, then generate topics, keep those as separate sequential steps unless one tool explicitly combines them.",
-                    "temperature": 0.15,
-                },
-            )
-        if "combine" in detected_actions or "video" in detected_actions:
-            specs.append(
-                {
-                    "name": "multimodal_branch_preserving",
-                    "hint": "Prefer a multimodal plan that preserves each media branch until the explicit combine or video step, instead of collapsing branches prematurely.",
-                    "temperature": 0.4,
+                    "name": "original",
+                    "hint": "",
+                    "temperature": float(getattr(self.llm_config, "temperature", 0.0)),
                 }
-            )
+            ] + specs
 
         return specs
 
@@ -1191,9 +1112,6 @@ User requirement:
             or issue.startswith("validation_error:")
             or issue.startswith("search_")
             or issue.startswith("unrequested_bridge_tool:")
-            or issue.startswith("extra_action:")
-            or issue.startswith("modality_edge:")
-            or issue.startswith("unknown_skill:")
             or issue in {
                 "topic_generated_before_retrieval",
                 "grammar_applied_before_retrieval",
@@ -1224,47 +1142,15 @@ User requirement:
         failures: List[str] = []
         warnings: List[str] = []
         validation_error: Optional[str] = None
-        structure_meta = self._analyze_compiled_workflow(compiled_nodes)
 
         try:
-            self._validate_workflow_payload(workflow, compiled_nodes)
+            self._validate_prepared_workflow(workflow, compiled_nodes)
         except Exception as exc:
             validation_error = f"{type(exc).__name__}: {exc}"
             failures.append(f"validation_error:{validation_error}")
 
-        failures.extend(
-            str(item)
-            for item in structure_meta.get("failures", [])
-            if isinstance(item, str) and item
-        )
-        warnings.extend(
-            str(item)
-            for item in structure_meta.get("warnings", [])
-            if isinstance(item, str) and item
-        )
-
         if missing_actions:
             failures.extend(f"missing_action:{action}" for action in missing_actions)
-
-        executed_actions = sorted(self._workflow_action_tags(skill_names))
-        extra_actions = [
-            action
-            for action in executed_actions
-            if action not in required_actions
-            and action in {
-                "retrieval",
-                "transcribe",
-                "simplify",
-                "translate",
-                "voice_change",
-                "denoise",
-                "combine",
-                "audio_effect",
-                "video",
-            }
-        ]
-        if extra_actions:
-            warnings.extend(f"extra_action:{action}" for action in extra_actions)
 
         warnings.extend(self._search_source_structural_issues(compiled_nodes, user_requirement))
         warnings.extend(
@@ -1314,21 +1200,6 @@ User requirement:
             for issue in warnings
             if isinstance(issue, str) and issue.startswith("unrequested_bridge_tool:")
         ]
-        dag_failures = [
-            issue
-            for issue in failures
-            if isinstance(issue, str)
-            and (
-                issue == "empty_workflow"
-                or issue == "graph_cycle"
-                or issue.startswith("validation_error:")
-                or issue.startswith("invalid_")
-                or issue.startswith("out_of_range_reference:")
-                or issue.startswith("non_earlier_reference:")
-                or issue.startswith("isolated_nodes:")
-                or issue.startswith("disconnected_components:")
-            )
-        ]
 
         hard_filter_tier = 2
         if failures:
@@ -1338,21 +1209,16 @@ User requirement:
 
         repairable = False
         if failures or warnings:
-            repair_warnings = [item for item in warnings if not str(item).startswith("unknown_skill:")]
             repairable = (
                 len(missing_actions) <= 1
                 and len(failures) <= 2
-                and len(repair_warnings) <= 3
+                and len(warnings) <= 3
                 and all(self._verifier_issue_is_repairable(item) for item in failures + warnings)
             )
 
         return {
             "hard_filter_tier": hard_filter_tier,
             "coverage_complete": not missing_actions,
-            "schema_ok": bool(structure_meta.get("schema_ok", False)),
-            "dependency_ok": bool(structure_meta.get("dependency_ok", False)),
-            "modality_ok": bool(structure_meta.get("modality_ok", False)),
-            "dag_ok": bool(structure_meta.get("dag_ok", False)),
             "search_source_ok": not any(issue.startswith("search_") for issue in warnings),
             "retrieval_before_topic_ok": retrieval_before_topic_ok,
             "grammar_after_retrieval_ok": grammar_after_retrieval_ok,
@@ -1360,22 +1226,11 @@ User requirement:
             "bridge_tool_ok": not bridge_tool_warnings,
             "unrequested_bridge_tool_count": len(bridge_tool_warnings),
             "required_actions": required_actions,
-            "covered_actions": action_coverage.get("covered_actions", []),
             "missing_actions": missing_actions,
-            "executed_actions": executed_actions,
-            "extra_actions": extra_actions,
-            "schema_failures": list(structure_meta.get("schema_failures", [])),
-            "schema_warnings": list(structure_meta.get("schema_warnings", [])),
-            "dependency_failures": list(structure_meta.get("dependency_failures", [])),
-            "modality_failures": list(structure_meta.get("modality_failures", [])),
-            "modality_warnings": list(structure_meta.get("modality_warnings", [])),
-            "dag_failures": dag_failures,
             "failures": failures,
             "warnings": warnings,
             "warning_count": len(warnings),
             "validation_error": validation_error,
-            "validation_ok": validation_error is None,
-            "graph": structure_meta.get("graph", {}),
             "verifier_pass": not failures,
             "repairable": repairable,
         }
@@ -1386,13 +1241,9 @@ User requirement:
         compiled_nodes: List[Dict[str, Any]],
         user_requirement: str,
         score_details: Optional[Dict[str, Any]] = None,
-        verification_meta: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         del score_details
-        source_meta = verification_meta if isinstance(verification_meta, dict) else None
-        if source_meta is None:
-            source_meta = self._verify_candidate_workflow(workflow, compiled_nodes, user_requirement)
-        meta = dict(source_meta)
+        meta = dict(self._verify_candidate_workflow(workflow, compiled_nodes, user_requirement))
         failures = [
             item
             for item in meta.get("failures", [])
@@ -1401,7 +1252,6 @@ User requirement:
         warnings = [str(item) for item in meta.get("warnings", []) if isinstance(item, str)]
         meta["failures"] = failures
         meta["warning_count"] = len(warnings)
-        meta["validation_ok"] = not bool(meta.get("validation_error"))
         meta["verifier_pass"] = not failures
         if failures:
             meta["hard_filter_tier"] = 0
@@ -1415,15 +1265,10 @@ User requirement:
                 for item in meta.get("missing_actions", [])
                 if isinstance(item, str) and item
             ]
-            repair_warnings = [
-                str(item)
-                for item in warnings
-                if isinstance(item, str) and not str(item).startswith("unknown_skill:")
-            ]
             meta["repairable"] = (
                 len(missing_actions) <= 1
                 and len(failures) <= 2
-                and len(repair_warnings) <= 3
+                and len(warnings) <= 3
                 and all(self._verifier_issue_is_repairable(item) for item in failures + warnings)
             )
         else:
@@ -1510,24 +1355,17 @@ User requirement:
             compiled_nodes,
             user_requirement,
         )
-        selection_meta = self._candidate_selection_meta(
-            workflow,
-            compiled_nodes,
-            user_requirement,
-            verification_meta=verification_meta,
-        )
         score_meta = self._score_compiled_workflow(
             workflow,
             compiled_nodes,
             user_requirement=user_requirement,
-            verification_meta=verification_meta,
         )
         return {
             "workflow": workflow,
             "score": score_meta["score"],
             "score_details": score_meta["details"],
             "verification_meta": verification_meta,
-            "selection_meta": selection_meta,
+            "selection_meta": verification_meta,
             "strategy_name": strategy_name,
             "strategy_hint": strategy_hint,
             "sampling_temperature": sampling_temperature,
@@ -1544,11 +1382,15 @@ User requirement:
         llm_client: Any = None,
     ) -> Dict[str, Any]:
         normalized_workflow, compiled_nodes = self._prepare_workflow(workflow)
-        verification_meta = self._verify_candidate_workflow(
-            normalized_workflow,
-            compiled_nodes,
-            user_requirement,
-        )
+        if self._candidate_verifier_enabled():
+            verification_meta = self._verify_candidate_workflow(
+                normalized_workflow,
+                compiled_nodes,
+                user_requirement,
+            )
+            verification_meta["verifier_enabled"] = True
+        else:
+            verification_meta = self._default_candidate_selection_meta()
         candidate = self._build_candidate_record(
             normalized_workflow,
             compiled_nodes,
@@ -1558,11 +1400,7 @@ User requirement:
             sampling_temperature=sampling_temperature,
             verification_meta=verification_meta,
         )
-        selection_meta = candidate.get("selection_meta", {})
-        repairable = bool(verification_meta.get("repairable"))
-        if isinstance(selection_meta, dict):
-            repairable = repairable or bool(selection_meta.get("repairable"))
-        if not repairable:
+        if not self._candidate_repair_enabled() or not verification_meta.get("repairable"):
             return candidate
 
         repair_meta: Dict[str, Any] = {"attempted": True, "applied": False, "source": "llm_verifier"}
@@ -1600,7 +1438,11 @@ User requirement:
         repair_meta["reason"] = "repair_not_better"
         return candidate
 
-    async def plan_candidates(self, user_requirement: str, candidate_count: int = 3) -> List[Dict[str, Any]]:
+    async def generate_candidate_pool(
+        self,
+        user_requirement: str,
+        candidate_count: int = 3,
+    ) -> List[Dict[str, Any]]:
         if candidate_count < 1:
             raise ValueError("candidate_count must be >= 1")
 
@@ -1610,14 +1452,13 @@ User requirement:
         candidates: List[Dict[str, Any]] = []
         generation_errors: List[str] = []
         seen_signatures: set[str] = set()
-        max_attempts = max(candidate_count * 4, len(strategy_specs))
+        max_attempts = max(pool_target * 4, len(strategy_specs))
         for i in range(max_attempts):
             spec = strategy_specs[i % len(strategy_specs)]
             round_idx = i // len(strategy_specs)
             strategy_name = str(spec.get("name", "")).strip()
             hint = str(spec.get("hint", "")).strip()
-            base_temperature = float(spec.get("temperature", 0.0))
-            temperature = min(base_temperature + round_idx * 0.1, 0.6)
+            temperature = self._candidate_temperature_for_spec(spec, round_idx)
             llm_client = self._get_candidate_llm(temperature)
 
             if seen_signatures:
@@ -1658,6 +1499,7 @@ User requirement:
                 continue
             seen_signatures.add(signature)
             candidate["id"] = len(candidates) + 1
+            candidate["generation_index"] = len(candidates)
             candidates.append(candidate)
             if len(candidates) >= pool_target:
                 break
@@ -1666,21 +1508,23 @@ User requirement:
             if generation_errors:
                 raise ValueError("no valid candidate plans generated; errors=" + " | ".join(generation_errors))
             raise ValueError("no valid candidate plans generated")
-        ranking_pool = [
-            item
-            for item in candidates
-            if int((item.get("selection_meta") or {}).get("hard_filter_tier", 0)) > 0
-        ]
-        if not ranking_pool:
-            ranking_pool = candidates
-        ranked = sorted(ranking_pool, key=type(self)._candidate_sort_key, reverse=True)
+        return candidates
+
+    async def plan_candidates(self, user_requirement: str, candidate_count: int = 3) -> List[Dict[str, Any]]:
+        candidates = await self.generate_candidate_pool(
+            user_requirement,
+            candidate_count=candidate_count,
+        )
+        ranked = sorted(candidates, key=type(self)._candidate_sort_key, reverse=True)
         selected = ranked[: max(candidate_count, 0)]
         for idx, item in enumerate(selected, start=1):
             item["id"] = idx
         return selected
 
     @staticmethod
-    def _rerank_candidate_key(item: Dict[str, Any]) -> Tuple[Any, ...]:
+    def _rerank_candidate_key(
+        item: Dict[str, Any]
+    ) -> Tuple[int, int, int, int, int, int, int, float, float, float, float, float, float, float, float, int, int, int]:
         details = item.get("score_details")
         if not isinstance(details, dict):
             details = {}
@@ -1690,53 +1534,21 @@ User requirement:
         missing_actions = details.get("missing_actions", [])
         missing_count = len(missing_actions) if isinstance(missing_actions, list) else 0
         warning_count = int(selection_meta.get("warning_count", 0))
-        extra_actions = selection_meta.get("extra_actions", [])
-        extra_action_count = len(extra_actions) if isinstance(extra_actions, list) else 0
-        action_coverage_score = float(
-            details.get(
-                "action_coverage_score",
-                float(details.get("action_coverage_bonus", 0.0)) + float(details.get("action_coverage_penalty", 0.0)),
-            )
-        )
-        executability_score = float(
-            details.get(
-                "executability_score",
-                float(details.get("schema_validity_score", 0.0))
-                + float(details.get("dependency_correctness_score", 0.0))
-                + float(details.get("modality_consistency_score", 0.0))
-                + float(details.get("dag_validity_score", 0.0)),
-            )
-        )
-        memory_prior_score = float(
-            details.get(
-                "memory_prior_score",
-                float(details.get("taskbench_prior_bonus", 0.0)) + float(details.get("taskbench_prior_penalty", 0.0)),
-            )
-        )
         return (
             int(selection_meta.get("hard_filter_tier", 1 if missing_count == 0 else 0)),
             int(selection_meta.get("coverage_complete", missing_count == 0)),
-            int(selection_meta.get("validation_ok", True)),
-            int(selection_meta.get("dag_ok", True)),
-            int(selection_meta.get("schema_ok", True)),
-            int(selection_meta.get("dependency_ok", True)),
-            int(selection_meta.get("modality_ok", True)),
             int(selection_meta.get("bridge_tool_ok", True)),
             -int(selection_meta.get("unrequested_bridge_tool_count", 0)),
             int(selection_meta.get("search_source_ok", True)),
             int(selection_meta.get("retrieval_before_topic_ok", True)),
-            int(selection_meta.get("grammar_after_retrieval_ok", True)),
             int(selection_meta.get("video_after_waveform_ok", True)),
-            -extra_action_count,
             float(item.get("score", float("-inf"))),
-            action_coverage_score,
-            executability_score,
-            memory_prior_score,
+            float(details.get("action_coverage_bonus", 0.0)) + float(details.get("action_coverage_penalty", 0.0)),
             float(details.get("text_preference_bonus", 0.0)) + float(details.get("text_preference_penalty", 0.0)),
+            float(details.get("graph_transition_bonus", 0.0)) + float(details.get("graph_transition_penalty", 0.0)),
             float(details.get("name_modality_bonus", 0.0)) + float(details.get("name_modality_penalty", 0.0)),
             float(details.get("transition_bonus", 0.0)) + float(details.get("transition_penalty", 0.0)),
             float(details.get("redundancy_penalty", 0.0)),
-            float(details.get("extra_action_penalty", 0.0)),
             float(details.get("length_penalty", 0.0)),
             -warning_count,
             -missing_count,
@@ -1744,7 +1556,9 @@ User requirement:
         )
 
     @staticmethod
-    def _candidate_sort_key(item: Dict[str, Any]) -> Tuple[Any, ...]:
+    def _candidate_sort_key(
+        item: Dict[str, Any]
+    ) -> Tuple[int, int, int, int, int, int, int, float, float, float, float, float, float, float, float, int, int, int]:
         return PlanningMixin._rerank_candidate_key(item)
 
     def _select_best_candidate(self, candidates: List[Dict[str, Any]]) -> Dict[str, Any]:

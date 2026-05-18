@@ -12,6 +12,8 @@ class SkillMetadata:
     depends_on_all: List[str]
     depends_on_any: List[str]
     action_tags: List[str] = field(default_factory=list)
+    input_types: Dict[str, List[str]] = field(default_factory=dict)
+    output_types: List[str] = field(default_factory=list)
 
 
 @dataclass

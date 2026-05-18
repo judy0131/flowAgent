@@ -6,14 +6,7 @@ from collections import Counter, defaultdict
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 from .actions import _infer_skill_action_tags
-from .workflow_memory import (
-    WorkflowMemoryIndex,
-    WorkflowMemoryMotif,
-    WorkflowStartPrior,
-    WorkflowTransitionPrior,
-    _edge_is_schema_compatible,
-    _infer_task_modalities,
-)
+from .workflow_memory import WorkflowMemoryIndex, WorkflowMemoryMotif
 
 
 STOPWORDS: Set[str] = {
@@ -173,63 +166,18 @@ def _extract_candidate_paths(
 class WorkflowMemoryRetriever:
     def __init__(self, memory_index: WorkflowMemoryIndex):
         self.memory_index = memory_index
-        self._raw_motifs: List[WorkflowMemoryMotif] = list(memory_index.motifs)
-        self._raw_start_priors: List[WorkflowStartPrior] = self._synthesize_start_priors(memory_index.start_counts)
-        self._raw_transition_priors: List[WorkflowTransitionPrior] = self._synthesize_transition_priors(
-            memory_index.transition_counts
-        )
-        self._trusted_motifs: List[WorkflowMemoryMotif] = list(memory_index.motif_prior or [])
-        self._trusted_start_priors: List[WorkflowStartPrior] = list(memory_index.start_prior or [])
-        self._trusted_transition_priors: List[WorkflowTransitionPrior] = list(memory_index.transition_prior or [])
-        self._retrieval_motifs: List[WorkflowMemoryMotif] = self._trusted_motifs or self._raw_motifs
-        self._retrieval_start_priors: List[WorkflowStartPrior] = self._trusted_start_priors or self._raw_start_priors
-        self._retrieval_transition_priors: List[WorkflowTransitionPrior] = (
-            self._trusted_transition_priors or self._raw_transition_priors
-        )
-        self._all_motifs: List[WorkflowMemoryMotif] = list(
-            {
-                motif.motif_id: motif
-                for motif in list(self._raw_motifs) + list(self._retrieval_motifs)
-            }.values()
-        )
-        self._all_transition_priors: List[WorkflowTransitionPrior] = list(
-            {
-                (prior.source, prior.target): prior
-                for prior in list(self._raw_transition_priors) + list(self._retrieval_transition_priors)
-            }.values()
-        )
-        self._candidate_transition_priors: List[WorkflowTransitionPrior] = list(
-            {
-                (prior.source, prior.target): prior
-                for prior in list(self._retrieval_transition_priors) + list(self._raw_transition_priors)
-            }.values()
-        )
-
-        self._motif_action_tags: Dict[str, Set[str]] = {
-            motif.motif_id: (
-                set(motif.action_tags)
-                | {
-                    tag
-                    for task in motif.tasks
-                    for tag in _infer_skill_action_tags(task)
-                }
-            )
-            for motif in self._all_motifs
-        }
         self._motif_tokens: Dict[str, Set[str]] = {
-            motif.motif_id: (_task_tokens(motif.tasks) | self._motif_action_tags.get(motif.motif_id, set()))
-            for motif in self._all_motifs
+            motif.motif_id: (_task_tokens(motif.tasks) | set(motif.action_tags))
+            for motif in memory_index.motifs
         }
-        all_tools: Set[str] = set(memory_index.end_counts.keys())
-        all_tools.update(item.skill for item in self._raw_start_priors)
-        all_tools.update(item.skill for item in self._retrieval_start_priors)
-        for prior in self._all_transition_priors:
-            all_tools.update((prior.source, prior.target))
-        for motif in self._all_motifs:
+        all_tools: Set[str] = set(memory_index.start_counts.keys()) | set(memory_index.end_counts.keys())
+        for edge in memory_index.transition_counts.keys():
+            all_tools.update(edge)
+        for motif in memory_index.motifs:
             all_tools.update(motif.tasks)
         self._transition_tokens: Dict[Tuple[str, str], Set[str]] = {
-            (prior.source, prior.target): (_task_tokens((prior.source, prior.target)) | _tokenize(f"{prior.source} {prior.target}"))
-            for prior in self._all_transition_priors
+            edge: (_task_tokens(edge) | _tokenize(" ".join(edge)))
+            for edge in memory_index.transition_counts.keys()
         }
         self._tool_tokens: Dict[str, Set[str]] = {
             tool: _tokenize(tool.replace("-", " "))
@@ -237,7 +185,7 @@ class WorkflowMemoryRetriever:
         }
         self._start_tool_tokens: Dict[str, Set[str]] = {
             tool: _tokenize(tool.replace("-", " "))
-            for tool in {item.skill for item in self._retrieval_start_priors}
+            for tool in memory_index.start_counts.keys()
         }
         self._end_tool_tokens: Dict[str, Set[str]] = {
             tool: _tokenize(tool.replace("-", " "))
@@ -245,92 +193,13 @@ class WorkflowMemoryRetriever:
         }
         self._motifs_by_start: Dict[str, List[WorkflowMemoryMotif]] = defaultdict(list)
         self._motif_support_by_edge: Dict[Tuple[str, str], float] = defaultdict(float)
-        self._edge_motif_action_tags: Dict[Tuple[str, str], Set[str]] = defaultdict(set)
-        for motif in self._all_motifs:
+        for motif in memory_index.motifs:
             if motif.tasks:
                 self._motifs_by_start[motif.tasks[0]].append(motif)
             for edge in motif.links:
                 self._motif_support_by_edge[edge] += float(max(motif.support, 0))
-                self._edge_motif_action_tags[edge].update(self._motif_action_tags.get(motif.motif_id, set()))
         for motifs in self._motifs_by_start.values():
             motifs.sort(key=lambda item: (-item.support, -len(item.tasks), item.motif_id))
-        self._start_prior_by_skill: Dict[str, WorkflowStartPrior] = {
-            item.skill: item for item in self._retrieval_start_priors
-        }
-        self._transition_prior_by_edge: Dict[Tuple[str, str], WorkflowTransitionPrior] = {
-            (item.source, item.target): item for item in self._retrieval_transition_priors
-        }
-        self._transition_priors_by_source: Dict[str, List[WorkflowTransitionPrior]] = defaultdict(list)
-        for item in self._retrieval_transition_priors:
-            self._transition_priors_by_source[item.source].append(item)
-        for priors in self._transition_priors_by_source.values():
-            priors.sort(key=lambda item: (-item.probability, -item.support, item.target))
-        self._candidate_transition_priors.sort(
-            key=lambda item: (-item.probability, -item.support, item.source, item.target)
-        )
-        self._tool_action_tags: Dict[str, Set[str]] = {
-            tool: set(_infer_skill_action_tags(tool))
-            for tool in all_tools
-        }
-        self._tool_modalities: Dict[str, Dict[str, Tuple[str, ...]]] = {
-            tool: _infer_task_modalities(tool)
-            for tool in all_tools
-        }
-        self._tool_modality_sets: Dict[str, Set[str]] = {
-            tool: set(modalities.get("inputs", tuple())) | set(modalities.get("outputs", tuple()))
-            for tool, modalities in self._tool_modalities.items()
-        }
-        self._motif_modalities: Dict[str, Set[str]] = {
-            motif.motif_id: {
-                modality
-                for task in motif.tasks
-                for modality in self._tool_modality_sets.get(task, set())
-            }
-            for motif in self._all_motifs
-        }
-
-    @staticmethod
-    def _synthesize_start_priors(start_counts: Dict[str, int]) -> List[WorkflowStartPrior]:
-        total_support = sum(max(int(count), 0) for count in start_counts.values())
-        if total_support <= 0:
-            return []
-        priors = [
-            WorkflowStartPrior(
-                skill=tool,
-                support=max(int(count), 0),
-                probability=float(max(int(count), 0)) / float(total_support),
-                action_tags=tuple(_infer_skill_action_tags(tool)),
-            )
-            for tool, count in start_counts.items()
-            if int(count) > 0
-        ]
-        priors.sort(key=lambda item: (-item.probability, -item.support, item.skill))
-        return priors
-
-    @staticmethod
-    def _synthesize_transition_priors(
-        transition_counts: Dict[Tuple[str, str], int]
-    ) -> List[WorkflowTransitionPrior]:
-        outgoing_totals: Dict[str, int] = defaultdict(int)
-        for (source, _target), count in transition_counts.items():
-            outgoing_totals[source] += max(int(count), 0)
-        priors: List[WorkflowTransitionPrior] = []
-        for (source, target), count in transition_counts.items():
-            support = max(int(count), 0)
-            outgoing_total = max(outgoing_totals.get(source, 0), 1)
-            priors.append(
-                WorkflowTransitionPrior(
-                    source=source,
-                    target=target,
-                    support=support,
-                    probability=float(support) / float(outgoing_total),
-                    action_tags=tuple(
-                        set(_infer_skill_action_tags(source)) | set(_infer_skill_action_tags(target))
-                    ),
-                )
-            )
-        priors.sort(key=lambda item: (-item.probability, -item.support, item.source, item.target))
-        return priors
 
     @staticmethod
     def _overlap_ratio(left: Set[str], right: Set[str]) -> float:
@@ -339,102 +208,18 @@ class WorkflowMemoryRetriever:
         overlap = len(left & right)
         return overlap / float(max(len(left), len(right), 1))
 
-    @staticmethod
-    def _historical_prior_score(probability: float, support: int, *, probability_weight: float, support_weight: float) -> float:
-        return float(max(probability, 0.0) * probability_weight + math.log1p(max(int(support), 0)) * support_weight)
-
-    @staticmethod
-    def _action_match_score(requested_actions: Set[str], candidate_actions: Set[str]) -> float:
-        if not requested_actions or not candidate_actions:
-            return 0.0
-        overlap = requested_actions & candidate_actions
-        if not overlap:
-            return 0.0
-        overlap_ratio = len(overlap) / float(max(len(requested_actions), 1))
-        return float(len(overlap) * 1.4 + overlap_ratio * 2.0)
-
-    @staticmethod
-    def _unrequested_action_penalty(requested_actions: Set[str], candidate_actions: Set[str]) -> float:
-        if not requested_actions or not candidate_actions:
-            return 0.0
-        extras = candidate_actions - requested_actions
-        if not extras:
-            return 0.0
-        penalty = len(extras) * 0.35
-        if not (requested_actions & candidate_actions):
-            penalty += min(len(candidate_actions), 3) * 0.45
-        return float(-penalty)
-
-    @staticmethod
-    def _normalize_query_text(query: str) -> str:
-        return " ".join(str(query or "").lower().split())
-
-    @staticmethod
-    def _has_pattern(text: str, pattern: str) -> bool:
-        return bool(re.search(pattern, text))
-
-    def _infer_query_modalities(self, query_text: str, detected_actions: Set[str]) -> Set[str]:
-        modalities: Set[str] = set()
-        if self._has_pattern(query_text, r"\b(audio|voice|voiceover|speech|narration|spoken|podcast|soundtrack)\b|\.(wav|mp3|m4a|flac|aac|ogg)\b"):
-            modalities.add("audio")
-        if self._has_pattern(query_text, r"\b(video|clip|movie|footage|visuals?)\b|\.(mp4|mov|avi|mkv|webm)\b"):
-            modalities.add("video")
-        if self._has_pattern(query_text, r"\b(image|photo|picture|screenshot|illustration|waveform|thumbnail|poster)\b|\.(png|jpg|jpeg|gif|bmp|webp)\b"):
-            modalities.add("image")
-        if self._has_pattern(query_text, r"\b(text|article|blog|script|transcript|caption|subtitle|paragraph|document|plain english|url|web page)\b|(?:https?://|www\.)"):
-            modalities.add("text")
-        if detected_actions & {"transcribe", "simplify", "expand", "grammar", "summarize", "translate", "topic", "keywords", "retrieval", "sentiment"}:
-            modalities.add("text")
-        if detected_actions & {"audio_effect", "voice_change"}:
-            modalities.add("audio")
-        if detected_actions & {"waveform"}:
-            modalities.add("image")
-        if detected_actions & {"video"}:
-            modalities.add("video")
-        return modalities
-
-    def _modality_match_score(self, query_modalities: Set[str], candidate_modalities: Set[str]) -> float:
-        if not query_modalities or not candidate_modalities:
-            return 0.0
-        overlap = query_modalities & candidate_modalities
-        if overlap:
-            return float(1.0 + (len(overlap) / float(max(len(query_modalities), 1))) * 1.5)
-        return -0.75
-
-    def _schema_connectability_score(self, source_tool: str, target_tool: Optional[str] = None) -> float:
-        if not target_tool:
-            return 0.0
-        return 1.0 if _edge_is_schema_compatible(source_tool, target_tool) else -2.5
-
     def _score_motif(
         self,
         motif: WorkflowMemoryMotif,
         *,
         query_tokens: Set[str],
         detected_actions: Set[str],
-        query_modalities: Optional[Set[str]] = None,
     ) -> float:
         motif_tokens = self._motif_tokens.get(motif.motif_id, set())
-        motif_actions = self._motif_action_tags.get(motif.motif_id, set())
-        action_overlap_score = self._action_match_score(detected_actions, motif_actions)
+        action_overlap = len(detected_actions & set(motif.action_tags))
         token_overlap = self._overlap_ratio(query_tokens, motif_tokens)
-        motif_modality_score = self._modality_match_score(
-            query_modalities or set(),
-            self._motif_modalities.get(motif.motif_id, set()),
-        )
-        support_total = sum(max(item.support, 0) for item in self._retrieval_motifs) or 1
-        historical_score = self._historical_prior_score(
-            float(max(motif.support, 0)) / float(support_total),
-            motif.support,
-            probability_weight=5.0,
-            support_weight=0.35,
-        )
-        schema_score = 0.0
-        if motif.links:
-            schema_score = sum(self._schema_connectability_score(source, target) for source, target in motif.links)
-            schema_score /= float(len(motif.links))
-        penalty = self._unrequested_action_penalty(detected_actions, motif_actions)
-        return float(historical_score + action_overlap_score + token_overlap * 3.5 + motif_modality_score + schema_score + penalty)
+        support_bonus = min(float(motif.support), 10.0) * 0.2
+        return float(action_overlap * 2.0 + token_overlap * 4.0 + support_bonus)
 
     def _score_transition(
         self,
@@ -442,42 +227,17 @@ class WorkflowMemoryRetriever:
         *,
         query_tokens: Set[str],
         detected_actions: Set[str],
-        query_modalities: Optional[Set[str]] = None,
-        support: int = 0,
-        probability: float = 0.0,
-        action_tags: Optional[Iterable[str]] = None,
     ) -> float:
         edge_tokens = self._transition_tokens.get(edge, set())
-        motif_actions = self._edge_motif_action_tags.get(edge, set())
-        transition_actions = (set(action_tags or ()) | motif_actions) or {
+        transition_actions = {
             tag
             for task in edge
             for tag in _infer_skill_action_tags(task)
         }
-        action_overlap_score = self._action_match_score(detected_actions, transition_actions)
+        action_overlap = len(detected_actions & transition_actions)
         token_overlap = self._overlap_ratio(query_tokens, edge_tokens)
-        target_modalities = self._tool_modality_sets.get(edge[1], set())
-        modality_score = self._modality_match_score(query_modalities or set(), target_modalities)
-        historical_score = self._historical_prior_score(
-            probability,
-            support or int(self.memory_index.transition_counts.get(edge, 0)),
-            probability_weight=6.0,
-            support_weight=0.3,
-        )
-        schema_score = self._schema_connectability_score(edge[0], edge[1])
-        penalty = self._unrequested_action_penalty(detected_actions, transition_actions)
-        weak_prior_penalty = 0.0
-        if not set(action_tags or ()) and not motif_actions:
-            weak_prior_penalty = -2.5
-        return float(
-            historical_score
-            + action_overlap_score
-            + token_overlap * 2.8
-            + modality_score
-            + schema_score
-            + penalty
-            + weak_prior_penalty
-        )
+        count_bonus = min(float(self.memory_index.transition_counts.get(edge, 0)), 10.0) * 0.15
+        return float(action_overlap * 1.5 + token_overlap * 3.0 + count_bonus)
 
     def _score_boundary_tool(
         self,
@@ -502,12 +262,12 @@ class WorkflowMemoryRetriever:
 
     @staticmethod
     def _query_requests_text_rewrite(query_text: str, detected_actions: Set[str]) -> bool:
-        if detected_actions & {"simplify", "expand", "summarize", "grammar", "translate"}:
+        if detected_actions & {"simplify", "summarize", "grammar", "translate"}:
             return True
         return bool(
             re.search(
                 r"\b("
-                r"easy[- ]to[- ]understand|simplif\w*|expand\w*|summar\w*|grammar|proofread|"
+                r"easy[- ]to[- ]understand|simplif\w*|summar\w*|grammar|proofread|"
                 r"paraphras\w*|rewrit\w*|spin\w*"
                 r")\b",
                 query_text,
@@ -545,11 +305,11 @@ class WorkflowMemoryRetriever:
         adjustment = 0.0
 
         if lowered == "article spinner" and not requests_text_rewrite:
-            adjustment -= 4.0
+            adjustment -= 2.5
             if query_has_url or mentions_article:
-                adjustment -= 1.5
+                adjustment -= 0.75
             if current == "text downloader":
-                adjustment -= 2.0
+                adjustment -= 1.25
 
         if query_has_url and "downloader" in lowered:
             if "text" in lowered and mentions_article:
@@ -575,43 +335,32 @@ class WorkflowMemoryRetriever:
         *,
         query_tokens: Set[str],
         detected_actions: Set[str],
-        query_modalities: Optional[Set[str]] = None,
         count: int = 0,
     ) -> float:
         tool_tokens = self._tool_tokens.get(tool, set())
         token_overlap = self._overlap_ratio(query_tokens, tool_tokens)
-        tool_actions = self._tool_action_tags.get(tool, set())
-        action_overlap_score = self._action_match_score(detected_actions, tool_actions)
-        modality_score = self._modality_match_score(query_modalities or set(), self._tool_modality_sets.get(tool, set()))
+        action_overlap = len(detected_actions & set(_infer_skill_action_tags(tool)))
         count_bonus = min(float(count), 10.0) * 0.15
-        penalty = self._unrequested_action_penalty(detected_actions, tool_actions)
-        return float(token_overlap * 3.0 + action_overlap_score + modality_score + count_bonus + penalty)
+        return float(token_overlap * 3.0 + action_overlap * 1.5 + count_bonus)
 
-    def _rank_start_priors(
+    def recommend_start_tools(
         self,
-        priors: Sequence[WorkflowStartPrior],
+        query: str,
         *,
-        query_text: str,
-        query_tokens: Set[str],
-        detected_actions: Set[str],
-        query_modalities: Set[str],
-        top_k: int,
+        detected_actions: Optional[Iterable[str]] = None,
+        top_k: int = 5,
     ) -> List[Dict[str, Any]]:
+        query_text = " ".join(str(query or "").lower().split())
+        query_tokens = _tokenize(query_text)
+        action_set = self._normalize_detected_actions(detected_actions)
         candidates: List[Dict[str, Any]] = []
-        for prior in priors:
-            tool = prior.skill
-            historical_score = self._historical_prior_score(
-                prior.probability,
-                prior.support,
-                probability_weight=7.0,
-                support_weight=0.35,
-            )
-            tool_score = self._score_tool(
+
+        for tool, count in self.memory_index.start_counts.items():
+            score = self._score_tool(
                 tool,
                 query_tokens=query_tokens,
-                detected_actions=detected_actions,
-                query_modalities=query_modalities,
-                count=prior.support,
+                detected_actions=action_set,
+                count=count,
             )
             start_motifs = self._motifs_by_start.get(tool, [])
             motif_bonus = 0.0
@@ -621,19 +370,18 @@ class WorkflowMemoryRetriever:
                         self._score_motif(
                             motif,
                             query_tokens=query_tokens,
-                            detected_actions=detected_actions,
-                            query_modalities=query_modalities,
+                            detected_actions=action_set,
                         )
                         for motif in start_motifs[:5]
                     ),
                     default=0.0,
-                ) * 0.18
+                ) * 0.25
             request_adjustment = self._tool_request_adjustment(
                 tool,
                 query_text=query_text,
-                detected_actions=detected_actions,
+                detected_actions=action_set,
             )
-            total = historical_score + tool_score + motif_bonus + request_adjustment
+            total = score + motif_bonus + request_adjustment
             if total <= 0:
                 continue
             candidates.append(
@@ -641,153 +389,21 @@ class WorkflowMemoryRetriever:
                     "skill": tool,
                     "tool": tool,
                     "score": float(total),
-                    "start_count": int(prior.support),
-                    "support": int(prior.support),
-                    "probability": float(prior.probability),
+                    "start_count": int(count),
                     "motif_bonus": float(motif_bonus),
                     "request_adjustment": float(request_adjustment),
-                    "action_tags": list(prior.action_tags),
                     "reason": f"query-conditioned start prior for {tool}",
                 }
             )
+
         candidates.sort(
             key=lambda item: (
                 -float(item.get("score", 0.0)),
-                -float(item.get("probability", 0.0)),
-                -int(item.get("support", 0)),
+                -int(item.get("start_count", 0)),
                 str(item.get("skill", "")),
             )
         )
         return candidates[: max(int(top_k), 0)]
-
-    def _rank_transition_priors(
-        self,
-        priors: Sequence[WorkflowTransitionPrior],
-        *,
-        query_text: str,
-        query_tokens: Set[str],
-        detected_actions: Set[str],
-        query_modalities: Set[str],
-        current_tool: Optional[str] = None,
-        visited_tools: Optional[Set[str]] = None,
-        top_k: int,
-        min_support: int = 1,
-    ) -> List[Dict[str, Any]]:
-        current = str(current_tool or "").strip()
-        visited = {str(tool).strip() for tool in (visited_tools or set()) if str(tool).strip()}
-        candidates: List[Dict[str, Any]] = []
-        for prior in priors:
-            if current and prior.source != current:
-                continue
-            if prior.support < int(min_support) or prior.target in visited:
-                continue
-            edge = (prior.source, prior.target)
-            transition_score = self._score_transition(
-                edge,
-                query_tokens=query_tokens,
-                detected_actions=detected_actions,
-                query_modalities=query_modalities,
-                support=prior.support,
-                probability=prior.probability,
-                action_tags=prior.action_tags,
-            )
-            target_score = self._score_tool(
-                prior.target,
-                query_tokens=query_tokens,
-                detected_actions=detected_actions,
-                query_modalities=query_modalities,
-                count=prior.support,
-            )
-            motif_bonus = min(self._motif_support_by_edge.get(edge, 0.0), 20.0) * 0.05
-            request_adjustment = self._tool_request_adjustment(
-                prior.target,
-                query_text=query_text,
-                detected_actions=detected_actions,
-                current_tool=prior.source,
-            )
-            total = transition_score + target_score * 0.35 + motif_bonus + request_adjustment
-            if total <= 0:
-                continue
-            candidates.append(
-                {
-                    "skill": prior.target,
-                    "tool": prior.target,
-                    "source_tool": prior.source,
-                    "source": prior.source,
-                    "target": prior.target,
-                    "score": float(total),
-                    "edge_count": int(prior.support),
-                    "support": int(prior.support),
-                    "probability": float(prior.probability),
-                    "motif_bonus": float(motif_bonus),
-                    "request_adjustment": float(request_adjustment),
-                    "action_tags": list(prior.action_tags),
-                    "reason": f"query-conditioned edge prior {prior.source} -> {prior.target}",
-                }
-            )
-        candidates.sort(
-            key=lambda item: (
-                -float(item.get("score", 0.0)),
-                -float(item.get("probability", 0.0)),
-                -int(item.get("support", 0)),
-                str(item.get("source", "")),
-                str(item.get("target", "")),
-            )
-        )
-        return candidates[: max(int(top_k), 0)]
-
-    def _rank_motifs(
-        self,
-        motifs: Sequence[WorkflowMemoryMotif],
-        *,
-        query_tokens: Set[str],
-        detected_actions: Set[str],
-        query_modalities: Set[str],
-        top_k: int,
-    ) -> List[Tuple[float, WorkflowMemoryMotif]]:
-        scored: List[Tuple[float, WorkflowMemoryMotif]] = []
-        for motif in motifs:
-            score = self._score_motif(
-                motif,
-                query_tokens=query_tokens,
-                detected_actions=detected_actions,
-                query_modalities=query_modalities,
-            )
-            if score <= 0:
-                continue
-            scored.append((score, motif))
-        scored.sort(key=lambda item: (-item[0], -item[1].support, item[1].motif_id))
-        return scored[: max(int(top_k), 0)]
-
-    def recommend_start_tools(
-        self,
-        query: str,
-        *,
-        detected_actions: Optional[Iterable[str]] = None,
-        top_k: int = 5,
-    ) -> List[Dict[str, Any]]:
-        query_text = self._normalize_query_text(query)
-        query_tokens = _tokenize(query_text)
-        action_set = self._normalize_detected_actions(detected_actions)
-        query_modalities = self._infer_query_modalities(query_text, action_set)
-        candidates = self._rank_start_priors(
-            self._retrieval_start_priors,
-            query_text=query_text,
-            query_tokens=query_tokens,
-            detected_actions=action_set,
-            query_modalities=query_modalities,
-            top_k=top_k,
-        )
-        if candidates or not self._trusted_start_priors:
-            return candidates
-        return self._rank_start_priors(
-            self._raw_start_priors,
-            query_text=query_text,
-            query_tokens=query_tokens,
-            detected_actions=action_set,
-            query_modalities=query_modalities,
-            top_k=top_k,
-        )
 
     def recommend_next_tools(
         self,
@@ -802,119 +418,109 @@ class WorkflowMemoryRetriever:
         if not current_tool:
             return self.recommend_start_tools(query, detected_actions=detected_actions, top_k=top_k)
 
-        query_text = self._normalize_query_text(query)
+        query_text = " ".join(str(query or "").lower().split())
         query_tokens = _tokenize(query_text)
         action_set = self._normalize_detected_actions(detected_actions)
-        query_modalities = self._infer_query_modalities(query_text, action_set)
-        candidates = self._rank_transition_priors(
-            self._candidate_transition_priors,
-            query_text=query_text,
-            query_tokens=query_tokens,
-            detected_actions=action_set,
-            query_modalities=query_modalities,
-            current_tool=current_tool,
-            visited_tools=visited_tools,
-            top_k=top_k,
-            min_support=min_count,
+        visited = {str(tool).strip() for tool in (visited_tools or set()) if str(tool).strip()}
+        candidates: List[Dict[str, Any]] = []
+
+        for edge, count in self.memory_index.transition_counts.items():
+            source, target = edge
+            if source != current_tool or count < int(min_count) or target in visited:
+                continue
+
+            transition_score = self._score_transition(
+                edge,
+                query_tokens=query_tokens,
+                detected_actions=action_set,
+            )
+            target_score = self._score_tool(
+                target,
+                query_tokens=query_tokens,
+                detected_actions=action_set,
+                count=count,
+            )
+            motif_bonus = min(self._motif_support_by_edge.get(edge, 0.0), 20.0) * 0.05
+            request_adjustment = self._tool_request_adjustment(
+                target,
+                query_text=query_text,
+                detected_actions=action_set,
+                current_tool=source,
+            )
+            total = transition_score + target_score * 0.35 + motif_bonus + request_adjustment
+            if total <= 0:
+                continue
+            candidates.append(
+                {
+                    "skill": target,
+                    "tool": target,
+                    "source_tool": source,
+                    "score": float(total),
+                    "edge_count": int(count),
+                    "motif_bonus": float(motif_bonus),
+                    "request_adjustment": float(request_adjustment),
+                    "reason": f"query-conditioned edge prior {source} -> {target}",
+                }
+            )
+
+        candidates.sort(
+            key=lambda item: (
+                -float(item.get("score", 0.0)),
+                -int(item.get("edge_count", 0)),
+                str(item.get("skill", "")),
+            )
         )
-        if candidates or not self._trusted_transition_priors:
-            if not candidates:
-                return candidates
-            best_score = float(candidates[0].get("score", 0.0))
-            cutoff = max(0.5, best_score * 0.25)
-            return [item for item in candidates if float(item.get("score", 0.0)) >= cutoff]
-        fallback = self._rank_transition_priors(
-            self._raw_transition_priors,
-            query_text=query_text,
-            query_tokens=query_tokens,
-            detected_actions=action_set,
-            query_modalities=query_modalities,
-            current_tool=current_tool,
-            visited_tools=visited_tools,
-            top_k=top_k,
-            min_support=min_count,
-        )
-        if not fallback:
-            return fallback
-        best_score = float(fallback[0].get("score", 0.0))
-        cutoff = max(0.5, best_score * 0.25)
-        return [item for item in fallback if float(item.get("score", 0.0)) >= cutoff]
+        return candidates[: max(int(top_k), 0)]
 
     def retrieve(
         self,
         query: str,
         *,
         detected_actions: Optional[Iterable[str]] = None,
-        top_k_start_skills: int = 5,
         top_k_motifs: int = 5,
         top_k_transitions: int = 8,
     ) -> Dict[str, Any]:
-        query_text = self._normalize_query_text(query)
-        query_tokens = _tokenize(query_text)
+        query_tokens = _tokenize(query)
         action_set = self._normalize_detected_actions(detected_actions)
-        query_modalities = self._infer_query_modalities(query_text, action_set)
-        top_motifs = self._rank_motifs(
-            self._retrieval_motifs,
-            query_tokens=query_tokens,
-            detected_actions=action_set,
-            query_modalities=query_modalities,
-            top_k=top_k_motifs,
-        )
-        if not top_motifs and self._trusted_motifs:
-            top_motifs = self._rank_motifs(
-                self._raw_motifs,
-                query_tokens=query_tokens,
-                detected_actions=action_set,
-                query_modalities=query_modalities,
-                top_k=top_k_motifs,
-            )
 
-        top_starts = self.recommend_start_tools(
-            query,
-            detected_actions=action_set,
-            top_k=top_k_start_skills,
-        )
-        ranked_transitions = self._rank_transition_priors(
-            self._candidate_transition_priors,
-            query_text=query_text,
-            query_tokens=query_tokens,
-            detected_actions=action_set,
-            query_modalities=query_modalities,
-            top_k=max(int(top_k_transitions) * 3, int(top_k_transitions)),
-        )
-        if not ranked_transitions and self._trusted_transition_priors:
-            ranked_transitions = self._rank_transition_priors(
-                self._raw_transition_priors,
-                query_text=query_text,
-                query_tokens=query_tokens,
-                detected_actions=action_set,
-                query_modalities=query_modalities,
-                top_k=max(int(top_k_transitions) * 3, int(top_k_transitions)),
-            )
-        preferred_sources = {
-            str(item.get("skill", "")).strip()
-            for item in top_starts[:3]
-            if isinstance(item, dict) and str(item.get("skill", "")).strip()
-        }
-        for _score, motif in top_motifs:
-            for source, _target in motif.links:
-                if str(source).strip():
-                    preferred_sources.add(str(source).strip())
-        top_transitions = ranked_transitions
-        if preferred_sources:
-            preferred_ranked = [
-                item
-                for item in ranked_transitions
-                if str(item.get("source", "")).strip() in preferred_sources
-            ]
-            if preferred_ranked:
-                top_transitions = preferred_ranked
-        top_transitions = top_transitions[: max(int(top_k_transitions), 0)]
+        scored_motifs: List[Tuple[float, WorkflowMemoryMotif]] = []
+        for motif in self.memory_index.motifs:
+            score = self._score_motif(motif, query_tokens=query_tokens, detected_actions=action_set)
+            if score <= 0:
+                continue
+            scored_motifs.append((score, motif))
+        scored_motifs.sort(key=lambda item: (-item[0], -item[1].support, item[1].motif_id))
+        top_motifs = scored_motifs[: max(int(top_k_motifs), 0)]
 
+        transition_scores: Counter[Tuple[str, str]] = Counter()
+        start_scores: Counter[str] = Counter()
         end_scores: Counter[str] = Counter()
+
         for score, motif in top_motifs:
+            weight = max(1.0, score)
             if motif.tasks:
-                end_scores[motif.tasks[-1]] += max(1.0, score)
+                start_scores[motif.tasks[0]] += weight
+                end_scores[motif.tasks[-1]] += weight
+            for edge in motif.links:
+                transition_scores[edge] += weight + min(float(self.memory_index.transition_counts.get(edge, 0)), 5.0) * 0.2
+
+        if not transition_scores:
+            for edge in self.memory_index.transition_counts.keys():
+                score = self._score_transition(edge, query_tokens=query_tokens, detected_actions=action_set)
+                if score > 0:
+                    transition_scores[edge] += score
+
+        if not start_scores:
+            for tool, count in self.memory_index.start_counts.items():
+                score = self._score_boundary_tool(
+                    tool,
+                    query_tokens=query_tokens,
+                    count=count,
+                    token_cache=self._start_tool_tokens,
+                )
+                if score > 0:
+                    start_scores[tool] += score
+
         if not end_scores:
             for tool, count in self.memory_index.end_counts.items():
                 score = self._score_boundary_tool(
@@ -926,10 +532,14 @@ class WorkflowMemoryRetriever:
                 if score > 0:
                     end_scores[tool] += score
 
+        top_transitions = [
+            {"source": source, "target": target, "score": float(score)}
+            for (source, target), score in transition_scores.most_common(max(int(top_k_transitions), 0))
+        ]
+
         return {
             "query_tokens": sorted(query_tokens),
             "query_actions": sorted(action_set),
-            "query_modalities": sorted(query_modalities),
             "motifs": [
                 {
                     "motif_id": motif.motif_id,
@@ -942,8 +552,10 @@ class WorkflowMemoryRetriever:
                 for score, motif in top_motifs
             ],
             "transitions": top_transitions,
-            "start_skills": top_starts,
-            "start_tools": top_starts,
+            "start_tools": [
+                {"tool": tool, "score": float(score)}
+                for tool, score in start_scores.most_common(5)
+            ],
             "end_tools": [
                 {"tool": tool, "score": float(score)}
                 for tool, score in end_scores.most_common(5)
