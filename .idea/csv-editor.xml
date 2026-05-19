@@ -10,6 +10,55 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260518_145049\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260518_154611\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260518_204033\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260518_212806\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260518_220554\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260518_231022\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260519_123250\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

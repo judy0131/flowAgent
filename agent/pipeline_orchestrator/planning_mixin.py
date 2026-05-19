@@ -1349,6 +1349,7 @@ User requirement:
         sampling_temperature: float,
         verification_meta: Optional[Dict[str, Any]] = None,
         repair_meta: Optional[Dict[str, Any]] = None,
+        edge_grounding_meta: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         verification_meta = verification_meta or self._verify_candidate_workflow(
             workflow,
@@ -1370,7 +1371,74 @@ User requirement:
             "strategy_hint": strategy_hint,
             "sampling_temperature": sampling_temperature,
             "repair_meta": repair_meta or {"attempted": False, "applied": False},
+            "edge_grounding_meta": edge_grounding_meta or {
+                "mode": "none",
+                "applied": False,
+                "change_count": 0,
+                "changes": [],
+            },
         }
+
+    def _annotate_candidate_dependency_check(self, candidate: Dict[str, Any]) -> Dict[str, Any]:
+        workflow = candidate.get("workflow")
+        if not isinstance(workflow, dict):
+            candidate["dependency_check"] = {
+                "passed": False,
+                "error": "ValueError: candidate workflow must be a dict",
+            }
+            return candidate
+
+        try:
+            normalized_workflow, compiled_nodes = self._prepare_workflow(workflow)
+            self._validate_prepared_workflow(normalized_workflow, compiled_nodes)
+        except Exception as exc:
+            candidate["dependency_check"] = {
+                "passed": False,
+                "error": f"{type(exc).__name__}: {exc}",
+            }
+            return candidate
+
+        candidate["dependency_check"] = {"passed": True, "error": None}
+        return candidate
+
+    @staticmethod
+    def _candidate_dependency_passes(candidate: Dict[str, Any]) -> bool:
+        dependency_meta = candidate.get("dependency_check", {})
+        return isinstance(dependency_meta, dict) and bool(dependency_meta.get("passed", False))
+
+    @staticmethod
+    def _workflow_links_for_log(workflow: Dict[str, Any]) -> List[Dict[str, str]]:
+        raw_links = workflow.get("task_links", [])
+        if not isinstance(raw_links, list):
+            return []
+        links: List[Dict[str, str]] = []
+        for item in raw_links:
+            if not isinstance(item, dict):
+                continue
+            source = str(item.get("source", "")).strip()
+            target = str(item.get("target", "")).strip()
+            if not source or not target:
+                continue
+            links.append({"source": source, "target": target})
+        return links
+
+    async def _generate_candidate_pool_with_edge_grounding_override(
+        self,
+        user_requirement: str,
+        candidate_count: int,
+        *,
+        edge_grounding_mode: str,
+    ) -> List[Dict[str, Any]]:
+        original_edge_grounding_mode = getattr(self, "_edge_grounding_mode", "none")
+        self._edge_grounding_mode = edge_grounding_mode
+        try:
+            candidates = await self.generate_candidate_pool(
+                user_requirement,
+                candidate_count=candidate_count,
+            )
+        finally:
+            self._edge_grounding_mode = original_edge_grounding_mode
+        return [self._annotate_candidate_dependency_check(item) for item in candidates]
 
     async def _finalize_candidate_workflow(
         self,
@@ -1381,7 +1449,11 @@ User requirement:
         sampling_temperature: float,
         llm_client: Any = None,
     ) -> Dict[str, Any]:
-        normalized_workflow, compiled_nodes = self._prepare_workflow(workflow)
+        grounded_workflow, edge_grounding_meta = self._apply_edge_grounding_mode(
+            workflow,
+            user_requirement=user_requirement,
+        )
+        normalized_workflow, compiled_nodes = self._prepare_workflow(grounded_workflow)
         if self._candidate_verifier_enabled():
             verification_meta = self._verify_candidate_workflow(
                 normalized_workflow,
@@ -1399,6 +1471,7 @@ User requirement:
             strategy_hint=strategy_hint,
             sampling_temperature=sampling_temperature,
             verification_meta=verification_meta,
+            edge_grounding_meta=edge_grounding_meta,
         )
         if not self._candidate_repair_enabled() or not verification_meta.get("repairable"):
             return candidate
@@ -1412,7 +1485,11 @@ User requirement:
                 verification_meta,
                 llm_client=llm_client,
             )
-            repaired_normalized, repaired_compiled = self._prepare_workflow(repaired_workflow)
+            grounded_repaired_workflow, repaired_edge_grounding_meta = self._apply_edge_grounding_mode(
+                repaired_workflow,
+                user_requirement=user_requirement,
+            )
+            repaired_normalized, repaired_compiled = self._prepare_workflow(grounded_repaired_workflow)
             repaired_verification = self._verify_candidate_workflow(
                 repaired_normalized,
                 repaired_compiled,
@@ -1427,6 +1504,7 @@ User requirement:
                 sampling_temperature=sampling_temperature,
                 verification_meta=repaired_verification,
                 repair_meta={"attempted": True, "applied": True, "source": "llm_verifier"},
+                edge_grounding_meta=repaired_edge_grounding_meta,
             )
         except Exception as exc:
             repair_meta["error"] = f"{type(exc).__name__}: {exc}"
@@ -1437,6 +1515,393 @@ User requirement:
 
         repair_meta["reason"] = "repair_not_better"
         return candidate
+
+    async def _generate_candidate_from_spec(
+        self,
+        user_requirement: str,
+        spec: Dict[str, Any],
+        *,
+        round_idx: int = 0,
+        allow_repair: bool = True,
+    ) -> Dict[str, Any]:
+        strategy_name = str(spec.get("name", "")).strip()
+        hint = str(spec.get("hint", "")).strip()
+        temperature = self._candidate_temperature_for_spec(spec, round_idx)
+        llm_client = self._get_candidate_llm(temperature)
+        workflow = await self._plan_with_client(
+            user_requirement,
+            strategy_hint=hint,
+            llm_client=llm_client,
+        )
+        if allow_repair:
+            candidate = await self._finalize_candidate_workflow(
+                workflow,
+                user_requirement=user_requirement,
+                strategy_name=strategy_name,
+                strategy_hint=hint,
+                sampling_temperature=temperature,
+                llm_client=llm_client,
+            )
+        else:
+            grounded_workflow, edge_grounding_meta = self._apply_edge_grounding_mode(
+                workflow,
+                user_requirement=user_requirement,
+            )
+            normalized_workflow, compiled_nodes = self._prepare_workflow(grounded_workflow)
+            if self._candidate_verifier_enabled():
+                verification_meta = self._verify_candidate_workflow(
+                    normalized_workflow,
+                    compiled_nodes,
+                    user_requirement,
+                )
+                verification_meta["verifier_enabled"] = True
+            else:
+                verification_meta = self._default_candidate_selection_meta()
+            candidate = self._build_candidate_record(
+                normalized_workflow,
+                compiled_nodes,
+                user_requirement,
+                strategy_name=strategy_name,
+                strategy_hint=hint,
+                sampling_temperature=temperature,
+                verification_meta=verification_meta,
+                edge_grounding_meta=edge_grounding_meta,
+            )
+        return self._annotate_candidate_dependency_check(candidate)
+
+    async def _generate_candidate_pool_without_original(
+        self,
+        user_requirement: str,
+        candidate_count: int,
+    ) -> List[Dict[str, Any]]:
+        original_flag = bool(getattr(self, "_include_original_candidate", False))
+        self._include_original_candidate = False
+        try:
+            candidates = await self.generate_candidate_pool(
+                user_requirement,
+                candidate_count=candidate_count,
+            )
+        finally:
+            self._include_original_candidate = original_flag
+        return [self._annotate_candidate_dependency_check(item) for item in candidates]
+
+    @staticmethod
+    def _original_first_fallback_candidate_key(
+        item: Dict[str, Any]
+    ) -> Tuple[int, int, int, Tuple[int, int, int, int, int, int, int, float, float, float, float, float, float, float, float, int, int, int]]:
+        dependency_meta = item.get("dependency_check")
+        if not isinstance(dependency_meta, dict):
+            dependency_meta = {}
+        selection_meta = item.get("selection_meta")
+        if not isinstance(selection_meta, dict):
+            selection_meta = {}
+        dependency_pass = bool(dependency_meta.get("passed", False))
+        verifier_pass = bool(selection_meta.get("verifier_pass", False))
+        hard_filter_tier = int(selection_meta.get("hard_filter_tier", 0))
+        return (
+            int(dependency_pass and verifier_pass),
+            int(dependency_pass),
+            hard_filter_tier,
+            PlanningMixin._rerank_candidate_key(item),
+        )
+
+    def _select_best_original_first_fallback_candidate(
+        self,
+        candidates: List[Dict[str, Any]],
+    ) -> Dict[str, Any]:
+        return max(candidates, key=type(self)._original_first_fallback_candidate_key)
+
+    async def plan_candidates_original_dependency_filter_first_valid(
+        self,
+        user_requirement: str,
+        candidate_count: int = 3,
+    ) -> Dict[str, Any]:
+        if candidate_count < 1:
+            raise ValueError("candidate_count must be >= 1")
+
+        candidates = await self.generate_candidate_pool(
+            user_requirement,
+            candidate_count=candidate_count,
+        )
+        annotated_candidates: List[Dict[str, Any]] = [
+            self._annotate_candidate_dependency_check(item)
+            for item in candidates
+        ]
+
+        selected: Optional[Dict[str, Any]] = None
+        selection_route = "no_dependency_valid_candidate"
+        for idx, item in enumerate(annotated_candidates):
+            dependency_meta = item.get("dependency_check", {})
+            if not isinstance(dependency_meta, dict) or not bool(dependency_meta.get("passed", False)):
+                continue
+            selected = item
+            if idx == 0 and str(item.get("strategy_name", "")).strip() == "original":
+                selection_route = "original_dependency_pass"
+            else:
+                selection_route = "first_dependency_valid_candidate"
+            break
+
+        if selected is None:
+            raise ValueError("no dependency-valid candidate generated")
+
+        for idx, item in enumerate(annotated_candidates, start=1):
+            item["id"] = idx
+            item.setdefault("generation_index", idx - 1)
+
+        return {
+            "candidates": annotated_candidates,
+            "selected": selected,
+            "selection_route": selection_route,
+            "generation_errors": [],
+        }
+
+    async def plan_candidates_original_first_fallback(
+        self,
+        user_requirement: str,
+        candidate_count: int = 3,
+    ) -> Dict[str, Any]:
+        if candidate_count < 1:
+            raise ValueError("candidate_count must be >= 1")
+
+        original_spec = {
+            "name": "original",
+            "hint": "",
+            "temperature": float(getattr(self.llm_config, "temperature", 0.0)),
+        }
+        candidate_plans: List[Dict[str, Any]] = []
+        selected: Optional[Dict[str, Any]] = None
+        selection_route = "fallback"
+        generation_errors: List[str] = []
+        signature_to_index: Dict[str, int] = {}
+        original_candidate: Optional[Dict[str, Any]] = None
+
+        def _upsert_candidate(candidate: Dict[str, Any]) -> Tuple[Dict[str, Any], bool]:
+            signature = self._plan_signature(candidate["workflow"])
+            existing_idx = signature_to_index.get(signature)
+            if existing_idx is not None:
+                existing = candidate_plans[existing_idx]
+                if type(self)._original_first_fallback_candidate_key(candidate) > type(self)._original_first_fallback_candidate_key(existing):
+                    candidate_plans[existing_idx] = candidate
+                    return candidate, True
+                return existing, False
+            signature_to_index[signature] = len(candidate_plans)
+            candidate_plans.append(candidate)
+            return candidate, True
+
+        try:
+            original_candidate = await self._generate_candidate_from_spec(
+                user_requirement,
+                original_spec,
+                allow_repair=False,
+            )
+            original_candidate, _ = _upsert_candidate(original_candidate)
+        except Exception as exc:
+            generation_errors.append(f"original={type(exc).__name__}: {exc}")
+
+        if original_candidate is not None:
+            dependency_meta = original_candidate.get("dependency_check", {})
+            if isinstance(dependency_meta, dict) and bool(dependency_meta.get("passed", False)):
+                selected = original_candidate
+                selection_route = "original_dependency_pass"
+
+        if selected is None and original_candidate is not None and self._candidate_repair_enabled():
+            try:
+                repaired_original = await self._finalize_candidate_workflow(
+                    original_candidate["workflow"],
+                    user_requirement=user_requirement,
+                    strategy_name="original_repair",
+                    strategy_hint="Repair the original candidate only if dependency or verifier issues are found.",
+                    sampling_temperature=float(getattr(self.llm_config, "temperature", 0.0)),
+                    llm_client=self.llm,
+                )
+                repaired_original = self._annotate_candidate_dependency_check(repaired_original)
+                repaired_original, _ = _upsert_candidate(repaired_original)
+                repaired_dependency = repaired_original.get("dependency_check", {})
+                repaired_selection = repaired_original.get("selection_meta", {})
+                if (
+                    isinstance(repaired_dependency, dict)
+                    and bool(repaired_dependency.get("passed", False))
+                    and isinstance(repaired_selection, dict)
+                    and bool(repaired_selection.get("verifier_pass", False))
+                ):
+                    selected = repaired_original
+                    selection_route = "original_repair_pass"
+            except Exception as exc:
+                generation_errors.append(f"original_repair={type(exc).__name__}: {exc}")
+
+        fallback_candidates: List[Dict[str, Any]] = []
+        if selected is None:
+            try:
+                fallback_pool = await self._generate_candidate_pool_without_original(
+                    user_requirement,
+                    candidate_count=candidate_count,
+                )
+                for item in fallback_pool:
+                    stored_item, adopted_new = _upsert_candidate(item)
+                    if adopted_new:
+                        fallback_candidates.append(stored_item)
+            except Exception as exc:
+                generation_errors.append(f"fallback_pool={type(exc).__name__}: {exc}")
+
+        if selected is None and fallback_candidates:
+            selected = self._select_best_original_first_fallback_candidate(fallback_candidates)
+            selected_meta = selected.get("selection_meta", {})
+            dependency_meta = selected.get("dependency_check", {})
+            if (
+                isinstance(dependency_meta, dict)
+                and bool(dependency_meta.get("passed", False))
+                and isinstance(selected_meta, dict)
+                and bool(selected_meta.get("verifier_pass", False))
+            ):
+                selection_route = "fallback_verifier_pass"
+            elif isinstance(dependency_meta, dict) and bool(dependency_meta.get("passed", False)):
+                selection_route = "fallback_dependency_pass"
+            else:
+                selection_route = "fallback_best_effort"
+
+        if selected is None and candidate_plans:
+            selected = self._select_best_original_first_fallback_candidate(candidate_plans)
+            selection_route = "fallback_best_effort"
+
+        if selected is None:
+            if generation_errors:
+                raise ValueError("no candidate plans generated; errors=" + " | ".join(generation_errors))
+            raise ValueError("no candidate plans generated")
+
+        for idx, item in enumerate(candidate_plans, start=1):
+            item["id"] = idx
+            item.setdefault("generation_index", idx - 1)
+
+        return {
+            "candidates": candidate_plans,
+            "selected": selected,
+            "selection_route": selection_route,
+            "generation_errors": generation_errors,
+        }
+
+    async def plan_candidates_structure_aware(
+        self,
+        user_requirement: str,
+        candidate_count: int = 3,
+    ) -> Dict[str, Any]:
+        if candidate_count < 1:
+            raise ValueError("candidate_count must be >= 1")
+
+        semantic_grounding_mode = self._resolve_edge_grounding_mode()
+        if semantic_grounding_mode not in {
+            "semantic_edge_scoring",
+            "semantic_edge_scoring_h2a",
+            "semantic_edge_scoring_h2b",
+        }:
+            semantic_grounding_mode = "semantic_edge_scoring"
+
+        candidate_plans = await self._generate_candidate_pool_with_edge_grounding_override(
+            user_requirement,
+            candidate_count=candidate_count,
+            edge_grounding_mode="none",
+        )
+        if not candidate_plans:
+            raise ValueError("no candidate plans generated")
+
+        original_index = 0
+        for idx, item in enumerate(candidate_plans):
+            if str(item.get("strategy_name", "")).strip() == "original":
+                original_index = idx
+                break
+
+        original_candidate = candidate_plans[original_index]
+        original_workflow = original_candidate.get("workflow", {})
+        if not isinstance(original_workflow, dict):
+            raise ValueError("original candidate workflow must be a dict")
+
+        detected_structure = self._detect_workflow_structure(original_workflow)
+        original_links = self._workflow_links_for_log(original_workflow)
+        structure_aware_meta: Dict[str, Any] = {
+            "detected_structure": detected_structure,
+            "grounding_applied": False,
+            "fallback_used": False,
+            "original_links": original_links,
+            "grounded_links": list(original_links),
+        }
+
+        selected = original_candidate
+        selection_route = f"structure_aware_{detected_structure}_original"
+
+        if detected_structure == "chain":
+            if not self._candidate_dependency_passes(original_candidate):
+                fallback_candidate = next(
+                    (item for item in candidate_plans if self._candidate_dependency_passes(item)),
+                    None,
+                )
+                if fallback_candidate is not None:
+                    selected = fallback_candidate
+                    structure_aware_meta["fallback_used"] = True
+                    structure_aware_meta["grounded_links"] = self._workflow_links_for_log(
+                        fallback_candidate.get("workflow", {})
+                        if isinstance(fallback_candidate.get("workflow"), dict)
+                        else {}
+                    )
+                    selection_route = "structure_aware_chain_first_dependency_valid_candidate"
+                else:
+                    selection_route = "structure_aware_chain_original_invalid"
+        elif detected_structure == "dag":
+            grounded_workflow: Optional[Dict[str, Any]] = None
+            grounding_meta: Optional[Dict[str, Any]] = None
+            try:
+                grounded_workflow, grounding_meta = self._apply_specific_edge_grounding_mode(
+                    original_workflow,
+                    user_requirement=user_requirement,
+                    mode=semantic_grounding_mode,
+                )
+                structure_aware_meta["grounded_links"] = self._workflow_links_for_log(grounded_workflow)
+                normalized_grounded, grounded_compiled = self._prepare_workflow(grounded_workflow)
+                self._validate_prepared_workflow(normalized_grounded, grounded_compiled)
+                if self._candidate_verifier_enabled():
+                    verification_meta = self._verify_candidate_workflow(
+                        normalized_grounded,
+                        grounded_compiled,
+                        user_requirement,
+                    )
+                    verification_meta["verifier_enabled"] = True
+                else:
+                    verification_meta = self._default_candidate_selection_meta()
+                grounded_candidate = self._build_candidate_record(
+                    normalized_grounded,
+                    grounded_compiled,
+                    user_requirement,
+                    strategy_name=str(original_candidate.get("strategy_name", "original")),
+                    strategy_hint=str(original_candidate.get("strategy_hint", "")),
+                    sampling_temperature=float(original_candidate.get("sampling_temperature", 0.0)),
+                    verification_meta=verification_meta,
+                    repair_meta={"attempted": False, "applied": False},
+                    edge_grounding_meta=grounding_meta,
+                )
+                grounded_candidate = self._annotate_candidate_dependency_check(grounded_candidate)
+                candidate_plans[original_index] = grounded_candidate
+                selected = grounded_candidate
+                structure_aware_meta["grounding_applied"] = bool(
+                    isinstance(grounding_meta, dict) and grounding_meta.get("applied", False)
+                )
+                selection_route = "structure_aware_dag_semantic_grounding"
+            except Exception as exc:
+                structure_aware_meta["fallback_used"] = True
+                structure_aware_meta["grounding_error"] = f"{type(exc).__name__}: {exc}"
+                if grounded_workflow is not None:
+                    structure_aware_meta["grounded_links"] = self._workflow_links_for_log(grounded_workflow)
+                selection_route = "structure_aware_dag_grounding_fallback"
+
+        for idx, item in enumerate(candidate_plans, start=1):
+            item["id"] = idx
+            item.setdefault("generation_index", idx - 1)
+
+        selected["structure_aware_meta"] = dict(structure_aware_meta)
+        return {
+            "candidates": candidate_plans,
+            "selected": selected,
+            "selection_route": selection_route,
+            "generation_errors": [],
+            "structure_aware_meta": structure_aware_meta,
+        }
 
     async def generate_candidate_pool(
         self,

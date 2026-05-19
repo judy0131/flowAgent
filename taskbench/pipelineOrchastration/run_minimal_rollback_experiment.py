@@ -58,6 +58,7 @@ def _default_group_specs() -> List[Dict[str, Any]]:
             "enable_candidate_repair": False,
             "enable_workflow_memory": False,
             "include_original_candidate": False,
+            "edge_grounding_mode": "none",
         },
         {
             "tag": "B",
@@ -68,6 +69,7 @@ def _default_group_specs() -> List[Dict[str, Any]]:
             "enable_candidate_repair": False,
             "enable_workflow_memory": False,
             "include_original_candidate": True,
+            "edge_grounding_mode": "none",
         },
         {
             "tag": "C",
@@ -78,6 +80,7 @@ def _default_group_specs() -> List[Dict[str, Any]]:
             "enable_candidate_repair": False,
             "enable_workflow_memory": False,
             "include_original_candidate": True,
+            "edge_grounding_mode": "none",
         },
         {
             "tag": "D",
@@ -88,6 +91,7 @@ def _default_group_specs() -> List[Dict[str, Any]]:
             "enable_candidate_repair": True,
             "enable_workflow_memory": False,
             "include_original_candidate": True,
+            "edge_grounding_mode": "none",
         },
         {
             "tag": "E",
@@ -98,8 +102,111 @@ def _default_group_specs() -> List[Dict[str, Any]]:
             "enable_candidate_repair": True,
             "enable_workflow_memory": True,
             "include_original_candidate": True,
+            "edge_grounding_mode": "none",
+        },
+        {
+            "tag": "F",
+            "label": "original_first_verifier_fallback",
+            "planning_mode": "multi",
+            "candidate_selection_mode": "original_first_fallback",
+            "enable_candidate_verifier": True,
+            "enable_candidate_repair": True,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "edge_grounding_mode": "none",
+        },
+        {
+            "tag": "G",
+            "label": "original_dependency_filter_first_valid",
+            "planning_mode": "multi",
+            "candidate_selection_mode": "original_dependency_filter_first_valid",
+            "enable_candidate_verifier": True,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "edge_grounding_mode": "none",
+        },
+        {
+            "tag": "H",
+            "label": "multi_first_original_nearest_valid_grounding",
+            "planning_mode": "multi",
+            "candidate_selection_mode": "first",
+            "enable_candidate_verifier": False,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "edge_grounding_mode": "nearest_valid_upstream",
+        },
+        {
+            "tag": "H2",
+            "label": "multi_first_original_semantic_edge_grounding",
+            "planning_mode": "multi",
+            "candidate_selection_mode": "first",
+            "enable_candidate_verifier": False,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "edge_grounding_mode": "semantic_edge_scoring",
+        },
+        {
+            "tag": "H2A",
+            "label": "multi_first_original_semantic_edge_grounding_nearest_priority",
+            "planning_mode": "multi",
+            "candidate_selection_mode": "first",
+            "enable_candidate_verifier": False,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "edge_grounding_mode": "semantic_edge_scoring_h2a",
+        },
+        {
+            "tag": "H2B",
+            "label": "multi_first_original_semantic_edge_grounding_semantic_priority",
+            "planning_mode": "multi",
+            "candidate_selection_mode": "first",
+            "enable_candidate_verifier": False,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "edge_grounding_mode": "semantic_edge_scoring_h2b",
+        },
+        {
+            "tag": "I",
+            "label": "structure_aware_grounding",
+            "planning_mode": "multi",
+            "candidate_selection_mode": "structure_aware",
+            "enable_candidate_verifier": True,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "enable_semantic_edge_grounding": True,
+            "edge_grounding_mode": "semantic_edge_scoring",
         },
     ]
+
+
+def _select_group_specs(group_specs: List[Dict[str, Any]], selected_tags: Optional[List[str]]) -> List[Dict[str, Any]]:
+    if not selected_tags:
+        return list(group_specs)
+
+    normalized_tags = [str(tag).strip().upper() for tag in selected_tags if str(tag).strip()]
+    if not normalized_tags:
+        return list(group_specs)
+
+    tag_to_spec = {
+        str(item.get("tag", "")).strip().upper(): item
+        for item in group_specs
+        if str(item.get("tag", "")).strip()
+    }
+    missing = [tag for tag in normalized_tags if tag not in tag_to_spec]
+    if missing:
+        available = ", ".join(sorted(tag_to_spec.keys()))
+        raise ValueError(f"Unknown group_tags: {missing}. Available tags: {available}")
+
+    selected_specs: List[Dict[str, Any]] = []
+    for tag in normalized_tags:
+        selected_specs.append(tag_to_spec[tag])
+    return selected_specs
 
 
 def _load_case_ids(path: Path) -> List[str]:
@@ -190,6 +297,8 @@ def _build_runner_args(
     args.enable_candidate_repair = bool(group_spec["enable_candidate_repair"])
     args.enable_workflow_memory = bool(group_spec["enable_workflow_memory"])
     args.include_original_candidate = bool(group_spec["include_original_candidate"])
+    args.enable_semantic_edge_grounding = bool(group_spec.get("enable_semantic_edge_grounding", False))
+    args.edge_grounding_mode = str(group_spec.get("edge_grounding_mode", "none"))
 
     if args.planning_mode == "single":
         args.execution_mode = "best"
@@ -266,6 +375,8 @@ def _summarize_group_result(
             "enable_candidate_repair": group_spec["enable_candidate_repair"],
             "enable_workflow_memory": group_spec["enable_workflow_memory"],
             "include_original_candidate": group_spec["include_original_candidate"],
+            "enable_semantic_edge_grounding": bool(group_spec.get("enable_semantic_edge_grounding", False)),
+            "edge_grounding_mode": group_spec.get("edge_grounding_mode", "none"),
         },
     }
 
@@ -377,8 +488,14 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
         requested_temperature=args.fixed_candidate_temperature,
     )
 
+    selected_group_specs = _select_group_specs(
+        _default_group_specs(),
+        # getattr(args, "group_tags", None),
+        ["I"]
+    )
+
     group_results: List[Dict[str, Any]] = []
-    for group_spec in _default_group_specs():
+    for group_spec in selected_group_specs:
         prediction_dir = (
             Path("rollback_experiments")
             / timestamp
@@ -418,6 +535,7 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
         "case_ids_file": str(case_ids_path),
         "candidate_count": args.candidate_count,
         "fixed_candidate_temperature": fixed_temperature,
+        "selected_group_tags": [str(item.get("tag", "")) for item in selected_group_specs],
         "results": group_results,
         "comparison": comparison,
     }
@@ -435,7 +553,7 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Run the minimal rollback experiment across A-E groups."
+        description="Run the minimal rollback experiment across A-H plus H2/H2A/H2B groups."
     )
     parser.add_argument(
         "--runner",
@@ -445,10 +563,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--data_dir", type=str, default="taskbench/data_multimedia")
     parser.add_argument("--gold_file", type=str, default="data.json")
-    parser.add_argument("--case_count", type=int, default=20)
+    parser.add_argument("--case_count", type=int, default=50)
     parser.add_argument("--case_ids_file", type=str, default=None)
     parser.add_argument("--offset", type=int, default=0)
     parser.add_argument("--candidate_count", type=int, default=3)
+    parser.add_argument(
+        "--group_tags",
+        nargs="+",
+        default=None,
+        help="Optional subset of experiment groups to run, e.g. --group_tags F or --group_tags B F.",
+    )
     parser.add_argument("--fixed_candidate_temperature", type=float, default=None)
     parser.add_argument("--step_ref_base", choices=["one", "zero"], default="one")
     parser.add_argument("--run_tag", type=str, default=None)
@@ -464,6 +588,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--llm_profile", type=str, default=None)
     parser.add_argument("--llm_config_path", type=str, default=None)
     parser.add_argument("--workflow_memory_path", type=str, default=None)
+    parser.add_argument("--edge_grounding_mode", type=str, default=None)
     parser.add_argument("--skills_root", type=str, default=None)
     parser.add_argument("--dependency_type", type=str, default=None)
     parser.add_argument("--link_mode", type=str, default=None)

@@ -4,10 +4,17 @@ import argparse
 from pathlib import Path
 from unittest.mock import patch
 
-from taskbench.pipelineOrchastration.run_minimal_rollback_experiment import _build_runner_args
+from taskbench.pipelineOrchastration.run_minimal_rollback_experiment import (
+    _default_group_specs,
+    _build_runner_args,
+    _select_group_specs,
+    build_parser as build_rollback_parser,
+)
 from taskbench.pipelineOrchastration.run_with_pipeline_agent_base import (
     _classify_case_failure,
     _open_prediction_output,
+    _should_load_workflow_memory_for_run,
+    build_parser as build_base_runner_parser,
 )
 from taskbench.pipelineOrchastration.run_with_pipeline_agent_openAI import (
     _build_prediction_record,
@@ -232,6 +239,99 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
         )
 
         self.assertFalse(args.stop_on_error)
+
+    def test_build_runner_args_passes_through_edge_grounding_mode(self) -> None:
+        base_args = argparse.Namespace(
+            stop_on_error=False,
+            workflow_memory_path=None,
+            execution_mode="best",
+        )
+        group_spec = {
+            "planning_mode": "multi",
+            "candidate_selection_mode": "first",
+            "enable_candidate_verifier": False,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "edge_grounding_mode": "nearest_valid_upstream",
+        }
+
+        args = _build_runner_args(
+            runner_parser=argparse.ArgumentParser(),
+            base_args=base_args,
+            group_spec=group_spec,
+            prediction_dir="predictions",
+            case_ids_file=Path("case_ids.txt"),
+            candidate_count=3,
+            fixed_temperature=0.0,
+        )
+
+        self.assertEqual(args.edge_grounding_mode, "nearest_valid_upstream")
+
+    def test_semantic_edge_grounding_modes_request_memory_loading_without_generation_memory(self) -> None:
+        for mode in [
+            "semantic_edge_scoring",
+            "semantic_edge_scoring_h2a",
+            "semantic_edge_scoring_h2b",
+        ]:
+            args = argparse.Namespace(
+                enable_workflow_memory=False,
+                edge_grounding_mode=mode,
+            )
+
+            self.assertTrue(_should_load_workflow_memory_for_run(args), mode)
+
+    def test_nearest_edge_grounding_mode_does_not_request_memory_loading(self) -> None:
+        args = argparse.Namespace(
+            enable_workflow_memory=False,
+            edge_grounding_mode="nearest_valid_upstream",
+        )
+
+        self.assertFalse(_should_load_workflow_memory_for_run(args))
+
+    def test_structure_aware_selection_requests_memory_loading(self) -> None:
+        args = argparse.Namespace(
+            enable_workflow_memory=False,
+            edge_grounding_mode="none",
+            candidate_selection_mode="structure_aware",
+        )
+
+        self.assertTrue(_should_load_workflow_memory_for_run(args))
+
+    def test_base_runner_parser_accepts_structure_aware_selection_mode(self) -> None:
+        args = build_base_runner_parser().parse_args(["--candidate_selection_mode", "structure_aware"])
+
+        self.assertEqual(args.candidate_selection_mode, "structure_aware")
+
+    def test_default_group_specs_include_structure_aware_group(self) -> None:
+        tag_to_spec = {item["tag"]: item for item in _default_group_specs()}
+
+        self.assertIn("I", tag_to_spec)
+        self.assertEqual(tag_to_spec["I"]["candidate_selection_mode"], "structure_aware")
+        self.assertTrue(tag_to_spec["I"]["enable_semantic_edge_grounding"])
+        self.assertEqual(tag_to_spec["I"]["edge_grounding_mode"], "semantic_edge_scoring")
+
+    def test_select_group_specs_keeps_requested_order(self) -> None:
+        specs = [
+            {"tag": "A", "label": "a"},
+            {"tag": "F", "label": "f"},
+            {"tag": "B", "label": "b"},
+        ]
+
+        selected = _select_group_specs(specs, ["F", "B"])
+
+        self.assertEqual([item["tag"] for item in selected], ["F", "B"])
+
+    def test_select_group_specs_rejects_unknown_tag(self) -> None:
+        specs = [{"tag": "A", "label": "a"}, {"tag": "F", "label": "f"}]
+
+        with self.assertRaisesRegex(ValueError, "Unknown group_tags"):
+            _select_group_specs(specs, ["Z"])
+
+    def test_build_parser_leaves_group_tags_optional_by_default(self) -> None:
+        args = build_rollback_parser().parse_args([])
+
+        self.assertIsNone(args.group_tags)
 
 
 if __name__ == "__main__":

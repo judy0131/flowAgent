@@ -74,11 +74,11 @@ def build_parser() -> argparse.ArgumentParser:
         case_ids_file=DEFAULT_CASE_IDS_FILE,
         planning_mode="multi",
         candidate_count=3,
-        candidate_selection_mode="rerank",
+        candidate_selection_mode="original_first_fallback",
         include_original_candidate=True,
         enable_candidate_verifier=True,
         enable_candidate_repair=True,
-        enable_workflow_memory=True,
+        enable_workflow_memory=False,
         fixed_candidate_temperature=0.0,
         resume=False,
     )

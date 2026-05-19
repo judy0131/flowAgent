@@ -606,13 +606,34 @@ def _build_prediction_record(
     }
 
 
+def _should_load_workflow_memory_for_run(args: argparse.Namespace) -> bool:
+    if bool(getattr(args, "enable_workflow_memory", False)):
+        return True
+    if str(getattr(args, "candidate_selection_mode", "rerank") or "rerank").strip().lower() == "structure_aware":
+        return True
+    edge_grounding_mode = str(getattr(args, "edge_grounding_mode", "none") or "none").strip().lower()
+    return edge_grounding_mode in {
+        "semantic_edge_scoring",
+        "semantic",
+        "semantic_edge_scorer",
+        "h2",
+        "semantic_edge_scoring_h2a",
+        "semantic_nearest_priority",
+        "h2a",
+        "semantic_edge_scoring_h2b",
+        "semantic_semantic_priority",
+        "h2b",
+    }
+
+
 async def _run(args: argparse.Namespace) -> Dict[str, Any]:
     data_dir = _resolve_data_dir(args.data_dir)
     llm_config_path = _resolve_existing_file(args.llm_config_path, label="llm_config_path") if args.llm_config_path else None
     enable_workflow_memory = bool(getattr(args, "enable_workflow_memory", False))
+    load_workflow_memory = _should_load_workflow_memory_for_run(args)
     workflow_memory_path = (
         _resolve_existing_file(args.workflow_memory_path, label="workflow_memory_path")
-        if enable_workflow_memory and args.workflow_memory_path
+        if load_workflow_memory and args.workflow_memory_path
         else None
     )
     tool_map_override_path = (
@@ -683,6 +704,7 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
         candidate_selection_mode=str(getattr(args, "candidate_selection_mode", "rerank")),
         include_original_candidate=bool(getattr(args, "include_original_candidate", False)),
         fixed_candidate_temperature=getattr(args, "fixed_candidate_temperature", None),
+        edge_grounding_mode=str(getattr(args, "edge_grounding_mode", "none")),
     )
     success = 0
     failed = 0
@@ -798,7 +820,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--candidate_selection_mode",
         type=str,
         default="rerank",
-        choices=["rerank", "first"],
+        choices=["rerank", "first", "original_first_fallback", "original_dependency_filter_first_valid", "structure_aware"],
         help="How to choose the final plan from the generated candidate pool.",
     )
     parser.add_argument(
@@ -838,6 +860,28 @@ def build_parser() -> argparse.ArgumentParser:
         dest="enable_candidate_repair",
         action="store_false",
         help="Disable LLM-based repair for verifier-marked candidates.",
+    )
+    parser.add_argument(
+        "--edge_grounding_mode",
+        type=str,
+        default="none",
+        choices=[
+            "none",
+            "nearest_valid_upstream",
+            "nearest_valid",
+            "nearest",
+            "semantic_edge_scoring",
+            "semantic",
+            "semantic_edge_scorer",
+            "h2",
+            "semantic_edge_scoring_h2a",
+            "semantic_nearest_priority",
+            "h2a",
+            "semantic_edge_scoring_h2b",
+            "semantic_semantic_priority",
+            "h2b",
+        ],
+        help="Optional post-generation dependency grounding strategy applied before candidate scoring.",
     )
     parser.add_argument("--dependency_type", type=str, default="auto", choices=["auto", "resource", "temporal"])
     parser.add_argument("--link_mode", type=str, default="chain_fallback", choices=["explicit_only", "chain_fallback"])

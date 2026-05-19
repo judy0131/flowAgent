@@ -58,6 +58,8 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.agent._workflow_memory = None
         self.agent._workflow_retriever = None
         self.agent._workflow_retrieval_cache = {}
+        self.agent._edge_grounding_retrieval_cache = {}
+        self.agent._edge_grounding_mode = "none"
 
     def _attach_test_workflow_memory(self, memory: WorkflowMemoryIndex) -> None:
         self.agent._workflow_memory = memory
@@ -1701,6 +1703,384 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(candidates[0]["repair_meta"]["applied"])
         self.assertEqual(candidates[0]["selection_meta"]["hard_filter_tier"], 2)
 
+    async def test_original_first_fallback_returns_original_when_dependency_check_passes(self) -> None:
+        requirement = "Load not_exists.csv and sum the sales field."
+        valid_plan = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+                "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                {
+                    "task": "aggregate_sum",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-0>"},
+                        {"name": "field", "value": "sales"},
+                    ],
+                },
+            ],
+            "task_links": [{"source": "load_csv", "target": "aggregate_sum"}],
+        }
+
+        async def fake_plan(_req: str, strategy_hint: str | None = None, llm_client=None):
+            _ = (strategy_hint, llm_client)
+            return valid_plan
+
+        async def should_not_run_fallback(_req: str, candidate_count: int):
+            _ = (_req, candidate_count)
+            raise AssertionError("fallback pool should not run when original passes dependency check")
+
+        self.agent._plan_with_client = fake_plan  # type: ignore[method-assign]
+        self.agent._generate_candidate_pool_without_original = should_not_run_fallback  # type: ignore[method-assign]
+        self.agent._get_candidate_llm = lambda _temp: object()  # type: ignore[method-assign]
+
+        state = await self.agent.plan_candidates_original_first_fallback(requirement, candidate_count=2)
+
+        self.assertEqual(state["selection_route"], "original_dependency_pass")
+        self.assertEqual(len(state["candidates"]), 1)
+        self.assertEqual(state["selected"]["strategy_name"], "original")
+        self.assertTrue(state["selected"]["dependency_check"]["passed"])
+
+    async def test_original_first_fallback_prefers_repaired_original_before_fallback(self) -> None:
+        requirement = "Load not_exists.csv and sum the sales field."
+        invalid_original = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+                "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                {
+                    "task": "aggregate_sum",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-0>"},
+                        {"name": "field", "value": "sales"},
+                    ],
+                },
+            ],
+            "task_links": [],
+        }
+        repaired_plan = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+                "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                {
+                    "task": "aggregate_sum",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-0>"},
+                        {"name": "field", "value": "sales"},
+                    ],
+                },
+            ],
+            "task_links": [{"source": "load_csv", "target": "aggregate_sum"}],
+        }
+
+        async def fake_plan(_req: str, strategy_hint: str | None = None, llm_client=None):
+            _ = (strategy_hint, llm_client)
+            return invalid_original
+
+        async def fake_repair(
+            _req: str,
+            workflow: dict[str, object],
+            verification_meta: dict[str, object],
+            llm_client=None,
+        ):
+            _ = (workflow, verification_meta, llm_client)
+            return repaired_plan
+
+        async def should_not_run_fallback(_req: str, candidate_count: int):
+            _ = (_req, candidate_count)
+            raise AssertionError("fallback pool should not run when repaired original is good enough")
+
+        self.agent._plan_with_client = fake_plan  # type: ignore[method-assign]
+        self.agent._repair_candidate_with_llm = fake_repair  # type: ignore[method-assign]
+        self.agent._generate_candidate_pool_without_original = should_not_run_fallback  # type: ignore[method-assign]
+        self.agent._get_candidate_llm = lambda _temp: object()  # type: ignore[method-assign]
+
+        state = await self.agent.plan_candidates_original_first_fallback(requirement, candidate_count=2)
+
+        self.assertEqual(state["selection_route"], "original_repair_pass")
+        self.assertEqual(len(state["candidates"]), 1)
+        self.assertEqual(state["selected"]["strategy_name"], "original_repair")
+        self.assertTrue(state["selected"]["dependency_check"]["passed"])
+        self.assertTrue(state["selected"]["repair_meta"]["applied"])
+
+    async def test_original_first_fallback_uses_fallback_pool_when_original_remains_invalid(self) -> None:
+        requirement = "Load not_exists.csv and sum the sales field."
+        invalid_original = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+                "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                {
+                    "task": "aggregate_sum",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-0>"},
+                        {"name": "field", "value": "sales"},
+                    ],
+                },
+            ],
+            "task_links": [],
+        }
+        valid_fallback_plan = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+                "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                {
+                    "task": "aggregate_sum",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-0>"},
+                        {"name": "field", "value": "sales"},
+                    ],
+                },
+            ],
+            "task_links": [{"source": "load_csv", "target": "aggregate_sum"}],
+        }
+
+        async def fake_plan(_req: str, strategy_hint: str | None = None, llm_client=None):
+            _ = (strategy_hint, llm_client)
+            return invalid_original
+
+        async def fake_repair(
+            _req: str,
+            workflow: dict[str, object],
+            verification_meta: dict[str, object],
+            llm_client=None,
+        ):
+            _ = (_req, workflow, verification_meta, llm_client)
+            return invalid_original
+
+        normalized, compiled = self.agent._prepare_workflow(valid_fallback_plan)
+        verification_meta = self.agent._verify_candidate_workflow(normalized, compiled, requirement)
+        verification_meta["verifier_enabled"] = True
+        fallback_candidate = self.agent._build_candidate_record(
+            normalized,
+            compiled,
+            requirement,
+            strategy_name="minimal",
+            strategy_hint="Prefer the minimal valid workflow with the fewest steps.",
+            sampling_temperature=0.0,
+            verification_meta=verification_meta,
+        )
+        fallback_candidate = self.agent._annotate_candidate_dependency_check(fallback_candidate)
+
+        fallback_state = {"called": 0}
+
+        async def fake_fallback_pool(_req: str, candidate_count: int):
+            _ = (_req, candidate_count)
+            fallback_state["called"] += 1
+            return [fallback_candidate]
+
+        self.agent._plan_with_client = fake_plan  # type: ignore[method-assign]
+        self.agent._repair_candidate_with_llm = fake_repair  # type: ignore[method-assign]
+        self.agent._generate_candidate_pool_without_original = fake_fallback_pool  # type: ignore[method-assign]
+        self.agent._get_candidate_llm = lambda _temp: object()  # type: ignore[method-assign]
+
+        state = await self.agent.plan_candidates_original_first_fallback(requirement, candidate_count=2)
+
+        self.assertEqual(fallback_state["called"], 1)
+        self.assertEqual(state["selection_route"], "fallback_verifier_pass")
+        self.assertEqual(state["selected"]["strategy_name"], "minimal")
+        self.assertTrue(state["selected"]["dependency_check"]["passed"])
+
+    async def test_original_dependency_filter_first_valid_returns_original_when_it_is_valid(self) -> None:
+        requirement = "Load not_exists.csv and sum the sales field."
+        valid_original = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+                "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                {
+                    "task": "aggregate_sum",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-0>"},
+                        {"name": "field", "value": "sales"},
+                    ],
+                },
+            ],
+            "task_links": [{"source": "load_csv", "target": "aggregate_sum"}],
+        }
+        valid_other = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+                "Step 2: Call filter_rows with arg1=<node-0>, field=region, op=eq, value=east.",
+                "Step 3: Call aggregate_sum with arg1=<node-1>, field=sales.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                {
+                    "task": "filter_rows",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-0>"},
+                        {"name": "field", "value": "region"},
+                        {"name": "op", "value": "eq"},
+                        {"name": "value", "value": "east"},
+                    ],
+                },
+                {
+                    "task": "aggregate_sum",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-1>"},
+                        {"name": "field", "value": "sales"},
+                    ],
+                },
+            ],
+            "task_links": [
+                {"source": "load_csv", "target": "filter_rows"},
+                {"source": "filter_rows", "target": "aggregate_sum"},
+            ],
+        }
+
+        async def fake_pool(_req: str, candidate_count: int):
+            _ = (_req, candidate_count)
+            return [
+                {"workflow": valid_original, "strategy_name": "original"},
+                {"workflow": valid_other, "strategy_name": "minimal"},
+            ]
+
+        self.agent.generate_candidate_pool = fake_pool  # type: ignore[method-assign]
+
+        state = await self.agent.plan_candidates_original_dependency_filter_first_valid(
+            requirement,
+            candidate_count=3,
+        )
+
+        self.assertEqual(state["selection_route"], "original_dependency_pass")
+        self.assertEqual(state["selected"]["strategy_name"], "original")
+        self.assertTrue(state["selected"]["dependency_check"]["passed"])
+
+    async def test_original_dependency_filter_first_valid_uses_first_later_valid_candidate(self) -> None:
+        requirement = "Load not_exists.csv and sum the sales field."
+        invalid_original = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+                "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                {
+                    "task": "aggregate_sum",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-0>"},
+                        {"name": "field", "value": "sales"},
+                    ],
+                },
+            ],
+            "task_links": [],
+        }
+        first_valid = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+                "Step 2: Call filter_rows with arg1=<node-0>, field=region, op=eq, value=east.",
+                "Step 3: Call aggregate_sum with arg1=<node-1>, field=sales.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                {
+                    "task": "filter_rows",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-0>"},
+                        {"name": "field", "value": "region"},
+                        {"name": "op", "value": "eq"},
+                        {"name": "value", "value": "east"},
+                    ],
+                },
+                {
+                    "task": "aggregate_sum",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-1>"},
+                        {"name": "field", "value": "sales"},
+                    ],
+                },
+            ],
+            "task_links": [
+                {"source": "load_csv", "target": "filter_rows"},
+                {"source": "filter_rows", "target": "aggregate_sum"},
+            ],
+        }
+        later_valid = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+                "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                {
+                    "task": "aggregate_sum",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-0>"},
+                        {"name": "field", "value": "sales"},
+                    ],
+                },
+            ],
+            "task_links": [{"source": "load_csv", "target": "aggregate_sum"}],
+        }
+
+        async def fake_pool(_req: str, candidate_count: int):
+            _ = (_req, candidate_count)
+            return [
+                {"workflow": invalid_original, "strategy_name": "original"},
+                {"workflow": first_valid, "strategy_name": "minimal"},
+                {"workflow": later_valid, "strategy_name": "explicit"},
+            ]
+
+        self.agent.generate_candidate_pool = fake_pool  # type: ignore[method-assign]
+
+        state = await self.agent.plan_candidates_original_dependency_filter_first_valid(
+            requirement,
+            candidate_count=3,
+        )
+
+        self.assertEqual(state["selection_route"], "first_dependency_valid_candidate")
+        self.assertEqual(state["selected"]["strategy_name"], "minimal")
+        self.assertTrue(state["selected"]["dependency_check"]["passed"])
+
+    async def test_original_dependency_filter_first_valid_raises_when_none_pass_dependency_check(self) -> None:
+        requirement = "Load not_exists.csv and sum the sales field."
+        invalid_original = {
+            "task_steps": [
+                "Step 1: Call load_csv with path=not_exists.csv.",
+                "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
+            ],
+            "task_nodes": [
+                {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                {
+                    "task": "aggregate_sum",
+                    "arguments": [
+                        {"name": "arg1", "value": "<node-0>"},
+                        {"name": "field", "value": "sales"},
+                    ],
+                },
+            ],
+            "task_links": [],
+        }
+
+        async def fake_pool(_req: str, candidate_count: int):
+            _ = (_req, candidate_count)
+            return [
+                {"workflow": invalid_original, "strategy_name": "original"},
+                {"workflow": invalid_original, "strategy_name": "minimal"},
+            ]
+
+        self.agent.generate_candidate_pool = fake_pool  # type: ignore[method-assign]
+
+        with self.assertRaisesRegex(ValueError, "no dependency-valid candidate generated"):
+            await self.agent.plan_candidates_original_dependency_filter_first_valid(
+                requirement,
+                candidate_count=3,
+            )
+
     async def test_select_best_candidate_prefers_shorter_plan(self) -> None:
         long_plan = {
             "task_steps": [
@@ -1900,6 +2280,575 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
 
         self.assertFalse(candidate["verification_meta"]["verifier_enabled"])
         self.assertFalse(candidate["repair_meta"]["attempted"])
+
+    def test_apply_edge_grounding_mode_rewires_to_nearest_valid_upstream(self) -> None:
+        self.agent.registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+        self.agent._edge_grounding_mode = "nearest_valid_upstream"
+
+        workflow = {
+            "task_steps": [
+                "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears.",
+                "Step 2: Call Text Summarizer with arg1=<node-0>.",
+                "Step 3: Call Keyword Extractor with arg1=<node-0>.",
+            ],
+            "task_nodes": [
+                {"task": "Text Simplifier", "arguments": ["Climate change and its impact on polar bears."]},
+                {"task": "Text Summarizer", "arguments": ["<node-0>"]},
+                {"task": "Keyword Extractor", "arguments": ["<node-0>"]},
+            ],
+            "task_links": [
+                {"source": "Text Simplifier", "target": "Text Summarizer"},
+                {"source": "Text Simplifier", "target": "Keyword Extractor"},
+            ],
+        }
+
+        grounded_workflow, grounding_meta = self.agent._apply_edge_grounding_mode(workflow)
+
+        self.assertEqual(grounded_workflow["task_nodes"][2]["arguments"], ["<node-1>"])
+        self.assertEqual(
+            grounded_workflow["task_links"],
+            [
+                {"source": "Text Simplifier", "target": "Text Summarizer"},
+                {"source": "Text Summarizer", "target": "Keyword Extractor"},
+            ],
+        )
+        self.assertTrue(grounding_meta["applied"])
+        self.assertEqual(grounding_meta["change_count"], 1)
+        self.assertEqual(grounding_meta["changes"][0]["target_index"], 2)
+        self.assertEqual(grounding_meta["changes"][0]["from"], 0)
+        self.assertEqual(grounding_meta["changes"][0]["to"], 1)
+
+    def test_apply_edge_grounding_mode_skips_ambiguous_same_type_inputs(self) -> None:
+        self.agent.registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+        self.agent._edge_grounding_mode = "nearest_valid_upstream"
+
+        workflow = {
+            "task_steps": [
+                "Step 1: Call Text-to-Image with arg1=aurora over snowy mountains.",
+                "Step 2: Call Image Colorizer with arg1=<node-0>.",
+                "Step 3: Call Image Stitcher with arg1=<node-0>, arg2=<node-1>.",
+            ],
+            "task_nodes": [
+                {"task": "Text-to-Image", "arguments": ["aurora over snowy mountains."]},
+                {"task": "Image Colorizer", "arguments": ["<node-0>"]},
+                {"task": "Image Stitcher", "arguments": ["<node-0>", "<node-1>"]},
+            ],
+            "task_links": [
+                {"source": "Text-to-Image", "target": "Image Colorizer"},
+                {"source": "Text-to-Image", "target": "Image Stitcher"},
+                {"source": "Image Colorizer", "target": "Image Stitcher"},
+            ],
+        }
+
+        grounded_workflow, grounding_meta = self.agent._apply_edge_grounding_mode(workflow)
+
+        self.assertEqual(grounded_workflow["task_nodes"][2]["arguments"], ["<node-0>", "<node-1>"])
+        self.assertFalse(grounding_meta["applied"])
+        self.assertEqual(grounding_meta["change_count"], 0)
+
+    def test_apply_edge_grounding_mode_semantic_scoring_prefers_memory_supported_edge(self) -> None:
+        self.agent.registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+        self.agent._edge_grounding_mode = "semantic_edge_scoring"
+        memory = WorkflowMemoryIndex(
+            motifs=[
+                WorkflowMemoryMotif(
+                    motif_id="Text Simplifier -> Text Summarizer -> Keyword Extractor",
+                    tasks=("Text Simplifier", "Text Summarizer", "Keyword Extractor"),
+                    links=(
+                        ("Text Simplifier", "Text Summarizer"),
+                        ("Text Summarizer", "Keyword Extractor"),
+                    ),
+                    action_tags=("simplify", "summarize", "keywords"),
+                    support=12,
+                ),
+                WorkflowMemoryMotif(
+                    motif_id="Text Summarizer -> Text Sentiment Analysis",
+                    tasks=("Text Summarizer", "Text Sentiment Analysis"),
+                    links=(("Text Summarizer", "Text Sentiment Analysis"),),
+                    action_tags=("summarize", "sentiment"),
+                    support=8,
+                ),
+            ],
+            transition_counts={
+                ("Text Simplifier", "Text Summarizer"): 12,
+                ("Text Summarizer", "Keyword Extractor"): 12,
+                ("Text Summarizer", "Text Sentiment Analysis"): 8,
+            },
+            start_counts={"Text Simplifier": 10},
+            end_counts={"Keyword Extractor": 12},
+        )
+        self._attach_test_workflow_memory(memory)
+
+        workflow = {
+            "task_steps": [
+                "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears.",
+                "Step 2: Call Text Summarizer with arg1=<node-0>.",
+                "Step 3: Call Text Sentiment Analysis with arg1=<node-1>.",
+                "Step 4: Call Keyword Extractor with arg1=<node-0>.",
+            ],
+            "task_nodes": [
+                {"task": "Text Simplifier", "arguments": ["Climate change and its impact on polar bears."]},
+                {"task": "Text Summarizer", "arguments": ["<node-0>"]},
+                {"task": "Text Sentiment Analysis", "arguments": ["<node-1>"]},
+                {"task": "Keyword Extractor", "arguments": ["<node-0>"]},
+            ],
+            "task_links": [
+                {"source": "Text Simplifier", "target": "Text Summarizer"},
+                {"source": "Text Summarizer", "target": "Text Sentiment Analysis"},
+                {"source": "Text Simplifier", "target": "Keyword Extractor"},
+            ],
+        }
+        requirement = "Simplify the text, summarize it, analyze the sentiment, and extract important keywords."
+
+        grounded_workflow, grounding_meta = self.agent._apply_edge_grounding_mode(
+            workflow,
+            user_requirement=requirement,
+        )
+
+        self.assertEqual(grounded_workflow["task_nodes"][3]["arguments"], ["<node-1>"])
+        self.assertTrue(grounding_meta["applied"])
+        self.assertEqual(grounding_meta["changes"][0]["strategy"], "semantic_edge_scoring")
+        self.assertGreater(
+            grounding_meta["changes"][0]["score_components"]["memory_transition_score"],
+            0.0,
+        )
+
+    def test_apply_edge_grounding_mode_semantic_scoring_keeps_distinct_same_type_inputs(self) -> None:
+        self.agent.registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+        self.agent._edge_grounding_mode = "semantic_edge_scoring"
+        memory = WorkflowMemoryIndex(
+            motifs=[
+                WorkflowMemoryMotif(
+                    motif_id="Image Stitcher -> Image Colorizer -> Image Search (by Image) -> Image-to-Video",
+                    tasks=("Image Stitcher", "Image Colorizer", "Image Search (by Image)", "Image-to-Video"),
+                    links=(
+                        ("Image Stitcher", "Image Colorizer"),
+                        ("Image Colorizer", "Image Search (by Image)"),
+                        ("Image Colorizer", "Image-to-Video"),
+                        ("Image Search (by Image)", "Image-to-Video"),
+                    ),
+                    action_tags=("image", "video"),
+                    support=10,
+                ),
+            ],
+            transition_counts={
+                ("Image Stitcher", "Image Colorizer"): 10,
+                ("Image Colorizer", "Image Search (by Image)"): 10,
+                ("Image Colorizer", "Image-to-Video"): 10,
+                ("Image Search (by Image)", "Image-to-Video"): 8,
+            },
+            start_counts={"Image Stitcher": 10},
+            end_counts={"Image-to-Video": 10},
+        )
+        self._attach_test_workflow_memory(memory)
+
+        workflow = {
+            "task_steps": [
+                "Step 1: Call Image Stitcher with arg1=example1.jpg, arg2=example2.jpg.",
+                "Step 2: Call Image Colorizer with arg1=<node-0>.",
+                "Step 3: Call Image Search (by Image) with arg1=<node-1>.",
+                "Step 4: Call Image-to-Video with arg1=<node-0>, arg2=<node-2>.",
+            ],
+            "task_nodes": [
+                {"task": "Image Stitcher", "arguments": ["example1.jpg", "example2.jpg"]},
+                {"task": "Image Colorizer", "arguments": ["<node-0>"]},
+                {"task": "Image Search (by Image)", "arguments": ["<node-1>"]},
+                {"task": "Image-to-Video", "arguments": ["<node-0>", "<node-2>"]},
+            ],
+            "task_links": [
+                {"source": "Image Stitcher", "target": "Image Colorizer"},
+                {"source": "Image Colorizer", "target": "Image Search (by Image)"},
+                {"source": "Image Stitcher", "target": "Image-to-Video"},
+                {"source": "Image Search (by Image)", "target": "Image-to-Video"},
+            ],
+        }
+        requirement = "Create a slideshow video from the stitched panorama and a related similar-image result."
+
+        grounded_workflow, grounding_meta = self.agent._apply_edge_grounding_mode(
+            workflow,
+            user_requirement=requirement,
+        )
+
+        self.assertEqual(grounded_workflow["task_nodes"][3]["arguments"], ["<node-1>", "<node-2>"])
+        self.assertTrue(grounding_meta["applied"])
+        self.assertEqual(grounding_meta["change_count"], 1)
+        self.assertEqual(grounding_meta["changes"][0]["arg_name"], "arg1")
+
+    def test_semantic_edge_grounding_profiles_shift_nearest_vs_semantic_preference(self) -> None:
+        self.agent.registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+
+        def _workflow() -> dict:
+            return {
+                "task_steps": [
+                    "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears.",
+                    "Step 2: Call Text Summarizer with arg1=<node-0>.",
+                    "Step 3: Call Keyword Extractor with arg1=<node-0>.",
+                ],
+                "task_nodes": [
+                    {"task": "Text Simplifier", "arguments": ["Climate change and its impact on polar bears."]},
+                    {"task": "Text Summarizer", "arguments": ["<node-0>"]},
+                    {"task": "Keyword Extractor", "arguments": ["<node-0>"]},
+                ],
+                "task_links": [
+                    {"source": "Text Simplifier", "target": "Text Summarizer"},
+                    {"source": "Text Simplifier", "target": "Keyword Extractor"},
+                ],
+            }
+
+        semantic_by_source = {
+            "Text Simplifier": 1.0,
+            "Text Summarizer": 0.0,
+        }
+        nearest_by_source_idx = {
+            0: 0.5,
+            1: 1.0,
+        }
+
+        with patch.object(
+            self.agent,
+            "_memory_transition_score_for_edge",
+            return_value=0.0,
+        ), patch.object(
+            self.agent,
+            "_modality_match_score_for_edge",
+            return_value=0.0,
+        ), patch.object(
+            self.agent,
+            "_action_dependency_score_for_edge",
+            side_effect=lambda source_skill_name, _target_skill_name, _user_requirement: semantic_by_source.get(
+                source_skill_name,
+                0.0,
+            ),
+        ), patch.object(
+            self.agent,
+            "_nearest_grounding_bonus",
+            side_effect=lambda source_idx, _target_idx: nearest_by_source_idx.get(source_idx, 0.0),
+        ):
+            self.agent._edge_grounding_mode = "semantic_edge_scoring_h2a"
+            grounded_h2a, grounding_meta_h2a = self.agent._apply_edge_grounding_mode(
+                _workflow(),
+                user_requirement="Summarize the text and extract keywords.",
+            )
+            self.assertEqual(grounded_h2a["task_nodes"][2]["arguments"], ["<node-1>"])
+            self.assertTrue(grounding_meta_h2a["applied"])
+            self.assertEqual(grounding_meta_h2a["changes"][0]["strategy"], "semantic_edge_scoring_h2a")
+            self.assertEqual(grounding_meta_h2a["score_weights"]["nearest_bonus"], 2.5)
+
+            self.agent._edge_grounding_mode = "semantic_edge_scoring_h2b"
+            grounded_h2b, grounding_meta_h2b = self.agent._apply_edge_grounding_mode(
+                _workflow(),
+                user_requirement="Summarize the text and extract keywords.",
+            )
+            self.assertEqual(grounded_h2b["task_nodes"][2]["arguments"], ["<node-0>"])
+            self.assertFalse(grounding_meta_h2b["applied"])
+            self.assertEqual(grounding_meta_h2b["score_weights"]["action_dependency_score"], 1.5)
+
+    def test_detect_workflow_structure_distinguishes_single_chain_and_dag(self) -> None:
+        self.agent.registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+
+        single = {
+            "task_steps": [
+                "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears.",
+            ],
+            "task_nodes": [
+                {"task": "Text Simplifier", "arguments": ["Climate change and its impact on polar bears."]},
+            ],
+            "task_links": [],
+        }
+        chain = {
+            "task_steps": [
+                "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears.",
+                "Step 2: Call Text Summarizer with arg1=<node-0>.",
+                "Step 3: Call Keyword Extractor with arg1=<node-1>.",
+            ],
+            "task_nodes": [
+                {"task": "Text Simplifier", "arguments": ["Climate change and its impact on polar bears."]},
+                {"task": "Text Summarizer", "arguments": ["<node-0>"]},
+                {"task": "Keyword Extractor", "arguments": ["<node-1>"]},
+            ],
+            "task_links": [
+                {"source": "Text Simplifier", "target": "Text Summarizer"},
+                {"source": "Text Summarizer", "target": "Keyword Extractor"},
+            ],
+        }
+        dag = {
+            "task_steps": [
+                "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears.",
+                "Step 2: Call Text Summarizer with arg1=<node-0>.",
+                "Step 3: Call Text Sentiment Analysis with arg1=<node-1>.",
+                "Step 4: Call Keyword Extractor with arg1=<node-0>.",
+            ],
+            "task_nodes": [
+                {"task": "Text Simplifier", "arguments": ["Climate change and its impact on polar bears."]},
+                {"task": "Text Summarizer", "arguments": ["<node-0>"]},
+                {"task": "Text Sentiment Analysis", "arguments": ["<node-1>"]},
+                {"task": "Keyword Extractor", "arguments": ["<node-0>"]},
+            ],
+            "task_links": [
+                {"source": "Text Simplifier", "target": "Text Summarizer"},
+                {"source": "Text Summarizer", "target": "Text Sentiment Analysis"},
+                {"source": "Text Simplifier", "target": "Keyword Extractor"},
+            ],
+        }
+
+        self.assertEqual(self.agent._detect_workflow_structure(single), "single")
+        self.assertEqual(self.agent._detect_workflow_structure(chain), "chain")
+        self.assertEqual(self.agent._detect_workflow_structure(dag), "dag")
+
+    async def test_structure_aware_chain_uses_first_dependency_valid_candidate_without_grounding(self) -> None:
+        requirement = "Load not_exists.csv and sum the sales field."
+        self.agent._edge_grounding_mode = "semantic_edge_scoring"
+
+        invalid_original = {
+            "workflow": {
+                "task_steps": [
+                    "Step 1: Call load_csv with path=not_exists.csv.",
+                    "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
+                ],
+                "task_nodes": [
+                    {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                    {
+                        "task": "aggregate_sum",
+                        "arguments": [
+                            {"name": "arg1", "value": "<node-0>"},
+                            {"name": "field", "value": "sales"},
+                        ],
+                    },
+                ],
+                "task_links": [],
+            },
+            "strategy_name": "original",
+        }
+        valid_fallback = {
+            "workflow": {
+                "task_steps": [
+                    "Step 1: Call load_csv with path=not_exists.csv.",
+                    "Step 2: Call aggregate_sum with arg1=<node-0>, field=sales.",
+                ],
+                "task_nodes": [
+                    {"task": "load_csv", "arguments": [{"name": "path", "value": "not_exists.csv"}]},
+                    {
+                        "task": "aggregate_sum",
+                        "arguments": [
+                            {"name": "arg1", "value": "<node-0>"},
+                            {"name": "field", "value": "sales"},
+                        ],
+                    },
+                ],
+                "task_links": [{"source": "load_csv", "target": "aggregate_sum"}],
+            },
+            "strategy_name": "minimal",
+        }
+
+        async def fake_pool(_req: str, candidate_count: int):
+            _ = (_req, candidate_count)
+            self.assertEqual(self.agent._edge_grounding_mode, "none")
+            return [invalid_original, valid_fallback]
+
+        self.agent.generate_candidate_pool = fake_pool  # type: ignore[method-assign]
+
+        state = await self.agent.plan_candidates_structure_aware(requirement, candidate_count=2)
+
+        self.assertEqual(state["selection_route"], "structure_aware_chain_first_dependency_valid_candidate")
+        self.assertEqual(state["selected"]["strategy_name"], "minimal")
+        self.assertTrue(state["selected"]["dependency_check"]["passed"])
+        self.assertEqual(state["structure_aware_meta"]["detected_structure"], "chain")
+        self.assertFalse(state["structure_aware_meta"]["grounding_applied"])
+        self.assertTrue(state["structure_aware_meta"]["fallback_used"])
+
+    async def test_structure_aware_dag_applies_semantic_grounding_and_logs_links(self) -> None:
+        self.agent.registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+        self.agent._edge_grounding_mode = "semantic_edge_scoring"
+        memory = WorkflowMemoryIndex(
+            motifs=[
+                WorkflowMemoryMotif(
+                    motif_id="Text Simplifier -> Text Summarizer -> Keyword Extractor",
+                    tasks=("Text Simplifier", "Text Summarizer", "Keyword Extractor"),
+                    links=(
+                        ("Text Simplifier", "Text Summarizer"),
+                        ("Text Summarizer", "Keyword Extractor"),
+                    ),
+                    action_tags=("simplify", "summarize", "keywords"),
+                    support=12,
+                ),
+            ],
+            transition_counts={
+                ("Text Simplifier", "Text Summarizer"): 12,
+                ("Text Summarizer", "Keyword Extractor"): 12,
+            },
+            start_counts={"Text Simplifier": 12},
+            end_counts={"Keyword Extractor": 12},
+        )
+        self._attach_test_workflow_memory(memory)
+
+        original_workflow = {
+            "task_steps": [
+                "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears.",
+                "Step 2: Call Text Summarizer with arg1=<node-0>.",
+                "Step 3: Call Text Sentiment Analysis with arg1=<node-1>.",
+                "Step 4: Call Keyword Extractor with arg1=<node-0>.",
+            ],
+            "task_nodes": [
+                {"task": "Text Simplifier", "arguments": ["Climate change and its impact on polar bears."]},
+                {"task": "Text Summarizer", "arguments": ["<node-0>"]},
+                {"task": "Text Sentiment Analysis", "arguments": ["<node-1>"]},
+                {"task": "Keyword Extractor", "arguments": ["<node-0>"]},
+            ],
+            "task_links": [
+                {"source": "Text Simplifier", "target": "Text Summarizer"},
+                {"source": "Text Summarizer", "target": "Text Sentiment Analysis"},
+                {"source": "Text Simplifier", "target": "Keyword Extractor"},
+            ],
+        }
+
+        async def fake_pool(_req: str, candidate_count: int):
+            _ = (_req, candidate_count)
+            self.assertEqual(self.agent._edge_grounding_mode, "none")
+            return [
+                {
+                    "workflow": original_workflow,
+                    "strategy_name": "original",
+                    "strategy_hint": "",
+                    "sampling_temperature": 0.0,
+                }
+            ]
+
+        self.agent.generate_candidate_pool = fake_pool  # type: ignore[method-assign]
+
+        state = await self.agent.plan_candidates_structure_aware(
+            "Simplify the text, summarize it, analyze the sentiment, and extract important keywords.",
+            candidate_count=2,
+        )
+
+        self.assertEqual(state["selection_route"], "structure_aware_dag_semantic_grounding")
+        self.assertEqual(state["selected"]["workflow"]["task_nodes"][3]["arguments"], ["<node-1>"])
+        self.assertEqual(state["structure_aware_meta"]["detected_structure"], "dag")
+        self.assertTrue(state["structure_aware_meta"]["grounding_applied"])
+        self.assertFalse(state["structure_aware_meta"]["fallback_used"])
+        self.assertEqual(
+            state["structure_aware_meta"]["original_links"],
+            [
+                {"source": "Text Simplifier", "target": "Text Summarizer"},
+                {"source": "Text Summarizer", "target": "Text Sentiment Analysis"},
+                {"source": "Text Simplifier", "target": "Keyword Extractor"},
+            ],
+        )
+        self.assertEqual(
+            state["structure_aware_meta"]["grounded_links"],
+            [
+                {"source": "Text Simplifier", "target": "Text Summarizer"},
+                {"source": "Text Summarizer", "target": "Text Sentiment Analysis"},
+                {"source": "Text Summarizer", "target": "Keyword Extractor"},
+            ],
+        )
+
+    async def test_structure_aware_dag_falls_back_to_original_when_grounded_workflow_is_invalid(self) -> None:
+        self.agent.registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+        self.agent._edge_grounding_mode = "semantic_edge_scoring"
+
+        original_workflow = {
+            "task_steps": [
+                "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears.",
+                "Step 2: Call Text Summarizer with arg1=<node-0>.",
+                "Step 3: Call Text Sentiment Analysis with arg1=<node-1>.",
+                "Step 4: Call Keyword Extractor with arg1=<node-0>.",
+            ],
+            "task_nodes": [
+                {"task": "Text Simplifier", "arguments": ["Climate change and its impact on polar bears."]},
+                {"task": "Text Summarizer", "arguments": ["<node-0>"]},
+                {"task": "Text Sentiment Analysis", "arguments": ["<node-1>"]},
+                {"task": "Keyword Extractor", "arguments": ["<node-0>"]},
+            ],
+            "task_links": [
+                {"source": "Text Simplifier", "target": "Text Summarizer"},
+                {"source": "Text Summarizer", "target": "Text Sentiment Analysis"},
+                {"source": "Text Simplifier", "target": "Keyword Extractor"},
+            ],
+        }
+        invalid_grounded = {
+            "task_steps": list(original_workflow["task_steps"]),
+            "task_nodes": [
+                {"task": "Text Simplifier", "arguments": ["Climate change and its impact on polar bears."]},
+                {"task": "Text Summarizer", "arguments": ["<node-0>"]},
+                {"task": "Text Sentiment Analysis", "arguments": ["<node-1>"]},
+                {"task": "Keyword Extractor", "arguments": ["<node-99>"]},
+            ],
+            "task_links": [
+                {"source": "Text Simplifier", "target": "Text Summarizer"},
+                {"source": "Text Summarizer", "target": "Text Sentiment Analysis"},
+                {"source": "Text Summarizer", "target": "Keyword Extractor"},
+            ],
+        }
+
+        async def fake_pool(_req: str, candidate_count: int):
+            _ = (_req, candidate_count)
+            return [
+                {
+                    "workflow": original_workflow,
+                    "strategy_name": "original",
+                    "strategy_hint": "",
+                    "sampling_temperature": 0.0,
+                }
+            ]
+
+        def fake_grounding(workflow: dict, *, user_requirement: str = "", mode: str | None = None):
+            _ = (workflow, user_requirement, mode)
+            return invalid_grounded, {
+                "mode": "semantic_edge_scoring",
+                "applied": True,
+                "change_count": 1,
+                "changes": [{"target_index": 3, "arg_name": "arg1", "from": 0, "to": 1}],
+            }
+
+        self.agent.generate_candidate_pool = fake_pool  # type: ignore[method-assign]
+        self.agent._apply_specific_edge_grounding_mode = fake_grounding  # type: ignore[method-assign]
+
+        state = await self.agent.plan_candidates_structure_aware(
+            "Simplify the text, summarize it, analyze the sentiment, and extract important keywords.",
+            candidate_count=2,
+        )
+
+        self.assertEqual(state["selection_route"], "structure_aware_dag_grounding_fallback")
+        self.assertEqual(state["selected"]["workflow"], original_workflow)
+        self.assertTrue(state["structure_aware_meta"]["fallback_used"])
+        self.assertFalse(state["structure_aware_meta"]["grounding_applied"])
+        self.assertIn("grounding_error", state["structure_aware_meta"])
+
+    async def test_finalize_candidate_workflow_records_edge_grounding_meta(self) -> None:
+        self.agent.registry = SkillRegistry(MULTIMEDIA_SKILLS_ROOT)
+        self.agent._edge_grounding_mode = "nearest_valid_upstream"
+        self.agent._enable_candidate_verifier = False
+        self.agent._enable_candidate_repair = False
+
+        workflow = {
+            "task_steps": [
+                "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears.",
+                "Step 2: Call Text Summarizer with arg1=<node-0>.",
+                "Step 3: Call Keyword Extractor with arg1=<node-0>.",
+            ],
+            "task_nodes": [
+                {"task": "Text Simplifier", "arguments": ["Climate change and its impact on polar bears."]},
+                {"task": "Text Summarizer", "arguments": ["<node-0>"]},
+                {"task": "Keyword Extractor", "arguments": ["<node-0>"]},
+            ],
+            "task_links": [
+                {"source": "Text Simplifier", "target": "Text Summarizer"},
+                {"source": "Text Simplifier", "target": "Keyword Extractor"},
+            ],
+        }
+
+        candidate = await self.agent._finalize_candidate_workflow(
+            workflow,
+            user_requirement="Summarize the text and extract keywords.",
+            strategy_name="original",
+            strategy_hint="",
+            sampling_temperature=0.0,
+        )
+
+        self.assertEqual(candidate["workflow"]["task_nodes"][2]["arguments"], ["<node-1>"])
+        self.assertTrue(candidate["edge_grounding_meta"]["applied"])
+        self.assertEqual(candidate["edge_grounding_meta"]["change_count"], 1)
+        self.assertEqual(candidate["edge_grounding_meta"]["changes"][0]["to"], 1)
 
 
 class TestSafeJson(unittest.TestCase):

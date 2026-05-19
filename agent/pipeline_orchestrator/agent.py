@@ -368,9 +368,41 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         candidate_selection_mode: str = "rerank",
         include_original_candidate: bool = False,
         fixed_candidate_temperature: Optional[float] = None,
+        edge_grounding_mode: str = "none",
     ):
-        if candidate_selection_mode not in {"rerank", "first"}:
-            raise ValueError("candidate_selection_mode must be 'rerank' or 'first'")
+        if candidate_selection_mode not in {
+            "rerank",
+            "first",
+            "original_first_fallback",
+            "original_dependency_filter_first_valid",
+            "structure_aware",
+        }:
+            raise ValueError(
+                "candidate_selection_mode must be 'rerank', 'first', "
+                "'original_first_fallback', 'original_dependency_filter_first_valid' "
+                "or 'structure_aware'"
+            )
+        if edge_grounding_mode not in {
+            "none",
+            "nearest_valid_upstream",
+            "nearest_valid",
+            "nearest",
+            "semantic_edge_scoring",
+            "semantic",
+            "semantic_edge_scorer",
+            "h2",
+            "semantic_edge_scoring_h2a",
+            "semantic_nearest_priority",
+            "h2a",
+            "semantic_edge_scoring_h2b",
+            "semantic_semantic_priority",
+            "h2b",
+        }:
+            raise ValueError(
+                "edge_grounding_mode must be one of: "
+                "'none', 'nearest_valid_upstream', 'semantic_edge_scoring', "
+                "'semantic_edge_scoring_h2a', 'semantic_edge_scoring_h2b'"
+            )
         self.llm_config = self._resolve_llm_runtime_config(
             model_name=model_name,
             provider=provider,
@@ -388,6 +420,7 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         self._fixed_candidate_temperature = (
             None if fixed_candidate_temperature is None else float(fixed_candidate_temperature)
         )
+        self._edge_grounding_mode = str(edge_grounding_mode)
 
         default_root = DEFAULT_SKILLS_ROOT
         self.registry = SkillRegistry(skills_root or default_root)
@@ -399,6 +432,7 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         self._workflow_memory: Optional[WorkflowMemoryIndex] = None
         self._workflow_retriever: Optional[WorkflowMemoryRetriever] = None
         self._workflow_retrieval_cache: Dict[Tuple[str, Tuple[str, ...]], Dict[str, Any]] = {}
+        self._edge_grounding_retrieval_cache: Dict[Tuple[str, Tuple[str, ...]], Dict[str, Any]] = {}
         self._load_tool_graph()
         self._load_workflow_memory(workflow_memory_path)
         self._deep_agent_import_error: Optional[str] = None
@@ -926,15 +960,41 @@ Execution JSON:
 
         if planning_mode == "multi":
             selection_mode = getattr(self, "_candidate_selection_mode", "rerank")
-            if selection_mode == "first":
+            if selection_mode == "original_dependency_filter_first_valid":
+                selection_state = await self.plan_candidates_original_dependency_filter_first_valid(
+                    user_requirement,
+                    candidate_count=candidate_count,
+                )
+                candidates = selection_state["candidates"]
+                selected = selection_state["selected"]
+                selection_route = str(selection_state.get("selection_route", "first_dependency_valid_candidate"))
+            elif selection_mode == "original_first_fallback":
+                selection_state = await self.plan_candidates_original_first_fallback(
+                    user_requirement,
+                    candidate_count=candidate_count,
+                )
+                candidates = selection_state["candidates"]
+                selected = selection_state["selected"]
+                selection_route = str(selection_state.get("selection_route", "fallback"))
+            elif selection_mode == "structure_aware":
+                selection_state = await self.plan_candidates_structure_aware(
+                    user_requirement,
+                    candidate_count=candidate_count,
+                )
+                candidates = selection_state["candidates"]
+                selected = selection_state["selected"]
+                selection_route = str(selection_state.get("selection_route", "structure_aware"))
+            elif selection_mode == "first":
                 candidates = await self.generate_candidate_pool(
                     user_requirement,
                     candidate_count=candidate_count,
                 )
                 selected = candidates[0]
+                selection_route = "first"
             else:
                 candidates = await self.plan_candidates(user_requirement, candidate_count=candidate_count)
                 selected = self._select_best_candidate(candidates)
+                selection_route = "rerank"
             print("\n=== selected Plan ===")
             print(_safe_json_dumps(selected, ensure_ascii=True))
 
@@ -966,6 +1026,8 @@ Execution JSON:
                     "selected_plan_id": selected["id"],
                     "selected_plan": selected["workflow"],
                     "workflow": selected["workflow"],
+                    "selection_route": selection_route,
+                    "structure_aware_meta": selection_state.get("structure_aware_meta") if selection_mode == "structure_aware" else None,
                     "executions": executions,
                     "summary": summary,
                 }
@@ -988,6 +1050,8 @@ Execution JSON:
                 "selected_plan_id": selected["id"],
                 "selected_plan": selected["workflow"],
                 "workflow": selected["workflow"],
+                "selection_route": selection_route,
+                "structure_aware_meta": selection_state.get("structure_aware_meta") if selection_mode == "structure_aware" else None,
                 "execution": execution,
                 "summary": summary,
             }
