@@ -6,6 +6,15 @@ from .models import SkillMetadata
 
 
 class WorkflowMixin:
+    @staticmethod
+    def _parameter_normalization_enabled_from_value(value: Any) -> bool:
+        return bool(value)
+
+    def _parameter_normalization_enabled(self) -> bool:
+        return self._parameter_normalization_enabled_from_value(
+            getattr(self, "_enable_parameter_normalization", False)
+        )
+
     def _validate_step_args(self, skill: SkillMetadata, args: Dict[str, Any]) -> List[str]:
         missing = []
         for key in skill.input_schema.keys():
@@ -126,6 +135,58 @@ class WorkflowMixin:
     def _normalize_link_task_name(name: Any) -> str:
         return str(name).strip()
 
+    @staticmethod
+    def _looks_like_file_name_or_path(value: str) -> bool:
+        text = str(value or "").strip()
+        if not text:
+            return False
+        if "/" in text or "\\" in text:
+            return True
+        return bool(
+            re.search(
+                r"\.(?:mp4|avi|mov|mkv|wav|mp3|flac|ogg|jpg|jpeg|png|gif|bmp|txt|csv|json|md|pdf)\b",
+                text,
+                flags=re.IGNORECASE,
+            )
+        )
+
+    def _normalize_parameter_text(self, value: Any) -> Any:
+        if not self._parameter_normalization_enabled():
+            return value
+        if not isinstance(value, str):
+            return value
+
+        text = value.strip()
+        if not text:
+            return value
+        if self._parse_workflow_node_ref(text) is not None:
+            return value
+        if re.search(r"https?://|www\.", text, flags=re.IGNORECASE):
+            return value
+        if self._looks_like_file_name_or_path(text):
+            return value
+
+        normalized_space = " ".join(text.split())
+        normalized_lower = normalized_space.lower()
+        exact_map = {
+            "female voice": "female",
+            "male voice": "male",
+            "reverb and equalization": "reverb, equalization",
+            "reverb & equalization": "reverb, equalization",
+        }
+        if normalized_lower in exact_map:
+            return exact_map[normalized_lower]
+
+        speed_match = re.fullmatch(
+            r"(\d+(?:\.\d+)?)\s*x(?:\s+(?:speed|playback\s+speed))?",
+            normalized_lower,
+            flags=re.IGNORECASE,
+        )
+        if speed_match:
+            return f"{speed_match.group(1)}x"
+
+        return value
+
     def _build_expected_workflow_sources(
         self,
         task_nodes: List[Any],
@@ -209,22 +270,22 @@ class WorkflowMixin:
             for argument in raw_arguments:
                 if isinstance(argument, dict):
                     normalized_argument = dict(argument)
-                    normalized_argument["value"] = self._canonicalize_workflow_reference(
+                    normalized_value = self._canonicalize_workflow_reference(
                         argument.get("value"),
                         idx,
                         node_names,
                         expected_sources,
                     )
+                    normalized_argument["value"] = self._normalize_parameter_text(normalized_value)
                     normalized_arguments.append(normalized_argument)
                     continue
-                normalized_arguments.append(
-                    self._canonicalize_workflow_reference(
-                        argument,
-                        idx,
-                        node_names,
-                        expected_sources,
-                    )
+                normalized_value = self._canonicalize_workflow_reference(
+                    argument,
+                    idx,
+                    node_names,
+                    expected_sources,
                 )
+                normalized_arguments.append(self._normalize_parameter_text(normalized_value))
 
             normalized_node["arguments"] = normalized_arguments
             normalized_nodes.append(normalized_node)

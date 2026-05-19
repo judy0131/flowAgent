@@ -8,10 +8,49 @@ from .serialization import _safe_json_dumps
 
 
 class PlanningMixin:
+    def _strict_planning_prompt_enabled(self) -> bool:
+        return bool(getattr(self, "_enable_strict_planning_prompt", False))
+
+    def _action_checklist_enabled(self) -> bool:
+        return bool(getattr(self, "_enable_action_checklist", False))
+
+    def _strict_planning_prompt_block(self) -> str:
+        if not self._strict_planning_prompt_enabled():
+            return ""
+        return """
+Strict planning constraints:
+- Use the minimum number of tools.
+- Do not add tools not explicitly required by the user.
+- Do not omit any explicit user-required action.
+- Do not replace one tool with a combination of other tools.
+- When the user gives an exact file name or phrase, copy it exactly.
+- Use <node-i> only when the downstream tool must consume the upstream output.
+"""
+
+    def _action_checklist_prompt_block(self, required_actions: List[str]) -> str:
+        if not self._action_checklist_enabled():
+            return ""
+        required_lines = ""
+        if required_actions:
+            required_lines = "\nDetected explicit actions to cover internally:\n" + "\n".join(
+                f"- {self._action_prompt_text(action)}"
+                for action in required_actions
+            )
+        return f"""
+Action checklist:
+- First extract explicit user actions internally before selecting tools.
+- Then map each explicit action to exactly one required tool whenever the skill schema allows it.
+- Every extracted action must be covered by at least one tool.
+- No extra action is allowed.
+- Do not output the checklist itself; output only the workflow JSON.{required_lines}
+"""
+
     def _build_plan_prompt(self, user_requirement: str, strategy_hint: Optional[str] = None) -> str:
         strategy_line = f"\nPlanning strategy hint:\n{strategy_hint}\n" if strategy_hint else ""
         required_actions = self._match_requirement_actions(user_requirement)
         workflow_memory_block = self._format_workflow_memory_prompt_block(user_requirement)
+        strict_planning_block = self._strict_planning_prompt_block()
+        action_checklist_block = self._action_checklist_prompt_block(required_actions)
         coverage_checklist = ""
         if required_actions:
             coverage_lines = "\n".join(f"- {self._action_prompt_text(action)}" for action in required_actions)
@@ -140,6 +179,8 @@ Requirement decomposition rules:
 - If the request says to find or search for information about a topic, include a retrieval/search step unless the full source content is already explicitly provided in the request.
 - If the request provides a seed phrase such as a topic, title, theme, or starting point text, treat it as input to an upstream step like simplification or search, not as proof that the retrieval step can be skipped.
 - When the request asks for multiple outputs or multiple post-processing actions in sequence, ensure each required action is represented in task_nodes in order.
+{strict_planning_block}
+{action_checklist_block}
 
 
 Planning rules:

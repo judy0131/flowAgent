@@ -60,6 +60,9 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.agent._workflow_retrieval_cache = {}
         self.agent._edge_grounding_retrieval_cache = {}
         self.agent._edge_grounding_mode = "none"
+        self.agent._enable_strict_planning_prompt = False
+        self.agent._enable_action_checklist = False
+        self.agent._enable_parameter_normalization = False
 
     def _attach_test_workflow_memory(self, memory: WorkflowMemoryIndex) -> None:
         self.agent._workflow_memory = memory
@@ -2255,6 +2258,43 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(specs)
         self.assertEqual(specs[0]["name"], "original")
         self.assertEqual(specs[0]["hint"], "")
+
+    def test_build_plan_prompt_can_enable_strict_constraints_and_action_checklist(self) -> None:
+        self.agent._enable_strict_planning_prompt = True
+        self.agent._enable_action_checklist = True
+
+        prompt = self.agent._build_plan_prompt(
+            "Extract the audio, transcribe it, and create an image from the transcript."
+        )
+
+        self.assertIn("Use the minimum number of tools.", prompt)
+        self.assertIn("Do not add tools not explicitly required by the user.", prompt)
+        self.assertIn("First extract explicit user actions internally before selecting tools.", prompt)
+        self.assertIn("Every extracted action must be covered by at least one tool.", prompt)
+
+    def test_normalize_workflow_payload_can_apply_parameter_normalization(self) -> None:
+        self.agent._enable_parameter_normalization = True
+
+        workflow = {
+            "task_steps": [],
+            "task_nodes": [
+                {"task": "Video-to-Audio", "arguments": ["example.mp4"]},
+                {"task": "Voice Changer", "arguments": ["<node-0>", "female voice"]},
+                {"task": "Video Speed Changer", "arguments": ["example.mp4", "1.5x speed"]},
+                {"task": "Audio Effects", "arguments": ["<node-0>", "reverb and equalization"]},
+            ],
+            "task_links": [
+                {"source": "Video-to-Audio", "target": "Voice Changer"},
+                {"source": "Video-to-Audio", "target": "Audio Effects"},
+            ],
+        }
+
+        normalized = self.agent._normalize_workflow_payload(workflow)
+
+        self.assertEqual(normalized["task_nodes"][0]["arguments"][0], "example.mp4")
+        self.assertEqual(normalized["task_nodes"][1]["arguments"], ["<node-0>", "female"])
+        self.assertEqual(normalized["task_nodes"][2]["arguments"], ["example.mp4", "1.5x"])
+        self.assertEqual(normalized["task_nodes"][3]["arguments"], ["<node-0>", "reverb, equalization"])
 
     async def test_finalize_candidate_workflow_skips_verifier_and_repair_when_disabled(self) -> None:
         self.agent._enable_candidate_verifier = False

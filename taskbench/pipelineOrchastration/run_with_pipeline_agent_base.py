@@ -705,6 +705,9 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
         include_original_candidate=bool(getattr(args, "include_original_candidate", False)),
         fixed_candidate_temperature=getattr(args, "fixed_candidate_temperature", None),
         edge_grounding_mode=str(getattr(args, "edge_grounding_mode", "none")),
+        enable_strict_planning_prompt=bool(getattr(args, "enable_strict_planning_prompt", False)),
+        enable_action_checklist=bool(getattr(args, "enable_action_checklist", False)),
+        enable_parameter_normalization=bool(getattr(args, "enable_parameter_normalization", False)),
     )
     success = 0
     failed = 0
@@ -882,6 +885,45 @@ def build_parser() -> argparse.ArgumentParser:
             "h2b",
         ],
         help="Optional post-generation dependency grounding strategy applied before candidate scoring.",
+    )
+    parser.add_argument(
+        "--enable_strict_planning_prompt",
+        dest="enable_strict_planning_prompt",
+        action="store_true",
+        default=False,
+        help="Enable stricter planning prompt constraints for minimum-tool and no-extra-action behavior.",
+    )
+    parser.add_argument(
+        "--disable_strict_planning_prompt",
+        dest="enable_strict_planning_prompt",
+        action="store_false",
+        help="Disable stricter planning prompt constraints.",
+    )
+    parser.add_argument(
+        "--enable_action_checklist",
+        dest="enable_action_checklist",
+        action="store_true",
+        default=False,
+        help="Enable an internal explicit-action checklist in the planning prompt.",
+    )
+    parser.add_argument(
+        "--disable_action_checklist",
+        dest="enable_action_checklist",
+        action="store_false",
+        help="Disable the planning action checklist.",
+    )
+    parser.add_argument(
+        "--enable_parameter_normalization",
+        dest="enable_parameter_normalization",
+        action="store_true",
+        default=False,
+        help="Normalize short parameter values such as speed and voice variants before validation/scoring.",
+    )
+    parser.add_argument(
+        "--disable_parameter_normalization",
+        dest="enable_parameter_normalization",
+        action="store_false",
+        help="Disable parameter normalization.",
     )
     parser.add_argument("--dependency_type", type=str, default="auto", choices=["auto", "resource", "temporal"])
     parser.add_argument("--link_mode", type=str, default="chain_fallback", choices=["explicit_only", "chain_fallback"])

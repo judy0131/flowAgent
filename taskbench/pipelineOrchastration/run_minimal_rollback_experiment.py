@@ -182,6 +182,36 @@ def _default_group_specs() -> List[Dict[str, Any]]:
             "enable_semantic_edge_grounding": True,
             "edge_grounding_mode": "semantic_edge_scoring",
         },
+        {
+            "tag": "J",
+            "label": "strict_prompt_action_checklist_parameter_normalization",
+            "planning_mode": "multi",
+            "candidate_selection_mode": "first",
+            "enable_candidate_verifier": False,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "enable_semantic_edge_grounding": False,
+            "edge_grounding_mode": "none",
+            "enable_strict_planning_prompt": True,
+            "enable_action_checklist": True,
+            "enable_parameter_normalization": True,
+        },
+        {
+            "tag": "K",
+            "label": "multi_first_original_strict_prompt_action_checklist_parameter_normalization",
+            "planning_mode": "multi",
+            "candidate_selection_mode": "first",
+            "enable_candidate_verifier": False,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "enable_semantic_edge_grounding": False,
+            "edge_grounding_mode": "none",
+            "enable_strict_planning_prompt": True,
+            "enable_action_checklist": True,
+            "enable_parameter_normalization": True,
+        },
     ]
 
 
@@ -299,6 +329,9 @@ def _build_runner_args(
     args.include_original_candidate = bool(group_spec["include_original_candidate"])
     args.enable_semantic_edge_grounding = bool(group_spec.get("enable_semantic_edge_grounding", False))
     args.edge_grounding_mode = str(group_spec.get("edge_grounding_mode", "none"))
+    args.enable_strict_planning_prompt = bool(group_spec.get("enable_strict_planning_prompt", False))
+    args.enable_action_checklist = bool(group_spec.get("enable_action_checklist", False))
+    args.enable_parameter_normalization = bool(group_spec.get("enable_parameter_normalization", False))
 
     if args.planning_mode == "single":
         args.execution_mode = "best"
@@ -377,6 +410,9 @@ def _summarize_group_result(
             "include_original_candidate": group_spec["include_original_candidate"],
             "enable_semantic_edge_grounding": bool(group_spec.get("enable_semantic_edge_grounding", False)),
             "edge_grounding_mode": group_spec.get("edge_grounding_mode", "none"),
+            "enable_strict_planning_prompt": bool(group_spec.get("enable_strict_planning_prompt", False)),
+            "enable_action_checklist": bool(group_spec.get("enable_action_checklist", False)),
+            "enable_parameter_normalization": bool(group_spec.get("enable_parameter_normalization", False)),
         },
     }
 
@@ -491,7 +527,7 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
     selected_group_specs = _select_group_specs(
         _default_group_specs(),
         # getattr(args, "group_tags", None),
-        ["I"]
+        ["K"]
     )
 
     group_results: List[Dict[str, Any]] = []

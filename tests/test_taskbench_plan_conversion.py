@@ -268,6 +268,39 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
 
         self.assertEqual(args.edge_grounding_mode, "nearest_valid_upstream")
 
+    def test_build_runner_args_passes_through_strict_prompt_and_normalization_flags(self) -> None:
+        base_args = argparse.Namespace(
+            stop_on_error=False,
+            workflow_memory_path=None,
+            execution_mode="best",
+        )
+        group_spec = {
+            "planning_mode": "multi",
+            "candidate_selection_mode": "first",
+            "enable_candidate_verifier": False,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "edge_grounding_mode": "none",
+            "enable_strict_planning_prompt": True,
+            "enable_action_checklist": True,
+            "enable_parameter_normalization": True,
+        }
+
+        args = _build_runner_args(
+            runner_parser=argparse.ArgumentParser(),
+            base_args=base_args,
+            group_spec=group_spec,
+            prediction_dir="predictions",
+            case_ids_file=Path("case_ids.txt"),
+            candidate_count=3,
+            fixed_temperature=0.0,
+        )
+
+        self.assertTrue(args.enable_strict_planning_prompt)
+        self.assertTrue(args.enable_action_checklist)
+        self.assertTrue(args.enable_parameter_normalization)
+
     def test_semantic_edge_grounding_modes_request_memory_loading_without_generation_memory(self) -> None:
         for mode in [
             "semantic_edge_scoring",
@@ -310,6 +343,27 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
         self.assertEqual(tag_to_spec["I"]["candidate_selection_mode"], "structure_aware")
         self.assertTrue(tag_to_spec["I"]["enable_semantic_edge_grounding"])
         self.assertEqual(tag_to_spec["I"]["edge_grounding_mode"], "semantic_edge_scoring")
+
+    def test_default_group_specs_include_strict_prompt_group(self) -> None:
+        tag_to_spec = {item["tag"]: item for item in _default_group_specs()}
+
+        self.assertIn("J", tag_to_spec)
+        self.assertEqual(tag_to_spec["J"]["candidate_selection_mode"], "first")
+        self.assertTrue(tag_to_spec["J"]["include_original_candidate"])
+        self.assertTrue(tag_to_spec["J"]["enable_strict_planning_prompt"])
+        self.assertTrue(tag_to_spec["J"]["enable_action_checklist"])
+        self.assertTrue(tag_to_spec["J"]["enable_parameter_normalization"])
+
+    def test_default_group_specs_include_k_alias_for_b_plus_j_prompt_flags(self) -> None:
+        tag_to_spec = {item["tag"]: item for item in _default_group_specs()}
+
+        self.assertIn("K", tag_to_spec)
+        self.assertEqual(tag_to_spec["K"]["candidate_selection_mode"], "first")
+        self.assertTrue(tag_to_spec["K"]["include_original_candidate"])
+        self.assertTrue(tag_to_spec["K"]["enable_strict_planning_prompt"])
+        self.assertTrue(tag_to_spec["K"]["enable_action_checklist"])
+        self.assertTrue(tag_to_spec["K"]["enable_parameter_normalization"])
+        self.assertEqual(tag_to_spec["K"]["edge_grounding_mode"], "none")
 
     def test_select_group_specs_keeps_requested_order(self) -> None:
         specs = [

@@ -369,6 +369,9 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         include_original_candidate: bool = False,
         fixed_candidate_temperature: Optional[float] = None,
         edge_grounding_mode: str = "none",
+        enable_strict_planning_prompt: bool = False,
+        enable_action_checklist: bool = False,
+        enable_parameter_normalization: bool = False,
     ):
         if candidate_selection_mode not in {
             "rerank",
@@ -421,6 +424,9 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
             None if fixed_candidate_temperature is None else float(fixed_candidate_temperature)
         )
         self._edge_grounding_mode = str(edge_grounding_mode)
+        self._enable_strict_planning_prompt = bool(enable_strict_planning_prompt)
+        self._enable_action_checklist = bool(enable_action_checklist)
+        self._enable_parameter_normalization = bool(enable_parameter_normalization)
 
         default_root = DEFAULT_SKILLS_ROOT
         self.registry = SkillRegistry(skills_root or default_root)

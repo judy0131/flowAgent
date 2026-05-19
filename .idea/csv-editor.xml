@@ -59,6 +59,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260519_165123\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260519_195655\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
