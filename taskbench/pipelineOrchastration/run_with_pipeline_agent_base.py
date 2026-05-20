@@ -4,11 +4,17 @@ import json
 import os
 import sys
 import re
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 from dotenv import load_dotenv
+
+try:
+    from .export_three_tables import _materialize_semantic_graph
+except ImportError:
+    from export_three_tables import _materialize_semantic_graph  # type: ignore
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -564,8 +570,183 @@ def _load_tool_map_override(path: Optional[Path]) -> Dict[str, str]:
     return {str(k): str(v) for k, v in payload.items()}
 
 
+def _load_gold_rows(data_dir: Path) -> Dict[str, Dict[str, Any]]:
+    gold_path = data_dir / "data.json"
+    rows: Dict[str, Dict[str, Any]] = {}
+    with gold_path.open("r", encoding="utf-8") as f:
+        for line in f:
+            text = line.strip()
+            if not text:
+                continue
+            payload = json.loads(text)
+            sid = str(payload.get("id", "")).strip()
+            if sid:
+                rows[sid] = payload
+    return rows
+
+
 def _stringify_json_field(value: Any) -> str:
     return json.dumps(value, ensure_ascii=False)
+
+
+def _parse_maybe_json_list(value: Any) -> List[Any]:
+    if isinstance(value, list):
+        return value
+    if isinstance(value, str):
+        text = value.strip()
+        if not text:
+            return []
+        try:
+            parsed = json.loads(text)
+        except Exception:
+            return []
+        return parsed if isinstance(parsed, list) else []
+    return []
+
+
+def _multiset_f1(pred_items: List[str], gold_items: List[str]) -> Tuple[float, float, float]:
+    pred_counter = Counter(pred_items)
+    gold_counter = Counter(gold_items)
+    matches = sum(min(pred_counter[key], gold_counter[key]) for key in set(pred_counter) | set(gold_counter))
+    pred_total = sum(pred_counter.values())
+    gold_total = sum(gold_counter.values())
+
+    precision = matches / pred_total if pred_total else (1.0 if gold_total == 0 else 0.0)
+    recall = matches / gold_total if gold_total else (1.0 if pred_total == 0 else 0.0)
+    if precision + recall == 0.0:
+        return precision, recall, 0.0
+    return precision, recall, 2.0 * precision * recall / (precision + recall)
+
+
+def _normalize_case_graph_for_eval(record: Dict[str, Any]) -> Dict[str, Any]:
+    raw_task_nodes = record.get("task_nodes")
+    raw_task_links = record.get("task_links")
+    if raw_task_nodes is None:
+        raw_task_nodes = record.get("tool_nodes", [])
+    if raw_task_links is None:
+        raw_task_links = record.get("tool_links", [])
+
+    task_nodes = _parse_maybe_json_list(raw_task_nodes)
+    task_links = _parse_maybe_json_list(raw_task_links)
+    node_names, normalized_links, normalized_arguments = _materialize_semantic_graph(
+        task_nodes,
+        task_links,
+        step_ref_base="one",
+    )
+    flattened_arguments: List[str] = []
+    for idx, tokens in enumerate(normalized_arguments):
+        node_name = node_names[idx] if idx < len(node_names) else ""
+        for token in tokens:
+            flattened_arguments.append(f"{node_name}|{token}")
+    link_pairs = sorted((str(link.get("source", "")), str(link.get("target", ""))) for link in normalized_links)
+    return {
+        "node_names": node_names,
+        "link_pairs": link_pairs,
+        "link_pair_set": set(link_pairs),
+        "flattened_arguments": sorted(flattened_arguments),
+        "has_edges": bool(link_pairs),
+    }
+
+
+def _evaluate_candidate_result_for_dump(
+    candidate_result: Dict[str, Any],
+    gold_result: Dict[str, Any],
+) -> Dict[str, Any]:
+    pred_graph = _normalize_case_graph_for_eval(candidate_result)
+    gold_graph = _normalize_case_graph_for_eval(gold_result)
+
+    _, _, node_f1 = _multiset_f1(pred_graph["node_names"], gold_graph["node_names"])
+    _, _, arg_value_f1 = _multiset_f1(pred_graph["flattened_arguments"], gold_graph["flattened_arguments"])
+    if gold_graph["has_edges"]:
+        _, _, edge_f1 = _multiset_f1(list(pred_graph["link_pair_set"]), list(gold_graph["link_pair_set"]))
+    else:
+        edge_f1 = None
+
+    exact_match = (
+        pred_graph["node_names"] == gold_graph["node_names"]
+        and pred_graph["link_pairs"] == gold_graph["link_pairs"]
+        and pred_graph["flattened_arguments"] == gold_graph["flattened_arguments"]
+    )
+    edge_component = 1.0 if edge_f1 is None else edge_f1
+    quality_score = (
+        4.0 * float(exact_match)
+        + 2.0 * node_f1
+        + 2.0 * edge_component
+        + 1.0 * arg_value_f1
+    ) / 9.0
+    return {
+        "exact_match": exact_match,
+        "node_f1": node_f1,
+        "edge_f1": edge_f1,
+        "arg_value_f1": arg_value_f1,
+        "quality_score": quality_score,
+    }
+
+
+def _candidate_signature_from_result(taskbench_result: Dict[str, Any]) -> str:
+    task_nodes = taskbench_result.get("task_nodes", [])
+    if not isinstance(task_nodes, list):
+        task_nodes = []
+    task_links = taskbench_result.get("task_links", [])
+    if not isinstance(task_links, list):
+        task_links = []
+
+    normalized_nodes: List[Dict[str, Any]] = []
+    for node in task_nodes:
+        if not isinstance(node, dict):
+            continue
+        normalized_nodes.append(
+            {
+                "task": node.get("task"),
+                "arguments": list(node.get("arguments") or []),
+            }
+        )
+    normalized_links: List[Dict[str, Any]] = []
+    for link in task_links:
+        if not isinstance(link, dict):
+            continue
+        normalized_links.append(
+            {
+                "source": link.get("source"),
+                "target": link.get("target"),
+            }
+        )
+    normalized_links.sort(key=lambda item: (str(item.get("source", "")), str(item.get("target", ""))))
+    return json.dumps(
+        {
+            "task_nodes": normalized_nodes,
+            "task_links": normalized_links,
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+    )
+
+
+def _candidate_structure_signature_from_result(taskbench_result: Dict[str, Any]) -> str:
+    task_nodes = taskbench_result.get("task_nodes", [])
+    if not isinstance(task_nodes, list):
+        task_nodes = []
+
+    normalized_nodes: List[Dict[str, Any]] = []
+    for node in task_nodes:
+        if not isinstance(node, dict):
+            continue
+        upstream_inputs: Dict[str, int] = {}
+        raw_arguments = node.get("arguments", [])
+        if not isinstance(raw_arguments, list):
+            raw_arguments = []
+        for arg_idx, arg in enumerate(raw_arguments, start=1):
+            text = str(arg).strip()
+            match = re.fullmatch(r"<node-(\d+)>", text)
+            if match:
+                upstream_inputs[f"arg{arg_idx}"] = int(match.group(1))
+        normalized_nodes.append(
+            {
+                "task": node.get("task"),
+                "upstream_inputs": upstream_inputs,
+            }
+        )
+    return json.dumps(normalized_nodes, ensure_ascii=False, sort_keys=True)
 
 
 def _classify_case_failure(error: Exception) -> str:
@@ -611,6 +792,7 @@ def _build_candidate_dump_record(
     instruction: str,
     taskbench_result: Dict[str, Any],
     raw_result: Dict[str, Any],
+    gold_row: Optional[Dict[str, Any]],
     *,
     tool_names: List[str],
     dependency_type: str,
@@ -639,21 +821,50 @@ def _build_candidate_dump_record(
             tool_map_override=tool_map_override,
             link_mode=link_mode,
         )
+        offline_metrics = (
+            _evaluate_candidate_result_for_dump(candidate_result, gold_row)
+            if isinstance(gold_row, dict)
+            else {
+                "exact_match": None,
+                "node_f1": None,
+                "edge_f1": None,
+                "arg_value_f1": None,
+                "quality_score": None,
+            }
+        )
         candidate_row = {
             "id": item.get("id"),
+            "candidate_id": item.get("id"),
             "generation_index": item.get("generation_index"),
             "strategy_name": item.get("strategy_name"),
+            "family_name": item.get("family_name", item.get("strategy_name")),
+            "variant_name": item.get("variant_name", item.get("strategy_name")),
             "strategy_hint": item.get("strategy_hint"),
             "sampling_temperature": item.get("sampling_temperature"),
             "score": item.get("score"),
             "score_details": item.get("score_details"),
+            "validation_status": item.get("validation_status"),
             "selection_meta": item.get("selection_meta"),
             "verification_meta": item.get("verification_meta"),
             "dependency_check": item.get("dependency_check"),
+            "dependency_check_result": item.get("dependency_check_result", item.get("dependency_check")),
             "repair_meta": item.get("repair_meta"),
             "edge_grounding_meta": item.get("edge_grounding_meta"),
+            "workflow_signature": item.get("workflow_signature")
+            or item.get("signature")
+            or _candidate_signature_from_result(candidate_result),
+            "structure_signature": item.get("structure_signature")
+            or _candidate_structure_signature_from_result(candidate_result),
+            "signature": item.get("workflow_signature")
+            or item.get("signature")
+            or _candidate_signature_from_result(candidate_result),
             "workflow": workflow,
             "result": candidate_result,
+            "exact_match": offline_metrics.get("exact_match"),
+            "node_f1": offline_metrics.get("node_f1"),
+            "edge_f1": offline_metrics.get("edge_f1"),
+            "arg_value_f1": offline_metrics.get("arg_value_f1"),
+            "quality_score": offline_metrics.get("quality_score"),
         }
         if item.get("id") == selected_plan_id:
             try:
@@ -744,6 +955,7 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
 
     tool_names = _load_tool_names(data_dir)
     tool_map_override = _load_tool_map_override(tool_map_override_path)
+    gold_rows = _load_gold_rows(data_dir) if save_candidate_pool else {}
 
     print(f"[INFO] data_dir={data_dir}")
     print(f"[INFO] dependency_type={dependency_type}")
@@ -778,6 +990,11 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
         include_original_candidate=bool(getattr(args, "include_original_candidate", False)),
         fixed_candidate_temperature=getattr(args, "fixed_candidate_temperature", None),
         edge_grounding_mode=str(getattr(args, "edge_grounding_mode", "none")),
+        candidate_prompt_mode=str(getattr(args, "candidate_prompt_mode", "legacy")),
+        force_generate_all_candidate_families=bool(
+            getattr(args, "force_generate_all_candidate_families", False)
+        ),
+        disable_early_stop=bool(getattr(args, "disable_early_stop", False)),
         enable_strict_planning_prompt=bool(getattr(args, "enable_strict_planning_prompt", False)),
         enable_action_checklist=bool(getattr(args, "enable_action_checklist", False)),
         enable_parameter_normalization=bool(getattr(args, "enable_parameter_normalization", False)),
@@ -832,6 +1049,7 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
                             instruction=user_request,
                             taskbench_result=taskbench_result,
                             raw_result=raw_result,
+                            gold_row=gold_rows.get(sid),
                             tool_names=tool_names,
                             dependency_type=dependency_type,
                             tool_map_override=tool_map_override,
@@ -918,7 +1136,14 @@ def build_parser() -> argparse.ArgumentParser:
         "--candidate_selection_mode",
         type=str,
         default="rerank",
-        choices=["rerank", "first", "original_first_fallback", "original_dependency_filter_first_valid", "structure_aware"],
+        choices=[
+            "rerank",
+            "first",
+            "original_first_fallback",
+            "collect_all_then_original",
+            "original_dependency_filter_first_valid",
+            "structure_aware",
+        ],
         help="How to choose the final plan from the generated candidate pool.",
     )
     parser.add_argument(
@@ -980,6 +1205,39 @@ def build_parser() -> argparse.ArgumentParser:
             "h2b",
         ],
         help="Optional post-generation dependency grounding strategy applied before candidate scoring.",
+    )
+    parser.add_argument(
+        "--candidate_prompt_mode",
+        type=str,
+        default="legacy",
+        choices=["legacy", "orthogonal", "orthogonal_v2"],
+        help="Candidate prompt family mode used for multi-candidate generation.",
+    )
+    parser.add_argument(
+        "--force_generate_all_candidate_families",
+        dest="force_generate_all_candidate_families",
+        action="store_true",
+        default=False,
+        help="Generate and retain one candidate for every configured strategy family without pool-size truncation or cross-family early stop.",
+    )
+    parser.add_argument(
+        "--disable_force_generate_all_candidate_families",
+        dest="force_generate_all_candidate_families",
+        action="store_false",
+        help="Use the default pool-size-limited candidate generation behavior.",
+    )
+    parser.add_argument(
+        "--disable_early_stop",
+        dest="disable_early_stop",
+        action="store_true",
+        default=False,
+        help="Disable original-pass early stop and continue collecting the full candidate pool before final selection.",
+    )
+    parser.add_argument(
+        "--enable_early_stop",
+        dest="disable_early_stop",
+        action="store_false",
+        help="Allow original-pass early stop when the selection mode supports it.",
     )
     parser.add_argument(
         "--enable_strict_planning_prompt",

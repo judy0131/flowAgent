@@ -80,6 +80,34 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260520_131029\O\oracle_analysis\case_family_regret_report.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260520_131029\O\oracle_analysis\oracle_summary.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260520_131029\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260520_155602\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

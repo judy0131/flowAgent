@@ -377,6 +377,37 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
         self.assertTrue(args.enable_action_checklist)
         self.assertTrue(args.enable_parameter_normalization)
 
+    def test_build_runner_args_passes_through_candidate_prompt_mode_and_count_override(self) -> None:
+        base_args = argparse.Namespace(
+            stop_on_error=False,
+            workflow_memory_path=None,
+            execution_mode="best",
+        )
+        group_spec = {
+            "planning_mode": "multi",
+            "candidate_selection_mode": "original_first_fallback",
+            "enable_candidate_verifier": False,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "edge_grounding_mode": "none",
+            "candidate_prompt_mode": "orthogonal",
+            "candidate_count_override": 5,
+        }
+
+        args = _build_runner_args(
+            runner_parser=argparse.ArgumentParser(),
+            base_args=base_args,
+            group_spec=group_spec,
+            prediction_dir="predictions",
+            case_ids_file=Path("case_ids.txt"),
+            candidate_count=3,
+            fixed_temperature=0.0,
+        )
+
+        self.assertEqual(args.candidate_prompt_mode, "orthogonal")
+        self.assertEqual(args.candidate_count, 5)
+
     def test_build_runner_args_passes_through_save_candidate_pool(self) -> None:
         base_args = argparse.Namespace(
             stop_on_error=False,
@@ -441,6 +472,11 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
 
         self.assertEqual(args.candidate_selection_mode, "structure_aware")
 
+    def test_base_runner_parser_accepts_candidate_prompt_mode(self) -> None:
+        args = build_base_runner_parser().parse_args(["--candidate_prompt_mode", "orthogonal"])
+
+        self.assertEqual(args.candidate_prompt_mode, "orthogonal")
+
     def test_base_runner_parser_accepts_save_candidate_pool(self) -> None:
         args = build_base_runner_parser().parse_args(["--save_candidate_pool"])
 
@@ -474,6 +510,14 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
         self.assertTrue(tag_to_spec["K"]["enable_action_checklist"])
         self.assertTrue(tag_to_spec["K"]["enable_parameter_normalization"])
         self.assertEqual(tag_to_spec["K"]["edge_grounding_mode"], "none")
+
+    def test_default_group_specs_include_orthogonal_prompt_group(self) -> None:
+        tag_to_spec = {item["tag"]: item for item in _default_group_specs()}
+
+        self.assertIn("O", tag_to_spec)
+        self.assertEqual(tag_to_spec["O"]["candidate_selection_mode"], "original_first_fallback")
+        self.assertEqual(tag_to_spec["O"]["candidate_prompt_mode"], "orthogonal")
+        self.assertEqual(tag_to_spec["O"]["candidate_count_override"], 5)
 
     def test_select_group_specs_keeps_requested_order(self) -> None:
         specs = [

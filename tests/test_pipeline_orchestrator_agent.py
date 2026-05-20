@@ -386,8 +386,8 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
             "Generate an image based on the theme 'Climate change and its impact on polar bears'."
         )
 
-        self.assertIn("prefer the exact span copied from the user requirement", prompt)
-        self.assertIn('changing "impact" to "effect"', prompt)
+        self.assertIn("Copy user-provided file names, phrases, topics, styles, and parameter values exactly.", prompt)
+        self.assertIn("Use literal user values directly in arguments unless the downstream tool must consume an upstream output.", prompt)
         self.assertIn("Climate change and its impact on polar bears", prompt)
         self.assertNotIn("Climate change and its effect on polar bears", prompt)
 
@@ -396,21 +396,18 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
             "Extract audio, transcribe it, add reverb, and generate a waveform image."
         )
 
-        dependency_idx = prompt.index("Dependency and wiring rules:")
-        direct_need_idx = prompt.index("specific earlier node whose output is directly needed by that step")
-        validation_idx = prompt.index("Validation rules:")
+        construction_idx = prompt.index("Workflow construction rules:")
+        link_idx = prompt.index("task_links exactly match the dependencies implied by the <node-i> references.")
+        output_idx = prompt.index("Output requirements:")
 
-        self.assertLess(dependency_idx, direct_need_idx)
-        self.assertLess(direct_need_idx, validation_idx)
-        self.assertIn("specific earlier node whose output is directly needed by that step", prompt)
-        self.assertIn("keep it on that artifact branch", prompt)
-        self.assertIn("connect both of them to that shared earlier node", prompt)
-        self.assertIn("soft heuristic to infer likely input/output modality", prompt)
-        self.assertIn("X-to-Y often suggest input X and output Y", prompt)
-        self.assertIn("Treat skill-name-based modality inference as a hint, not a hard rule", prompt)
-        self.assertIn("follow the schema and the user request", prompt)
-        self.assertIn("starting point", prompt)
-        self.assertIn("Topic Generator is immediately followed by Text-to-Image", prompt)
+        self.assertLess(construction_idx, link_idx)
+        self.assertLess(link_idx, output_idx)
+        self.assertIn("Use <node-i> only when the downstream tool directly consumes the output of node i.", prompt)
+        self.assertIn("If two downstream tools consume the same upstream artifact, connect both to that artifact.", prompt)
+        self.assertIn("Do not force independent branches into a linear chain.", prompt)
+        self.assertIn("If the request explicitly asks to find, search, browse, or retrieve information, include a retrieval step", prompt)
+        self.assertIn("No selected tool is extra, optional, or only helpful.", prompt)
+        self.assertIn("No simpler valid workflow exists using the available skills.", prompt)
         self.assertNotIn("run a wiring self-check over every node argument", prompt)
 
     def test_infer_skill_name_modalities_uses_conversion_pattern(self) -> None:
@@ -1434,7 +1431,7 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(next_recs[0]["skill"], "Text-to-Audio")
         self.assertNotIn("Article Spinner", [str(item.get("skill", "")) for item in next_recs[:2]])
 
-    def test_build_candidate_strategy_specs_includes_memory_graph_guidance(self) -> None:
+    def test_build_candidate_strategy_specs_does_not_inject_memory_graph_guidance(self) -> None:
         memory = WorkflowMemoryIndex(
             motifs=[
                 WorkflowMemoryMotif(
@@ -1463,14 +1460,10 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         specs = self.agent._build_candidate_strategy_specs(requirement)
 
         names = [str(spec.get("name", "")) for spec in specs]
-        self.assertIn("memory_graph_guided", names)
-        self.assertTrue(any(name.startswith("memory_graph_start_") for name in names))
-        memory_spec = next(spec for spec in specs if spec.get("name") == "memory_graph_guided")
-        self.assertIn("Preferred start tools", str(memory_spec.get("hint", "")))
-        self.assertIn("Text Simplifier", str(memory_spec.get("hint", "")))
-        self.assertIn("Text Search", str(memory_spec.get("hint", "")))
+        self.assertNotIn("memory_graph_guided", names)
+        self.assertFalse(any(name.startswith("memory_graph_") for name in names))
 
-    async def test_plan_candidates_passes_memory_graph_hint_to_generator(self) -> None:
+    async def test_plan_candidates_does_not_pass_memory_graph_hint_to_generator(self) -> None:
         memory = WorkflowMemoryIndex(
             motifs=[
                 WorkflowMemoryMotif(
@@ -1522,12 +1515,8 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         await self.agent.plan_candidates("Load not_exists.csv and sum the sales field.", candidate_count=1)
 
         self.assertTrue(captured_hints)
-        self.assertIn("query-conditioned workflow memory graph", captured_hints[0])
-        self.assertIn("load_csv", captured_hints[0])
-        self.assertGreater(len(captured_hints), 1)
-        self.assertTrue(
-            any("Try a valid workflow that starts from" in hint for hint in captured_hints[1:])
-        )
+        self.assertTrue(all("workflow memory graph" not in hint.lower() for hint in captured_hints))
+        self.assertTrue(all("preferred start tools" not in hint.lower() for hint in captured_hints))
 
     async def test_plan_candidates_deduplicates(self) -> None:
         plans = [
@@ -2248,7 +2237,27 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.assertGreater(len(temperatures), 2)
         self.assertTrue(all(spec.get("name") for spec in specs))
         self.assertTrue(any("structurally distinct" in spec["hint"] for spec in specs))
-        self.assertTrue(any("analysis coverage" in spec["hint"] for spec in specs))
+        self.assertTrue(any(spec.get("name") == "explicit" for spec in specs))
+
+    def test_build_candidate_strategy_specs_supports_orthogonal_prompt_families(self) -> None:
+        self.agent._candidate_prompt_mode = "orthogonal"
+
+        specs = self.agent._build_candidate_strategy_specs(
+            "Search for information, summarize it, and generate an image."
+        )
+
+        self.assertEqual(
+            [str(spec.get("name", "")) for spec in specs],
+            [
+                "minimal",
+                "action_coverage",
+                "dependency_first",
+                "parameter_copy",
+                "parallel_dag",
+            ],
+        )
+        self.assertTrue(any("exact parameter grounding" in str(spec.get("hint", "")).lower() for spec in specs))
+        self.assertTrue(any("correct dataflow dependencies" in str(spec.get("hint", "")).lower() for spec in specs))
 
     def test_build_candidate_strategy_specs_can_prepend_original_candidate(self) -> None:
         self.agent._include_original_candidate = True
@@ -2259,18 +2268,45 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(specs[0]["name"], "original")
         self.assertEqual(specs[0]["hint"], "")
 
-    def test_build_plan_prompt_can_enable_strict_constraints_and_action_checklist(self) -> None:
-        self.agent._enable_strict_planning_prompt = True
-        self.agent._enable_action_checklist = True
-
+    def test_build_plan_prompt_includes_global_action_checklist_and_minimality_rules(self) -> None:
         prompt = self.agent._build_plan_prompt(
             "Extract the audio, transcribe it, and create an image from the transcript."
         )
 
-        self.assertIn("Use the minimum number of tools.", prompt)
-        self.assertIn("Do not add tools not explicitly required by the user.", prompt)
+        self.assertIn("Build the minimal executable workflow that satisfies the explicit user request.", prompt)
         self.assertIn("First extract explicit user actions internally before selecting tools.", prompt)
         self.assertIn("Every extracted action must be covered by at least one tool.", prompt)
+        self.assertIn("No extra action is allowed.", prompt)
+
+    def test_build_plan_prompt_includes_constrained_workflow_rules(self) -> None:
+        prompt = self.agent._build_plan_prompt("Summarize this text and search for related information.")
+
+        self.assertIn("You are a constrained workflow planner.", prompt)
+        self.assertIn("Do not add optional, helpful, bridge, or intermediate tools unless the user explicitly requires them.", prompt)
+        self.assertIn("task_links must exactly match the <node-i> references in arguments.", prompt)
+        self.assertIn("Copy user-provided file names, phrases, topics, styles, and parameter values exactly.", prompt)
+
+    def test_build_plan_prompt_omits_generation_time_memory_block(self) -> None:
+        memory = WorkflowMemoryIndex(
+            motifs=[
+                WorkflowMemoryMotif(
+                    motif_id="load_csv -> aggregate_sum",
+                    tasks=("load_csv", "aggregate_sum"),
+                    links=(("load_csv", "aggregate_sum"),),
+                    action_tags=("aggregate",),
+                    support=5,
+                ),
+            ],
+            transition_counts={("load_csv", "aggregate_sum"): 5},
+            start_counts={"load_csv": 5},
+            end_counts={"aggregate_sum": 5},
+        )
+        self._attach_test_workflow_memory(memory)
+
+        prompt = self.agent._build_plan_prompt("Load the csv and sum the sales field.")
+
+        self.assertNotIn("workflow memory", prompt.lower())
+        self.assertNotIn("preferred start tools", prompt.lower())
 
     def test_normalize_workflow_payload_can_apply_parameter_normalization(self) -> None:
         self.agent._enable_parameter_normalization = True

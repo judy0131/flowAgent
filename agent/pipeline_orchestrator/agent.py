@@ -369,6 +369,9 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         include_original_candidate: bool = False,
         fixed_candidate_temperature: Optional[float] = None,
         edge_grounding_mode: str = "none",
+        candidate_prompt_mode: str = "legacy",
+        force_generate_all_candidate_families: bool = False,
+        disable_early_stop: bool = False,
         enable_strict_planning_prompt: bool = False,
         enable_action_checklist: bool = False,
         enable_parameter_normalization: bool = False,
@@ -377,13 +380,14 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
             "rerank",
             "first",
             "original_first_fallback",
+            "collect_all_then_original",
             "original_dependency_filter_first_valid",
             "structure_aware",
         }:
             raise ValueError(
                 "candidate_selection_mode must be 'rerank', 'first', "
-                "'original_first_fallback', 'original_dependency_filter_first_valid' "
-                "or 'structure_aware'"
+                "'original_first_fallback', 'collect_all_then_original', "
+                "'original_dependency_filter_first_valid' or 'structure_aware'"
             )
         if edge_grounding_mode not in {
             "none",
@@ -406,6 +410,10 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
                 "'none', 'nearest_valid_upstream', 'semantic_edge_scoring', "
                 "'semantic_edge_scoring_h2a', 'semantic_edge_scoring_h2b'"
             )
+        if candidate_prompt_mode not in {"legacy", "orthogonal", "orthogonal_v2"}:
+            raise ValueError(
+                "candidate_prompt_mode must be 'legacy', 'orthogonal' or 'orthogonal_v2'"
+            )
         self.llm_config = self._resolve_llm_runtime_config(
             model_name=model_name,
             provider=provider,
@@ -424,6 +432,9 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
             None if fixed_candidate_temperature is None else float(fixed_candidate_temperature)
         )
         self._edge_grounding_mode = str(edge_grounding_mode)
+        self._candidate_prompt_mode = str(candidate_prompt_mode)
+        self._force_generate_all_candidate_families = bool(force_generate_all_candidate_families)
+        self._disable_early_stop = bool(disable_early_stop)
         self._enable_strict_planning_prompt = bool(enable_strict_planning_prompt)
         self._enable_action_checklist = bool(enable_action_checklist)
         self._enable_parameter_normalization = bool(enable_parameter_normalization)
@@ -982,6 +993,16 @@ Execution JSON:
                 candidates = selection_state["candidates"]
                 selected = selection_state["selected"]
                 selection_route = str(selection_state.get("selection_route", "fallback"))
+            elif selection_mode == "collect_all_then_original":
+                selection_state = await self.plan_candidates_collect_all_then_original(
+                    user_requirement,
+                    candidate_count=candidate_count,
+                )
+                candidates = selection_state["candidates"]
+                selected = selection_state["selected"]
+                selection_route = str(
+                    selection_state.get("selection_route", "original_dependency_pass")
+                )
             elif selection_mode == "structure_aware":
                 selection_state = await self.plan_candidates_structure_aware(
                     user_requirement,

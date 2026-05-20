@@ -212,6 +212,38 @@ def _default_group_specs() -> List[Dict[str, Any]]:
             "enable_action_checklist": True,
             "enable_parameter_normalization": True,
         },
+        {
+            "tag": "O",
+            "label": "orthogonal_prompt_candidates",
+            "planning_mode": "multi",
+            "candidate_selection_mode": "original_first_fallback",
+            "enable_candidate_verifier": False,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "enable_semantic_edge_grounding": False,
+            "edge_grounding_mode": "none",
+            "candidate_prompt_mode": "orthogonal",
+            "candidate_count_override": 6,
+            "force_generate_all_candidate_families": True,
+        },
+        {
+            "tag": "O2",
+            "label": "orthogonal_prompt_candidates_v2",
+            "planning_mode": "multi",
+            "candidate_selection_mode": "collect_all_then_original",
+            "enable_candidate_verifier": True,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "enable_semantic_edge_grounding": False,
+            "edge_grounding_mode": "none",
+            "candidate_prompt_mode": "orthogonal_v2",
+            "candidate_count_override": 10,
+            "force_generate_all_candidate_families": True,
+            "disable_early_stop": True,
+            "save_all_candidates": True,
+        },
     ]
 
 
@@ -320,6 +352,8 @@ def _build_runner_args(
     args.log_every = 1
     args.stop_on_error = bool(getattr(base_args, "stop_on_error", False))
     args.candidate_count = candidate_count
+    if group_spec.get("candidate_count_override") is not None:
+        args.candidate_count = int(group_spec["candidate_count_override"])
     args.fixed_candidate_temperature = fixed_temperature
     args.planning_mode = str(group_spec["planning_mode"])
     args.candidate_selection_mode = str(group_spec["candidate_selection_mode"])
@@ -329,10 +363,17 @@ def _build_runner_args(
     args.include_original_candidate = bool(group_spec["include_original_candidate"])
     args.enable_semantic_edge_grounding = bool(group_spec.get("enable_semantic_edge_grounding", False))
     args.edge_grounding_mode = str(group_spec.get("edge_grounding_mode", "none"))
+    args.candidate_prompt_mode = str(group_spec.get("candidate_prompt_mode", "legacy"))
+    args.force_generate_all_candidate_families = bool(
+        group_spec.get("force_generate_all_candidate_families", False)
+    )
+    args.disable_early_stop = bool(group_spec.get("disable_early_stop", False))
     args.enable_strict_planning_prompt = bool(group_spec.get("enable_strict_planning_prompt", False))
     args.enable_action_checklist = bool(group_spec.get("enable_action_checklist", False))
     args.enable_parameter_normalization = bool(group_spec.get("enable_parameter_normalization", False))
-    args.save_candidate_pool = bool(getattr(base_args, "save_candidate_pool", False))
+    args.save_candidate_pool = bool(
+        group_spec.get("save_all_candidates", getattr(base_args, "save_candidate_pool", False))
+    )
 
     if args.planning_mode == "single":
         args.execution_mode = "best"
@@ -412,6 +453,13 @@ def _summarize_group_result(
             "include_original_candidate": group_spec["include_original_candidate"],
             "enable_semantic_edge_grounding": bool(group_spec.get("enable_semantic_edge_grounding", False)),
             "edge_grounding_mode": group_spec.get("edge_grounding_mode", "none"),
+            "candidate_prompt_mode": group_spec.get("candidate_prompt_mode", "legacy"),
+            "candidate_count_override": group_spec.get("candidate_count_override"),
+            "force_generate_all_candidate_families": bool(
+                group_spec.get("force_generate_all_candidate_families", False)
+            ),
+            "disable_early_stop": bool(group_spec.get("disable_early_stop", False)),
+            "save_all_candidates": bool(group_spec.get("save_all_candidates", False)),
             "enable_strict_planning_prompt": bool(group_spec.get("enable_strict_planning_prompt", False)),
             "enable_action_checklist": bool(group_spec.get("enable_action_checklist", False)),
             "enable_parameter_normalization": bool(group_spec.get("enable_parameter_normalization", False)),
@@ -528,7 +576,8 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
 
     selected_group_specs = _select_group_specs(
         _default_group_specs(),
-        getattr(args, "group_tags", None),
+        # getattr(args, "group_tags", None) or ["O"],
+        ["O2"]
     )
 
     group_results: List[Dict[str, Any]] = []
@@ -616,7 +665,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--save_candidate_pool",
         action="store_true",
-        default=False,
+        default=True,
         help="Persist all candidate workflows for each successful case into candidate_dumps/ for post-hoc oracle analysis.",
     )
     parser.add_argument(

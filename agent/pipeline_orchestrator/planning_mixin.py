@@ -8,33 +8,46 @@ from .serialization import _safe_json_dumps
 
 
 class PlanningMixin:
+    def _get_candidate_prompt_mode(self) -> str:
+        return str(getattr(self, "_candidate_prompt_mode", "legacy") or "legacy").strip().lower()
+
     def _strict_planning_prompt_enabled(self) -> bool:
+        # Compatibility flag retained for existing configs and CLI plumbing.
         return bool(getattr(self, "_enable_strict_planning_prompt", False))
 
     def _action_checklist_enabled(self) -> bool:
+        # Compatibility flag retained for existing configs and CLI plumbing.
         return bool(getattr(self, "_enable_action_checklist", False))
 
     def _strict_planning_prompt_block(self) -> str:
-        if not self._strict_planning_prompt_enabled():
-            return ""
+        # The strict rules are now part of the global base prompt.
+        return ""
+
+    @staticmethod
+    def _base_constrained_planner_prompt_block() -> str:
         return """
-Strict planning constraints:
-- Use the minimum number of tools.
-- Do not add tools not explicitly required by the user.
-- Do not omit any explicit user-required action.
-- Do not replace one tool with a combination of other tools.
-- When the user gives an exact file name or phrase, copy it exactly.
-- Use <node-i> only when the downstream tool must consume the upstream output.
+You are a constrained workflow planner.
+
+Your task is to convert the user instruction into the minimal executable tool invocation graph.
+
+Important rules:
+1. Use only tools from the available skill list.
+2. Every selected tool must correspond to an explicit user-requested action.
+3. Do not add optional, helpful, bridge, or intermediate tools unless the user explicitly requires them.
+4. Do not omit any explicit user-requested action.
+5. Do not replace one tool with a multi-tool workaround if the exact tool exists.
+6. Copy user-provided file names, phrases, topics, styles, and parameter values exactly.
+7. Use <node-i> only when the downstream tool directly consumes the output of node i.
+8. task_nodes must be in execution order.
+9. task_links must exactly match the <node-i> references in arguments.
+10. Return JSON only.
 """
 
     def _action_checklist_prompt_block(self, required_actions: List[str]) -> str:
-        if not self._action_checklist_enabled():
-            return ""
         required_lines = ""
         if required_actions:
-            required_lines = "\nDetected explicit actions to cover internally:\n" + "\n".join(
-                f"- {self._action_prompt_text(action)}"
-                for action in required_actions
+            required_lines = "\nDetected explicit actions:\n" + "\n".join(
+                f"- {self._action_prompt_text(action)}" for action in required_actions
             )
         return f"""
 Action checklist:
@@ -45,207 +58,198 @@ Action checklist:
 - Do not output the checklist itself; output only the workflow JSON.{required_lines}
 """
 
+    @staticmethod
+    def _workflow_output_schema() -> str:
+        return """
+{
+  "task_steps": [
+    "Step 1: Call Text Search with arg1=climate change policy.",
+    "Step 2: Call Text Summarizer with arg1=<node-0>.",
+    "Step 3: Call Keyword Extractor with arg1=<node-1>."
+  ],
+  "task_nodes": [
+    {
+      "task": "Text Search",
+      "arguments": ["climate change policy"]
+    },
+    {
+      "task": "Text Summarizer",
+      "arguments": ["<node-0>"]
+    },
+    {
+      "task": "Keyword Extractor",
+      "arguments": ["<node-1>"]
+    }
+  ],
+  "task_links": [
+    {
+      "source": "Text Search",
+      "target": "Text Summarizer"
+    },
+    {
+      "source": "Text Summarizer",
+      "target": "Keyword Extractor"
+    }
+  ]
+}"""
+
+    @staticmethod
+    def _workflow_good_examples() -> str:
+        return """
+Example 1: valid single-step workflow
+{
+  "task_steps": [
+    "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears."
+  ],
+  "task_nodes": [
+    {
+      "task": "Text Simplifier",
+      "arguments": ["Climate change and its impact on polar bears"]
+    }
+  ],
+  "task_links": []
+}
+
+Example 2: valid sequential workflow
+{
+  "task_steps": [
+    "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears.",
+    "Step 2: Call Text Search with arg1=<node-0>.",
+    "Step 3: Call Text Grammar Checker with arg1=<node-1>.",
+    "Step 4: Call Topic Generator with arg1=<node-2>.",
+    "Step 5: Call Text-to-Image with arg1=<node-3>."
+  ],
+  "task_nodes": [
+    {
+      "task": "Text Simplifier",
+      "arguments": ["Climate change and its impact on polar bears"]
+    },
+    {
+      "task": "Text Search",
+      "arguments": ["<node-0>"]
+    },
+    {
+      "task": "Text Grammar Checker",
+      "arguments": ["<node-1>"]
+    },
+    {
+      "task": "Topic Generator",
+      "arguments": ["<node-2>"]
+    },
+    {
+      "task": "Text-to-Image",
+      "arguments": ["<node-3>"]
+    }
+  ],
+  "task_links": [
+    {
+      "source": "Text Simplifier",
+      "target": "Text Search"
+    },
+    {
+      "source": "Text Search",
+      "target": "Text Grammar Checker"
+    },
+    {
+      "source": "Text Grammar Checker",
+      "target": "Topic Generator"
+    },
+    {
+      "source": "Topic Generator",
+      "target": "Text-to-Image"
+    }
+  ]
+}
+
+Example 3: valid parallel workflow
+{
+  "task_steps": [
+    "Step 1: Call Text Search with arg1=climate change policy.",
+    "Step 2: Call Text Summarizer with arg1=<node-0>.",
+    "Step 3: Call Keyword Extractor with arg1=<node-0>."
+  ],
+  "task_nodes": [
+    {
+      "task": "Text Search",
+      "arguments": ["climate change policy"]
+    },
+    {
+      "task": "Text Summarizer",
+      "arguments": ["<node-0>"]
+    },
+    {
+      "task": "Keyword Extractor",
+      "arguments": ["<node-0>"]
+    }
+  ],
+  "task_links": [
+    {
+      "source": "Text Search",
+      "target": "Text Summarizer"
+    },
+    {
+      "source": "Text Search",
+      "target": "Keyword Extractor"
+    }
+  ]
+}"""
+
+    def _required_action_coverage_block(self, required_actions: List[str]) -> str:
+        if not required_actions:
+            return ""
+        coverage_lines = "\n".join(
+            f"- {self._action_prompt_text(action)}" for action in required_actions
+        )
+        return (
+            "Detected explicit actions that must be covered:\n"
+            f"{coverage_lines}\n"
+        )
+
     def _build_plan_prompt(self, user_requirement: str, strategy_hint: Optional[str] = None) -> str:
-        strategy_line = f"\nPlanning strategy hint:\n{strategy_hint}\n" if strategy_hint else ""
         required_actions = self._match_requirement_actions(user_requirement)
-        workflow_memory_block = self._format_workflow_memory_prompt_block(user_requirement)
-        strict_planning_block = self._strict_planning_prompt_block()
-        action_checklist_block = self._action_checklist_prompt_block(required_actions)
-        coverage_checklist = ""
-        if required_actions:
-            coverage_lines = "\n".join(f"- {self._action_prompt_text(action)}" for action in required_actions)
-            coverage_checklist = (
-                "\nDetected required actions from the user request:\n"
-                f"{coverage_lines}\n"
-                "All detected actions must be covered by task_nodes.\n"
+        checklist_block = self._action_checklist_prompt_block(required_actions)
+        strategy_block = ""
+        if strategy_hint:
+            strategy_block = (
+                "\nPlanning strategy:\n"
+                f"{strategy_hint.strip()}\n"
             )
-        output_schema = """
-        {
-          "task_steps": [
-            "Step 1: Call Video-to-Audio with arg1=example.mp4.",
-            "Step 2: Call Audio Noise Reduction with arg1=<node-0>.",
-            "Step 3: Call Audio Effects with arg2=reverb, arg1=<node-1>."
-          ],
-          "task_nodes": [
-            {
-              "task": "Video-to-Audio",
-              "arguments": ["example.mp4"]
-            },
-            {
-              "task": "Audio Noise Reduction",
-              "arguments": ["<node-0>"]
-            },
-            {
-              "task": "Audio Effects",
-              "arguments": ["reverb", "<node-1>"]
-            }
-          ],
-          "task_links": [
-            {
-              "source": "Video-to-Audio",
-              "target": "Audio Noise Reduction"
-            },
-            {
-              "source": "Audio Noise Reduction",
-              "target": "Audio Effects"
-            }
-          ]
-        }"""
-
-        good_examples = """
-        Example 1: valid single-step workflow
-        {
-          "task_steps": [
-            "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears."
-          ],
-          "task_nodes": [
-            {
-              "task": "Text Simplifier",
-              "arguments": ["Climate change and its impact on polar bears"]
-            }
-          ],
-          "task_links": []
-        }
-
-        Example 2: valid sequential workflow
-        {
-          "task_steps": [
-            "Step 1: Call Text Simplifier with arg1=Climate change and its impact on polar bears.",
-            "Step 2: Call Text Search with arg1=<node-0>.",
-            "Step 3: Call Text Grammar Checker with arg1=<node-1>.",
-            "Step 4: Call Topic Generator with arg1=<node-2>.",
-            "Step 5: Call Text-to-Image with arg1=<node-3>."
-          ],
-          "task_nodes": [
-            {
-              "task": "Text Simplifier",
-              "arguments": ["Climate change and its impact on polar bears"]
-            },
-            {
-              "task": "Text Search",
-              "arguments": ["<node-0>"]
-            },
-            {
-              "task": "Text Grammar Checker",
-              "arguments": ["<node-1>"]
-            },
-            {
-              "task": "Topic Generator",
-              "arguments": ["<node-2>"]
-            },
-            {
-              "task": "Text-to-Image",
-              "arguments": ["<node-3>"]
-            }
-          ],
-          "task_links": [
-            {
-              "source": "Text Simplifier",
-              "target": "Text Search"
-            },
-            {
-              "source": "Text Search",
-              "target": "Text Grammar Checker"
-            },
-            {
-              "source": "Text Grammar Checker",
-              "target": "Topic Generator"
-            },
-            {
-              "source": "Topic Generator",
-              "target": "Text-to-Image"
-            }
-          ]
-        }"""
+        coverage_block = self._required_action_coverage_block(required_actions)
+        output_schema = self._workflow_output_schema()
+        good_examples = self._workflow_good_examples()
         prompt = f"""
-You are a data pipeline planner.
+{self._base_constrained_planner_prompt_block()}
 
-Your job is to break the user requirement into the valid executable workflow.
-Use only the listed skills.
-Return strict JSON only.
+{checklist_block}
+{strategy_block}
+{coverage_block}
 
-Output schema:
-{json.dumps(output_schema, indent=2)}
-
-Requirement decomposition rules:
-- First, silently break the user requirement into action clauses before selecting tools.
-- Pay close attention to punctuation and conjunctions such as commas, "and", "then", "after", "before", "finally", "with", and "using".
-- Distinguish between:
-  - retrieval actions: find, search, look up, browse, get information, collect information
-  - transformation actions: simplify, summarize, translate, grammar check, denoise, splice, transcribe, apply effects
-  - generation actions: create, generate, draw, produce an image/audio/video/text artifact
-- When the request includes a literal phrase, title, topic, or theme to use as an argument, prefer the exact span copied from the user requirement instead of paraphrasing it unless the user explicitly asks to rewrite it.
-- Avoid silently changing wording such as changing "impact" to "effect" when a later tool can consume the original phrase directly.
-- If the request says to find or search for information about a topic, include a retrieval/search step unless the full source content is already explicitly provided in the request.
-- If the request provides a seed phrase such as a topic, title, theme, or starting point text, treat it as input to an upstream step like simplification or search, not as proof that the retrieval step can be skipped.
-- When the request asks for multiple outputs or multiple post-processing actions in sequence, ensure each required action is represented in task_nodes in order.
-{strict_planning_block}
-{action_checklist_block}
-
-
-Planning rules:
-- Ensure the workflow is a valid DAG.
-- Use only skills from the available skills list.
-- task_nodes must be in execution order.
+Workflow construction rules:
+- Build the minimal executable workflow that satisfies the explicit user request.
+- Use exact skill names from the available skills list.
 - Every task node must contain:
   - task: exact skill name from the available skills list
-  - arguments: list of argument values.
-- Use references like <node-0>, <node-1>, etc. inside arguments for upstream task outputs. The index is zero-based and refers to the earlier item in task_nodes.
-- task_links must match the upstream/downstream dependencies implied by the node references.
-- task_steps must describe the same workflow as task_nodes.
-- A valid workflow may contain exactly one task if one skill can directly satisfy the user requirement.
+  - arguments: list of argument values
+- Use literal user values directly in arguments unless the downstream tool must consume an upstream output.
+- Use <node-i> only when the downstream tool directly consumes the output of node i.
+- If the request explicitly asks to find, search, browse, or retrieve information, include a retrieval step unless the full source content is already present in the request.
+- Preserve independent branches when the user asks for multiple outputs or parallel post-processing.
+- If two downstream tools consume the same upstream artifact, connect both to that artifact.
+- Do not force independent branches into a linear chain.
+- A single-task workflow is valid when one exact tool fully satisfies the request.
 
+Self-check before returning JSON:
+- Every explicit user-requested action is covered by at least one task.
+- No selected tool is extra, optional, or only helpful.
+- task_nodes are in execution order.
+- Every <node-i> reference points to an earlier node.
+- task_links exactly match the dependencies implied by the <node-i> references.
+- task_steps, task_nodes, and task_links describe the same workflow.
+- There are no cycles, orphan nodes, or disconnected extra branches.
+- No simpler valid workflow exists using the available skills.
 
-Dependency and wiring rules:
-- Consumer tasks must reference upstream outputs using <node-i> in arguments.
-- Do NOT use natural-language references like "output of step 1" inside arguments.
-- Do NOT use placeholder strings such as "step1_out", "step_1_output", or similar.
-- For multi-input tasks, include all required arguments explicitly in the arguments list.
-- Each <node-i> reference must point to the specific earlier node whose output is directly needed by that step.
-- When a later step continues processing the same user-requested artifact, keep it on that artifact branch instead of switching to a sibling branch without evidence in the user request.
-- If two steps independently consume the same earlier result, connect both of them to that shared earlier node instead of chaining one through the other without evidence in the user request.
-- You may use skill names as a soft heuristic to infer likely input/output modality when choosing between plausible upstream nodes.Names like X-to-Y often suggest input X and output Y, and names like Audio Effects often suggest continued processing of audio.
-- Treat skill-name-based modality inference as a hint, not a hard rule.When skill-name implications conflict with the skill schema, explicit argument semantics, or the user request, follow the schema and the user request.Prefer modality-consistent wiring when multiple earlier nodes are plausible candidates.
-- If Topic Generator is immediately followed by Text-to-Image, preserve that direct dependency unless the user request explicitly introduces another intervening artifact.
-
-Branch consistency rules:
-- Each workflow branch should represent a coherent transformation lineage of the same artifact or goal.
-- Do not merge unrelated branches unless the downstream task explicitly requires multiple inputs.
-- Do not fork branches unnecessarily if downstream outputs are identical.
-
-Modality tracking rules:
-- Track the modality of each node output implicitly throughout the workflow.
-- Ensure downstream tasks consume compatible modalities.
-- Avoid passing text outputs into image/audio/video processing skills unless the skill schema explicitly allows it.
-
-Global consistency rules:
-- Ensure task_nodes, task_links, and task_steps describe the same workflow structure.
-- Ensure every dependency edge appearing in arguments is reflected in task_links.
-- Ensure every task_link corresponds to at least one actual dependency.
-- Ensure there are no orphan nodes.
-
-Validation rules:
-- Reject an empty workflow.
-- A single-task workflow is valid if that one task fully satisfies the user request.
-- Reject any workflow where a node reference points to itself or to a later node.
-- Reject any workflow where task_links contradict task_nodes dependencies.
-- Reject any workflow with cycles or unnecessary disconnected branches unless parallel independent branches are clearly required by the user request.
-- Before returning the workflow, check that every explicit action clause in the user request is covered by at least one node.
-- If one clause asks to find/search information and another clause asks to clean/check/transform that information, those are usually separate steps.
-
-Final self-check before output:
-- Verify that every user-requested action is covered.
-- Verify that every node is necessary.
-- Verify that every dependency is valid.
-- Verify that the workflow is executable as written.
-- Verify that no simpler valid workflow exists using the available skills.
-
-The following are examples of valid workflows. Follow their wiring style exactly:
-- use literal values directly in arguments
-- use <node-i> only for upstream outputs
-- keep task_nodes in execution order
-- keep task_links consistent with task_nodes
-
+Output schema:
+{output_schema}
 
 Output requirements:
 - Return JSON only.
@@ -253,19 +257,15 @@ Output requirements:
 - Do not include any explanation outside the JSON.
 - Do not include null fields.
 - Do not include fields other than task_steps, task_nodes, task_links.
-{coverage_checklist}
 
 Good examples:
-{json.dumps(good_examples, indent=2)}
+{good_examples}
 
 Available skills:
 {json.dumps(self.registry.list_for_prompt())}
 
-{workflow_memory_block}
-
 User requirement:
-{user_requirement}
-{strategy_line}
+{user_requirement.strip()}
 """
         return prompt
 
@@ -386,6 +386,21 @@ User requirement:
     def _plan_signature(self, workflow: Dict[str, Any]) -> str:
         _, compiled_nodes = self._prepare_workflow(workflow)
         return self._plan_signature_from_compiled(compiled_nodes)
+
+    @staticmethod
+    def _plan_structure_signature_from_compiled(compiled_nodes: List[Dict[str, Any]]) -> str:
+        normalized = [
+            {
+                "task": node["task"],
+                "upstream_inputs": node["upstream_inputs"],
+            }
+            for node in compiled_nodes
+        ]
+        return json.dumps(normalized, ensure_ascii=False, sort_keys=True)
+
+    def _plan_structure_signature(self, workflow: Dict[str, Any]) -> str:
+        _, compiled_nodes = self._prepare_workflow(workflow)
+        return self._plan_structure_signature_from_compiled(compiled_nodes)
 
     def _score_text_planning_preferences(
         self,
@@ -732,6 +747,14 @@ User requirement:
         base_temperature = float(spec.get("temperature", 0.0))
         return min(base_temperature + round_idx * 0.1, 0.6)
 
+    def _force_generate_all_candidate_families_enabled(self) -> bool:
+        return bool(getattr(self, "_force_generate_all_candidate_families", False)) or (
+            self._get_candidate_prompt_mode() == "orthogonal_v2"
+        )
+
+    def _disable_early_stop_enabled(self) -> bool:
+        return bool(getattr(self, "_disable_early_stop", False))
+
     def _candidate_verifier_enabled(self) -> bool:
         return bool(getattr(self, "_enable_candidate_verifier", True))
 
@@ -928,8 +951,197 @@ User requirement:
         branch_target = max(candidate_count + 2, min(len(memory_branch_specs) + 1, 5))
         return min(spec_count, max(candidate_count, branch_target))
 
+    @staticmethod
+    def _compose_strategy_hint(lines: List[str]) -> str:
+        cleaned = [str(line).strip() for line in lines if str(line).strip()]
+        return "\n".join(cleaned)
+
+    @staticmethod
+    def _make_strategy_spec(
+        *,
+        family_name: str,
+        variant_name: str,
+        hint_lines: List[str],
+        temperature: float,
+    ) -> Dict[str, Any]:
+        return {
+            "name": str(family_name).strip(),
+            "family_name": str(family_name).strip(),
+            "variant_name": str(variant_name).strip(),
+            "hint": PlanningMixin._compose_strategy_hint(hint_lines),
+            "temperature": float(temperature),
+        }
+
     def _build_candidate_strategy_specs(self, user_requirement: str) -> List[Dict[str, Any]]:
-        detected_actions = self._match_requirement_actions(user_requirement)
+        del user_requirement
+        candidate_prompt_mode = self._get_candidate_prompt_mode()
+        if candidate_prompt_mode in {"orthogonal", "orthogonal_v2"}:
+            specs: List[Dict[str, Any]] = []
+            if getattr(self, "_include_original_candidate", False):
+                specs.append(
+                    self._make_strategy_spec(
+                        family_name="original",
+                        variant_name="baseline",
+                        hint_lines=[],
+                        temperature=float(getattr(self.llm_config, "temperature", 0.0)),
+                    )
+                )
+
+            if candidate_prompt_mode == "orthogonal":
+                specs.extend(
+                    [
+                        self._make_strategy_spec(
+                            family_name="minimal",
+                            variant_name="minimal",
+                            hint_lines=[
+                                "Prefer the shortest valid workflow.",
+                                "Do not add any tool unless it is explicitly required.",
+                                "If one tool can satisfy the request, use one tool.",
+                                "Avoid bridge tools and optional enhancement steps.",
+                            ],
+                            temperature=0.0,
+                        ),
+                        self._make_strategy_spec(
+                            family_name="action_coverage",
+                            variant_name="action_coverage",
+                            hint_lines=[
+                                "First identify every explicit action in the user request.",
+                                "Ensure each explicit action is covered by at least one tool.",
+                                "Do not skip actions such as search, summarize, transcribe, denoise, combine, generate, or convert.",
+                                "Do not output the action checklist; output only the workflow JSON.",
+                            ],
+                            temperature=0.0,
+                        ),
+                        self._make_strategy_spec(
+                            family_name="dependency_first",
+                            variant_name="dependency_first",
+                            hint_lines=[
+                                "Focus on correct dataflow dependencies.",
+                                "For each downstream tool, choose the upstream node whose output is directly consumed.",
+                                "Do not connect a tool to an earlier node only because the modality matches.",
+                                "Prefer semantic dataflow continuity over superficial schema compatibility.",
+                            ],
+                            temperature=0.1,
+                        ),
+                        self._make_strategy_spec(
+                            family_name="parameter_copy",
+                            variant_name="parameter_copy",
+                            hint_lines=[
+                                "Prioritize exact parameter grounding.",
+                                "Copy all user-provided filenames, topics, phrases, styles, speeds, genders, and effect names exactly.",
+                                "Do not paraphrase parameter values.",
+                                "Use literal user values unless the argument must be an upstream <node-i> output.",
+                            ],
+                            temperature=0.0,
+                        ),
+                        self._make_strategy_spec(
+                            family_name="parallel_dag",
+                            variant_name="parallel_dag",
+                            hint_lines=[
+                                "Preserve independent branches when the user asks for multiple outputs or parallel post-processing.",
+                                "If two downstream tools consume the same upstream artifact, connect both to that artifact.",
+                                "Do not force independent branches into a linear chain.",
+                            ],
+                            temperature=0.1,
+                        ),
+                    ]
+                )
+                return specs
+
+            specs.extend([
+                self._make_strategy_spec(
+                    family_name="minimal",
+                    variant_name="fewest_tools",
+                    hint_lines=[
+                        "Use the fewest tools possible while still satisfying the explicit request.",
+                        "Collapse optional intermediate steps unless they are required for correctness.",
+                        "Prefer a shorter workflow over a more descriptive workflow when both are valid.",
+                    ],
+                    temperature=0.0,
+                ),
+                self._make_strategy_spec(
+                    family_name="minimal",
+                    variant_name="fewest_transformations",
+                    hint_lines=[
+                        "Minimize the number of transformations applied to the artifact.",
+                        "Avoid adding rewrites, cleanup, or conversion hops unless the user explicitly requested them.",
+                        "Prefer a direct producer-to-consumer path over multi-hop reformulation.",
+                    ],
+                    temperature=0.05,
+                ),
+                self._make_strategy_spec(
+                    family_name="action_coverage",
+                    variant_name="strict_explicit_action_coverage",
+                    hint_lines=[
+                        "Enumerate every explicit user-requested action internally before planning.",
+                        "Ensure each explicit action is covered by at least one tool.",
+                        "Do not skip search, summarize, transcribe, denoise, combine, generate, or convert when explicitly requested.",
+                    ],
+                    temperature=0.05,
+                ),
+                self._make_strategy_spec(
+                    family_name="action_coverage",
+                    variant_name="step_by_step_decomposition",
+                    hint_lines=[
+                        "Decompose the request into sequential sub-goals before selecting tools.",
+                        "Map each sub-goal to the most direct executable step.",
+                        "Preserve the user-requested operation order when the request implies an order.",
+                    ],
+                    temperature=0.1,
+                ),
+                self._make_strategy_spec(
+                    family_name="action_coverage",
+                    variant_name="preserve_every_user_requested_operation",
+                    hint_lines=[
+                        "Preserve every user-requested operation, even if a shorter workflow exists.",
+                        "Do not compress multiple explicit operations into one semantic shortcut when separate tools are needed to show the requested actions.",
+                        "If the request asks for multiple post-processing operations, keep them explicit in the workflow.",
+                    ],
+                    temperature=0.12,
+                ),
+                self._make_strategy_spec(
+                    family_name="parallel_dag",
+                    variant_name="preserve_independent_branches",
+                    hint_lines=[
+                        "Preserve independent branches when the request implies parallel downstream use of the same artifact.",
+                        "If two downstream tools can consume the same upstream output, allow them to branch instead of forcing a chain.",
+                        "Favor a DAG when multiple outputs or parallel post-processing are requested.",
+                    ],
+                    temperature=0.1,
+                ),
+                self._make_strategy_spec(
+                    family_name="parallel_dag",
+                    variant_name="avoid_forcing_dags_into_chains",
+                    hint_lines=[
+                        "Do not linearize independent operations only because the modalities match.",
+                        "When a branch can terminate independently, keep it independent.",
+                        "Prefer topologies that preserve semantic parallelism instead of inventing unnecessary serial dependencies.",
+                    ],
+                    temperature=0.15,
+                ),
+                self._make_strategy_spec(
+                    family_name="dependency_first",
+                    variant_name="semantic_dependency_continuity",
+                    hint_lines=[
+                        "Maximize semantic dependency continuity between adjacent steps.",
+                        "For each downstream tool, bind it to the upstream node whose output is directly consumed.",
+                        "Do not attach a downstream tool to an earlier node only because the schema superficially fits.",
+                    ],
+                    temperature=0.08,
+                ),
+                self._make_strategy_spec(
+                    family_name="parameter_copy",
+                    variant_name="exact_parameter_copy",
+                    hint_lines=[
+                        "Copy filenames, styles, phrases, effect names, and parameter values exactly from the user request.",
+                        "Do not paraphrase or normalize literal user values unless a tool requires an upstream <node-i> reference.",
+                        "Preserve concrete user-provided values even when an abstract paraphrase sounds more natural.",
+                    ],
+                    temperature=0.0,
+                ),
+            ])
+            return specs
+
         specs = [
             {
                 "name": "minimal",
@@ -947,67 +1159,6 @@ User requirement:
                 "temperature": 0.25,
             },
         ]
-
-        # if any(action in detected_actions for action in {"summarize", "sentiment", "keywords"}):
-        #     specs.insert(
-        #         0,
-        #         {
-        #             "name": "analysis_coverage",
-        #             "hint": "Preserve analysis coverage. If the request asks for summaries, sentiment, or keywords, keep each required analysis step explicit instead of collapsing them.",
-        #             "temperature": 0.1,
-        #         },
-        #     )
-        # if self._has_explicit_source_text(user_requirement) and "retrieval" in detected_actions:
-        #     source_text_name = (
-        #         "source_text_summary_search"
-        #         if "summarize" in detected_actions
-        #         else "source_text_simplify_search"
-        #     )
-        #     source_text_hint = (
-        #         "When the request includes source text and later asks to search after summarizing, "
-        #         "prefer searching from the summary rather than from later analysis outputs unless the request explicitly says otherwise."
-        #         if "summarize" in detected_actions
-        #         else
-        #         "When the request includes source text and later asks to search, prefer searching from the simplified source text rather than from later analysis outputs unless the request explicitly says otherwise."
-        #     )
-        #     specs.insert(
-        #         0,
-        #         {
-        #             "name": source_text_name,
-        #             "hint": source_text_hint,
-        #             "temperature": 0.1,
-        #         },
-        #     )
-        # if "retrieval" in detected_actions:
-        #     specs.insert(
-        #         0,
-        #         {
-        #             "name": "retrieval_guardrail",
-        #             "hint": "Do not omit retrieval. If the request asks to find or search for information, include an explicit search step before later topic or image generation steps.",
-        #             "temperature": 0.0,
-        #         },
-        #     )
-        # if "grammar" in detected_actions and "topic" in detected_actions:
-        #     specs.insert(
-        #         1,
-        #         {
-        #             "name": "grammar_topic_clause_coverage",
-        #             "hint": "Preserve clause coverage. If the request asks to search, then grammar-check, then generate topics, keep those as separate sequential steps unless one tool explicitly combines them.",
-        #             "temperature": 0.15,
-        #         },
-        #     )
-        # if "combine" in detected_actions or "video" in detected_actions:
-        #     specs.append(
-        #         {
-        #             "name": "multimodal_branch_preserving",
-        #             "hint": "Prefer a multimodal plan that preserves each media branch until the explicit combine or video step, instead of collapsing branches prematurely.",
-        #             "temperature": 0.4,
-        #         }
-        #     )
-
-        memory_graph_specs = self._build_memory_graph_strategy_specs(user_requirement)
-        if memory_graph_specs:
-            specs = memory_graph_specs + specs
 
         if getattr(self, "_include_original_candidate", False):
             specs = [
@@ -1388,6 +1539,8 @@ User requirement:
         strategy_name: str,
         strategy_hint: str,
         sampling_temperature: float,
+        family_name: Optional[str] = None,
+        variant_name: Optional[str] = None,
         verification_meta: Optional[Dict[str, Any]] = None,
         repair_meta: Optional[Dict[str, Any]] = None,
         edge_grounding_meta: Optional[Dict[str, Any]] = None,
@@ -1409,8 +1562,13 @@ User requirement:
             "verification_meta": verification_meta,
             "selection_meta": verification_meta,
             "strategy_name": strategy_name,
+            "family_name": str(family_name or strategy_name).strip() or str(strategy_name).strip(),
+            "variant_name": str(variant_name or strategy_name).strip() or str(strategy_name).strip(),
             "strategy_hint": strategy_hint,
             "sampling_temperature": sampling_temperature,
+            "workflow_signature": self._plan_signature_from_compiled(compiled_nodes),
+            "structure_signature": self._plan_structure_signature_from_compiled(compiled_nodes),
+            "signature": self._plan_signature_from_compiled(compiled_nodes),
             "repair_meta": repair_meta or {"attempted": False, "applied": False},
             "edge_grounding_meta": edge_grounding_meta or {
                 "mode": "none",
@@ -1427,6 +1585,8 @@ User requirement:
                 "passed": False,
                 "error": "ValueError: candidate workflow must be a dict",
             }
+            candidate["dependency_check_result"] = candidate["dependency_check"]
+            candidate["validation_status"] = type(self)._candidate_validation_status(candidate)
             return candidate
 
         try:
@@ -1437,15 +1597,35 @@ User requirement:
                 "passed": False,
                 "error": f"{type(exc).__name__}: {exc}",
             }
+            candidate["dependency_check_result"] = candidate["dependency_check"]
+            candidate["validation_status"] = type(self)._candidate_validation_status(candidate)
             return candidate
 
         candidate["dependency_check"] = {"passed": True, "error": None}
+        candidate["dependency_check_result"] = candidate["dependency_check"]
+        candidate["validation_status"] = type(self)._candidate_validation_status(candidate)
         return candidate
 
     @staticmethod
     def _candidate_dependency_passes(candidate: Dict[str, Any]) -> bool:
         dependency_meta = candidate.get("dependency_check", {})
         return isinstance(dependency_meta, dict) and bool(dependency_meta.get("passed", False))
+
+    @staticmethod
+    def _candidate_validation_status(candidate: Dict[str, Any]) -> str:
+        dependency_meta = candidate.get("dependency_check", {})
+        selection_meta = candidate.get("selection_meta", {})
+        dependency_pass = isinstance(dependency_meta, dict) and bool(dependency_meta.get("passed", False))
+        verifier_pass = isinstance(selection_meta, dict) and bool(selection_meta.get("verifier_pass", False))
+        if dependency_pass and verifier_pass:
+            return "passed"
+        if not dependency_pass and not verifier_pass:
+            return "failed_dependency_and_verifier"
+        if not dependency_pass:
+            return "failed_dependency_check"
+        if not verifier_pass:
+            return "failed_verifier"
+        return "unknown"
 
     @staticmethod
     def _workflow_links_for_log(workflow: Dict[str, Any]) -> List[Dict[str, str]]:
@@ -1488,6 +1668,8 @@ User requirement:
         strategy_name: str,
         strategy_hint: str,
         sampling_temperature: float,
+        family_name: Optional[str] = None,
+        variant_name: Optional[str] = None,
         llm_client: Any = None,
     ) -> Dict[str, Any]:
         grounded_workflow, edge_grounding_meta = self._apply_edge_grounding_mode(
@@ -1511,6 +1693,8 @@ User requirement:
             strategy_name=strategy_name,
             strategy_hint=strategy_hint,
             sampling_temperature=sampling_temperature,
+            family_name=family_name,
+            variant_name=variant_name,
             verification_meta=verification_meta,
             edge_grounding_meta=edge_grounding_meta,
         )
@@ -1543,6 +1727,8 @@ User requirement:
                 strategy_name=strategy_name,
                 strategy_hint=strategy_hint,
                 sampling_temperature=sampling_temperature,
+                family_name=family_name,
+                variant_name=variant_name,
                 verification_meta=repaired_verification,
                 repair_meta={"attempted": True, "applied": True, "source": "llm_verifier"},
                 edge_grounding_meta=repaired_edge_grounding_meta,
@@ -1566,6 +1752,8 @@ User requirement:
         allow_repair: bool = True,
     ) -> Dict[str, Any]:
         strategy_name = str(spec.get("name", "")).strip()
+        family_name = str(spec.get("family_name", strategy_name)).strip() or strategy_name
+        variant_name = str(spec.get("variant_name", strategy_name)).strip() or strategy_name
         hint = str(spec.get("hint", "")).strip()
         temperature = self._candidate_temperature_for_spec(spec, round_idx)
         llm_client = self._get_candidate_llm(temperature)
@@ -1581,6 +1769,8 @@ User requirement:
                 strategy_name=strategy_name,
                 strategy_hint=hint,
                 sampling_temperature=temperature,
+                family_name=family_name,
+                variant_name=variant_name,
                 llm_client=llm_client,
             )
         else:
@@ -1605,6 +1795,8 @@ User requirement:
                 strategy_name=strategy_name,
                 strategy_hint=hint,
                 sampling_temperature=temperature,
+                family_name=family_name,
+                variant_name=variant_name,
                 verification_meta=verification_meta,
                 edge_grounding_meta=edge_grounding_meta,
             )
@@ -1625,6 +1817,75 @@ User requirement:
         finally:
             self._include_original_candidate = original_flag
         return [self._annotate_candidate_dependency_check(item) for item in candidates]
+
+    async def _generate_all_strategy_family_candidates(
+        self,
+        user_requirement: str,
+    ) -> List[Dict[str, Any]]:
+        strategy_specs = self._build_candidate_strategy_specs(user_requirement)
+        if not strategy_specs:
+            raise ValueError("no candidate strategy specs configured")
+        if bool(getattr(self, "_include_original_candidate", False)):
+            has_original_spec = any(
+                str(spec.get("family_name", spec.get("name", ""))).strip() == "original"
+                for spec in strategy_specs
+            )
+            if not has_original_spec:
+                raise ValueError(
+                    "include_original_candidate=True but strategy specs do not contain an original family"
+                )
+
+        candidates: List[Dict[str, Any]] = []
+        family_retry_limit = 3
+        selection_mode = str(getattr(self, "_candidate_selection_mode", "rerank")).strip().lower()
+
+        for spec_idx, spec in enumerate(strategy_specs):
+            strategy_name = str(spec.get("name", "")).strip() or f"family_{spec_idx}"
+            variant_name = str(spec.get("variant_name", strategy_name)).strip() or strategy_name
+            strategy_label = f"{strategy_name}:{variant_name}"
+            last_error: Optional[str] = None
+            candidate: Optional[Dict[str, Any]] = None
+            allow_repair = not (
+                selection_mode == "original_first_fallback" and strategy_name == "original"
+            )
+
+            for round_idx in range(family_retry_limit):
+                try:
+                    candidate = await self._generate_candidate_from_spec(
+                        user_requirement,
+                        spec,
+                        round_idx=round_idx,
+                        allow_repair=allow_repair,
+                    )
+                    break
+                except Exception as exc:
+                    last_error = (
+                        f"strategy={strategy_label}, round={round_idx + 1}, "
+                        f"error={type(exc).__name__}: {exc}"
+                    )
+
+            if candidate is None:
+                raise ValueError(
+                    f"failed to generate candidate family '{strategy_label}' after "
+                    f"{family_retry_limit} attempts"
+                    + (f"; last_error={last_error}" if last_error else "")
+                )
+
+            candidate["id"] = len(candidates) + 1
+            candidate["generation_index"] = spec_idx
+            candidates.append(candidate)
+
+        if bool(getattr(self, "_include_original_candidate", False)):
+            has_original_candidate = any(
+                str(item.get("family_name", item.get("strategy_name", ""))).strip() == "original"
+                for item in candidates
+            )
+            if not has_original_candidate:
+                raise ValueError(
+                    "include_original_candidate=True but generated candidate pool does not contain an original family"
+                )
+
+        return candidates
 
     @staticmethod
     def _original_first_fallback_candidate_key(
@@ -1651,6 +1912,46 @@ User requirement:
         candidates: List[Dict[str, Any]],
     ) -> Dict[str, Any]:
         return max(candidates, key=type(self)._original_first_fallback_candidate_key)
+
+    def _select_original_first_fallback_from_candidates(
+        self,
+        candidate_plans: List[Dict[str, Any]],
+    ) -> Tuple[Dict[str, Any], str]:
+        if not candidate_plans:
+            raise ValueError("no candidate plans generated")
+
+        original_candidate = next(
+            (
+                item
+                for item in candidate_plans
+                if str(item.get("strategy_name", "")).strip() == "original"
+            ),
+            None,
+        )
+        if original_candidate is not None and self._candidate_dependency_passes(original_candidate):
+            return original_candidate, "original_dependency_pass"
+
+        fallback_candidates = [
+            item
+            for item in candidate_plans
+            if item is not original_candidate
+        ]
+        if fallback_candidates:
+            selected = self._select_best_original_first_fallback_candidate(fallback_candidates)
+            selected_meta = selected.get("selection_meta", {})
+            dependency_meta = selected.get("dependency_check", {})
+            if (
+                isinstance(dependency_meta, dict)
+                and bool(dependency_meta.get("passed", False))
+                and isinstance(selected_meta, dict)
+                and bool(selected_meta.get("verifier_pass", False))
+            ):
+                return selected, "fallback_verifier_pass"
+            if isinstance(dependency_meta, dict) and bool(dependency_meta.get("passed", False)):
+                return selected, "fallback_dependency_pass"
+            return selected, "fallback_best_effort"
+
+        return self._select_best_original_first_fallback_candidate(candidate_plans), "fallback_best_effort"
 
     async def plan_candidates_original_dependency_filter_first_valid(
         self,
@@ -1696,6 +1997,26 @@ User requirement:
             "generation_errors": [],
         }
 
+    async def plan_candidates_collect_all_then_original(
+        self,
+        user_requirement: str,
+        candidate_count: int = 3,
+    ) -> Dict[str, Any]:
+        if candidate_count < 1:
+            raise ValueError("candidate_count must be >= 1")
+
+        candidate_plans = await self.generate_candidate_pool(
+            user_requirement,
+            candidate_count=candidate_count,
+        )
+        selected, selection_route = self._select_original_first_fallback_from_candidates(candidate_plans)
+        return {
+            "candidates": candidate_plans,
+            "selected": selected,
+            "selection_route": selection_route,
+            "generation_errors": [],
+        }
+
     async def plan_candidates_original_first_fallback(
         self,
         user_requirement: str,
@@ -1703,6 +2024,22 @@ User requirement:
     ) -> Dict[str, Any]:
         if candidate_count < 1:
             raise ValueError("candidate_count must be >= 1")
+
+        if (
+            self._force_generate_all_candidate_families_enabled()
+            or self._disable_early_stop_enabled()
+        ):
+            candidate_plans = await self.generate_candidate_pool(
+                user_requirement,
+                candidate_count=candidate_count,
+            )
+            selected, selection_route = self._select_original_first_fallback_from_candidates(candidate_plans)
+            return {
+                "candidates": candidate_plans,
+                "selected": selected,
+                "selection_route": selection_route,
+                "generation_errors": [],
+            }
 
         original_spec = {
             "name": "original",
@@ -1753,6 +2090,8 @@ User requirement:
                     strategy_name="original_repair",
                     strategy_hint="Repair the original candidate only if dependency or verifier issues are found.",
                     sampling_temperature=float(getattr(self.llm_config, "temperature", 0.0)),
+                    family_name=str(original_candidate.get("family_name", "original")).strip() or "original",
+                    variant_name=str(original_candidate.get("variant_name", "baseline")).strip() or "baseline",
                     llm_client=self.llm,
                 )
                 repaired_original = self._annotate_candidate_dependency_check(repaired_original)
@@ -1913,6 +2252,8 @@ User requirement:
                     strategy_name=str(original_candidate.get("strategy_name", "original")),
                     strategy_hint=str(original_candidate.get("strategy_hint", "")),
                     sampling_temperature=float(original_candidate.get("sampling_temperature", 0.0)),
+                    family_name=str(original_candidate.get("family_name", "original")),
+                    variant_name=str(original_candidate.get("variant_name", "baseline")),
                     verification_meta=verification_meta,
                     repair_meta={"attempted": False, "applied": False},
                     edge_grounding_meta=grounding_meta,
@@ -1952,6 +2293,9 @@ User requirement:
         if candidate_count < 1:
             raise ValueError("candidate_count must be >= 1")
 
+        if self._force_generate_all_candidate_families_enabled():
+            return await self._generate_all_strategy_family_candidates(user_requirement)
+
         strategy_specs = self._build_candidate_strategy_specs(user_requirement)
         pool_target = self._candidate_pool_target(strategy_specs, candidate_count)
 
@@ -1963,6 +2307,8 @@ User requirement:
             spec = strategy_specs[i % len(strategy_specs)]
             round_idx = i // len(strategy_specs)
             strategy_name = str(spec.get("name", "")).strip()
+            family_name = str(spec.get("family_name", strategy_name)).strip() or strategy_name
+            variant_name = str(spec.get("variant_name", strategy_name)).strip() or strategy_name
             hint = str(spec.get("hint", "")).strip()
             temperature = self._candidate_temperature_for_spec(spec, round_idx)
             llm_client = self._get_candidate_llm(temperature)
@@ -1992,6 +2338,8 @@ User requirement:
                     strategy_name=strategy_name,
                     strategy_hint=hint,
                     sampling_temperature=temperature,
+                    family_name=family_name,
+                    variant_name=variant_name,
                     llm_client=llm_client,
                 )
             except Exception as exc:
