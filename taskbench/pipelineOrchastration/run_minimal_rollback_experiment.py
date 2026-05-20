@@ -332,6 +332,7 @@ def _build_runner_args(
     args.enable_strict_planning_prompt = bool(group_spec.get("enable_strict_planning_prompt", False))
     args.enable_action_checklist = bool(group_spec.get("enable_action_checklist", False))
     args.enable_parameter_normalization = bool(group_spec.get("enable_parameter_normalization", False))
+    args.save_candidate_pool = bool(getattr(base_args, "save_candidate_pool", False))
 
     if args.planning_mode == "single":
         args.execution_mode = "best"
@@ -382,6 +383,7 @@ def _summarize_group_result(
         "label": group_spec["label"],
         "prediction_file": str(pred_file),
         "prediction_dir": str(meta["prediction_dir"]),
+        "candidate_dump_path": meta.get("candidate_dump_path"),
         "data_dir": str(data_dir),
         "requested_cases": requested_cases,
         "successful_predictions": successful_predictions,
@@ -526,8 +528,7 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
 
     selected_group_specs = _select_group_specs(
         _default_group_specs(),
-        # getattr(args, "group_tags", None),
-        ["K"]
+        getattr(args, "group_tags", None),
     )
 
     group_results: List[Dict[str, Any]] = []
@@ -612,6 +613,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--fixed_candidate_temperature", type=float, default=None)
     parser.add_argument("--step_ref_base", choices=["one", "zero"], default="one")
     parser.add_argument("--run_tag", type=str, default=None)
+    parser.add_argument(
+        "--save_candidate_pool",
+        action="store_true",
+        default=False,
+        help="Persist all candidate workflows for each successful case into candidate_dumps/ for post-hoc oracle analysis.",
+    )
     parser.add_argument(
         "--stop_on_error",
         action="store_true",

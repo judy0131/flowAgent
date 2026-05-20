@@ -606,6 +606,74 @@ def _build_prediction_record(
     }
 
 
+def _build_candidate_dump_record(
+    sid: str,
+    instruction: str,
+    taskbench_result: Dict[str, Any],
+    raw_result: Dict[str, Any],
+    *,
+    tool_names: List[str],
+    dependency_type: str,
+    tool_map_override: Dict[str, str],
+    link_mode: str,
+) -> Dict[str, Any]:
+    candidate_rows: List[Dict[str, Any]] = []
+    raw_candidates = raw_result.get("candidate_plans", [])
+    if not isinstance(raw_candidates, list):
+        raw_candidates = []
+
+    selected_plan_id = raw_result.get("selected_plan_id")
+    selected_candidate_score: Optional[float] = None
+
+    for item in raw_candidates:
+        if not isinstance(item, dict):
+            continue
+        workflow = item.get("workflow")
+        if not isinstance(workflow, dict):
+            continue
+
+        candidate_result = _convert_plan_to_taskbench_result(
+            plan=workflow,
+            tool_names=tool_names,
+            dependency_type=dependency_type,
+            tool_map_override=tool_map_override,
+            link_mode=link_mode,
+        )
+        candidate_row = {
+            "id": item.get("id"),
+            "generation_index": item.get("generation_index"),
+            "strategy_name": item.get("strategy_name"),
+            "strategy_hint": item.get("strategy_hint"),
+            "sampling_temperature": item.get("sampling_temperature"),
+            "score": item.get("score"),
+            "score_details": item.get("score_details"),
+            "selection_meta": item.get("selection_meta"),
+            "verification_meta": item.get("verification_meta"),
+            "dependency_check": item.get("dependency_check"),
+            "repair_meta": item.get("repair_meta"),
+            "edge_grounding_meta": item.get("edge_grounding_meta"),
+            "workflow": workflow,
+            "result": candidate_result,
+        }
+        if item.get("id") == selected_plan_id:
+            try:
+                selected_candidate_score = float(item.get("score"))
+            except (TypeError, ValueError):
+                selected_candidate_score = None
+        candidate_rows.append(candidate_row)
+
+    return {
+        "id": sid,
+        "instruction": instruction,
+        "selected_plan_id": selected_plan_id,
+        "selected_candidate_score": selected_candidate_score,
+        "selection_route": raw_result.get("selection_route"),
+        "structure_aware_meta": raw_result.get("structure_aware_meta"),
+        "selected_result": taskbench_result,
+        "candidates": candidate_rows,
+    }
+
+
 def _should_load_workflow_memory_for_run(args: argparse.Namespace) -> bool:
     if bool(getattr(args, "enable_workflow_memory", False)):
         return True
@@ -654,6 +722,9 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
     prediction_dir.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d")
     output_path = prediction_dir / f"{args.llm}_{args.model_name}_{timestamp}.json"
+    save_candidate_pool = bool(getattr(args, "save_candidate_pool", False))
+    candidate_dump_dir = prediction_dir.parent / "candidate_dumps"
+    candidate_dump_path = candidate_dump_dir / f"{args.llm}_{args.model_name}_{timestamp}.jsonl"
 
     done_ids = _load_existing_ids(output_path) if args.resume else set()
     requests = _load_requests(data_dir)
@@ -677,6 +748,8 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
     print(f"[INFO] data_dir={data_dir}")
     print(f"[INFO] dependency_type={dependency_type}")
     print(f"[INFO] output={output_path}")
+    if save_candidate_pool:
+        print(f"[INFO] candidate_dump={candidate_dump_path}")
     print(f"[INFO] total_to_run={len(requests)} (resume={args.resume}, skipped={len(done_ids)})")
     if args.llm_profile:
         print(f"[INFO] llm_profile={args.llm_profile}")
@@ -714,66 +787,88 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
     validation_failed = 0
     failure_counts: Dict[str, int] = {}
     failure_details: List[Dict[str, str]] = []
+    candidate_wf = None
+    if save_candidate_pool:
+        candidate_dump_dir.mkdir(parents=True, exist_ok=True)
+        candidate_wf = _open_prediction_output(candidate_dump_path, resume=args.resume)
 
-    with _open_prediction_output(output_path, resume=args.resume) as wf:
-        for idx, item in enumerate(requests, start=1):
-            sid = str(item.get("id", ""))
-            user_request = str(item.get("user_request", "")).strip()
-            if not sid or not user_request:
-                failed += 1
-                print(f"[WARN] skip invalid sample at #{idx}: id={sid}")
-                continue
+    try:
+        with _open_prediction_output(output_path, resume=args.resume) as wf:
+            for idx, item in enumerate(requests, start=1):
+                sid = str(item.get("id", ""))
+                user_request = str(item.get("user_request", "")).strip()
+                if not sid or not user_request:
+                    failed += 1
+                    print(f"[WARN] skip invalid sample at #{idx}: id={sid}")
+                    continue
 
-            try:
-                raw_result = await _run_one(
-                    agent=agent,
-                    user_request=user_request,
-                    planning_mode=args.planning_mode,
-                    execution_mode=args.execution_mode,
-                    candidate_count=args.candidate_count,
-                    include_summary=bool(getattr(args, "include_summary", False)),
-                )
-                plan = _extract_selected_plan(raw_result)
-                taskbench_result = _convert_plan_to_taskbench_result(
-                    plan=plan,
-                    tool_names=tool_names,
-                    dependency_type=dependency_type,
-                    tool_map_override=tool_map_override,
-                    link_mode=args.link_mode,
-                )
-                out = _build_prediction_record(
-                    sid=sid,
-                    instruction=user_request,
-                    taskbench_result=taskbench_result,
-                )
-                wf.write(json.dumps(out, ensure_ascii=False) + "\n")
-                wf.flush()
-                success += 1
-                if idx % args.log_every == 0:
-                    print(f"[INFO] progress={idx}/{len(requests)} success={success} failed={failed}")
-            except Exception as e:
-                failed += 1
-                failure_category = _classify_case_failure(e)
-                failure_counts[failure_category] = failure_counts.get(failure_category, 0) + 1
-                if failure_category == "validation_failure":
-                    validation_failed += 1
-                failure_details.append(
-                    {
-                        "id": sid,
-                        "category": failure_category,
-                        "error_type": type(e).__name__,
-                        "error": str(e),
-                    }
-                )
-                print(f"[ERROR] id={sid} failed ({failure_category}): {type(e).__name__}: {e}")
-                if args.stop_on_error:
-                    raise
+                try:
+                    raw_result = await _run_one(
+                        agent=agent,
+                        user_request=user_request,
+                        planning_mode=args.planning_mode,
+                        execution_mode=args.execution_mode,
+                        candidate_count=args.candidate_count,
+                        include_summary=bool(getattr(args, "include_summary", False)),
+                    )
+                    plan = _extract_selected_plan(raw_result)
+                    taskbench_result = _convert_plan_to_taskbench_result(
+                        plan=plan,
+                        tool_names=tool_names,
+                        dependency_type=dependency_type,
+                        tool_map_override=tool_map_override,
+                        link_mode=args.link_mode,
+                    )
+                    out = _build_prediction_record(
+                        sid=sid,
+                        instruction=user_request,
+                        taskbench_result=taskbench_result,
+                    )
+                    wf.write(json.dumps(out, ensure_ascii=False) + "\n")
+                    wf.flush()
+                    if candidate_wf is not None:
+                        candidate_dump = _build_candidate_dump_record(
+                            sid=sid,
+                            instruction=user_request,
+                            taskbench_result=taskbench_result,
+                            raw_result=raw_result,
+                            tool_names=tool_names,
+                            dependency_type=dependency_type,
+                            tool_map_override=tool_map_override,
+                            link_mode=args.link_mode,
+                        )
+                        candidate_wf.write(json.dumps(candidate_dump, ensure_ascii=False) + "\n")
+                        candidate_wf.flush()
+                    success += 1
+                    if idx % args.log_every == 0:
+                        print(f"[INFO] progress={idx}/{len(requests)} success={success} failed={failed}")
+                except Exception as e:
+                    failed += 1
+                    failure_category = _classify_case_failure(e)
+                    failure_counts[failure_category] = failure_counts.get(failure_category, 0) + 1
+                    if failure_category == "validation_failure":
+                        validation_failed += 1
+                    failure_details.append(
+                        {
+                            "id": sid,
+                            "category": failure_category,
+                            "error_type": type(e).__name__,
+                            "error": str(e),
+                        }
+                    )
+                    print(f"[ERROR] id={sid} failed ({failure_category}): {type(e).__name__}: {e}")
+                    if args.stop_on_error:
+                        raise
+    finally:
+        if candidate_wf is not None:
+            candidate_wf.close()
 
     print(f"[DONE] success={success}, failed={failed}, output={output_path}")
     return {
         "data_dir": str(data_dir),
         "output_path": str(output_path),
         "prediction_dir": str(prediction_dir),
+        "candidate_dump_path": str(candidate_dump_path) if save_candidate_pool else None,
         "success": success,
         "failed": failed,
         "validation_failed": validation_failed,
@@ -939,6 +1034,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--offset", type=int, default=0)
     parser.add_argument("--resume", action="store_true", default=True)
     parser.add_argument("--no-resume", dest="resume", action="store_false")
+    parser.add_argument(
+        "--save_candidate_pool",
+        action="store_true",
+        default=False,
+        help="Write all generated candidate workflows plus selection metadata to a separate candidate_dumps JSONL file.",
+    )
     parser.add_argument("--log_every", type=int, default=10)
     parser.add_argument("--stop_on_error", action="store_true", default=False)
     return parser

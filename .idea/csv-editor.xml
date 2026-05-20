@@ -73,6 +73,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260519_oracle_B\B\oracle_analysis\oracle_summary.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

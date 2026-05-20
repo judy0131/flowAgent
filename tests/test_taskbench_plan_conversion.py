@@ -1,6 +1,7 @@
 import tempfile
 import unittest
 import argparse
+import json
 from pathlib import Path
 from unittest.mock import patch
 
@@ -11,11 +12,13 @@ from taskbench.pipelineOrchastration.run_minimal_rollback_experiment import (
     build_parser as build_rollback_parser,
 )
 from taskbench.pipelineOrchastration.run_with_pipeline_agent_base import (
+    _build_candidate_dump_record,
     _classify_case_failure,
     _open_prediction_output,
     _should_load_workflow_memory_for_run,
     build_parser as build_base_runner_parser,
 )
+from taskbench.pipelineOrchastration.oracle_candidate_analysis import analyze_candidate_dump
 from taskbench.pipelineOrchastration.run_with_pipeline_agent_openAI import (
     _build_prediction_record,
     _convert_plan_to_taskbench_result,
@@ -28,14 +31,14 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 class TestTaskbenchPlanConversion(unittest.TestCase):
-    def test_build_parser_defaults_to_openai_gpt54_xhigh_profile(self) -> None:
+    def test_build_parser_defaults_to_openai_runner_profile(self) -> None:
         parser = build_parser()
         args = parser.parse_args([])
 
         self.assertEqual(args.provider, "openai")
-        self.assertEqual(args.model_name, "gpt-5.4-xhigh")
+        self.assertEqual(args.model_name, "gpt-4.1")
         self.assertEqual(args.planning_mode, "multi")
-        self.assertEqual(args.llm_config_path, "configs/openai_gpt54_xhigh.json")
+        self.assertEqual(args.llm_config_path, "configs/openai.json")
 
     def test_build_parser_accepts_llm_profile_and_config_path(self) -> None:
         parser = build_parser()
@@ -181,6 +184,79 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
         self.assertNotIn("task_steps", result)
         self.assertNotIn("user_request", result)
 
+    def test_build_candidate_dump_record_keeps_selected_id_and_converted_candidates(self) -> None:
+        workflow = {
+            "task_steps": [
+                "Step 1: Call Text Simplifier with arg1=hello.",
+                "Step 2: Call Text Grammar Checker with arg1=<node-0>.",
+            ],
+            "task_nodes": [
+                {"task": "Text Simplifier", "arguments": ["hello"]},
+                {"task": "Text Grammar Checker", "arguments": ["<node-0>"]},
+            ],
+            "task_links": [
+                {"source": "Text Simplifier", "target": "Text Grammar Checker"},
+            ],
+        }
+        taskbench_result = _convert_plan_to_taskbench_result(
+            plan=workflow,
+            tool_names=["Text Simplifier", "Text Grammar Checker"],
+            dependency_type="resource",
+            tool_map_override={},
+            link_mode="explicit_only",
+        )
+        raw_result = {
+            "selected_plan_id": 2,
+            "selection_route": "first",
+            "candidate_plans": [
+                {
+                    "id": 1,
+                    "workflow": workflow,
+                    "score": 1.0,
+                    "score_details": {"mock": True},
+                    "strategy_name": "original",
+                    "strategy_hint": "hint",
+                    "sampling_temperature": 0.0,
+                    "selection_meta": {"verifier_pass": True},
+                    "verification_meta": {"verifier_pass": True},
+                    "dependency_check": {"passed": True, "error": None},
+                    "repair_meta": {"attempted": False, "applied": False},
+                    "edge_grounding_meta": {"mode": "none", "applied": False, "change_count": 0},
+                },
+                {
+                    "id": 2,
+                    "workflow": workflow,
+                    "score": 2.5,
+                    "score_details": {"mock": True},
+                    "strategy_name": "explicit",
+                    "strategy_hint": "hint2",
+                    "sampling_temperature": 0.2,
+                    "selection_meta": {"verifier_pass": True},
+                    "verification_meta": {"verifier_pass": True},
+                    "dependency_check": {"passed": True, "error": None},
+                    "repair_meta": {"attempted": False, "applied": False},
+                    "edge_grounding_meta": {"mode": "none", "applied": False, "change_count": 0},
+                },
+            ],
+        }
+
+        record = _build_candidate_dump_record(
+            sid="case-1",
+            instruction="simplify then grammar check",
+            taskbench_result=taskbench_result,
+            raw_result=raw_result,
+            tool_names=["Text Simplifier", "Text Grammar Checker"],
+            dependency_type="resource",
+            tool_map_override={},
+            link_mode="explicit_only",
+        )
+
+        self.assertEqual(record["selected_plan_id"], 2)
+        self.assertEqual(record["selected_candidate_score"], 2.5)
+        self.assertEqual(len(record["candidates"]), 2)
+        self.assertEqual(record["candidates"][0]["result"], taskbench_result)
+        self.assertEqual(record["candidates"][1]["strategy_name"], "explicit")
+
     def test_open_prediction_output_truncates_when_resume_disabled(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             output_path = Path(tmpdir) / "predictions.jsonl"
@@ -301,6 +377,35 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
         self.assertTrue(args.enable_action_checklist)
         self.assertTrue(args.enable_parameter_normalization)
 
+    def test_build_runner_args_passes_through_save_candidate_pool(self) -> None:
+        base_args = argparse.Namespace(
+            stop_on_error=False,
+            workflow_memory_path=None,
+            execution_mode="best",
+            save_candidate_pool=True,
+        )
+        group_spec = {
+            "planning_mode": "multi",
+            "candidate_selection_mode": "first",
+            "enable_candidate_verifier": False,
+            "enable_candidate_repair": False,
+            "enable_workflow_memory": False,
+            "include_original_candidate": True,
+            "edge_grounding_mode": "none",
+        }
+
+        args = _build_runner_args(
+            runner_parser=argparse.ArgumentParser(),
+            base_args=base_args,
+            group_spec=group_spec,
+            prediction_dir="predictions",
+            case_ids_file=Path("case_ids.txt"),
+            candidate_count=3,
+            fixed_temperature=0.0,
+        )
+
+        self.assertTrue(args.save_candidate_pool)
+
     def test_semantic_edge_grounding_modes_request_memory_loading_without_generation_memory(self) -> None:
         for mode in [
             "semantic_edge_scoring",
@@ -335,6 +440,11 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
         args = build_base_runner_parser().parse_args(["--candidate_selection_mode", "structure_aware"])
 
         self.assertEqual(args.candidate_selection_mode, "structure_aware")
+
+    def test_base_runner_parser_accepts_save_candidate_pool(self) -> None:
+        args = build_base_runner_parser().parse_args(["--save_candidate_pool"])
+
+        self.assertTrue(args.save_candidate_pool)
 
     def test_default_group_specs_include_structure_aware_group(self) -> None:
         tag_to_spec = {item["tag"]: item for item in _default_group_specs()}
@@ -386,6 +496,77 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
         args = build_rollback_parser().parse_args([])
 
         self.assertIsNone(args.group_tags)
+
+    def test_oracle_candidate_analysis_reports_exact_and_better_candidate(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            data_dir = root / "data_multimedia"
+            data_dir.mkdir(parents=True, exist_ok=True)
+            save_dir = root / "oracle_analysis"
+            candidate_dump_path = root / "candidate_dumps.jsonl"
+
+            gold_row = {
+                "id": "1",
+                "type": "chain",
+                "n_tools": 2,
+                "task_steps": [],
+                "task_nodes": [
+                    {"task": "Text Simplifier", "arguments": ["hello"]},
+                    {"task": "Text Grammar Checker", "arguments": ["<node-0>"]},
+                ],
+                "task_links": [
+                    {"source": "Text Simplifier", "target": "Text Grammar Checker"},
+                ],
+            }
+            (data_dir / "data.json").write_text(json.dumps(gold_row, ensure_ascii=False) + "\n", encoding="utf-8")
+
+            selected_result = {
+                "task_steps": ["Step 1: Call Text Simplifier with arg1=hello."],
+                "task_nodes": [{"task": "Text Simplifier", "arguments": ["hello"]}],
+                "task_links": [],
+            }
+            exact_result = {
+                "task_steps": [
+                    "Step 1: Call Text Simplifier with arg1=hello.",
+                    "Step 2: Call Text Grammar Checker with arg1=<node-0>.",
+                ],
+                "task_nodes": [
+                    {"task": "Text Simplifier", "arguments": ["hello"]},
+                    {"task": "Text Grammar Checker", "arguments": ["<node-0>"]},
+                ],
+                "task_links": [
+                    {"source": "Text Simplifier", "target": "Text Grammar Checker"},
+                ],
+            }
+            dump_row = {
+                "id": "1",
+                "instruction": "simplify then grammar check",
+                "selected_plan_id": 1,
+                "selected_result": selected_result,
+                "selection_route": "first",
+                "candidates": [
+                    {"id": 1, "strategy_name": "original", "score": 0.1, "result": selected_result},
+                    {"id": 2, "strategy_name": "explicit", "score": 0.05, "result": exact_result},
+                ],
+            }
+            candidate_dump_path.write_text(json.dumps(dump_row, ensure_ascii=False) + "\n", encoding="utf-8")
+
+            summary = analyze_candidate_dump(
+                data_dir=data_dir,
+                candidate_dump_path=candidate_dump_path,
+                save_dir=save_dir,
+                step_ref_base="one",
+            )
+
+            self.assertEqual(summary["case_count"], 1)
+            overall = summary["summary_rows"][0]
+            self.assertEqual(overall["split"], "overall")
+            self.assertEqual(overall["exact_oracle_rate"], 1.0)
+            self.assertEqual(overall["node_oracle_rate"], 1.0)
+            self.assertEqual(overall["edge_oracle_rate"], 1.0)
+            self.assertEqual(overall["oracle_better_rate"], 1.0)
+            self.assertTrue((save_dir / "oracle_summary.csv").exists())
+            self.assertTrue((save_dir / "oracle_case_details.jsonl").exists())
 
 
 if __name__ == "__main__":
