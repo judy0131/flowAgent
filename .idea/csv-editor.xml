@@ -101,7 +101,42 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260520_155602\O2\pairwise_reranker_eval\summary.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\taskbench\data_multimedia\rollback_experiments\20260520_155602\comparison_single_chain_dag_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260520_230343\table1_details_by_split.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260520_230343\table1_details_comparison_style.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\20260520_230343\table1_overall_comparison.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\rollback_experiments\recent_experiments_master_table.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

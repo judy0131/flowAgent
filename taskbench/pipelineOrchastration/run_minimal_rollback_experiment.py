@@ -577,7 +577,7 @@ async def _run(args: argparse.Namespace) -> Dict[str, Any]:
     selected_group_specs = _select_group_specs(
         _default_group_specs(),
         # getattr(args, "group_tags", None) or ["O"],
-        ["O2"]
+        ["A","B","O2"]
     )
 
     group_results: List[Dict[str, Any]] = []
@@ -649,7 +649,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--data_dir", type=str, default="taskbench/data_multimedia")
     parser.add_argument("--gold_file", type=str, default="data.json")
-    parser.add_argument("--case_count", type=int, default=50)
+    parser.add_argument("--case_count", type=int, default=200)
     parser.add_argument("--case_ids_file", type=str, default=None)
     parser.add_argument("--offset", type=int, default=0)
     parser.add_argument("--candidate_count", type=int, default=3)

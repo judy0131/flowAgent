@@ -1,0 +1,7116 @@
+{
+  "tag": "O2",
+  "label": "orthogonal_prompt_candidates_v2",
+  "prediction_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260520_230343\\O2\\predictions\\pipeline_orchestrator_agent_gpt-4.1_20260521.json",
+  "prediction_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260520_230343\\O2\\predictions",
+  "candidate_dump_path": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260520_230343\\O2\\candidate_dumps\\pipeline_orchestrator_agent_gpt-4.1_20260521.jsonl",
+  "data_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia",
+  "requested_cases": 200,
+  "successful_predictions": 185,
+  "case_coverage_rate": 0.925,
+  "failed_cases": 15,
+  "validation_failure_count": 15,
+  "other_failure_count": 0,
+  "failure_counts": {
+    "validation_failure": 15
+  },
+  "failure_details": [
+    {
+      "id": "28095039",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[4] invalid dependency grounding: Text-to-Audio outputs [audio] but Video Voiceover.arg1 expects [video]"
+    },
+    {
+      "id": "18534983",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[2] invalid dependency grounding: Text-to-Audio outputs [audio] but Video Voiceover.arg1 expects [video]"
+    },
+    {
+      "id": "18081315",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[3] invalid dependency grounding: Image-to-Text outputs [text] but Video Voiceover.arg1 expects [video]"
+    },
+    {
+      "id": "31664374",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[2] invalid dependency grounding: Text Summarizer outputs [text] but Video Speed Changer.arg1 expects [video]"
+    },
+    {
+      "id": "89116871",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[3] invalid dependency grounding: Audio Splicer outputs [audio] but Video Synchronization.arg1 expects [video]"
+    },
+    {
+      "id": "28619645",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[2] invalid dependency grounding: Text Sentiment Analysis outputs [text] but Voice Changer.arg1 expects [audio]"
+    },
+    {
+      "id": "29606535",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[2] invalid dependency grounding: Text Expander outputs [text] but Video Voiceover.arg1 expects [video]"
+    },
+    {
+      "id": "31552088",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[2] invalid dependency grounding: Audio Noise Reduction outputs [audio] but Video Synchronization.arg1 expects [video]"
+    },
+    {
+      "id": "76244107",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[2] invalid dependency grounding: Audio Downloader outputs [audio] but Video Synchronization.arg1 expects [video]"
+    },
+    {
+      "id": "20688391",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[2] invalid dependency grounding: Keyword Extractor outputs [text] but Video Speed Changer.arg1 expects [video]"
+    },
+    {
+      "id": "15725286",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[1] invalid dependency grounding: Text Downloader outputs [text] but Voice Changer.arg1 expects [audio]"
+    },
+    {
+      "id": "18044964",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[3] invalid dependency grounding: Image-to-Text outputs [text] but Video Speed Changer.arg1 expects [video]"
+    },
+    {
+      "id": "91673994",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[3] invalid dependency grounding: Text Paraphraser outputs [text] but Video Speed Changer.arg1 expects [video]"
+    },
+    {
+      "id": "22721756",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[2] invalid dependency grounding: Article Spinner outputs [text] but Video Speed Changer.arg1 expects [video]"
+    },
+    {
+      "id": "20845670",
+      "category": "validation_failure",
+      "error_type": "ValueError",
+      "error": "task_nodes[1] invalid dependency grounding: Text Translator outputs [text] but Video Speed Changer.arg1 expects [video]"
+    }
+  ],
+  "total_predictions": 185,
+  "badcase_count": 102,
+  "badcase_rate": 0.5514,
+  "node_mismatch_in_badcase_count": 57,
+  "link_mismatch_in_badcase_count": 59,
+  "arg_mismatch_case_count": 99,
+  "badcase_ids": [
+    "25866928",
+    "36690562",
+    "29292224",
+    "27258164",
+    "88388827",
+    "27780863",
+    "15307439",
+    "13018270",
+    "46051366",
+    "60932031",
+    "11425996",
+    "11988217",
+    "24192922",
+    "26034796",
+    "10135093",
+    "19690344",
+    "15414201",
+    "96133316",
+    "28319577",
+    "87050118",
+    "18153929",
+    "21047396",
+    "23427738",
+    "31893844",
+    "10380769",
+    "26171658",
+    "13802119",
+    "31310133",
+    "16470663",
+    "30872064",
+    "11307128",
+    "14570693",
+    "24402294",
+    "24435782",
+    "17689799",
+    "50534924",
+    "21964207",
+    "15022263",
+    "18305025",
+    "86044142",
+    "28367485",
+    "74222240",
+    "74496196",
+    "17004308",
+    "27723483",
+    "62589731",
+    "20522174",
+    "21338123",
+    "21858748",
+    "22015847",
+    "13805623",
+    "26631272",
+    "11831430",
+    "16333963",
+    "57619492",
+    "54951370",
+    "79466668",
+    "41999382",
+    "12684292",
+    "24934781",
+    "30160324",
+    "16819120",
+    "13563445",
+    "11565320",
+    "29216690",
+    "79560754",
+    "51165983",
+    "62747985",
+    "89964487",
+    "22430176",
+    "32566527",
+    "24144196",
+    "31734078",
+    "11545630",
+    "24280969",
+    "21781185",
+    "16566071",
+    "17996213",
+    "23418188",
+    "23180828",
+    "28528820",
+    "16273916",
+    "85922837",
+    "31788289",
+    "22804689",
+    "22605629",
+    "31461277",
+    "11656312",
+    "59923748",
+    "16682768",
+    "29582096",
+    "13336269",
+    "26579656",
+    "12176023",
+    "20465957",
+    "15834651",
+    "26887673",
+    "18187080",
+    "45875119",
+    "19565758",
+    "30002506",
+    "15857859"
+  ],
+  "badcase_stats": {
+    "total_predictions": 185,
+    "goodcase_count": 83,
+    "badcase_count": 102,
+    "badcase_rate": 0.5514,
+    "node_ok_in_badcase_count": 45,
+    "node_mismatch_in_badcase_count": 57,
+    "link_ok_in_badcase_count": 43,
+    "link_mismatch_in_badcase_count": 59,
+    "arg_mismatch_case_count": 99,
+    "total_arg_mismatch_steps": 200,
+    "error_combo_distribution": {
+      "arg": 37,
+      "link+arg": 8,
+      "node": 2,
+      "node+arg": 4,
+      "node+link": 1,
+      "node+link+arg": 50
+    },
+    "badcase_by_type": {
+      "chain": {
+        "badcase_count": 59,
+        "node_mismatch_count": 46,
+        "link_mismatch_count": 49,
+        "arg_mismatch_case_count": 59
+      },
+      "dag": {
+        "badcase_count": 11,
+        "node_mismatch_count": 6,
+        "link_mismatch_count": 10,
+        "arg_mismatch_case_count": 10
+      },
+      "single": {
+        "badcase_count": 32,
+        "node_mismatch_count": 5,
+        "link_mismatch_count": 0,
+        "arg_mismatch_case_count": 30
+      }
+    }
+  },
+  "badcase_rows": [
+    {
+      "ID": "25866928",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text simplifier -> text search -> text grammar checker -> topic generator -> text-to-image",
+      "Gold Tasks": "text simplifier -> text search -> text grammar checker -> topic generator -> text-to-image",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "36690562",
+      "Type": "dag",
+      "Node OK": "✓",
+      "Link OK": "✗",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "video-to-audio -> audio splicer -> audio-to-text -> audio effects -> audio-to-image",
+      "Gold Tasks": "video-to-audio -> audio splicer -> audio-to-text -> audio effects -> audio-to-image",
+      "Error Summary": "link_mismatch; arg_mismatch(1)"
+    },
+    {
+      "ID": "29292224",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 5,
+      "Pred Tasks": "text summarizer -> text simplifier -> text sentiment analysis -> keyword extractor -> topic generator",
+      "Gold Tasks": "text simplifier -> text summarizer -> keyword extractor -> text sentiment analysis -> topic generator -> text search",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(5)"
+    },
+    {
+      "ID": "27258164",
+      "Type": "dag",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "audio noise reduction -> voice changer -> audio-to-image -> image-to-video",
+      "Gold Tasks": "voice changer -> audio noise reduction -> audio-to-image -> image-to-video",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "88388827",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "audio effects -> audio-to-image",
+      "Gold Tasks": "audio-to-text -> audio effects -> audio-to-image",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "27780863",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text translator -> video search -> video synchronization",
+      "Gold Tasks": "text translator -> video search -> video synchronization",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "15307439",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "audio effects -> audio-to-text -> text expander -> video search -> video speed changer",
+      "Gold Tasks": "audio effects -> audio-to-text -> text expander -> video search -> video speed changer",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "13018270",
+      "Type": "dag",
+      "Node OK": "✗",
+      "Link OK": "✓",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "audio splicer -> audio effects",
+      "Gold Tasks": "text simplifier -> audio splicer -> audio effects",
+      "Error Summary": "node_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "46051366",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "topic generator -> image search",
+      "Gold Tasks": "keyword extractor -> text expander -> topic generator -> text summarizer -> image search",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "60932031",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 5,
+      "Pred Tasks": "audio-to-text -> text grammar checker -> text expander -> text-to-audio",
+      "Gold Tasks": "audio-to-text -> text expander -> text grammar checker -> text-to-audio -> voice changer",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(5)"
+    },
+    {
+      "ID": "11425996",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✗",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "image stitcher -> image colorizer -> image search (by image) -> image-to-video",
+      "Gold Tasks": "image stitcher -> image colorizer -> image search (by image) -> image-to-video",
+      "Error Summary": "link_mismatch; arg_mismatch(1)"
+    },
+    {
+      "ID": "11988217",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "text summarizer -> text-to-audio -> voice changer",
+      "Gold Tasks": "keyword extractor -> text summarizer -> text to speech",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "24192922",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "text-to-video -> video voiceover -> video synchronization",
+      "Gold Tasks": "text search -> text-to-video -> video voiceover",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "26034796",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "video downloader -> video-to-text -> text-to-audio -> audio-to-text",
+      "Gold Tasks": "video downloader -> video-to-audio -> audio-to-text -> text-to-audio -> audio-to-text",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "10135093",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "keyword extractor -> text search -> url extractor -> text downloader",
+      "Gold Tasks": "keyword extractor -> url extractor -> text downloader",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "19690344",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "video-to-audio -> audio-to-image",
+      "Gold Tasks": "audio-to-image -> video-to-audio",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "15414201",
+      "Type": "dag",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "text-to-video -> video speed changer",
+      "Gold Tasks": "text sentiment analysis -> text expander -> text-to-image -> video speed changer",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "96133316",
+      "Type": "single",
+      "Node OK": "✗",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "image search (by image)",
+      "Gold Tasks": "image search",
+      "Error Summary": "node_mismatch; arg_mismatch(1)"
+    },
+    {
+      "ID": "28319577",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 4,
+      "Pred Tasks": "text downloader -> text grammar checker -> topic generator -> image search",
+      "Gold Tasks": "image search -> text extractor -> grammar and style checker -> theme extractor",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(4)"
+    },
+    {
+      "ID": "87050118",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text summarizer",
+      "Gold Tasks": "text summarizer",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "18153929",
+      "Type": "single",
+      "Node OK": "✗",
+      "Link OK": "✓",
+      "Arg Mismatch": 0,
+      "Pred Tasks": "text search",
+      "Gold Tasks": "web image search",
+      "Error Summary": "node_mismatch"
+    },
+    {
+      "ID": "21047396",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "article spinner -> text simplifier -> text-to-image -> image stitcher",
+      "Gold Tasks": "article spinner -> text simplifier -> text-to-image -> image stitcher",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "23427738",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "topic generator",
+      "Gold Tasks": "topic generator",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "31893844",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 5,
+      "Pred Tasks": "text translator -> url extractor -> audio downloader -> audio downloader -> audio effects -> audio effects",
+      "Gold Tasks": "keyword extractor -> text translator -> url extractor -> audio downloader -> audio effects",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(5)"
+    },
+    {
+      "ID": "10380769",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "image search",
+      "Gold Tasks": "image search",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "26171658",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text expander",
+      "Gold Tasks": "text expander",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "13802119",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "keyword extractor",
+      "Gold Tasks": "keyword extractor",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "31310133",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text-to-video",
+      "Gold Tasks": "text-to-video",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "16470663",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text-to-video",
+      "Gold Tasks": "text-to-video",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "30872064",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "audio-to-image",
+      "Gold Tasks": "audio-to-image",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "11307128",
+      "Type": "dag",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 0,
+      "Pred Tasks": "audio splicer -> audio-to-text -> audio-to-image",
+      "Gold Tasks": "audio splicer -> audio-to-image -> audio-to-text",
+      "Error Summary": "node_mismatch; link_mismatch"
+    },
+    {
+      "ID": "14570693",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text expander -> article spinner -> text simplifier",
+      "Gold Tasks": "text expander -> article spinner -> text simplifier",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "24402294",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 4,
+      "Pred Tasks": "text downloader -> text summarizer -> text-to-audio -> audio effects -> audio-to-image",
+      "Gold Tasks": "text downloader -> text grammar checker -> text summarizer -> text-to-speech -> audio effects -> audio-to-image",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(4)"
+    },
+    {
+      "ID": "24435782",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "video speed changer",
+      "Gold Tasks": "video speed changer",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "17689799",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text-to-audio",
+      "Gold Tasks": "text-to-audio",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "50534924",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "text search -> audio effects -> audio-to-image",
+      "Gold Tasks": "text search -> voice modulator -> audio-to-image -> image colorizer",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "21964207",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "video search -> video speed changer -> video-to-image",
+      "Gold Tasks": "article analysis -> keyword extractor -> video search -> video speed changer -> video-to-image",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "15022263",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 4,
+      "Pred Tasks": "video synchronization -> video voiceover -> video-to-audio -> audio-to-image",
+      "Gold Tasks": "audio-to-image -> video synchronization -> video voiceover -> video-to-audio",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(4)"
+    },
+    {
+      "ID": "18305025",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "audio effects",
+      "Gold Tasks": "audio effects",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "86044142",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "image-to-text -> keyword extractor -> text-to-video -> video-to-image",
+      "Gold Tasks": "image-to-text -> keyword extractor -> text-to-video -> video-to-image",
+      "Error Summary": "arg_mismatch(2)"
+    },
+    {
+      "ID": "28367485",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text-to-audio",
+      "Gold Tasks": "text-to-audio",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "74222240",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "image colorizer -> image-to-video -> video synchronization -> video speed changer",
+      "Gold Tasks": "image colorizer -> image-to-video -> video speed changer -> video synchronization",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "74496196",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 4,
+      "Pred Tasks": "url extractor -> text downloader -> article spinner -> text sentiment analysis",
+      "Gold Tasks": "article spinner -> text downloader -> text sentiment analysis -> url extractor",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(4)"
+    },
+    {
+      "ID": "17004308",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "image search",
+      "Gold Tasks": "image search",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "27723483",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "text search -> text-to-image",
+      "Gold Tasks": "text search -> topic generator -> text-to-image",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "62589731",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "topic generator",
+      "Gold Tasks": "topic generator",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "20522174",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "image search",
+      "Gold Tasks": "image search",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "21338123",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "audio effects",
+      "Gold Tasks": "text expander -> audio effects",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "21858748",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text search",
+      "Gold Tasks": "text search",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "22015847",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "topic generator -> text paraphraser",
+      "Gold Tasks": "topic generator -> text paraphraser",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "13805623",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "text paraphraser -> text-to-audio -> voice changer",
+      "Gold Tasks": "text paraphraser -> text grammar checker -> text sentiment analysis -> voice changer",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "26631272",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "image downloader -> image-to-text -> text search -> video search",
+      "Gold Tasks": "image downloader -> image-to-text -> web search -> video search",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "11831430",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "text search -> text simplifier -> text-to-audio -> voice changer",
+      "Gold Tasks": "text search -> text simplifier -> text to voice conversion",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "16333963",
+      "Type": "dag",
+      "Node OK": "✓",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "video search -> video synchronization -> video stabilizer -> video-to-text",
+      "Gold Tasks": "video search -> video synchronization -> video stabilizer -> video-to-text",
+      "Error Summary": "link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "57619492",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text-to-video",
+      "Gold Tasks": "text-to-video",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "54951370",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "article spinner -> topic generator",
+      "Gold Tasks": "text grammar checker -> text paraphraser -> text search -> article spinner -> topic generator",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "79466668",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "text search -> topic generator -> text sentiment analysis -> url extractor",
+      "Gold Tasks": "topic generator -> text simplifier -> text sentiment analysis -> url extractor",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "41999382",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text-to-audio",
+      "Gold Tasks": "text-to-audio",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "12684292",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "video speed changer",
+      "Gold Tasks": "video speed changer",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "24934781",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "audio-to-text -> image search",
+      "Gold Tasks": "audio downloader -> audio-to-text -> image search",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "30160324",
+      "Type": "dag",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "image-to-text -> url extractor -> text-to-image",
+      "Gold Tasks": "image-to-text -> text-to-image -> url extractor -> generate qr code",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(1)"
+    },
+    {
+      "ID": "16819120",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "video search",
+      "Gold Tasks": "video search",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "13563445",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "text expander -> text-to-image",
+      "Gold Tasks": "text paraphraser -> text enhancer -> text-to-image",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "11565320",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "text-to-image",
+      "Gold Tasks": "text paraphraser -> text sentiment analysis -> image search",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "29216690",
+      "Type": "dag",
+      "Node OK": "✓",
+      "Link OK": "✗",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "text paraphraser -> text-to-image -> url extractor",
+      "Gold Tasks": "text paraphraser -> text-to-image -> url extractor",
+      "Error Summary": "link_mismatch; arg_mismatch(1)"
+    },
+    {
+      "ID": "79560754",
+      "Type": "dag",
+      "Node OK": "✓",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "text grammar checker -> text summarizer -> topic generator -> text-to-video",
+      "Gold Tasks": "text grammar checker -> text summarizer -> topic generator -> text-to-video",
+      "Error Summary": "link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "51165983",
+      "Type": "single",
+      "Node OK": "✗",
+      "Link OK": "✓",
+      "Arg Mismatch": 0,
+      "Pred Tasks": "image search (by image)",
+      "Gold Tasks": "perform reverse image search",
+      "Error Summary": "node_mismatch"
+    },
+    {
+      "ID": "62747985",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 6,
+      "Pred Tasks": "video speed changer -> video-to-audio -> audio-to-text -> text grammar checker -> text paraphraser -> video search",
+      "Gold Tasks": "audio-to-text -> text grammar checker -> text paraphraser -> video search -> video speed changer -> video-to-audio",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(6)"
+    },
+    {
+      "ID": "89964487",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "voice changer",
+      "Gold Tasks": "voice changer",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "22430176",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "text-to-video -> video-to-audio -> audio noise reduction",
+      "Gold Tasks": "text-to-video -> video stabilizer -> video-to-audio -> audio noise reduction",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "32566527",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "text grammar checker -> text simplifier -> text-to-audio -> voice changer",
+      "Gold Tasks": "text grammar checker -> text simplifier -> voice changer",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "24144196",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "url extractor",
+      "Gold Tasks": "url extractor",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "31734078",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "audio splicer",
+      "Gold Tasks": "audio splicer",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "11545630",
+      "Type": "dag",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "audio downloader -> video-to-text -> text search -> audio effects",
+      "Gold Tasks": "audio downloader -> audio effects -> text search -> video-to-text",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "24280969",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "voice changer",
+      "Gold Tasks": "voice changer",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "21781185",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "video-to-text -> article spinner -> text expander -> text simplifier -> topic generator -> text-to-image",
+      "Gold Tasks": "video-to-text -> article spinner -> text expander -> text simplifier -> topic generator -> text-to-image",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "16566071",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "video synchronization -> video voiceover",
+      "Gold Tasks": "video synchronization -> video voiceover",
+      "Error Summary": "arg_mismatch(2)"
+    },
+    {
+      "ID": "17996213",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "audio-to-image -> image search (by image) -> image style transfer -> image stitcher",
+      "Gold Tasks": "audio-to-image -> image search (by image) -> image style transfer",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(1)"
+    },
+    {
+      "ID": "23418188",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "topic generator",
+      "Gold Tasks": "topic generator",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "23180828",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✗",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "audio-to-text -> voice changer -> audio effects",
+      "Gold Tasks": "audio-to-text -> voice changer -> audio effects",
+      "Error Summary": "link_mismatch; arg_mismatch(1)"
+    },
+    {
+      "ID": "28528820",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "text translator -> text grammar checker -> text expander -> text-to-audio -> voice changer -> audio noise reduction",
+      "Gold Tasks": "text translator -> text grammar checker -> text expander -> voice changer -> audio noise reduction",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "16273916",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "video voiceover",
+      "Gold Tasks": "keyword extractor -> text expander -> video voiceover",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "85922837",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "image search (by image) -> image-to-video -> video-to-text",
+      "Gold Tasks": "image search (by image) -> image-to-video -> video-to-text",
+      "Error Summary": "link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "31788289",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "audio-to-text -> text grammar checker -> text simplifier -> article spinner -> text expander -> topic generator -> text translator",
+      "Gold Tasks": "audio-to-text -> text grammar checker -> text simplifier -> article spinner -> text expander -> topic generator",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(1)"
+    },
+    {
+      "ID": "22804689",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "video-to-image -> image-to-text -> text-to-image -> image style transfer",
+      "Gold Tasks": "image style transfer -> image-to-text -> text-to-image -> video-to-image",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "22605629",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 6,
+      "Pred Tasks": "image search (by image) -> image style transfer -> image-to-video -> video-to-text -> keyword extractor -> text grammar checker",
+      "Gold Tasks": "image downloader -> image search (by image) -> image style transfer -> image-to-video -> video-to-text -> keyword extractor -> text grammar checker",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(6)"
+    },
+    {
+      "ID": "31461277",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "audio downloader -> audio-to-image -> image colorizer -> image style transfer -> image-to-text",
+      "Gold Tasks": "audio downloader -> audio-to-image -> image style transfer -> image colorizer -> image-to-text",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "11656312",
+      "Type": "single",
+      "Node OK": "✗",
+      "Link OK": "✓",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "video search -> video-to-image",
+      "Gold Tasks": "video search",
+      "Error Summary": "node_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "59923748",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "audio-to-text -> text simplifier -> topic generator",
+      "Gold Tasks": "audio noise reduction -> audio-to-text -> text grammar checker -> text expander -> topic generator",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "16682768",
+      "Type": "single",
+      "Node OK": "✗",
+      "Link OK": "✓",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "image search",
+      "Gold Tasks": "image search -> download image",
+      "Error Summary": "node_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "29582096",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "text simplifier -> text grammar checker",
+      "Gold Tasks": "text paraphraser -> text simplifier -> text grammar checker",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "13336269",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "image search",
+      "Gold Tasks": "image search",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "26579656",
+      "Type": "dag",
+      "Node OK": "✓",
+      "Link OK": "✗",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "video downloader -> video stabilizer -> video-to-audio -> video-to-image",
+      "Gold Tasks": "video downloader -> video stabilizer -> video-to-audio -> video-to-image",
+      "Error Summary": "link_mismatch; arg_mismatch(1)"
+    },
+    {
+      "ID": "12176023",
+      "Type": "chain",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "url extractor -> video downloader -> video synchronization -> video-to-image -> image search (by image) -> image colorizer",
+      "Gold Tasks": "url extractor -> video downloader -> video synchronization -> video-to-image -> image search (by image) -> image colorizer",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "20465957",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "video speed changer -> video-to-audio -> audio effects",
+      "Gold Tasks": "video speed adjustment -> extract audio from video -> audio enhancement",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "15834651",
+      "Type": "single",
+      "Node OK": "✓",
+      "Link OK": "✓",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "video search",
+      "Gold Tasks": "video search",
+      "Error Summary": "arg_mismatch(1)"
+    },
+    {
+      "ID": "26887673",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 4,
+      "Pred Tasks": "image downloader -> image-to-text -> topic generator -> keyword extractor -> text sentiment analysis -> text grammar checker -> image search",
+      "Gold Tasks": "image downloader -> image-to-text -> keyword extractor -> text grammar checker -> text sentiment analysis -> image search -> topic generator",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(4)"
+    },
+    {
+      "ID": "18187080",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "text-to-video -> video stabilizer -> video voiceover",
+      "Gold Tasks": "video search -> video stabilizer -> video voiceover",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "45875119",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 1,
+      "Pred Tasks": "video-to-image -> image search (by image)",
+      "Gold Tasks": "video-to-image -> image colorizer -> image search (by image)",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(1)"
+    },
+    {
+      "ID": "19565758",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 3,
+      "Pred Tasks": "image-to-text -> text grammar checker -> image search",
+      "Gold Tasks": "text grammar checker -> keyword extractor -> image search",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(3)"
+    },
+    {
+      "ID": "30002506",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "text-to-video -> video synchronization",
+      "Gold Tasks": "text sentiment analysis -> text-to-video -> video synchronization",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    },
+    {
+      "ID": "15857859",
+      "Type": "chain",
+      "Node OK": "✗",
+      "Link OK": "✗",
+      "Arg Mismatch": 2,
+      "Pred Tasks": "topic generator -> text-to-audio",
+      "Gold Tasks": "text expander -> text sentiment analysis -> topic generator -> text-to-audio",
+      "Error Summary": "node_mismatch; link_mismatch; arg_mismatch(2)"
+    }
+  ],
+  "badcase_details": [
+    {
+      "id": "25866928",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text simplifier",
+        "text search",
+        "text grammar checker",
+        "topic generator",
+        "text-to-image"
+      ],
+      "gold_tasks": [
+        "text simplifier",
+        "text search",
+        "text grammar checker",
+        "topic generator",
+        "text-to-image"
+      ],
+      "pred_links": [
+        {
+          "source": "text simplifier",
+          "target": "text search"
+        },
+        {
+          "source": "text search",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "topic generator"
+        },
+        {
+          "source": "topic generator",
+          "target": "text-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text simplifier",
+          "target": "text search"
+        },
+        {
+          "source": "text search",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "topic generator"
+        },
+        {
+          "source": "topic generator",
+          "target": "text-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text Simplifier",
+          "task_gold": "Text Simplifier",
+          "pred_args": [
+            "Climate change and its effect on polar bears"
+          ],
+          "gold_args": [
+            "Climate change and its impact on polar bears"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "36690562",
+      "type": "dag",
+      "node_ok": true,
+      "link_ok": false,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "video-to-audio",
+        "audio splicer",
+        "audio-to-text",
+        "audio effects",
+        "audio-to-image"
+      ],
+      "gold_tasks": [
+        "video-to-audio",
+        "audio splicer",
+        "audio-to-text",
+        "audio effects",
+        "audio-to-image"
+      ],
+      "pred_links": [
+        {
+          "source": "video-to-audio",
+          "target": "audio splicer"
+        },
+        {
+          "source": "audio splicer",
+          "target": "audio-to-text"
+        },
+        {
+          "source": "audio splicer",
+          "target": "audio effects"
+        },
+        {
+          "source": "audio effects",
+          "target": "audio-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "video-to-audio",
+          "target": "audio splicer"
+        },
+        {
+          "source": "audio splicer",
+          "target": "audio-to-text"
+        },
+        {
+          "source": "audio-to-text",
+          "target": "audio effects"
+        },
+        {
+          "source": "audio effects",
+          "target": "audio-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 4,
+          "task_pred": "Audio Effects",
+          "task_gold": "Audio Effects",
+          "pred_args": [
+            "<node-1>",
+            "add reverb"
+          ],
+          "gold_args": [
+            "<node-2>",
+            "add reverb"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "29292224",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 5,
+      "pred_tasks": [
+        "text summarizer",
+        "text simplifier",
+        "text sentiment analysis",
+        "keyword extractor",
+        "topic generator"
+      ],
+      "gold_tasks": [
+        "text simplifier",
+        "text summarizer",
+        "keyword extractor",
+        "text sentiment analysis",
+        "topic generator",
+        "text search"
+      ],
+      "pred_links": [
+        {
+          "source": "text summarizer",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "text sentiment analysis"
+        },
+        {
+          "source": "text simplifier",
+          "target": "keyword extractor"
+        },
+        {
+          "source": "text simplifier",
+          "target": "topic generator"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text simplifier",
+          "target": "text summarizer"
+        },
+        {
+          "source": "text summarizer",
+          "target": "keyword extractor"
+        },
+        {
+          "source": "text summarizer",
+          "target": "text sentiment analysis"
+        },
+        {
+          "source": "text sentiment analysis",
+          "target": "topic generator"
+        },
+        {
+          "source": "topic generator",
+          "target": "text search"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Text Simplifier",
+          "task_gold": "Text Summarizer",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Text Sentiment Analysis",
+          "task_gold": "Keyword Extractor",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Keyword Extractor",
+          "task_gold": "Text Sentiment Analysis",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": 5,
+          "task_pred": "Topic Generator",
+          "task_gold": "Topic Generator",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-3>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 5,
+          "gold_args": 6
+        }
+      ]
+    },
+    {
+      "id": "27258164",
+      "type": "dag",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "audio noise reduction",
+        "voice changer",
+        "audio-to-image",
+        "image-to-video"
+      ],
+      "gold_tasks": [
+        "voice changer",
+        "audio noise reduction",
+        "audio-to-image",
+        "image-to-video"
+      ],
+      "pred_links": [
+        {
+          "source": "audio noise reduction",
+          "target": "voice changer"
+        },
+        {
+          "source": "voice changer",
+          "target": "audio-to-image"
+        },
+        {
+          "source": "audio-to-image",
+          "target": "image-to-video"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "voice changer",
+          "target": "audio noise reduction"
+        },
+        {
+          "source": "audio noise reduction",
+          "target": "audio-to-image"
+        },
+        {
+          "source": "audio-to-image",
+          "target": "image-to-video"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Audio Noise Reduction",
+          "task_gold": "Voice Changer",
+          "pred_args": [
+            "example.wav"
+          ],
+          "gold_args": [
+            "example.wav",
+            "female"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Voice Changer",
+          "task_gold": "Audio Noise Reduction",
+          "pred_args": [
+            "<node-0>",
+            "make it sound like a female voice"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Audio-to-Image",
+          "task_gold": "Audio-to-Image",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "88388827",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "audio effects",
+        "audio-to-image"
+      ],
+      "gold_tasks": [
+        "audio-to-text",
+        "audio effects",
+        "audio-to-image"
+      ],
+      "pred_links": [
+        {
+          "source": "audio effects",
+          "target": "audio-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio-to-text",
+          "target": "audio effects"
+        },
+        {
+          "source": "audio effects",
+          "target": "audio-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Audio Effects",
+          "task_gold": "Audio-to-Text",
+          "pred_args": [
+            "example.wav",
+            "effects based on the content of the speech"
+          ],
+          "gold_args": [
+            "example.wav"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Audio-to-Image",
+          "task_gold": "Audio Effects",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "example.wav",
+            "<node-0>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "27780863",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text translator",
+        "video search",
+        "video synchronization"
+      ],
+      "gold_tasks": [
+        "text translator",
+        "video search",
+        "video synchronization"
+      ],
+      "pred_links": [
+        {
+          "source": "video search",
+          "target": "video synchronization"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "video search",
+          "target": "video synchronization"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Video Search",
+          "task_gold": "Video Search",
+          "pred_args": [
+            "how to cook paella"
+          ],
+          "gold_args": [
+            "how to cook paella video tutorial"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "15307439",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "audio effects",
+        "audio-to-text",
+        "text expander",
+        "video search",
+        "video speed changer"
+      ],
+      "gold_tasks": [
+        "audio effects",
+        "audio-to-text",
+        "text expander",
+        "video search",
+        "video speed changer"
+      ],
+      "pred_links": [
+        {
+          "source": "audio effects",
+          "target": "audio-to-text"
+        },
+        {
+          "source": "audio-to-text",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "video search"
+        },
+        {
+          "source": "video search",
+          "target": "video speed changer"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio effects",
+          "target": "audio-to-text"
+        },
+        {
+          "source": "audio-to-text",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "video search"
+        },
+        {
+          "source": "video search",
+          "target": "video speed changer"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Audio Effects",
+          "task_gold": "Audio Effects",
+          "pred_args": [
+            "example.wav",
+            "reverb and equalization"
+          ],
+          "gold_args": [
+            "example.wav",
+            "reverb, equalization"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "13018270",
+      "type": "dag",
+      "node_ok": false,
+      "link_ok": true,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "audio splicer",
+        "audio effects"
+      ],
+      "gold_tasks": [
+        "text simplifier",
+        "audio splicer",
+        "audio effects"
+      ],
+      "pred_links": [
+        {
+          "source": "audio splicer",
+          "target": "audio effects"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio splicer",
+          "target": "audio effects"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Audio Splicer",
+          "task_gold": "Text Simplifier",
+          "pred_args": [
+            "example.wav",
+            "example2.wav"
+          ],
+          "gold_args": [
+            "Apply a reverb effect with a 2-second decay, and use equalizer to boost the bass frequencies by 3dB."
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Audio Effects",
+          "task_gold": "Audio Splicer",
+          "pred_args": [
+            "<node-0>",
+            "Add a reverb effect with a 2-second decay, followed by an equalization boosting the bass frequencies by 3dB"
+          ],
+          "gold_args": [
+            "example.wav",
+            "example2.wav"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "46051366",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "topic generator",
+        "image search"
+      ],
+      "gold_tasks": [
+        "keyword extractor",
+        "text expander",
+        "topic generator",
+        "text summarizer",
+        "image search"
+      ],
+      "pred_links": [],
+      "gold_links": [
+        {
+          "source": "keyword extractor",
+          "target": "text expander"
+        },
+        {
+          "source": "keyword extractor",
+          "target": "topic generator"
+        },
+        {
+          "source": "topic generator",
+          "target": "text summarizer"
+        },
+        {
+          "source": "topic generator",
+          "target": "image search"
+        },
+        {
+          "source": "text summarizer",
+          "target": "image search"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Topic Generator",
+          "task_gold": "Keyword Extractor",
+          "pred_args": [
+            "Sustainable lifestyle, eco-friendly practices, and tips for going green."
+          ],
+          "gold_args": [
+            "sustainable lifestyle, eco-friendly practices, and tips for going green"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Image Search",
+          "task_gold": "Text Expander",
+          "pred_args": [
+            "Sustainable lifestyle, eco-friendly practices, and tips for going green."
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 5
+        }
+      ]
+    },
+    {
+      "id": "60932031",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 5,
+      "pred_tasks": [
+        "audio-to-text",
+        "text grammar checker",
+        "text expander",
+        "text-to-audio"
+      ],
+      "gold_tasks": [
+        "audio-to-text",
+        "text expander",
+        "text grammar checker",
+        "text-to-audio",
+        "voice changer"
+      ],
+      "pred_links": [
+        {
+          "source": "audio-to-text",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "text-to-audio"
+        }
+      ],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Audio-to-Text",
+          "task_gold": "Audio-to-Text",
+          "pred_args": [
+            "example.wav"
+          ],
+          "gold_args": [
+            "<node-4>"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Text Grammar Checker",
+          "task_gold": "Text Expander",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<output-of-node-0>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Text Expander",
+          "task_gold": "Text Grammar Checker",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<output-of-node-1>"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Text-to-Audio",
+          "task_gold": "Text-to-Audio",
+          "pred_args": [
+            "<node-2>"
+          ],
+          "gold_args": [
+            "<output-of-node-2>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 4,
+          "gold_args": 5
+        }
+      ]
+    },
+    {
+      "id": "11425996",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": false,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "image stitcher",
+        "image colorizer",
+        "image search (by image)",
+        "image-to-video"
+      ],
+      "gold_tasks": [
+        "image stitcher",
+        "image colorizer",
+        "image search (by image)",
+        "image-to-video"
+      ],
+      "pred_links": [
+        {
+          "source": "image stitcher",
+          "target": "image colorizer"
+        },
+        {
+          "source": "image colorizer",
+          "target": "image search (by image)"
+        },
+        {
+          "source": "image stitcher",
+          "target": "image-to-video"
+        },
+        {
+          "source": "image search (by image)",
+          "target": "image-to-video"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "image stitcher",
+          "target": "image colorizer"
+        },
+        {
+          "source": "image colorizer",
+          "target": "image search (by image)"
+        },
+        {
+          "source": "image colorizer",
+          "target": "image-to-video"
+        },
+        {
+          "source": "image search (by image)",
+          "target": "image-to-video"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 4,
+          "task_pred": "Image-to-Video",
+          "task_gold": "Image-to-Video",
+          "pred_args": [
+            "<node-0>",
+            "<node-2>"
+          ],
+          "gold_args": [
+            "<node-1>",
+            "<node-2>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11988217",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "text summarizer",
+        "text-to-audio",
+        "voice changer"
+      ],
+      "gold_tasks": [
+        "keyword extractor",
+        "text summarizer",
+        "text to speech"
+      ],
+      "pred_links": [
+        {
+          "source": "text summarizer",
+          "target": "text-to-audio"
+        },
+        {
+          "source": "text-to-audio",
+          "target": "voice changer"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "keyword extractor",
+          "target": "text summarizer"
+        },
+        {
+          "source": "text summarizer",
+          "target": "text to speech"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text Summarizer",
+          "task_gold": "Keyword Extractor",
+          "pred_args": [
+            "Computer technology has evolved significantly over the years...[multiline text]...Today's advancements continue to transform our world."
+          ],
+          "gold_args": [
+            "'Computer technology has radically advanced over the years...[multiline text]...The developments continue to alter our world significantly today.'"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Text-to-Audio",
+          "task_gold": "Text Summarizer",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Voice Changer",
+          "task_gold": "Text to Speech",
+          "pred_args": [
+            "<node-1>",
+            "female voice"
+          ],
+          "gold_args": [
+            "<node-1>",
+            "female"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "24192922",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "text-to-video",
+        "video voiceover",
+        "video synchronization"
+      ],
+      "gold_tasks": [
+        "text search",
+        "text-to-video",
+        "video voiceover"
+      ],
+      "pred_links": [
+        {
+          "source": "text-to-video",
+          "target": "video voiceover"
+        },
+        {
+          "source": "video voiceover",
+          "target": "video synchronization"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text search",
+          "target": "text-to-video"
+        },
+        {
+          "source": "text-to-video",
+          "target": "video voiceover"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Video Voiceover",
+          "task_gold": "Text-to-Video",
+          "pred_args": [
+            "<node-0>",
+            "Please find below the voiceover script that I want to use in the video."
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Video Synchronization",
+          "task_gold": "Video Voiceover",
+          "pred_args": [
+            "<node-1>",
+            "intro.wav"
+          ],
+          "gold_args": [
+            "<node-1>",
+            "intro.wav"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "26034796",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "video downloader",
+        "video-to-text",
+        "text-to-audio",
+        "audio-to-text"
+      ],
+      "gold_tasks": [
+        "video downloader",
+        "video-to-audio",
+        "audio-to-text",
+        "text-to-audio",
+        "audio-to-text"
+      ],
+      "pred_links": [
+        {
+          "source": "video downloader",
+          "target": "video-to-text"
+        },
+        {
+          "source": "video-to-text",
+          "target": "text-to-audio"
+        },
+        {
+          "source": "text-to-audio",
+          "target": "audio-to-text"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "video downloader",
+          "target": "video-to-audio"
+        },
+        {
+          "source": "video-to-audio",
+          "target": "audio-to-text"
+        },
+        {
+          "source": "audio-to-text",
+          "target": "text-to-audio"
+        },
+        {
+          "source": "text-to-audio",
+          "target": "audio-to-text"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 3,
+          "task_pred": "Text-to-Audio",
+          "task_gold": "Audio-to-Text",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Audio-to-Text",
+          "task_gold": "Text-to-Audio",
+          "pred_args": [
+            "<node-2>"
+          ],
+          "gold_args": [
+            "<node-3>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 4,
+          "gold_args": 5
+        }
+      ]
+    },
+    {
+      "id": "10135093",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "keyword extractor",
+        "text search",
+        "url extractor",
+        "text downloader"
+      ],
+      "gold_tasks": [
+        "keyword extractor",
+        "url extractor",
+        "text downloader"
+      ],
+      "pred_links": [
+        {
+          "source": "keyword extractor",
+          "target": "text search"
+        },
+        {
+          "source": "text search",
+          "target": "url extractor"
+        },
+        {
+          "source": "url extractor",
+          "target": "text downloader"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "keyword extractor",
+          "target": "url extractor"
+        },
+        {
+          "source": "url extractor",
+          "target": "text downloader"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Keyword Extractor",
+          "task_gold": "Keyword Extractor",
+          "pred_args": [
+            "The latest technology trends in the tech industry include AI, IoT, Blockchain, AR, and 5G. For more information, visit https://www.example.com/tech-trends."
+          ],
+          "gold_args": [
+            "The latest technology trends in the tech industry include AI, IoT, Blockchain, AR, and 5G. For more information, visit https://www.example.com/tech-trends"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "URL Extractor",
+          "task_gold": "Text Downloader",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 4,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "19690344",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "video-to-audio",
+        "audio-to-image"
+      ],
+      "gold_tasks": [
+        "audio-to-image",
+        "video-to-audio"
+      ],
+      "pred_links": [
+        {
+          "source": "video-to-audio",
+          "target": "audio-to-image"
+        }
+      ],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video-to-Audio",
+          "task_gold": "Audio-to-Image",
+          "pred_args": [
+            "example.mp4"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Audio-to-Image",
+          "task_gold": "Video-to-Audio",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "example.mp4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "15414201",
+      "type": "dag",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "text-to-video",
+        "video speed changer"
+      ],
+      "gold_tasks": [
+        "text sentiment analysis",
+        "text expander",
+        "text-to-image",
+        "video speed changer"
+      ],
+      "pred_links": [],
+      "gold_links": [
+        {
+          "source": "text sentiment analysis",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "text-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Video Speed Changer",
+          "task_gold": "Text Expander",
+          "pred_args": [
+            "example.mp4",
+            "double speed"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 4
+        }
+      ]
+    },
+    {
+      "id": "96133316",
+      "type": "single",
+      "node_ok": false,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "image search (by image)"
+      ],
+      "gold_tasks": [
+        "image search"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Image Search (by Image)",
+          "task_gold": "Image Search",
+          "pred_args": [
+            "example.jpg"
+          ],
+          "gold_args": [
+            "breathtaking landscape"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "28319577",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 4,
+      "pred_tasks": [
+        "text downloader",
+        "text grammar checker",
+        "topic generator",
+        "image search"
+      ],
+      "gold_tasks": [
+        "image search",
+        "text extractor",
+        "grammar and style checker",
+        "theme extractor"
+      ],
+      "pred_links": [
+        {
+          "source": "text downloader",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "topic generator"
+        },
+        {
+          "source": "topic generator",
+          "target": "image search"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text extractor",
+          "target": "grammar and style checker"
+        },
+        {
+          "source": "grammar and style checker",
+          "target": "theme extractor"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text Downloader",
+          "task_gold": "Image Search",
+          "pred_args": [
+            "https://www.example.com/article"
+          ],
+          "gold_args": [
+            "<node-3>"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Text Grammar Checker",
+          "task_gold": "Text Extractor",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "https://www.example.com/article"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Topic Generator",
+          "task_gold": "Grammar and Style Checker",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Image Search",
+          "task_gold": "Theme Extractor",
+          "pred_args": [
+            "<node-2>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "87050118",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text summarizer"
+      ],
+      "gold_tasks": [
+        "text summarizer"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text Summarizer",
+          "task_gold": "Text Summarizer",
+          "pred_args": [
+            "Healthy eating is important for maintaining good health, increasing longevity, and preventing various diseases such as heart disease, diabetes, and obesity. A healthy diet includes a variety of fruits, vegetables, whole grains, lean proteins, and healthy fats. Drinking plenty of water, limiting sugary beverages, and consuming alcohol in moderation are also essential for good health. Regular physical activity, along with a balanced diet, is critical in achieving and maintaining a healthy weight. Eating well can improve mental health, boost the immune system, and enhance overall well-being."
+          ],
+          "gold_args": [
+            "Healthy eating is crucial for maintaining good health, promoting longevity, and warding off various diseases like heart disease, obesity, and diabetes. A well-balanced diet incorporates a mix of different fruits, vegetables, whole grains, lean proteins, and healthy fats. Important components of a healthy lifestyle also include staying hydrated, moderating the intake of sugary drinks and alcohol. Regular physical activities, when combined with good eating habits, play a decisive role in achieving and sustaining a healthy weight. A good diet also positively impacts mental health, bolsters the immune system and boosts overall well-being."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "18153929",
+      "type": "single",
+      "node_ok": false,
+      "link_ok": true,
+      "arg_mismatch_count": 0,
+      "pred_tasks": [
+        "text search"
+      ],
+      "gold_tasks": [
+        "web image search"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": []
+    },
+    {
+      "id": "21047396",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "article spinner",
+        "text simplifier",
+        "text-to-image",
+        "image stitcher"
+      ],
+      "gold_tasks": [
+        "article spinner",
+        "text simplifier",
+        "text-to-image",
+        "image stitcher"
+      ],
+      "pred_links": [
+        {
+          "source": "article spinner",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "text-to-image"
+        },
+        {
+          "source": "text-to-image",
+          "target": "image stitcher"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "article spinner",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "text-to-image"
+        },
+        {
+          "source": "text-to-image",
+          "target": "image stitcher"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Article Spinner",
+          "task_gold": "Article Spinner",
+          "pred_args": [
+            "<article text>"
+          ],
+          "gold_args": [
+            "original article content"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "23427738",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "topic generator"
+      ],
+      "gold_tasks": [
+        "topic generator"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Topic Generator",
+          "task_gold": "Topic Generator",
+          "pred_args": [
+            "How to improve communication skills in the workplace?"
+          ],
+          "gold_args": [
+            "Improving communication skills in the workplace"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "31893844",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 5,
+      "pred_tasks": [
+        "text translator",
+        "url extractor",
+        "audio downloader",
+        "audio downloader",
+        "audio effects",
+        "audio effects"
+      ],
+      "gold_tasks": [
+        "keyword extractor",
+        "text translator",
+        "url extractor",
+        "audio downloader",
+        "audio effects"
+      ],
+      "pred_links": [
+        {
+          "source": "audio downloader",
+          "target": "audio effects"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "keyword extractor",
+          "target": "text translator"
+        },
+        {
+          "source": "text translator",
+          "target": "url extractor"
+        },
+        {
+          "source": "url extractor",
+          "target": "audio downloader"
+        },
+        {
+          "source": "audio downloader",
+          "target": "audio effects"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text Translator",
+          "task_gold": "Keyword Extractor",
+          "pred_args": [
+            "Hola, aquí hay enlaces de audio: ejemplo.wav y ejemplo.mp4"
+          ],
+          "gold_args": [
+            "'Hola, aquí hay enlaces de audio: ejemplo.wav y ejemplo.mp4'"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "URL Extractor",
+          "task_gold": "Text Translator",
+          "pred_args": [
+            "Hola, aquí hay enlaces de audio: ejemplo.wav y ejemplo.mp4"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Audio Downloader",
+          "task_gold": "URL Extractor",
+          "pred_args": [
+            "ejemplo.wav"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Audio Downloader",
+          "task_gold": "Audio Downloader",
+          "pred_args": [
+            "ejemplo.mp4"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 6,
+          "gold_args": 5
+        }
+      ]
+    },
+    {
+      "id": "10380769",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "image search"
+      ],
+      "gold_tasks": [
+        "image search"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Image Search",
+          "task_gold": "Image Search",
+          "pred_args": [
+            "beautiful landscape sunset over mountains"
+          ],
+          "gold_args": [
+            "captivating sunset over mountains landscape"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "26171658",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text expander"
+      ],
+      "gold_tasks": [
+        "text expander"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text Expander",
+          "task_gold": "Text Expander",
+          "pred_args": [
+            "NLP techniques help in text analytics"
+          ],
+          "gold_args": [
+            "Natural Language Processing techniques play a crucial role in the analysis of textual data"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "13802119",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "keyword extractor"
+      ],
+      "gold_tasks": [
+        "keyword extractor"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Keyword Extractor",
+          "task_gold": "Keyword Extractor",
+          "pred_args": [
+            "example.txt"
+          ],
+          "gold_args": [
+            "<text_from_example.txt>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "31310133",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text-to-video"
+      ],
+      "gold_tasks": [
+        "text-to-video"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text-to-Video",
+          "task_gold": "Text-to-Video",
+          "pred_args": [
+            "the story of a brave cat rescuing its owner from a burning house"
+          ],
+          "gold_args": [
+            "On a chilly winter evening, a cozy little abode was suddenly engulfed in ravenous flames. The unsuspecting homeowner found himself trapped amidst the smoke and the blazing fire. Alerted by the commotion, the brave little feline, in a daring act of courage, leaped into the heart of the danger. Undeterred by the swirling fire, it navigated through the burning house, finally reaching its beloved owner. With remarkable deftness, the cat led its owner through the labyrinth of smoke, guiding him towards the window. As the final embers grazed their tails, they leap to safety, escaping the fiery carnage just in the nick of time. Celebrated as the intrepid hero, the courageous cat was hailed and lauded far and wide."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "16470663",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text-to-video"
+      ],
+      "gold_tasks": [
+        "text-to-video"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text-to-Video",
+          "task_gold": "Text-to-Video",
+          "pred_args": [
+            "People enjoying a sunny day at the beach."
+          ],
+          "gold_args": [
+            "People relishing a beautiful sunny day at the beach"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "30872064",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "audio-to-image"
+      ],
+      "gold_tasks": [
+        "audio-to-image"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Audio-to-Image",
+          "task_gold": "Audio-to-Image",
+          "pred_args": [
+            "example.wav"
+          ],
+          "gold_args": [
+            "podcast_episode1.wav"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11307128",
+      "type": "dag",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 0,
+      "pred_tasks": [
+        "audio splicer",
+        "audio-to-text",
+        "audio-to-image"
+      ],
+      "gold_tasks": [
+        "audio splicer",
+        "audio-to-image",
+        "audio-to-text"
+      ],
+      "pred_links": [
+        {
+          "source": "audio splicer",
+          "target": "audio-to-text"
+        },
+        {
+          "source": "audio splicer",
+          "target": "audio-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio splicer",
+          "target": "audio-to-image"
+        },
+        {
+          "source": "audio splicer",
+          "target": "audio-to-text"
+        }
+      ],
+      "arg_mismatches": []
+    },
+    {
+      "id": "14570693",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text expander",
+        "article spinner",
+        "text simplifier"
+      ],
+      "gold_tasks": [
+        "text expander",
+        "article spinner",
+        "text simplifier"
+      ],
+      "pred_links": [
+        {
+          "source": "text expander",
+          "target": "article spinner"
+        },
+        {
+          "source": "article spinner",
+          "target": "text simplifier"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text expander",
+          "target": "article spinner"
+        },
+        {
+          "source": "article spinner",
+          "target": "text simplifier"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text Expander",
+          "task_gold": "Text Expander",
+          "pred_args": [
+            "Exercise helps improving mental and physical health."
+          ],
+          "gold_args": [
+            "Exercise helps improve mental and physical health."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "24402294",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 4,
+      "pred_tasks": [
+        "text downloader",
+        "text summarizer",
+        "text-to-audio",
+        "audio effects",
+        "audio-to-image"
+      ],
+      "gold_tasks": [
+        "text downloader",
+        "text grammar checker",
+        "text summarizer",
+        "text-to-speech",
+        "audio effects",
+        "audio-to-image"
+      ],
+      "pred_links": [
+        {
+          "source": "text downloader",
+          "target": "text summarizer"
+        },
+        {
+          "source": "text summarizer",
+          "target": "text-to-audio"
+        },
+        {
+          "source": "text-to-audio",
+          "target": "audio effects"
+        },
+        {
+          "source": "audio effects",
+          "target": "audio-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text downloader",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text summarizer"
+        },
+        {
+          "source": "text summarizer",
+          "target": "text-to-speech"
+        },
+        {
+          "source": "text-to-speech",
+          "target": "audio effects"
+        },
+        {
+          "source": "audio effects",
+          "target": "audio-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 3,
+          "task_pred": "Text-to-Audio",
+          "task_gold": "Text Summarizer",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Audio Effects",
+          "task_gold": "Text-to-Speech",
+          "pred_args": [
+            "<node-2>",
+            "soothing reverb"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": 5,
+          "task_pred": "Audio-to-Image",
+          "task_gold": "Audio Effects",
+          "pred_args": [
+            "<node-3>"
+          ],
+          "gold_args": [
+            "<node-3>",
+            "soothing reverb effect"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 5,
+          "gold_args": 6
+        }
+      ]
+    },
+    {
+      "id": "24435782",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "video speed changer"
+      ],
+      "gold_tasks": [
+        "video speed changer"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video Speed Changer",
+          "task_gold": "Video Speed Changer",
+          "pred_args": [
+            "example.mp4",
+            "slow down to 75% of its original speed"
+          ],
+          "gold_args": [
+            "example.mp4",
+            "75%"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "17689799",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text-to-audio"
+      ],
+      "gold_tasks": [
+        "text-to-audio"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text-to-Audio",
+          "task_gold": "Text-to-Audio",
+          "pred_args": [
+            "Do not forget to bring an umbrella today because it is going to rain."
+          ],
+          "gold_args": [
+            "Don't forget to bring an umbrella today as it's going to rain"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "50534924",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "text search",
+        "audio effects",
+        "audio-to-image"
+      ],
+      "gold_tasks": [
+        "text search",
+        "voice modulator",
+        "audio-to-image",
+        "image colorizer"
+      ],
+      "pred_links": [
+        {
+          "source": "audio effects",
+          "target": "audio-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text search",
+          "target": "voice modulator"
+        },
+        {
+          "source": "voice modulator",
+          "target": "audio-to-image"
+        },
+        {
+          "source": "audio-to-image",
+          "target": "image colorizer"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Audio Effects",
+          "task_gold": "Voice Modulator",
+          "pred_args": [
+            "example.wav",
+            "sound like a bird song"
+          ],
+          "gold_args": [
+            "example.wav",
+            "<node-0>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Audio-to-Image",
+          "task_gold": "Audio-to-Image",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 3,
+          "gold_args": 4
+        }
+      ]
+    },
+    {
+      "id": "21964207",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "video search",
+        "video speed changer",
+        "video-to-image"
+      ],
+      "gold_tasks": [
+        "article analysis",
+        "keyword extractor",
+        "video search",
+        "video speed changer",
+        "video-to-image"
+      ],
+      "pred_links": [
+        {
+          "source": "video search",
+          "target": "video speed changer"
+        },
+        {
+          "source": "video speed changer",
+          "target": "video-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "article analysis",
+          "target": "keyword extractor"
+        },
+        {
+          "source": "keyword extractor",
+          "target": "video search"
+        },
+        {
+          "source": "video search",
+          "target": "video speed changer"
+        },
+        {
+          "source": "video speed changer",
+          "target": "video-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Video Speed Changer",
+          "task_gold": "Keyword Extractor",
+          "pred_args": [
+            "<node-0>",
+            "1.5x"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Video-to-Image",
+          "task_gold": "Video Search",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 3,
+          "gold_args": 5
+        }
+      ]
+    },
+    {
+      "id": "15022263",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 4,
+      "pred_tasks": [
+        "video synchronization",
+        "video voiceover",
+        "video-to-audio",
+        "audio-to-image"
+      ],
+      "gold_tasks": [
+        "audio-to-image",
+        "video synchronization",
+        "video voiceover",
+        "video-to-audio"
+      ],
+      "pred_links": [
+        {
+          "source": "video synchronization",
+          "target": "video voiceover"
+        },
+        {
+          "source": "video voiceover",
+          "target": "video-to-audio"
+        },
+        {
+          "source": "video-to-audio",
+          "target": "audio-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "video synchronization",
+          "target": "video voiceover"
+        },
+        {
+          "source": "video voiceover",
+          "target": "video-to-audio"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video Synchronization",
+          "task_gold": "Audio-to-Image",
+          "pred_args": [
+            "example.mp4",
+            "example.wav"
+          ],
+          "gold_args": [
+            "<node-3>"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Video Voiceover",
+          "task_gold": "Video Synchronization",
+          "pred_args": [
+            "<node-0>",
+            "This is an example voiceover text."
+          ],
+          "gold_args": [
+            "example.mp4",
+            "example.wav"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Video-to-Audio",
+          "task_gold": "Video Voiceover",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>",
+            "This is an example voiceover text."
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Audio-to-Image",
+          "task_gold": "Video-to-Audio",
+          "pred_args": [
+            "<node-2>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "18305025",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "audio effects"
+      ],
+      "gold_tasks": [
+        "audio effects"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Audio Effects",
+          "task_gold": "Audio Effects",
+          "pred_args": [
+            "example.wav",
+            "reverb and equalization"
+          ],
+          "gold_args": [
+            "example.wav",
+            "Implement reverb and equalization effects."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "86044142",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "image-to-text",
+        "keyword extractor",
+        "text-to-video",
+        "video-to-image"
+      ],
+      "gold_tasks": [
+        "image-to-text",
+        "keyword extractor",
+        "text-to-video",
+        "video-to-image"
+      ],
+      "pred_links": [
+        {
+          "source": "image-to-text",
+          "target": "keyword extractor"
+        },
+        {
+          "source": "keyword extractor",
+          "target": "text-to-video"
+        },
+        {
+          "source": "text-to-video",
+          "target": "video-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "image-to-text",
+          "target": "keyword extractor"
+        },
+        {
+          "source": "keyword extractor",
+          "target": "text-to-video"
+        },
+        {
+          "source": "text-to-video",
+          "target": "video-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 3,
+          "task_pred": "Text-to-Video",
+          "task_gold": "Text-to-Video",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>",
+            "30 seconds",
+            "Summarized Information"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Video-to-Image",
+          "task_gold": "Video-to-Image",
+          "pred_args": [
+            "<node-2>"
+          ],
+          "gold_args": [
+            "<node-2>",
+            "00:00:15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "28367485",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text-to-audio"
+      ],
+      "gold_tasks": [
+        "text-to-audio"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text-to-Audio",
+          "task_gold": "Text-to-Audio",
+          "pred_args": [
+            "Welcome to the world of AI. Today, we will discuss the benefits and challenges of artificial intelligence. Let's get started!"
+          ],
+          "gold_args": [
+            "Welcome to the world of AI. Today, we will discuss the benefits and challenges of artificial intelligence. Let's get started!",
+            "example.wav"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "74222240",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "image colorizer",
+        "image-to-video",
+        "video synchronization",
+        "video speed changer"
+      ],
+      "gold_tasks": [
+        "image colorizer",
+        "image-to-video",
+        "video speed changer",
+        "video synchronization"
+      ],
+      "pred_links": [
+        {
+          "source": "image colorizer",
+          "target": "image-to-video"
+        },
+        {
+          "source": "image-to-video",
+          "target": "video synchronization"
+        },
+        {
+          "source": "video synchronization",
+          "target": "video speed changer"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "image colorizer",
+          "target": "image-to-video"
+        },
+        {
+          "source": "image-to-video",
+          "target": "video speed changer"
+        },
+        {
+          "source": "video speed changer",
+          "target": "video synchronization"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 3,
+          "task_pred": "Video Synchronization",
+          "task_gold": "Video Speed Changer",
+          "pred_args": [
+            "<node-1>",
+            "example.wav"
+          ],
+          "gold_args": [
+            "<node-1>",
+            "reduce speed"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Video Speed Changer",
+          "task_gold": "Video Synchronization",
+          "pred_args": [
+            "<node-2>",
+            "slow down"
+          ],
+          "gold_args": [
+            "<node-2>",
+            "example.wav"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "74496196",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 4,
+      "pred_tasks": [
+        "url extractor",
+        "text downloader",
+        "article spinner",
+        "text sentiment analysis"
+      ],
+      "gold_tasks": [
+        "article spinner",
+        "text downloader",
+        "text sentiment analysis",
+        "url extractor"
+      ],
+      "pred_links": [
+        {
+          "source": "url extractor",
+          "target": "text downloader"
+        },
+        {
+          "source": "text downloader",
+          "target": "article spinner"
+        },
+        {
+          "source": "article spinner",
+          "target": "text sentiment analysis"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "article spinner",
+          "target": "text sentiment analysis"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "URL Extractor",
+          "task_gold": "Article Spinner",
+          "pred_args": [
+            "Check out this interesting article on artificial intelligence: https://www.example.com/ai-article"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Text Downloader",
+          "task_gold": "Text Downloader",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-3>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Article Spinner",
+          "task_gold": "Text Sentiment Analysis",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Text Sentiment Analysis",
+          "task_gold": "URL Extractor",
+          "pred_args": [
+            "<node-2>"
+          ],
+          "gold_args": [
+            "I've recently come across an intriguing article on artificial intelligence at the following link: 'https://www.example.com/ai-article'"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "17004308",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "image search"
+      ],
+      "gold_tasks": [
+        "image search"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Image Search",
+          "task_gold": "Image Search",
+          "pred_args": [
+            "cute puppies"
+          ],
+          "gold_args": [
+            "adorable puppies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "27723483",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "text search",
+        "text-to-image"
+      ],
+      "gold_tasks": [
+        "text search",
+        "topic generator",
+        "text-to-image"
+      ],
+      "pred_links": [
+        {
+          "source": "text search",
+          "target": "text-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text search",
+          "target": "topic generator"
+        },
+        {
+          "source": "topic generator",
+          "target": "text-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text Search",
+          "task_gold": "Text Search",
+          "pred_args": [
+            "solar energy"
+          ],
+          "gold_args": [
+            "solar energy benefits"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "62589731",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "topic generator"
+      ],
+      "gold_tasks": [
+        "topic generator"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Topic Generator",
+          "task_gold": "Topic Generator",
+          "pred_args": [
+            "The environmental impact of plastic pollution and possible solutions to reduce its harmful effects."
+          ],
+          "gold_args": [
+            "The environmental impact of plastic pollution and possible solutions to reduce its harmful effects"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20522174",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "image search"
+      ],
+      "gold_tasks": [
+        "image search"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Image Search",
+          "task_gold": "Image Search",
+          "pred_args": [
+            "scenic landscape"
+          ],
+          "gold_args": [
+            "beautiful scenic landscape"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "21338123",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "audio effects"
+      ],
+      "gold_tasks": [
+        "text expander",
+        "audio effects"
+      ],
+      "pred_links": [],
+      "gold_links": [
+        {
+          "source": "text expander",
+          "target": "audio effects"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Audio Effects",
+          "task_gold": "Text Expander",
+          "pred_args": [
+            "example.wav",
+            "Deep reverb with a bit of chorus"
+          ],
+          "gold_args": [
+            "Deep reverb effect with slight chorus"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 1,
+          "gold_args": 2
+        }
+      ]
+    },
+    {
+      "id": "21858748",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text search"
+      ],
+      "gold_tasks": [
+        "text search"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text Search",
+          "task_gold": "Text Search",
+          "pred_args": [
+            "example.txt"
+          ],
+          "gold_args": [
+            "'example.txt'"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "22015847",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "topic generator",
+        "text paraphraser"
+      ],
+      "gold_tasks": [
+        "topic generator",
+        "text paraphraser"
+      ],
+      "pred_links": [
+        {
+          "source": "topic generator",
+          "target": "text paraphraser"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "topic generator",
+          "target": "text paraphraser"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Topic Generator",
+          "task_gold": "Topic Generator",
+          "pred_args": [
+            "technologies that can help reduce carbon footprint"
+          ],
+          "gold_args": [
+            "innovative technologies that can minimize carbon emissions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "13805623",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "text paraphraser",
+        "text-to-audio",
+        "voice changer"
+      ],
+      "gold_tasks": [
+        "text paraphraser",
+        "text grammar checker",
+        "text sentiment analysis",
+        "voice changer"
+      ],
+      "pred_links": [
+        {
+          "source": "text paraphraser",
+          "target": "text-to-audio"
+        },
+        {
+          "source": "text-to-audio",
+          "target": "voice changer"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text paraphraser",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text sentiment analysis"
+        },
+        {
+          "source": "text sentiment analysis",
+          "target": "voice changer"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text Paraphraser",
+          "task_gold": "Text Paraphraser",
+          "pred_args": [
+            "The economy is not doing well, and people are losing their jobs. It's a troubling situation."
+          ],
+          "gold_args": [
+            "'The economy is not doing well, and people are losing their jobs. It's a troubling situation.'"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Voice Changer",
+          "task_gold": "Text Sentiment Analysis",
+          "pred_args": [
+            "<node-1>",
+            "a more energetic tone and a different gender voice. Use example.wav as reference."
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 3,
+          "gold_args": 4
+        }
+      ]
+    },
+    {
+      "id": "26631272",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "image downloader",
+        "image-to-text",
+        "text search",
+        "video search"
+      ],
+      "gold_tasks": [
+        "image downloader",
+        "image-to-text",
+        "web search",
+        "video search"
+      ],
+      "pred_links": [
+        {
+          "source": "image downloader",
+          "target": "image-to-text"
+        },
+        {
+          "source": "image-to-text",
+          "target": "text search"
+        },
+        {
+          "source": "image-to-text",
+          "target": "video search"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "image downloader",
+          "target": "image-to-text"
+        },
+        {
+          "source": "image-to-text",
+          "target": "web search"
+        },
+        {
+          "source": "web search",
+          "target": "video search"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Image Downloader",
+          "task_gold": "Image Downloader",
+          "pred_args": [
+            "<user-URL>"
+          ],
+          "gold_args": [
+            "https://www.example.com/interesting-image.jpg"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Video Search",
+          "task_gold": "Video Search",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11831430",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "text search",
+        "text simplifier",
+        "text-to-audio",
+        "voice changer"
+      ],
+      "gold_tasks": [
+        "text search",
+        "text simplifier",
+        "text to voice conversion"
+      ],
+      "pred_links": [
+        {
+          "source": "text search",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "text-to-audio"
+        },
+        {
+          "source": "text-to-audio",
+          "target": "voice changer"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text search",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "text to voice conversion"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text Search",
+          "task_gold": "Text Search",
+          "pred_args": [
+            "how solar energy works"
+          ],
+          "gold_args": [
+            "Solar energy conversion process"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Text-to-Audio",
+          "task_gold": "Text to Voice Conversion",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>",
+            "female"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 4,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "16333963",
+      "type": "dag",
+      "node_ok": true,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "video search",
+        "video synchronization",
+        "video stabilizer",
+        "video-to-text"
+      ],
+      "gold_tasks": [
+        "video search",
+        "video synchronization",
+        "video stabilizer",
+        "video-to-text"
+      ],
+      "pred_links": [
+        {
+          "source": "video search",
+          "target": "video synchronization"
+        },
+        {
+          "source": "video synchronization",
+          "target": "video stabilizer"
+        },
+        {
+          "source": "video stabilizer",
+          "target": "video-to-text"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "video search",
+          "target": "video synchronization"
+        },
+        {
+          "source": "video synchronization",
+          "target": "video stabilizer"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video Search",
+          "task_gold": "Video Search",
+          "pred_args": [
+            "example"
+          ],
+          "gold_args": [
+            "project topic 'example'"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Video-to-Text",
+          "task_gold": "Video-to-Text",
+          "pred_args": [
+            "<node-2>"
+          ],
+          "gold_args": [
+            "example.wav"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "57619492",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text-to-video"
+      ],
+      "gold_tasks": [
+        "text-to-video"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text-to-Video",
+          "task_gold": "Text-to-Video",
+          "pred_args": [
+            "A cute puppy playing in a park on a sunny day. The puppy is chasing after a frisbee."
+          ],
+          "gold_args": [
+            "A delightful sight of a cute puppy joyfully playing in a park on a radiant sunny day, energetically chasing a frisbee around."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "54951370",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "article spinner",
+        "topic generator"
+      ],
+      "gold_tasks": [
+        "text grammar checker",
+        "text paraphraser",
+        "text search",
+        "article spinner",
+        "topic generator"
+      ],
+      "pred_links": [],
+      "gold_links": [
+        {
+          "source": "text grammar checker",
+          "target": "text paraphraser"
+        },
+        {
+          "source": "text search",
+          "target": "article spinner"
+        },
+        {
+          "source": "article spinner",
+          "target": "topic generator"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Article Spinner",
+          "task_gold": "Text Grammar Checker",
+          "pred_args": [
+            "Climate change, a very serius global threat, has signifuntly affected the earth's climate patterns. The largest cause mainly is human activities, such as burning of fossil fuels and deforestation. We all must take steps to reduuce the impact of climate change and protect our planet form further damage."
+          ],
+          "gold_args": [
+            "Climate change, a very serious global threat, has significantly affected the earth's climate patterns. The largest cause mainly is human activities, such as burning of fossil fuels and deforestation. We all must take steps to reduce the impact of climate change and protect our planet from further damage."
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Topic Generator",
+          "task_gold": "Text Paraphraser",
+          "pred_args": [
+            "Climate change, a very serius global threat, has signifuntly affected the earth's climate patterns. The largest cause mainly is human activities, such as burning of fossil fuels and deforestation. We all must take steps to reduuce the impact of climate change and protect our planet form further damage."
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 5
+        }
+      ]
+    },
+    {
+      "id": "79466668",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "text search",
+        "topic generator",
+        "text sentiment analysis",
+        "url extractor"
+      ],
+      "gold_tasks": [
+        "topic generator",
+        "text simplifier",
+        "text sentiment analysis",
+        "url extractor"
+      ],
+      "pred_links": [
+        {
+          "source": "text search",
+          "target": "topic generator"
+        },
+        {
+          "source": "topic generator",
+          "target": "text sentiment analysis"
+        },
+        {
+          "source": "text search",
+          "target": "url extractor"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "topic generator",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "text sentiment analysis"
+        },
+        {
+          "source": "text sentiment analysis",
+          "target": "url extractor"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Topic Generator",
+          "task_gold": "Text Simplifier",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Text Sentiment Analysis",
+          "task_gold": "Text Sentiment Analysis",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "URL Extractor",
+          "task_gold": "URL Extractor",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "41999382",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text-to-audio"
+      ],
+      "gold_tasks": [
+        "text-to-audio"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text-to-Audio",
+          "task_gold": "Text-to-Audio",
+          "pred_args": [
+            "The quick brown fox jumps over the lazy dog."
+          ],
+          "gold_args": [
+            "The quick brown fox jumps over the lazy dog.",
+            "example.wav"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "12684292",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "video speed changer"
+      ],
+      "gold_tasks": [
+        "video speed changer"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video Speed Changer",
+          "task_gold": "Video Speed Changer",
+          "pred_args": [
+            "example.mp4",
+            "two times"
+          ],
+          "gold_args": [
+            "example.mp4",
+            "increase speed 2x"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "24934781",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "audio-to-text",
+        "image search"
+      ],
+      "gold_tasks": [
+        "audio downloader",
+        "audio-to-text",
+        "image search"
+      ],
+      "pred_links": [
+        {
+          "source": "audio-to-text",
+          "target": "image search"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio downloader",
+          "target": "audio-to-text"
+        },
+        {
+          "source": "audio-to-text",
+          "target": "image search"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Image Search",
+          "task_gold": "Audio-to-Text",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "30160324",
+      "type": "dag",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "image-to-text",
+        "url extractor",
+        "text-to-image"
+      ],
+      "gold_tasks": [
+        "image-to-text",
+        "text-to-image",
+        "url extractor",
+        "generate qr code"
+      ],
+      "pred_links": [
+        {
+          "source": "image-to-text",
+          "target": "url extractor"
+        },
+        {
+          "source": "image-to-text",
+          "target": "text-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "image-to-text",
+          "target": "text-to-image"
+        },
+        {
+          "source": "image-to-text",
+          "target": "url extractor"
+        },
+        {
+          "source": "url extractor",
+          "target": "generate qr code"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 3,
+          "gold_args": 4
+        }
+      ]
+    },
+    {
+      "id": "16819120",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "video search"
+      ],
+      "gold_tasks": [
+        "video search"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video Search",
+          "task_gold": "Video Search",
+          "pred_args": [
+            "how to make an origami crane"
+          ],
+          "gold_args": [
+            "Origami Crane Folding Techniques"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "13563445",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "text expander",
+        "text-to-image"
+      ],
+      "gold_tasks": [
+        "text paraphraser",
+        "text enhancer",
+        "text-to-image"
+      ],
+      "pred_links": [
+        {
+          "source": "text expander",
+          "target": "text-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text paraphraser",
+          "target": "text enhancer"
+        },
+        {
+          "source": "text enhancer",
+          "target": "text-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Text-to-Image",
+          "task_gold": "Text Enhancer",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "11565320",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "text-to-image"
+      ],
+      "gold_tasks": [
+        "text paraphraser",
+        "text sentiment analysis",
+        "image search"
+      ],
+      "pred_links": [],
+      "gold_links": [
+        {
+          "source": "text paraphraser",
+          "target": "text sentiment analysis"
+        },
+        {
+          "source": "text sentiment analysis",
+          "target": "image search"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text-to-Image",
+          "task_gold": "Text Paraphraser",
+          "pred_args": [
+            "I am feeling so happy today"
+          ],
+          "gold_args": [
+            "I'm over the moon"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 1,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "29216690",
+      "type": "dag",
+      "node_ok": true,
+      "link_ok": false,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "text paraphraser",
+        "text-to-image",
+        "url extractor"
+      ],
+      "gold_tasks": [
+        "text paraphraser",
+        "text-to-image",
+        "url extractor"
+      ],
+      "pred_links": [
+        {
+          "source": "text paraphraser",
+          "target": "text-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text paraphraser",
+          "target": "text-to-image"
+        },
+        {
+          "source": "text paraphraser",
+          "target": "url extractor"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 3,
+          "task_pred": "URL Extractor",
+          "task_gold": "URL Extractor",
+          "pred_args": [
+            "The quick brown fox jumps over the lazy dog"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "79560754",
+      "type": "dag",
+      "node_ok": true,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "text grammar checker",
+        "text summarizer",
+        "topic generator",
+        "text-to-video"
+      ],
+      "gold_tasks": [
+        "text grammar checker",
+        "text summarizer",
+        "topic generator",
+        "text-to-video"
+      ],
+      "pred_links": [
+        {
+          "source": "text grammar checker",
+          "target": "text summarizer"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "topic generator"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text-to-video"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text grammar checker",
+          "target": "text summarizer"
+        },
+        {
+          "source": "text summarizer",
+          "target": "text-to-video"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 3,
+          "task_pred": "Topic Generator",
+          "task_gold": "Topic Generator",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "environmental conservation"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Text-to-Video",
+          "task_gold": "Text-to-Video",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "51165983",
+      "type": "single",
+      "node_ok": false,
+      "link_ok": true,
+      "arg_mismatch_count": 0,
+      "pred_tasks": [
+        "image search (by image)"
+      ],
+      "gold_tasks": [
+        "perform reverse image search"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": []
+    },
+    {
+      "id": "62747985",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 6,
+      "pred_tasks": [
+        "video speed changer",
+        "video-to-audio",
+        "audio-to-text",
+        "text grammar checker",
+        "text paraphraser",
+        "video search"
+      ],
+      "gold_tasks": [
+        "audio-to-text",
+        "text grammar checker",
+        "text paraphraser",
+        "video search",
+        "video speed changer",
+        "video-to-audio"
+      ],
+      "pred_links": [
+        {
+          "source": "video speed changer",
+          "target": "video-to-audio"
+        },
+        {
+          "source": "video-to-audio",
+          "target": "audio-to-text"
+        },
+        {
+          "source": "audio-to-text",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text paraphraser"
+        },
+        {
+          "source": "text paraphraser",
+          "target": "video search"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio-to-text",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text paraphraser"
+        },
+        {
+          "source": "text paraphraser",
+          "target": "video search"
+        },
+        {
+          "source": "video speed changer",
+          "target": "video-to-audio"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video Speed Changer",
+          "task_gold": "Audio-to-Text",
+          "pred_args": [
+            "example.mp4",
+            "slow down by 50%"
+          ],
+          "gold_args": [
+            "<node-5>"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Video-to-Audio",
+          "task_gold": "Text Grammar Checker",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Audio-to-Text",
+          "task_gold": "Text Paraphraser",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Text Grammar Checker",
+          "task_gold": "Video Search",
+          "pred_args": [
+            "<node-2>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": 5,
+          "task_pred": "Text Paraphraser",
+          "task_gold": "Video Speed Changer",
+          "pred_args": [
+            "<node-3>"
+          ],
+          "gold_args": [
+            "example.mp4",
+            0.5
+          ]
+        },
+        {
+          "step": 6,
+          "task_pred": "Video Search",
+          "task_gold": "Video-to-Audio",
+          "pred_args": [
+            "<node-4>"
+          ],
+          "gold_args": [
+            "<node-4>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "89964487",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "voice changer"
+      ],
+      "gold_tasks": [
+        "voice changer"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Voice Changer",
+          "task_gold": "Voice Changer",
+          "pred_args": [
+            "example.wav",
+            "female with a higher pitch"
+          ],
+          "gold_args": [
+            "example.wav",
+            "female voice, higher pitch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "22430176",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "text-to-video",
+        "video-to-audio",
+        "audio noise reduction"
+      ],
+      "gold_tasks": [
+        "text-to-video",
+        "video stabilizer",
+        "video-to-audio",
+        "audio noise reduction"
+      ],
+      "pred_links": [
+        {
+          "source": "text-to-video",
+          "target": "video-to-audio"
+        },
+        {
+          "source": "video-to-audio",
+          "target": "audio noise reduction"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text-to-video",
+          "target": "video stabilizer"
+        },
+        {
+          "source": "video stabilizer",
+          "target": "video-to-audio"
+        },
+        {
+          "source": "video-to-audio",
+          "target": "audio noise reduction"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 3,
+          "task_pred": "Audio Noise Reduction",
+          "task_gold": "Video-to-Audio",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 3,
+          "gold_args": 4
+        }
+      ]
+    },
+    {
+      "id": "32566527",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "text grammar checker",
+        "text simplifier",
+        "text-to-audio",
+        "voice changer"
+      ],
+      "gold_tasks": [
+        "text grammar checker",
+        "text simplifier",
+        "voice changer"
+      ],
+      "pred_links": [
+        {
+          "source": "text grammar checker",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "text-to-audio"
+        },
+        {
+          "source": "text-to-audio",
+          "target": "voice changer"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text grammar checker",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "voice changer"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 3,
+          "task_pred": "Text-to-Audio",
+          "task_gold": "Voice Changer",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>",
+            "<audio-input>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 4,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "24144196",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "url extractor"
+      ],
+      "gold_tasks": [
+        "url extractor"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "URL Extractor",
+          "task_gold": "URL Extractor",
+          "pred_args": [
+            "Please visit our website at https://www.example.com for more information."
+          ],
+          "gold_args": [
+            "Please visit our site at https://www.example.com for details."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "31734078",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "audio splicer"
+      ],
+      "gold_tasks": [
+        "audio splicer"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Audio Splicer",
+          "task_gold": "Audio Splicer",
+          "pred_args": [
+            "example1.wav",
+            "example2.wav"
+          ],
+          "gold_args": [
+            "example1.wav",
+            "example2.wav",
+            "combined.wav"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11545630",
+      "type": "dag",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "audio downloader",
+        "video-to-text",
+        "text search",
+        "audio effects"
+      ],
+      "gold_tasks": [
+        "audio downloader",
+        "audio effects",
+        "text search",
+        "video-to-text"
+      ],
+      "pred_links": [
+        {
+          "source": "video-to-text",
+          "target": "text search"
+        },
+        {
+          "source": "audio downloader",
+          "target": "audio effects"
+        },
+        {
+          "source": "text search",
+          "target": "audio effects"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio downloader",
+          "target": "audio effects"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Video-to-Text",
+          "task_gold": "Audio Effects",
+          "pred_args": [
+            "example.mp4"
+          ],
+          "gold_args": [
+            "<node-0>",
+            "<node-2>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Text Search",
+          "task_gold": "Text Search",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-3>"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Audio Effects",
+          "task_gold": "Video-to-Text",
+          "pred_args": [
+            "<node-0>",
+            "<node-2>"
+          ],
+          "gold_args": [
+            "example.mp4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "24280969",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "voice changer"
+      ],
+      "gold_tasks": [
+        "voice changer"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Voice Changer",
+          "task_gold": "Voice Changer",
+          "pred_args": [
+            "example.wav",
+            "lower pitch and male characteristics"
+          ],
+          "gold_args": [
+            "example.wav",
+            "deeper voice, male features"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "21781185",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "video-to-text",
+        "article spinner",
+        "text expander",
+        "text simplifier",
+        "topic generator",
+        "text-to-image"
+      ],
+      "gold_tasks": [
+        "video-to-text",
+        "article spinner",
+        "text expander",
+        "text simplifier",
+        "topic generator",
+        "text-to-image"
+      ],
+      "pred_links": [
+        {
+          "source": "video-to-text",
+          "target": "article spinner"
+        },
+        {
+          "source": "article spinner",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "topic generator"
+        },
+        {
+          "source": "topic generator",
+          "target": "text-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "video-to-text",
+          "target": "article spinner"
+        },
+        {
+          "source": "article spinner",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "topic generator"
+        },
+        {
+          "source": "topic generator",
+          "target": "text-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video-to-Text",
+          "task_gold": "Video-to-Text",
+          "pred_args": [
+            "example.mp4"
+          ],
+          "gold_args": [
+            "long_presentation.mp4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "16566071",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "video synchronization",
+        "video voiceover"
+      ],
+      "gold_tasks": [
+        "video synchronization",
+        "video voiceover"
+      ],
+      "pred_links": [
+        {
+          "source": "video synchronization",
+          "target": "video voiceover"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "video synchronization",
+          "target": "video voiceover"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video Synchronization",
+          "task_gold": "Video Synchronization",
+          "pred_args": [
+            "example.mp4",
+            "example.wav"
+          ],
+          "gold_args": [
+            "example.mp4",
+            "example.wav",
+            "Script for voiceover.txt"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Video Voiceover",
+          "task_gold": "Video Voiceover",
+          "pred_args": [
+            "<node-0>",
+            "Please sync the voiceover according to this script.txt"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "17996213",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "audio-to-image",
+        "image search (by image)",
+        "image style transfer",
+        "image stitcher"
+      ],
+      "gold_tasks": [
+        "audio-to-image",
+        "image search (by image)",
+        "image style transfer"
+      ],
+      "pred_links": [
+        {
+          "source": "audio-to-image",
+          "target": "image search (by image)"
+        },
+        {
+          "source": "image search (by image)",
+          "target": "image style transfer"
+        },
+        {
+          "source": "audio-to-image",
+          "target": "image stitcher"
+        },
+        {
+          "source": "image style transfer",
+          "target": "image stitcher"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio-to-image",
+          "target": "image search (by image)"
+        },
+        {
+          "source": "image search (by image)",
+          "target": "image style transfer"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 4,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "23418188",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "topic generator"
+      ],
+      "gold_tasks": [
+        "topic generator"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Topic Generator",
+          "task_gold": "Topic Generator",
+          "pred_args": [
+            "environmental conservation"
+          ],
+          "gold_args": [
+            "I'm planning to write a piece on environmental conservation."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "23180828",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": false,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "audio-to-text",
+        "voice changer",
+        "audio effects"
+      ],
+      "gold_tasks": [
+        "audio-to-text",
+        "voice changer",
+        "audio effects"
+      ],
+      "pred_links": [
+        {
+          "source": "voice changer",
+          "target": "audio effects"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio-to-text",
+          "target": "voice changer"
+        },
+        {
+          "source": "voice changer",
+          "target": "audio effects"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Voice Changer",
+          "task_gold": "Voice Changer",
+          "pred_args": [
+            "example.wav",
+            "robotic, higher pitch"
+          ],
+          "gold_args": [
+            "<node-1>",
+            "Robotic, higher pitch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "28528820",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "text translator",
+        "text grammar checker",
+        "text expander",
+        "text-to-audio",
+        "voice changer",
+        "audio noise reduction"
+      ],
+      "gold_tasks": [
+        "text translator",
+        "text grammar checker",
+        "text expander",
+        "voice changer",
+        "audio noise reduction"
+      ],
+      "pred_links": [
+        {
+          "source": "text translator",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "text-to-audio"
+        },
+        {
+          "source": "text-to-audio",
+          "target": "voice changer"
+        },
+        {
+          "source": "voice changer",
+          "target": "audio noise reduction"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text translator",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "voice changer"
+        },
+        {
+          "source": "voice changer",
+          "target": "audio noise reduction"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 4,
+          "task_pred": "Text-to-Audio",
+          "task_gold": "Voice Changer",
+          "pred_args": [
+            "<node-2>"
+          ],
+          "gold_args": [
+            "<node-3>",
+            "female voice"
+          ]
+        },
+        {
+          "step": 5,
+          "task_pred": "Voice Changer",
+          "task_gold": "Audio Noise Reduction",
+          "pred_args": [
+            "<node-3>",
+            "female voice"
+          ],
+          "gold_args": [
+            "<node-4>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 6,
+          "gold_args": 5
+        }
+      ]
+    },
+    {
+      "id": "16273916",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "video voiceover"
+      ],
+      "gold_tasks": [
+        "keyword extractor",
+        "text expander",
+        "video voiceover"
+      ],
+      "pred_links": [],
+      "gold_links": [
+        {
+          "source": "keyword extractor",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "video voiceover"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video Voiceover",
+          "task_gold": "Keyword Extractor",
+          "pred_args": [
+            "example.mp4",
+            "Visited Eiffel Tower, Louvre Museum, beautiful Seine River, delicious French cuisine"
+          ],
+          "gold_args": [
+            "Eiffel Tower, Louvre Museum, Seine River, French cuisine"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 1,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "85922837",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "image search (by image)",
+        "image-to-video",
+        "video-to-text"
+      ],
+      "gold_tasks": [
+        "image search (by image)",
+        "image-to-video",
+        "video-to-text"
+      ],
+      "pred_links": [
+        {
+          "source": "image search (by image)",
+          "target": "image-to-video"
+        },
+        {
+          "source": "image-to-video",
+          "target": "video-to-text"
+        }
+      ],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Image-to-Video",
+          "task_gold": "Image-to-Video",
+          "pred_args": [
+            "<node-0>",
+            "example.jpg"
+          ],
+          "gold_args": [
+            {
+              "source": "Image Search (by Image)",
+              "output": "found_image1"
+            },
+            {
+              "source": "Image Search (by Image)",
+              "output": "found_image2"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Video-to-Text",
+          "task_gold": "Video-to-Text",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            {
+              "source": "Image-to-Video",
+              "output": "slideshow_video"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "31788289",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "audio-to-text",
+        "text grammar checker",
+        "text simplifier",
+        "article spinner",
+        "text expander",
+        "topic generator",
+        "text translator"
+      ],
+      "gold_tasks": [
+        "audio-to-text",
+        "text grammar checker",
+        "text simplifier",
+        "article spinner",
+        "text expander",
+        "topic generator"
+      ],
+      "pred_links": [
+        {
+          "source": "audio-to-text",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "article spinner"
+        },
+        {
+          "source": "article spinner",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "topic generator"
+        },
+        {
+          "source": "topic generator",
+          "target": "text translator"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio-to-text",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "article spinner"
+        },
+        {
+          "source": "article spinner",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "topic generator"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 7,
+          "gold_args": 6
+        }
+      ]
+    },
+    {
+      "id": "22804689",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "video-to-image",
+        "image-to-text",
+        "text-to-image",
+        "image style transfer"
+      ],
+      "gold_tasks": [
+        "image style transfer",
+        "image-to-text",
+        "text-to-image",
+        "video-to-image"
+      ],
+      "pred_links": [
+        {
+          "source": "video-to-image",
+          "target": "image-to-text"
+        },
+        {
+          "source": "image-to-text",
+          "target": "text-to-image"
+        },
+        {
+          "source": "text-to-image",
+          "target": "image style transfer"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "image-to-text",
+          "target": "text-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video-to-Image",
+          "task_gold": "Image Style Transfer",
+          "pred_args": [
+            "example.mp4"
+          ],
+          "gold_args": [
+            "<node-2>",
+            "example.jpg"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Image-to-Text",
+          "task_gold": "Image-to-Text",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-3>"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Image Style Transfer",
+          "task_gold": "Video-to-Image",
+          "pred_args": [
+            "<node-2>",
+            "example.jpg"
+          ],
+          "gold_args": [
+            "example.mp4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "22605629",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 6,
+      "pred_tasks": [
+        "image search (by image)",
+        "image style transfer",
+        "image-to-video",
+        "video-to-text",
+        "keyword extractor",
+        "text grammar checker"
+      ],
+      "gold_tasks": [
+        "image downloader",
+        "image search (by image)",
+        "image style transfer",
+        "image-to-video",
+        "video-to-text",
+        "keyword extractor",
+        "text grammar checker"
+      ],
+      "pred_links": [
+        {
+          "source": "image search (by image)",
+          "target": "image style transfer"
+        },
+        {
+          "source": "image style transfer",
+          "target": "image-to-video"
+        },
+        {
+          "source": "image-to-video",
+          "target": "video-to-text"
+        },
+        {
+          "source": "video-to-text",
+          "target": "keyword extractor"
+        },
+        {
+          "source": "video-to-text",
+          "target": "text grammar checker"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "image downloader",
+          "target": "image search (by image)"
+        },
+        {
+          "source": "image search (by image)",
+          "target": "image style transfer"
+        },
+        {
+          "source": "image style transfer",
+          "target": "image-to-video"
+        },
+        {
+          "source": "image-to-video",
+          "target": "video-to-text"
+        },
+        {
+          "source": "video-to-text",
+          "target": "keyword extractor"
+        },
+        {
+          "source": "keyword extractor",
+          "target": "text grammar checker"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Image Search (by Image)",
+          "task_gold": "Image Downloader",
+          "pred_args": [
+            "example.jpg"
+          ],
+          "gold_args": [
+            "https://example.com/image.png"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Image Style Transfer",
+          "task_gold": "Image Search (by Image)",
+          "pred_args": [
+            "<node-0>",
+            "example.jpg"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Image-to-Video",
+          "task_gold": "Image Style Transfer",
+          "pred_args": [
+            "<node-1>",
+            "example.jpg"
+          ],
+          "gold_args": [
+            "<node-1>",
+            "example.jpg"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Video-to-Text",
+          "task_gold": "Image-to-Video",
+          "pred_args": [
+            "<node-2>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": 5,
+          "task_pred": "Keyword Extractor",
+          "task_gold": "Video-to-Text",
+          "pred_args": [
+            "<node-3>"
+          ],
+          "gold_args": [
+            "<node-3>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 6,
+          "gold_args": 7
+        }
+      ]
+    },
+    {
+      "id": "31461277",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "audio downloader",
+        "audio-to-image",
+        "image colorizer",
+        "image style transfer",
+        "image-to-text"
+      ],
+      "gold_tasks": [
+        "audio downloader",
+        "audio-to-image",
+        "image style transfer",
+        "image colorizer",
+        "image-to-text"
+      ],
+      "pred_links": [
+        {
+          "source": "audio downloader",
+          "target": "audio-to-image"
+        },
+        {
+          "source": "audio-to-image",
+          "target": "image colorizer"
+        },
+        {
+          "source": "image colorizer",
+          "target": "image style transfer"
+        },
+        {
+          "source": "image style transfer",
+          "target": "image-to-text"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio downloader",
+          "target": "audio-to-image"
+        },
+        {
+          "source": "audio-to-image",
+          "target": "image style transfer"
+        },
+        {
+          "source": "image style transfer",
+          "target": "image colorizer"
+        },
+        {
+          "source": "image colorizer",
+          "target": "image-to-text"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 3,
+          "task_pred": "Image Colorizer",
+          "task_gold": "Image Style Transfer",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>",
+            "example.jpg"
+          ]
+        },
+        {
+          "step": 4,
+          "task_pred": "Image Style Transfer",
+          "task_gold": "Image Colorizer",
+          "pred_args": [
+            "<node-2>",
+            "example.jpg"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": 5,
+          "task_pred": "Image-to-Text",
+          "task_gold": "Image-to-Text",
+          "pred_args": [
+            "<node-3>"
+          ],
+          "gold_args": [
+            "<node-3>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11656312",
+      "type": "single",
+      "node_ok": false,
+      "link_ok": true,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "video search",
+        "video-to-image"
+      ],
+      "gold_tasks": [
+        "video search"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video Search",
+          "task_gold": "Video Search",
+          "pred_args": [
+            "how to bake chocolate chip cookies"
+          ],
+          "gold_args": [
+            "beginner-friendly chocolate chip cookies baking tutorial"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 1
+        }
+      ]
+    },
+    {
+      "id": "59923748",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "audio-to-text",
+        "text simplifier",
+        "topic generator"
+      ],
+      "gold_tasks": [
+        "audio noise reduction",
+        "audio-to-text",
+        "text grammar checker",
+        "text expander",
+        "topic generator"
+      ],
+      "pred_links": [
+        {
+          "source": "audio-to-text",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "topic generator"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "audio noise reduction",
+          "target": "audio-to-text"
+        },
+        {
+          "source": "audio-to-text",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text expander"
+        },
+        {
+          "source": "text expander",
+          "target": "topic generator"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Text Simplifier",
+          "task_gold": "Audio-to-Text",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Topic Generator",
+          "task_gold": "Text Grammar Checker",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 3,
+          "gold_args": 5
+        }
+      ]
+    },
+    {
+      "id": "16682768",
+      "type": "single",
+      "node_ok": false,
+      "link_ok": true,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "image search"
+      ],
+      "gold_tasks": [
+        "image search",
+        "download image"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Image Search",
+          "task_gold": "Image Search",
+          "pred_args": [
+            "beautiful mountain landscape"
+          ],
+          "gold_args": [
+            "picturesque mountain landscape"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 1,
+          "gold_args": 2
+        }
+      ]
+    },
+    {
+      "id": "29582096",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "text simplifier",
+        "text grammar checker"
+      ],
+      "gold_tasks": [
+        "text paraphraser",
+        "text simplifier",
+        "text grammar checker"
+      ],
+      "pred_links": [
+        {
+          "source": "text simplifier",
+          "target": "text grammar checker"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text paraphraser",
+          "target": "text simplifier"
+        },
+        {
+          "source": "text simplifier",
+          "target": "text grammar checker"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Text Grammar Checker",
+          "task_gold": "Text Simplifier",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "13336269",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "image search"
+      ],
+      "gold_tasks": [
+        "image search"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Image Search",
+          "task_gold": "Image Search",
+          "pred_args": [
+            "a beautiful sunset"
+          ],
+          "gold_args": [
+            "high-resolution breathtaking sunset"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "26579656",
+      "type": "dag",
+      "node_ok": true,
+      "link_ok": false,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "video downloader",
+        "video stabilizer",
+        "video-to-audio",
+        "video-to-image"
+      ],
+      "gold_tasks": [
+        "video downloader",
+        "video stabilizer",
+        "video-to-audio",
+        "video-to-image"
+      ],
+      "pred_links": [
+        {
+          "source": "video downloader",
+          "target": "video stabilizer"
+        },
+        {
+          "source": "video stabilizer",
+          "target": "video-to-audio"
+        },
+        {
+          "source": "video stabilizer",
+          "target": "video-to-image"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "video downloader",
+          "target": "video stabilizer"
+        },
+        {
+          "source": "video stabilizer",
+          "target": "video-to-audio"
+        },
+        {
+          "source": "video downloader",
+          "target": "video-to-image"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 4,
+          "task_pred": "Video-to-Image",
+          "task_gold": "Video-to-Image",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "12176023",
+      "type": "chain",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "url extractor",
+        "video downloader",
+        "video synchronization",
+        "video-to-image",
+        "image search (by image)",
+        "image colorizer"
+      ],
+      "gold_tasks": [
+        "url extractor",
+        "video downloader",
+        "video synchronization",
+        "video-to-image",
+        "image search (by image)",
+        "image colorizer"
+      ],
+      "pred_links": [
+        {
+          "source": "url extractor",
+          "target": "video downloader"
+        },
+        {
+          "source": "video downloader",
+          "target": "video synchronization"
+        },
+        {
+          "source": "video synchronization",
+          "target": "video-to-image"
+        },
+        {
+          "source": "video-to-image",
+          "target": "image search (by image)"
+        },
+        {
+          "source": "image search (by image)",
+          "target": "image colorizer"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "url extractor",
+          "target": "video downloader"
+        },
+        {
+          "source": "video downloader",
+          "target": "video synchronization"
+        },
+        {
+          "source": "video synchronization",
+          "target": "video-to-image"
+        },
+        {
+          "source": "video-to-image",
+          "target": "image search (by image)"
+        },
+        {
+          "source": "image search (by image)",
+          "target": "image colorizer"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "URL Extractor",
+          "task_gold": "URL Extractor",
+          "pred_args": [
+            "the text containing a URL pointing to a video"
+          ],
+          "gold_args": [
+            "I have a piece of text which contains a URL to a certain video."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20465957",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "video speed changer",
+        "video-to-audio",
+        "audio effects"
+      ],
+      "gold_tasks": [
+        "video speed adjustment",
+        "extract audio from video",
+        "audio enhancement"
+      ],
+      "pred_links": [
+        {
+          "source": "video speed changer",
+          "target": "video-to-audio"
+        },
+        {
+          "source": "video-to-audio",
+          "target": "audio effects"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "video speed adjustment",
+          "target": "extract audio from video"
+        },
+        {
+          "source": "extract audio from video",
+          "target": "audio enhancement"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video Speed Changer",
+          "task_gold": "Video Speed Adjustment",
+          "pred_args": [
+            "example.mp4",
+            "1.5 times normal speed"
+          ],
+          "gold_args": [
+            "example.mp4",
+            "1.5 times"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Video-to-Audio",
+          "task_gold": "Extract Audio from Video",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Audio Effects",
+          "task_gold": "Audio Enhancement",
+          "pred_args": [
+            "<node-1>",
+            "reverb"
+          ],
+          "gold_args": [
+            "<node-2>",
+            "reverb effect"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "15834651",
+      "type": "single",
+      "node_ok": true,
+      "link_ok": true,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "video search"
+      ],
+      "gold_tasks": [
+        "video search"
+      ],
+      "pred_links": [],
+      "gold_links": [],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Video Search",
+          "task_gold": "Video Search",
+          "pred_args": [
+            "cooking pasta"
+          ],
+          "gold_args": [
+            "how to cook pasta tutorial"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "26887673",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 4,
+      "pred_tasks": [
+        "image downloader",
+        "image-to-text",
+        "topic generator",
+        "keyword extractor",
+        "text sentiment analysis",
+        "text grammar checker",
+        "image search"
+      ],
+      "gold_tasks": [
+        "image downloader",
+        "image-to-text",
+        "keyword extractor",
+        "text grammar checker",
+        "text sentiment analysis",
+        "image search",
+        "topic generator"
+      ],
+      "pred_links": [
+        {
+          "source": "image downloader",
+          "target": "image-to-text"
+        },
+        {
+          "source": "image-to-text",
+          "target": "topic generator"
+        },
+        {
+          "source": "image-to-text",
+          "target": "keyword extractor"
+        },
+        {
+          "source": "image-to-text",
+          "target": "text sentiment analysis"
+        },
+        {
+          "source": "keyword extractor",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text sentiment analysis",
+          "target": "image search"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "image downloader",
+          "target": "image-to-text"
+        },
+        {
+          "source": "image-to-text",
+          "target": "keyword extractor"
+        },
+        {
+          "source": "keyword extractor",
+          "target": "text grammar checker"
+        },
+        {
+          "source": "text grammar checker",
+          "target": "text sentiment analysis"
+        },
+        {
+          "source": "text sentiment analysis",
+          "target": "image search"
+        },
+        {
+          "source": "keyword extractor",
+          "target": "topic generator"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 4,
+          "task_pred": "Keyword Extractor",
+          "task_gold": "Text Grammar Checker",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": 5,
+          "task_pred": "Text Sentiment Analysis",
+          "task_gold": "Text Sentiment Analysis",
+          "pred_args": [
+            "<node-1>"
+          ],
+          "gold_args": [
+            "<node-3>"
+          ]
+        },
+        {
+          "step": 6,
+          "task_pred": "Text Grammar Checker",
+          "task_gold": "Image Search",
+          "pred_args": [
+            "<node-3>"
+          ],
+          "gold_args": [
+            "<node-4>"
+          ]
+        },
+        {
+          "step": 7,
+          "task_pred": "Image Search",
+          "task_gold": "Topic Generator",
+          "pred_args": [
+            "<node-4>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "18187080",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "text-to-video",
+        "video stabilizer",
+        "video voiceover"
+      ],
+      "gold_tasks": [
+        "video search",
+        "video stabilizer",
+        "video voiceover"
+      ],
+      "pred_links": [
+        {
+          "source": "text-to-video",
+          "target": "video stabilizer"
+        },
+        {
+          "source": "video stabilizer",
+          "target": "video voiceover"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "video search",
+          "target": "video stabilizer"
+        },
+        {
+          "source": "video stabilizer",
+          "target": "video voiceover"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Text-to-Video",
+          "task_gold": "Video Search",
+          "pred_args": [
+            "example of an adorable cat playing"
+          ],
+          "gold_args": [
+            "clip of an adorable cat playing"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Video Stabilizer",
+          "task_gold": "Video Stabilizer",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "45875119",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 1,
+      "pred_tasks": [
+        "video-to-image",
+        "image search (by image)"
+      ],
+      "gold_tasks": [
+        "video-to-image",
+        "image colorizer",
+        "image search (by image)"
+      ],
+      "pred_links": [
+        {
+          "source": "video-to-image",
+          "target": "image search (by image)"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "video-to-image",
+          "target": "image colorizer"
+        },
+        {
+          "source": "image colorizer",
+          "target": "image search (by image)"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "19565758",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 3,
+      "pred_tasks": [
+        "image-to-text",
+        "text grammar checker",
+        "image search"
+      ],
+      "gold_tasks": [
+        "text grammar checker",
+        "keyword extractor",
+        "image search"
+      ],
+      "pred_links": [
+        {
+          "source": "image-to-text",
+          "target": "text grammar checker"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "keyword extractor",
+          "target": "image search"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 1,
+          "task_pred": "Image-to-Text",
+          "task_gold": "Text Grammar Checker",
+          "pred_args": [
+            "example.jpg"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": 2,
+          "task_pred": "Text Grammar Checker",
+          "task_gold": "Keyword Extractor",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-2>"
+          ]
+        },
+        {
+          "step": 3,
+          "task_pred": "Image Search",
+          "task_gold": "Image Search",
+          "pred_args": [
+            "example.jpg"
+          ],
+          "gold_args": [
+            "<node-1>"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "30002506",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "text-to-video",
+        "video synchronization"
+      ],
+      "gold_tasks": [
+        "text sentiment analysis",
+        "text-to-video",
+        "video synchronization"
+      ],
+      "pred_links": [
+        {
+          "source": "text-to-video",
+          "target": "video synchronization"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text sentiment analysis",
+          "target": "text-to-video"
+        },
+        {
+          "source": "text-to-video",
+          "target": "video synchronization"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Video Synchronization",
+          "task_gold": "Text-to-Video",
+          "pred_args": [
+            "<node-0>",
+            "example.wav"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 3
+        }
+      ]
+    },
+    {
+      "id": "15857859",
+      "type": "chain",
+      "node_ok": false,
+      "link_ok": false,
+      "arg_mismatch_count": 2,
+      "pred_tasks": [
+        "topic generator",
+        "text-to-audio"
+      ],
+      "gold_tasks": [
+        "text expander",
+        "text sentiment analysis",
+        "topic generator",
+        "text-to-audio"
+      ],
+      "pred_links": [
+        {
+          "source": "topic generator",
+          "target": "text-to-audio"
+        }
+      ],
+      "gold_links": [
+        {
+          "source": "text expander",
+          "target": "text sentiment analysis"
+        },
+        {
+          "source": "text sentiment analysis",
+          "target": "topic generator"
+        },
+        {
+          "source": "topic generator",
+          "target": "text-to-audio"
+        }
+      ],
+      "arg_mismatches": [
+        {
+          "step": 2,
+          "task_pred": "Text-to-Audio",
+          "task_gold": "Text Sentiment Analysis",
+          "pred_args": [
+            "<node-0>"
+          ],
+          "gold_args": [
+            "<node-0>"
+          ]
+        },
+        {
+          "step": "len",
+          "task_pred": "__len__",
+          "task_gold": "__len__",
+          "pred_args": 2,
+          "gold_args": 4
+        }
+      ]
+    }
+  ],
+  "config": {
+    "planning_mode": "multi",
+    "candidate_selection_mode": "collect_all_then_original",
+    "enable_candidate_verifier": true,
+    "enable_candidate_repair": false,
+    "enable_workflow_memory": false,
+    "include_original_candidate": true,
+    "enable_semantic_edge_grounding": false,
+    "edge_grounding_mode": "none",
+    "candidate_prompt_mode": "orthogonal_v2",
+    "candidate_count_override": 10,
+    "force_generate_all_candidate_families": true,
+    "disable_early_stop": true,
+    "save_all_candidates": true,
+    "enable_strict_planning_prompt": false,
+    "enable_action_checklist": false,
+    "enable_parameter_normalization": false
+  }
+}
