@@ -1,11 +1,11 @@
-﻿# O2 Prompt Families Only
+﻿﻿# O2 Prompt Families Only
 
 当前 `O2` 使用的是 `candidate_prompt_mode="orthogonal_v2"`。  
 如果把所有候选共享的基础模板也单独算一条，那么可以整理成 `1 + 10` 条：
 
 | # | Family | Variant | Prompt Focus | 中文解释 |
 | ---: | --- | --- | --- | --- |
-| 1 | base | shared_base_prompt | Shared constrained planner prompt with strict rules, action checklist, workflow construction rules, self-check, output schema, examples, available skills, and user requirement. | 所有 O2 candidate 共用的基础 planner prompt。真正的 family 差异是在这个 base 之上叠加 `Planning strategy`。 |
+| 1 | base | shared_base_prompt | You are a constrained workflow planner.<br>Your task is to convert the user instruction into the minimal executable tool invocation graph<br>Important rules:<br>1.Use only tools from the available skill list.<br>2. Every selected tool must correspond to an explicit user-requested action.<br>3. Do not add optional, helpful, bridge, or intermediate tools unless the user explicitly requires them.<br>4. Do not omit any explicit user-requested action.<br>5. Do not replace one tool with a multi-tool workaround if the exact tool exists.<br>6. Copy user-provided file names, phrases, topics, styles, and parameter values exactly.<br>7. Use <node-i> only when the downstream tool directly consumes the output of node i.<br>8.task nodes must be in execution order.<br>9.task_links must exactly match the <node-i> references in arguments.<br>10. Return JSON only. | 所有 O2 candidate 共用的基础 planner prompt。真正的 family 差异是在这个 base 之上叠加 `Planning strategy`。 |
 | 2 | original | baseline | No extra strategy hint. | 原始基线 prompt，不额外加策略提示。 |
 | 3 | minimal | fewest_tools | Use the fewest tools possible while still satisfying the explicit request. Collapse optional intermediate steps unless required. | 优先最少工具数；如果中间步骤不是必须，就尽量收缩。 |
 | 4 | minimal | fewest_transformations | Minimize the number of transformations. Prefer direct producer-to-consumer paths over multi-hop reformulation. | 优先最少变换次数；减少多跳改写和中间转换。 |
