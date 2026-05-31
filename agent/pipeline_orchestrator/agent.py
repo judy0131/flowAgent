@@ -375,8 +375,13 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         enable_strict_planning_prompt: bool = False,
         enable_action_checklist: bool = False,
         enable_parameter_normalization: bool = False,
+        planning_prompt_mode: str = "agent",
+        taskbench_tool_list: Optional[List[Dict[str, Any]]] = None,
+        taskbench_demos: Optional[List[Dict[str, Any]]] = None,
+        taskbench_dependency_type: str = "resource",
     ):
         if candidate_selection_mode not in {
+            "none",
             "rerank",
             "first",
             "original_first_fallback",
@@ -385,7 +390,7 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
             "structure_aware",
         }:
             raise ValueError(
-                "candidate_selection_mode must be 'rerank', 'first', "
+                "candidate_selection_mode must be 'none', 'rerank', 'first', "
                 "'original_first_fallback', 'collect_all_then_original', "
                 "'original_dependency_filter_first_valid' or 'structure_aware'"
             )
@@ -410,10 +415,16 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
                 "'none', 'nearest_valid_upstream', 'semantic_edge_scoring', "
                 "'semantic_edge_scoring_h2a', 'semantic_edge_scoring_h2b'"
             )
-        if candidate_prompt_mode not in {"legacy", "orthogonal", "orthogonal_v2"}:
+        if candidate_prompt_mode not in {"legacy", "orthogonal", "orthogonal_v2", "orthogonal_v3", "orthogonal_v4"}:
             raise ValueError(
-                "candidate_prompt_mode must be 'legacy', 'orthogonal' or 'orthogonal_v2'"
+                "candidate_prompt_mode must be 'legacy', 'orthogonal', 'orthogonal_v2', 'orthogonal_v3' or 'orthogonal_v4'"
             )
+        planning_prompt_mode = str(planning_prompt_mode or "agent").strip().lower()
+        if planning_prompt_mode not in {"agent", "taskbench"}:
+            raise ValueError("planning_prompt_mode must be 'agent' or 'taskbench'")
+        taskbench_dependency_type = str(taskbench_dependency_type or "resource").strip().lower()
+        if taskbench_dependency_type not in {"resource", "temporal"}:
+            raise ValueError("taskbench_dependency_type must be 'resource' or 'temporal'")
         self.llm_config = self._resolve_llm_runtime_config(
             model_name=model_name,
             provider=provider,
@@ -438,6 +449,10 @@ class PipelineOrchestratorAgent(PlanningMixin, WorkflowMixin):
         self._enable_strict_planning_prompt = bool(enable_strict_planning_prompt)
         self._enable_action_checklist = bool(enable_action_checklist)
         self._enable_parameter_normalization = bool(enable_parameter_normalization)
+        self._planning_prompt_mode = planning_prompt_mode
+        self._taskbench_tool_list = list(taskbench_tool_list or [])
+        self._taskbench_demos = list(taskbench_demos or [])
+        self._taskbench_dependency_type = taskbench_dependency_type
 
         default_root = DEFAULT_SKILLS_ROOT
         self.registry = SkillRegistry(skills_root or default_root)
@@ -970,10 +985,18 @@ Execution JSON:
         candidate_count: int = 3,
         include_summary: bool = True,
     ) -> Dict[str, Any]:
-        if planning_mode not in {"single", "multi"}:
-            raise ValueError("planning_mode must be 'single' or 'multi'")
+        if planning_mode not in {"single", "multi", "action_dag"}:
+            raise ValueError("planning_mode must be 'single', 'multi' or 'action_dag'")
         if execution_mode not in {"best", "all"}:
             raise ValueError("execution_mode must be 'best' or 'all'")
+
+        if planning_mode == "action_dag":
+            action_dag_result = await self.plan_action_dag(user_requirement)
+            return {
+                "planning_mode": "action_dag",
+                "user_requirement": user_requirement,
+                **action_dag_result,
+            }
 
         if planning_mode == "multi":
             selection_mode = getattr(self, "_candidate_selection_mode", "rerank")

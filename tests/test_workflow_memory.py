@@ -12,11 +12,9 @@ from agent.pipeline_orchestrator.workflow_memory import (
     load_case_id_file,
     select_taskbench_records,
 )
-from agent.pipeline_orchestrator_agent import PipelineOrchestratorAgent, SkillRegistry
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-SKILLS_ROOT = PROJECT_ROOT / "skills" / "operators"
 
 
 class TestWorkflowMemoryIndex(unittest.TestCase):
@@ -298,21 +296,16 @@ class TestWorkflowMemoryRetrieval(unittest.TestCase):
         self.assertGreater(score["transition_bonus"], 0.0)
         self.assertGreater(score["motif_bonus"], 0.0)
 
-    def test_agent_prompt_includes_retrieved_workflow_priors(self) -> None:
-        agent = PipelineOrchestratorAgent.__new__(PipelineOrchestratorAgent)
-        agent.registry = SkillRegistry(SKILLS_ROOT)
-        agent._workflow_retriever = self.retriever
-        agent._workflow_retrieval_cache = {}
-        agent._tool_graph_planner = None
-        agent._skill_to_tool_graph_name = {}
-        agent._tool_graph_alias_to_skill = {}
-
-        prompt = agent._build_plan_prompt(
-            "Please simplify this article and search for related topics on the web."
+    def test_format_prompt_block_includes_retrieved_workflow_priors(self) -> None:
+        context = self.retriever.retrieve(
+            "Please simplify this article and search for related topics on the web.",
+            detected_actions=["simplify", "retrieval", "topic"],
         )
 
-        self.assertIn("Retrieved workflow priors from aggregated workflow memory:", prompt)
-        self.assertIn("Frequent path motif:", prompt)
+        prompt_block = format_workflow_memory_prompt_block(context)
+
+        self.assertIn("Retrieved workflow priors from aggregated workflow memory:", prompt_block)
+        self.assertIn("Frequent path motif:", prompt_block)
 
     def test_format_prompt_block_is_empty_without_context(self) -> None:
         self.assertEqual(format_workflow_memory_prompt_block({}), "")

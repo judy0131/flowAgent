@@ -5,6 +5,7 @@ from .retrieval import WorkflowMemoryRetriever
 from .serialization import _safe_json_dumps
 from .skill_registry import SkillRegistry
 from .workflow_memory import WorkflowMemoryIndex
+from .workflow_prior import TaskBenchPrior, TaskBenchPriorIndex
 
 __all__ = [
     "ACTION_CANONICAL_ORDER",
@@ -13,6 +14,8 @@ __all__ = [
     "SkillMetadata",
     "SkillPackage",
     "SkillRegistry",
+    "TaskBenchPrior",
+    "TaskBenchPriorIndex",
     "WorkflowMemoryIndex",
     "WorkflowMemoryRetriever",
     "_infer_skill_action_tags",

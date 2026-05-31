@@ -8,6 +8,9 @@ from .serialization import _safe_json_dumps
 
 
 class PlanningMixin:
+    def _get_planning_prompt_mode(self) -> str:
+        return str(getattr(self, "_planning_prompt_mode", "agent") or "agent").strip().lower()
+
     def _get_candidate_prompt_mode(self) -> str:
         return str(getattr(self, "_candidate_prompt_mode", "legacy") or "legacy").strip().lower()
 
@@ -205,7 +208,60 @@ Example 3: valid parallel workflow
             f"{coverage_lines}\n"
         )
 
+    def _build_taskbench_tool_string(self) -> str:
+        tool_list = getattr(self, "_taskbench_tool_list", None)
+        if not isinstance(tool_list, list) or not tool_list:
+            tool_list = self.registry.list_for_prompt()
+        tool_string = "# TASK LIST #:\n"
+        for tool in tool_list:
+            tool_string += json.dumps(tool) + "\n"
+        return tool_string
+
+    def _build_taskbench_demo_block(self) -> str:
+        demos = getattr(self, "_taskbench_demos", [])
+        if not isinstance(demos, list) or not demos:
+            return ""
+        block = "\n"
+        for demo in demos:
+            if not isinstance(demo, dict):
+                continue
+            user_request = demo.get("user_request")
+            result = demo.get("result")
+            if user_request is None or result is None:
+                continue
+            block += (
+                f"\n# EXAMPLE #:\n# USER REQUEST #: {user_request}\n"
+                f"# RESULT #: {json.dumps(result)}"
+            )
+        return block
+
+    def _build_taskbench_plan_prompt(self, user_requirement: str, strategy_hint: Optional[str] = None) -> str:
+        dependency_type = str(
+            getattr(self, "_taskbench_dependency_type", "resource") or "resource"
+        ).strip().lower()
+        if dependency_type == "resource":
+            prompt = """\n# GOAL #: Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ step description of one or more steps ], "task_nodes": [{"task": "tool name must be from # TOOL LIST #", "arguments": [ a concise list of arguments for the tool. Either original text, or user-mentioned filename, or tag '<node-j>' (start from 0) to refer to the output of the j-th node. ]}]} """
+            prompt += """\n\n# REQUIREMENTS #: \n1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; \n2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; \n3. the dependencies among task steps should align with the argument dependencies of the task nodes; \n4. the tool arguments should be align with the input-type field of # TASK LIST #;"""
+        else:
+            prompt = """\n# GOAL #:\nBased on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}"""
+            prompt += """\n\n# REQUIREMENTS #: \n1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; \n2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; \n3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;"""
+
+        prompt += self._build_taskbench_demo_block()
+        if strategy_hint:
+            prompt += f"""\n\n# PLANNING STRATEGY #:\n{strategy_hint.strip()}"""
+        prompt += """\n\n# USER REQUEST #: {{user_request}}\nnow please generate your result in a strict JSON format:\n# RESULT #:"""
+        return self._build_taskbench_tool_string() + prompt.replace(
+            "{{user_request}}",
+            user_requirement,
+        )
+
     def _build_plan_prompt(self, user_requirement: str, strategy_hint: Optional[str] = None) -> str:
+        if self._get_planning_prompt_mode() == "taskbench":
+            return self._build_taskbench_plan_prompt(
+                user_requirement,
+                strategy_hint=strategy_hint,
+            )
+
         required_actions = self._match_requirement_actions(user_requirement)
         checklist_block = self._action_checklist_prompt_block(required_actions)
         strategy_block = ""
@@ -268,6 +324,219 @@ User requirement:
 {user_requirement.strip()}
 """
         return prompt
+
+    @staticmethod
+    def _action_dag_output_schema() -> str:
+        return """
+{
+  "atomic_actions": [
+    {
+      "id": 0,
+      "action": "...",
+      "input": "...",
+      "output": "..."
+    }
+  ],
+  "dependencies": [
+    {
+      "source": 0,
+      "target": 1
+    }
+  ],
+  "materializations": [
+    {
+      "artifact": "...",
+      "producer": 1
+    }
+  ]
+}"""
+
+    def _build_action_dag_prompt(self, user_requirement: str) -> str:
+        return f"""
+You are an executable atomic action graph planner.
+
+Given the user requirement, output strict JSON only using this exact schema:
+{self._action_dag_output_schema()}
+
+Planning rules:
+1. Every explicit executable operation must become its own atomic action node.
+   Examples include search, retrieve, download, save, export, extract, summarize, translate,
+   transcribe, denoise, convert, generate, colorize, style transfer, and similar operations.
+   Do not implicitly merge these operations.
+2. Preserve user instruction order unless explicit parallelism is requested.
+3. Treat download, save, export, and materialize as explicit executable actions.
+   If the user specifies a filename, output format, download, save, or export, record it in
+   materializations and map it to a corresponding atomic action.
+4. Do not add unrequested transformations. Do not add translator, simplifier, formatter,
+   denoiser, or similar steps only because they might be helpful.
+5. Prefer executable fidelity over semantic compression. Do not compress multiple execution
+   actions into one semantic action.
+6. Dependencies represent true execution prerequisites. If two downstream actions can
+   independently consume the same upstream artifact, preserve the branch instead of forcing
+   a chain.
+7. Do not choose concrete tools or skill names. Only plan actions and dependencies.
+
+Output requirements:
+- Return JSON only.
+- Do not wrap the JSON in markdown fences.
+- Do not include explanations outside the JSON.
+- Use integer ids starting from 0 for atomic_actions.
+- dependencies.source and dependencies.target must refer to atomic action ids.
+- materializations.producer must refer to an atomic action id.
+
+User requirement:
+{user_requirement.strip()}
+"""
+
+    @staticmethod
+    def _strip_json_markdown_fence(raw: str) -> str:
+        text = str(raw or "").strip()
+        if text.startswith("```"):
+            text = text.strip("`").strip()
+            if text.lower().startswith("json"):
+                text = text[4:].strip()
+        return text
+
+    @staticmethod
+    def _normalize_action_dag_payload(payload: Any) -> Tuple[Optional[Dict[str, Any]], List[str]]:
+        errors: List[str] = []
+        if not isinstance(payload, dict):
+            return None, ["action_dag payload must be a JSON object"]
+
+        raw_actions = payload.get("atomic_actions")
+        raw_dependencies = payload.get("dependencies")
+        raw_materializations = payload.get("materializations")
+        if not isinstance(raw_actions, list):
+            errors.append("atomic_actions must be a list")
+            raw_actions = []
+        if not isinstance(raw_dependencies, list):
+            errors.append("dependencies must be a list")
+            raw_dependencies = []
+        if not isinstance(raw_materializations, list):
+            errors.append("materializations must be a list")
+            raw_materializations = []
+
+        atomic_actions: List[Dict[str, Any]] = []
+        seen_ids: Set[int] = set()
+        for idx, item in enumerate(raw_actions):
+            if not isinstance(item, dict):
+                errors.append(f"atomic_actions[{idx}] must be an object")
+                continue
+            try:
+                action_id = int(item.get("id"))
+            except Exception:
+                errors.append(f"atomic_actions[{idx}].id must be an integer")
+                continue
+            if action_id in seen_ids:
+                errors.append(f"duplicate atomic action id: {action_id}")
+            seen_ids.add(action_id)
+            action = str(item.get("action", "")).strip()
+            input_text = str(item.get("input", "")).strip()
+            output_text = str(item.get("output", "")).strip()
+            if not action:
+                errors.append(f"atomic_actions[{idx}].action must be non-empty")
+            atomic_actions.append(
+                {
+                    "id": action_id,
+                    "action": action,
+                    "input": input_text,
+                    "output": output_text,
+                }
+            )
+        ordered_ids = sorted(seen_ids)
+        if ordered_ids != list(range(len(ordered_ids))):
+            errors.append("atomic action ids must start at 0 and be contiguous")
+
+        dependencies: List[Dict[str, int]] = []
+        for idx, item in enumerate(raw_dependencies):
+            if not isinstance(item, dict):
+                errors.append(f"dependencies[{idx}] must be an object")
+                continue
+            try:
+                source = int(item.get("source"))
+                target = int(item.get("target"))
+            except Exception:
+                errors.append(f"dependencies[{idx}].source and target must be integers")
+                continue
+            if source not in seen_ids:
+                errors.append(f"dependencies[{idx}].source refers to unknown action id {source}")
+            if target not in seen_ids:
+                errors.append(f"dependencies[{idx}].target refers to unknown action id {target}")
+            dependencies.append({"source": source, "target": target})
+
+        materializations: List[Dict[str, Any]] = []
+        for idx, item in enumerate(raw_materializations):
+            if not isinstance(item, dict):
+                errors.append(f"materializations[{idx}] must be an object")
+                continue
+            artifact = str(item.get("artifact", "")).strip()
+            try:
+                producer = int(item.get("producer"))
+            except Exception:
+                errors.append(f"materializations[{idx}].producer must be an integer")
+                continue
+            if not artifact:
+                errors.append(f"materializations[{idx}].artifact must be non-empty")
+            if producer not in seen_ids:
+                errors.append(f"materializations[{idx}].producer refers to unknown action id {producer}")
+            materializations.append({"artifact": artifact, "producer": producer})
+
+        normalized = {
+            "atomic_actions": sorted(atomic_actions, key=lambda item: int(item["id"])),
+            "dependencies": sorted(
+                dependencies,
+                key=lambda item: (int(item["source"]), int(item["target"])),
+            ),
+            "materializations": sorted(
+                materializations,
+                key=lambda item: (int(item["producer"]), str(item["artifact"])),
+            ),
+        }
+        return normalized, errors
+
+    async def plan_action_dag(self, user_requirement: str) -> Dict[str, Any]:
+        from langchain_core.messages import HumanMessage, SystemMessage
+
+        prompt = self._build_action_dag_prompt(user_requirement)
+        raw = ""
+        try:
+            resp = await self.llm.ainvoke(
+                [
+                    SystemMessage(content="Output valid JSON only."),
+                    HumanMessage(content=prompt),
+                ]
+            )
+            raw = self._strip_json_markdown_fence(resp.content or "")
+            parsed = json.loads(raw)
+        except Exception as exc:
+            return {
+                "action_dag_json": {
+                    "atomic_actions": [],
+                    "dependencies": [],
+                    "materializations": [],
+                },
+                "parse_success": False,
+                "parse_error": f"{type(exc).__name__}: {exc}",
+                "atomic_action_count": 0,
+                "dependency_count": 0,
+                "materialization_count": 0,
+            }
+
+        normalized, errors = self._normalize_action_dag_payload(parsed)
+        if normalized is None:
+            normalized = {
+                "atomic_actions": [],
+                "dependencies": [],
+                "materializations": [],
+            }
+        return {
+            "action_dag_json": normalized,
+            "parse_success": not errors,
+            "parse_error": " | ".join(errors),
+            "atomic_action_count": len(normalized.get("atomic_actions", [])),
+            "dependency_count": len(normalized.get("dependencies", [])),
+            "materialization_count": len(normalized.get("materializations", [])),
+        }
 
     def _build_workflow_repair_prompt(
         self,
@@ -353,11 +622,11 @@ User requirement:
         prompt = self._build_plan_prompt(user_requirement, strategy_hint=strategy_hint)
 
         client = llm_client or self.llm
+        messages = [HumanMessage(content=prompt)]
+        if self._get_planning_prompt_mode() != "taskbench":
+            messages.insert(0, SystemMessage(content="Output valid JSON only."))
         resp = await client.ainvoke(
-            [
-                SystemMessage(content="Output valid JSON only."),
-                HumanMessage(content=prompt),
-            ]
+            messages
         )
         raw = (resp.content or "").strip()
         if raw.startswith("```"):
@@ -367,6 +636,46 @@ User requirement:
         normalized = self._repair_normalized_workflow(normalized, user_requirement)
         compiled_nodes = self._compile_task_nodes(normalized["task_nodes"])
         return self._canonicalize_compiled_workflow_view(compiled_nodes)
+
+    async def _plan_with_client_capture(
+        self,
+        user_requirement: str,
+        strategy_hint: Optional[str] = None,
+        llm_client: Any = None,
+    ) -> Dict[str, Any]:
+        from langchain_core.messages import HumanMessage, SystemMessage
+
+        prompt = self._build_plan_prompt(user_requirement, strategy_hint=strategy_hint)
+        client = llm_client or self.llm
+        messages = [HumanMessage(content=prompt)]
+        if self._get_planning_prompt_mode() != "taskbench":
+            messages.insert(0, SystemMessage(content="Output valid JSON only."))
+
+        raw_response = ""
+        try:
+            resp = await client.ainvoke(messages)
+            raw_response = (resp.content or "").strip()
+            raw = raw_response
+            if raw.startswith("```"):
+                raw = raw.strip("`").replace("json", "", 1).strip()
+            parsed = json.loads(raw)
+            normalized = self._normalize_workflow_payload(parsed)
+            normalized = self._repair_normalized_workflow(normalized, user_requirement)
+            compiled_nodes = self._compile_task_nodes(normalized["task_nodes"])
+            workflow = self._canonicalize_compiled_workflow_view(compiled_nodes)
+            return {
+                "raw_response": raw_response,
+                "result": workflow,
+                "parse_success": True,
+                "parse_error": "",
+            }
+        except Exception as exc:
+            return {
+                "raw_response": raw_response,
+                "result": {},
+                "parse_success": False,
+                "parse_error": f"{type(exc).__name__}: {exc}",
+            }
 
     async def plan(self, user_requirement: str, strategy_hint: Optional[str] = None) -> Dict[str, Any]:
         return await self._plan_with_client(user_requirement, strategy_hint=strategy_hint)
@@ -741,6 +1050,8 @@ User requirement:
         return cache[rounded]
 
     def _candidate_temperature_for_spec(self, spec: Dict[str, Any], round_idx: int) -> float:
+        if self._get_candidate_prompt_mode() in {"orthogonal_v3", "orthogonal_v4"}:
+            return float(spec.get("temperature", 0.0))
         fixed_temperature = getattr(self, "_fixed_candidate_temperature", None)
         if fixed_temperature is not None:
             return float(fixed_temperature)
@@ -749,7 +1060,7 @@ User requirement:
 
     def _force_generate_all_candidate_families_enabled(self) -> bool:
         return bool(getattr(self, "_force_generate_all_candidate_families", False)) or (
-            self._get_candidate_prompt_mode() == "orthogonal_v2"
+            self._get_candidate_prompt_mode() in {"orthogonal_v2", "orthogonal_v3", "orthogonal_v4"}
         )
 
     def _disable_early_stop_enabled(self) -> bool:
@@ -975,6 +1286,78 @@ User requirement:
     def _build_candidate_strategy_specs(self, user_requirement: str) -> List[Dict[str, Any]]:
         del user_requirement
         candidate_prompt_mode = self._get_candidate_prompt_mode()
+        if candidate_prompt_mode == "orthogonal_v3":
+            return [
+                self._make_strategy_spec(
+                    family_name="minimal",
+                    variant_name="minimal",
+                    hint_lines=[
+                        "Prefer the shortest executable workflow.",
+                        "Do not add tools that are not strictly required by the user request.",
+                        "Collapse optional intermediate processing steps whenever correctness is preserved.",
+                        "Avoid bridge tools, enhancement tools, and redundant transformations.",
+                        "However, do not remove retrieval, download, save, export, or other steps that are necessary to deliver the requested artifact.",
+                    ],
+                    temperature=0.0,
+                ),
+                self._make_strategy_spec(
+                    family_name="action_coverage",
+                    variant_name="action_coverage",
+                    hint_lines=[
+                        "Identify every explicit executable action mentioned in the user request before planning.",
+                        "Ensure every executable action is represented by at least one workflow node.",
+                        "Do not skip retrieval, extraction, download, save, export, transformation, generation, modification, composition, or conversion operations when they are explicitly requested.",
+                        "Prefer complete executable coverage over workflow brevity.",
+                        "Do not output the action checklist; output only the workflow JSON.",
+                    ],
+                    temperature=0.08,
+                ),
+                self._make_strategy_spec(
+                    family_name="typed_dependency",
+                    variant_name="typed_dependency",
+                    hint_lines=[
+                        "Focus on executable artifact flow.",
+                        "For each downstream tool, connect it to the upstream node whose output artifact is directly consumed.",
+                        "Ensure artifact-type continuity between connected nodes.",
+                        "The output-type of the producer should be compatible with the input-type of the consumer.",
+                        "Avoid introducing dependencies that require unsupported modality transitions.",
+                        "Preserve intermediate artifacts whenever they are required by downstream processing.",
+                    ],
+                    temperature=0.05,
+                ),
+                self._make_strategy_spec(
+                    family_name="parallel_dag",
+                    variant_name="parallel_dag",
+                    hint_lines=[
+                        "Preserve independent branches when multiple downstream operations consume the same upstream artifact.",
+                        "If two or more nodes can consume the same intermediate result, connect them directly to that result.",
+                        "Do not convert parallel branches into a linear chain merely to shorten the workflow.",
+                        "Prefer executable DAG structures over sequentialized approximations.",
+                    ],
+                    temperature=0.12,
+                ),
+                self._make_strategy_spec(
+                    family_name="materialization",
+                    variant_name="materialization",
+                    hint_lines=[
+                        "Preserve explicit artifact delivery steps.",
+                        "If the user requests:",
+                        "- a filename",
+                        "- a downloadable result",
+                        "- a saved output",
+                        "- an exported artifact",
+                        "- a specific output format",
+                        "include the workflow step that produces or delivers that artifact.",
+                        "Do not stop at an intermediate semantic result when the request requires a final deliverable artifact.",
+                        "Prefer workflows that generate a usable output artifact rather than only an intermediate processing result.",
+                    ],
+                    temperature=0.0,
+                ),
+            ]
+
+        if candidate_prompt_mode == "orthogonal_v4":
+            return list(self._orthogonal_v4_strategy_spec_map().values())
+
         if candidate_prompt_mode in {"orthogonal", "orthogonal_v2"}:
             specs: List[Dict[str, Any]] = []
             if getattr(self, "_include_original_candidate", False):
@@ -1170,6 +1553,72 @@ User requirement:
             ] + specs
 
         return specs
+
+    def _orthogonal_v4_strategy_spec_map(self) -> Dict[str, Dict[str, Any]]:
+        specs = [
+            self._make_strategy_spec(
+                family_name="minimal",
+                variant_name="minimal",
+                hint_lines=[
+                    "Prefer the shortest executable workflow.",
+                    "Do not add tools that are not strictly required by the user request.",
+                    "Collapse optional intermediate processing steps whenever correctness is preserved.",
+                    "Avoid bridge tools, enhancement tools, and redundant transformations.",
+                    "However, do not remove retrieval, download, save, export, or other steps that are necessary to deliver the requested artifact.",
+                ],
+                temperature=0.0,
+            ),
+            self._make_strategy_spec(
+                family_name="action_coverage",
+                variant_name="action_coverage",
+                hint_lines=[
+                    "Identify every explicit executable action mentioned in the user request before planning.",
+                    "Ensure every executable action is represented by at least one workflow node.",
+                    "Do not skip retrieval, extraction, download, save, export, transformation, generation, modification, composition, or conversion operations when they are explicitly requested.",
+                    "Prefer complete executable coverage over workflow brevity.",
+                    "Do not output the action checklist.",
+                    "Output only the workflow JSON.",
+                ],
+                temperature=0.08,
+            ),
+            self._make_strategy_spec(
+                family_name="typed_dependency",
+                variant_name="typed_dependency",
+                hint_lines=[
+                    "Focus on executable artifact flow.",
+                    "For each downstream tool, connect it to the upstream node whose output artifact is directly consumed.",
+                    "Ensure artifact-type continuity between connected nodes.",
+                    "The output-type of the producer should be compatible with the input-type of the consumer.",
+                    "Avoid introducing dependencies that require unsupported modality transitions.",
+                    "Preserve intermediate artifacts whenever they are required by downstream processing.",
+                ],
+                temperature=0.05,
+            ),
+            self._make_strategy_spec(
+                family_name="parallel_dag",
+                variant_name="parallel_dag",
+                hint_lines=[
+                    "Preserve independent branches when multiple downstream operations consume the same upstream artifact.",
+                    "If two or more nodes can consume the same intermediate result, connect them directly to that result.",
+                    "Do not convert parallel branches into a linear chain merely to shorten the workflow.",
+                    "Prefer executable DAG structures over sequentialized approximations.",
+                ],
+                temperature=0.12,
+            ),
+            self._make_strategy_spec(
+                family_name="branch_preserving",
+                variant_name="branch_preserving",
+                hint_lines=[
+                    "Identify shared intermediate artifacts before planning.",
+                    "If multiple requested outputs depend on the same artifact, create independent downstream branches from that artifact.",
+                    "Do not serialize independent operations unless one explicitly consumes the other's output.",
+                    "Preserve producer-consumer relationships even when a linear chain appears simpler.",
+                    "Prefer DAG structures that maintain correct branching behavior.",
+                ],
+                temperature=0.15,
+            ),
+        ]
+        return {str(spec["family_name"]): spec for spec in specs}
 
     def _search_source_structural_issues(
         self,
@@ -2363,6 +2812,83 @@ User requirement:
                 raise ValueError("no valid candidate plans generated; errors=" + " | ".join(generation_errors))
             raise ValueError("no valid candidate plans generated")
         return candidates
+
+    async def generate_orthogonal_v3_candidate_records(
+        self,
+        user_requirement: str,
+    ) -> List[Dict[str, Any]]:
+        if self._get_candidate_prompt_mode() != "orthogonal_v3":
+            raise ValueError("generate_orthogonal_v3_candidate_records requires candidate_prompt_mode='orthogonal_v3'")
+
+        strategy_specs = self._build_candidate_strategy_specs(user_requirement)
+        if len(strategy_specs) != 5:
+            raise ValueError(f"orthogonal_v3 must define exactly 5 strategies, got {len(strategy_specs)}")
+
+        records: List[Dict[str, Any]] = []
+        for idx, spec in enumerate(strategy_specs, start=1):
+            family_name = str(spec.get("family_name", spec.get("name", ""))).strip()
+            variant_name = str(spec.get("variant_name", family_name)).strip() or family_name
+            strategy_hint = str(spec.get("hint", "")).strip()
+            temperature = self._candidate_temperature_for_spec(spec, 0)
+            llm_client = self._get_candidate_llm(temperature)
+            captured = await self._plan_with_client_capture(
+                user_requirement,
+                strategy_hint=strategy_hint,
+                llm_client=llm_client,
+            )
+            records.append(
+                {
+                    "candidate_id": idx,
+                    "family": family_name,
+                    "variant": variant_name,
+                    "temperature": temperature,
+                    "prompt_strategy": strategy_hint,
+                    "raw_response": captured.get("raw_response", ""),
+                    "result": captured.get("result", {}),
+                    "parse_success": bool(captured.get("parse_success", False)),
+                    "parse_error": str(captured.get("parse_error", "") or ""),
+                }
+            )
+        return records
+
+    async def generate_orthogonal_v4_candidate_records(
+        self,
+        user_requirement: str,
+        families: List[str],
+    ) -> List[Dict[str, Any]]:
+        if self._get_candidate_prompt_mode() != "orthogonal_v4":
+            raise ValueError("generate_orthogonal_v4_candidate_records requires candidate_prompt_mode='orthogonal_v4'")
+
+        strategy_map = self._orthogonal_v4_strategy_spec_map()
+        records: List[Dict[str, Any]] = []
+        for family_name in families:
+            family_name = str(family_name).strip()
+            spec = strategy_map.get(family_name)
+            if spec is None:
+                raise ValueError(f"unknown orthogonal_v4 strategy family: {family_name}")
+            variant_name = str(spec.get("variant_name", family_name)).strip() or family_name
+            strategy_hint = str(spec.get("hint", "")).strip()
+            temperature = self._candidate_temperature_for_spec(spec, 0)
+            llm_client = self._get_candidate_llm(temperature)
+            captured = await self._plan_with_client_capture(
+                user_requirement,
+                strategy_hint=strategy_hint,
+                llm_client=llm_client,
+            )
+            records.append(
+                {
+                    "candidate_id": family_name,
+                    "family": family_name,
+                    "variant": variant_name,
+                    "temperature": temperature,
+                    "prompt_strategy": strategy_hint,
+                    "raw_response": captured.get("raw_response", ""),
+                    "result": captured.get("result", {}),
+                    "parse_success": bool(captured.get("parse_success", False)),
+                    "parse_error": str(captured.get("parse_error", "") or ""),
+                }
+            )
+        return records
 
     async def plan_candidates(self, user_requirement: str, candidate_count: int = 3) -> List[Dict[str, Any]]:
         candidates = await self.generate_candidate_pool(

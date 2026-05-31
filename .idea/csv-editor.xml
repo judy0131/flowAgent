@@ -3,6 +3,41 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\taskbench\data_multimedia\candidate_dumps\analysis_pipeline_agent_qwen3-14b_20260529_full_semantic\node_edge_policy_single_baseline_chain_dag_pool.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\candidate_dumps\rerank_v1\pipeline_agent_qwen3-14b_rerank_v1_eval_cases.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\metrics_pipeline_agent\00_recent_results_comparison.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\metrics_use_demos_2_reformat_by_self\three_tables_qwen3-14b_use_demos_2_reformat_by_self\01_experiment_comparison_20260527.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\metrics_use_demos_2_reformat_by_self\three_tables_qwen3-14b_use_demos_2_reformat_by_self\02_structure_breakdown_20260527.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\taskbench\data_multimedia\rollback_experiments\20260518_112405\comparison_single_chain_dag_metrics.csv">
           <value>
             <Attribute>
@@ -130,13 +165,6 @@
           </value>
         </entry>
         <entry key="\taskbench\data_multimedia\rollback_experiments\20260520_230343\table1_overall_comparison.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\taskbench\data_multimedia\rollback_experiments\recent_experiments_master_table.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

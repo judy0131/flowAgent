@@ -5,7 +5,8 @@ import click
 import asyncio
 import aiohttp
 import logging
-import emoji
+import importlib.util
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -19,28 +20,72 @@ class ContentFormatError(Exception):
     def __init__(self, message):
         super().__init__(message)
 
+def load_demo_field(data, primary_key, fallback_key=None):
+    value = data.get(primary_key)
+    if value is None and fallback_key:
+        value = data.get(fallback_key)
+    if value is None:
+        keys = primary_key if not fallback_key else f"{primary_key}/{fallback_key}"
+        raise KeyError(f"Demo {data.get('id')} is missing {keys}")
+    if isinstance(value, str):
+        try:
+            return json.loads(value)
+        except json.JSONDecodeError:
+            return value
+    return value
+
+def load_pipeline_agent_backend():
+    path = Path(__file__).resolve().parent / "pipelineOrchastration" / "run_with_pipeline_agent_base.py"
+    spec = importlib.util.spec_from_file_location("run_with_pipeline_agent_base", path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"Cannot load pipeline agent backend from: {path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
 @click.command()
 @click.option("--data_dir", default="data_huggingface", help="The directory of the data.")
 @click.option("--temperature", type=float, default=0.2)
 @click.option("--top_p", type=float, default=0.1)
 @click.option("--api_addr", type=str, default="localhost")
 @click.option("--api_port", type=int, default=4000)
+@click.option("--base_url", type=str, default=None, help="OpenAI-compatible API base URL. Overrides api_addr/api_port when set.")
 @click.option("--api_key", type=str, default="your api key")
 @click.option("--multiworker", type=int, default=1)
 @click.option("--llm", type=str, default="gpt-4")
-@click.option("--use_demos", type=int, default=0)
+@click.option("--use_demos", type=int, default=2)
 @click.option("--reformat", type=bool, default=False)
 @click.option("--reformat_by", type=str, default="self")
 @click.option("--tag", type=bool, default=False)
 @click.option("--dependency_type", type=str, default="resource")
 @click.option("--log_first_detail", type=bool, default=False)
-def main(data_dir, temperature, top_p, api_addr, api_key, api_port, multiworker, llm, use_demos, reformat, reformat_by, tag, dependency_type, log_first_detail):
+def main(data_dir, temperature, top_p, api_addr, api_key, api_port, base_url, multiworker, llm, use_demos, reformat, reformat_by, tag, dependency_type, log_first_detail):
     assert dependency_type in ["resource", "temporal"], "Dependency type not supported"
     if dependency_type == "resource":
         assert data_dir != "data_dailylifeapis", "Resource dependency type only support data_huggingface and data_multimedia"
 
+    if str(llm or "").strip().lower() in {"pipeline_agent", "pipeline_orchestrator_agent"}:
+        pipeline_agent_backend = load_pipeline_agent_backend()
+        asyncio.run(
+            pipeline_agent_backend.run_from_taskbench_inference(
+                data_dir=data_dir,
+                llm=llm,
+                multiworker=multiworker,
+                dependency_type=dependency_type,
+                use_demos=use_demos,
+            )
+        )
+        return
+
     arguments = locals()
-    url = f"http://{api_addr}:{api_port}/v1/chat/completions"
+    if base_url:
+        base_url = base_url.rstrip("/")
+        if base_url.endswith("/chat/completions"):
+            url = base_url
+        else:
+            url = f"{base_url}/chat/completions"
+    else:
+        url = f"http://{api_addr}:{api_port}/v1/chat/completions"
     header = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
@@ -110,21 +155,25 @@ def main(data_dir, temperature, top_p, api_addr, api_key, api_port, multiworker,
         for line in demos_rf:
             data = json.loads(line)
             if data["id"] in demos_id:
+                user_request = load_demo_field(data, "user_request", "instruction")
+                task_steps = load_demo_field(data, "task_steps", "tool_steps")
+                task_nodes = load_demo_field(data, "task_nodes", "tool_nodes")
                 if dependency_type == "temporal":
+                    task_links = load_demo_field(data, "task_links", "tool_links")
                     demo = {
-                        "user_request": data["user_request"],
+                        "user_request": user_request,
                         "result":{
-                            "task_steps": data["task_steps"],
-                            "task_nodes": data["task_nodes"],
-                            "task_links": data["task_links"]
+                            "task_steps": task_steps,
+                            "task_nodes": task_nodes,
+                            "task_links": task_links
                         }
                     }
                 else:
                     demo = {
-                        "user_request": data["user_request"],
+                        "user_request": user_request,
                         "result":{
-                            "task_steps": data["task_steps"],
-                            "task_nodes": data["task_nodes"]
+                            "task_steps": task_steps,
+                            "task_nodes": task_nodes
                         }
                     }
                 demos.append(demo)
@@ -229,7 +278,7 @@ async def get_response(url, header, payload, id, reformat, reformat_by, dependen
 
     oring_content = resp["choices"][0]["message"]["content"]
     oring_content = oring_content.replace("\n", "")
-    oring_content = oring_content.replace("\_", "_")
+    oring_content = oring_content.replace("\\_", "_")
     content = oring_content.replace("\\", "")
 
     start_pos = content.find("RESULT #:")
@@ -257,8 +306,8 @@ async def get_response(url, header, payload, id, reformat, reformat_by, dependen
                 payload["model"] = reformat_by
 
             if log_detail:
-                logger.info(f"{emoji.emojize(':warning:')}  #id {id} Illegal JSON format: {content}")
-                logger.info(f"{emoji.emojize(':sparkles:')} #id {id} Detected illegal JSON format, try to reformat by {payload['model']}...")
+                logger.info(f"[warning] #id {id} Illegal JSON format: {content}")
+                logger.info(f"[reformat] #id {id} Detected illegal JSON format, try to reformat by {payload['model']}...")
 
             payload["messages"][0]["content"] = prompt
             payload = json.dumps(payload)
@@ -278,7 +327,7 @@ async def get_response(url, header, payload, id, reformat, reformat_by, dependen
 
             content = resp["choices"][0]["message"]["content"]
             content = content.replace("\n", "")
-            content = content.replace("\_", "_")
+            content = content.replace("\\_", "_")
             start_pos = content.find("STRICT JSON FORMAT #:")
             if start_pos!=-1:
                 content = content[start_pos+len("STRICT JSON FORMAT #:"):]

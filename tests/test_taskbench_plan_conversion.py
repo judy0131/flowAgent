@@ -12,8 +12,10 @@ from taskbench.pipelineOrchastration.run_minimal_rollback_experiment import (
     build_parser as build_rollback_parser,
 )
 from taskbench.pipelineOrchastration.run_with_pipeline_agent_base import (
+    _build_action_dag_record,
     _build_candidate_dump_record,
     _classify_case_failure,
+    _load_existing_ids,
     _open_prediction_output,
     _should_load_workflow_memory_for_run,
     build_parser as build_base_runner_parser,
@@ -245,6 +247,7 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
             instruction="simplify then grammar check",
             taskbench_result=taskbench_result,
             raw_result=raw_result,
+            gold_row=None,
             tool_names=["Text Simplifier", "Text Grammar Checker"],
             dependency_type="resource",
             tool_map_override={},
@@ -256,6 +259,75 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
         self.assertEqual(len(record["candidates"]), 2)
         self.assertEqual(record["candidates"][0]["result"], taskbench_result)
         self.assertEqual(record["candidates"][1]["strategy_name"], "explicit")
+
+    def test_build_action_dag_record_uses_stable_jsonl_schema(self) -> None:
+        raw_result = {
+            "parse_success": True,
+            "parse_error": "",
+            "action_dag_json": {
+                "atomic_actions": [
+                    {"id": 0, "action": "search", "input": "topic", "output": "article"},
+                    {"id": 1, "action": "summarize", "input": "article", "output": "summary"},
+                ],
+                "dependencies": [{"source": 0, "target": 1}],
+                "materializations": [{"artifact": "summary.md", "producer": 1}],
+            },
+        }
+
+        record = _build_action_dag_record(
+            sid="case-1",
+            instruction="search a topic, summarize it, and save summary.md",
+            raw_result=raw_result,
+        )
+
+        self.assertEqual(record["id"], "case-1")
+        self.assertEqual(record["case_id"], "case-1")
+        self.assertEqual(record["instruction"], "search a topic, summarize it, and save summary.md")
+        self.assertEqual(record["user_requirement"], record["instruction"])
+        self.assertEqual(record["planning_mode"], "action_dag")
+        self.assertTrue(record["parse_success"])
+        self.assertEqual(record["atomic_action_count"], 2)
+        self.assertEqual(record["dependency_count"], 1)
+        self.assertEqual(record["materialization_count"], 1)
+        self.assertEqual(record["action_labels"], ["search", "summarize"])
+        self.assertEqual(record["materialized_artifacts"], ["summary.md"])
+        self.assertEqual(record["atomic_actions"], raw_result["action_dag_json"]["atomic_actions"])
+        self.assertEqual(record["dependencies"], raw_result["action_dag_json"]["dependencies"])
+        self.assertEqual(record["materializations"], raw_result["action_dag_json"]["materializations"])
+        self.assertEqual(record["result"], record["action_dag_json"])
+        self.assertEqual(record["n_tools"], 0)
+
+    def test_build_action_dag_record_uses_empty_schema_when_raw_payload_missing(self) -> None:
+        record = _build_action_dag_record(
+            sid="case-1",
+            instruction="not parseable",
+            raw_result={"parse_success": False, "parse_error": "JSONDecodeError: bad"},
+        )
+
+        self.assertFalse(record["parse_success"])
+        self.assertEqual(record["atomic_actions"], [])
+        self.assertEqual(record["dependencies"], [])
+        self.assertEqual(record["materializations"], [])
+        self.assertEqual(record["action_labels"], [])
+        self.assertEqual(record["materialized_artifacts"], [])
+        self.assertEqual(
+            record["action_dag_json"],
+            {"atomic_actions": [], "dependencies": [], "materializations": []},
+        )
+
+    def test_load_existing_ids_reads_action_dag_id_or_case_id(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            output_path = Path(tmpdir) / "predictions.jsonl"
+            rows = [
+                {"id": "case-with-id", "case_id": "same"},
+                {"case_id": "case-only"},
+            ]
+            output_path.write_text(
+                "\n".join(json.dumps(row, ensure_ascii=False) for row in rows) + "\n",
+                encoding="utf-8",
+            )
+
+            self.assertEqual(_load_existing_ids(output_path), {"case-with-id", "case-only"})
 
     def test_open_prediction_output_truncates_when_resume_disabled(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -517,7 +589,7 @@ class TestTaskbenchPlanConversion(unittest.TestCase):
         self.assertIn("O", tag_to_spec)
         self.assertEqual(tag_to_spec["O"]["candidate_selection_mode"], "original_first_fallback")
         self.assertEqual(tag_to_spec["O"]["candidate_prompt_mode"], "orthogonal")
-        self.assertEqual(tag_to_spec["O"]["candidate_count_override"], 5)
+        self.assertEqual(tag_to_spec["O"]["candidate_count_override"], 6)
 
     def test_select_group_specs_keeps_requested_order(self) -> None:
         specs = [

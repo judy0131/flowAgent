@@ -1,7 +1,7 @@
 import sys
 import unittest
 from pathlib import Path
-from types import ModuleType
+from types import ModuleType, SimpleNamespace
 from typing import List
 from unittest.mock import patch
 
@@ -63,6 +63,94 @@ class TestPipelineOrchestratorCore(unittest.IsolatedAsyncioTestCase):
         self.agent._enable_strict_planning_prompt = False
         self.agent._enable_action_checklist = False
         self.agent._enable_parameter_normalization = False
+
+    async def test_plan_action_dag_strips_markdown_and_counts_nodes(self) -> None:
+        class FakeLLM:
+            async def ainvoke(self, messages):
+                _ = messages
+                return SimpleNamespace(
+                    content="""
+```json
+{
+  "atomic_actions": [
+    {"id": 1, "action": "summarize", "input": "article", "output": "summary"},
+    {"id": 0, "action": "search", "input": "climate policy", "output": "article"}
+  ],
+  "dependencies": [
+    {"source": "0", "target": "1"}
+  ],
+  "materializations": [
+    {"artifact": "summary.md", "producer": "1"}
+  ]
+}
+```
+"""
+                )
+
+        self.agent.llm = FakeLLM()
+
+        result = await self.agent.plan_action_dag("Search climate policy, summarize it, and save summary.md.")
+
+        self.assertTrue(result["parse_success"])
+        self.assertEqual(result["atomic_action_count"], 2)
+        self.assertEqual(result["dependency_count"], 1)
+        self.assertEqual(result["materialization_count"], 1)
+        self.assertEqual(
+            [item["id"] for item in result["action_dag_json"]["atomic_actions"]],
+            [0, 1],
+        )
+        self.assertEqual(result["action_dag_json"]["dependencies"], [{"source": 0, "target": 1}])
+
+    async def test_plan_action_dag_returns_stable_empty_schema_on_parse_error(self) -> None:
+        class FakeLLM:
+            async def ainvoke(self, messages):
+                _ = messages
+                return SimpleNamespace(content="not json")
+
+        self.agent.llm = FakeLLM()
+
+        result = await self.agent.plan_action_dag("Search and summarize.")
+
+        self.assertFalse(result["parse_success"])
+        self.assertIn("JSONDecodeError", result["parse_error"])
+        self.assertEqual(
+            result["action_dag_json"],
+            {"atomic_actions": [], "dependencies": [], "materializations": []},
+        )
+
+    def test_normalize_action_dag_payload_sorts_lists_for_stable_output(self) -> None:
+        payload = {
+            "atomic_actions": [
+                {"id": 2, "action": "save", "input": "summary", "output": "summary.md"},
+                {"id": 0, "action": "search", "input": "climate policy", "output": "article"},
+                {"id": 1, "action": "summarize", "input": "article", "output": "summary"},
+            ],
+            "dependencies": [
+                {"source": 1, "target": 2},
+                {"source": 0, "target": 1},
+            ],
+            "materializations": [
+                {"artifact": "summary.md", "producer": 2},
+                {"artifact": "article.json", "producer": 0},
+            ],
+        }
+
+        normalized, errors = self.agent._normalize_action_dag_payload(payload)
+
+        self.assertEqual(errors, [])
+        assert normalized is not None
+        self.assertEqual([item["id"] for item in normalized["atomic_actions"]], [0, 1, 2])
+        self.assertEqual(
+            normalized["dependencies"],
+            [{"source": 0, "target": 1}, {"source": 1, "target": 2}],
+        )
+        self.assertEqual(
+            normalized["materializations"],
+            [
+                {"artifact": "article.json", "producer": 0},
+                {"artifact": "summary.md", "producer": 2},
+            ],
+        )
 
     def _attach_test_workflow_memory(self, memory: WorkflowMemoryIndex) -> None:
         self.agent._workflow_memory = memory
