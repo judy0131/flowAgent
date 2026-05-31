@@ -1,0 +1,10 @@
+﻿metric,v4_workflow_type,action_coverage,branch_preserving,minimal,original,parallel_dag,typed_dependency
+node,single,0,0,0,1899,0,0
+node,chain,94,0,221,2638,0,46
+node,dag,63,11,0,493,9,36
+edge,single,0,0,0,48,0,0
+edge,chain,76,0,172,2332,0,38
+edge,dag,59,10,0,454,9,32
+overall,single,0,0,0,1899,0,0
+overall,chain,93,0,227,2631,0,48
+overall,dag,61,10,0,495,11,35

@@ -1,0 +1,22 @@
+{
+  "total_cases": 46,
+  "agreement_cases": 40,
+  "disagreement_cases": 6,
+  "heuristic_accuracy_all": 0.8695652173913043,
+  "heuristic_accuracy_disagreement_only": 0.0,
+  "gpt_reranker_accuracy_all": 0.9130434782608695,
+  "gpt_reranker_accuracy_disagreement_only": 0.3333333333333333,
+  "heuristic_correct_all": 40,
+  "heuristic_correct_disagreement_only": 0,
+  "gpt_reranker_correct_all": 42,
+  "gpt_reranker_correct_disagreement_only": 2,
+  "invalid_response_case_ids": [],
+  "experiment_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260520_155602\\O2",
+  "oracle_case_details": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260520_155602\\O2\\oracle_analysis\\oracle_case_details.jsonl",
+  "candidate_dump": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260520_155602\\O2\\candidate_dumps\\pipeline_orchestrator_agent_gpt-4.1_20260520.jsonl",
+  "output_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260520_155602\\O2\\pairwise_reranker_eval",
+  "model_name": "gpt-4.1",
+  "provider": "openai",
+  "judged_case_count": 46,
+  "disagreement_only_mode": false
+}

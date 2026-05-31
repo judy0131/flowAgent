@@ -1,0 +1,5 @@
+Setting,Subset,Correct,Total,Accuracy
+heuristic,all,40,46,86.96
+heuristic,disagreement_only,0,6,0.00
+GPT reranker,all,42,46,91.30
+GPT reranker,disagreement_only,2,6,33.33

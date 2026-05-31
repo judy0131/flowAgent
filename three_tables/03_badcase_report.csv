@@ -1,0 +1,4 @@
+﻿ID,Type,Node OK,Link OK,Arg Mismatch,Pred Tasks,Gold Tasks,Error Summary
+16097613,chain,✓,✓,2,Video-to-Audio -> Audio Noise Reduction -> Audio Effects,Video-to-Audio -> Audio Noise Reduction -> Audio Effects,arg_mismatch(2)
+25866928,chain,✗,✗,5,Text Simplifier -> Text Grammar Checker -> Topic Generator -> Text-to-Image,Text Simplifier -> Text Search -> Text Grammar Checker -> Topic Generator -> Text-to-Image,node_mismatch; link_mismatch; arg_mismatch(5)
+36690562,dag,✓,✓,2,Video-to-Audio -> Audio Splicer -> Audio-to-Text -> Audio Effects -> Audio-to-Image,Video-to-Audio -> Audio Splicer -> Audio-to-Text -> Audio Effects -> Audio-to-Image,arg_mismatch(2)

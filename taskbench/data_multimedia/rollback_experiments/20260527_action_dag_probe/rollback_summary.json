@@ -1,0 +1,293 @@
+{
+  "runner": "openai",
+  "data_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia",
+  "gold_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\data.json",
+  "case_count": 12,
+  "case_ids_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260527_action_dag_probe\\case_ids.txt",
+  "candidate_count": 3,
+  "fixed_candidate_temperature": 0.0,
+  "selected_group_tags": [
+    "T"
+  ],
+  "results": [
+    {
+      "tag": "T",
+      "label": "action_dag_planning_probe",
+      "prediction_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260527_action_dag_probe\\T\\predictions\\pipeline_orchestrator_agent_gpt-4.1_20260527.json",
+      "prediction_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260527_action_dag_probe\\T\\predictions",
+      "candidate_dump_path": null,
+      "data_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia",
+      "requested_cases": 12,
+      "successful_predictions": 12,
+      "case_coverage_rate": 1.0,
+      "failed_cases": 0,
+      "validation_failure_count": 0,
+      "other_failure_count": 0,
+      "failure_counts": {},
+      "failure_details": [],
+      "total_predictions": 12,
+      "excluded_from_taskbench_eval": true,
+      "taskbench_eval_skipped": true,
+      "parse_success_count": 12,
+      "parse_failure_count": 0,
+      "parse_success_rate": 1.0,
+      "atomic_action_count_mean": 3.4166666666666665,
+      "dependency_count_mean": 2.3333333333333335,
+      "materialization_count_mean": 1.3333333333333333,
+      "action_label_counts": {
+        "add reverb": 1,
+        "analyze_sentiment": 1,
+        "change_playback_speed": 1,
+        "check grammar": 1,
+        "colorize": 1,
+        "combine": 1,
+        "combine images and audio into slideshow video": 1,
+        "correct": 1,
+        "create video": 1,
+        "download": 3,
+        "equalize": 1,
+        "extract": 2,
+        "extract audio": 1,
+        "extract text (OCR)": 1,
+        "extract_keywords": 1,
+        "generate": 1,
+        "generate spectrogram": 1,
+        "generate topic ideas": 1,
+        "generate waveform image": 1,
+        "modify voice": 1,
+        "remove background noise": 1,
+        "retrieve": 3,
+        "retrieve still image": 1,
+        "save": 1,
+        "search": 5,
+        "simplify": 2,
+        "stabilize": 1,
+        "style transfer": 1,
+        "summarize": 2,
+        "transcribe": 1
+      },
+      "case_action_summaries": [
+        {
+          "id": "11656312",
+          "parse_success": true,
+          "action_labels": [
+            "search",
+            "retrieve"
+          ],
+          "atomic_action_count": 2,
+          "dependency_count": 1,
+          "materialized_artifacts": [
+            "example video tutorial on baking chocolate chip cookies"
+          ],
+          "parse_error": ""
+        },
+        {
+          "id": "13336269",
+          "parse_success": true,
+          "action_labels": [
+            "search",
+            "retrieve"
+          ],
+          "atomic_action_count": 2,
+          "dependency_count": 1,
+          "materialized_artifacts": [
+            "example.jpg"
+          ],
+          "parse_error": ""
+        },
+        {
+          "id": "24435782",
+          "parse_success": true,
+          "action_labels": [
+            "retrieve",
+            "change_playback_speed",
+            "save"
+          ],
+          "atomic_action_count": 3,
+          "dependency_count": 2,
+          "materialized_artifacts": [
+            "example_slowed.mp4"
+          ],
+          "parse_error": ""
+        },
+        {
+          "id": "96133316",
+          "parse_success": true,
+          "action_labels": [
+            "search"
+          ],
+          "atomic_action_count": 1,
+          "dependency_count": 0,
+          "materialized_artifacts": [],
+          "parse_error": ""
+        },
+        {
+          "id": "45875119",
+          "parse_success": true,
+          "action_labels": [
+            "extract",
+            "search"
+          ],
+          "atomic_action_count": 2,
+          "dependency_count": 1,
+          "materialized_artifacts": [
+            "colored similar image"
+          ],
+          "parse_error": ""
+        },
+        {
+          "id": "31461277",
+          "parse_success": true,
+          "action_labels": [
+            "download",
+            "generate spectrogram",
+            "download",
+            "style transfer",
+            "colorize",
+            "extract text (OCR)"
+          ],
+          "atomic_action_count": 6,
+          "dependency_count": 5,
+          "materialized_artifacts": [
+            "colorized_styled_spectrogram.png",
+            "extracted_text.txt"
+          ],
+          "parse_error": ""
+        },
+        {
+          "id": "29292224",
+          "parse_success": true,
+          "action_labels": [
+            "summarize",
+            "simplify",
+            "extract_keywords",
+            "analyze_sentiment",
+            "search"
+          ],
+          "atomic_action_count": 5,
+          "dependency_count": 1,
+          "materialized_artifacts": [],
+          "parse_error": ""
+        },
+        {
+          "id": "31788289",
+          "parse_success": true,
+          "action_labels": [
+            "transcribe",
+            "correct",
+            "simplify",
+            "generate",
+            "extract"
+          ],
+          "atomic_action_count": 5,
+          "dependency_count": 4,
+          "materialized_artifacts": [
+            "relevant_topics_list"
+          ],
+          "parse_error": ""
+        },
+        {
+          "id": "27258164",
+          "parse_success": true,
+          "action_labels": [
+            "modify voice",
+            "remove background noise",
+            "generate waveform image",
+            "combine images and audio into slideshow video"
+          ],
+          "atomic_action_count": 4,
+          "dependency_count": 4,
+          "materialized_artifacts": [
+            "denoised_female_voice.wav",
+            "waveform.png",
+            "slideshow_video.mp4"
+          ],
+          "parse_error": ""
+        },
+        {
+          "id": "79560754",
+          "parse_success": true,
+          "action_labels": [
+            "check grammar",
+            "summarize",
+            "generate topic ideas",
+            "create video"
+          ],
+          "atomic_action_count": 4,
+          "dependency_count": 4,
+          "materialized_artifacts": [
+            "Video about environmental conservation"
+          ],
+          "parse_error": ""
+        },
+        {
+          "id": "13018270",
+          "parse_success": true,
+          "action_labels": [
+            "combine",
+            "add reverb",
+            "equalize"
+          ],
+          "atomic_action_count": 3,
+          "dependency_count": 2,
+          "materialized_artifacts": [
+            "bass_boosted_audio"
+          ],
+          "parse_error": ""
+        },
+        {
+          "id": "26579656",
+          "parse_success": true,
+          "action_labels": [
+            "download",
+            "stabilize",
+            "extract audio",
+            "retrieve still image"
+          ],
+          "atomic_action_count": 4,
+          "dependency_count": 3,
+          "materialized_artifacts": [
+            "video file",
+            "stabilized video file",
+            "audio file",
+            "still image file"
+          ],
+          "parse_error": ""
+        }
+      ],
+      "badcase_count": 0,
+      "badcase_rate": 0.0,
+      "badcase_ids": [],
+      "badcase_stats": {},
+      "badcase_rows": [],
+      "badcase_details": [],
+      "config": {
+        "planning_mode": "action_dag",
+        "candidate_selection_mode": "none",
+        "enable_candidate_verifier": false,
+        "enable_candidate_repair": false,
+        "enable_workflow_memory": false,
+        "include_original_candidate": false,
+        "enable_semantic_edge_grounding": false,
+        "edge_grounding_mode": "none",
+        "candidate_prompt_mode": "legacy",
+        "candidate_count_override": null,
+        "force_generate_all_candidate_families": false,
+        "disable_early_stop": false,
+        "save_all_candidates": false,
+        "save_action_dag": true,
+        "enable_strict_planning_prompt": false,
+        "enable_action_checklist": false,
+        "enable_parameter_normalization": false
+      }
+    }
+  ],
+  "comparison": {
+    "comparisons": [],
+    "first_badcase_increase": null,
+    "diagnosis": "No TaskBench-evaluable groups were run.",
+    "skipped_tags": [
+      "T"
+    ]
+  }
+}

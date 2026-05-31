@@ -1,0 +1,163 @@
+{
+  "data_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia",
+  "candidate_dump_path": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260527_132344\\O2\\candidate_dumps\\pipeline_orchestrator_agent_qwen3-14b_20260527.jsonl",
+  "save_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260527_132344\\O2\\oracle_analysis",
+  "step_ref_base": "one",
+  "quality_score_weights": {
+    "exact": 4.0,
+    "node_f1": 2.0,
+    "edge_f1": 2.0,
+    "arg_value_f1": 1.0
+  },
+  "case_count": 86,
+  "skipped_ids": [],
+  "summary_rows": [
+    {
+      "split": "overall",
+      "case_count": 86,
+      "edge_oracle_support": 42,
+      "mean_structural_unique_candidate_count": 1.1511627906976745,
+      "mean_exact_unique_candidate_count": 1.2209302325581395,
+      "mean_structure_diversity": 0.11511627906976744,
+      "mean_pairwise_structure_distance": 0.039763135228251506,
+      "exact_oracle_rate": 0.36046511627906974,
+      "node_oracle_rate": 0.7325581395348837,
+      "edge_oracle_rate": 0.42857142857142855,
+      "oracle_better_rate": 0.03488372093023256,
+      "selected_exact_rate": 0.3488372093023256,
+      "selected_mean_node_f1": 0.8784128662035638,
+      "best_mean_node_f1": 0.8948026779422128,
+      "selected_mean_edge_f1": 0.5936885865457294,
+      "best_mean_edge_f1": 0.5984504913076342,
+      "mean_node_oracle_gain": 0.016389811738648948,
+      "mean_edge_oracle_gain": 0.004761904761904761,
+      "mean_quality_oracle_gain": 0.009757598129691153,
+      "mean_rerank_regret": 0.009757598129691153,
+      "mean_selected_quality_score": 0.5904034739306057,
+      "mean_best_quality_score": 0.6001610720602969
+    },
+    {
+      "split": "single",
+      "case_count": 42,
+      "edge_oracle_support": 0,
+      "mean_structural_unique_candidate_count": 1.0714285714285714,
+      "mean_exact_unique_candidate_count": 1.0714285714285714,
+      "mean_structure_diversity": 0.10714285714285715,
+      "mean_pairwise_structure_distance": 0.018253968253968255,
+      "exact_oracle_rate": 0.5238095238095238,
+      "node_oracle_rate": 0.9761904761904762,
+      "edge_oracle_rate": 0.0,
+      "oracle_better_rate": 0.023809523809523808,
+      "selected_exact_rate": 0.5238095238095238,
+      "selected_mean_node_f1": 0.9523809523809523,
+      "best_mean_node_f1": 0.9761904761904762,
+      "selected_mean_edge_f1": 0.0,
+      "best_mean_edge_f1": 0.0,
+      "mean_node_oracle_gain": 0.023809523809523808,
+      "mean_edge_oracle_gain": 0.0,
+      "mean_quality_oracle_gain": 0.005291005291005291,
+      "mean_rerank_regret": 0.005291005291005291,
+      "mean_selected_quality_score": 0.732363315696649,
+      "mean_best_quality_score": 0.7376543209876543
+    },
+    {
+      "split": "chain",
+      "case_count": 38,
+      "edge_oracle_support": 36,
+      "mean_structural_unique_candidate_count": 1.263157894736842,
+      "mean_exact_unique_candidate_count": 1.4210526315789473,
+      "mean_structure_diversity": 0.12631578947368421,
+      "mean_pairwise_structure_distance": 0.06981481481481482,
+      "exact_oracle_rate": 0.23684210526315788,
+      "node_oracle_rate": 0.5,
+      "edge_oracle_rate": 0.4444444444444444,
+      "oracle_better_rate": 0.05263157894736842,
+      "selected_exact_rate": 0.21052631578947367,
+      "selected_mean_node_f1": 0.8050922761449077,
+      "best_mean_node_f1": 0.8158692185007974,
+      "selected_mean_edge_f1": 0.5940255731922399,
+      "best_mean_edge_f1": 0.5995811287477955,
+      "mean_node_oracle_gain": 0.010776942355889723,
+      "mean_edge_oracle_gain": 0.005555555555555554,
+      "mean_quality_oracle_gain": 0.01623503202450571,
+      "mean_rerank_regret": 0.01623503202450571,
+      "mean_selected_quality_score": 0.4670451218696833,
+      "mean_best_quality_score": 0.483280153894189
+    },
+    {
+      "split": "dag",
+      "case_count": 6,
+      "edge_oracle_support": 6,
+      "mean_structural_unique_candidate_count": 1.0,
+      "mean_exact_unique_candidate_count": 1.0,
+      "mean_structure_diversity": 0.1,
+      "mean_pairwise_structure_distance": 0.0,
+      "exact_oracle_rate": 0.0,
+      "node_oracle_rate": 0.5,
+      "edge_oracle_rate": 0.3333333333333333,
+      "oracle_better_rate": 0.0,
+      "selected_exact_rate": 0.0,
+      "selected_mean_node_f1": 0.825,
+      "best_mean_node_f1": 0.825,
+      "selected_mean_edge_f1": 0.5916666666666667,
+      "best_mean_edge_f1": 0.5916666666666667,
+      "mean_node_oracle_gain": 0.0,
+      "mean_edge_oracle_gain": 0.0,
+      "mean_quality_oracle_gain": 0.0,
+      "mean_rerank_regret": 0.0,
+      "mean_selected_quality_score": 0.3779541446208113,
+      "mean_best_quality_score": 0.3779541446208113
+    }
+  ],
+  "structural_unique_candidate_count_distribution": {
+    "1": 73,
+    "2": 13
+  },
+  "exact_unique_candidate_count_distribution": {
+    "1": 69,
+    "2": 15,
+    "3": 2
+  },
+  "oracle_best_family_distribution": {
+    "action_coverage": 3,
+    "minimal": 2,
+    "original": 81
+  },
+  "family_win_count": {
+    "action_coverage": 3,
+    "minimal": 2,
+    "original": 81
+  },
+  "structure_diversity": {
+    "mean": 0.11511627906976744,
+    "max": 0.2,
+    "min": 0.1
+  },
+  "oracle_upper_bound_by_family": {
+    "action_coverage": 0.5960492636849226,
+    "dependency_first": 0.5805474384931749,
+    "minimal": 0.5916093309504162,
+    "original": 0.587497522575042,
+    "parallel_dag": 0.5968880315779541,
+    "parameter_copy": 0.5852593035732571
+  },
+  "oracle_upper_bound_by_family_support": {
+    "original": 86,
+    "minimal": 86,
+    "action_coverage": 86,
+    "parallel_dag": 86,
+    "dependency_first": 86,
+    "parameter_copy": 86
+  },
+  "pairwise_structure_distance": {
+    "mean": 0.039763135228251506,
+    "case_support": 86
+  },
+  "mean_edge_oracle_gain": 0.004761904761904761,
+  "mean_node_oracle_gain": 0.016389811738648948,
+  "oracle_better_rate": 0.03488372093023256,
+  "summary_csv_path": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260527_132344\\O2\\oracle_analysis\\oracle_summary.csv",
+  "case_details_path": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260527_132344\\O2\\oracle_analysis\\oracle_case_details.jsonl",
+  "case_family_regret_report_path": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260527_132344\\O2\\oracle_analysis\\case_family_regret_report.csv",
+  "case_family_regret_summary_path": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260527_132344\\O2\\oracle_analysis\\case_family_regret_summary.json"
+}

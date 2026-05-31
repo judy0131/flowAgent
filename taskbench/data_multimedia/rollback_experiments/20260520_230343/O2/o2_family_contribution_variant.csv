@@ -1,0 +1,11 @@
+﻿Name,OracleBestCount,OracleBestRate,OracleBestMeanQuality,OracleBestStructureMatchCount,OracleBestStructureMatchRateWithinWins,OracleBestExactMatchCount,OracleBetterCount,OracleBetterShare,OracleBetterMeanRegret,OracleBetterTotalRegret,OracleBetterStructureMatchCount,OracleBetterExactMatchCount,UpperBoundMeanQuality,UpperBoundExactMatchRate,UpperBoundStructureMatchRate,UpperBoundDeltaVsOriginal,SplitWins,OracleBetterSplitWins,OracleBetterCases
+original/baseline,168,90.8108%,0.6969,120,71.4286%,83,1,5.8824%,0.3259,0.3259,1,0,0.6552,44.8649%,64.8649%,0.0000,"{""chain"": 70, ""dag"": 11, ""single"": 87}","{""chain"": 1}",21338123
+minimal/fewest_tools,10,5.4054%,0.5131,4,40.0000%,2,9,52.9412%,0.2414,2.1730,4,2,0.6646,45.9459%,66.4865%,0.0094,"{""dag"": 2, ""chain"": 7, ""single"": 1}","{""dag"": 2, ""chain"": 6, ""single"": 1}","27258164,46051366,24192922,31893844,50534924,79560754,31788289,11656312,45875119"
+minimal/fewest_transformations,4,2.1622%,0.4290,1,25.0000%,1,4,23.5294%,0.2353,0.9410,1,1,0.6676,46.4865%,66.4865%,0.0124,"{""chain"": 4}","{""chain"": 4}","54951370,79466668,31461277,19565758"
+action_coverage/strict_explicit_action_coverage,1,0.5405%,0.2963,0,0.0000%,0,1,5.8824%,0.1852,0.1852,0,0,0.6514,43.7838%,63.7838%,-0.0038,"{""chain"": 1}","{""chain"": 1}",59923748
+action_coverage/step_by_step_decomposition,1,0.5405%,0.4310,0,0.0000%,0,1,5.8824%,0.2290,0.2290,0,0,0.6625,45.4054%,65.4054%,0.0073,"{""chain"": 1}","{""chain"": 1}",29292224
+action_coverage/preserve_every_user_requested_operation,0,0.0000%,0.0000,0,0.0000%,0,0,0.0000%,0.0000,0.0000,0,0,0.6560,44.3243%,65.9459%,0.0008,{},{},
+parallel_dag/preserve_independent_branches,0,0.0000%,0.0000,0,0.0000%,0,0,0.0000%,0.0000,0.0000,0,0,0.6654,45.9459%,67.0270%,0.0102,{},{},
+parallel_dag/avoid_forcing_dags_into_chains,1,0.5405%,0.2623,0,0.0000%,0,1,5.8824%,0.0171,0.0171,0,0,0.6564,45.4054%,63.7838%,0.0012,"{""chain"": 1}","{""chain"": 1}",24402294
+dependency_first/semantic_dependency_continuity,0,0.0000%,0.0000,0,0.0000%,0,0,0.0000%,0.0000,0.0000,0,0,0.6625,45.4054%,66.4865%,0.0073,{},{},
+parameter_copy/exact_parameter_copy,0,0.0000%,0.0000,0,0.0000%,0,0,0.0000%,0.0000,0.0000,0,0,0.6674,45.9459%,67.0270%,0.0122,{},{},

@@ -1,0 +1,11 @@
+family_pair,pairs,exact_different_rate,structure_different_rate,node_sequence_different_rate,mean_structure_distance
+action_coverage vs materialization,50,0.22,0.22,0.2,0.13552380952380952
+action_coverage vs minimal,50,0.24,0.22,0.18,0.1261904761904762
+action_coverage vs parallel_dag,50,0.28,0.24,0.2,0.15471428571428572
+action_coverage vs typed_dependency,50,0.24,0.2,0.16,0.14066666666666666
+materialization vs minimal,50,0.16,0.14,0.12,0.10266666666666667
+materialization vs parallel_dag,50,0.3,0.26,0.22,0.15085714285714286
+materialization vs typed_dependency,50,0.24,0.2,0.18,0.11419047619047619
+minimal vs parallel_dag,50,0.2,0.18,0.16,0.09685714285714286
+minimal vs typed_dependency,50,0.2,0.18,0.18,0.10352380952380952
+parallel_dag vs typed_dependency,50,0.14,0.12,0.1,0.06638095238095237

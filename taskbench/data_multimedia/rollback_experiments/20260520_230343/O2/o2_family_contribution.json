@@ -1,0 +1,458 @@
+{
+  "experiment": "20260520_230343/O2",
+  "total_cases": 185,
+  "badcase_total": 102,
+  "oracle_better_total": 17,
+  "family_rows": [
+    {
+      "Name": "original",
+      "OracleBestCount": 168,
+      "OracleBestRate": 0.9081081081081082,
+      "OracleBestMeanQuality": 0.6969192238537477,
+      "OracleBestStructureMatchCount": 120,
+      "OracleBestStructureMatchRateWithinWins": 0.7142857142857143,
+      "OracleBestExactMatchCount": 83,
+      "OracleBetterCount": 1,
+      "OracleBetterShare": 0.058823529411764705,
+      "OracleBetterMeanRegret": 0.325925925925926,
+      "OracleBetterTotalRegret": 0.325925925925926,
+      "OracleBetterStructureMatchCount": 1,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6551956468623136,
+      "UpperBoundExactMatchRate": 0.4486486486486487,
+      "UpperBoundStructureMatchRate": 0.6486486486486487,
+      "UpperBoundDeltaVsOriginal": 0.0,
+      "SplitWins": {
+        "chain": 70,
+        "dag": 11,
+        "single": 87
+      },
+      "OracleBetterSplitWins": {
+        "chain": 1
+      },
+      "OracleBetterCases": [
+        "21338123"
+      ]
+    },
+    {
+      "Name": "minimal",
+      "OracleBestCount": 14,
+      "OracleBestRate": 0.07567567567567568,
+      "OracleBestMeanQuality": 0.4890990402895165,
+      "OracleBestStructureMatchCount": 5,
+      "OracleBestStructureMatchRateWithinWins": 0.35714285714285715,
+      "OracleBestExactMatchCount": 3,
+      "OracleBetterCount": 13,
+      "OracleBetterShare": 0.7647058823529411,
+      "OracleBetterMeanRegret": 0.23953667415205876,
+      "OracleBetterTotalRegret": 3.1139767639767637,
+      "OracleBetterStructureMatchCount": 5,
+      "OracleBetterExactMatchCount": 3,
+      "UpperBoundMeanQuality": 0.6716541599874933,
+      "UpperBoundExactMatchRate": 0.4648648648648649,
+      "UpperBoundStructureMatchRate": 0.6702702702702703,
+      "UpperBoundDeltaVsOriginal": 0.016458513125179763,
+      "SplitWins": {
+        "dag": 2,
+        "chain": 11,
+        "single": 1
+      },
+      "OracleBetterSplitWins": {
+        "dag": 2,
+        "chain": 10,
+        "single": 1
+      },
+      "OracleBetterCases": [
+        "27258164",
+        "46051366",
+        "24192922",
+        "31893844",
+        "50534924",
+        "54951370",
+        "79466668",
+        "79560754",
+        "31788289",
+        "31461277",
+        "11656312",
+        "45875119",
+        "19565758"
+      ]
+    },
+    {
+      "Name": "action_coverage",
+      "OracleBestCount": 2,
+      "OracleBestRate": 0.010810810810810811,
+      "OracleBestMeanQuality": 0.36363636363636365,
+      "OracleBestStructureMatchCount": 0,
+      "OracleBestStructureMatchRateWithinWins": 0.0,
+      "OracleBestExactMatchCount": 0,
+      "OracleBetterCount": 2,
+      "OracleBetterShare": 0.11764705882352941,
+      "OracleBetterMeanRegret": 0.20707070707070707,
+      "OracleBetterTotalRegret": 0.41414141414141414,
+      "OracleBetterStructureMatchCount": 0,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6668238984905651,
+      "UpperBoundExactMatchRate": 0.4540540540540541,
+      "UpperBoundStructureMatchRate": 0.6648648648648648,
+      "UpperBoundDeltaVsOriginal": 0.01162825162825154,
+      "SplitWins": {
+        "chain": 2
+      },
+      "OracleBetterSplitWins": {
+        "chain": 2
+      },
+      "OracleBetterCases": [
+        "29292224",
+        "59923748"
+      ]
+    },
+    {
+      "Name": "parallel_dag",
+      "OracleBestCount": 1,
+      "OracleBestRate": 0.005405405405405406,
+      "OracleBestMeanQuality": 0.2622809289475956,
+      "OracleBestStructureMatchCount": 0,
+      "OracleBestStructureMatchRateWithinWins": 0.0,
+      "OracleBestExactMatchCount": 0,
+      "OracleBetterCount": 1,
+      "OracleBetterShare": 0.058823529411764705,
+      "OracleBetterMeanRegret": 0.017094017094017117,
+      "OracleBetterTotalRegret": 0.017094017094017117,
+      "OracleBetterStructureMatchCount": 0,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6696709780043114,
+      "UpperBoundExactMatchRate": 0.4648648648648649,
+      "UpperBoundStructureMatchRate": 0.6702702702702703,
+      "UpperBoundDeltaVsOriginal": 0.014475331141997838,
+      "SplitWins": {
+        "chain": 1
+      },
+      "OracleBetterSplitWins": {
+        "chain": 1
+      },
+      "OracleBetterCases": [
+        "24402294"
+      ]
+    },
+    {
+      "Name": "dependency_first",
+      "OracleBestCount": 0,
+      "OracleBestRate": 0.0,
+      "OracleBestMeanQuality": 0.0,
+      "OracleBestStructureMatchCount": 0,
+      "OracleBestStructureMatchRateWithinWins": 0.0,
+      "OracleBestExactMatchCount": 0,
+      "OracleBetterCount": 0,
+      "OracleBetterShare": 0.0,
+      "OracleBetterMeanRegret": 0.0,
+      "OracleBetterTotalRegret": 0.0,
+      "OracleBetterStructureMatchCount": 0,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6624511707845041,
+      "UpperBoundExactMatchRate": 0.4540540540540541,
+      "UpperBoundStructureMatchRate": 0.6648648648648648,
+      "UpperBoundDeltaVsOriginal": 0.007255523922190532,
+      "SplitWins": {},
+      "OracleBetterSplitWins": {},
+      "OracleBetterCases": []
+    },
+    {
+      "Name": "parameter_copy",
+      "OracleBestCount": 0,
+      "OracleBestRate": 0.0,
+      "OracleBestMeanQuality": 0.0,
+      "OracleBestStructureMatchCount": 0,
+      "OracleBestStructureMatchRateWithinWins": 0.0,
+      "OracleBestExactMatchCount": 0,
+      "OracleBetterCount": 0,
+      "OracleBetterShare": 0.0,
+      "OracleBetterMeanRegret": 0.0,
+      "OracleBetterTotalRegret": 0.0,
+      "OracleBetterStructureMatchCount": 0,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6674120490787157,
+      "UpperBoundExactMatchRate": 0.4594594594594595,
+      "UpperBoundStructureMatchRate": 0.6702702702702703,
+      "UpperBoundDeltaVsOriginal": 0.012216402216402078,
+      "SplitWins": {},
+      "OracleBetterSplitWins": {},
+      "OracleBetterCases": []
+    }
+  ],
+  "variant_rows": [
+    {
+      "Name": "original/baseline",
+      "OracleBestCount": 168,
+      "OracleBestRate": 0.9081081081081082,
+      "OracleBestMeanQuality": 0.6969192238537477,
+      "OracleBestStructureMatchCount": 120,
+      "OracleBestStructureMatchRateWithinWins": 0.7142857142857143,
+      "OracleBestExactMatchCount": 83,
+      "OracleBetterCount": 1,
+      "OracleBetterShare": 0.058823529411764705,
+      "OracleBetterMeanRegret": 0.325925925925926,
+      "OracleBetterTotalRegret": 0.325925925925926,
+      "OracleBetterStructureMatchCount": 1,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6551956468623136,
+      "UpperBoundExactMatchRate": 0.4486486486486487,
+      "UpperBoundStructureMatchRate": 0.6486486486486487,
+      "UpperBoundDeltaVsOriginal": 0.0,
+      "SplitWins": {
+        "chain": 70,
+        "dag": 11,
+        "single": 87
+      },
+      "OracleBetterSplitWins": {
+        "chain": 1
+      },
+      "OracleBetterCases": [
+        "21338123"
+      ]
+    },
+    {
+      "Name": "minimal/fewest_tools",
+      "OracleBestCount": 10,
+      "OracleBestRate": 0.05405405405405406,
+      "OracleBestMeanQuality": 0.5131248997915664,
+      "OracleBestStructureMatchCount": 4,
+      "OracleBestStructureMatchRateWithinWins": 0.4,
+      "OracleBestExactMatchCount": 2,
+      "OracleBetterCount": 9,
+      "OracleBetterShare": 0.5294117647058824,
+      "OracleBetterMeanRegret": 0.2414412747746081,
+      "OracleBetterTotalRegret": 2.172971472971473,
+      "OracleBetterStructureMatchCount": 4,
+      "OracleBetterExactMatchCount": 2,
+      "UpperBoundMeanQuality": 0.6646246029579364,
+      "UpperBoundExactMatchRate": 0.4594594594594595,
+      "UpperBoundStructureMatchRate": 0.6648648648648648,
+      "UpperBoundDeltaVsOriginal": 0.009428956095622776,
+      "SplitWins": {
+        "dag": 2,
+        "chain": 7,
+        "single": 1
+      },
+      "OracleBetterSplitWins": {
+        "dag": 2,
+        "chain": 6,
+        "single": 1
+      },
+      "OracleBetterCases": [
+        "27258164",
+        "46051366",
+        "24192922",
+        "31893844",
+        "50534924",
+        "79560754",
+        "31788289",
+        "11656312",
+        "45875119"
+      ]
+    },
+    {
+      "Name": "minimal/fewest_transformations",
+      "OracleBestCount": 4,
+      "OracleBestRate": 0.021621621621621623,
+      "OracleBestMeanQuality": 0.42903439153439155,
+      "OracleBestStructureMatchCount": 1,
+      "OracleBestStructureMatchRateWithinWins": 0.25,
+      "OracleBestExactMatchCount": 1,
+      "OracleBetterCount": 4,
+      "OracleBetterShare": 0.23529411764705882,
+      "OracleBetterMeanRegret": 0.23525132275132277,
+      "OracleBetterTotalRegret": 0.9410052910052911,
+      "OracleBetterStructureMatchCount": 1,
+      "OracleBetterExactMatchCount": 1,
+      "UpperBoundMeanQuality": 0.6675726325726326,
+      "UpperBoundExactMatchRate": 0.4648648648648649,
+      "UpperBoundStructureMatchRate": 0.6648648648648648,
+      "UpperBoundDeltaVsOriginal": 0.012376985710318977,
+      "SplitWins": {
+        "chain": 4
+      },
+      "OracleBetterSplitWins": {
+        "chain": 4
+      },
+      "OracleBetterCases": [
+        "54951370",
+        "79466668",
+        "31461277",
+        "19565758"
+      ]
+    },
+    {
+      "Name": "action_coverage/strict_explicit_action_coverage",
+      "OracleBestCount": 1,
+      "OracleBestRate": 0.005405405405405406,
+      "OracleBestMeanQuality": 0.2962962962962963,
+      "OracleBestStructureMatchCount": 0,
+      "OracleBestStructureMatchRateWithinWins": 0.0,
+      "OracleBestExactMatchCount": 0,
+      "OracleBetterCount": 1,
+      "OracleBetterShare": 0.058823529411764705,
+      "OracleBetterMeanRegret": 0.18518518518518517,
+      "OracleBetterTotalRegret": 0.18518518518518517,
+      "OracleBetterStructureMatchCount": 0,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6513616480283146,
+      "UpperBoundExactMatchRate": 0.43783783783783786,
+      "UpperBoundStructureMatchRate": 0.6378378378378379,
+      "UpperBoundDeltaVsOriginal": -0.0038339988339989306,
+      "SplitWins": {
+        "chain": 1
+      },
+      "OracleBetterSplitWins": {
+        "chain": 1
+      },
+      "OracleBetterCases": [
+        "59923748"
+      ]
+    },
+    {
+      "Name": "action_coverage/step_by_step_decomposition",
+      "OracleBestCount": 1,
+      "OracleBestRate": 0.005405405405405406,
+      "OracleBestMeanQuality": 0.43097643097643096,
+      "OracleBestStructureMatchCount": 0,
+      "OracleBestStructureMatchRateWithinWins": 0.0,
+      "OracleBestExactMatchCount": 0,
+      "OracleBetterCount": 1,
+      "OracleBetterShare": 0.058823529411764705,
+      "OracleBetterMeanRegret": 0.22895622895622894,
+      "OracleBetterTotalRegret": 0.22895622895622894,
+      "OracleBetterStructureMatchCount": 0,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6624878608211942,
+      "UpperBoundExactMatchRate": 0.4540540540540541,
+      "UpperBoundStructureMatchRate": 0.654054054054054,
+      "UpperBoundDeltaVsOriginal": 0.007292213958880578,
+      "SplitWins": {
+        "chain": 1
+      },
+      "OracleBetterSplitWins": {
+        "chain": 1
+      },
+      "OracleBetterCases": [
+        "29292224"
+      ]
+    },
+    {
+      "Name": "action_coverage/preserve_every_user_requested_operation",
+      "OracleBestCount": 0,
+      "OracleBestRate": 0.0,
+      "OracleBestMeanQuality": 0.0,
+      "OracleBestStructureMatchCount": 0,
+      "OracleBestStructureMatchRateWithinWins": 0.0,
+      "OracleBestExactMatchCount": 0,
+      "OracleBetterCount": 0,
+      "OracleBetterShare": 0.0,
+      "OracleBetterMeanRegret": 0.0,
+      "OracleBetterTotalRegret": 0.0,
+      "OracleBetterStructureMatchCount": 0,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6560340393673727,
+      "UpperBoundExactMatchRate": 0.44324324324324327,
+      "UpperBoundStructureMatchRate": 0.6594594594594595,
+      "UpperBoundDeltaVsOriginal": 0.0008383925050591268,
+      "SplitWins": {},
+      "OracleBetterSplitWins": {},
+      "OracleBetterCases": []
+    },
+    {
+      "Name": "parallel_dag/preserve_independent_branches",
+      "OracleBestCount": 0,
+      "OracleBestRate": 0.0,
+      "OracleBestMeanQuality": 0.0,
+      "OracleBestStructureMatchCount": 0,
+      "OracleBestStructureMatchRateWithinWins": 0.0,
+      "OracleBestExactMatchCount": 0,
+      "OracleBetterCount": 0,
+      "OracleBetterShare": 0.0,
+      "OracleBetterMeanRegret": 0.0,
+      "OracleBetterTotalRegret": 0.0,
+      "OracleBetterStructureMatchCount": 0,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6653843203843204,
+      "UpperBoundExactMatchRate": 0.4594594594594595,
+      "UpperBoundStructureMatchRate": 0.6702702702702703,
+      "UpperBoundDeltaVsOriginal": 0.010188673522006808,
+      "SplitWins": {},
+      "OracleBetterSplitWins": {},
+      "OracleBetterCases": []
+    },
+    {
+      "Name": "parallel_dag/avoid_forcing_dags_into_chains",
+      "OracleBestCount": 1,
+      "OracleBestRate": 0.005405405405405406,
+      "OracleBestMeanQuality": 0.2622809289475956,
+      "OracleBestStructureMatchCount": 0,
+      "OracleBestStructureMatchRateWithinWins": 0.0,
+      "OracleBestExactMatchCount": 0,
+      "OracleBetterCount": 1,
+      "OracleBetterShare": 0.058823529411764705,
+      "OracleBetterMeanRegret": 0.017094017094017117,
+      "OracleBetterTotalRegret": 0.017094017094017117,
+      "OracleBetterStructureMatchCount": 0,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6564010414010414,
+      "UpperBoundExactMatchRate": 0.4540540540540541,
+      "UpperBoundStructureMatchRate": 0.6378378378378379,
+      "UpperBoundDeltaVsOriginal": 0.0012053945387278109,
+      "SplitWins": {
+        "chain": 1
+      },
+      "OracleBetterSplitWins": {
+        "chain": 1
+      },
+      "OracleBetterCases": [
+        "24402294"
+      ]
+    },
+    {
+      "Name": "dependency_first/semantic_dependency_continuity",
+      "OracleBestCount": 0,
+      "OracleBestRate": 0.0,
+      "OracleBestMeanQuality": 0.0,
+      "OracleBestStructureMatchCount": 0,
+      "OracleBestStructureMatchRateWithinWins": 0.0,
+      "OracleBestExactMatchCount": 0,
+      "OracleBetterCount": 0,
+      "OracleBetterShare": 0.0,
+      "OracleBetterMeanRegret": 0.0,
+      "OracleBetterTotalRegret": 0.0,
+      "OracleBetterStructureMatchCount": 0,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6624511707845041,
+      "UpperBoundExactMatchRate": 0.4540540540540541,
+      "UpperBoundStructureMatchRate": 0.6648648648648648,
+      "UpperBoundDeltaVsOriginal": 0.007255523922190532,
+      "SplitWins": {},
+      "OracleBetterSplitWins": {},
+      "OracleBetterCases": []
+    },
+    {
+      "Name": "parameter_copy/exact_parameter_copy",
+      "OracleBestCount": 0,
+      "OracleBestRate": 0.0,
+      "OracleBestMeanQuality": 0.0,
+      "OracleBestStructureMatchCount": 0,
+      "OracleBestStructureMatchRateWithinWins": 0.0,
+      "OracleBestExactMatchCount": 0,
+      "OracleBetterCount": 0,
+      "OracleBetterShare": 0.0,
+      "OracleBetterMeanRegret": 0.0,
+      "OracleBetterTotalRegret": 0.0,
+      "OracleBetterStructureMatchCount": 0,
+      "OracleBetterExactMatchCount": 0,
+      "UpperBoundMeanQuality": 0.6674120490787157,
+      "UpperBoundExactMatchRate": 0.4594594594594595,
+      "UpperBoundStructureMatchRate": 0.6702702702702703,
+      "UpperBoundDeltaVsOriginal": 0.012216402216402078,
+      "SplitWins": {},
+      "OracleBetterSplitWins": {},
+      "OracleBetterCases": []
+    }
+  ]
+}

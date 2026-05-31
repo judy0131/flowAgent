@@ -1,0 +1,1278 @@
+2026-05-20 14:12:12,979 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Starts with: {'data_dir': 'taskbench/data_multimedia', 'prediction_dir': 'rollback_experiments/20260520_131029/O/predictions', 'save_dir': 'rollback_experiments/20260520_131029/O/metrics_selected', 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'pipeline_orchestrator_agent_gpt-4.1', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-05-20 14:12:12,979 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:12,979 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: overall, Task Split: overall
+2026-05-20 14:12:13,100 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 46
+2026-05-20 14:12:13,100 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 46 / 46
+2026-05-20 14:12:13,100 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 46 / 46
+2026-05-20 14:12:13,101 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 46 / 46
+2026-05-20 14:12:13,105 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.8947368421052632
+2026-05-20 14:12:13,105 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.864406779661017
+2026-05-20 14:12:13,105 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.8793103448275862
+2026-05-20 14:12:13,105 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.8170833333333334
+2026-05-20 14:12:13,105 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.8051785714285714
+2026-05-20 14:12:13,105 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.7993936618936619
+2026-05-20 14:12:13,105 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:12:13,105 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:12:13,105 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,105 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader       100.00       100.00       100.00            1
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader        66.67       100.00        80.00            2
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search        33.33        33.33        33.33            3
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00        75.00        85.71            4
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)        75.00       100.00        85.71            3
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor       100.00       100.00       100.00            2
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            3
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image       100.00        66.67        80.00            3
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video        80.00       100.00        88.89            4
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio        50.00       100.00        66.67            2
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00        85.71        92.31            7
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            2
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects       100.00       100.00       100.00            8
+2026-05-20 14:12:13,106 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer       100.00       100.00       100.00            3
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer        50.00        50.00        50.00            2
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00        83.33        90.91            6
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator       100.00       100.00       100.00            2
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis       100.00        66.67        80.00            3
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker        80.00        80.00        80.00            5
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00        83.33        90.91            6
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00        66.67        80.00            6
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00        50.00        66.67            6
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser       100.00       100.00       100.00            1
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            3
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator        83.33       100.00        90.91            5
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            8
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00        80.00        88.89            5
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher       100.00       100.00       100.00            3
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer       100.00       100.00       100.00            2
+2026-05-20 14:12:13,107 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization        50.00       100.00        66.67            1
+2026-05-20 14:12:13,108 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-05-20 14:12:13,108 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:12:13,108 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        89.47        86.44        87.93          118
+2026-05-20 14:12:13,108 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        81.71        80.52        79.94          118
+2026-05-20 14:12:13,110 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8015267175572519
+2026-05-20 14:12:13,111 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5512367491166078
+2026-05-20 14:12:13,111 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.1681316268272789
+2026-05-20 14:12:13,112 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.6231884057971014
+2026-05-20 14:12:13,113 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:13,113 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: overall, Task Split: single
+2026-05-20 14:12:13,203 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 19
+2026-05-20 14:12:13,203 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 19 / 19
+2026-05-20 14:12:13,203 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 19 / 19
+2026-05-20 14:12:13,203 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 19 / 19
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.8947368421052632
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.9444444444444444
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.918918918918919
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.3625
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.3625
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.3583333333333333
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00        50.00        66.67            2
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)        50.00       100.00        66.67            1
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:12:13,206 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            1
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator       100.00       100.00       100.00            2
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-05-20 14:12:13,207 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher       100.00       100.00       100.00            1
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        89.47        94.44        91.89           18
+2026-05-20 14:12:13,208 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        36.25        36.25        35.83           18
+2026-05-20 14:12:13,210 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8947368421052632
+2026-05-20 14:12:13,211 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.45
+2026-05-20 14:12:13,211 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.10526315789473684
+2026-05-20 14:12:13,211 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: skipped (empty support)
+2026-05-20 14:12:13,211 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:13,211 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: overall, Task Split: chain
+2026-05-20 14:12:13,304 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 22
+2026-05-20 14:12:13,304 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 22 / 22
+2026-05-20 14:12:13,304 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 22 / 22
+2026-05-20 14:12:13,304 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 22 / 22
+2026-05-20 14:12:13,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.8860759493670886
+2026-05-20 14:12:13,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.8641975308641975
+2026-05-20 14:12:13,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.875
+2026-05-20 14:12:13,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.7666666666666666
+2026-05-20 14:12:13,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.7633333333333333
+2026-05-20 14:12:13,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.7543055555555556
+2026-05-20 14:12:13,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:12:13,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:12:13,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader       100.00       100.00       100.00            1
+2026-05-20 14:12:13,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader        66.67       100.00        80.00            2
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search        50.00        33.33        40.00            3
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00       100.00       100.00            2
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)       100.00       100.00       100.00            2
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor       100.00       100.00       100.00            2
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            2
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image       100.00       100.00       100.00            2
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio        50.00       100.00        66.67            2
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00        75.00        85.71            4
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects       100.00       100.00       100.00            6
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            1
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00        80.00        88.89            5
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator       100.00       100.00       100.00            2
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            2
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker        75.00        75.00        75.00            4
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            4
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00        75.00        85.71            4
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00        40.00        57.14            5
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser       100.00       100.00       100.00            1
+2026-05-20 14:12:13,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            2
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator        75.00       100.00        85.71            3
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            4
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00        75.00        85.71            4
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher       100.00       100.00       100.00            2
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization        50.00       100.00        66.67            1
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        88.61        86.42        87.50           81
+2026-05-20 14:12:13,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        76.67        76.33        75.43           81
+2026-05-20 14:12:13,311 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7759562841530054
+2026-05-20 14:12:13,312 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5492227979274611
+2026-05-20 14:12:13,312 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.19472976518431084
+2026-05-20 14:12:13,313 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.6206896551724138
+2026-05-20 14:12:13,313 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:13,313 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: overall, Task Split: dag
+2026-05-20 14:12:13,393 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 5
+2026-05-20 14:12:13,393 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 5 / 5
+2026-05-20 14:12:13,393 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 5 / 5
+2026-05-20 14:12:13,393 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 5 / 5
+2026-05-20 14:12:13,401 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.9375
+2026-05-20 14:12:13,401 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.7894736842105263
+2026-05-20 14:12:13,401 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.8571428571428571
+2026-05-20 14:12:13,401 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.225
+2026-05-20 14:12:13,401 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.225
+2026-05-20 14:12:13,401 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.225
+2026-05-20 14:12:13,403 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:12:13,403 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:12:13,403 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,404 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,404 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,404 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,404 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-05-20 14:12:13,404 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-05-20 14:12:13,404 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-05-20 14:12:13,404 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            1
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            2
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects       100.00       100.00       100.00            2
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer       100.00       100.00       100.00            3
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:12:13,405 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            1
+2026-05-20 14:12:13,406 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-05-20 14:12:13,407 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier         0.00         0.00         0.00            1
+2026-05-20 14:12:13,407 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander         0.00         0.00         0.00            1
+2026-05-20 14:12:13,407 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-05-20 14:12:13,407 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:12:13,408 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-05-20 14:12:13,408 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-05-20 14:12:13,408 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            3
+2026-05-20 14:12:13,408 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-05-20 14:12:13,408 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-05-20 14:12:13,408 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,409 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-05-20 14:12:13,409 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,409 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,409 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,409 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,409 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:12:13,409 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:12:13,409 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:12:13,409 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        93.75        78.95        85.71           19
+2026-05-20 14:12:13,409 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        22.50        22.50        22.50           19
+2026-05-20 14:12:13,411 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8292682926829268
+2026-05-20 14:12:13,413 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.64
+2026-05-20 14:12:13,413 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.2899999999999999
+2026-05-20 14:12:13,414 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.6363636363636364
+2026-05-20 14:12:13,415 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:13,415 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 1, Task Split: overall
+2026-05-20 14:12:13,537 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 19
+2026-05-20 14:12:13,537 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 19 / 19
+2026-05-20 14:12:13,537 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 19 / 19
+2026-05-20 14:12:13,537 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 19 / 19
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.8947368421052632
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.9444444444444444
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.918918918918919
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.3625
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.3625
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.3583333333333333
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00        50.00        66.67            2
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)        50.00       100.00        66.67            1
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:12:13,541 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            1
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator       100.00       100.00       100.00            2
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher       100.00       100.00       100.00            1
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:12:13,542 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:12:13,543 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:12:13,543 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        89.47        94.44        91.89           18
+2026-05-20 14:12:13,543 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        36.25        36.25        35.83           18
+2026-05-20 14:12:13,544 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8947368421052632
+2026-05-20 14:12:13,545 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.45
+2026-05-20 14:12:13,545 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.10526315789473684
+2026-05-20 14:12:13,545 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: skipped (empty support)
+2026-05-20 14:12:13,545 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:13,545 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 2, Task Split: overall
+2026-05-20 14:12:13,632 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 1
+2026-05-20 14:12:13,632 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 1 / 1
+2026-05-20 14:12:13,632 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 1 / 1
+2026-05-20 14:12:13,632 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 1 / 1
+2026-05-20 14:12:13,637 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-05-20 14:12:13,637 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-05-20 14:12:13,637 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-05-20 14:12:13,637 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.05
+2026-05-20 14:12:13,637 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.05
+2026-05-20 14:12:13,637 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.05
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-05-20 14:12:13,638 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-05-20 14:12:13,639 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:12:13,639 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-05-20 14:12:13,639 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,639 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-05-20 14:12:13,639 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,639 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,639 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,639 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,639 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:12:13,640 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:12:13,640 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:12:13,640 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro       100.00       100.00       100.00            2
+2026-05-20 14:12:13,640 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro         5.00         5.00         5.00            2
+2026-05-20 14:12:13,642 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6666666666666666
+2026-05-20 14:12:13,643 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6666666666666666
+2026-05-20 14:12:13,643 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.5
+2026-05-20 14:12:13,644 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.0
+2026-05-20 14:12:13,644 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:13,644 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 3, Task Split: overall
+2026-05-20 14:12:13,735 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 10
+2026-05-20 14:12:13,735 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 10 / 10
+2026-05-20 14:12:13,735 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 10 / 10
+2026-05-20 14:12:13,735 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 10 / 10
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.9310344827586207
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.9
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.9152542372881356
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.4625
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.45
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.45
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader       100.00       100.00       100.00            1
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            1
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)       100.00       100.00       100.00            1
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor       100.00       100.00       100.00            1
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,740 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00        50.00        66.67            2
+2026-05-20 14:12:13,741 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,741 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-05-20 14:12:13,741 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects       100.00       100.00       100.00            4
+2026-05-20 14:12:13,741 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer       100.00       100.00       100.00            2
+2026-05-20 14:12:13,741 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator       100.00       100.00       100.00            1
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            1
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00        50.00        66.67            2
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            1
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            3
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            2
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization        50.00       100.00        66.67            1
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        93.10        90.00        91.53           30
+2026-05-20 14:12:13,742 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        46.25        45.00        45.00           30
+2026-05-20 14:12:13,744 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8732394366197183
+2026-05-20 14:12:13,746 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6933333333333334
+2026-05-20 14:12:13,747 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.12095238095238092
+2026-05-20 14:12:13,748 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.8108108108108109
+2026-05-20 14:12:13,749 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:13,749 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 4, Task Split: overall
+2026-05-20 14:12:13,834 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 8
+2026-05-20 14:12:13,835 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 8 / 8
+2026-05-20 14:12:13,835 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 8 / 8
+2026-05-20 14:12:13,835 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 8 / 8
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.7586206896551724
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.8148148148148148
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.7857142857142857
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.4375
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.4625
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.4416666666666666
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader       100.00       100.00       100.00            1
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00       100.00       100.00            1
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)       100.00       100.00       100.00            1
+2026-05-20 14:12:13,838 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image       100.00        50.00        66.67            2
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio        50.00       100.00        66.67            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer        50.00       100.00        66.67            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00       100.00       100.00            2
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker        50.00       100.00        66.67            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander         0.00         0.00         0.00            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor         0.00         0.00         0.00            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser       100.00       100.00       100.00            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            1
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,839 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher       100.00       100.00       100.00            2
+2026-05-20 14:12:13,840 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,840 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,840 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,840 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,840 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:12:13,840 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:12:13,840 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:12:13,840 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        75.86        81.48        78.57           27
+2026-05-20 14:12:13,840 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        43.75        46.25        44.17           27
+2026-05-20 14:12:13,841 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.71875
+2026-05-20 14:12:13,842 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4864864864864865
+2026-05-20 14:12:13,842 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.33333333333333337
+2026-05-20 14:12:13,843 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.5
+2026-05-20 14:12:13,843 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:13,843 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 5, Task Split: overall
+2026-05-20 14:12:13,921 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 6
+2026-05-20 14:12:13,921 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 6 / 6
+2026-05-20 14:12:13,921 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 6 / 6
+2026-05-20 14:12:13,921 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 6 / 6
+2026-05-20 14:12:13,924 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.9615384615384616
+2026-05-20 14:12:13,924 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.8333333333333334
+2026-05-20 14:12:13,924 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.8928571428571429
+2026-05-20 14:12:13,924 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.475
+2026-05-20 14:12:13,924 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.4375
+2026-05-20 14:12:13,924 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.45
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader       100.00       100.00       100.00            1
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00       100.00       100.00            1
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor       100.00       100.00       100.00            1
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            2
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects       100.00       100.00       100.00            4
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00        50.00        66.67            2
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator       100.00       100.00       100.00            1
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker       100.00        50.00        66.67            2
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00        50.00        66.67            2
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor         0.00         0.00         0.00            2
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator       100.00       100.00       100.00            2
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            2
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-05-20 14:12:13,925 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:13,926 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-05-20 14:12:13,926 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,926 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,926 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:12:13,926 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-05-20 14:12:13,926 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:12:13,926 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:12:13,926 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:12:13,926 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        96.15        83.33        89.29           30
+2026-05-20 14:12:13,926 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        47.50        43.75        45.00           30
+2026-05-20 14:12:13,927 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.746268656716418
+2026-05-20 14:12:13,928 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5915492957746479
+2026-05-20 14:12:13,928 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.16233766233766234
+2026-05-20 14:12:13,929 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.6363636363636364
+2026-05-20 14:12:13,930 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:13,930 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 6, Task Split: overall
+2026-05-20 14:12:14,009 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 2
+2026-05-20 14:12:14,009 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 2 / 2
+2026-05-20 14:12:14,009 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 2 / 2
+2026-05-20 14:12:14,009 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 2 / 2
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.8181818181818182
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.9
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.225
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.225
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.225
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:14,012 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            1
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio       100.00       100.00       100.00            1
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            1
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00       100.00       100.00            1
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            1
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:12:14,013 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:12:14,014 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:12:14,014 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-05-20 14:12:14,014 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:12:14,014 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:12:14,014 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:12:14,014 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro       100.00        81.82        90.00           11
+2026-05-20 14:12:14,014 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        22.50        22.50        22.50           11
+2026-05-20 14:12:14,015 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8421052631578947
+2026-05-20 14:12:14,016 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.3
+2026-05-20 14:12:14,016 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.19191919191919193
+2026-05-20 14:12:14,016 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.5
+2026-05-20 14:12:14,017 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:14,017 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 7, Task Split: overall
+2026-05-20 14:12:14,097 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 0
+2026-05-20 14:12:14,097 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 0 / 0
+2026-05-20 14:12:14,097 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 0 / 0
+2026-05-20 14:12:14,097 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 0 / 0
+2026-05-20 14:12:14,097 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - No supports, skip
+2026-05-20 14:12:14,097 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:14,097 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 8, Task Split: overall
+2026-05-20 14:12:14,170 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 0
+2026-05-20 14:12:14,170 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 0 / 0
+2026-05-20 14:12:14,170 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 0 / 0
+2026-05-20 14:12:14,170 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 0 / 0
+2026-05-20 14:12:14,170 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - No supports, skip
+2026-05-20 14:12:14,170 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:14,170 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 9, Task Split: overall
+2026-05-20 14:12:14,244 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 0
+2026-05-20 14:12:14,244 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 0 / 0
+2026-05-20 14:12:14,244 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 0 / 0
+2026-05-20 14:12:14,244 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 0 / 0
+2026-05-20 14:12:14,244 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - No supports, skip
+2026-05-20 14:12:14,244 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:12:14,244 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 10, Task Split: overall
+2026-05-20 14:12:14,321 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 0
+2026-05-20 14:12:14,322 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 0 / 0
+2026-05-20 14:12:14,322 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 0 / 0
+2026-05-20 14:12:14,322 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 0 / 0
+2026-05-20 14:12:14,322 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - No supports, skip
+2026-05-20 14:14:56,172 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Starts with: {'data_dir': 'taskbench/data_multimedia', 'prediction_dir': 'rollback_experiments/20260520_131029/O/predictions', 'save_dir': 'rollback_experiments/20260520_131029/O/metrics_selected', 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'pipeline_orchestrator_agent_gpt-4.1', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-05-20 14:14:56,173 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:56,173 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: overall, Task Split: overall
+2026-05-20 14:14:56,300 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 46
+2026-05-20 14:14:56,300 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 46 / 46
+2026-05-20 14:14:56,300 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 46 / 46
+2026-05-20 14:14:56,300 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 46 / 46
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.8947368421052632
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.864406779661017
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.8793103448275862
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.8170833333333334
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.8051785714285714
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.7993936618936619
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader       100.00       100.00       100.00            1
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader        66.67       100.00        80.00            2
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search        33.33        33.33        33.33            3
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00        75.00        85.71            4
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)        75.00       100.00        85.71            3
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor       100.00       100.00       100.00            2
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            3
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image       100.00        66.67        80.00            3
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video        80.00       100.00        88.89            4
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio        50.00       100.00        66.67            2
+2026-05-20 14:14:56,305 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00        85.71        92.31            7
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            2
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects       100.00       100.00       100.00            8
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer       100.00       100.00       100.00            3
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer        50.00        50.00        50.00            2
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00        83.33        90.91            6
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator       100.00       100.00       100.00            2
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis       100.00        66.67        80.00            3
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker        80.00        80.00        80.00            5
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00        83.33        90.91            6
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00        66.67        80.00            6
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00        50.00        66.67            6
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser       100.00       100.00       100.00            1
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            3
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator        83.33       100.00        90.91            5
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            8
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00        80.00        88.89            5
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher       100.00       100.00       100.00            3
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer       100.00       100.00       100.00            2
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization        50.00       100.00        66.67            1
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        89.47        86.44        87.93          118
+2026-05-20 14:14:56,306 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        81.71        80.52        79.94          118
+2026-05-20 14:14:56,308 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8015267175572519
+2026-05-20 14:14:56,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5512367491166078
+2026-05-20 14:14:56,309 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.1681316268272791
+2026-05-20 14:14:56,310 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.6231884057971014
+2026-05-20 14:14:56,311 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:56,311 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: overall, Task Split: single
+2026-05-20 14:14:56,392 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 19
+2026-05-20 14:14:56,392 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 19 / 19
+2026-05-20 14:14:56,392 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 19 / 19
+2026-05-20 14:14:56,392 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 19 / 19
+2026-05-20 14:14:56,396 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.8947368421052632
+2026-05-20 14:14:56,396 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.9444444444444444
+2026-05-20 14:14:56,396 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.918918918918919
+2026-05-20 14:14:56,396 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.3625
+2026-05-20 14:14:56,396 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.3625
+2026-05-20 14:14:56,396 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.3583333333333333
+2026-05-20 14:14:56,396 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:14:56,396 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:14:56,396 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,396 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00        50.00        66.67            2
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)        50.00       100.00        66.67            1
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            1
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator       100.00       100.00       100.00            2
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:14:56,397 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:14:56,398 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,398 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher       100.00       100.00       100.00            1
+2026-05-20 14:14:56,398 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,398 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,398 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,398 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,398 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:14:56,398 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:14:56,398 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:14:56,398 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        89.47        94.44        91.89           18
+2026-05-20 14:14:56,398 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        36.25        36.25        35.83           18
+2026-05-20 14:14:56,399 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8947368421052632
+2026-05-20 14:14:56,400 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.45
+2026-05-20 14:14:56,400 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.10526315789473684
+2026-05-20 14:14:56,401 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: skipped (empty support)
+2026-05-20 14:14:56,401 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:56,401 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: overall, Task Split: chain
+2026-05-20 14:14:56,494 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 22
+2026-05-20 14:14:56,494 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 22 / 22
+2026-05-20 14:14:56,494 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 22 / 22
+2026-05-20 14:14:56,494 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 22 / 22
+2026-05-20 14:14:56,498 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.8860759493670886
+2026-05-20 14:14:56,498 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.8641975308641975
+2026-05-20 14:14:56,498 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.875
+2026-05-20 14:14:56,498 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.7666666666666666
+2026-05-20 14:14:56,498 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.7633333333333333
+2026-05-20 14:14:56,498 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.7543055555555556
+2026-05-20 14:14:56,498 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:14:56,498 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:14:56,498 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,498 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader       100.00       100.00       100.00            1
+2026-05-20 14:14:56,498 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader        66.67       100.00        80.00            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search        50.00        33.33        40.00            3
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00       100.00       100.00            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)       100.00       100.00       100.00            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor       100.00       100.00       100.00            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image       100.00       100.00       100.00            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio        50.00       100.00        66.67            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00        75.00        85.71            4
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects       100.00       100.00       100.00            6
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            1
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00        80.00        88.89            5
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator       100.00       100.00       100.00            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker        75.00        75.00        75.00            4
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            4
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00        75.00        85.71            4
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00        40.00        57.14            5
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser       100.00       100.00       100.00            1
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator        75.00       100.00        85.71            3
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            4
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00        75.00        85.71            4
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher       100.00       100.00       100.00            2
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization        50.00       100.00        66.67            1
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:14:56,499 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        88.61        86.42        87.50           81
+2026-05-20 14:14:56,500 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        76.67        76.33        75.43           81
+2026-05-20 14:14:56,501 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7759562841530054
+2026-05-20 14:14:56,502 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5492227979274611
+2026-05-20 14:14:56,503 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.1947297651843105
+2026-05-20 14:14:56,505 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.6206896551724138
+2026-05-20 14:14:56,505 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:56,505 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: overall, Task Split: dag
+2026-05-20 14:14:56,582 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 5
+2026-05-20 14:14:56,582 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 5 / 5
+2026-05-20 14:14:56,582 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 5 / 5
+2026-05-20 14:14:56,582 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 5 / 5
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.9375
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.7894736842105263
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.8571428571428571
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.225
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.225
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.225
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            1
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            2
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects       100.00       100.00       100.00            2
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer       100.00       100.00       100.00            3
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            1
+2026-05-20 14:14:56,586 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier         0.00         0.00         0.00            1
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander         0.00         0.00         0.00            1
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            3
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        93.75        78.95        85.71           19
+2026-05-20 14:14:56,587 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        22.50        22.50        22.50           19
+2026-05-20 14:14:56,588 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8292682926829268
+2026-05-20 14:14:56,589 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.64
+2026-05-20 14:14:56,589 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.29000000000000004
+2026-05-20 14:14:56,591 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.6363636363636364
+2026-05-20 14:14:56,591 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:56,591 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 1, Task Split: overall
+2026-05-20 14:14:56,698 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 19
+2026-05-20 14:14:56,698 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 19 / 19
+2026-05-20 14:14:56,698 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 19 / 19
+2026-05-20 14:14:56,698 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 19 / 19
+2026-05-20 14:14:56,702 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.8947368421052632
+2026-05-20 14:14:56,702 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.9444444444444444
+2026-05-20 14:14:56,702 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.918918918918919
+2026-05-20 14:14:56,702 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.3625
+2026-05-20 14:14:56,702 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.3625
+2026-05-20 14:14:56,702 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.3583333333333333
+2026-05-20 14:14:56,702 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:14:56,702 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00        50.00        66.67            2
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)        50.00       100.00        66.67            1
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,703 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            1
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator       100.00       100.00       100.00            2
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher       100.00       100.00       100.00            1
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,704 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,705 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,705 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:14:56,705 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:14:56,705 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:14:56,705 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        89.47        94.44        91.89           18
+2026-05-20 14:14:56,705 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        36.25        36.25        35.83           18
+2026-05-20 14:14:56,706 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8947368421052632
+2026-05-20 14:14:56,708 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.45
+2026-05-20 14:14:56,708 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.10526315789473684
+2026-05-20 14:14:56,708 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: skipped (empty support)
+2026-05-20 14:14:56,708 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:56,708 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 2, Task Split: overall
+2026-05-20 14:14:56,787 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 1
+2026-05-20 14:14:56,787 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 1 / 1
+2026-05-20 14:14:56,787 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 1 / 1
+2026-05-20 14:14:56,788 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 1 / 1
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.05
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.05
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.05
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,791 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro       100.00       100.00       100.00            2
+2026-05-20 14:14:56,792 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro         5.00         5.00         5.00            2
+2026-05-20 14:14:56,793 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6666666666666666
+2026-05-20 14:14:56,795 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6666666666666666
+2026-05-20 14:14:56,795 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.5
+2026-05-20 14:14:56,796 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.0
+2026-05-20 14:14:56,796 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:56,796 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 3, Task Split: overall
+2026-05-20 14:14:56,884 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 10
+2026-05-20 14:14:56,884 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 10 / 10
+2026-05-20 14:14:56,884 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 10 / 10
+2026-05-20 14:14:56,884 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 10 / 10
+2026-05-20 14:14:56,888 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.9310344827586207
+2026-05-20 14:14:56,888 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.9
+2026-05-20 14:14:56,888 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.9152542372881356
+2026-05-20 14:14:56,888 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.4625
+2026-05-20 14:14:56,888 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.45
+2026-05-20 14:14:56,888 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.45
+2026-05-20 14:14:56,888 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:14:56,888 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader       100.00       100.00       100.00            1
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            1
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)       100.00       100.00       100.00            1
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor       100.00       100.00       100.00            1
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00        50.00        66.67            2
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects       100.00       100.00       100.00            4
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer       100.00       100.00       100.00            2
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator       100.00       100.00       100.00            1
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            1
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00        50.00        66.67            2
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-05-20 14:14:56,889 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            1
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            3
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            2
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization        50.00       100.00        66.67            1
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        93.10        90.00        91.53           30
+2026-05-20 14:14:56,890 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        46.25        45.00        45.00           30
+2026-05-20 14:14:56,891 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8732394366197183
+2026-05-20 14:14:56,892 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6933333333333334
+2026-05-20 14:14:56,892 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.12095238095238103
+2026-05-20 14:14:56,893 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.8108108108108109
+2026-05-20 14:14:56,894 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:56,894 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 4, Task Split: overall
+2026-05-20 14:14:56,984 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 8
+2026-05-20 14:14:56,984 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 8 / 8
+2026-05-20 14:14:56,984 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 8 / 8
+2026-05-20 14:14:56,984 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 8 / 8
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.7586206896551724
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.8148148148148148
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.7857142857142857
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.4375
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.4625
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.4416666666666666
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader       100.00       100.00       100.00            1
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-05-20 14:14:56,988 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00       100.00       100.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)       100.00       100.00       100.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image       100.00        50.00        66.67            2
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio        50.00       100.00        66.67            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer        50.00       100.00        66.67            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00       100.00       100.00            2
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker        50.00       100.00        66.67            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander         0.00         0.00         0.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor         0.00         0.00         0.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser       100.00       100.00       100.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner       100.00       100.00       100.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video       100.00       100.00       100.00            2
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            1
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:56,989 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher       100.00       100.00       100.00            2
+2026-05-20 14:14:56,990 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,990 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,990 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:14:56,990 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-05-20 14:14:56,990 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:14:56,990 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:14:56,990 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:14:56,990 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        75.86        81.48        78.57           27
+2026-05-20 14:14:56,990 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        43.75        46.25        44.17           27
+2026-05-20 14:14:56,992 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.71875
+2026-05-20 14:14:56,993 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4864864864864865
+2026-05-20 14:14:56,993 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.33333333333333337
+2026-05-20 14:14:56,994 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.5
+2026-05-20 14:14:56,995 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:56,995 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 5, Task Split: overall
+2026-05-20 14:14:57,080 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 6
+2026-05-20 14:14:57,080 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 6 / 6
+2026-05-20 14:14:57,080 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 6 / 6
+2026-05-20 14:14:57,080 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 6 / 6
+2026-05-20 14:14:57,083 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 0.9615384615384616
+2026-05-20 14:14:57,083 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.8333333333333334
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.8928571428571429
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.475
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.4375
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.45
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader       100.00       100.00       100.00            1
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search       100.00       100.00       100.00            1
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor       100.00       100.00       100.00            1
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            2
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects       100.00       100.00       100.00            4
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00        50.00        66.67            2
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator       100.00       100.00       100.00            1
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker       100.00        50.00        66.67            2
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-05-20 14:14:57,084 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00        50.00        66.67            2
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor         0.00         0.00         0.00            2
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator       100.00       100.00       100.00            2
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            2
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro        96.15        83.33        89.29           30
+2026-05-20 14:14:57,085 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        47.50        43.75        45.00           30
+2026-05-20 14:14:57,087 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.746268656716418
+2026-05-20 14:14:57,088 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5915492957746479
+2026-05-20 14:14:57,089 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.16233766233766234
+2026-05-20 14:14:57,090 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.6363636363636364
+2026-05-20 14:14:57,090 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:57,090 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 6, Task Split: overall
+2026-05-20 14:14:57,177 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 2
+2026-05-20 14:14:57,177 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 2 / 2
+2026-05-20 14:14:57,177 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 2 / 2
+2026-05-20 14:14:57,177 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 2 / 2
+2026-05-20 14:14:57,181 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-05-20 14:14:57,181 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro Recall [ No Matching ]: 0.8181818181818182
+2026-05-20 14:14:57,181 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Micro F1 [ No Matching ]: 0.9
+2026-05-20 14:14:57,181 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Precision [ No Matching ]: 0.225
+2026-05-20 14:14:57,181 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro Recall [ No Matching ]: 0.225
+2026-05-20 14:14:57,181 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Macro F1 [ No Matching ]: 0.225
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                           type    precision       recall     f1-score      support
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                    Text Search         0.00         0.00         0.00            1
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text-to-Audio       100.00       100.00       100.00            1
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Voice Changer         0.00         0.00         0.00            1
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Summarizer       100.00       100.00       100.00            1
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            1
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-05-20 14:14:57,182 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - 
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          micro       100.00        81.82        90.00           11
+2026-05-20 14:14:57,183 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO -                          macro        22.50        22.50        22.50           11
+2026-05-20 14:14:57,185 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8421052631578947
+2026-05-20 14:14:57,186 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.3
+2026-05-20 14:14:57,186 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Edit Distance: 0.19191919191919193
+2026-05-20 14:14:57,187 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Binary F1: 0.5
+2026-05-20 14:14:57,188 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:57,188 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 7, Task Split: overall
+2026-05-20 14:14:57,271 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 0
+2026-05-20 14:14:57,271 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 0 / 0
+2026-05-20 14:14:57,271 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 0 / 0
+2026-05-20 14:14:57,271 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 0 / 0
+2026-05-20 14:14:57,271 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - No supports, skip
+2026-05-20 14:14:57,271 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:57,271 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 8, Task Split: overall
+2026-05-20 14:14:57,357 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 0
+2026-05-20 14:14:57,358 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 0 / 0
+2026-05-20 14:14:57,358 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 0 / 0
+2026-05-20 14:14:57,358 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 0 / 0
+2026-05-20 14:14:57,358 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - No supports, skip
+2026-05-20 14:14:57,358 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:57,358 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 9, Task Split: overall
+2026-05-20 14:14:57,437 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 0
+2026-05-20 14:14:57,437 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 0 / 0
+2026-05-20 14:14:57,437 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 0 / 0
+2026-05-20 14:14:57,438 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 0 / 0
+2026-05-20 14:14:57,438 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - No supports, skip
+2026-05-20 14:14:57,438 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - ---------------
+2026-05-20 14:14:57,438 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Tools Number: 10, Task Split: overall
+2026-05-20 14:14:57,515 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Step Supports: 0 / 0
+2026-05-20 14:14:57,515 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Node Support: 0 / 0
+2026-05-20 14:14:57,515 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Link Support: 0 / 0
+2026-05-20 14:14:57,515 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - Argument Support: 0 / 0
+2026-05-20 14:14:57,516 - [ pipeline_orchestrator_agent_gpt-4.1 ] - INFO - No supports, skip

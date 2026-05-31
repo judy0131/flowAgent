@@ -1,0 +1,7 @@
+{
+  "provider": "openai",
+  "model_name": "qwen3-14b",
+  "temperature": 0,
+  "api_key_envs": ["DASHSCOPE_API_KEY", "TONGYI_API_KEY"],
+  "base_url_env": "DASHSCOPE_BASE_URL"
+}

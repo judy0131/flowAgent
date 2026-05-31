@@ -1,0 +1,7 @@
+﻿Name,OracleBestCount,OracleBestRate,OracleBestMeanQuality,OracleBestStructureMatchCount,OracleBestStructureMatchRateWithinWins,OracleBestExactMatchCount,OracleBetterCount,OracleBetterShare,OracleBetterMeanRegret,OracleBetterTotalRegret,OracleBetterStructureMatchCount,OracleBetterExactMatchCount,UpperBoundMeanQuality,UpperBoundExactMatchRate,UpperBoundStructureMatchRate,UpperBoundDeltaVsOriginal,SplitWins,OracleBetterSplitWins,OracleBetterCases
+original,168,90.8108%,0.6969,120,71.4286%,83,1,5.8824%,0.3259,0.3259,1,0,0.6552,44.8649%,64.8649%,0.0000,"{""chain"": 70, ""dag"": 11, ""single"": 87}","{""chain"": 1}",21338123
+minimal,14,7.5676%,0.4891,5,35.7143%,3,13,76.4706%,0.2395,3.1140,5,3,0.6717,46.4865%,67.0270%,0.0165,"{""dag"": 2, ""chain"": 11, ""single"": 1}","{""dag"": 2, ""chain"": 10, ""single"": 1}","27258164,46051366,24192922,31893844,50534924,54951370,79466668,79560754,31788289,31461277,11656312,45875119,19565758"
+action_coverage,2,1.0811%,0.3636,0,0.0000%,0,2,11.7647%,0.2071,0.4141,0,0,0.6668,45.4054%,66.4865%,0.0116,"{""chain"": 2}","{""chain"": 2}","29292224,59923748"
+parallel_dag,1,0.5405%,0.2623,0,0.0000%,0,1,5.8824%,0.0171,0.0171,0,0,0.6697,46.4865%,67.0270%,0.0145,"{""chain"": 1}","{""chain"": 1}",24402294
+dependency_first,0,0.0000%,0.0000,0,0.0000%,0,0,0.0000%,0.0000,0.0000,0,0,0.6625,45.4054%,66.4865%,0.0073,{},{},
+parameter_copy,0,0.0000%,0.0000,0,0.0000%,0,0,0.0000%,0.0000,0.0000,0,0,0.6674,45.9459%,67.0270%,0.0122,{},{},

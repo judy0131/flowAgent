@@ -1,0 +1,72 @@
+{
+  "runner": "openai",
+  "data_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia",
+  "gold_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\data.json",
+  "case_count": 12,
+  "case_ids_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260522_201242\\case_ids.txt",
+  "candidate_count": 3,
+  "fixed_candidate_temperature": 0.0,
+  "selected_group_tags": [
+    "T"
+  ],
+  "results": [
+    {
+      "tag": "T",
+      "label": "action_dag_planning_probe",
+      "prediction_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260522_201242\\T\\predictions\\pipeline_orchestrator_agent_gpt-4.1_20260522.json",
+      "prediction_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\rollback_experiments\\20260522_201242\\T\\predictions",
+      "candidate_dump_path": null,
+      "data_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia",
+      "requested_cases": 12,
+      "successful_predictions": 12,
+      "case_coverage_rate": 1.0,
+      "failed_cases": 0,
+      "validation_failure_count": 0,
+      "other_failure_count": 0,
+      "failure_counts": {},
+      "failure_details": [],
+      "total_predictions": 12,
+      "excluded_from_taskbench_eval": true,
+      "taskbench_eval_skipped": true,
+      "parse_success_count": 12,
+      "parse_failure_count": 0,
+      "parse_success_rate": 1.0,
+      "atomic_action_count_mean": 3.5833333333333335,
+      "dependency_count_mean": 2.5833333333333335,
+      "materialization_count_mean": 1.3333333333333333,
+      "badcase_count": 0,
+      "badcase_rate": 0.0,
+      "badcase_ids": [],
+      "badcase_stats": {},
+      "badcase_rows": [],
+      "badcase_details": [],
+      "config": {
+        "planning_mode": "action_dag",
+        "candidate_selection_mode": "none",
+        "enable_candidate_verifier": false,
+        "enable_candidate_repair": false,
+        "enable_workflow_memory": false,
+        "include_original_candidate": false,
+        "enable_semantic_edge_grounding": false,
+        "edge_grounding_mode": "none",
+        "candidate_prompt_mode": "legacy",
+        "candidate_count_override": null,
+        "force_generate_all_candidate_families": false,
+        "disable_early_stop": false,
+        "save_all_candidates": false,
+        "save_action_dag": true,
+        "enable_strict_planning_prompt": false,
+        "enable_action_checklist": false,
+        "enable_parameter_normalization": false
+      }
+    }
+  ],
+  "comparison": {
+    "comparisons": [],
+    "first_badcase_increase": null,
+    "diagnosis": "No TaskBench-evaluable groups were run.",
+    "skipped_tags": [
+      "T"
+    ]
+  }
+}
