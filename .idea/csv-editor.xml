@@ -3,6 +3,55 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\agent\memory_guided_workflow\metrics\miwp_three_tables\20260603\01_experiment_comparison_20260603.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\agent\memory_guided_workflow\metrics\miwp_three_tables\20260604-no-repair\01_experiment_comparison_20260604.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\agent\memory_guided_workflow\metrics\miwp_three_tables\20260604-repair\01_experiment_comparison_20260604.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\agent\memory_guided_workflow\metrics\miwp_three_tables\20260604-repair\03_badcase_report_20260604.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\candidate_dumps\analysis_orthogonal_v4_candidate_pool\family_improvement_vs_baseline.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\candidate_dumps\analysis_orthogonal_v4_candidate_pool\family_metrics.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\candidate_dumps\analysis_orthogonal_v4_candidate_pool\workflow_type_confusion.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\taskbench\data_multimedia\candidate_dumps\analysis_pipeline_agent_qwen3-14b_20260529_full_semantic\node_edge_policy_single_baseline_chain_dag_pool.csv">
           <value>
             <Attribute>
@@ -10,7 +59,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\taskbench\data_multimedia\candidate_dumps\rerank_v1\pipeline_agent_qwen3-14b_rerank_v1_eval_cases.csv">
+        <entry key="\taskbench\data_multimedia\candidate_dumps\analysis_pipeline_agent_qwen3-14b_20260529_semantic\case_summary.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
