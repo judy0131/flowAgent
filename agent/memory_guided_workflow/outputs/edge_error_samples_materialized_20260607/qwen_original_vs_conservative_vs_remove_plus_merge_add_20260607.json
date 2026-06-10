@@ -1,0 +1,110 @@
+{
+  "summary": [
+    {
+      "variant": "original",
+      "cases": 50,
+      "tp": 42,
+      "fp": 59,
+      "fn": 75,
+      "precision": 0.4158415841584158,
+      "recall": 0.358974358974359,
+      "e_f1": 0.38532110091743116,
+      "delta_vs_original": 0,
+      "delta_vs_conservative": "",
+      "improved_vs_original": "",
+      "degraded_vs_original": "",
+      "same_vs_original": "",
+      "improved_vs_conservative": "",
+      "degraded_vs_conservative": "",
+      "same_vs_conservative": "",
+      "changed_cases": "",
+      "add_ops": "",
+      "remove_ops": "",
+      "warning_cases": ""
+    },
+    {
+      "variant": "conservative",
+      "cases": 50,
+      "tp": 46,
+      "fp": 60,
+      "fn": 71,
+      "precision": 0.4339622641509434,
+      "recall": 0.39316239316239315,
+      "e_f1": 0.41255605381165916,
+      "delta_vs_original": 0.027234952894228004,
+      "delta_vs_conservative": 0,
+      "improved_vs_original": 5,
+      "degraded_vs_original": 2,
+      "same_vs_original": 43,
+      "improved_vs_conservative": "",
+      "degraded_vs_conservative": "",
+      "same_vs_conservative": "",
+      "changed_cases": 19,
+      "add_ops": 21,
+      "remove_ops": 21,
+      "replace_ops": 0,
+      "warning_cases": 4
+    },
+    {
+      "variant": "remove_plus_merge_add",
+      "cases": 50,
+      "tp": 44,
+      "fp": 55,
+      "fn": 73,
+      "precision": 0.4444444444444444,
+      "recall": 0.37606837606837606,
+      "e_f1": 0.40740740740740744,
+      "delta_vs_original": 0.022086306489976282,
+      "delta_vs_conservative": -0.005148646404251722,
+      "improved_vs_original": 3,
+      "degraded_vs_original": 1,
+      "same_vs_original": 46,
+      "improved_vs_conservative": 4,
+      "degraded_vs_conservative": 4,
+      "same_vs_conservative": 42,
+      "changed_cases": 14,
+      "add_ops": 9,
+      "remove_ops": 9,
+      "replace_ops": 0,
+      "warning_cases": 19
+    }
+  ],
+  "ids_summary": [
+    {
+      "comparison": "remove_plus_merge_add_vs_original",
+      "status": "improved",
+      "ids": "12665433, 24271097, 79094671",
+      "count": 3
+    },
+    {
+      "comparison": "remove_plus_merge_add_vs_original",
+      "status": "degraded",
+      "ids": "11305011",
+      "count": 1
+    },
+    {
+      "comparison": "remove_plus_merge_add_vs_original",
+      "status": "same",
+      "ids": "10598182, 10653436, 11685484, 12598236, 13147817, 14084946, 14551179, 15037969, 15212737, 16735705, 16964342, 17470699, 18415345, 18712751, 19035461, 20681073, 21131990, 21494947, 22151225, 22807274, 22817672, 23583789, 24724082, 26187047, 27609075, 27732871, 28687369, 28919479, 29216690, 29230517, 29348560, 29651002, 31077367, 33153230, 33576919, 36677025, 39491094, 46379227, 48318288, 51432037, 53950808, 59617358, 60221669, 79253895, 85782550, 98091767",
+      "count": 46
+    },
+    {
+      "comparison": "remove_plus_merge_add_vs_conservative",
+      "status": "improved",
+      "ids": "12598236, 12665433, 21494947, 79094671",
+      "count": 4
+    },
+    {
+      "comparison": "remove_plus_merge_add_vs_conservative",
+      "status": "degraded",
+      "ids": "11305011, 18712751, 29216690, 33576919",
+      "count": 4
+    },
+    {
+      "comparison": "remove_plus_merge_add_vs_conservative",
+      "status": "same",
+      "ids": "10598182, 10653436, 11685484, 13147817, 14084946, 14551179, 15037969, 15212737, 16735705, 16964342, 17470699, 18415345, 19035461, 20681073, 21131990, 22151225, 22807274, 22817672, 23583789, 24271097, 24724082, 26187047, 27609075, 27732871, 28687369, 28919479, 29230517, 29348560, 29651002, 31077367, 33153230, 36677025, 39491094, 46379227, 48318288, 51432037, 53950808, 59617358, 60221669, 79253895, 85782550, 98091767",
+      "count": 42
+    }
+  ]
+}

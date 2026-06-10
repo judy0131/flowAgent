@@ -135,7 +135,7 @@
     {
       "id": "Image-to-Text",
       "desc": "Extracts text from an input image using Optical Character Recognition (OCR).",
-      "intent": "extract",
+      "intent": "transcribe",
       "input-type": [
         "image"
       ],
@@ -179,7 +179,7 @@
     {
       "id": "Audio Effects",
       "desc": "Applies various audio effects to a given audio file according to human instruction, such as reverb, chorus, or equalization.",
-      "intent": "apply",
+      "intent": "effect",
       "input-type": [
         "audio",
         "text"
@@ -191,6 +191,7 @@
     {
       "id": "Audio Splicer",
       "desc": "Combines two audio files into a single output file.",
+      "intent": "combine",
       "intent": "combine",
       "input-type": [
         "audio",
@@ -292,7 +293,7 @@
     {
       "id": "Text Paraphraser",
       "desc": "Rewrites a given text using different words while maintaining its original meaning.",
-      "intent": "paraphrase",
+      "intent": "rewrite",
       "input-type": [
         "text"
       ],

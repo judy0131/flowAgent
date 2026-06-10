@@ -6,7 +6,10 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 try:
-    from .incremental_planning import IncrementalPlanner
+    from .incremental_planning import (
+        IncrementalPlanner,
+        limit_taskbench_arguments_to_input_count,
+    )
     from .llm_client import OpenAICompatibleLLMClient
     from .models import TaskStep, UserRequest
     from .planning_memory import PlanningMemory
@@ -25,7 +28,10 @@ except ImportError:
     if str(repo_root) not in sys.path:
         sys.path.insert(0, str(repo_root))
 
-    from agent.memory_guided_workflow.incremental_planning import IncrementalPlanner
+    from agent.memory_guided_workflow.incremental_planning import (
+        IncrementalPlanner,
+        limit_taskbench_arguments_to_input_count,
+    )
     from agent.memory_guided_workflow.llm_client import OpenAICompatibleLLMClient
     from agent.memory_guided_workflow.models import TaskStep, UserRequest
     from agent.memory_guided_workflow.planning_memory import PlanningMemory
@@ -358,8 +364,9 @@ def _workflow_dag_with_taskbench_tools(dag: Dict[str, Any]) -> Dict[str, Any]:
 
     {"tool": {"task": tool_name, "arguments": [...]}}
 
-    Arguments are read from node.metadata.arguments and completed with incoming
-    predecessor references from DAG edges when needed.
+    Arguments are read from node.metadata.arguments, completed with incoming
+    predecessor references from DAG edges when needed, and bounded by the
+    selected tool's declared input count when available.
     """
     if not isinstance(dag, dict):
         return {}
@@ -405,6 +412,10 @@ def _workflow_dag_with_taskbench_tools(dag: Dict[str, Any]) -> Dict[str, Any]:
             arguments = []
         completed_arguments = _dedupe_preserve_order(
             incoming_refs_by_node_id.get(node_id, []) + list(arguments)
+        )
+        completed_arguments = limit_taskbench_arguments_to_input_count(
+            completed_arguments,
+            metadata.get("input_types", []),
         )
         metadata["arguments"] = completed_arguments
         node["metadata"] = metadata

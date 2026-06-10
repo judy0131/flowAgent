@@ -3,28 +3,21 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\agent\memory_guided_workflow\metrics\miwp_three_tables\20260603\01_experiment_comparison_20260603.csv">
+        <entry key="\agent\memory_guided_workflow\metrics\miwp\miwp_three_tables\20260606-comparison\qwen3-14b_vs_miwp_intent_repair_gold_comparison_20260606.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\agent\memory_guided_workflow\metrics\miwp_three_tables\20260604-no-repair\01_experiment_comparison_20260604.csv">
+        <entry key="\agent\memory_guided_workflow\metrics\miwp\miwp_three_tables\20260606-miwp\01_experiment_comparison_20260606.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\agent\memory_guided_workflow\metrics\miwp_three_tables\20260604-repair\01_experiment_comparison_20260604.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\agent\memory_guided_workflow\metrics\miwp_three_tables\20260604-repair\03_badcase_report_20260604.csv">
+        <entry key="\agent\memory_guided_workflow\metrics\miwp\miwp_three_tables\20260606-qwen3-14b\01_experiment_comparison_20260606.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -81,6 +74,13 @@
           </value>
         </entry>
         <entry key="\taskbench\data_multimedia\metrics_use_demos_2_reformat_by_self\three_tables_qwen3-14b_use_demos_2_reformat_by_self\02_structure_breakdown_20260527.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\taskbench\data_multimedia\metrics_use_demos_2_reformat_by_self\three_tables_qwen3-14b_use_demos_2_reformat_by_self\03_badcase_report_20260527.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

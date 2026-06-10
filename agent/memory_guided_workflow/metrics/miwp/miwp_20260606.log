@@ -1,0 +1,735 @@
+2026-06-06 19:16:33,198 - [ miwp ] - INFO - Starts with: {'data_dir': '.\\taskbench\\data_multimedia', 'prediction_dir': 'predictions_miwp', 'save_dir': '../../agent/memory_guilded_workflow/metrics', 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('all',), 'llm': 'miwp', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-06-06 19:16:33,199 - [ miwp ] - INFO - ---------------
+2026-06-06 19:16:33,200 - [ miwp ] - INFO - Tools Number: overall, Task Split: overall
+2026-06-06 19:16:33,376 - [ miwp ] - INFO - Step Supports: 30 / 30
+2026-06-06 19:16:33,377 - [ miwp ] - INFO - Node Support: 30 / 30
+2026-06-06 19:16:33,378 - [ miwp ] - INFO - Link Support: 30 / 30
+2026-06-06 19:16:33,379 - [ miwp ] - INFO - Argument Support: 30 / 30
+2026-06-06 19:31:34,511 - [ miwp ] - INFO - Starts with: {'data_dir': '.\\taskbench\\data_multimedia', 'prediction_dir': 'predictions_miwp', 'save_dir': '../../agent/memory_guilded_workflow/metrics', 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('a',), 'llm': 'miwp', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-06-06 19:31:34,512 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:34,513 - [ miwp ] - INFO - Tools Number: overall, Task Split: overall
+2026-06-06 19:31:34,791 - [ miwp ] - INFO - Step Supports: 0 / 30
+2026-06-06 19:31:34,792 - [ miwp ] - INFO - Node Support: 30 / 30
+2026-06-06 19:31:34,792 - [ miwp ] - INFO - Link Support: 30 / 30
+2026-06-06 19:31:34,793 - [ miwp ] - INFO - Argument Support: 30 / 30
+2026-06-06 19:31:34,795 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:34,795 - [ miwp ] - INFO - Tools Number: overall, Task Split: single
+2026-06-06 19:31:34,984 - [ miwp ] - INFO - Step Supports: 0 / 10
+2026-06-06 19:31:34,985 - [ miwp ] - INFO - Node Support: 10 / 10
+2026-06-06 19:31:34,985 - [ miwp ] - INFO - Link Support: 10 / 10
+2026-06-06 19:31:34,985 - [ miwp ] - INFO - Argument Support: 10 / 10
+2026-06-06 19:31:34,986 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:34,986 - [ miwp ] - INFO - Tools Number: overall, Task Split: chain
+2026-06-06 19:31:35,128 - [ miwp ] - INFO - Step Supports: 0 / 10
+2026-06-06 19:31:35,128 - [ miwp ] - INFO - Node Support: 10 / 10
+2026-06-06 19:31:35,129 - [ miwp ] - INFO - Link Support: 10 / 10
+2026-06-06 19:31:35,129 - [ miwp ] - INFO - Argument Support: 10 / 10
+2026-06-06 19:31:35,129 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:35,130 - [ miwp ] - INFO - Tools Number: overall, Task Split: dag
+2026-06-06 19:31:35,280 - [ miwp ] - INFO - Step Supports: 0 / 10
+2026-06-06 19:31:35,281 - [ miwp ] - INFO - Node Support: 10 / 10
+2026-06-06 19:31:35,281 - [ miwp ] - INFO - Link Support: 10 / 10
+2026-06-06 19:31:35,281 - [ miwp ] - INFO - Argument Support: 10 / 10
+2026-06-06 19:31:35,281 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:35,281 - [ miwp ] - INFO - Tools Number: 1, Task Split: overall
+2026-06-06 19:31:35,375 - [ miwp ] - INFO - Step Supports: 0 / 10
+2026-06-06 19:31:35,401 - [ miwp ] - INFO - Node Support: 10 / 10
+2026-06-06 19:31:35,402 - [ miwp ] - INFO - Link Support: 10 / 10
+2026-06-06 19:31:35,402 - [ miwp ] - INFO - Argument Support: 10 / 10
+2026-06-06 19:31:35,422 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:35,424 - [ miwp ] - INFO - Tools Number: 2, Task Split: overall
+2026-06-06 19:31:35,586 - [ miwp ] - INFO - Step Supports: 0 / 2
+2026-06-06 19:31:35,588 - [ miwp ] - INFO - Node Support: 2 / 2
+2026-06-06 19:31:35,588 - [ miwp ] - INFO - Link Support: 2 / 2
+2026-06-06 19:31:35,589 - [ miwp ] - INFO - Argument Support: 2 / 2
+2026-06-06 19:31:35,592 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:35,593 - [ miwp ] - INFO - Tools Number: 3, Task Split: overall
+2026-06-06 19:31:35,728 - [ miwp ] - INFO - Step Supports: 0 / 6
+2026-06-06 19:31:35,729 - [ miwp ] - INFO - Node Support: 6 / 6
+2026-06-06 19:31:35,729 - [ miwp ] - INFO - Link Support: 6 / 6
+2026-06-06 19:31:35,730 - [ miwp ] - INFO - Argument Support: 6 / 6
+2026-06-06 19:31:35,731 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:35,731 - [ miwp ] - INFO - Tools Number: 4, Task Split: overall
+2026-06-06 19:31:35,871 - [ miwp ] - INFO - Step Supports: 0 / 9
+2026-06-06 19:31:35,872 - [ miwp ] - INFO - Node Support: 9 / 9
+2026-06-06 19:31:35,873 - [ miwp ] - INFO - Link Support: 9 / 9
+2026-06-06 19:31:35,874 - [ miwp ] - INFO - Argument Support: 9 / 9
+2026-06-06 19:31:35,875 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:35,876 - [ miwp ] - INFO - Tools Number: 5, Task Split: overall
+2026-06-06 19:31:36,014 - [ miwp ] - INFO - Step Supports: 0 / 2
+2026-06-06 19:31:36,015 - [ miwp ] - INFO - Node Support: 2 / 2
+2026-06-06 19:31:36,015 - [ miwp ] - INFO - Link Support: 2 / 2
+2026-06-06 19:31:36,015 - [ miwp ] - INFO - Argument Support: 2 / 2
+2026-06-06 19:31:36,017 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:36,017 - [ miwp ] - INFO - Tools Number: 6, Task Split: overall
+2026-06-06 19:31:36,171 - [ miwp ] - INFO - Step Supports: 0 / 1
+2026-06-06 19:31:36,172 - [ miwp ] - INFO - Node Support: 1 / 1
+2026-06-06 19:31:36,172 - [ miwp ] - INFO - Link Support: 1 / 1
+2026-06-06 19:31:36,172 - [ miwp ] - INFO - Argument Support: 1 / 1
+2026-06-06 19:31:36,172 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:36,172 - [ miwp ] - INFO - Tools Number: 7, Task Split: overall
+2026-06-06 19:31:36,295 - [ miwp ] - INFO - Step Supports: 0 / 0
+2026-06-06 19:31:36,295 - [ miwp ] - INFO - Node Support: 0 / 0
+2026-06-06 19:31:36,295 - [ miwp ] - INFO - Link Support: 0 / 0
+2026-06-06 19:31:36,295 - [ miwp ] - INFO - Argument Support: 0 / 0
+2026-06-06 19:31:36,295 - [ miwp ] - INFO - No supports, skip
+2026-06-06 19:31:36,296 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:36,296 - [ miwp ] - INFO - Tools Number: 8, Task Split: overall
+2026-06-06 19:31:36,440 - [ miwp ] - INFO - Step Supports: 0 / 0
+2026-06-06 19:31:36,441 - [ miwp ] - INFO - Node Support: 0 / 0
+2026-06-06 19:31:36,441 - [ miwp ] - INFO - Link Support: 0 / 0
+2026-06-06 19:31:36,441 - [ miwp ] - INFO - Argument Support: 0 / 0
+2026-06-06 19:31:36,441 - [ miwp ] - INFO - No supports, skip
+2026-06-06 19:31:36,443 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:36,443 - [ miwp ] - INFO - Tools Number: 9, Task Split: overall
+2026-06-06 19:31:36,590 - [ miwp ] - INFO - Step Supports: 0 / 0
+2026-06-06 19:31:36,590 - [ miwp ] - INFO - Node Support: 0 / 0
+2026-06-06 19:31:36,591 - [ miwp ] - INFO - Link Support: 0 / 0
+2026-06-06 19:31:36,591 - [ miwp ] - INFO - Argument Support: 0 / 0
+2026-06-06 19:31:36,591 - [ miwp ] - INFO - No supports, skip
+2026-06-06 19:31:36,592 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:36,592 - [ miwp ] - INFO - Tools Number: 10, Task Split: overall
+2026-06-06 19:31:36,716 - [ miwp ] - INFO - Step Supports: 0 / 0
+2026-06-06 19:31:36,716 - [ miwp ] - INFO - Node Support: 0 / 0
+2026-06-06 19:31:36,717 - [ miwp ] - INFO - Link Support: 0 / 0
+2026-06-06 19:31:36,717 - [ miwp ] - INFO - Argument Support: 0 / 0
+2026-06-06 19:31:36,717 - [ miwp ] - INFO - No supports, skip
+2026-06-06 19:31:44,322 - [ miwp ] - INFO - Starts with: {'data_dir': '.\\taskbench\\data_multimedia', 'prediction_dir': 'predictions_miwp', 'save_dir': '../../agent/memory_guilded_workflow/metrics', 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'miwp', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-06-06 19:31:44,322 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:44,322 - [ miwp ] - INFO - Tools Number: overall, Task Split: overall
+2026-06-06 19:31:44,513 - [ miwp ] - INFO - Step Supports: 0 / 30
+2026-06-06 19:31:44,514 - [ miwp ] - INFO - Node Support: 30 / 30
+2026-06-06 19:31:44,514 - [ miwp ] - INFO - Link Support: 30 / 30
+2026-06-06 19:31:44,514 - [ miwp ] - INFO - Argument Support: 30 / 30
+2026-06-06 19:31:44,521 - [ miwp ] - INFO - Node Micro Precision [ No Matching ]: 0.8734177215189873
+2026-06-06 19:31:44,521 - [ miwp ] - INFO - Node Micro Recall [ No Matching ]: 0.8961038961038961
+2026-06-06 19:31:44,521 - [ miwp ] - INFO - Node Micro F1 [ No Matching ]: 0.8846153846153846
+2026-06-06 19:31:44,521 - [ miwp ] - INFO - Node Macro Precision [ No Matching ]: 0.7625
+2026-06-06 19:31:44,521 - [ miwp ] - INFO - Node Macro Recall [ No Matching ]: 0.7625
+2026-06-06 19:31:44,522 - [ miwp ] - INFO - Node Macro F1 [ No Matching ]: 0.7449404761904762
+2026-06-06 19:31:44,522 - [ miwp ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-06 19:31:44,522 - [ miwp ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-06 19:31:44,522 - [ miwp ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,522 - [ miwp ] - INFO -               Video Downloader       100.00        66.67        80.00            3
+2026-06-06 19:31:44,522 - [ miwp ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-06-06 19:31:44,522 - [ miwp ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,522 - [ miwp ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-06-06 19:31:44,523 - [ miwp ] - INFO -                   Image Search       100.00        33.33        50.00            3
+2026-06-06 19:31:44,523 - [ miwp ] - INFO -        Image Search (by Image)       100.00       100.00       100.00            2
+2026-06-06 19:31:44,523 - [ miwp ] - INFO -                  URL Extractor       100.00       100.00       100.00            2
+2026-06-06 19:31:44,523 - [ miwp ] - INFO -                   Video Search       100.00       100.00       100.00            3
+2026-06-06 19:31:44,524 - [ miwp ] - INFO -                  Text-to-Image        50.00       100.00        66.67            2
+2026-06-06 19:31:44,524 - [ miwp ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:44,524 - [ miwp ] - INFO -                  Text-to-Audio       100.00       100.00       100.00            3
+2026-06-06 19:31:44,524 - [ miwp ] - INFO -                  Image-to-Text       100.00       100.00       100.00            1
+2026-06-06 19:31:44,524 - [ miwp ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            3
+2026-06-06 19:31:44,524 - [ miwp ] - INFO -                  Video-to-Text       100.00        66.67        80.00            3
+2026-06-06 19:31:44,524 - [ miwp ] - INFO -          Audio Noise Reduction        50.00       100.00        66.67            1
+2026-06-06 19:31:44,524 - [ miwp ] - INFO -                  Audio Effects        75.00       100.00        85.71            3
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -                  Audio Splicer       100.00       100.00       100.00            2
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -                  Voice Changer       100.00       100.00       100.00            1
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -                Text Summarizer        33.33       100.00        50.00            1
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -                Text Translator       100.00       100.00       100.00            2
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            5
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -                Text Simplifier       100.00        66.67        80.00            3
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -                  Text Expander       100.00        66.67        80.00            3
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -               Text Paraphraser       100.00       100.00       100.00            3
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -                Article Spinner        75.00        75.00        75.00            4
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            5
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -                 Image-to-Video       100.00       100.00       100.00            2
+2026-06-06 19:31:44,525 - [ miwp ] - INFO -                 Video-to-Audio        66.67       100.00        80.00            2
+2026-06-06 19:31:44,526 - [ miwp ] - INFO -                 Video-to-Image       100.00       100.00       100.00            1
+2026-06-06 19:31:44,526 - [ miwp ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-06 19:31:44,526 - [ miwp ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,526 - [ miwp ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,526 - [ miwp ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,526 - [ miwp ] - INFO -            Video Speed Changer       100.00       100.00       100.00            4
+2026-06-06 19:31:44,526 - [ miwp ] - INFO -          Video Synchronization       100.00        75.00        85.71            4
+2026-06-06 19:31:44,526 - [ miwp ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-06-06 19:31:44,526 - [ miwp ] - INFO - 
+2026-06-06 19:31:44,526 - [ miwp ] - INFO -                          micro        87.34        89.61        88.46           77
+2026-06-06 19:31:44,527 - [ miwp ] - INFO -                          macro        76.25        76.25        74.49           77
+2026-06-06 19:31:44,528 - [ miwp ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7734806629834254
+2026-06-06 19:31:44,530 - [ miwp ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5208333333333334
+2026-06-06 19:31:44,531 - [ miwp ] - INFO - Edit Distance: 0.14370370370370356
+2026-06-06 19:31:44,532 - [ miwp ] - INFO - Link Binary F1: 0.4578313253012048
+2026-06-06 19:31:44,534 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:44,534 - [ miwp ] - INFO - Tools Number: overall, Task Split: single
+2026-06-06 19:31:44,621 - [ miwp ] - INFO - Step Supports: 0 / 10
+2026-06-06 19:31:44,621 - [ miwp ] - INFO - Node Support: 10 / 10
+2026-06-06 19:31:44,622 - [ miwp ] - INFO - Link Support: 10 / 10
+2026-06-06 19:31:44,622 - [ miwp ] - INFO - Argument Support: 10 / 10
+2026-06-06 19:31:44,627 - [ miwp ] - INFO - Node Micro Precision [ No Matching ]: 0.8333333333333334
+2026-06-06 19:31:44,627 - [ miwp ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-06-06 19:31:44,627 - [ miwp ] - INFO - Node Micro F1 [ No Matching ]: 0.9090909090909091
+2026-06-06 19:31:44,627 - [ miwp ] - INFO - Node Macro Precision [ No Matching ]: 0.225
+2026-06-06 19:31:44,628 - [ miwp ] - INFO - Node Macro Recall [ No Matching ]: 0.225
+2026-06-06 19:31:44,628 - [ miwp ] - INFO - Node Macro F1 [ No Matching ]: 0.225
+2026-06-06 19:31:44,628 - [ miwp ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -                   Image Search       100.00       100.00       100.00            1
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -        Image Search (by Image)       100.00       100.00       100.00            1
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-06-06 19:31:44,628 - [ miwp ] - INFO -                  Image-to-Text       100.00       100.00       100.00            1
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                  Audio Effects       100.00       100.00       100.00            1
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -               Text Paraphraser       100.00       100.00       100.00            1
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            2
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:44,629 - [ miwp ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-06 19:31:44,630 - [ miwp ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,630 - [ miwp ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,630 - [ miwp ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,630 - [ miwp ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-06-06 19:31:44,630 - [ miwp ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-06-06 19:31:44,630 - [ miwp ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-06-06 19:31:44,630 - [ miwp ] - INFO - 
+2026-06-06 19:31:44,630 - [ miwp ] - INFO -                          micro        83.33       100.00        90.91           10
+2026-06-06 19:31:44,630 - [ miwp ] - INFO -                          macro        22.50        22.50        22.50           10
+2026-06-06 19:31:44,632 - [ miwp ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.96
+2026-06-06 19:31:44,633 - [ miwp ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5925925925925926
+2026-06-06 19:31:44,633 - [ miwp ] - INFO - Edit Distance: 0.06666666666666665
+2026-06-06 19:31:44,634 - [ miwp ] - INFO - Link Binary F1: 0.0
+2026-06-06 19:31:44,635 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:44,635 - [ miwp ] - INFO - Tools Number: overall, Task Split: chain
+2026-06-06 19:31:44,734 - [ miwp ] - INFO - Step Supports: 0 / 10
+2026-06-06 19:31:44,734 - [ miwp ] - INFO - Node Support: 10 / 10
+2026-06-06 19:31:44,734 - [ miwp ] - INFO - Link Support: 10 / 10
+2026-06-06 19:31:44,735 - [ miwp ] - INFO - Argument Support: 10 / 10
+2026-06-06 19:31:44,741 - [ miwp ] - INFO - Node Micro Precision [ No Matching ]: 0.7941176470588235
+2026-06-06 19:31:44,742 - [ miwp ] - INFO - Node Micro Recall [ No Matching ]: 0.9
+2026-06-06 19:31:44,742 - [ miwp ] - INFO - Node Micro F1 [ No Matching ]: 0.84375
+2026-06-06 19:31:44,742 - [ miwp ] - INFO - Node Macro Precision [ No Matching ]: 0.525
+2026-06-06 19:31:44,742 - [ miwp ] - INFO - Node Macro Recall [ No Matching ]: 0.575
+2026-06-06 19:31:44,742 - [ miwp ] - INFO - Node Macro F1 [ No Matching ]: 0.5416666666666666
+2026-06-06 19:31:44,742 - [ miwp ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-06 19:31:44,742 - [ miwp ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-06 19:31:44,742 - [ miwp ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,742 - [ miwp ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,743 - [ miwp ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-06-06 19:31:44,743 - [ miwp ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,743 - [ miwp ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-06-06 19:31:44,743 - [ miwp ] - INFO -                   Image Search         0.00         0.00         0.00            2
+2026-06-06 19:31:44,743 - [ miwp ] - INFO -        Image Search (by Image)       100.00       100.00       100.00            1
+2026-06-06 19:31:44,743 - [ miwp ] - INFO -                  URL Extractor       100.00       100.00       100.00            1
+2026-06-06 19:31:44,743 - [ miwp ] - INFO -                   Video Search       100.00       100.00       100.00            1
+2026-06-06 19:31:44,743 - [ miwp ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:44,743 - [ miwp ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:44,743 - [ miwp ] - INFO -                  Text-to-Audio       100.00       100.00       100.00            2
+2026-06-06 19:31:44,743 - [ miwp ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                  Video-to-Text         0.00         0.00         0.00            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -          Audio Noise Reduction        50.00       100.00        66.67            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                  Audio Effects        50.00       100.00        66.67            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                  Voice Changer       100.00       100.00       100.00            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                Text Summarizer        50.00       100.00        66.67            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                Text Translator       100.00       100.00       100.00            2
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -               Text Paraphraser       100.00       100.00       100.00            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                Article Spinner       100.00       100.00       100.00            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            2
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:44,744 - [ miwp ] - INFO -                 Video-to-Audio        50.00       100.00        66.67            1
+2026-06-06 19:31:44,745 - [ miwp ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:44,745 - [ miwp ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-06 19:31:44,745 - [ miwp ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,745 - [ miwp ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,745 - [ miwp ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,745 - [ miwp ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-06-06 19:31:44,745 - [ miwp ] - INFO -          Video Synchronization       100.00       100.00       100.00            2
+2026-06-06 19:31:44,745 - [ miwp ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-06-06 19:31:44,745 - [ miwp ] - INFO - 
+2026-06-06 19:31:44,745 - [ miwp ] - INFO -                          micro        79.41        90.00        84.38           30
+2026-06-06 19:31:44,745 - [ miwp ] - INFO -                          macro        52.50        57.50        54.17           30
+2026-06-06 19:31:44,746 - [ miwp ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5974025974025974
+2026-06-06 19:31:44,747 - [ miwp ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4155844155844156
+2026-06-06 19:31:44,747 - [ miwp ] - INFO - Edit Distance: 0.1611111111111111
+2026-06-06 19:31:44,749 - [ miwp ] - INFO - Link Binary F1: 0.5128205128205128
+2026-06-06 19:31:44,749 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:44,749 - [ miwp ] - INFO - Tools Number: overall, Task Split: dag
+2026-06-06 19:31:44,840 - [ miwp ] - INFO - Step Supports: 0 / 10
+2026-06-06 19:31:44,841 - [ miwp ] - INFO - Node Support: 10 / 10
+2026-06-06 19:31:44,841 - [ miwp ] - INFO - Link Support: 10 / 10
+2026-06-06 19:31:44,841 - [ miwp ] - INFO - Argument Support: 10 / 10
+2026-06-06 19:31:44,844 - [ miwp ] - INFO - Node Micro Precision [ No Matching ]: 0.9696969696969697
+2026-06-06 19:31:44,844 - [ miwp ] - INFO - Node Micro Recall [ No Matching ]: 0.8648648648648649
+2026-06-06 19:31:44,844 - [ miwp ] - INFO - Node Micro F1 [ No Matching ]: 0.9142857142857143
+2026-06-06 19:31:44,844 - [ miwp ] - INFO - Node Macro Precision [ No Matching ]: 0.55
+2026-06-06 19:31:44,844 - [ miwp ] - INFO - Node Macro Recall [ No Matching ]: 0.4958333333333333
+2026-06-06 19:31:44,844 - [ miwp ] - INFO - Node Macro F1 [ No Matching ]: 0.5149999999999999
+2026-06-06 19:31:44,844 - [ miwp ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-06 19:31:44,844 - [ miwp ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-06 19:31:44,844 - [ miwp ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,844 - [ miwp ] - INFO -               Video Downloader       100.00        66.67        80.00            3
+2026-06-06 19:31:44,844 - [ miwp ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,844 - [ miwp ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,844 - [ miwp ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-06 19:31:44,844 - [ miwp ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                  URL Extractor       100.00       100.00       100.00            1
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                   Video Search       100.00       100.00       100.00            2
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                  Text-to-Audio       100.00       100.00       100.00            1
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            2
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                  Video-to-Text       100.00       100.00       100.00            2
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                  Audio Effects       100.00       100.00       100.00            1
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                  Audio Splicer       100.00       100.00       100.00            2
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            4
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                Text Simplifier       100.00        50.00        66.67            2
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -                  Text Expander       100.00        50.00        66.67            2
+2026-06-06 19:31:44,845 - [ miwp ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:44,846 - [ miwp ] - INFO -               Text Paraphraser       100.00       100.00       100.00            1
+2026-06-06 19:31:44,846 - [ miwp ] - INFO -                Article Spinner       100.00        66.67        80.00            3
+2026-06-06 19:31:44,846 - [ miwp ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-06-06 19:31:44,846 - [ miwp ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-06-06 19:31:44,846 - [ miwp ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-06-06 19:31:44,846 - [ miwp ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-06-06 19:31:44,846 - [ miwp ] - INFO -                 Video-to-Image       100.00       100.00       100.00            1
+2026-06-06 19:31:44,847 - [ miwp ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-06 19:31:44,847 - [ miwp ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,847 - [ miwp ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,847 - [ miwp ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,847 - [ miwp ] - INFO -            Video Speed Changer       100.00       100.00       100.00            2
+2026-06-06 19:31:44,847 - [ miwp ] - INFO -          Video Synchronization       100.00        50.00        66.67            2
+2026-06-06 19:31:44,847 - [ miwp ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-06-06 19:31:44,847 - [ miwp ] - INFO - 
+2026-06-06 19:31:44,847 - [ miwp ] - INFO -                          micro        96.97        86.49        91.43           37
+2026-06-06 19:31:44,847 - [ miwp ] - INFO -                          macro        55.00        49.58        51.50           37
+2026-06-06 19:31:44,849 - [ miwp ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8860759493670886
+2026-06-06 19:31:44,851 - [ miwp ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5909090909090909
+2026-06-06 19:31:44,851 - [ miwp ] - INFO - Edit Distance: 0.20333333333333337
+2026-06-06 19:31:44,853 - [ miwp ] - INFO - Link Binary F1: 0.4186046511627907
+2026-06-06 19:31:44,854 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:44,854 - [ miwp ] - INFO - Tools Number: 1, Task Split: overall
+2026-06-06 19:31:44,938 - [ miwp ] - INFO - Step Supports: 0 / 10
+2026-06-06 19:31:44,939 - [ miwp ] - INFO - Node Support: 10 / 10
+2026-06-06 19:31:44,939 - [ miwp ] - INFO - Link Support: 10 / 10
+2026-06-06 19:31:44,939 - [ miwp ] - INFO - Argument Support: 10 / 10
+2026-06-06 19:31:44,943 - [ miwp ] - INFO - Node Micro Precision [ No Matching ]: 0.8333333333333334
+2026-06-06 19:31:44,943 - [ miwp ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-06-06 19:31:44,943 - [ miwp ] - INFO - Node Micro F1 [ No Matching ]: 0.9090909090909091
+2026-06-06 19:31:44,943 - [ miwp ] - INFO - Node Macro Precision [ No Matching ]: 0.225
+2026-06-06 19:31:44,943 - [ miwp ] - INFO - Node Macro Recall [ No Matching ]: 0.225
+2026-06-06 19:31:44,944 - [ miwp ] - INFO - Node Macro F1 [ No Matching ]: 0.225
+2026-06-06 19:31:44,944 - [ miwp ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -                   Image Search       100.00       100.00       100.00            1
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -        Image Search (by Image)       100.00       100.00       100.00            1
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-06-06 19:31:44,944 - [ miwp ] - INFO -                  Image-to-Text       100.00       100.00       100.00            1
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                  Audio Effects       100.00       100.00       100.00            1
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -               Text Paraphraser       100.00       100.00       100.00            1
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            2
+2026-06-06 19:31:44,945 - [ miwp ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-06-06 19:31:44,946 - [ miwp ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-06-06 19:31:44,946 - [ miwp ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:44,946 - [ miwp ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-06 19:31:44,946 - [ miwp ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,946 - [ miwp ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,946 - [ miwp ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-06 19:31:44,946 - [ miwp ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-06-06 19:31:44,946 - [ miwp ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-06-06 19:31:44,946 - [ miwp ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-06-06 19:31:44,946 - [ miwp ] - INFO - 
+2026-06-06 19:31:44,946 - [ miwp ] - INFO -                          micro        83.33       100.00        90.91           10
+2026-06-06 19:31:44,946 - [ miwp ] - INFO -                          macro        22.50        22.50        22.50           10
+2026-06-06 19:31:44,947 - [ miwp ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.96
+2026-06-06 19:31:44,948 - [ miwp ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5925925925925926
+2026-06-06 19:31:44,949 - [ miwp ] - INFO - Edit Distance: 0.06666666666666665
+2026-06-06 19:31:44,949 - [ miwp ] - INFO - Link Binary F1: 0.0
+2026-06-06 19:31:44,951 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:44,951 - [ miwp ] - INFO - Tools Number: 2, Task Split: overall
+2026-06-06 19:31:45,052 - [ miwp ] - INFO - Step Supports: 0 / 2
+2026-06-06 19:31:45,052 - [ miwp ] - INFO - Node Support: 2 / 2
+2026-06-06 19:31:45,052 - [ miwp ] - INFO - Link Support: 2 / 2
+2026-06-06 19:31:45,052 - [ miwp ] - INFO - Argument Support: 2 / 2
+2026-06-06 19:31:45,056 - [ miwp ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-06-06 19:31:45,056 - [ miwp ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-06-06 19:31:45,056 - [ miwp ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-06-06 19:31:45,056 - [ miwp ] - INFO - Node Macro Precision [ No Matching ]: 0.1
+2026-06-06 19:31:45,056 - [ miwp ] - INFO - Node Macro Recall [ No Matching ]: 0.1
+2026-06-06 19:31:45,056 - [ miwp ] - INFO - Node Macro F1 [ No Matching ]: 0.1
+2026-06-06 19:31:45,057 - [ miwp ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-06 19:31:45,057 - [ miwp ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-06 19:31:45,057 - [ miwp ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,057 - [ miwp ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,057 - [ miwp ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,057 - [ miwp ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,057 - [ miwp ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-06-06 19:31:45,057 - [ miwp ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-06-06 19:31:45,057 - [ miwp ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-06-06 19:31:45,057 - [ miwp ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:45,057 - [ miwp ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-06-06 19:31:45,057 - [ miwp ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                Text Summarizer       100.00       100.00       100.00            1
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-06-06 19:31:45,058 - [ miwp ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-06-06 19:31:45,059 - [ miwp ] - INFO - 
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -                          micro       100.00       100.00       100.00            4
+2026-06-06 19:31:45,059 - [ miwp ] - INFO -                          macro        10.00        10.00        10.00            4
+2026-06-06 19:31:45,060 - [ miwp ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8571428571428571
+2026-06-06 19:31:45,061 - [ miwp ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5714285714285714
+2026-06-06 19:31:45,062 - [ miwp ] - INFO - Edit Distance: 0.0
+2026-06-06 19:31:45,063 - [ miwp ] - INFO - Link Binary F1: 1.0
+2026-06-06 19:31:45,063 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:45,063 - [ miwp ] - INFO - Tools Number: 3, Task Split: overall
+2026-06-06 19:31:45,183 - [ miwp ] - INFO - Step Supports: 0 / 6
+2026-06-06 19:31:45,184 - [ miwp ] - INFO - Node Support: 6 / 6
+2026-06-06 19:31:45,184 - [ miwp ] - INFO - Link Support: 6 / 6
+2026-06-06 19:31:45,184 - [ miwp ] - INFO - Argument Support: 6 / 6
+2026-06-06 19:31:45,191 - [ miwp ] - INFO - Node Micro Precision [ No Matching ]: 0.9444444444444444
+2026-06-06 19:31:45,192 - [ miwp ] - INFO - Node Micro Recall [ No Matching ]: 0.9444444444444444
+2026-06-06 19:31:45,192 - [ miwp ] - INFO - Node Micro F1 [ No Matching ]: 0.9444444444444444
+2026-06-06 19:31:45,192 - [ miwp ] - INFO - Node Macro Precision [ No Matching ]: 0.3875
+2026-06-06 19:31:45,193 - [ miwp ] - INFO - Node Macro Recall [ No Matching ]: 0.4
+2026-06-06 19:31:45,193 - [ miwp ] - INFO - Node Macro F1 [ No Matching ]: 0.39166666666666666
+2026-06-06 19:31:45,193 - [ miwp ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-06 19:31:45,193 - [ miwp ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-06 19:31:45,193 - [ miwp ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,193 - [ miwp ] - INFO -               Video Downloader       100.00       100.00       100.00            1
+2026-06-06 19:31:45,193 - [ miwp ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-06-06 19:31:45,194 - [ miwp ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,194 - [ miwp ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-06 19:31:45,194 - [ miwp ] - INFO -                   Image Search         0.00         0.00         0.00            1
+2026-06-06 19:31:45,194 - [ miwp ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-06-06 19:31:45,194 - [ miwp ] - INFO -                  URL Extractor       100.00       100.00       100.00            1
+2026-06-06 19:31:45,194 - [ miwp ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-06-06 19:31:45,195 - [ miwp ] - INFO -                  Text-to-Image        50.00       100.00        66.67            1
+2026-06-06 19:31:45,195 - [ miwp ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:45,195 - [ miwp ] - INFO -                  Text-to-Audio       100.00       100.00       100.00            1
+2026-06-06 19:31:45,195 - [ miwp ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:45,195 - [ miwp ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:45,195 - [ miwp ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:45,195 - [ miwp ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-06-06 19:31:45,196 - [ miwp ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-06-06 19:31:45,196 - [ miwp ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,196 - [ miwp ] - INFO -                  Voice Changer       100.00       100.00       100.00            1
+2026-06-06 19:31:45,196 - [ miwp ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,197 - [ miwp ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-06-06 19:31:45,197 - [ miwp ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            1
+2026-06-06 19:31:45,197 - [ miwp ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-06-06 19:31:45,197 - [ miwp ] - INFO -                Text Simplifier       100.00       100.00       100.00            1
+2026-06-06 19:31:45,197 - [ miwp ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-06-06 19:31:45,197 - [ miwp ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-06-06 19:31:45,197 - [ miwp ] - INFO -               Text Paraphraser       100.00       100.00       100.00            2
+2026-06-06 19:31:45,198 - [ miwp ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-06-06 19:31:45,198 - [ miwp ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-06-06 19:31:45,198 - [ miwp ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-06-06 19:31:45,198 - [ miwp ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-06-06 19:31:45,198 - [ miwp ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-06-06 19:31:45,198 - [ miwp ] - INFO -                 Video-to-Image       100.00       100.00       100.00            1
+2026-06-06 19:31:45,198 - [ miwp ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-06 19:31:45,199 - [ miwp ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,199 - [ miwp ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,199 - [ miwp ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,199 - [ miwp ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-06-06 19:31:45,199 - [ miwp ] - INFO -          Video Synchronization       100.00       100.00       100.00            1
+2026-06-06 19:31:45,200 - [ miwp ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-06-06 19:31:45,200 - [ miwp ] - INFO - 
+2026-06-06 19:31:45,200 - [ miwp ] - INFO -                          micro        94.44        94.44        94.44           18
+2026-06-06 19:31:45,200 - [ miwp ] - INFO -                          macro        38.75        40.00        39.17           18
+2026-06-06 19:31:45,203 - [ miwp ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8571428571428571
+2026-06-06 19:31:45,206 - [ miwp ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4782608695652174
+2026-06-06 19:31:45,206 - [ miwp ] - INFO - Edit Distance: 0.15277777777777768
+2026-06-06 19:31:45,208 - [ miwp ] - INFO - Link Binary F1: 0.4
+2026-06-06 19:31:45,208 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:45,208 - [ miwp ] - INFO - Tools Number: 4, Task Split: overall
+2026-06-06 19:31:45,322 - [ miwp ] - INFO - Step Supports: 0 / 9
+2026-06-06 19:31:45,322 - [ miwp ] - INFO - Node Support: 9 / 9
+2026-06-06 19:31:45,323 - [ miwp ] - INFO - Link Support: 9 / 9
+2026-06-06 19:31:45,323 - [ miwp ] - INFO - Argument Support: 9 / 9
+2026-06-06 19:31:45,329 - [ miwp ] - INFO - Node Micro Precision [ No Matching ]: 0.9333333333333333
+2026-06-06 19:31:45,330 - [ miwp ] - INFO - Node Micro Recall [ No Matching ]: 0.8235294117647058
+2026-06-06 19:31:45,330 - [ miwp ] - INFO - Node Micro F1 [ No Matching ]: 0.875
+2026-06-06 19:31:45,330 - [ miwp ] - INFO - Node Macro Precision [ No Matching ]: 0.4
+2026-06-06 19:31:45,330 - [ miwp ] - INFO - Node Macro Recall [ No Matching ]: 0.34375
+2026-06-06 19:31:45,330 - [ miwp ] - INFO - Node Macro F1 [ No Matching ]: 0.363095238095238
+2026-06-06 19:31:45,331 - [ miwp ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-06 19:31:45,331 - [ miwp ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-06 19:31:45,331 - [ miwp ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,331 - [ miwp ] - INFO -               Video Downloader       100.00        50.00        66.67            2
+2026-06-06 19:31:45,331 - [ miwp ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,331 - [ miwp ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,331 - [ miwp ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                   Image Search         0.00         0.00         0.00            1
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                  URL Extractor       100.00       100.00       100.00            1
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                   Video Search       100.00       100.00       100.00            3
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                  Text-to-Audio       100.00       100.00       100.00            2
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            2
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                  Video-to-Text       100.00       100.00       100.00            2
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,332 - [ miwp ] - INFO -                Text Translator       100.00       100.00       100.00            2
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            4
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -                Text Simplifier       100.00        50.00        66.67            2
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -                  Text Expander       100.00        50.00        66.67            2
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -                Article Spinner       100.00        75.00        85.71            4
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-06-06 19:31:45,333 - [ miwp ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:45,334 - [ miwp ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-06 19:31:45,334 - [ miwp ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,334 - [ miwp ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,334 - [ miwp ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,334 - [ miwp ] - INFO -            Video Speed Changer       100.00       100.00       100.00            2
+2026-06-06 19:31:45,334 - [ miwp ] - INFO -          Video Synchronization       100.00        50.00        66.67            2
+2026-06-06 19:31:45,334 - [ miwp ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-06-06 19:31:45,334 - [ miwp ] - INFO - 
+2026-06-06 19:31:45,334 - [ miwp ] - INFO -                          micro        93.33        82.35        87.50           34
+2026-06-06 19:31:45,334 - [ miwp ] - INFO -                          macro        40.00        34.38        36.31           34
+2026-06-06 19:31:45,336 - [ miwp ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8571428571428571
+2026-06-06 19:31:45,337 - [ miwp ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5833333333333334
+2026-06-06 19:31:45,338 - [ miwp ] - INFO - Edit Distance: 0.19814814814814818
+2026-06-06 19:31:45,338 - [ miwp ] - INFO - Link Binary F1: 0.5238095238095238
+2026-06-06 19:31:45,340 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:45,340 - [ miwp ] - INFO - Tools Number: 5, Task Split: overall
+2026-06-06 19:31:45,475 - [ miwp ] - INFO - Step Supports: 0 / 2
+2026-06-06 19:31:45,476 - [ miwp ] - INFO - Node Support: 2 / 2
+2026-06-06 19:31:45,476 - [ miwp ] - INFO - Link Support: 2 / 2
+2026-06-06 19:31:45,476 - [ miwp ] - INFO - Argument Support: 2 / 2
+2026-06-06 19:31:45,479 - [ miwp ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-06-06 19:31:45,479 - [ miwp ] - INFO - Node Micro Recall [ No Matching ]: 0.9
+2026-06-06 19:31:45,479 - [ miwp ] - INFO - Node Micro F1 [ No Matching ]: 0.9473684210526315
+2026-06-06 19:31:45,479 - [ miwp ] - INFO - Node Macro Precision [ No Matching ]: 0.175
+2026-06-06 19:31:45,479 - [ miwp ] - INFO - Node Macro Recall [ No Matching ]: 0.175
+2026-06-06 19:31:45,479 - [ miwp ] - INFO - Node Macro F1 [ No Matching ]: 0.175
+2026-06-06 19:31:45,479 - [ miwp ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-06 19:31:45,479 - [ miwp ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-06 19:31:45,479 - [ miwp ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,479 - [ miwp ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,479 - [ miwp ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,479 - [ miwp ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,479 - [ miwp ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-06 19:31:45,479 - [ miwp ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-06-06 19:31:45,479 - [ miwp ] - INFO -        Image Search (by Image)       100.00       100.00       100.00            1
+2026-06-06 19:31:45,479 - [ miwp ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                  Video-to-Text         0.00         0.00         0.00            1
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                  Audio Effects       100.00       100.00       100.00            2
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-06-06 19:31:45,480 - [ miwp ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            2
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            1
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-06-06 19:31:45,481 - [ miwp ] - INFO - 
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -                          micro       100.00        90.00        94.74           10
+2026-06-06 19:31:45,481 - [ miwp ] - INFO -                          macro        17.50        17.50        17.50           10
+2026-06-06 19:31:45,482 - [ miwp ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5454545454545454
+2026-06-06 19:31:45,483 - [ miwp ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.56
+2026-06-06 19:31:45,483 - [ miwp ] - INFO - Edit Distance: 0.05555555555555558
+2026-06-06 19:31:45,484 - [ miwp ] - INFO - Link Binary F1: 0.5454545454545454
+2026-06-06 19:31:45,486 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:45,486 - [ miwp ] - INFO - Tools Number: 6, Task Split: overall
+2026-06-06 19:31:45,578 - [ miwp ] - INFO - Step Supports: 0 / 1
+2026-06-06 19:31:45,578 - [ miwp ] - INFO - Node Support: 1 / 1
+2026-06-06 19:31:45,578 - [ miwp ] - INFO - Link Support: 1 / 1
+2026-06-06 19:31:45,579 - [ miwp ] - INFO - Argument Support: 1 / 1
+2026-06-06 19:31:45,584 - [ miwp ] - INFO - Node Micro Precision [ No Matching ]: 0.16666666666666666
+2026-06-06 19:31:45,585 - [ miwp ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-06-06 19:31:45,585 - [ miwp ] - INFO - Node Micro F1 [ No Matching ]: 0.2857142857142857
+2026-06-06 19:31:45,585 - [ miwp ] - INFO - Node Macro Precision [ No Matching ]: 0.025
+2026-06-06 19:31:45,585 - [ miwp ] - INFO - Node Macro Recall [ No Matching ]: 0.025
+2026-06-06 19:31:45,585 - [ miwp ] - INFO - Node Macro F1 [ No Matching ]: 0.025
+2026-06-06 19:31:45,585 - [ miwp ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-06 19:31:45,585 - [ miwp ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-06 19:31:45,585 - [ miwp ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,585 - [ miwp ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,585 - [ miwp ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,585 - [ miwp ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-06 19:31:45,585 - [ miwp ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-06 19:31:45,585 - [ miwp ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-06-06 19:31:45,585 - [ miwp ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:45,586 - [ miwp ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-06-06 19:31:45,587 - [ miwp ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-06-06 19:31:45,587 - [ miwp ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-06-06 19:31:45,587 - [ miwp ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-06 19:31:45,587 - [ miwp ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,587 - [ miwp ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,587 - [ miwp ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,587 - [ miwp ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-06-06 19:31:45,587 - [ miwp ] - INFO -          Video Synchronization       100.00       100.00       100.00            1
+2026-06-06 19:31:45,587 - [ miwp ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-06-06 19:31:45,587 - [ miwp ] - INFO - 
+2026-06-06 19:31:45,587 - [ miwp ] - INFO -                          micro        16.67       100.00        28.57            1
+2026-06-06 19:31:45,587 - [ miwp ] - INFO -                          macro         2.50         2.50         2.50            1
+2026-06-06 19:31:45,588 - [ miwp ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.13333333333333333
+2026-06-06 19:31:45,590 - [ miwp ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.13333333333333333
+2026-06-06 19:31:45,590 - [ miwp ] - INFO - Edit Distance: 0.8333333333333334
+2026-06-06 19:31:45,591 - [ miwp ] - INFO - Link Binary F1: 0.0
+2026-06-06 19:31:45,592 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:45,592 - [ miwp ] - INFO - Tools Number: 7, Task Split: overall
+2026-06-06 19:31:45,672 - [ miwp ] - INFO - Step Supports: 0 / 0
+2026-06-06 19:31:45,672 - [ miwp ] - INFO - Node Support: 0 / 0
+2026-06-06 19:31:45,673 - [ miwp ] - INFO - Link Support: 0 / 0
+2026-06-06 19:31:45,673 - [ miwp ] - INFO - Argument Support: 0 / 0
+2026-06-06 19:31:45,673 - [ miwp ] - INFO - No supports, skip
+2026-06-06 19:31:45,674 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:45,675 - [ miwp ] - INFO - Tools Number: 8, Task Split: overall
+2026-06-06 19:31:45,761 - [ miwp ] - INFO - Step Supports: 0 / 0
+2026-06-06 19:31:45,761 - [ miwp ] - INFO - Node Support: 0 / 0
+2026-06-06 19:31:45,761 - [ miwp ] - INFO - Link Support: 0 / 0
+2026-06-06 19:31:45,762 - [ miwp ] - INFO - Argument Support: 0 / 0
+2026-06-06 19:31:45,762 - [ miwp ] - INFO - No supports, skip
+2026-06-06 19:31:45,762 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:45,762 - [ miwp ] - INFO - Tools Number: 9, Task Split: overall
+2026-06-06 19:31:45,837 - [ miwp ] - INFO - Step Supports: 0 / 0
+2026-06-06 19:31:45,838 - [ miwp ] - INFO - Node Support: 0 / 0
+2026-06-06 19:31:45,838 - [ miwp ] - INFO - Link Support: 0 / 0
+2026-06-06 19:31:45,838 - [ miwp ] - INFO - Argument Support: 0 / 0
+2026-06-06 19:31:45,838 - [ miwp ] - INFO - No supports, skip
+2026-06-06 19:31:45,839 - [ miwp ] - INFO - ---------------
+2026-06-06 19:31:45,839 - [ miwp ] - INFO - Tools Number: 10, Task Split: overall
+2026-06-06 19:31:45,918 - [ miwp ] - INFO - Step Supports: 0 / 0
+2026-06-06 19:31:45,919 - [ miwp ] - INFO - Node Support: 0 / 0
+2026-06-06 19:31:45,919 - [ miwp ] - INFO - Link Support: 0 / 0
+2026-06-06 19:31:45,919 - [ miwp ] - INFO - Argument Support: 0 / 0
+2026-06-06 19:31:45,919 - [ miwp ] - INFO - No supports, skip

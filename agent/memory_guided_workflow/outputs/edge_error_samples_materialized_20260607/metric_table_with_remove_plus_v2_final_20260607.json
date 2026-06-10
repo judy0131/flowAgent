@@ -1,0 +1,23 @@
+{
+  "rows": [
+    {
+      "Metric": "Link Binary F1",
+      "Qwen ??": 0.3853,
+      "Qwen Conservative": 0.4126,
+      "remove_plus": 0.4375
+    },
+    {
+      "Metric": "ArgName F1",
+      "Qwen ??": 0.6715,
+      "Qwen Conservative": 0.6892,
+      "remove_plus": 0.6988
+    },
+    {
+      "Metric": "ArgValue F1",
+      "Qwen ??": 0.4509,
+      "Qwen Conservative": 0.4636,
+      "remove_plus": 0.4802
+    }
+  ],
+  "note": "remove_plus uses remove_plus_merge_add_v2"
+}

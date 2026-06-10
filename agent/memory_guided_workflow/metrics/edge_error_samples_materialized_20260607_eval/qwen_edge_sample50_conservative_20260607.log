@@ -1,0 +1,523 @@
+2026-06-07 18:43:07,157 - [ qwen_edge_sample50_conservative ] - INFO - Starts with: {'data_dir': '.\\taskbench\\data_multimedia', 'prediction_dir': '../../agent/memory_guided_workflow/outputs/edge_error_samples_materialized_20260607', 'save_dir': '../../agent/memory_guided_workflow/metrics/edge_error_samples_materialized_20260607_eval', 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'link', 'argument'), 'llm': 'qwen_edge_sample50_conservative', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-06-07 18:43:07,158 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:07,158 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: overall, Task Split: overall
+2026-06-07 18:43:07,436 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 50
+2026-06-07 18:43:07,436 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 50 / 50
+2026-06-07 18:43:07,436 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 50 / 50
+2026-06-07 18:43:07,437 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 50 / 50
+2026-06-07 18:43:07,455 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Precision [ No Matching ]: 0.8170731707317073
+2026-06-07 18:43:07,456 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Recall [ No Matching ]: 0.7570621468926554
+2026-06-07 18:43:07,456 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro F1 [ No Matching ]: 0.7859237536656891
+2026-06-07 18:43:07,456 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Precision [ No Matching ]: 0.817738095238095
+2026-06-07 18:43:07,456 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Recall [ No Matching ]: 0.7668650793650793
+2026-06-07 18:43:07,457 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro F1 [ No Matching ]: 0.7772209077472235
+2026-06-07 18:43:07,457 - [ qwen_edge_sample50_conservative ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-07 18:43:07,458 - [ qwen_edge_sample50_conservative ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-07 18:43:07,458 - [ qwen_edge_sample50_conservative ] - INFO -               Image Downloader       100.00       100.00       100.00            2
+2026-06-07 18:43:07,459 - [ qwen_edge_sample50_conservative ] - INFO -               Video Downloader        66.67       100.00        80.00            2
+2026-06-07 18:43:07,459 - [ qwen_edge_sample50_conservative ] - INFO -               Audio Downloader       100.00        75.00        85.71            8
+2026-06-07 18:43:07,459 - [ qwen_edge_sample50_conservative ] - INFO -                Text Downloader        75.00       100.00        85.71            3
+2026-06-07 18:43:07,459 - [ qwen_edge_sample50_conservative ] - INFO -                    Text Search       100.00        66.67        80.00            6
+2026-06-07 18:43:07,459 - [ qwen_edge_sample50_conservative ] - INFO -                   Image Search       100.00        75.00        85.71            4
+2026-06-07 18:43:07,460 - [ qwen_edge_sample50_conservative ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            1
+2026-06-07 18:43:07,460 - [ qwen_edge_sample50_conservative ] - INFO -                  URL Extractor       100.00        80.00        88.89           10
+2026-06-07 18:43:07,460 - [ qwen_edge_sample50_conservative ] - INFO -                   Video Search       100.00       100.00       100.00            2
+2026-06-07 18:43:07,460 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Image        85.71       100.00        92.31            6
+2026-06-07 18:43:07,460 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Video        66.67       100.00        80.00            2
+2026-06-07 18:43:07,460 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Audio        40.00        50.00        44.44            4
+2026-06-07 18:43:07,460 - [ qwen_edge_sample50_conservative ] - INFO -                  Image-to-Text        66.67        66.67        66.67            3
+2026-06-07 18:43:07,461 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio-to-Text        66.67        66.67        66.67            6
+2026-06-07 18:43:07,462 - [ qwen_edge_sample50_conservative ] - INFO -                  Video-to-Text        33.33        33.33        33.33            3
+2026-06-07 18:43:07,462 - [ qwen_edge_sample50_conservative ] - INFO -          Audio Noise Reduction       100.00        85.71        92.31            7
+2026-06-07 18:43:07,462 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Effects        57.14        80.00        66.67            5
+2026-06-07 18:43:07,462 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Splicer        60.00        75.00        66.67            4
+2026-06-07 18:43:07,463 - [ qwen_edge_sample50_conservative ] - INFO -                  Voice Changer       100.00        71.43        83.33            7
+2026-06-07 18:43:07,463 - [ qwen_edge_sample50_conservative ] - INFO -                Text Summarizer        50.00        33.33        40.00            3
+2026-06-07 18:43:07,463 - [ qwen_edge_sample50_conservative ] - INFO -                Text Translator       100.00        80.00        88.89            5
+2026-06-07 18:43:07,463 - [ qwen_edge_sample50_conservative ] - INFO -        Text Sentiment Analysis       100.00        83.33        90.91            6
+2026-06-07 18:43:07,463 - [ qwen_edge_sample50_conservative ] - INFO -           Text Grammar Checker       100.00        66.67        80.00            6
+2026-06-07 18:43:07,463 - [ qwen_edge_sample50_conservative ] - INFO -                Text Simplifier       100.00        66.67        80.00            3
+2026-06-07 18:43:07,463 - [ qwen_edge_sample50_conservative ] - INFO -                  Text Expander       100.00        66.67        80.00            3
+2026-06-07 18:43:07,463 - [ qwen_edge_sample50_conservative ] - INFO -              Keyword Extractor        75.00        42.86        54.55            7
+2026-06-07 18:43:07,465 - [ qwen_edge_sample50_conservative ] - INFO -               Text Paraphraser        66.67        28.57        40.00            7
+2026-06-07 18:43:07,465 - [ qwen_edge_sample50_conservative ] - INFO -                Article Spinner       100.00       100.00       100.00            2
+2026-06-07 18:43:07,465 - [ qwen_edge_sample50_conservative ] - INFO -                Topic Generator       100.00       100.00       100.00            2
+2026-06-07 18:43:07,465 - [ qwen_edge_sample50_conservative ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            3
+2026-06-07 18:43:07,465 - [ qwen_edge_sample50_conservative ] - INFO -                 Image-to-Video        75.00       100.00        85.71            3
+2026-06-07 18:43:07,465 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Audio        60.00        60.00        60.00            5
+2026-06-07 18:43:07,465 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Image        75.00       100.00        85.71            3
+2026-06-07 18:43:07,466 - [ qwen_edge_sample50_conservative ] - INFO -                 Image Stitcher       100.00        75.00        85.71            4
+2026-06-07 18:43:07,466 - [ qwen_edge_sample50_conservative ] - INFO -                Image Colorizer       100.00        75.00        85.71            4
+2026-06-07 18:43:07,466 - [ qwen_edge_sample50_conservative ] - INFO -           Image Style Transfer       100.00       100.00       100.00            4
+2026-06-07 18:43:07,466 - [ qwen_edge_sample50_conservative ] - INFO -               Video Stabilizer       100.00        75.00        85.71            4
+2026-06-07 18:43:07,466 - [ qwen_edge_sample50_conservative ] - INFO -            Video Speed Changer       100.00       100.00       100.00            4
+2026-06-07 18:43:07,467 - [ qwen_edge_sample50_conservative ] - INFO -          Video Synchronization        80.00        88.89        84.21            9
+2026-06-07 18:43:07,467 - [ qwen_edge_sample50_conservative ] - INFO -                Video Voiceover        71.43       100.00        83.33            5
+2026-06-07 18:43:07,467 - [ qwen_edge_sample50_conservative ] - INFO - 
+2026-06-07 18:43:07,467 - [ qwen_edge_sample50_conservative ] - INFO -                          micro        81.71        75.71        78.59          177
+2026-06-07 18:43:07,467 - [ qwen_edge_sample50_conservative ] - INFO -                          macro        81.77        76.69        77.72          177
+2026-06-07 18:43:07,472 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.689156626506024
+2026-06-07 18:43:07,479 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.46357615894039733
+2026-06-07 18:43:07,483 - [ qwen_edge_sample50_conservative ] - INFO - Link Binary F1: 0.4125560538116592
+2026-06-07 18:43:07,488 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:07,489 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: overall, Task Split: single
+2026-06-07 18:43:07,724 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 0
+2026-06-07 18:43:07,725 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 0 / 0
+2026-06-07 18:43:07,725 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 0 / 0
+2026-06-07 18:43:07,725 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 0 / 0
+2026-06-07 18:43:07,725 - [ qwen_edge_sample50_conservative ] - INFO - No supports, skip
+2026-06-07 18:43:07,725 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:07,725 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: overall, Task Split: chain
+2026-06-07 18:43:07,912 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 0
+2026-06-07 18:43:07,913 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 0 / 0
+2026-06-07 18:43:07,913 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 0 / 0
+2026-06-07 18:43:07,913 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 0 / 0
+2026-06-07 18:43:07,913 - [ qwen_edge_sample50_conservative ] - INFO - No supports, skip
+2026-06-07 18:43:07,914 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:07,914 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: overall, Task Split: dag
+2026-06-07 18:43:08,097 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 50
+2026-06-07 18:43:08,097 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 50 / 50
+2026-06-07 18:43:08,097 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 50 / 50
+2026-06-07 18:43:08,097 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 50 / 50
+2026-06-07 18:43:08,113 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Precision [ No Matching ]: 0.8170731707317073
+2026-06-07 18:43:08,113 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Recall [ No Matching ]: 0.7570621468926554
+2026-06-07 18:43:08,114 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro F1 [ No Matching ]: 0.7859237536656891
+2026-06-07 18:43:08,114 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Precision [ No Matching ]: 0.817738095238095
+2026-06-07 18:43:08,115 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Recall [ No Matching ]: 0.7668650793650793
+2026-06-07 18:43:08,115 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro F1 [ No Matching ]: 0.7772209077472235
+2026-06-07 18:43:08,115 - [ qwen_edge_sample50_conservative ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-07 18:43:08,116 - [ qwen_edge_sample50_conservative ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-07 18:43:08,116 - [ qwen_edge_sample50_conservative ] - INFO -               Image Downloader       100.00       100.00       100.00            2
+2026-06-07 18:43:08,116 - [ qwen_edge_sample50_conservative ] - INFO -               Video Downloader        66.67       100.00        80.00            2
+2026-06-07 18:43:08,117 - [ qwen_edge_sample50_conservative ] - INFO -               Audio Downloader       100.00        75.00        85.71            8
+2026-06-07 18:43:08,117 - [ qwen_edge_sample50_conservative ] - INFO -                Text Downloader        75.00       100.00        85.71            3
+2026-06-07 18:43:08,118 - [ qwen_edge_sample50_conservative ] - INFO -                    Text Search       100.00        66.67        80.00            6
+2026-06-07 18:43:08,118 - [ qwen_edge_sample50_conservative ] - INFO -                   Image Search       100.00        75.00        85.71            4
+2026-06-07 18:43:08,118 - [ qwen_edge_sample50_conservative ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            1
+2026-06-07 18:43:08,118 - [ qwen_edge_sample50_conservative ] - INFO -                  URL Extractor       100.00        80.00        88.89           10
+2026-06-07 18:43:08,118 - [ qwen_edge_sample50_conservative ] - INFO -                   Video Search       100.00       100.00       100.00            2
+2026-06-07 18:43:08,118 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Image        85.71       100.00        92.31            6
+2026-06-07 18:43:08,118 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Video        66.67       100.00        80.00            2
+2026-06-07 18:43:08,120 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Audio        40.00        50.00        44.44            4
+2026-06-07 18:43:08,120 - [ qwen_edge_sample50_conservative ] - INFO -                  Image-to-Text        66.67        66.67        66.67            3
+2026-06-07 18:43:08,120 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio-to-Text        66.67        66.67        66.67            6
+2026-06-07 18:43:08,120 - [ qwen_edge_sample50_conservative ] - INFO -                  Video-to-Text        33.33        33.33        33.33            3
+2026-06-07 18:43:08,120 - [ qwen_edge_sample50_conservative ] - INFO -          Audio Noise Reduction       100.00        85.71        92.31            7
+2026-06-07 18:43:08,120 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Effects        57.14        80.00        66.67            5
+2026-06-07 18:43:08,121 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Splicer        60.00        75.00        66.67            4
+2026-06-07 18:43:08,121 - [ qwen_edge_sample50_conservative ] - INFO -                  Voice Changer       100.00        71.43        83.33            7
+2026-06-07 18:43:08,121 - [ qwen_edge_sample50_conservative ] - INFO -                Text Summarizer        50.00        33.33        40.00            3
+2026-06-07 18:43:08,121 - [ qwen_edge_sample50_conservative ] - INFO -                Text Translator       100.00        80.00        88.89            5
+2026-06-07 18:43:08,121 - [ qwen_edge_sample50_conservative ] - INFO -        Text Sentiment Analysis       100.00        83.33        90.91            6
+2026-06-07 18:43:08,121 - [ qwen_edge_sample50_conservative ] - INFO -           Text Grammar Checker       100.00        66.67        80.00            6
+2026-06-07 18:43:08,121 - [ qwen_edge_sample50_conservative ] - INFO -                Text Simplifier       100.00        66.67        80.00            3
+2026-06-07 18:43:08,122 - [ qwen_edge_sample50_conservative ] - INFO -                  Text Expander       100.00        66.67        80.00            3
+2026-06-07 18:43:08,123 - [ qwen_edge_sample50_conservative ] - INFO -              Keyword Extractor        75.00        42.86        54.55            7
+2026-06-07 18:43:08,123 - [ qwen_edge_sample50_conservative ] - INFO -               Text Paraphraser        66.67        28.57        40.00            7
+2026-06-07 18:43:08,124 - [ qwen_edge_sample50_conservative ] - INFO -                Article Spinner       100.00       100.00       100.00            2
+2026-06-07 18:43:08,124 - [ qwen_edge_sample50_conservative ] - INFO -                Topic Generator       100.00       100.00       100.00            2
+2026-06-07 18:43:08,125 - [ qwen_edge_sample50_conservative ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            3
+2026-06-07 18:43:08,126 - [ qwen_edge_sample50_conservative ] - INFO -                 Image-to-Video        75.00       100.00        85.71            3
+2026-06-07 18:43:08,126 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Audio        60.00        60.00        60.00            5
+2026-06-07 18:43:08,126 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Image        75.00       100.00        85.71            3
+2026-06-07 18:43:08,127 - [ qwen_edge_sample50_conservative ] - INFO -                 Image Stitcher       100.00        75.00        85.71            4
+2026-06-07 18:43:08,127 - [ qwen_edge_sample50_conservative ] - INFO -                Image Colorizer       100.00        75.00        85.71            4
+2026-06-07 18:43:08,127 - [ qwen_edge_sample50_conservative ] - INFO -           Image Style Transfer       100.00       100.00       100.00            4
+2026-06-07 18:43:08,128 - [ qwen_edge_sample50_conservative ] - INFO -               Video Stabilizer       100.00        75.00        85.71            4
+2026-06-07 18:43:08,128 - [ qwen_edge_sample50_conservative ] - INFO -            Video Speed Changer       100.00       100.00       100.00            4
+2026-06-07 18:43:08,129 - [ qwen_edge_sample50_conservative ] - INFO -          Video Synchronization        80.00        88.89        84.21            9
+2026-06-07 18:43:08,129 - [ qwen_edge_sample50_conservative ] - INFO -                Video Voiceover        71.43       100.00        83.33            5
+2026-06-07 18:43:08,131 - [ qwen_edge_sample50_conservative ] - INFO - 
+2026-06-07 18:43:08,131 - [ qwen_edge_sample50_conservative ] - INFO -                          micro        81.71        75.71        78.59          177
+2026-06-07 18:43:08,131 - [ qwen_edge_sample50_conservative ] - INFO -                          macro        81.77        76.69        77.72          177
+2026-06-07 18:43:08,141 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.689156626506024
+2026-06-07 18:43:08,149 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.46357615894039733
+2026-06-07 18:43:08,154 - [ qwen_edge_sample50_conservative ] - INFO - Link Binary F1: 0.4125560538116592
+2026-06-07 18:43:08,157 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:08,158 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: 1, Task Split: overall
+2026-06-07 18:43:08,456 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 0
+2026-06-07 18:43:08,457 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 0 / 0
+2026-06-07 18:43:08,457 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 0 / 0
+2026-06-07 18:43:08,457 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 0 / 0
+2026-06-07 18:43:08,458 - [ qwen_edge_sample50_conservative ] - INFO - No supports, skip
+2026-06-07 18:43:08,459 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:08,459 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: 2, Task Split: overall
+2026-06-07 18:43:08,619 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 0
+2026-06-07 18:43:08,619 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 0 / 0
+2026-06-07 18:43:08,620 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 0 / 0
+2026-06-07 18:43:08,620 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 0 / 0
+2026-06-07 18:43:08,621 - [ qwen_edge_sample50_conservative ] - INFO - No supports, skip
+2026-06-07 18:43:08,623 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:08,623 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: 3, Task Split: overall
+2026-06-07 18:43:08,799 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 17
+2026-06-07 18:43:08,799 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 17 / 17
+2026-06-07 18:43:08,799 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 17 / 17
+2026-06-07 18:43:08,800 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 17 / 17
+2026-06-07 18:43:08,814 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Precision [ No Matching ]: 0.8372093023255814
+2026-06-07 18:43:08,814 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Recall [ No Matching ]: 0.8372093023255814
+2026-06-07 18:43:08,814 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro F1 [ No Matching ]: 0.8372093023255814
+2026-06-07 18:43:08,815 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Precision [ No Matching ]: 0.575
+2026-06-07 18:43:08,816 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Recall [ No Matching ]: 0.5708333333333333
+2026-06-07 18:43:08,816 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro F1 [ No Matching ]: 0.5583333333333332
+2026-06-07 18:43:08,816 - [ qwen_edge_sample50_conservative ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-07 18:43:08,817 - [ qwen_edge_sample50_conservative ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-07 18:43:08,817 - [ qwen_edge_sample50_conservative ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:08,817 - [ qwen_edge_sample50_conservative ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:08,817 - [ qwen_edge_sample50_conservative ] - INFO -               Audio Downloader       100.00        33.33        50.00            3
+2026-06-07 18:43:08,818 - [ qwen_edge_sample50_conservative ] - INFO -                Text Downloader       100.00       100.00       100.00            2
+2026-06-07 18:43:08,818 - [ qwen_edge_sample50_conservative ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-07 18:43:08,818 - [ qwen_edge_sample50_conservative ] - INFO -                   Image Search       100.00       100.00       100.00            2
+2026-06-07 18:43:08,818 - [ qwen_edge_sample50_conservative ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            1
+2026-06-07 18:43:08,818 - [ qwen_edge_sample50_conservative ] - INFO -                  URL Extractor       100.00       100.00       100.00            2
+2026-06-07 18:43:08,818 - [ qwen_edge_sample50_conservative ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-06-07 18:43:08,819 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Image       100.00       100.00       100.00            3
+2026-06-07 18:43:08,819 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Video       100.00       100.00       100.00            1
+2026-06-07 18:43:08,819 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Audio        50.00       100.00        66.67            1
+2026-06-07 18:43:08,819 - [ qwen_edge_sample50_conservative ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-06-07 18:43:08,820 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            2
+2026-06-07 18:43:08,820 - [ qwen_edge_sample50_conservative ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-06-07 18:43:08,821 - [ qwen_edge_sample50_conservative ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            2
+2026-06-07 18:43:08,821 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Effects        50.00        50.00        50.00            2
+2026-06-07 18:43:08,821 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Splicer        50.00       100.00        66.67            1
+2026-06-07 18:43:08,821 - [ qwen_edge_sample50_conservative ] - INFO -                  Voice Changer       100.00       100.00       100.00            2
+2026-06-07 18:43:08,821 - [ qwen_edge_sample50_conservative ] - INFO -                Text Summarizer         0.00         0.00         0.00            1
+2026-06-07 18:43:08,821 - [ qwen_edge_sample50_conservative ] - INFO -                Text Translator       100.00       100.00       100.00            1
+2026-06-07 18:43:08,821 - [ qwen_edge_sample50_conservative ] - INFO -        Text Sentiment Analysis       100.00        50.00        66.67            2
+2026-06-07 18:43:08,821 - [ qwen_edge_sample50_conservative ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            1
+2026-06-07 18:43:08,824 - [ qwen_edge_sample50_conservative ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-06-07 18:43:08,824 - [ qwen_edge_sample50_conservative ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-06-07 18:43:08,825 - [ qwen_edge_sample50_conservative ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-06-07 18:43:08,825 - [ qwen_edge_sample50_conservative ] - INFO -               Text Paraphraser       100.00        50.00        66.67            2
+2026-06-07 18:43:08,825 - [ qwen_edge_sample50_conservative ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-06-07 18:43:08,826 - [ qwen_edge_sample50_conservative ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-06-07 18:43:08,826 - [ qwen_edge_sample50_conservative ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-06-07 18:43:08,827 - [ qwen_edge_sample50_conservative ] - INFO -                 Image-to-Video        50.00       100.00        66.67            1
+2026-06-07 18:43:08,829 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-06-07 18:43:08,830 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Image       100.00       100.00       100.00            1
+2026-06-07 18:43:08,830 - [ qwen_edge_sample50_conservative ] - INFO -                 Image Stitcher       100.00       100.00       100.00            1
+2026-06-07 18:43:08,830 - [ qwen_edge_sample50_conservative ] - INFO -                Image Colorizer       100.00       100.00       100.00            2
+2026-06-07 18:43:08,831 - [ qwen_edge_sample50_conservative ] - INFO -           Image Style Transfer       100.00       100.00       100.00            1
+2026-06-07 18:43:08,831 - [ qwen_edge_sample50_conservative ] - INFO -               Video Stabilizer       100.00       100.00       100.00            2
+2026-06-07 18:43:08,831 - [ qwen_edge_sample50_conservative ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-06-07 18:43:08,831 - [ qwen_edge_sample50_conservative ] - INFO -          Video Synchronization       100.00       100.00       100.00            2
+2026-06-07 18:43:08,831 - [ qwen_edge_sample50_conservative ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-06-07 18:43:08,832 - [ qwen_edge_sample50_conservative ] - INFO - 
+2026-06-07 18:43:08,832 - [ qwen_edge_sample50_conservative ] - INFO -                          micro        83.72        83.72        83.72           43
+2026-06-07 18:43:08,832 - [ qwen_edge_sample50_conservative ] - INFO -                          macro        57.50        57.08        55.83           43
+2026-06-07 18:43:08,838 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7102803738317757
+2026-06-07 18:43:08,845 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5042016806722689
+2026-06-07 18:43:08,850 - [ qwen_edge_sample50_conservative ] - INFO - Link Binary F1: 0.46808510638297873
+2026-06-07 18:43:08,851 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:08,851 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: 4, Task Split: overall
+2026-06-07 18:43:09,062 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 25
+2026-06-07 18:43:09,062 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 25 / 25
+2026-06-07 18:43:09,062 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 25 / 25
+2026-06-07 18:43:09,063 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 25 / 25
+2026-06-07 18:43:09,074 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Precision [ No Matching ]: 0.7912087912087912
+2026-06-07 18:43:09,074 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Recall [ No Matching ]: 0.7741935483870968
+2026-06-07 18:43:09,074 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro F1 [ No Matching ]: 0.782608695652174
+2026-06-07 18:43:09,074 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Precision [ No Matching ]: 0.7591666666666665
+2026-06-07 18:43:09,074 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Recall [ No Matching ]: 0.7295833333333334
+2026-06-07 18:43:09,074 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro F1 [ No Matching ]: 0.7253571428571428
+2026-06-07 18:43:09,076 - [ qwen_edge_sample50_conservative ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-07 18:43:09,076 - [ qwen_edge_sample50_conservative ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-07 18:43:09,076 - [ qwen_edge_sample50_conservative ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,076 - [ qwen_edge_sample50_conservative ] - INFO -               Video Downloader       100.00       100.00       100.00            1
+2026-06-07 18:43:09,076 - [ qwen_edge_sample50_conservative ] - INFO -               Audio Downloader       100.00       100.00       100.00            4
+2026-06-07 18:43:09,076 - [ qwen_edge_sample50_conservative ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,076 - [ qwen_edge_sample50_conservative ] - INFO -                    Text Search       100.00        66.67        80.00            6
+2026-06-07 18:43:09,076 - [ qwen_edge_sample50_conservative ] - INFO -                   Image Search       100.00        50.00        66.67            2
+2026-06-07 18:43:09,078 - [ qwen_edge_sample50_conservative ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-06-07 18:43:09,078 - [ qwen_edge_sample50_conservative ] - INFO -                  URL Extractor       100.00        75.00        85.71            4
+2026-06-07 18:43:09,078 - [ qwen_edge_sample50_conservative ] - INFO -                   Video Search       100.00       100.00       100.00            2
+2026-06-07 18:43:09,078 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Image        50.00       100.00        66.67            1
+2026-06-07 18:43:09,078 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Video       100.00       100.00       100.00            1
+2026-06-07 18:43:09,078 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Audio        50.00        33.33        40.00            3
+2026-06-07 18:43:09,078 - [ qwen_edge_sample50_conservative ] - INFO -                  Image-to-Text        50.00        50.00        50.00            2
+2026-06-07 18:43:09,078 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio-to-Text        33.33        50.00        40.00            2
+2026-06-07 18:43:09,079 - [ qwen_edge_sample50_conservative ] - INFO -                  Video-to-Text        33.33        33.33        33.33            3
+2026-06-07 18:43:09,079 - [ qwen_edge_sample50_conservative ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            4
+2026-06-07 18:43:09,079 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Effects        60.00       100.00        75.00            3
+2026-06-07 18:43:09,080 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Splicer        66.67        66.67        66.67            3
+2026-06-07 18:43:09,080 - [ qwen_edge_sample50_conservative ] - INFO -                  Voice Changer       100.00        60.00        75.00            5
+2026-06-07 18:43:09,080 - [ qwen_edge_sample50_conservative ] - INFO -                Text Summarizer       100.00        50.00        66.67            2
+2026-06-07 18:43:09,080 - [ qwen_edge_sample50_conservative ] - INFO -                Text Translator       100.00        66.67        80.00            3
+2026-06-07 18:43:09,080 - [ qwen_edge_sample50_conservative ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            4
+2026-06-07 18:43:09,080 - [ qwen_edge_sample50_conservative ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            3
+2026-06-07 18:43:09,081 - [ qwen_edge_sample50_conservative ] - INFO -                Text Simplifier       100.00       100.00       100.00            2
+2026-06-07 18:43:09,081 - [ qwen_edge_sample50_conservative ] - INFO -                  Text Expander       100.00       100.00       100.00            1
+2026-06-07 18:43:09,082 - [ qwen_edge_sample50_conservative ] - INFO -              Keyword Extractor       100.00        75.00        85.71            4
+2026-06-07 18:43:09,082 - [ qwen_edge_sample50_conservative ] - INFO -               Text Paraphraser        50.00        33.33        40.00            3
+2026-06-07 18:43:09,082 - [ qwen_edge_sample50_conservative ] - INFO -                Article Spinner       100.00       100.00       100.00            2
+2026-06-07 18:43:09,082 - [ qwen_edge_sample50_conservative ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-06-07 18:43:09,082 - [ qwen_edge_sample50_conservative ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            2
+2026-06-07 18:43:09,082 - [ qwen_edge_sample50_conservative ] - INFO -                 Image-to-Video       100.00       100.00       100.00            2
+2026-06-07 18:43:09,082 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Audio        60.00        75.00        66.67            4
+2026-06-07 18:43:09,082 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Image        50.00       100.00        66.67            1
+2026-06-07 18:43:09,082 - [ qwen_edge_sample50_conservative ] - INFO -                 Image Stitcher       100.00       100.00       100.00            1
+2026-06-07 18:43:09,082 - [ qwen_edge_sample50_conservative ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,082 - [ qwen_edge_sample50_conservative ] - INFO -           Image Style Transfer       100.00       100.00       100.00            1
+2026-06-07 18:43:09,084 - [ qwen_edge_sample50_conservative ] - INFO -               Video Stabilizer       100.00        50.00        66.67            2
+2026-06-07 18:43:09,084 - [ qwen_edge_sample50_conservative ] - INFO -            Video Speed Changer       100.00       100.00       100.00            2
+2026-06-07 18:43:09,084 - [ qwen_edge_sample50_conservative ] - INFO -          Video Synchronization        83.33        83.33        83.33            6
+2026-06-07 18:43:09,084 - [ qwen_edge_sample50_conservative ] - INFO -                Video Voiceover        50.00       100.00        66.67            1
+2026-06-07 18:43:09,084 - [ qwen_edge_sample50_conservative ] - INFO - 
+2026-06-07 18:43:09,085 - [ qwen_edge_sample50_conservative ] - INFO -                          micro        79.12        77.42        78.26           93
+2026-06-07 18:43:09,085 - [ qwen_edge_sample50_conservative ] - INFO -                          macro        75.92        72.96        72.54           93
+2026-06-07 18:43:09,088 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6756756756756757
+2026-06-07 18:43:09,093 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.45454545454545453
+2026-06-07 18:43:09,097 - [ qwen_edge_sample50_conservative ] - INFO - Link Binary F1: 0.4065040650406504
+2026-06-07 18:43:09,098 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:09,098 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: 5, Task Split: overall
+2026-06-07 18:43:09,304 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 4
+2026-06-07 18:43:09,304 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 4 / 4
+2026-06-07 18:43:09,304 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 4 / 4
+2026-06-07 18:43:09,304 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 4 / 4
+2026-06-07 18:43:09,314 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Precision [ No Matching ]: 0.8181818181818182
+2026-06-07 18:43:09,315 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Recall [ No Matching ]: 0.5625
+2026-06-07 18:43:09,315 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro F1 [ No Matching ]: 0.6666666666666666
+2026-06-07 18:43:09,316 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Precision [ No Matching ]: 0.175
+2026-06-07 18:43:09,316 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Recall [ No Matching ]: 0.15
+2026-06-07 18:43:09,316 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro F1 [ No Matching ]: 0.15833333333333333
+2026-06-07 18:43:09,317 - [ qwen_edge_sample50_conservative ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-07 18:43:09,317 - [ qwen_edge_sample50_conservative ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-07 18:43:09,317 - [ qwen_edge_sample50_conservative ] - INFO -               Image Downloader       100.00       100.00       100.00            2
+2026-06-07 18:43:09,317 - [ qwen_edge_sample50_conservative ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,317 - [ qwen_edge_sample50_conservative ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,317 - [ qwen_edge_sample50_conservative ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,317 - [ qwen_edge_sample50_conservative ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,317 - [ qwen_edge_sample50_conservative ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,318 - [ qwen_edge_sample50_conservative ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-06-07 18:43:09,318 - [ qwen_edge_sample50_conservative ] - INFO -                  URL Extractor       100.00        50.00        66.67            2
+2026-06-07 18:43:09,318 - [ qwen_edge_sample50_conservative ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,318 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-06-07 18:43:09,318 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-07 18:43:09,318 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-06-07 18:43:09,318 - [ qwen_edge_sample50_conservative ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            1
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -                Text Simplifier         0.00         0.00         0.00            1
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-06-07 18:43:09,319 - [ qwen_edge_sample50_conservative ] - INFO -              Keyword Extractor         0.00         0.00         0.00            2
+2026-06-07 18:43:09,320 - [ qwen_edge_sample50_conservative ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-06-07 18:43:09,320 - [ qwen_edge_sample50_conservative ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-06-07 18:43:09,320 - [ qwen_edge_sample50_conservative ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-06-07 18:43:09,321 - [ qwen_edge_sample50_conservative ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-06-07 18:43:09,321 - [ qwen_edge_sample50_conservative ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-06-07 18:43:09,321 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-06-07 18:43:09,321 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-06-07 18:43:09,321 - [ qwen_edge_sample50_conservative ] - INFO -                 Image Stitcher         0.00         0.00         0.00            1
+2026-06-07 18:43:09,321 - [ qwen_edge_sample50_conservative ] - INFO -                Image Colorizer       100.00        50.00        66.67            2
+2026-06-07 18:43:09,321 - [ qwen_edge_sample50_conservative ] - INFO -           Image Style Transfer       100.00       100.00       100.00            2
+2026-06-07 18:43:09,321 - [ qwen_edge_sample50_conservative ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,321 - [ qwen_edge_sample50_conservative ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,321 - [ qwen_edge_sample50_conservative ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-06-07 18:43:09,322 - [ qwen_edge_sample50_conservative ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-06-07 18:43:09,322 - [ qwen_edge_sample50_conservative ] - INFO - 
+2026-06-07 18:43:09,322 - [ qwen_edge_sample50_conservative ] - INFO -                          micro        81.82        56.25        66.67           16
+2026-06-07 18:43:09,322 - [ qwen_edge_sample50_conservative ] - INFO -                          macro        17.50        15.00        15.83           16
+2026-06-07 18:43:09,327 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5625
+2026-06-07 18:43:09,329 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.2857142857142857
+2026-06-07 18:43:09,332 - [ qwen_edge_sample50_conservative ] - INFO - Link Binary F1: 0.4
+2026-06-07 18:43:09,332 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:09,333 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: 6, Task Split: overall
+2026-06-07 18:43:09,520 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 2
+2026-06-07 18:43:09,521 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 2 / 2
+2026-06-07 18:43:09,521 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 2 / 2
+2026-06-07 18:43:09,521 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 2 / 2
+2026-06-07 18:43:09,530 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-06-07 18:43:09,530 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Recall [ No Matching ]: 0.7272727272727273
+2026-06-07 18:43:09,530 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro F1 [ No Matching ]: 0.8421052631578947
+2026-06-07 18:43:09,530 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Precision [ No Matching ]: 0.175
+2026-06-07 18:43:09,530 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Recall [ No Matching ]: 0.175
+2026-06-07 18:43:09,531 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro F1 [ No Matching ]: 0.175
+2026-06-07 18:43:09,531 - [ qwen_edge_sample50_conservative ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-07 18:43:09,531 - [ qwen_edge_sample50_conservative ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -               Video Downloader       100.00       100.00       100.00            1
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -                  URL Extractor       100.00       100.00       100.00            1
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-06-07 18:43:09,532 - [ qwen_edge_sample50_conservative ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-06-07 18:43:09,533 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-06-07 18:43:09,533 - [ qwen_edge_sample50_conservative ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-06-07 18:43:09,533 - [ qwen_edge_sample50_conservative ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-06-07 18:43:09,533 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-06-07 18:43:09,533 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,533 - [ qwen_edge_sample50_conservative ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,533 - [ qwen_edge_sample50_conservative ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,533 - [ qwen_edge_sample50_conservative ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-06-07 18:43:09,533 - [ qwen_edge_sample50_conservative ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-06-07 18:43:09,534 - [ qwen_edge_sample50_conservative ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-06-07 18:43:09,534 - [ qwen_edge_sample50_conservative ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-06-07 18:43:09,534 - [ qwen_edge_sample50_conservative ] - INFO -                  Text Expander         0.00         0.00         0.00            1
+2026-06-07 18:43:09,534 - [ qwen_edge_sample50_conservative ] - INFO -              Keyword Extractor         0.00         0.00         0.00            1
+2026-06-07 18:43:09,534 - [ qwen_edge_sample50_conservative ] - INFO -               Text Paraphraser         0.00         0.00         0.00            1
+2026-06-07 18:43:09,534 - [ qwen_edge_sample50_conservative ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-06-07 18:43:09,534 - [ qwen_edge_sample50_conservative ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-06-07 18:43:09,534 - [ qwen_edge_sample50_conservative ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-06-07 18:43:09,534 - [ qwen_edge_sample50_conservative ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-06-07 18:43:09,534 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-06-07 18:43:09,535 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Image       100.00       100.00       100.00            1
+2026-06-07 18:43:09,535 - [ qwen_edge_sample50_conservative ] - INFO -                 Image Stitcher       100.00       100.00       100.00            1
+2026-06-07 18:43:09,535 - [ qwen_edge_sample50_conservative ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,535 - [ qwen_edge_sample50_conservative ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,535 - [ qwen_edge_sample50_conservative ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,535 - [ qwen_edge_sample50_conservative ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-06-07 18:43:09,535 - [ qwen_edge_sample50_conservative ] - INFO -          Video Synchronization       100.00       100.00       100.00            1
+2026-06-07 18:43:09,535 - [ qwen_edge_sample50_conservative ] - INFO -                Video Voiceover       100.00       100.00       100.00            2
+2026-06-07 18:43:09,535 - [ qwen_edge_sample50_conservative ] - INFO - 
+2026-06-07 18:43:09,535 - [ qwen_edge_sample50_conservative ] - INFO -                          micro       100.00        72.73        84.21           11
+2026-06-07 18:43:09,536 - [ qwen_edge_sample50_conservative ] - INFO -                          macro        17.50        17.50        17.50           11
+2026-06-07 18:43:09,540 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8888888888888888
+2026-06-07 18:43:09,542 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5517241379310345
+2026-06-07 18:43:09,546 - [ qwen_edge_sample50_conservative ] - INFO - Link Binary F1: 0.2857142857142857
+2026-06-07 18:43:09,546 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:09,546 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: 7, Task Split: overall
+2026-06-07 18:43:09,725 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 1
+2026-06-07 18:43:09,725 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 1 / 1
+2026-06-07 18:43:09,725 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 1 / 1
+2026-06-07 18:43:09,725 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 1 / 1
+2026-06-07 18:43:09,733 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-06-07 18:43:09,733 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Recall [ No Matching ]: 1.0
+2026-06-07 18:43:09,733 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro F1 [ No Matching ]: 1.0
+2026-06-07 18:43:09,734 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Precision [ No Matching ]: 0.175
+2026-06-07 18:43:09,734 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Recall [ No Matching ]: 0.175
+2026-06-07 18:43:09,734 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro F1 [ No Matching ]: 0.175
+2026-06-07 18:43:09,734 - [ qwen_edge_sample50_conservative ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-07 18:43:09,734 - [ qwen_edge_sample50_conservative ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-07 18:43:09,734 - [ qwen_edge_sample50_conservative ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,734 - [ qwen_edge_sample50_conservative ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,734 - [ qwen_edge_sample50_conservative ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-06-07 18:43:09,734 - [ qwen_edge_sample50_conservative ] - INFO -                Text Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,734 - [ qwen_edge_sample50_conservative ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,736 - [ qwen_edge_sample50_conservative ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,736 - [ qwen_edge_sample50_conservative ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-06-07 18:43:09,736 - [ qwen_edge_sample50_conservative ] - INFO -                  URL Extractor       100.00       100.00       100.00            1
+2026-06-07 18:43:09,736 - [ qwen_edge_sample50_conservative ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,737 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Image       100.00       100.00       100.00            1
+2026-06-07 18:43:09,737 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-07 18:43:09,737 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-06-07 18:43:09,737 - [ qwen_edge_sample50_conservative ] - INFO -                  Image-to-Text       100.00       100.00       100.00            1
+2026-06-07 18:43:09,737 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            0
+2026-06-07 18:43:09,737 - [ qwen_edge_sample50_conservative ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-06-07 18:43:09,737 - [ qwen_edge_sample50_conservative ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-06-07 18:43:09,737 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-06-07 18:43:09,738 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,738 - [ qwen_edge_sample50_conservative ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,738 - [ qwen_edge_sample50_conservative ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,738 - [ qwen_edge_sample50_conservative ] - INFO -                Text Translator       100.00       100.00       100.00            1
+2026-06-07 18:43:09,738 - [ qwen_edge_sample50_conservative ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-06-07 18:43:09,738 - [ qwen_edge_sample50_conservative ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            0
+2026-06-07 18:43:09,738 - [ qwen_edge_sample50_conservative ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-06-07 18:43:09,738 - [ qwen_edge_sample50_conservative ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-06-07 18:43:09,738 - [ qwen_edge_sample50_conservative ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-06-07 18:43:09,739 - [ qwen_edge_sample50_conservative ] - INFO -               Text Paraphraser         0.00         0.00         0.00            0
+2026-06-07 18:43:09,739 - [ qwen_edge_sample50_conservative ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-06-07 18:43:09,739 - [ qwen_edge_sample50_conservative ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-06-07 18:43:09,739 - [ qwen_edge_sample50_conservative ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-06-07 18:43:09,739 - [ qwen_edge_sample50_conservative ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-06-07 18:43:09,739 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            0
+2026-06-07 18:43:09,739 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-06-07 18:43:09,740 - [ qwen_edge_sample50_conservative ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-07 18:43:09,740 - [ qwen_edge_sample50_conservative ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,740 - [ qwen_edge_sample50_conservative ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,740 - [ qwen_edge_sample50_conservative ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,740 - [ qwen_edge_sample50_conservative ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,740 - [ qwen_edge_sample50_conservative ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-06-07 18:43:09,740 - [ qwen_edge_sample50_conservative ] - INFO -                Video Voiceover         0.00         0.00         0.00            0
+2026-06-07 18:43:09,740 - [ qwen_edge_sample50_conservative ] - INFO - 
+2026-06-07 18:43:09,740 - [ qwen_edge_sample50_conservative ] - INFO -                          micro       100.00       100.00       100.00            7
+2026-06-07 18:43:09,741 - [ qwen_edge_sample50_conservative ] - INFO -                          macro        17.50        17.50        17.50            7
+2026-06-07 18:43:09,743 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8571428571428571
+2026-06-07 18:43:09,745 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6666666666666666
+2026-06-07 18:43:09,748 - [ qwen_edge_sample50_conservative ] - INFO - Link Binary F1: 0.8
+2026-06-07 18:43:09,749 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:09,749 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: 8, Task Split: overall
+2026-06-07 18:43:09,926 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 1
+2026-06-07 18:43:09,926 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 1 / 1
+2026-06-07 18:43:09,926 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 1 / 1
+2026-06-07 18:43:09,927 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 1 / 1
+2026-06-07 18:43:09,935 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Precision [ No Matching ]: 0.5
+2026-06-07 18:43:09,935 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro Recall [ No Matching ]: 0.2857142857142857
+2026-06-07 18:43:09,935 - [ qwen_edge_sample50_conservative ] - INFO - Node Micro F1 [ No Matching ]: 0.36363636363636365
+2026-06-07 18:43:09,935 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Precision [ No Matching ]: 0.05
+2026-06-07 18:43:09,935 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro Recall [ No Matching ]: 0.05
+2026-06-07 18:43:09,935 - [ qwen_edge_sample50_conservative ] - INFO - Node Macro F1 [ No Matching ]: 0.05
+2026-06-07 18:43:09,935 - [ qwen_edge_sample50_conservative ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-06-07 18:43:09,936 - [ qwen_edge_sample50_conservative ] - INFO -                           type    precision       recall     f1-score      support
+2026-06-07 18:43:09,936 - [ qwen_edge_sample50_conservative ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,936 - [ qwen_edge_sample50_conservative ] - INFO -               Video Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,936 - [ qwen_edge_sample50_conservative ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-06-07 18:43:09,936 - [ qwen_edge_sample50_conservative ] - INFO -                Text Downloader       100.00       100.00       100.00            1
+2026-06-07 18:43:09,936 - [ qwen_edge_sample50_conservative ] - INFO -                    Text Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,936 - [ qwen_edge_sample50_conservative ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,936 - [ qwen_edge_sample50_conservative ] - INFO -        Image Search (by Image)         0.00         0.00         0.00            0
+2026-06-07 18:43:09,937 - [ qwen_edge_sample50_conservative ] - INFO -                  URL Extractor         0.00         0.00         0.00            0
+2026-06-07 18:43:09,937 - [ qwen_edge_sample50_conservative ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-06-07 18:43:09,937 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-06-07 18:43:09,937 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Video         0.00         0.00         0.00            0
+2026-06-07 18:43:09,938 - [ qwen_edge_sample50_conservative ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            0
+2026-06-07 18:43:09,938 - [ qwen_edge_sample50_conservative ] - INFO -                  Image-to-Text         0.00         0.00         0.00            0
+2026-06-07 18:43:09,938 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio-to-Text         0.00         0.00         0.00            1
+2026-06-07 18:43:09,938 - [ qwen_edge_sample50_conservative ] - INFO -                  Video-to-Text         0.00         0.00         0.00            0
+2026-06-07 18:43:09,938 - [ qwen_edge_sample50_conservative ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            1
+2026-06-07 18:43:09,938 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-06-07 18:43:09,938 - [ qwen_edge_sample50_conservative ] - INFO -                  Audio Splicer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,938 - [ qwen_edge_sample50_conservative ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,938 - [ qwen_edge_sample50_conservative ] - INFO -                Text Summarizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,939 - [ qwen_edge_sample50_conservative ] - INFO -                Text Translator         0.00         0.00         0.00            0
+2026-06-07 18:43:09,939 - [ qwen_edge_sample50_conservative ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-06-07 18:43:09,939 - [ qwen_edge_sample50_conservative ] - INFO -           Text Grammar Checker         0.00         0.00         0.00            1
+2026-06-07 18:43:09,939 - [ qwen_edge_sample50_conservative ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-06-07 18:43:09,939 - [ qwen_edge_sample50_conservative ] - INFO -                  Text Expander         0.00         0.00         0.00            0
+2026-06-07 18:43:09,940 - [ qwen_edge_sample50_conservative ] - INFO -              Keyword Extractor         0.00         0.00         0.00            0
+2026-06-07 18:43:09,940 - [ qwen_edge_sample50_conservative ] - INFO -               Text Paraphraser         0.00         0.00         0.00            1
+2026-06-07 18:43:09,940 - [ qwen_edge_sample50_conservative ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-06-07 18:43:09,940 - [ qwen_edge_sample50_conservative ] - INFO -                Topic Generator         0.00         0.00         0.00            0
+2026-06-07 18:43:09,940 - [ qwen_edge_sample50_conservative ] - INFO -                 Audio-to-Image         0.00         0.00         0.00            0
+2026-06-07 18:43:09,940 - [ qwen_edge_sample50_conservative ] - INFO -                 Image-to-Video         0.00         0.00         0.00            0
+2026-06-07 18:43:09,940 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            1
+2026-06-07 18:43:09,940 - [ qwen_edge_sample50_conservative ] - INFO -                 Video-to-Image         0.00         0.00         0.00            0
+2026-06-07 18:43:09,940 - [ qwen_edge_sample50_conservative ] - INFO -                 Image Stitcher         0.00         0.00         0.00            0
+2026-06-07 18:43:09,940 - [ qwen_edge_sample50_conservative ] - INFO -                Image Colorizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,940 - [ qwen_edge_sample50_conservative ] - INFO -           Image Style Transfer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,941 - [ qwen_edge_sample50_conservative ] - INFO -               Video Stabilizer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,941 - [ qwen_edge_sample50_conservative ] - INFO -            Video Speed Changer         0.00         0.00         0.00            0
+2026-06-07 18:43:09,941 - [ qwen_edge_sample50_conservative ] - INFO -          Video Synchronization         0.00         0.00         0.00            0
+2026-06-07 18:43:09,941 - [ qwen_edge_sample50_conservative ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-06-07 18:43:09,941 - [ qwen_edge_sample50_conservative ] - INFO - 
+2026-06-07 18:43:09,941 - [ qwen_edge_sample50_conservative ] - INFO -                          micro        50.00        28.57        36.36            7
+2026-06-07 18:43:09,942 - [ qwen_edge_sample50_conservative ] - INFO -                          macro         5.00         5.00         5.00            7
+2026-06-07 18:43:09,945 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.46153846153846156
+2026-06-07 18:43:09,948 - [ qwen_edge_sample50_conservative ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.3076923076923077
+2026-06-07 18:43:09,950 - [ qwen_edge_sample50_conservative ] - INFO - Link Binary F1: 0.0
+2026-06-07 18:43:09,950 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:09,950 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: 9, Task Split: overall
+2026-06-07 18:43:10,146 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 0
+2026-06-07 18:43:10,147 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 0 / 0
+2026-06-07 18:43:10,147 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 0 / 0
+2026-06-07 18:43:10,147 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 0 / 0
+2026-06-07 18:43:10,147 - [ qwen_edge_sample50_conservative ] - INFO - No supports, skip
+2026-06-07 18:43:10,147 - [ qwen_edge_sample50_conservative ] - INFO - ---------------
+2026-06-07 18:43:10,147 - [ qwen_edge_sample50_conservative ] - INFO - Tools Number: 10, Task Split: overall
+2026-06-07 18:43:10,317 - [ qwen_edge_sample50_conservative ] - INFO - Step Supports: 0 / 0
+2026-06-07 18:43:10,317 - [ qwen_edge_sample50_conservative ] - INFO - Node Support: 0 / 0
+2026-06-07 18:43:10,318 - [ qwen_edge_sample50_conservative ] - INFO - Link Support: 0 / 0
+2026-06-07 18:43:10,318 - [ qwen_edge_sample50_conservative ] - INFO - Argument Support: 0 / 0
+2026-06-07 18:43:10,318 - [ qwen_edge_sample50_conservative ] - INFO - No supports, skip

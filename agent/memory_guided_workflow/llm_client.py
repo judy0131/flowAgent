@@ -24,6 +24,9 @@ class OpenAICompatibleLLMClient:
         self.llm_config = llm_config
         self.llm_profile = llm_profile
         self.default_config_path = default_config_path
+        self._resolved_config: Dict[str, Any] | None = None
+        self._chat_client: Any = None
+        self._chat_client_signature: tuple[str, str | None, float] | None = None
 
     def chat(self, messages: List[Dict[str, str]]) -> str:
         config = self.resolve_config()
@@ -32,16 +35,13 @@ class OpenAICompatibleLLMClient:
         if not model:
             raise ValueError("llm config must include model_name or model")
 
-        from openai import OpenAI
-
-        client_kwargs: Dict[str, Any] = {
-            "api_key": api_key,
-            "timeout": float(config.get("timeout", 30)),
-        }
         base_url = self.resolve_base_url(config)
-        if base_url:
-            client_kwargs["base_url"] = base_url
-        client = OpenAI(**client_kwargs)
+        timeout = float(config.get("timeout", 30))
+        client = self._get_chat_client(
+            api_key=api_key,
+            base_url=base_url,
+            timeout=timeout,
+        )
 
         response = client.chat.completions.create(
             model=model,
@@ -54,6 +54,9 @@ class OpenAICompatibleLLMClient:
         return content
 
     def resolve_config(self) -> Dict[str, Any]:
+        if self._resolved_config is not None:
+            return dict(self._resolved_config)
+
         payload = self.load_config_payload()
         profiles = payload.get("profiles") if isinstance(payload.get("profiles"), dict) else None
         selected_profile = (
@@ -75,9 +78,33 @@ class OpenAICompatibleLLMClient:
             profile_payload = profiles.get(selected_profile)
             if not isinstance(profile_payload, dict):
                 raise ValueError(f"unknown llm profile: {selected_profile}")
-            return dict(profile_payload)
+            self._resolved_config = dict(profile_payload)
+            return dict(self._resolved_config)
 
-        return dict(payload)
+        self._resolved_config = dict(payload)
+        return dict(self._resolved_config)
+
+    def _get_chat_client(
+        self,
+        api_key: str,
+        base_url: str | None,
+        timeout: float,
+    ) -> Any:
+        signature = (api_key, base_url, timeout)
+        if self._chat_client is not None and self._chat_client_signature == signature:
+            return self._chat_client
+
+        from openai import OpenAI
+
+        client_kwargs: Dict[str, Any] = {
+            "api_key": api_key,
+            "timeout": timeout,
+        }
+        if base_url:
+            client_kwargs["base_url"] = base_url
+        self._chat_client = OpenAI(**client_kwargs)
+        self._chat_client_signature = signature
+        return self._chat_client
 
     def load_config_payload(self) -> Dict[str, Any]:
         if self.llm_config is not None:

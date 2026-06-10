@@ -1,0 +1,2 @@
+﻿Domain,LLM,Model,Node n-F1,Chain n-F1,Chain e-F1,Chain NED,DAG n-F1,DAG e-F1,Overall n-F1,Overall e-F1
+Multimedia Tool,qwen3-14b,qwen3-14b,88.05,86.15,52.63,13.67,86.49,52.17,88.05,52.38

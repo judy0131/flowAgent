@@ -88,6 +88,37 @@ def complete_taskbench_arguments(
     return _dedupe_preserve_order(arguments)
 
 
+def limit_taskbench_arguments_to_input_count(
+    arguments: List[Any],
+    input_types: Optional[List[Any]] = None,
+) -> List[str]:
+    """Limit TaskBench arguments to the selected tool's declared input count.
+
+    Predecessor references are preferred over duplicated literals because a DAG
+    edge means the current node should consume the predecessor artifact.
+    """
+    cleaned_arguments = _dedupe_preserve_order(arguments or [])
+    required_count = len([
+        str(item).strip()
+        for item in (input_types or [])
+        if str(item).strip()
+    ])
+    if required_count <= 0 or len(cleaned_arguments) <= required_count:
+        return cleaned_arguments
+
+    references = [
+        item
+        for item in cleaned_arguments
+        if _is_taskbench_node_reference(item)
+    ]
+    literals = [
+        item
+        for item in cleaned_arguments
+        if not _is_taskbench_node_reference(item)
+    ]
+    return (references + literals)[:required_count]
+
+
 class IncrementalPlanner:
     """LLM-based incremental planner for MIWP.
 
@@ -487,30 +518,43 @@ Planning context JSON:
         """Complete literal arguments only when tool input count is not met."""
         input_types = self._get_tool_input_types(selected_candidate.tool_id)
         required_count = len(input_types)
-        current_count = len(reference_arguments)
+        original_reference_arguments = _dedupe_preserve_order(reference_arguments)
+        bounded_reference_arguments = limit_taskbench_arguments_to_input_count(
+            original_reference_arguments,
+            input_types,
+        )
+        current_count = len(bounded_reference_arguments)
         missing_count = max(required_count - current_count, 0)
         completion: Dict[str, Any] = {
             "input_types": list(input_types),
             "required_count": required_count,
+            "original_reference_argument_count": len(original_reference_arguments),
             "reference_argument_count": current_count,
             "missing_count": missing_count,
             "literal_arguments": [],
             "completed_by": "not_needed" if missing_count == 0 else "llm",
         }
+        if bounded_reference_arguments != original_reference_arguments:
+            completion["trimmed_to_input_count"] = True
+            completion["removed_extra_arguments"] = [
+                argument
+                for argument in original_reference_arguments
+                if argument not in bounded_reference_arguments
+            ]
 
         if missing_count <= 0:
-            return list(reference_arguments), completion
+            return list(bounded_reference_arguments), completion
 
         literal_arguments, llm_metadata = self.complete_literal_arguments_with_llm(
             task=task,
             selected_candidate=selected_candidate,
-            reference_arguments=reference_arguments,
+            reference_arguments=bounded_reference_arguments,
             input_types=input_types,
             missing_count=missing_count,
         )
         literal_arguments = literal_arguments[:missing_count]
         final_arguments = _dedupe_preserve_order(
-            list(reference_arguments) + list(literal_arguments)
+            list(bounded_reference_arguments) + list(literal_arguments)
         )
 
         completion["literal_arguments"] = list(literal_arguments)
@@ -1074,6 +1118,10 @@ def _is_valid_llm_literal_argument(value: Any) -> bool:
     if normalized.startswith("step ") or normalized.startswith("step"):
         return False
     return True
+
+
+def _is_taskbench_node_reference(value: Any) -> bool:
+    return bool(re.fullmatch(r"<node-\d+>", str(value or "").strip()))
 
 
 def _dedupe_preserve_order(values: Any) -> List[str]:

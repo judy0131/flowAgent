@@ -1,0 +1,39 @@
+{
+  "sample_count": 50,
+  "category_counts": {
+    "Missing Edge": 55,
+    "Extra Edge": 21,
+    "Type-Incompatible Edge": 11,
+    "Fork-vs-Chain Error": 9,
+    "Wrong Predecessor": 6,
+    "Merge Error": 2,
+    "Other": 1
+  },
+  "failure_stage_counts": {
+    "dependency_reasoning": 41,
+    "task_understanding": 10,
+    "other": 3,
+    "predecessor_selection": 2,
+    "tool_selection": 1
+  },
+  "category_stage_counts": {
+    "Missing Edge::dependency_reasoning": 49,
+    "Extra Edge::dependency_reasoning": 20,
+    "Missing Edge::task_understanding": 10,
+    "Fork-vs-Chain Error::dependency_reasoning": 9,
+    "Type-Incompatible Edge::task_understanding": 7,
+    "Type-Incompatible Edge::dependency_reasoning": 7,
+    "Extra Edge::task_understanding": 6,
+    "Wrong Predecessor::dependency_reasoning": 6,
+    "Wrong Predecessor::task_understanding": 3,
+    "Fork-vs-Chain Error::task_understanding": 2,
+    "Merge Error::dependency_reasoning": 2,
+    "Missing Edge::predecessor_selection": 2,
+    "Other::task_understanding": 1,
+    "Merge Error::task_understanding": 1,
+    "Type-Incompatible Edge::tool_selection": 1,
+    "Missing Edge::tool_selection": 1,
+    "Extra Edge::predecessor_selection": 1,
+    "Wrong Predecessor::predecessor_selection": 1
+  }
+}
