@@ -1,18 +1,59 @@
 import traceback
 
-from datetime import datetime
 import numpy as np
 from scipy.optimize import linear_sum_assignment
 import json
 import click
+import importlib
 try:
-    from datasets import load_metric
+    import Levenshtein
 except Exception:
-    import importlib
-    import sys
-    from pathlib import Path
+    class _LevenshteinFallback:
+        @staticmethod
+        def ratio(left, right):
+            left_items = list(left)
+            right_items = list(right)
+            denominator = len(left_items) + len(right_items)
+            if denominator == 0:
+                return 1.0
+            return (denominator - _indel_distance(left_items, right_items)) / denominator
 
-    def load_metric(metric_name):
+    def _indel_distance(left, right):
+        previous = list(range(len(right) + 1))
+        for row_index, left_item in enumerate(left, start=1):
+            current = [row_index] + [0] * len(right)
+            for column_index, right_item in enumerate(right, start=1):
+                substitution_cost = 0 if left_item == right_item else 2
+                current[column_index] = min(
+                    previous[column_index] + 1,
+                    current[column_index - 1] + 1,
+                    previous[column_index - 1] + substitution_cost,
+                )
+            previous = current
+        return previous[-1]
+
+    Levenshtein = _LevenshteinFallback()
+from pathlib import Path
+from sklearn.metrics import precision_recall_fscore_support as prfs
+import sys
+import warnings
+import logging
+import os
+import itertools
+import re
+
+warnings.filterwarnings("ignore")
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.handlers = []
+
+def load_metric(metric_name):
+    try:
+        from datasets import load_metric as datasets_load_metric
+
+        return datasets_load_metric(metric_name)
+    except Exception:
         # Avoid circular import with local file name `evaluate.py`.
         this_dir = str(Path(__file__).resolve().parent)
         removed: list[str] = []
@@ -26,21 +67,6 @@ except Exception:
         finally:
             for p in reversed(removed):
                 sys.path.insert(0, p)
-import Levenshtein
-from sklearn.metrics import precision_recall_fscore_support as prfs
-import warnings
-import logging
-import os
-import itertools
-import re
-
-warnings.filterwarnings("ignore")
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.handlers = []
-
-timestamp = datetime.now().strftime("%Y%m%d")
 
 def sim(name_1, name_2):
     if name_1 == "<PAD>" or name_2 == "<PAD>":
@@ -198,6 +224,66 @@ def _safe_json_loads(value):
     return value
 
 
+LEGACY_FUNCTION_TO_TASK = {
+    "audio_to_image": "Audio-to-Image",
+    "image_to_text": "Image-to-Text",
+    "adjust_video_speed": "Video Speed Changer",
+}
+
+
+def _legacy_function_to_task(function_name):
+    function_text = str(function_name or "").strip()
+    if not function_text:
+        return ""
+    normalized = re.sub(r"[^a-z0-9]+", "_", function_text.lower()).strip("_")
+    if normalized in LEGACY_FUNCTION_TO_TASK:
+        return LEGACY_FUNCTION_TO_TASK[normalized]
+    return " ".join(part.capitalize() for part in normalized.split("_") if part)
+
+
+def _normalize_task_node(node):
+    if not isinstance(node, dict):
+        return node
+    normalized = dict(node)
+    if "task" not in normalized:
+        if normalized.get("test"):
+            normalized["task"] = normalized.get("test")
+        elif normalized.get("function"):
+            normalized["task"] = _legacy_function_to_task(normalized.get("function"))
+    if "arguments" not in normalized and isinstance(normalized.get("parameters"), dict):
+        normalized["arguments"] = list(normalized["parameters"].values())
+    if isinstance(normalized.get("arguments"), list):
+        normalized["arguments"] = [
+            _normalize_task_argument(argument)
+            for argument in normalized["arguments"]
+        ]
+    return normalized
+
+
+def _normalize_task_argument(argument):
+    if not isinstance(argument, dict):
+        return argument
+    normalized = dict(argument)
+    if "value" not in normalized and "ref" in normalized:
+        normalized["value"] = normalized.get("ref")
+    return normalized
+
+
+def _normalize_task_link(link):
+    if not isinstance(link, dict):
+        return link
+    normalized = dict(link)
+    if "target" not in normalized and "destination" in normalized:
+        normalized["target"] = normalized.get("destination")
+    return normalized
+
+
+def _normalize_task_links(links):
+    if not isinstance(links, list):
+        return []
+    return [_normalize_task_link(link) for link in links if isinstance(link, dict)]
+
+
 def _normalize_label_sample(data):
     sample = dict(data)
     task_nodes = sample.get("task_nodes")
@@ -217,13 +303,12 @@ def _normalize_label_sample(data):
 
     if not isinstance(task_nodes, list):
         task_nodes = []
-    if not isinstance(task_links, list):
-        task_links = []
     if not isinstance(task_steps, list):
         task_steps = []
 
+    task_nodes = [_normalize_task_node(node) for node in task_nodes]
     sample["task_nodes"] = task_nodes
-    sample["task_links"] = task_links
+    sample["task_links"] = _normalize_task_links(task_links)
     sample["task_steps"] = task_steps
     sample["type"] = sample.get("type", sample.get("method", "overall"))
     sample["n_tools"] = sample.get("n_tools", len(task_nodes))
@@ -239,7 +324,7 @@ def _looks_like_node_reference(argument):
         return False
     if re.search(r"<node-\d+>", argument):
         return True
-    return re.search(r"(?:output\s+of\s+step|step)\s*\d+", argument, flags=re.IGNORECASE) is not None
+    return re.search(r"(?:output\s+of\s+(?:step|task)|(?:step|task))\s*\d+", argument, flags=re.IGNORECASE) is not None
 
 
 def _build_incoming_source_map(task_links):
@@ -292,7 +377,7 @@ def _resolve_node_reference(argument, current_index, node_names, current_task=No
             return raw_index
         return max(candidates)
 
-    step_match = re.search(r"(?:output\s+of\s+step|step)\s*(\d+)", argument, flags=re.IGNORECASE)
+    step_match = re.search(r"(?:output\s+of\s+(?:step|task)|(?:step|task))\s*(\d+)", argument, flags=re.IGNORECASE)
     if step_match:
         reference_index = int(step_match.group(1)) - 1
         if 0 <= reference_index < len(node_names) and reference_index < current_index:
@@ -369,14 +454,13 @@ def main(data_dir, prediction_dir, save_dir, splits, n_tools, mode, metric, llm,
     if not os.path.exists(f'{data_dir}/{save_dir}'):
         os.makedirs(f'{data_dir}/{save_dir}')
 
-    #timestamp = datetime.now().strftime("%Y%m%d")
-    metric_file = f'{data_dir}/{save_dir}/{llm}_{timestamp}.json'
+    metric_file = f'{data_dir}/{save_dir}/{llm}.json'
     if os.path.exists(metric_file):
-        all_metric_dict = json.load(open(metric_file, "r"))
+        all_metric_dict = json.load(open(metric_file, "r", encoding="utf-8-sig"))
     else:
         all_metric_dict = {}
     
-    file_handler = logging.FileHandler(f'{data_dir}/{save_dir}/{llm}_{timestamp}.log')
+    file_handler = logging.FileHandler(f'{data_dir}/{save_dir}/{llm}.log')
     stream_handler = logging.StreamHandler()
     
     file_handler.setFormatter(formatter)
@@ -392,7 +476,7 @@ def main(data_dir, prediction_dir, save_dir, splits, n_tools, mode, metric, llm,
 
     logger.info(f"Starts with: {args}")
 
-    tool_desc = json.load(open(f"{data_dir}/tool_desc.json", "r"))
+    tool_desc = json.load(open(f"{data_dir}/tool_desc.json", "r", encoding="utf-8-sig"))
     tool_map = {tool["id"]: i+1 for i, tool in enumerate(tool_desc["nodes"])}
     tool_map_reverse = {i+1: tool["id"] for i, tool in enumerate(tool_desc["nodes"])}
     tool_map_reverse[0] = "NEGATIVE"
@@ -435,7 +519,7 @@ def main(data_dir, prediction_dir, save_dir, splits, n_tools, mode, metric, llm,
         logger.info(f"Tools Number: {n}, Task Split: {s}")
         evaluate(data_dir, prediction_dir, llm, s, n, metric, tool_desc, tool_map, tool_output_type_map, tool_map_reverse, all_metric_dict, dependency_type=dependency_type, alignment=alignment)
 
-    metric_json = open(metric_file, "w")
+    metric_json = open(metric_file, "w", encoding="utf-8")
     metric_json.write(json.dumps(all_metric_dict, indent=2))
 
 def evaluate(data_dir, prediction_dir, llm, split, n_tool, metric, tool_desc, tool_map, tool_output_type_map, tool_map_reverse, all_metric_dict, dependency_type, alignment = None):
@@ -445,24 +529,24 @@ def evaluate(data_dir, prediction_dir, llm, split, n_tool, metric, tool_desc, to
         metric_dict = {}
         all_metric_dict[f"{split}_{n_tool}"] = metric_dict
 
-    label_rf = open(f"{data_dir}/data.json", "r")
+    label_rf = open(f"{data_dir}/data.json", "r", encoding="utf-8-sig")
     
     alignment_ids = None
     if alignment is not None:
         if alignment == "human":
-            label_rf = open(f"{data_dir}/data.json", "r")
+            label_rf = open(f"{data_dir}/data.json", "r", encoding="utf-8-sig")
             logger.info(f"Alignment Mode: {alignment} ({len(label_rf.readlines())})")
         else:
-            alignment_file = open(f"{data_dir}/alignment_ids.json", "r")
+            alignment_file = open(f"{data_dir}/alignment_ids.json", "r", encoding="utf-8-sig")
             alignment_ids = json.load(alignment_file)
             alignment_ids = list(itertools.chain(*alignment_ids[f"{alignment}_alignment_id"].values()))
             logger.info(f"Alignment Mode: {alignment} ({len(alignment_ids)})")
         
-    predcition_rf = open(f"{data_dir}/{prediction_dir}/{llm}_{timestamp}.json", "r")
+    predcition_rf = open(f"{data_dir}/{prediction_dir}/{llm}.json", "r", encoding="utf-8-sig")
 
     predcitions = {}
     labels = {}
-    label_rf = open(f"{data_dir}/data.json", "r")
+    label_rf = open(f"{data_dir}/data.json", "r", encoding="utf-8-sig")
     for line in label_rf:
         data = _normalize_label_sample(json.loads(line))
         real_tool_num = int(data.get("n_tools", len(data["task_nodes"])))
@@ -527,8 +611,11 @@ def evaluate(data_dir, prediction_dir, llm, split, n_tool, metric, tool_desc, to
 
                 label_task_steps.append("\n".join(label_task_step))
 
-            label_nodes = label["task_nodes"]
-            predcition_nodes = predcition["result"]["task_nodes"] 
+            label_nodes = [_normalize_task_node(node) for node in label["task_nodes"]]
+            predcition_nodes = [
+                _normalize_task_node(node)
+                for node in predcition["result"].get("task_nodes", [])
+            ]
 
             label_node_name = [node["task"] for node in label_nodes]
             predcition_node_name = [node["task"] for node in predcition_nodes]
@@ -551,8 +638,8 @@ def evaluate(data_dir, prediction_dir, llm, split, n_tool, metric, tool_desc, to
                     tool_output_type_map,
                 )
             else:
-                predcition_link = predcition["result"]["task_links"]
-                label_link = label["task_links"]
+                predcition_link = _normalize_task_links(predcition["result"].get("task_links", []))
+                label_link = _normalize_task_links(label.get("task_links", []))
                 predcition_node_argument = [node.get("arguments", []) for node in predcition_nodes]
                 label_node_argument = [node["arguments"] for node in label_nodes]
 

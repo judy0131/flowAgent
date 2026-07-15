@@ -1,0 +1,8 @@
+{
+  "provider": "openai",
+  "model_name": "Llama-2-7B",
+  "temperature": 0,
+  "api_key_envs": ["LLAMA_API_KEY"],
+  "base_url_env": "LLAMA_BASE_URL",
+  "trust_env": false
+}

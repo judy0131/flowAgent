@@ -1,0 +1,159 @@
+{
+  "overall_overall": {
+    "all_samples": 1492,
+    "step_supports": 0,
+    "node_supports": 1492,
+    "link_supports": 1492,
+    "argument_supports": 1492,
+    "node_micro_precision_no_matching": 0.8047253060062625,
+    "node_micro_recall_no_matching": 0.7835365853658537,
+    "node_micro_f1_no_matching": 0.7939896082010953,
+    "node_macro_precision_no_matching": 0.8258747906440526,
+    "node_macro_recall_no_matching": 0.7735689656602843,
+    "node_macro_f1_no_matching": 0.7863436862247604,
+    "node_per_type_no_matchcing": {
+      "Token Classification": {
+        "precision": 0.9074074074074074,
+        "recall": 0.6758620689655173,
+        "f1-score": 0.7747035573122529,
+        "support": 145
+      },
+      "Translation": {
+        "precision": 0.9766081871345029,
+        "recall": 0.9329608938547486,
+        "f1-score": 0.9542857142857143,
+        "support": 179
+      },
+      "Summarization": {
+        "precision": 0.7438423645320197,
+        "recall": 0.8296703296703297,
+        "f1-score": 0.7844155844155845,
+        "support": 182
+      },
+      "Question Answering": {
+        "precision": 0.75,
+        "recall": 0.5106382978723404,
+        "f1-score": 0.6075949367088608,
+        "support": 141
+      },
+      "Conversational": {
+        "precision": 0.8549618320610687,
+        "recall": 0.7,
+        "f1-score": 0.7697594501718213,
+        "support": 160
+      },
+      "Text Generation": {
+        "precision": 0.6035502958579881,
+        "recall": 0.6257668711656442,
+        "f1-score": 0.6144578313253012,
+        "support": 163
+      },
+      "Sentence Similarity": {
+        "precision": 0.9444444444444444,
+        "recall": 0.8880597014925373,
+        "f1-score": 0.9153846153846154,
+        "support": 134
+      },
+      "Tabular Classification": {
+        "precision": 0.9230769230769231,
+        "recall": 0.4918032786885246,
+        "f1-score": 0.6417112299465241,
+        "support": 122
+      },
+      "Object Detection": {
+        "precision": 0.7377049180327869,
+        "recall": 0.8490566037735849,
+        "f1-score": 0.7894736842105263,
+        "support": 159
+      },
+      "Image Classification": {
+        "precision": 0.781021897810219,
+        "recall": 0.6524390243902439,
+        "f1-score": 0.7109634551495017,
+        "support": 164
+      },
+      "Image-to-Image": {
+        "precision": 0.6842105263157895,
+        "recall": 0.6701030927835051,
+        "f1-score": 0.6770833333333334,
+        "support": 97
+      },
+      "Image-to-Text": {
+        "precision": 0.4806451612903226,
+        "recall": 0.9141104294478528,
+        "f1-score": 0.6300211416490487,
+        "support": 163
+      },
+      "Text-to-Image": {
+        "precision": 0.93717277486911,
+        "recall": 0.9572192513368984,
+        "f1-score": 0.9470899470899471,
+        "support": 187
+      },
+      "Text-to-Video": {
+        "precision": 0.9672131147540983,
+        "recall": 0.9915966386554622,
+        "f1-score": 0.979253112033195,
+        "support": 119
+      },
+      "Visual Question Answering": {
+        "precision": 0.6910112359550562,
+        "recall": 0.6871508379888268,
+        "f1-score": 0.6890756302521008,
+        "support": 179
+      },
+      "Document Question Answering": {
+        "precision": 0.7741935483870968,
+        "recall": 0.588957055214724,
+        "f1-score": 0.6689895470383276,
+        "support": 163
+      },
+      "Image Segmentation": {
+        "precision": 0.9795918367346939,
+        "recall": 0.6114649681528662,
+        "f1-score": 0.7529411764705882,
+        "support": 157
+      },
+      "Depth Estimation": {
+        "precision": 0.993006993006993,
+        "recall": 0.8658536585365854,
+        "f1-score": 0.9250814332247557,
+        "support": 164
+      },
+      "Text-to-Speech": {
+        "precision": 0.9846153846153847,
+        "recall": 0.9411764705882353,
+        "f1-score": 0.9624060150375939,
+        "support": 204
+      },
+      "Automatic Speech Recognition": {
+        "precision": 0.6682464454976303,
+        "recall": 0.9657534246575342,
+        "f1-score": 0.7899159663865546,
+        "support": 146
+      },
+      "Audio-to-Audio": {
+        "precision": 0.8260869565217391,
+        "recall": 0.8962264150943396,
+        "f1-score": 0.8597285067873304,
+        "support": 106
+      },
+      "Audio Classification": {
+        "precision": 0.8777777777777778,
+        "recall": 0.6076923076923076,
+        "f1-score": 0.7181818181818181,
+        "support": 130
+      },
+      "Image Editing": {
+        "precision": 0.9087301587301587,
+        "recall": 0.9385245901639344,
+        "f1-score": 0.9233870967741935,
+        "support": 244
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.7134406057737813,
+    "argument_task_argname_value_binary_f1_no_matching": 0.4870122928915019,
+    "edit_distance": 0.2323591957640213,
+    "link_binary_f1": 0.45507527926177754
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "tool_desc_intent": "taskbench/data_huggingface/tool_desc_intent.json",
+  "semantic_tool_families": {},
+  "keep_original_graph_repair": {
+    "enabled": true,
+    "risk_threshold": 25,
+    "optional_threshold": 0.05
+  },
+  "coverage_prompt_variables": {
+    "dataset": "taskbench/data_huggingface",
+    "tool_taxonomy": "huggingface"
+  },
+  "coverage_prompt_rules": [
+    "Use HuggingFace task names and candidate tool descriptions to distinguish tasks that share broad words like classify, answer, generate, or transform.",
+    "Choose the most specific covered intent. Return two neighboring intents only when the request contains separate evidence for two distinct operations.",
+    "For question answering, choose by evidence source: text or passage evidence maps to text question answering; ordinary image evidence maps to visual question answering; document, page, table, form, receipt, invoice, screenshot, or layout-heavy image evidence maps to document question answering.",
+    "For text-output generation, choose by operation: condensing existing content maps to summarization; creating new free-form text maps to text generation; producing a dialogue or assistant response maps to conversational response. Do not cover text generation merely because another tool returns text.",
+    "For image-to-text versus image question answering, extraction, OCR, transcription of visible text, or captioning maps to image-to-text; answering a question about image content maps to visual or document question answering.",
+    "For image understanding, choose by granularity: one whole-image label maps to image classification; object instances, locations, or bounding boxes map to object detection; masks, regions, or pixels map to image segmentation; depth, distance, or 3D structure maps to depth estimation.",
+    "For image transformation, a text-guided edit to an existing image maps to image editing; general image transformation, enhancement, style/domain transfer, or image-to-image output maps to image-to-image.",
+    "For audio, choose by requested output: transcript text maps to automatic speech recognition; labels, classes, commands, speakers, emotions, or events map to audio classification; transformed or enhanced audio maps to audio-to-audio; synthesized speech/audio from text maps to text-to-speech.",
+    "For extraction and comparison tasks, use the expected output structure: token-level labels map to token classification; table-image category maps to tabular classification; pairwise text similarity maps to sentence similarity."
+  ],
+  "replan_prompt_variables": {
+    "dataset": "taskbench/data_huggingface",
+    "tool_taxonomy": "huggingface"
+  },
+  "replan_prompt_rules": [
+    "Choose only exact tool_id values from the provided tools list.",
+    "Use coverage hints as correction targets. If a missing GPT tool is a more specific same-role tool than a neighboring previous tool, replace the previous tool instead of appending both.",
+    "Do not stack Question Answering, Visual Question Answering, and Document Question Answering unless the request asks separate questions over separate evidence sources.",
+    "Do not stack Text Generation, Conversational, and Summarization unless the request asks separate generation, dialogue, and summary operations.",
+    "For image questions, prefer Visual Question Answering or Document Question Answering over generic text Question Answering unless the evidence is already text.",
+    "For document-like images, prefer Document Question Answering over Visual Question Answering when the request asks about a page, table, form, receipt, invoice, screenshot, or layout-heavy artifact.",
+    "Do not add generic Text Generation or Conversational after a question-answering tool unless the request asks for a generated explanation, dialogue, or rewrite beyond the answer.",
+    "For audio questions, transcribe audio to text before text question answering when no audio QA tool exists.",
+    "Treat object detection and image classification as different intents: object detection returns detected object labels, image classification returns one image-level label.",
+    "Prefer minimal edits: keep correct original nodes and edges, and change only wrong or missing tools plus the required connecting edges."
+  ]
+}

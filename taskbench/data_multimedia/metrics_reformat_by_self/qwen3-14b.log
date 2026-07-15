@@ -1,0 +1,747 @@
+2026-07-09 18:58:28,877 - [ qwen3-14b ] - INFO - Starts with: {'data_dir': 'taskbench/data_multimedia', 'prediction_dir': 'predictions_reformat_by_self', 'save_dir': None, 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'qwen3-14b', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-07-09 18:58:28,882 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:28,882 - [ qwen3-14b ] - INFO - Tools Number: overall, Task Split: overall
+2026-07-09 18:58:29,004 - [ qwen3-14b ] - INFO - Step Supports: 0 / 1111
+2026-07-09 18:58:29,005 - [ qwen3-14b ] - INFO - Node Support: 1111 / 1111
+2026-07-09 18:58:29,005 - [ qwen3-14b ] - INFO - Link Support: 1111 / 1111
+2026-07-09 18:58:29,014 - [ qwen3-14b ] - INFO - Argument Support: 1111 / 1111
+2026-07-09 18:58:29,033 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.8166881443298969
+2026-07-09 18:58:29,034 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.833607365998027
+2026-07-09 18:58:29,034 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.8250610252237591
+2026-07-09 18:58:29,035 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.8438618740728412
+2026-07-09 18:58:29,035 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.8396508856305228
+2026-07-09 18:58:29,035 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.8272625281404025
+2026-07-09 18:58:29,035 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:29,035 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:29,035 - [ qwen3-14b ] - INFO -               Image Downloader        75.41        93.88        83.64           49
+2026-07-09 18:58:29,036 - [ qwen3-14b ] - INFO -               Video Downloader        78.38        92.06        84.67           63
+2026-07-09 18:58:29,036 - [ qwen3-14b ] - INFO -               Audio Downloader        90.48        89.06        89.76           64
+2026-07-09 18:58:29,036 - [ qwen3-14b ] - INFO -                Text Downloader        76.62        89.39        82.52           66
+2026-07-09 18:58:29,036 - [ qwen3-14b ] - INFO -                    Text Search        69.62        75.34        72.37           73
+2026-07-09 18:58:29,037 - [ qwen3-14b ] - INFO -                   Image Search        70.37        88.37        78.35           43
+2026-07-09 18:58:29,037 - [ qwen3-14b ] - INFO -        Image Search (by Image)        86.15        81.16        83.58           69
+2026-07-09 18:58:29,037 - [ qwen3-14b ] - INFO -                  URL Extractor        98.73        76.47        86.19          102
+2026-07-09 18:58:29,038 - [ qwen3-14b ] - INFO -                   Video Search        90.00        85.71        87.80           63
+2026-07-09 18:58:29,038 - [ qwen3-14b ] - INFO -                  Text-to-Image        72.53        92.96        81.48           71
+2026-07-09 18:58:29,038 - [ qwen3-14b ] - INFO -                  Text-to-Video        95.35        69.49        80.39           59
+2026-07-09 18:58:29,038 - [ qwen3-14b ] - INFO -                  Text-to-Audio        64.04        94.81        76.44           77
+2026-07-09 18:58:29,038 - [ qwen3-14b ] - INFO -                  Image-to-Text        95.28        96.80        96.03          125
+2026-07-09 18:58:29,039 - [ qwen3-14b ] - INFO -                  Audio-to-Text        56.76        92.31        70.29           91
+2026-07-09 18:58:29,039 - [ qwen3-14b ] - INFO -                  Video-to-Text        88.64        36.45        51.66          107
+2026-07-09 18:58:29,039 - [ qwen3-14b ] - INFO -          Audio Noise Reduction        96.72        93.65        95.16           63
+2026-07-09 18:58:29,039 - [ qwen3-14b ] - INFO -                  Audio Effects        83.95        94.44        88.89           72
+2026-07-09 18:58:29,039 - [ qwen3-14b ] - INFO -                  Audio Splicer        91.04        95.31        93.13           64
+2026-07-09 18:58:29,039 - [ qwen3-14b ] - INFO -                  Voice Changer        94.23        75.38        83.76           65
+2026-07-09 18:58:29,040 - [ qwen3-14b ] - INFO -                Text Summarizer        67.71        90.28        77.38           72
+2026-07-09 18:58:29,040 - [ qwen3-14b ] - INFO -                Text Translator        92.75        94.12        93.43           68
+2026-07-09 18:58:29,040 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis        94.12        85.33        89.51           75
+2026-07-09 18:58:29,040 - [ qwen3-14b ] - INFO -           Text Grammar Checker        98.21        76.39        85.94           72
+2026-07-09 18:58:29,040 - [ qwen3-14b ] - INFO -                Text Simplifier        85.14        86.30        85.71           73
+2026-07-09 18:58:29,040 - [ qwen3-14b ] - INFO -                  Text Expander        85.42        57.75        68.91           71
+2026-07-09 18:58:29,041 - [ qwen3-14b ] - INFO -              Keyword Extractor        69.89        66.33        68.06           98
+2026-07-09 18:58:29,041 - [ qwen3-14b ] - INFO -               Text Paraphraser        53.76        60.98        57.14           82
+2026-07-09 18:58:29,041 - [ qwen3-14b ] - INFO -                Article Spinner        88.24        35.71        50.85           84
+2026-07-09 18:58:29,041 - [ qwen3-14b ] - INFO -                Topic Generator        98.08        63.75        77.27           80
+2026-07-09 18:58:29,042 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00        96.81        98.38           94
+2026-07-09 18:58:29,042 - [ qwen3-14b ] - INFO -                 Image-to-Video        78.95        93.75        85.71           80
+2026-07-09 18:58:29,042 - [ qwen3-14b ] - INFO -                 Video-to-Audio        45.16        89.74        60.09           78
+2026-07-09 18:58:29,042 - [ qwen3-14b ] - INFO -                 Video-to-Image        97.22        94.59        95.89           74
+2026-07-09 18:58:29,043 - [ qwen3-14b ] - INFO -                 Image Stitcher        90.00        98.63        94.12           73
+2026-07-09 18:58:29,043 - [ qwen3-14b ] - INFO -                Image Colorizer        98.08        85.00        91.07           60
+2026-07-09 18:58:29,043 - [ qwen3-14b ] - INFO -           Image Style Transfer        98.81        95.40        97.08           87
+2026-07-09 18:58:29,043 - [ qwen3-14b ] - INFO -               Video Stabilizer        95.45        91.30        93.33           69
+2026-07-09 18:58:29,043 - [ qwen3-14b ] - INFO -            Video Speed Changer        97.62        97.62        97.62           84
+2026-07-09 18:58:29,044 - [ qwen3-14b ] - INFO -          Video Synchronization        85.42        89.13        87.23           92
+2026-07-09 18:58:29,044 - [ qwen3-14b ] - INFO -                Video Voiceover        81.13        96.63        88.21           89
+2026-07-09 18:58:29,044 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:29,044 - [ qwen3-14b ] - INFO -                          micro        81.67        83.36        82.51         3041
+2026-07-09 18:58:29,044 - [ qwen3-14b ] - INFO -                          macro        84.39        83.97        82.73         3041
+2026-07-09 18:58:29,057 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7232602618802413
+2026-07-09 18:58:29,073 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.541185940434666
+2026-07-09 18:58:29,083 - [ qwen3-14b ] - INFO - Edit Distance: 0.19543991523792636
+2026-07-09 18:58:29,091 - [ qwen3-14b ] - INFO - Link Binary F1: 0.5299323269130661
+2026-07-09 18:58:29,098 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:29,099 - [ qwen3-14b ] - INFO - Tools Number: overall, Task Split: single
+2026-07-09 18:58:29,223 - [ qwen3-14b ] - INFO - Step Supports: 0 / 407
+2026-07-09 18:58:29,224 - [ qwen3-14b ] - INFO - Node Support: 407 / 407
+2026-07-09 18:58:29,224 - [ qwen3-14b ] - INFO - Link Support: 407 / 407
+2026-07-09 18:58:29,225 - [ qwen3-14b ] - INFO - Argument Support: 407 / 407
+2026-07-09 18:58:29,239 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.7586206896551724
+2026-07-09 18:58:29,239 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.9211822660098522
+2026-07-09 18:58:29,240 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.8320355951056729
+2026-07-09 18:58:29,240 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.8281676632191338
+2026-07-09 18:58:29,240 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.9375109265734267
+2026-07-09 18:58:29,240 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.8395878897847597
+2026-07-09 18:58:29,241 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:29,241 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:29,241 - [ qwen3-14b ] - INFO -               Image Downloader        50.00       100.00        66.67           13
+2026-07-09 18:58:29,241 - [ qwen3-14b ] - INFO -               Video Downloader        62.50       100.00        76.92           15
+2026-07-09 18:58:29,242 - [ qwen3-14b ] - INFO -               Audio Downloader        82.35       100.00        90.32           14
+2026-07-09 18:58:29,242 - [ qwen3-14b ] - INFO -                Text Downloader        68.75       100.00        81.48           11
+2026-07-09 18:58:29,242 - [ qwen3-14b ] - INFO -                    Text Search       100.00       100.00       100.00            8
+2026-07-09 18:58:29,242 - [ qwen3-14b ] - INFO -                   Image Search       100.00        81.82        90.00           11
+2026-07-09 18:58:29,242 - [ qwen3-14b ] - INFO -        Image Search (by Image)        60.00       100.00        75.00            9
+2026-07-09 18:58:29,242 - [ qwen3-14b ] - INFO -                  URL Extractor       100.00       100.00       100.00           16
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                   Video Search       100.00       100.00       100.00            9
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                  Text-to-Image        52.00       100.00        68.42           13
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00         9.09        16.67           11
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                  Text-to-Audio        86.67       100.00        92.86           13
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                  Image-to-Text        93.75       100.00        96.77           15
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                  Audio-to-Text        38.89       100.00        56.00            7
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                  Video-to-Text       100.00        15.38        26.67           13
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00           10
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                  Audio Effects        66.67       100.00        80.00            6
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                  Audio Splicer       100.00       100.00       100.00           12
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                  Voice Changer       100.00       100.00       100.00            9
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                Text Summarizer        53.85       100.00        70.00            7
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -                Text Translator        87.50       100.00        93.33            7
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            6
+2026-07-09 18:58:29,243 - [ qwen3-14b ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            4
+2026-07-09 18:58:29,244 - [ qwen3-14b ] - INFO -                Text Simplifier        88.89       100.00        94.12            8
+2026-07-09 18:58:29,244 - [ qwen3-14b ] - INFO -                  Text Expander        80.00       100.00        88.89            4
+2026-07-09 18:58:29,244 - [ qwen3-14b ] - INFO -              Keyword Extractor        92.31       100.00        96.00           12
+2026-07-09 18:58:29,244 - [ qwen3-14b ] - INFO -               Text Paraphraser        50.00       100.00        66.67           11
+2026-07-09 18:58:29,244 - [ qwen3-14b ] - INFO -                Article Spinner       100.00        43.75        60.87           16
+2026-07-09 18:58:29,245 - [ qwen3-14b ] - INFO -                Topic Generator       100.00       100.00       100.00           10
+2026-07-09 18:58:29,245 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00       100.00       100.00           10
+2026-07-09 18:58:29,245 - [ qwen3-14b ] - INFO -                 Image-to-Video        56.52       100.00        72.22           13
+2026-07-09 18:58:29,245 - [ qwen3-14b ] - INFO -                 Video-to-Audio        43.48       100.00        60.61           10
+2026-07-09 18:58:29,245 - [ qwen3-14b ] - INFO -                 Video-to-Image       100.00       100.00       100.00            7
+2026-07-09 18:58:29,245 - [ qwen3-14b ] - INFO -                 Image Stitcher       100.00       100.00       100.00           12
+2026-07-09 18:58:29,246 - [ qwen3-14b ] - INFO -                Image Colorizer       100.00       100.00       100.00           12
+2026-07-09 18:58:29,246 - [ qwen3-14b ] - INFO -           Image Style Transfer        88.89       100.00        94.12            8
+2026-07-09 18:58:29,246 - [ qwen3-14b ] - INFO -               Video Stabilizer        71.43       100.00        83.33            5
+2026-07-09 18:58:29,246 - [ qwen3-14b ] - INFO -            Video Speed Changer       100.00       100.00       100.00            9
+2026-07-09 18:58:29,246 - [ qwen3-14b ] - INFO -          Video Synchronization        88.24       100.00        93.75           15
+2026-07-09 18:58:29,246 - [ qwen3-14b ] - INFO -                Video Voiceover        50.00       100.00        66.67            5
+2026-07-09 18:58:29,247 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:29,247 - [ qwen3-14b ] - INFO -                          micro        75.86        92.12        83.20          406
+2026-07-09 18:58:29,247 - [ qwen3-14b ] - INFO -                          macro        82.82        93.75        83.96          406
+2026-07-09 18:58:29,250 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6525612472160356
+2026-07-09 18:58:29,254 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4909456740442656
+2026-07-09 18:58:29,256 - [ qwen3-14b ] - INFO - Edit Distance: 0.14504504504504445
+2026-07-09 18:58:29,259 - [ qwen3-14b ] - INFO - Link Binary F1: 0.0
+2026-07-09 18:58:29,260 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:29,261 - [ qwen3-14b ] - INFO - Tools Number: overall, Task Split: chain
+2026-07-09 18:58:29,310 - [ qwen3-14b ] - INFO - Step Supports: 0 / 594
+2026-07-09 18:58:29,310 - [ qwen3-14b ] - INFO - Node Support: 594 / 594
+2026-07-09 18:58:29,310 - [ qwen3-14b ] - INFO - Link Support: 594 / 594
+2026-07-09 18:58:29,311 - [ qwen3-14b ] - INFO - Argument Support: 594 / 594
+2026-07-09 18:58:29,319 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.8299908842297175
+2026-07-09 18:58:29,319 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.8169582772543742
+2026-07-09 18:58:29,319 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.823423016052453
+2026-07-09 18:58:29,320 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.8571545070654008
+2026-07-09 18:58:29,320 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.826391761160792
+2026-07-09 18:58:29,320 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.8269225385602382
+2026-07-09 18:58:29,320 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:29,321 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:29,321 - [ qwen3-14b ] - INFO -               Image Downloader        93.10        90.00        91.53           30
+2026-07-09 18:58:29,321 - [ qwen3-14b ] - INFO -               Video Downloader        87.80        92.31        90.00           39
+2026-07-09 18:58:29,321 - [ qwen3-14b ] - INFO -               Audio Downloader        93.94        83.78        88.57           37
+2026-07-09 18:58:29,322 - [ qwen3-14b ] - INFO -                Text Downloader        77.19        86.27        81.48           51
+2026-07-09 18:58:29,322 - [ qwen3-14b ] - INFO -                    Text Search        68.25        71.67        69.92           60
+2026-07-09 18:58:29,322 - [ qwen3-14b ] - INFO -                   Image Search        66.67        92.86        77.61           28
+2026-07-09 18:58:29,322 - [ qwen3-14b ] - INFO -        Image Search (by Image)        95.83        80.70        87.62           57
+2026-07-09 18:58:29,322 - [ qwen3-14b ] - INFO -                  URL Extractor        98.04        72.46        83.33           69
+2026-07-09 18:58:29,322 - [ qwen3-14b ] - INFO -                   Video Search        89.13        83.67        86.32           49
+2026-07-09 18:58:29,322 - [ qwen3-14b ] - INFO -                  Text-to-Image        82.35        93.33        87.50           45
+2026-07-09 18:58:29,323 - [ qwen3-14b ] - INFO -                  Text-to-Video        97.14        82.93        89.47           41
+2026-07-09 18:58:29,323 - [ qwen3-14b ] - INFO -                  Text-to-Audio        60.71        92.73        73.38           55
+2026-07-09 18:58:29,323 - [ qwen3-14b ] - INFO -                  Image-to-Text        95.88        96.88        96.37           96
+2026-07-09 18:58:29,323 - [ qwen3-14b ] - INFO -                  Audio-to-Text        60.19        91.55        72.63           71
+2026-07-09 18:58:29,323 - [ qwen3-14b ] - INFO -                  Video-to-Text        84.85        36.36        50.91           77
+2026-07-09 18:58:29,323 - [ qwen3-14b ] - INFO -          Audio Noise Reduction        95.00        95.00        95.00           40
+2026-07-09 18:58:29,324 - [ qwen3-14b ] - INFO -                  Audio Effects        84.48        94.23        89.09           52
+2026-07-09 18:58:29,324 - [ qwen3-14b ] - INFO -                  Audio Splicer        91.49        93.48        92.47           46
+2026-07-09 18:58:29,324 - [ qwen3-14b ] - INFO -                  Voice Changer        96.43        65.85        78.26           41
+2026-07-09 18:58:29,324 - [ qwen3-14b ] - INFO -                Text Summarizer        70.00        92.45        79.67           53
+2026-07-09 18:58:29,325 - [ qwen3-14b ] - INFO -                Text Translator        94.34        94.34        94.34           53
+2026-07-09 18:58:29,325 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis        93.18        85.42        89.13           48
+2026-07-09 18:58:29,325 - [ qwen3-14b ] - INFO -           Text Grammar Checker        97.78        73.33        83.81           60
+2026-07-09 18:58:29,325 - [ qwen3-14b ] - INFO -                Text Simplifier        81.82        84.91        83.33           53
+2026-07-09 18:58:29,325 - [ qwen3-14b ] - INFO -                  Text Expander        84.21        53.33        65.31           60
+2026-07-09 18:58:29,326 - [ qwen3-14b ] - INFO -              Keyword Extractor        70.00        61.25        65.33           80
+2026-07-09 18:58:29,326 - [ qwen3-14b ] - INFO -               Text Paraphraser        54.24        51.61        52.89           62
+2026-07-09 18:58:29,326 - [ qwen3-14b ] - INFO -                Article Spinner        86.96        32.79        47.62           61
+2026-07-09 18:58:29,326 - [ qwen3-14b ] - INFO -                Topic Generator        97.37        57.81        72.55           64
+2026-07-09 18:58:29,326 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00        95.83        97.87           72
+2026-07-09 18:58:29,326 - [ qwen3-14b ] - INFO -                 Image-to-Video        85.96        90.74        88.29           54
+2026-07-09 18:58:29,326 - [ qwen3-14b ] - INFO -                 Video-to-Audio        46.43        91.23        61.54           57
+2026-07-09 18:58:29,327 - [ qwen3-14b ] - INFO -                 Video-to-Image        96.36        94.64        95.50           56
+2026-07-09 18:58:29,327 - [ qwen3-14b ] - INFO -                 Image Stitcher        86.89        98.15        92.17           54
+2026-07-09 18:58:29,327 - [ qwen3-14b ] - INFO -                Image Colorizer        97.14        82.93        89.47           41
+2026-07-09 18:58:29,327 - [ qwen3-14b ] - INFO -           Image Style Transfer       100.00        97.06        98.51           68
+2026-07-09 18:58:29,327 - [ qwen3-14b ] - INFO -               Video Stabilizer       100.00        90.20        94.85           51
+2026-07-09 18:58:29,328 - [ qwen3-14b ] - INFO -            Video Speed Changer        98.33        96.72        97.52           61
+2026-07-09 18:58:29,328 - [ qwen3-14b ] - INFO -          Video Synchronization        83.58        87.50        85.50           64
+2026-07-09 18:58:29,328 - [ qwen3-14b ] - INFO -                Video Voiceover        85.54        97.26        91.03           73
+2026-07-09 18:58:29,328 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:29,328 - [ qwen3-14b ] - INFO -                          micro        83.00        81.70        82.34         2229
+2026-07-09 18:58:29,328 - [ qwen3-14b ] - INFO -                          macro        85.72        82.64        82.69         2229
+2026-07-09 18:58:29,332 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7338856334613053
+2026-07-09 18:58:29,338 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5551050497604129
+2026-07-09 18:58:29,342 - [ qwen3-14b ] - INFO - Edit Distance: 0.22014319690344553
+2026-07-09 18:58:29,348 - [ qwen3-14b ] - INFO - Link Binary F1: 0.5537294563843237
+2026-07-09 18:58:29,350 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:29,350 - [ qwen3-14b ] - INFO - Tools Number: overall, Task Split: dag
+2026-07-09 18:58:29,380 - [ qwen3-14b ] - INFO - Step Supports: 0 / 110
+2026-07-09 18:58:29,381 - [ qwen3-14b ] - INFO - Node Support: 110 / 110
+2026-07-09 18:58:29,381 - [ qwen3-14b ] - INFO - Link Support: 110 / 110
+2026-07-09 18:58:29,381 - [ qwen3-14b ] - INFO - Argument Support: 110 / 110
+2026-07-09 18:58:29,387 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.815347721822542
+2026-07-09 18:58:29,388 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.8374384236453202
+2026-07-09 18:58:29,388 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.8262454434993924
+2026-07-09 18:58:29,388 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.8316163697413698
+2026-07-09 18:58:29,388 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.8264949348037582
+2026-07-09 18:58:29,389 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.814983489891026
+2026-07-09 18:58:29,389 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:29,389 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:29,389 - [ qwen3-14b ] - INFO -               Image Downloader       100.00       100.00       100.00            6
+2026-07-09 18:58:29,390 - [ qwen3-14b ] - INFO -               Video Downloader        77.78        77.78        77.78            9
+2026-07-09 18:58:29,390 - [ qwen3-14b ] - INFO -               Audio Downloader        92.31        92.31        92.31           13
+2026-07-09 18:58:29,390 - [ qwen3-14b ] - INFO -                Text Downloader       100.00       100.00       100.00            4
+2026-07-09 18:58:29,390 - [ qwen3-14b ] - INFO -                    Text Search        50.00        80.00        61.54            5
+2026-07-09 18:58:29,390 - [ qwen3-14b ] - INFO -                   Image Search        50.00        75.00        60.00            4
+2026-07-09 18:58:29,391 - [ qwen3-14b ] - INFO -        Image Search (by Image)        50.00        33.33        40.00            3
+2026-07-09 18:58:29,391 - [ qwen3-14b ] - INFO -                  URL Extractor       100.00        70.59        82.76           17
+2026-07-09 18:58:29,391 - [ qwen3-14b ] - INFO -                   Video Search        80.00        80.00        80.00            5
+2026-07-09 18:58:29,392 - [ qwen3-14b ] - INFO -                  Text-to-Image        73.33        84.62        78.57           13
+2026-07-09 18:58:29,392 - [ qwen3-14b ] - INFO -                  Text-to-Video        85.71        85.71        85.71            7
+2026-07-09 18:58:29,392 - [ qwen3-14b ] - INFO -                  Text-to-Audio        60.00       100.00        75.00            9
+2026-07-09 18:58:29,392 - [ qwen3-14b ] - INFO -                  Image-to-Text        92.86        92.86        92.86           14
+2026-07-09 18:58:29,393 - [ qwen3-14b ] - INFO -                  Audio-to-Text        54.55        92.31        68.57           13
+2026-07-09 18:58:29,393 - [ qwen3-14b ] - INFO -                  Video-to-Text       100.00        52.94        69.23           17
+2026-07-09 18:58:29,393 - [ qwen3-14b ] - INFO -          Audio Noise Reduction       100.00        84.62        91.67           13
+2026-07-09 18:58:29,393 - [ qwen3-14b ] - INFO -                  Audio Effects        92.86        92.86        92.86           14
+2026-07-09 18:58:29,393 - [ qwen3-14b ] - INFO -                  Audio Splicer        75.00       100.00        85.71            6
+2026-07-09 18:58:29,393 - [ qwen3-14b ] - INFO -                  Voice Changer        86.67        86.67        86.67           15
+2026-07-09 18:58:29,393 - [ qwen3-14b ] - INFO -                Text Summarizer        69.23        75.00        72.00           12
+2026-07-09 18:58:29,393 - [ qwen3-14b ] - INFO -                Text Translator        87.50        87.50        87.50            8
+2026-07-09 18:58:29,394 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis        94.44        80.95        87.18           21
+2026-07-09 18:58:29,394 - [ qwen3-14b ] - INFO -           Text Grammar Checker       100.00        87.50        93.33            8
+2026-07-09 18:58:29,394 - [ qwen3-14b ] - INFO -                Text Simplifier       100.00        83.33        90.91           12
+2026-07-09 18:58:29,394 - [ qwen3-14b ] - INFO -                  Text Expander       100.00        71.43        83.33            7
+2026-07-09 18:58:29,394 - [ qwen3-14b ] - INFO -              Keyword Extractor        40.00        66.67        50.00            6
+2026-07-09 18:58:29,395 - [ qwen3-14b ] - INFO -               Text Paraphraser        58.33        77.78        66.67            9
+2026-07-09 18:58:29,395 - [ qwen3-14b ] - INFO -                Article Spinner        75.00        42.86        54.55            7
+2026-07-09 18:58:29,395 - [ qwen3-14b ] - INFO -                Topic Generator       100.00        66.67        80.00            6
+2026-07-09 18:58:29,395 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00       100.00       100.00           12
+2026-07-09 18:58:29,396 - [ qwen3-14b ] - INFO -                 Image-to-Video        86.67       100.00        92.86           13
+2026-07-09 18:58:29,396 - [ qwen3-14b ] - INFO -                 Video-to-Audio        40.00        72.73        51.61           11
+2026-07-09 18:58:29,396 - [ qwen3-14b ] - INFO -                 Video-to-Image       100.00        90.91        95.24           11
+2026-07-09 18:58:29,396 - [ qwen3-14b ] - INFO -                 Image Stitcher       100.00       100.00       100.00            7
+2026-07-09 18:58:29,396 - [ qwen3-14b ] - INFO -                Image Colorizer       100.00        71.43        83.33            7
+2026-07-09 18:58:29,396 - [ qwen3-14b ] - INFO -           Image Style Transfer       100.00        81.82        90.00           11
+2026-07-09 18:58:29,396 - [ qwen3-14b ] - INFO -               Video Stabilizer        92.31        92.31        92.31           13
+2026-07-09 18:58:29,397 - [ qwen3-14b ] - INFO -            Video Speed Changer        93.33       100.00        96.55           14
+2026-07-09 18:58:29,397 - [ qwen3-14b ] - INFO -          Video Synchronization        91.67        84.62        88.00           13
+2026-07-09 18:58:29,397 - [ qwen3-14b ] - INFO -                Video Voiceover        76.92        90.91        83.33           11
+2026-07-09 18:58:29,397 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:29,397 - [ qwen3-14b ] - INFO -                          micro        81.53        83.74        82.62          406
+2026-07-09 18:58:29,397 - [ qwen3-14b ] - INFO -                          macro        83.16        82.65        81.50          406
+2026-07-09 18:58:29,400 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7347368421052631
+2026-07-09 18:58:29,403 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5164410058027079
+2026-07-09 18:58:29,404 - [ qwen3-14b ] - INFO - Edit Distance: 0.24850321395775965
+2026-07-09 18:58:29,409 - [ qwen3-14b ] - INFO - Link Binary F1: 0.4991212653778559
+2026-07-09 18:58:29,411 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:29,411 - [ qwen3-14b ] - INFO - Tools Number: 1, Task Split: overall
+2026-07-09 18:58:29,448 - [ qwen3-14b ] - INFO - Step Supports: 0 / 407
+2026-07-09 18:58:29,448 - [ qwen3-14b ] - INFO - Node Support: 407 / 407
+2026-07-09 18:58:29,449 - [ qwen3-14b ] - INFO - Link Support: 407 / 407
+2026-07-09 18:58:29,449 - [ qwen3-14b ] - INFO - Argument Support: 407 / 407
+2026-07-09 18:58:29,453 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.7586206896551724
+2026-07-09 18:58:29,453 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.9211822660098522
+2026-07-09 18:58:29,453 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.8320355951056729
+2026-07-09 18:58:29,453 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.8281676632191338
+2026-07-09 18:58:29,453 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.9375109265734267
+2026-07-09 18:58:29,454 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.8395878897847597
+2026-07-09 18:58:29,454 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:29,454 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:29,454 - [ qwen3-14b ] - INFO -               Image Downloader        50.00       100.00        66.67           13
+2026-07-09 18:58:29,455 - [ qwen3-14b ] - INFO -               Video Downloader        62.50       100.00        76.92           15
+2026-07-09 18:58:29,455 - [ qwen3-14b ] - INFO -               Audio Downloader        82.35       100.00        90.32           14
+2026-07-09 18:58:29,455 - [ qwen3-14b ] - INFO -                Text Downloader        68.75       100.00        81.48           11
+2026-07-09 18:58:29,455 - [ qwen3-14b ] - INFO -                    Text Search       100.00       100.00       100.00            8
+2026-07-09 18:58:29,455 - [ qwen3-14b ] - INFO -                   Image Search       100.00        81.82        90.00           11
+2026-07-09 18:58:29,455 - [ qwen3-14b ] - INFO -        Image Search (by Image)        60.00       100.00        75.00            9
+2026-07-09 18:58:29,455 - [ qwen3-14b ] - INFO -                  URL Extractor       100.00       100.00       100.00           16
+2026-07-09 18:58:29,456 - [ qwen3-14b ] - INFO -                   Video Search       100.00       100.00       100.00            9
+2026-07-09 18:58:29,456 - [ qwen3-14b ] - INFO -                  Text-to-Image        52.00       100.00        68.42           13
+2026-07-09 18:58:29,456 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00         9.09        16.67           11
+2026-07-09 18:58:29,456 - [ qwen3-14b ] - INFO -                  Text-to-Audio        86.67       100.00        92.86           13
+2026-07-09 18:58:29,456 - [ qwen3-14b ] - INFO -                  Image-to-Text        93.75       100.00        96.77           15
+2026-07-09 18:58:29,457 - [ qwen3-14b ] - INFO -                  Audio-to-Text        38.89       100.00        56.00            7
+2026-07-09 18:58:29,457 - [ qwen3-14b ] - INFO -                  Video-to-Text       100.00        15.38        26.67           13
+2026-07-09 18:58:29,457 - [ qwen3-14b ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00           10
+2026-07-09 18:58:29,457 - [ qwen3-14b ] - INFO -                  Audio Effects        66.67       100.00        80.00            6
+2026-07-09 18:58:29,457 - [ qwen3-14b ] - INFO -                  Audio Splicer       100.00       100.00       100.00           12
+2026-07-09 18:58:29,457 - [ qwen3-14b ] - INFO -                  Voice Changer       100.00       100.00       100.00            9
+2026-07-09 18:58:29,457 - [ qwen3-14b ] - INFO -                Text Summarizer        53.85       100.00        70.00            7
+2026-07-09 18:58:29,457 - [ qwen3-14b ] - INFO -                Text Translator        87.50       100.00        93.33            7
+2026-07-09 18:58:29,458 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            6
+2026-07-09 18:58:29,458 - [ qwen3-14b ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            4
+2026-07-09 18:58:29,458 - [ qwen3-14b ] - INFO -                Text Simplifier        88.89       100.00        94.12            8
+2026-07-09 18:58:29,458 - [ qwen3-14b ] - INFO -                  Text Expander        80.00       100.00        88.89            4
+2026-07-09 18:58:29,458 - [ qwen3-14b ] - INFO -              Keyword Extractor        92.31       100.00        96.00           12
+2026-07-09 18:58:29,458 - [ qwen3-14b ] - INFO -               Text Paraphraser        50.00       100.00        66.67           11
+2026-07-09 18:58:29,458 - [ qwen3-14b ] - INFO -                Article Spinner       100.00        43.75        60.87           16
+2026-07-09 18:58:29,458 - [ qwen3-14b ] - INFO -                Topic Generator       100.00       100.00       100.00           10
+2026-07-09 18:58:29,458 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00       100.00       100.00           10
+2026-07-09 18:58:29,458 - [ qwen3-14b ] - INFO -                 Image-to-Video        56.52       100.00        72.22           13
+2026-07-09 18:58:29,458 - [ qwen3-14b ] - INFO -                 Video-to-Audio        43.48       100.00        60.61           10
+2026-07-09 18:58:29,459 - [ qwen3-14b ] - INFO -                 Video-to-Image       100.00       100.00       100.00            7
+2026-07-09 18:58:29,459 - [ qwen3-14b ] - INFO -                 Image Stitcher       100.00       100.00       100.00           12
+2026-07-09 18:58:29,459 - [ qwen3-14b ] - INFO -                Image Colorizer       100.00       100.00       100.00           12
+2026-07-09 18:58:29,459 - [ qwen3-14b ] - INFO -           Image Style Transfer        88.89       100.00        94.12            8
+2026-07-09 18:58:29,459 - [ qwen3-14b ] - INFO -               Video Stabilizer        71.43       100.00        83.33            5
+2026-07-09 18:58:29,459 - [ qwen3-14b ] - INFO -            Video Speed Changer       100.00       100.00       100.00            9
+2026-07-09 18:58:29,459 - [ qwen3-14b ] - INFO -          Video Synchronization        88.24       100.00        93.75           15
+2026-07-09 18:58:29,460 - [ qwen3-14b ] - INFO -                Video Voiceover        50.00       100.00        66.67            5
+2026-07-09 18:58:29,460 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:29,460 - [ qwen3-14b ] - INFO -                          micro        75.86        92.12        83.20          406
+2026-07-09 18:58:29,460 - [ qwen3-14b ] - INFO -                          macro        82.82        93.75        83.96          406
+2026-07-09 18:58:29,464 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6525612472160356
+2026-07-09 18:58:29,467 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4909456740442656
+2026-07-09 18:58:29,469 - [ qwen3-14b ] - INFO - Edit Distance: 0.14504504504504445
+2026-07-09 18:58:29,474 - [ qwen3-14b ] - INFO - Link Binary F1: 0.0
+2026-07-09 18:58:29,475 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:29,475 - [ qwen3-14b ] - INFO - Tools Number: 2, Task Split: overall
+2026-07-09 18:58:29,557 - [ qwen3-14b ] - INFO - Step Supports: 0 / 54
+2026-07-09 18:58:29,557 - [ qwen3-14b ] - INFO - Node Support: 54 / 54
+2026-07-09 18:58:29,558 - [ qwen3-14b ] - INFO - Link Support: 54 / 54
+2026-07-09 18:58:29,558 - [ qwen3-14b ] - INFO - Argument Support: 54 / 54
+2026-07-09 18:58:29,567 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.8899082568807339
+2026-07-09 18:58:29,568 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.8981481481481481
+2026-07-09 18:58:29,568 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.8940092165898618
+2026-07-09 18:58:29,569 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.7904166666666665
+2026-07-09 18:58:29,569 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.8104166666666668
+2026-07-09 18:58:29,569 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.7756150793650793
+2026-07-09 18:58:29,569 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:29,570 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:29,570 - [ qwen3-14b ] - INFO -               Image Downloader       100.00       100.00       100.00            3
+2026-07-09 18:58:29,570 - [ qwen3-14b ] - INFO -               Video Downloader       100.00        66.67        80.00            3
+2026-07-09 18:58:29,571 - [ qwen3-14b ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-07-09 18:58:29,571 - [ qwen3-14b ] - INFO -                Text Downloader       100.00       100.00       100.00            3
+2026-07-09 18:58:29,571 - [ qwen3-14b ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-07-09 18:58:29,571 - [ qwen3-14b ] - INFO -                   Image Search        33.33       100.00        50.00            1
+2026-07-09 18:58:29,572 - [ qwen3-14b ] - INFO -        Image Search (by Image)        66.67        50.00        57.14            4
+2026-07-09 18:58:29,572 - [ qwen3-14b ] - INFO -                  URL Extractor       100.00       100.00       100.00            3
+2026-07-09 18:58:29,572 - [ qwen3-14b ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-07-09 18:58:29,572 - [ qwen3-14b ] - INFO -                  Text-to-Image       100.00       100.00       100.00            2
+2026-07-09 18:58:29,572 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00       100.00       100.00            4
+2026-07-09 18:58:29,573 - [ qwen3-14b ] - INFO -                  Text-to-Audio       100.00       100.00       100.00            3
+2026-07-09 18:58:29,573 - [ qwen3-14b ] - INFO -                  Image-to-Text       100.00       100.00       100.00            3
+2026-07-09 18:58:29,573 - [ qwen3-14b ] - INFO -                  Audio-to-Text        50.00       100.00        66.67            1
+2026-07-09 18:58:29,574 - [ qwen3-14b ] - INFO -                  Video-to-Text       100.00        50.00        66.67            2
+2026-07-09 18:58:29,574 - [ qwen3-14b ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-07-09 18:58:29,574 - [ qwen3-14b ] - INFO -                  Audio Effects       100.00       100.00       100.00            4
+2026-07-09 18:58:29,575 - [ qwen3-14b ] - INFO -                  Audio Splicer       100.00       100.00       100.00            6
+2026-07-09 18:58:29,575 - [ qwen3-14b ] - INFO -                  Voice Changer       100.00       100.00       100.00            1
+2026-07-09 18:58:29,576 - [ qwen3-14b ] - INFO -                Text Summarizer        75.00        75.00        75.00            4
+2026-07-09 18:58:29,576 - [ qwen3-14b ] - INFO -                Text Translator       100.00       100.00       100.00            2
+2026-07-09 18:58:29,576 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-07-09 18:58:29,576 - [ qwen3-14b ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            3
+2026-07-09 18:58:29,577 - [ qwen3-14b ] - INFO -                Text Simplifier        75.00       100.00        85.71            3
+2026-07-09 18:58:29,577 - [ qwen3-14b ] - INFO -                  Text Expander       100.00       100.00       100.00            2
+2026-07-09 18:58:29,577 - [ qwen3-14b ] - INFO -              Keyword Extractor       100.00       100.00       100.00            1
+2026-07-09 18:58:29,577 - [ qwen3-14b ] - INFO -               Text Paraphraser        20.00       100.00        33.33            1
+2026-07-09 18:58:29,579 - [ qwen3-14b ] - INFO -                Article Spinner       100.00        20.00        33.33            5
+2026-07-09 18:58:29,579 - [ qwen3-14b ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-07-09 18:58:29,579 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            6
+2026-07-09 18:58:29,580 - [ qwen3-14b ] - INFO -                 Image-to-Video       100.00       100.00       100.00            6
+2026-07-09 18:58:29,580 - [ qwen3-14b ] - INFO -                 Video-to-Audio        75.00       100.00        85.71            3
+2026-07-09 18:58:29,580 - [ qwen3-14b ] - INFO -                 Video-to-Image       100.00       100.00       100.00            5
+2026-07-09 18:58:29,580 - [ qwen3-14b ] - INFO -                 Image Stitcher       100.00       100.00       100.00            4
+2026-07-09 18:58:29,580 - [ qwen3-14b ] - INFO -                Image Colorizer         0.00         0.00         0.00            1
+2026-07-09 18:58:29,581 - [ qwen3-14b ] - INFO -           Image Style Transfer       100.00       100.00       100.00            3
+2026-07-09 18:58:29,581 - [ qwen3-14b ] - INFO -               Video Stabilizer       100.00       100.00       100.00            2
+2026-07-09 18:58:29,581 - [ qwen3-14b ] - INFO -            Video Speed Changer       100.00       100.00       100.00            5
+2026-07-09 18:58:29,581 - [ qwen3-14b ] - INFO -          Video Synchronization       100.00        80.00        88.89            5
+2026-07-09 18:58:29,581 - [ qwen3-14b ] - INFO -                Video Voiceover        66.67       100.00        80.00            2
+2026-07-09 18:58:29,581 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:29,581 - [ qwen3-14b ] - INFO -                          micro        88.99        89.81        89.40          108
+2026-07-09 18:58:29,582 - [ qwen3-14b ] - INFO -                          macro        79.04        81.04        77.56          108
+2026-07-09 18:58:29,585 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8305084745762712
+2026-07-09 18:58:29,589 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.7058823529411765
+2026-07-09 18:58:29,590 - [ qwen3-14b ] - INFO - Edit Distance: 0.1654320987654322
+2026-07-09 18:58:29,595 - [ qwen3-14b ] - INFO - Link Binary F1: 0.6732673267326733
+2026-07-09 18:58:29,595 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:29,595 - [ qwen3-14b ] - INFO - Tools Number: 3, Task Split: overall
+2026-07-09 18:58:29,638 - [ qwen3-14b ] - INFO - Step Supports: 0 / 253
+2026-07-09 18:58:29,638 - [ qwen3-14b ] - INFO - Node Support: 253 / 253
+2026-07-09 18:58:29,639 - [ qwen3-14b ] - INFO - Link Support: 253 / 253
+2026-07-09 18:58:29,639 - [ qwen3-14b ] - INFO - Argument Support: 253 / 253
+2026-07-09 18:58:29,650 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.8126684636118598
+2026-07-09 18:58:29,651 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.8192934782608695
+2026-07-09 18:58:29,651 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.8159675236806495
+2026-07-09 18:58:29,651 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.8466358033471939
+2026-07-09 18:58:29,651 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.8226577606557595
+2026-07-09 18:58:29,652 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.8138666766694772
+2026-07-09 18:58:29,652 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:29,652 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:29,652 - [ qwen3-14b ] - INFO -               Image Downloader        85.71        85.71        85.71            7
+2026-07-09 18:58:29,652 - [ qwen3-14b ] - INFO -               Video Downloader        80.00       100.00        88.89            8
+2026-07-09 18:58:29,652 - [ qwen3-14b ] - INFO -               Audio Downloader       100.00        87.50        93.33           16
+2026-07-09 18:58:29,652 - [ qwen3-14b ] - INFO -                Text Downloader        60.00        92.31        72.73           13
+2026-07-09 18:58:29,652 - [ qwen3-14b ] - INFO -                    Text Search        65.22        78.95        71.43           19
+2026-07-09 18:58:29,652 - [ qwen3-14b ] - INFO -                   Image Search        61.54        88.89        72.73            9
+2026-07-09 18:58:29,652 - [ qwen3-14b ] - INFO -        Image Search (by Image)        91.67        73.33        81.48           15
+2026-07-09 18:58:29,653 - [ qwen3-14b ] - INFO -                  URL Extractor        94.12        80.00        86.49           20
+2026-07-09 18:58:29,653 - [ qwen3-14b ] - INFO -                   Video Search        94.74        85.71        90.00           21
+2026-07-09 18:58:29,653 - [ qwen3-14b ] - INFO -                  Text-to-Image        77.27        89.47        82.93           19
+2026-07-09 18:58:29,653 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00        76.92        86.96           13
+2026-07-09 18:58:29,653 - [ qwen3-14b ] - INFO -                  Text-to-Audio        66.67       100.00        80.00           24
+2026-07-09 18:58:29,653 - [ qwen3-14b ] - INFO -                  Image-to-Text        90.62       100.00        95.08           29
+2026-07-09 18:58:29,653 - [ qwen3-14b ] - INFO -                  Audio-to-Text        58.14        92.59        71.43           27
+2026-07-09 18:58:29,653 - [ qwen3-14b ] - INFO -                  Video-to-Text        80.00        19.05        30.77           21
+2026-07-09 18:58:29,653 - [ qwen3-14b ] - INFO -          Audio Noise Reduction       100.00        95.24        97.56           21
+2026-07-09 18:58:29,653 - [ qwen3-14b ] - INFO -                  Audio Effects        91.30       100.00        95.45           21
+2026-07-09 18:58:29,654 - [ qwen3-14b ] - INFO -                  Audio Splicer        78.95        93.75        85.71           16
+2026-07-09 18:58:29,654 - [ qwen3-14b ] - INFO -                  Voice Changer        80.00        53.33        64.00           15
+2026-07-09 18:58:29,654 - [ qwen3-14b ] - INFO -                Text Summarizer        69.23        90.00        78.26           20
+2026-07-09 18:58:29,654 - [ qwen3-14b ] - INFO -                Text Translator        93.75        93.75        93.75           16
+2026-07-09 18:58:29,655 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis        94.12        69.57        80.00           23
+2026-07-09 18:58:29,655 - [ qwen3-14b ] - INFO -           Text Grammar Checker       100.00        64.29        78.26           14
+2026-07-09 18:58:29,655 - [ qwen3-14b ] - INFO -                Text Simplifier        85.00        85.00        85.00           20
+2026-07-09 18:58:29,656 - [ qwen3-14b ] - INFO -                  Text Expander       100.00        68.18        81.08           22
+2026-07-09 18:58:29,656 - [ qwen3-14b ] - INFO -              Keyword Extractor        68.18        51.72        58.82           29
+2026-07-09 18:58:29,656 - [ qwen3-14b ] - INFO -               Text Paraphraser        57.69        60.00        58.82           25
+2026-07-09 18:58:29,656 - [ qwen3-14b ] - INFO -                Article Spinner        83.33        29.41        43.48           17
+2026-07-09 18:58:29,656 - [ qwen3-14b ] - INFO -                Topic Generator       100.00        58.82        74.07           17
+2026-07-09 18:58:29,657 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00        95.65        97.78           23
+2026-07-09 18:58:29,657 - [ qwen3-14b ] - INFO -                 Image-to-Video        80.95       100.00        89.47           17
+2026-07-09 18:58:29,657 - [ qwen3-14b ] - INFO -                 Video-to-Audio        40.00        87.50        54.90           16
+2026-07-09 18:58:29,657 - [ qwen3-14b ] - INFO -                 Video-to-Image       100.00        91.67        95.65           12
+2026-07-09 18:58:29,657 - [ qwen3-14b ] - INFO -                 Image Stitcher        92.86        92.86        92.86           14
+2026-07-09 18:58:29,657 - [ qwen3-14b ] - INFO -                Image Colorizer        92.31        80.00        85.71           15
+2026-07-09 18:58:29,657 - [ qwen3-14b ] - INFO -           Image Style Transfer       100.00        95.24        97.56           21
+2026-07-09 18:58:29,658 - [ qwen3-14b ] - INFO -               Video Stabilizer       100.00        84.21        91.43           19
+2026-07-09 18:58:29,658 - [ qwen3-14b ] - INFO -            Video Speed Changer        95.65       100.00        97.78           22
+2026-07-09 18:58:29,658 - [ qwen3-14b ] - INFO -          Video Synchronization        88.24       100.00        93.75           15
+2026-07-09 18:58:29,658 - [ qwen3-14b ] - INFO -                Video Voiceover        89.29       100.00        94.34           25
+2026-07-09 18:58:29,658 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:29,659 - [ qwen3-14b ] - INFO -                          micro        81.27        81.93        81.60          736
+2026-07-09 18:58:29,659 - [ qwen3-14b ] - INFO -                          macro        84.66        82.27        81.39          736
+2026-07-09 18:58:29,662 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7405602923264312
+2026-07-09 18:58:29,665 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.53156146179402
+2026-07-09 18:58:29,667 - [ qwen3-14b ] - INFO - Edit Distance: 0.21533973273103613
+2026-07-09 18:58:29,671 - [ qwen3-14b ] - INFO - Link Binary F1: 0.5383783783783784
+2026-07-09 18:58:29,672 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:29,672 - [ qwen3-14b ] - INFO - Tools Number: 4, Task Split: overall
+2026-07-09 18:58:29,720 - [ qwen3-14b ] - INFO - Step Supports: 0 / 224
+2026-07-09 18:58:29,721 - [ qwen3-14b ] - INFO - Node Support: 224 / 224
+2026-07-09 18:58:29,721 - [ qwen3-14b ] - INFO - Link Support: 224 / 224
+2026-07-09 18:58:29,721 - [ qwen3-14b ] - INFO - Argument Support: 224 / 224
+2026-07-09 18:58:29,735 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.8113636363636364
+2026-07-09 18:58:29,736 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.8370457209847597
+2026-07-09 18:58:29,736 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.8240046162723601
+2026-07-09 18:58:29,736 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.8342709411620136
+2026-07-09 18:58:29,737 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.8388131128948781
+2026-07-09 18:58:29,737 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.820082794667876
+2026-07-09 18:58:29,737 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:29,738 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:29,738 - [ qwen3-14b ] - INFO -               Image Downloader        90.91       100.00        95.24           10
+2026-07-09 18:58:29,739 - [ qwen3-14b ] - INFO -               Video Downloader        90.00        94.74        92.31           19
+2026-07-09 18:58:29,739 - [ qwen3-14b ] - INFO -               Audio Downloader        85.00        85.00        85.00           20
+2026-07-09 18:58:29,739 - [ qwen3-14b ] - INFO -                Text Downloader        88.24        93.75        90.91           16
+2026-07-09 18:58:29,739 - [ qwen3-14b ] - INFO -                    Text Search        65.38        89.47        75.56           19
+2026-07-09 18:58:29,740 - [ qwen3-14b ] - INFO -                   Image Search        46.15        85.71        60.00            7
+2026-07-09 18:58:29,740 - [ qwen3-14b ] - INFO -        Image Search (by Image)       100.00        86.36        92.68           22
+2026-07-09 18:58:29,740 - [ qwen3-14b ] - INFO -                  URL Extractor       100.00        59.26        74.42           27
+2026-07-09 18:58:29,740 - [ qwen3-14b ] - INFO -                   Video Search        78.57        73.33        75.86           15
+2026-07-09 18:58:29,740 - [ qwen3-14b ] - INFO -                  Text-to-Image        89.47        85.00        87.18           20
+2026-07-09 18:58:29,741 - [ qwen3-14b ] - INFO -                  Text-to-Video        92.86        81.25        86.67           16
+2026-07-09 18:58:29,741 - [ qwen3-14b ] - INFO -                  Text-to-Audio        55.56        95.24        70.18           21
+2026-07-09 18:58:29,741 - [ qwen3-14b ] - INFO -                  Image-to-Text        96.97        94.12        95.52           34
+2026-07-09 18:58:29,741 - [ qwen3-14b ] - INFO -                  Audio-to-Text        53.33        96.00        68.57           25
+2026-07-09 18:58:29,741 - [ qwen3-14b ] - INFO -                  Video-to-Text        85.00        47.22        60.71           36
+2026-07-09 18:58:29,741 - [ qwen3-14b ] - INFO -          Audio Noise Reduction        94.44        94.44        94.44           18
+2026-07-09 18:58:29,741 - [ qwen3-14b ] - INFO -                  Audio Effects        84.00        91.30        87.50           23
+2026-07-09 18:58:29,742 - [ qwen3-14b ] - INFO -                  Audio Splicer        94.74       100.00        97.30           18
+2026-07-09 18:58:29,742 - [ qwen3-14b ] - INFO -                  Voice Changer        94.74        78.26        85.71           23
+2026-07-09 18:58:29,742 - [ qwen3-14b ] - INFO -                Text Summarizer        62.50        93.75        75.00           16
+2026-07-09 18:58:29,742 - [ qwen3-14b ] - INFO -                Text Translator        94.12        88.89        91.43           18
+2026-07-09 18:58:29,742 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis        95.45       100.00        97.67           21
+2026-07-09 18:58:29,742 - [ qwen3-14b ] - INFO -           Text Grammar Checker        93.75        78.95        85.71           19
+2026-07-09 18:58:29,743 - [ qwen3-14b ] - INFO -                Text Simplifier        86.67        81.25        83.87           16
+2026-07-09 18:58:29,743 - [ qwen3-14b ] - INFO -                  Text Expander        63.64        43.75        51.85           16
+2026-07-09 18:58:29,743 - [ qwen3-14b ] - INFO -              Keyword Extractor        50.00        58.82        54.05           17
+2026-07-09 18:58:29,743 - [ qwen3-14b ] - INFO -               Text Paraphraser        35.00        50.00        41.18           14
+2026-07-09 18:58:29,743 - [ qwen3-14b ] - INFO -                Article Spinner        81.82        36.00        50.00           25
+2026-07-09 18:58:29,743 - [ qwen3-14b ] - INFO -                Topic Generator       100.00        50.00        66.67           22
+2026-07-09 18:58:29,743 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00        96.77        98.36           31
+2026-07-09 18:58:29,744 - [ qwen3-14b ] - INFO -                 Image-to-Video        92.86       100.00        96.30           26
+2026-07-09 18:58:29,744 - [ qwen3-14b ] - INFO -                 Video-to-Audio        47.17        92.59        62.50           27
+2026-07-09 18:58:29,744 - [ qwen3-14b ] - INFO -                 Video-to-Image       100.00        90.48        95.00           21
+2026-07-09 18:58:29,744 - [ qwen3-14b ] - INFO -                 Image Stitcher        88.89       100.00        94.12           16
+2026-07-09 18:58:29,745 - [ qwen3-14b ] - INFO -                Image Colorizer       100.00        94.74        97.30           19
+2026-07-09 18:58:29,745 - [ qwen3-14b ] - INFO -           Image Style Transfer       100.00        90.00        94.74           30
+2026-07-09 18:58:29,745 - [ qwen3-14b ] - INFO -               Video Stabilizer        95.65       100.00        97.78           22
+2026-07-09 18:58:29,745 - [ qwen3-14b ] - INFO -            Video Speed Changer       100.00       100.00       100.00           25
+2026-07-09 18:58:29,745 - [ qwen3-14b ] - INFO -          Video Synchronization        84.21        86.49        85.33           37
+2026-07-09 18:58:29,745 - [ qwen3-14b ] - INFO -                Video Voiceover        80.00        92.31        85.71           26
+2026-07-09 18:58:29,746 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:29,746 - [ qwen3-14b ] - INFO -                          micro        81.14        83.70        82.40          853
+2026-07-09 18:58:29,746 - [ qwen3-14b ] - INFO -                          macro        83.43        83.88        82.01          853
+2026-07-09 18:58:29,752 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7330996494742114
+2026-07-09 18:58:29,759 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5655362053162236
+2026-07-09 18:58:29,762 - [ qwen3-14b ] - INFO - Edit Distance: 0.2308792645846216
+2026-07-09 18:58:29,771 - [ qwen3-14b ] - INFO - Link Binary F1: 0.5624012638230648
+2026-07-09 18:58:29,773 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:29,774 - [ qwen3-14b ] - INFO - Tools Number: 5, Task Split: overall
+2026-07-09 18:58:29,823 - [ qwen3-14b ] - INFO - Step Supports: 0 / 91
+2026-07-09 18:58:29,824 - [ qwen3-14b ] - INFO - Node Support: 91 / 91
+2026-07-09 18:58:29,824 - [ qwen3-14b ] - INFO - Link Support: 91 / 91
+2026-07-09 18:58:29,824 - [ qwen3-14b ] - INFO - Argument Support: 91 / 91
+2026-07-09 18:58:29,832 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.866504854368932
+2026-07-09 18:58:29,832 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.8244803695150116
+2026-07-09 18:58:29,832 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.8449704142011835
+2026-07-09 18:58:29,833 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.8879513549530962
+2026-07-09 18:58:29,833 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.8281522644022644
+2026-07-09 18:58:29,833 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.8387874664566978
+2026-07-09 18:58:29,833 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:29,833 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:29,833 - [ qwen3-14b ] - INFO -               Image Downloader       100.00        88.89        94.12            9
+2026-07-09 18:58:29,833 - [ qwen3-14b ] - INFO -               Video Downloader        85.71        75.00        80.00            8
+2026-07-09 18:58:29,833 - [ qwen3-14b ] - INFO -               Audio Downloader       100.00       100.00       100.00            3
+2026-07-09 18:58:29,833 - [ qwen3-14b ] - INFO -                Text Downloader        88.89        66.67        76.19           12
+2026-07-09 18:58:29,833 - [ qwen3-14b ] - INFO -                    Text Search        66.67        54.55        60.00           11
+2026-07-09 18:58:29,833 - [ qwen3-14b ] - INFO -                   Image Search        87.50       100.00        93.33            7
+2026-07-09 18:58:29,834 - [ qwen3-14b ] - INFO -        Image Search (by Image)       100.00       100.00       100.00           12
+2026-07-09 18:58:29,834 - [ qwen3-14b ] - INFO -                  URL Extractor       100.00        66.67        80.00           15
+2026-07-09 18:58:29,834 - [ qwen3-14b ] - INFO -                   Video Search        80.00       100.00        88.89            4
+2026-07-09 18:58:29,834 - [ qwen3-14b ] - INFO -                  Text-to-Image        81.82       100.00        90.00            9
+2026-07-09 18:58:29,834 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00        83.33        90.91            6
+2026-07-09 18:58:29,835 - [ qwen3-14b ] - INFO -                  Text-to-Audio        62.50        83.33        71.43           12
+2026-07-09 18:58:29,835 - [ qwen3-14b ] - INFO -                  Image-to-Text       100.00       100.00       100.00           19
+2026-07-09 18:58:29,835 - [ qwen3-14b ] - INFO -                  Audio-to-Text        68.75        91.67        78.57           12
+2026-07-09 18:58:29,835 - [ qwen3-14b ] - INFO -                  Video-to-Text       100.00        30.77        47.06           13
+2026-07-09 18:58:29,835 - [ qwen3-14b ] - INFO -          Audio Noise Reduction        87.50       100.00        93.33            7
+2026-07-09 18:58:29,836 - [ qwen3-14b ] - INFO -                  Audio Effects        72.73        88.89        80.00            9
+2026-07-09 18:58:29,836 - [ qwen3-14b ] - INFO -                  Audio Splicer       100.00       100.00       100.00            5
+2026-07-09 18:58:29,836 - [ qwen3-14b ] - INFO -                  Voice Changer       100.00        66.67        80.00            9
+2026-07-09 18:58:29,837 - [ qwen3-14b ] - INFO -                Text Summarizer        91.67        91.67        91.67           12
+2026-07-09 18:58:29,837 - [ qwen3-14b ] - INFO -                Text Translator       100.00        91.67        95.65           12
+2026-07-09 18:58:29,837 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis        90.91        90.91        90.91           11
+2026-07-09 18:58:29,837 - [ qwen3-14b ] - INFO -           Text Grammar Checker       100.00        70.00        82.35           10
+2026-07-09 18:58:29,837 - [ qwen3-14b ] - INFO -                Text Simplifier        76.92       100.00        86.96           10
+2026-07-09 18:58:29,837 - [ qwen3-14b ] - INFO -                  Text Expander        80.00        33.33        47.06           12
+2026-07-09 18:58:29,838 - [ qwen3-14b ] - INFO -              Keyword Extractor        66.67        71.43        68.97           14
+2026-07-09 18:58:29,838 - [ qwen3-14b ] - INFO -               Text Paraphraser        88.89        53.33        66.67           15
+2026-07-09 18:58:29,838 - [ qwen3-14b ] - INFO -                Article Spinner       100.00        37.50        54.55            8
+2026-07-09 18:58:29,838 - [ qwen3-14b ] - INFO -                Topic Generator       100.00        85.71        92.31           14
+2026-07-09 18:58:29,838 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00        90.00        94.74           10
+2026-07-09 18:58:29,838 - [ qwen3-14b ] - INFO -                 Image-to-Video        77.78        77.78        77.78            9
+2026-07-09 18:58:29,838 - [ qwen3-14b ] - INFO -                 Video-to-Audio        52.63        90.91        66.67           11
+2026-07-09 18:58:29,839 - [ qwen3-14b ] - INFO -                 Video-to-Image        94.44       100.00        97.14           17
+2026-07-09 18:58:29,839 - [ qwen3-14b ] - INFO -                 Image Stitcher        94.12       100.00        96.97           16
+2026-07-09 18:58:29,839 - [ qwen3-14b ] - INFO -                Image Colorizer       100.00        77.78        87.50            9
+2026-07-09 18:58:29,839 - [ qwen3-14b ] - INFO -           Image Style Transfer       100.00       100.00       100.00           17
+2026-07-09 18:58:29,839 - [ qwen3-14b ] - INFO -               Video Stabilizer       100.00        87.50        93.33            8
+2026-07-09 18:58:29,839 - [ qwen3-14b ] - INFO -            Video Speed Changer       100.00        88.89        94.12            9
+2026-07-09 18:58:29,839 - [ qwen3-14b ] - INFO -          Video Synchronization        70.00        77.78        73.68            9
+2026-07-09 18:58:29,839 - [ qwen3-14b ] - INFO -                Video Voiceover        85.71       100.00        92.31           18
+2026-07-09 18:58:29,840 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:29,840 - [ qwen3-14b ] - INFO -                          micro        86.65        82.45        84.50          433
+2026-07-09 18:58:29,840 - [ qwen3-14b ] - INFO -                          macro        88.80        82.82        83.88          433
+2026-07-09 18:58:29,842 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7211740041928721
+2026-07-09 18:58:29,844 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5445920303605313
+2026-07-09 18:58:29,845 - [ qwen3-14b ] - INFO - Edit Distance: 0.23517117802832121
+2026-07-09 18:58:29,846 - [ qwen3-14b ] - INFO - Link Binary F1: 0.5657492354740061
+2026-07-09 18:58:29,847 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:29,847 - [ qwen3-14b ] - INFO - Tools Number: 6, Task Split: overall
+2026-07-09 18:58:29,882 - [ qwen3-14b ] - INFO - Step Supports: 0 / 49
+2026-07-09 18:58:29,882 - [ qwen3-14b ] - INFO - Node Support: 49 / 49
+2026-07-09 18:58:29,883 - [ qwen3-14b ] - INFO - Link Support: 49 / 49
+2026-07-09 18:58:29,883 - [ qwen3-14b ] - INFO - Argument Support: 49 / 49
+2026-07-09 18:58:29,892 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.8509803921568627
+2026-07-09 18:58:29,893 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.7833935018050542
+2026-07-09 18:58:29,893 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.8157894736842105
+2026-07-09 18:58:29,893 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.8390380452880454
+2026-07-09 18:58:29,893 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.7836134351759352
+2026-07-09 18:58:29,893 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.7901945620016025
+2026-07-09 18:58:29,894 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:29,894 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:29,894 - [ qwen3-14b ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-07-09 18:58:29,895 - [ qwen3-14b ] - INFO -               Video Downloader        83.33        83.33        83.33            6
+2026-07-09 18:58:29,895 - [ qwen3-14b ] - INFO -               Audio Downloader       100.00        71.43        83.33            7
+2026-07-09 18:58:29,895 - [ qwen3-14b ] - INFO -                Text Downloader        75.00        85.71        80.00            7
+2026-07-09 18:58:29,895 - [ qwen3-14b ] - INFO -                    Text Search        66.67        44.44        53.33            9
+2026-07-09 18:58:29,895 - [ qwen3-14b ] - INFO -                   Image Search        85.71       100.00        92.31            6
+2026-07-09 18:58:29,895 - [ qwen3-14b ] - INFO -        Image Search (by Image)       100.00        33.33        50.00            3
+2026-07-09 18:58:29,895 - [ qwen3-14b ] - INFO -                  URL Extractor       100.00        75.00        85.71           12
+2026-07-09 18:58:29,895 - [ qwen3-14b ] - INFO -                   Video Search        87.50        87.50        87.50            8
+2026-07-09 18:58:29,896 - [ qwen3-14b ] - INFO -                  Text-to-Image       100.00       100.00       100.00            6
+2026-07-09 18:58:29,896 - [ qwen3-14b ] - INFO -                  Text-to-Video        85.71       100.00        92.31            6
+2026-07-09 18:58:29,896 - [ qwen3-14b ] - INFO -                  Text-to-Audio        33.33       100.00        50.00            2
+2026-07-09 18:58:29,896 - [ qwen3-14b ] - INFO -                  Image-to-Text       100.00       100.00       100.00           10
+2026-07-09 18:58:29,896 - [ qwen3-14b ] - INFO -                  Audio-to-Text        78.57        91.67        84.62           12
+2026-07-09 18:58:29,896 - [ qwen3-14b ] - INFO -                  Video-to-Text        90.00        75.00        81.82           12
+2026-07-09 18:58:29,896 - [ qwen3-14b ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-07-09 18:58:29,897 - [ qwen3-14b ] - INFO -                  Audio Effects        83.33        83.33        83.33            6
+2026-07-09 18:58:29,897 - [ qwen3-14b ] - INFO -                  Audio Splicer        80.00        80.00        80.00            5
+2026-07-09 18:58:29,898 - [ qwen3-14b ] - INFO -                  Voice Changer       100.00        85.71        92.31            7
+2026-07-09 18:58:29,898 - [ qwen3-14b ] - INFO -                Text Summarizer        72.73        88.89        80.00            9
+2026-07-09 18:58:29,898 - [ qwen3-14b ] - INFO -                Text Translator        75.00       100.00        85.71            3
+2026-07-09 18:58:29,898 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis        75.00        50.00        60.00            6
+2026-07-09 18:58:29,898 - [ qwen3-14b ] - INFO -           Text Grammar Checker       100.00        76.92        86.96           13
+2026-07-09 18:58:29,898 - [ qwen3-14b ] - INFO -                Text Simplifier       100.00        63.64        77.78           11
+2026-07-09 18:58:29,898 - [ qwen3-14b ] - INFO -                  Text Expander        87.50        63.64        73.68           11
+2026-07-09 18:58:29,898 - [ qwen3-14b ] - INFO -              Keyword Extractor        84.62        68.75        75.86           16
+2026-07-09 18:58:29,899 - [ qwen3-14b ] - INFO -               Text Paraphraser        71.43        62.50        66.67            8
+2026-07-09 18:58:29,899 - [ qwen3-14b ] - INFO -                Article Spinner        66.67        33.33        44.44            6
+2026-07-09 18:58:29,899 - [ qwen3-14b ] - INFO -                Topic Generator        80.00        40.00        53.33           10
+2026-07-09 18:58:29,899 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            8
+2026-07-09 18:58:29,899 - [ qwen3-14b ] - INFO -                 Image-to-Video       100.00       100.00       100.00            4
+2026-07-09 18:58:29,900 - [ qwen3-14b ] - INFO -                 Video-to-Audio        44.44        80.00        57.14            5
+2026-07-09 18:58:29,900 - [ qwen3-14b ] - INFO -                 Video-to-Image       100.00       100.00       100.00            6
+2026-07-09 18:58:29,900 - [ qwen3-14b ] - INFO -                 Image Stitcher        75.00       100.00        85.71            3
+2026-07-09 18:58:29,900 - [ qwen3-14b ] - INFO -                Image Colorizer       100.00        50.00        66.67            2
+2026-07-09 18:58:29,900 - [ qwen3-14b ] - INFO -           Image Style Transfer       100.00       100.00       100.00            2
+2026-07-09 18:58:29,901 - [ qwen3-14b ] - INFO -               Video Stabilizer       100.00        85.71        92.31            7
+2026-07-09 18:58:29,901 - [ qwen3-14b ] - INFO -            Video Speed Changer        85.71        85.71        85.71            7
+2026-07-09 18:58:29,901 - [ qwen3-14b ] - INFO -          Video Synchronization       100.00       100.00       100.00            6
+2026-07-09 18:58:29,901 - [ qwen3-14b ] - INFO -                Video Voiceover        88.89        88.89        88.89            9
+2026-07-09 18:58:29,901 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:29,901 - [ qwen3-14b ] - INFO -                          micro        85.10        78.34        81.58          277
+2026-07-09 18:58:29,902 - [ qwen3-14b ] - INFO -                          macro        83.90        78.36        79.02          277
+2026-07-09 18:58:29,906 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7214765100671141
+2026-07-09 18:58:29,909 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5207667731629393
+2026-07-09 18:58:29,910 - [ qwen3-14b ] - INFO - Edit Distance: 0.26257733196508704
+2026-07-09 18:58:29,912 - [ qwen3-14b ] - INFO - Link Binary F1: 0.5071090047393365
+2026-07-09 18:58:29,913 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:29,914 - [ qwen3-14b ] - INFO - Tools Number: 7, Task Split: overall
+2026-07-09 18:58:29,943 - [ qwen3-14b ] - INFO - Step Supports: 0 / 24
+2026-07-09 18:58:29,943 - [ qwen3-14b ] - INFO - Node Support: 24 / 24
+2026-07-09 18:58:29,944 - [ qwen3-14b ] - INFO - Link Support: 24 / 24
+2026-07-09 18:58:29,944 - [ qwen3-14b ] - INFO - Argument Support: 24 / 24
+2026-07-09 18:58:29,948 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.8354430379746836
+2026-07-09 18:58:29,948 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.8198757763975155
+2026-07-09 18:58:29,948 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.8275862068965517
+2026-07-09 18:58:29,949 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.8646825396825397
+2026-07-09 18:58:29,949 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.8370833333333334
+2026-07-09 18:58:29,949 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.8166823574975748
+2026-07-09 18:58:29,949 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:29,949 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:29,949 - [ qwen3-14b ] - INFO -               Image Downloader       100.00       100.00       100.00            5
+2026-07-09 18:58:29,949 - [ qwen3-14b ] - INFO -               Video Downloader       100.00       100.00       100.00            3
+2026-07-09 18:58:29,949 - [ qwen3-14b ] - INFO -               Audio Downloader       100.00       100.00       100.00            3
+2026-07-09 18:58:29,949 - [ qwen3-14b ] - INFO -                Text Downloader       100.00       100.00       100.00            1
+2026-07-09 18:58:29,949 - [ qwen3-14b ] - INFO -                    Text Search        60.00        75.00        66.67            4
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -                   Image Search       100.00        50.00        66.67            2
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -        Image Search (by Image)        50.00       100.00        66.67            1
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -                  URL Extractor       100.00       100.00       100.00            6
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -                   Video Search       100.00        83.33        90.91            6
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -                  Text-to-Image        40.00       100.00        57.14            2
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00        50.00        66.67            2
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -                  Text-to-Audio        50.00       100.00        66.67            1
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -                  Image-to-Text        91.67       100.00        95.65           11
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -                  Audio-to-Text        57.14       100.00        72.73            4
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -                  Video-to-Text       100.00        16.67        28.57            6
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            3
+2026-07-09 18:58:29,950 - [ qwen3-14b ] - INFO -                  Audio Effects       100.00       100.00       100.00            3
+2026-07-09 18:58:29,951 - [ qwen3-14b ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-07-09 18:58:29,951 - [ qwen3-14b ] - INFO -                  Voice Changer       100.00       100.00       100.00            1
+2026-07-09 18:58:29,951 - [ qwen3-14b ] - INFO -                Text Summarizer        50.00        50.00        50.00            2
+2026-07-09 18:58:29,951 - [ qwen3-14b ] - INFO -                Text Translator        85.71       100.00        92.31            6
+2026-07-09 18:58:29,951 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            6
+2026-07-09 18:58:29,951 - [ qwen3-14b ] - INFO -           Text Grammar Checker       100.00        83.33        90.91            6
+2026-07-09 18:58:29,951 - [ qwen3-14b ] - INFO -                Text Simplifier        83.33       100.00        90.91            5
+2026-07-09 18:58:29,951 - [ qwen3-14b ] - INFO -                  Text Expander       100.00        50.00        66.67            2
+2026-07-09 18:58:29,951 - [ qwen3-14b ] - INFO -              Keyword Extractor        66.67        57.14        61.54            7
+2026-07-09 18:58:29,951 - [ qwen3-14b ] - INFO -               Text Paraphraser        66.67        33.33        44.44            6
+2026-07-09 18:58:29,952 - [ qwen3-14b ] - INFO -                Article Spinner       100.00        42.86        60.00            7
+2026-07-09 18:58:29,952 - [ qwen3-14b ] - INFO -                Topic Generator       100.00        60.00        75.00            5
+2026-07-09 18:58:29,952 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            5
+2026-07-09 18:58:29,952 - [ qwen3-14b ] - INFO -                 Image-to-Video        66.67        50.00        57.14            4
+2026-07-09 18:58:29,952 - [ qwen3-14b ] - INFO -                 Video-to-Audio        44.44       100.00        61.54            4
+2026-07-09 18:58:29,952 - [ qwen3-14b ] - INFO -                 Video-to-Image       100.00       100.00       100.00            3
+2026-07-09 18:58:29,952 - [ qwen3-14b ] - INFO -                 Image Stitcher        71.43       100.00        83.33            5
+2026-07-09 18:58:29,953 - [ qwen3-14b ] - INFO -                Image Colorizer       100.00       100.00       100.00            1
+2026-07-09 18:58:29,953 - [ qwen3-14b ] - INFO -           Image Style Transfer       100.00       100.00       100.00            5
+2026-07-09 18:58:29,953 - [ qwen3-14b ] - INFO -               Video Stabilizer       100.00        80.00        88.89            5
+2026-07-09 18:58:29,954 - [ qwen3-14b ] - INFO -            Video Speed Changer       100.00       100.00       100.00            6
+2026-07-09 18:58:29,954 - [ qwen3-14b ] - INFO -          Video Synchronization       100.00        66.67        80.00            3
+2026-07-09 18:58:29,954 - [ qwen3-14b ] - INFO -                Video Voiceover        75.00       100.00        85.71            3
+2026-07-09 18:58:29,954 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:29,954 - [ qwen3-14b ] - INFO -                          micro        83.54        81.99        82.76          161
+2026-07-09 18:58:29,954 - [ qwen3-14b ] - INFO -                          macro        86.47        83.71        81.67          161
+2026-07-09 18:58:29,956 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7325581395348837
+2026-07-09 18:58:29,957 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5187165775401069
+2026-07-09 18:58:29,958 - [ qwen3-14b ] - INFO - Edit Distance: 0.20639776889776884
+2026-07-09 18:58:29,959 - [ qwen3-14b ] - INFO - Link Binary F1: 0.5098039215686274
+2026-07-09 18:58:29,959 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:29,959 - [ qwen3-14b ] - INFO - Tools Number: 8, Task Split: overall
+2026-07-09 18:58:30,057 - [ qwen3-14b ] - INFO - Step Supports: 0 / 9
+2026-07-09 18:58:30,057 - [ qwen3-14b ] - INFO - Node Support: 9 / 9
+2026-07-09 18:58:30,057 - [ qwen3-14b ] - INFO - Link Support: 9 / 9
+2026-07-09 18:58:30,059 - [ qwen3-14b ] - INFO - Argument Support: 9 / 9
+2026-07-09 18:58:30,067 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.7454545454545455
+2026-07-09 18:58:30,068 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.6119402985074627
+2026-07-09 18:58:30,068 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.6721311475409836
+2026-07-09 18:58:30,068 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.5979166666666667
+2026-07-09 18:58:30,069 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.50625
+2026-07-09 18:58:30,069 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.5205952380952381
+2026-07-09 18:58:30,069 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 18:58:30,069 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 18:58:30,069 - [ qwen3-14b ] - INFO -               Image Downloader       100.00        50.00        66.67            2
+2026-07-09 18:58:30,071 - [ qwen3-14b ] - INFO -               Video Downloader        50.00       100.00        66.67            1
+2026-07-09 18:58:30,071 - [ qwen3-14b ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-07-09 18:58:30,072 - [ qwen3-14b ] - INFO -                Text Downloader       100.00       100.00       100.00            3
+2026-07-09 18:58:30,072 - [ qwen3-14b ] - INFO -                    Text Search       100.00        50.00        66.67            2
+2026-07-09 18:58:30,072 - [ qwen3-14b ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-07-09 18:58:30,073 - [ qwen3-14b ] - INFO -        Image Search (by Image)       100.00        33.33        50.00            3
+2026-07-09 18:58:30,073 - [ qwen3-14b ] - INFO -                  URL Extractor       100.00        66.67        80.00            3
+2026-07-09 18:58:30,073 - [ qwen3-14b ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-07-09 18:58:30,074 - [ qwen3-14b ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-07-09 18:58:30,074 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00       100.00       100.00            1
+2026-07-09 18:58:30,074 - [ qwen3-14b ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            1
+2026-07-09 18:58:30,075 - [ qwen3-14b ] - INFO -                  Image-to-Text       100.00        50.00        66.67            4
+2026-07-09 18:58:30,075 - [ qwen3-14b ] - INFO -                  Audio-to-Text        33.33        33.33        33.33            3
+2026-07-09 18:58:30,075 - [ qwen3-14b ] - INFO -                  Video-to-Text       100.00        25.00        40.00            4
+2026-07-09 18:58:30,076 - [ qwen3-14b ] - INFO -          Audio Noise Reduction       100.00        33.33        50.00            3
+2026-07-09 18:58:30,076 - [ qwen3-14b ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-07-09 18:58:30,076 - [ qwen3-14b ] - INFO -                  Audio Splicer         0.00         0.00         0.00            1
+2026-07-09 18:58:30,077 - [ qwen3-14b ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-07-09 18:58:30,077 - [ qwen3-14b ] - INFO -                Text Summarizer        50.00       100.00        66.67            2
+2026-07-09 18:58:30,077 - [ qwen3-14b ] - INFO -                Text Translator       100.00       100.00       100.00            4
+2026-07-09 18:58:30,077 - [ qwen3-14b ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            2
+2026-07-09 18:58:30,078 - [ qwen3-14b ] - INFO -           Text Grammar Checker       100.00        66.67        80.00            3
+2026-07-09 18:58:30,078 - [ qwen3-14b ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-07-09 18:58:30,078 - [ qwen3-14b ] - INFO -                  Text Expander       100.00        50.00        66.67            2
+2026-07-09 18:58:30,078 - [ qwen3-14b ] - INFO -              Keyword Extractor        66.67       100.00        80.00            2
+2026-07-09 18:58:30,079 - [ qwen3-14b ] - INFO -               Text Paraphraser       100.00        50.00        66.67            2
+2026-07-09 18:58:30,079 - [ qwen3-14b ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-07-09 18:58:30,079 - [ qwen3-14b ] - INFO -                Topic Generator         0.00         0.00         0.00            1
+2026-07-09 18:58:30,079 - [ qwen3-14b ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-07-09 18:58:30,079 - [ qwen3-14b ] - INFO -                 Image-to-Video         0.00         0.00         0.00            1
+2026-07-09 18:58:30,080 - [ qwen3-14b ] - INFO -                 Video-to-Audio         0.00         0.00         0.00            2
+2026-07-09 18:58:30,080 - [ qwen3-14b ] - INFO -                 Video-to-Image        66.67        66.67        66.67            3
+2026-07-09 18:58:30,080 - [ qwen3-14b ] - INFO -                 Image Stitcher        75.00       100.00        85.71            3
+2026-07-09 18:58:30,080 - [ qwen3-14b ] - INFO -                Image Colorizer         0.00         0.00         0.00            1
+2026-07-09 18:58:30,081 - [ qwen3-14b ] - INFO -           Image Style Transfer       100.00       100.00       100.00            1
+2026-07-09 18:58:30,081 - [ qwen3-14b ] - INFO -               Video Stabilizer       100.00       100.00       100.00            1
+2026-07-09 18:58:30,081 - [ qwen3-14b ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-07-09 18:58:30,081 - [ qwen3-14b ] - INFO -          Video Synchronization        50.00        50.00        50.00            2
+2026-07-09 18:58:30,081 - [ qwen3-14b ] - INFO -                Video Voiceover       100.00       100.00       100.00            1
+2026-07-09 18:58:30,082 - [ qwen3-14b ] - INFO - 
+2026-07-09 18:58:30,082 - [ qwen3-14b ] - INFO -                          micro        74.55        61.19        67.21           67
+2026-07-09 18:58:30,082 - [ qwen3-14b ] - INFO -                          macro        59.79        50.62        52.06           67
+2026-07-09 18:58:30,085 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6461538461538462
+2026-07-09 18:58:30,090 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4520547945205479
+2026-07-09 18:58:30,091 - [ qwen3-14b ] - INFO - Edit Distance: 0.4165287327052032
+2026-07-09 18:58:30,095 - [ qwen3-14b ] - INFO - Link Binary F1: 0.4
+2026-07-09 18:58:30,096 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:30,096 - [ qwen3-14b ] - INFO - Tools Number: 9, Task Split: overall
+2026-07-09 18:58:30,140 - [ qwen3-14b ] - INFO - Step Supports: 0 / 0
+2026-07-09 18:58:30,141 - [ qwen3-14b ] - INFO - Node Support: 0 / 0
+2026-07-09 18:58:30,141 - [ qwen3-14b ] - INFO - Link Support: 0 / 0
+2026-07-09 18:58:30,141 - [ qwen3-14b ] - INFO - Argument Support: 0 / 0
+2026-07-09 18:58:30,142 - [ qwen3-14b ] - INFO - No supports, skip
+2026-07-09 18:58:30,142 - [ qwen3-14b ] - INFO - ---------------
+2026-07-09 18:58:30,142 - [ qwen3-14b ] - INFO - Tools Number: 10, Task Split: overall
+2026-07-09 18:58:30,161 - [ qwen3-14b ] - INFO - Step Supports: 0 / 0
+2026-07-09 18:58:30,161 - [ qwen3-14b ] - INFO - Node Support: 0 / 0
+2026-07-09 18:58:30,162 - [ qwen3-14b ] - INFO - Link Support: 0 / 0
+2026-07-09 18:58:30,162 - [ qwen3-14b ] - INFO - Argument Support: 0 / 0
+2026-07-09 18:58:30,162 - [ qwen3-14b ] - INFO - No supports, skip

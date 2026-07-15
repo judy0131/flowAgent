@@ -1,0 +1,956 @@
+{
+  "evaluation_scope": "common-with-prediction",
+  "evaluation_engine": "taskbench.evaluate",
+  "metric_reader": "print_evaluate_metrics_table.extract_metric_row",
+  "original_metric_source": "existing",
+  "taskbench_dependency_type": "temporal",
+  "taskbench_data_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis",
+  "taskbench_prediction_dir": "replan_reformat_by_self/data_dailylifeapis_gemini-3.1-flash-lite_intent_audited_replan_edge_repair_metrics_eval_inputs",
+  "taskbench_metric_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\replan_reformat_by_self\\data_dailylifeapis_gemini-3.1-flash-lite_intent_audited_replan_edge_repair_metrics_eval_metrics",
+  "taskbench_stage_prediction_files": {
+    "original": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\predictions_reformat_by_self\\gemini-3.1-flash-lite.json",
+    "intent_replan": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\replan_reformat_by_self\\data_dailylifeapis_gemini-3.1-flash-lite_intent_audited_replan_edge_repair_metrics_eval_inputs\\intent_replan.json",
+    "edge_repaired": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\replan_reformat_by_self\\data_dailylifeapis_gemini-3.1-flash-lite_intent_audited_replan_edge_repair_metrics_eval_inputs\\edge_repaired.json"
+  },
+  "taskbench_stage_metric_files": {
+    "intent_replan": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\replan_reformat_by_self\\data_dailylifeapis_gemini-3.1-flash-lite_intent_audited_replan_edge_repair_metrics_eval_metrics\\intent_replan.json",
+    "edge_repaired": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\replan_reformat_by_self\\data_dailylifeapis_gemini-3.1-flash-lite_intent_audited_replan_edge_repair_metrics_eval_metrics\\edge_repaired.json",
+    "original": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\metrics_reformat_by_self\\gemini-3.1-flash-lite.json"
+  },
+  "original": {
+    "engine": "taskbench.evaluate",
+    "metric_reader": "print_evaluate_metrics_table.extract_metric_row",
+    "prediction_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\predictions_reformat_by_self\\gemini-3.1-flash-lite.json",
+    "metric_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\metrics_reformat_by_self\\gemini-3.1-flash-lite.json",
+    "input_rows": 864,
+    "prediction_ids": 864,
+    "common_ids": 864,
+    "support": 864,
+    "node_micro_precision": 0.9530201342281879,
+    "node_micro_recall": 0.956039603960396,
+    "node_micro_f1": 0.9545274812178727,
+    "edge_micro_f1": 0.7506024096385542,
+    "ned": 0.12388836729114505,
+    "print_evaluate_metrics_table_row": {
+      "file": "gemini-3.1-flash-lite",
+      "n_f1": 0.9545274812178727,
+      "e_f1": 0.7506024096385542,
+      "ned": 0.12388836729114505
+    },
+    "taskbench_metric": {
+      "all_samples": 864,
+      "step_supports": 0,
+      "node_supports": 864,
+      "link_supports": 864,
+      "argument_supports": 864,
+      "node_micro_precision_no_matching": 0.9530201342281879,
+      "node_micro_recall_no_matching": 0.956039603960396,
+      "node_micro_f1_no_matching": 0.9545274812178727,
+      "node_macro_precision_no_matching": 0.9531981612955616,
+      "node_macro_recall_no_matching": 0.9559448236820115,
+      "node_macro_f1_no_matching": 0.9534259939670111,
+      "node_per_type_no_matchcing": {
+        "get_weather": {
+          "precision": 0.95,
+          "recall": 1.0,
+          "f1-score": 0.9743589743589743,
+          "support": 57
+        },
+        "get_news_for_topic": {
+          "precision": 0.9636363636363636,
+          "recall": 1.0,
+          "f1-score": 0.9814814814814815,
+          "support": 53
+        },
+        "stock_operation": {
+          "precision": 0.9852941176470589,
+          "recall": 0.9571428571428572,
+          "f1-score": 0.9710144927536232,
+          "support": 70
+        },
+        "book_flight": {
+          "precision": 1.0,
+          "recall": 0.9710144927536232,
+          "f1-score": 0.9852941176470589,
+          "support": 69
+        },
+        "book_hotel": {
+          "precision": 0.9743589743589743,
+          "recall": 0.987012987012987,
+          "f1-score": 0.9806451612903225,
+          "support": 77
+        },
+        "book_restaurant": {
+          "precision": 0.9811320754716981,
+          "recall": 1.0,
+          "f1-score": 0.9904761904761905,
+          "support": 52
+        },
+        "book_car": {
+          "precision": 0.9552238805970149,
+          "recall": 0.9696969696969697,
+          "f1-score": 0.9624060150375939,
+          "support": 66
+        },
+        "online_shopping": {
+          "precision": 0.9166666666666666,
+          "recall": 1.0,
+          "f1-score": 0.9565217391304348,
+          "support": 66
+        },
+        "send_email": {
+          "precision": 0.9852941176470589,
+          "recall": 1.0,
+          "f1-score": 0.9925925925925926,
+          "support": 67
+        },
+        "send_sms": {
+          "precision": 0.9696969696969697,
+          "recall": 0.9846153846153847,
+          "f1-score": 0.9770992366412213,
+          "support": 65
+        },
+        "share_by_social_network": {
+          "precision": 0.9852941176470589,
+          "recall": 1.0,
+          "f1-score": 0.9925925925925926,
+          "support": 67
+        },
+        "search_by_engine": {
+          "precision": 0.9423076923076923,
+          "recall": 0.8166666666666667,
+          "f1-score": 0.875,
+          "support": 60
+        },
+        "apply_for_job": {
+          "precision": 1.0,
+          "recall": 0.8823529411764706,
+          "f1-score": 0.9375,
+          "support": 68
+        },
+        "see_doctor_online": {
+          "precision": 0.9193548387096774,
+          "recall": 0.9827586206896551,
+          "f1-score": 0.95,
+          "support": 58
+        },
+        "consult_lawyer_online": {
+          "precision": 0.9821428571428571,
+          "recall": 1.0,
+          "f1-score": 0.990990990990991,
+          "support": 55
+        },
+        "enroll_in_course": {
+          "precision": 0.9733333333333334,
+          "recall": 0.948051948051948,
+          "f1-score": 0.9605263157894737,
+          "support": 77
+        },
+        "buy_insurance": {
+          "precision": 0.9672131147540983,
+          "recall": 0.9833333333333333,
+          "f1-score": 0.9752066115702479,
+          "support": 60
+        },
+        "online_banking": {
+          "precision": 0.9019607843137255,
+          "recall": 0.9387755102040817,
+          "f1-score": 0.92,
+          "support": 49
+        },
+        "daily_bill_payment": {
+          "precision": 0.8666666666666667,
+          "recall": 1.0,
+          "f1-score": 0.9285714285714286,
+          "support": 52
+        },
+        "sell_item_online": {
+          "precision": 0.9649122807017544,
+          "recall": 0.9821428571428571,
+          "f1-score": 0.9734513274336283,
+          "support": 56
+        },
+        "do_tax_return": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 49
+        },
+        "apply_for_passport": {
+          "precision": 0.967741935483871,
+          "recall": 0.9375,
+          "f1-score": 0.9523809523809523,
+          "support": 64
+        },
+        "pay_for_credit_card": {
+          "precision": 0.8461538461538461,
+          "recall": 0.9322033898305084,
+          "f1-score": 0.8870967741935484,
+          "support": 59
+        },
+        "auto_housework_by_robot": {
+          "precision": 0.9571428571428572,
+          "recall": 0.9852941176470589,
+          "f1-score": 0.9710144927536232,
+          "support": 68
+        },
+        "auto_driving_to_destination": {
+          "precision": 0.9615384615384616,
+          "recall": 0.8928571428571429,
+          "f1-score": 0.9259259259259259,
+          "support": 56
+        },
+        "deliver_package": {
+          "precision": 0.9333333333333333,
+          "recall": 0.8615384615384616,
+          "f1-score": 0.896,
+          "support": 65
+        },
+        "order_food_delivery": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 69
+        },
+        "order_taxi": {
+          "precision": 0.9577464788732394,
+          "recall": 0.9855072463768116,
+          "f1-score": 0.9714285714285714,
+          "support": 69
+        },
+        "play_music_by_title": {
+          "precision": 0.9710144927536232,
+          "recall": 0.9852941176470589,
+          "f1-score": 0.9781021897810219,
+          "support": 68
+        },
+        "play_movie_by_title": {
+          "precision": 0.9324324324324325,
+          "recall": 0.9857142857142858,
+          "f1-score": 0.9583333333333334,
+          "support": 70
+        },
+        "take_note": {
+          "precision": 0.896551724137931,
+          "recall": 0.8125,
+          "f1-score": 0.8524590163934426,
+          "support": 64
+        },
+        "borrow_book_online": {
+          "precision": 0.9710144927536232,
+          "recall": 1.0,
+          "f1-score": 0.9852941176470589,
+          "support": 67
+        },
+        "recording_audio": {
+          "precision": 0.9347826086956522,
+          "recall": 0.9347826086956522,
+          "f1-score": 0.9347826086956522,
+          "support": 46
+        },
+        "make_video_call": {
+          "precision": 0.9705882352941176,
+          "recall": 0.9705882352941176,
+          "f1-score": 0.9705882352941176,
+          "support": 68
+        },
+        "make_voice_call": {
+          "precision": 0.9807692307692307,
+          "recall": 0.9107142857142857,
+          "f1-score": 0.9444444444444444,
+          "support": 56
+        },
+        "organize_meeting_online": {
+          "precision": 0.8860759493670886,
+          "recall": 0.958904109589041,
+          "f1-score": 0.9210526315789473,
+          "support": 73
+        },
+        "attend_meeting_online": {
+          "precision": 0.96,
+          "recall": 0.7384615384615385,
+          "f1-score": 0.8347826086956521,
+          "support": 65
+        },
+        "software_management": {
+          "precision": 0.948051948051948,
+          "recall": 0.9864864864864865,
+          "f1-score": 0.9668874172185431,
+          "support": 74
+        },
+        "print_document": {
+          "precision": 0.9420289855072463,
+          "recall": 0.9558823529411765,
+          "f1-score": 0.948905109489051,
+          "support": 68
+        },
+        "set_alarm": {
+          "precision": 0.9264705882352942,
+          "recall": 1.0,
+          "f1-score": 0.9618320610687023,
+          "support": 63
+        }
+      },
+      "argument_task_argname_binary_f1_no_matching": 0.9142239308024988,
+      "argument_task_argname_value_binary_f1_no_matching": 0.6031441257650306,
+      "edit_distance": 0.12388836729114505,
+      "link_binary_f1": 0.7506024096385542
+    }
+  },
+  "intent_replan": {
+    "engine": "taskbench.evaluate",
+    "metric_reader": "print_evaluate_metrics_table.extract_metric_row",
+    "prediction_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\replan_reformat_by_self\\data_dailylifeapis_gemini-3.1-flash-lite_intent_audited_replan_edge_repair_metrics_eval_inputs\\intent_replan.json",
+    "metric_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\replan_reformat_by_self\\data_dailylifeapis_gemini-3.1-flash-lite_intent_audited_replan_edge_repair_metrics_eval_metrics\\intent_replan.json",
+    "input_rows": 864,
+    "prediction_ids": 864,
+    "common_ids": 864,
+    "support": 864,
+    "node_micro_precision": 0.9473067915690867,
+    "node_micro_recall": 0.9611881188118812,
+    "node_micro_f1": 0.9541969726754472,
+    "edge_micro_f1": 0.7398325358851675,
+    "ned": 0.12425295897518174,
+    "print_evaluate_metrics_table_row": {
+      "file": "intent_replan",
+      "n_f1": 0.9541969726754472,
+      "e_f1": 0.7398325358851675,
+      "ned": 0.12425295897518174
+    },
+    "taskbench_metric": {
+      "all_samples": 864,
+      "step_supports": 0,
+      "node_supports": 864,
+      "link_supports": 864,
+      "argument_supports": 864,
+      "node_micro_precision_no_matching": 0.9473067915690867,
+      "node_micro_recall_no_matching": 0.9611881188118812,
+      "node_micro_f1_no_matching": 0.9541969726754472,
+      "node_macro_precision_no_matching": 0.9490669319396435,
+      "node_macro_recall_no_matching": 0.9612243699273042,
+      "node_macro_f1_no_matching": 0.953673994318051,
+      "node_per_type_no_matchcing": {
+        "get_weather": {
+          "precision": 0.95,
+          "recall": 1.0,
+          "f1-score": 0.9743589743589743,
+          "support": 57
+        },
+        "get_news_for_topic": {
+          "precision": 0.9629629629629629,
+          "recall": 0.9811320754716981,
+          "f1-score": 0.9719626168224299,
+          "support": 53
+        },
+        "stock_operation": {
+          "precision": 0.9852941176470589,
+          "recall": 0.9571428571428572,
+          "f1-score": 0.9710144927536232,
+          "support": 70
+        },
+        "book_flight": {
+          "precision": 1.0,
+          "recall": 0.9710144927536232,
+          "f1-score": 0.9852941176470589,
+          "support": 69
+        },
+        "book_hotel": {
+          "precision": 0.9743589743589743,
+          "recall": 0.987012987012987,
+          "f1-score": 0.9806451612903225,
+          "support": 77
+        },
+        "book_restaurant": {
+          "precision": 0.9811320754716981,
+          "recall": 1.0,
+          "f1-score": 0.9904761904761905,
+          "support": 52
+        },
+        "book_car": {
+          "precision": 0.9701492537313433,
+          "recall": 0.9848484848484849,
+          "f1-score": 0.9774436090225563,
+          "support": 66
+        },
+        "online_shopping": {
+          "precision": 0.9565217391304348,
+          "recall": 1.0,
+          "f1-score": 0.9777777777777777,
+          "support": 66
+        },
+        "send_email": {
+          "precision": 0.9850746268656716,
+          "recall": 0.9850746268656716,
+          "f1-score": 0.9850746268656716,
+          "support": 67
+        },
+        "send_sms": {
+          "precision": 0.9846153846153847,
+          "recall": 0.9846153846153847,
+          "f1-score": 0.9846153846153847,
+          "support": 65
+        },
+        "share_by_social_network": {
+          "precision": 0.9852941176470589,
+          "recall": 1.0,
+          "f1-score": 0.9925925925925926,
+          "support": 67
+        },
+        "search_by_engine": {
+          "precision": 0.8928571428571429,
+          "recall": 0.8333333333333334,
+          "f1-score": 0.8620689655172413,
+          "support": 60
+        },
+        "apply_for_job": {
+          "precision": 1.0,
+          "recall": 0.8823529411764706,
+          "f1-score": 0.9375,
+          "support": 68
+        },
+        "see_doctor_online": {
+          "precision": 0.9206349206349206,
+          "recall": 1.0,
+          "f1-score": 0.9586776859504132,
+          "support": 58
+        },
+        "consult_lawyer_online": {
+          "precision": 0.9821428571428571,
+          "recall": 1.0,
+          "f1-score": 0.990990990990991,
+          "support": 55
+        },
+        "enroll_in_course": {
+          "precision": 0.9864864864864865,
+          "recall": 0.948051948051948,
+          "f1-score": 0.9668874172185431,
+          "support": 77
+        },
+        "buy_insurance": {
+          "precision": 0.9666666666666667,
+          "recall": 0.9666666666666667,
+          "f1-score": 0.9666666666666667,
+          "support": 60
+        },
+        "online_banking": {
+          "precision": 0.9215686274509803,
+          "recall": 0.9591836734693877,
+          "f1-score": 0.94,
+          "support": 49
+        },
+        "daily_bill_payment": {
+          "precision": 0.6753246753246753,
+          "recall": 1.0,
+          "f1-score": 0.8062015503875969,
+          "support": 52
+        },
+        "sell_item_online": {
+          "precision": 0.9655172413793104,
+          "recall": 1.0,
+          "f1-score": 0.9824561403508771,
+          "support": 56
+        },
+        "do_tax_return": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 49
+        },
+        "apply_for_passport": {
+          "precision": 0.967741935483871,
+          "recall": 0.9375,
+          "f1-score": 0.9523809523809523,
+          "support": 64
+        },
+        "pay_for_credit_card": {
+          "precision": 0.9,
+          "recall": 0.9152542372881356,
+          "f1-score": 0.907563025210084,
+          "support": 59
+        },
+        "auto_housework_by_robot": {
+          "precision": 0.9571428571428572,
+          "recall": 0.9852941176470589,
+          "f1-score": 0.9710144927536232,
+          "support": 68
+        },
+        "auto_driving_to_destination": {
+          "precision": 0.9629629629629629,
+          "recall": 0.9285714285714286,
+          "f1-score": 0.9454545454545454,
+          "support": 56
+        },
+        "deliver_package": {
+          "precision": 0.9375,
+          "recall": 0.9230769230769231,
+          "f1-score": 0.9302325581395349,
+          "support": 65
+        },
+        "order_food_delivery": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 69
+        },
+        "order_taxi": {
+          "precision": 0.9577464788732394,
+          "recall": 0.9855072463768116,
+          "f1-score": 0.9714285714285714,
+          "support": 69
+        },
+        "play_music_by_title": {
+          "precision": 0.9710144927536232,
+          "recall": 0.9852941176470589,
+          "f1-score": 0.9781021897810219,
+          "support": 68
+        },
+        "play_movie_by_title": {
+          "precision": 0.9324324324324325,
+          "recall": 0.9857142857142858,
+          "f1-score": 0.9583333333333334,
+          "support": 70
+        },
+        "take_note": {
+          "precision": 0.8833333333333333,
+          "recall": 0.828125,
+          "f1-score": 0.8548387096774194,
+          "support": 64
+        },
+        "borrow_book_online": {
+          "precision": 0.9710144927536232,
+          "recall": 1.0,
+          "f1-score": 0.9852941176470589,
+          "support": 67
+        },
+        "recording_audio": {
+          "precision": 0.9347826086956522,
+          "recall": 0.9347826086956522,
+          "f1-score": 0.9347826086956522,
+          "support": 46
+        },
+        "make_video_call": {
+          "precision": 0.9558823529411765,
+          "recall": 0.9558823529411765,
+          "f1-score": 0.9558823529411765,
+          "support": 68
+        },
+        "make_voice_call": {
+          "precision": 0.9811320754716981,
+          "recall": 0.9285714285714286,
+          "f1-score": 0.9541284403669725,
+          "support": 56
+        },
+        "organize_meeting_online": {
+          "precision": 0.8875,
+          "recall": 0.9726027397260274,
+          "f1-score": 0.9281045751633987,
+          "support": 73
+        },
+        "attend_meeting_online": {
+          "precision": 0.9629629629629629,
+          "recall": 0.8,
+          "f1-score": 0.8739495798319328,
+          "support": 65
+        },
+        "software_management": {
+          "precision": 0.9358974358974359,
+          "recall": 0.9864864864864865,
+          "f1-score": 0.9605263157894737,
+          "support": 74
+        },
+        "print_document": {
+          "precision": 0.9420289855072463,
+          "recall": 0.9558823529411765,
+          "f1-score": 0.948905109489051,
+          "support": 68
+        },
+        "set_alarm": {
+          "precision": 0.875,
+          "recall": 1.0,
+          "f1-score": 0.9333333333333333,
+          "support": 63
+        }
+      },
+      "argument_task_argname_binary_f1_no_matching": 0.9151609429221013,
+      "argument_task_argname_value_binary_f1_no_matching": 0.6024384413100645,
+      "edit_distance": 0.12425295897518174,
+      "link_binary_f1": 0.7398325358851675
+    }
+  },
+  "edge_repaired": {
+    "engine": "taskbench.evaluate",
+    "metric_reader": "print_evaluate_metrics_table.extract_metric_row",
+    "prediction_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\replan_reformat_by_self\\data_dailylifeapis_gemini-3.1-flash-lite_intent_audited_replan_edge_repair_metrics_eval_inputs\\edge_repaired.json",
+    "metric_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_dailylifeapis\\replan_reformat_by_self\\data_dailylifeapis_gemini-3.1-flash-lite_intent_audited_replan_edge_repair_metrics_eval_metrics\\edge_repaired.json",
+    "input_rows": 864,
+    "prediction_ids": 864,
+    "common_ids": 864,
+    "support": 864,
+    "node_micro_precision": 0.9473067915690867,
+    "node_micro_recall": 0.9611881188118812,
+    "node_micro_f1": 0.9541969726754472,
+    "edge_micro_f1": 0.7517564402810304,
+    "ned": 0.12425295897518174,
+    "print_evaluate_metrics_table_row": {
+      "file": "edge_repaired",
+      "n_f1": 0.9541969726754472,
+      "e_f1": 0.7517564402810304,
+      "ned": 0.12425295897518174
+    },
+    "taskbench_metric": {
+      "all_samples": 864,
+      "step_supports": 0,
+      "node_supports": 864,
+      "link_supports": 864,
+      "argument_supports": 864,
+      "node_micro_precision_no_matching": 0.9473067915690867,
+      "node_micro_recall_no_matching": 0.9611881188118812,
+      "node_micro_f1_no_matching": 0.9541969726754472,
+      "node_macro_precision_no_matching": 0.9490669319396435,
+      "node_macro_recall_no_matching": 0.9612243699273042,
+      "node_macro_f1_no_matching": 0.953673994318051,
+      "node_per_type_no_matchcing": {
+        "get_weather": {
+          "precision": 0.95,
+          "recall": 1.0,
+          "f1-score": 0.9743589743589743,
+          "support": 57
+        },
+        "get_news_for_topic": {
+          "precision": 0.9629629629629629,
+          "recall": 0.9811320754716981,
+          "f1-score": 0.9719626168224299,
+          "support": 53
+        },
+        "stock_operation": {
+          "precision": 0.9852941176470589,
+          "recall": 0.9571428571428572,
+          "f1-score": 0.9710144927536232,
+          "support": 70
+        },
+        "book_flight": {
+          "precision": 1.0,
+          "recall": 0.9710144927536232,
+          "f1-score": 0.9852941176470589,
+          "support": 69
+        },
+        "book_hotel": {
+          "precision": 0.9743589743589743,
+          "recall": 0.987012987012987,
+          "f1-score": 0.9806451612903225,
+          "support": 77
+        },
+        "book_restaurant": {
+          "precision": 0.9811320754716981,
+          "recall": 1.0,
+          "f1-score": 0.9904761904761905,
+          "support": 52
+        },
+        "book_car": {
+          "precision": 0.9701492537313433,
+          "recall": 0.9848484848484849,
+          "f1-score": 0.9774436090225563,
+          "support": 66
+        },
+        "online_shopping": {
+          "precision": 0.9565217391304348,
+          "recall": 1.0,
+          "f1-score": 0.9777777777777777,
+          "support": 66
+        },
+        "send_email": {
+          "precision": 0.9850746268656716,
+          "recall": 0.9850746268656716,
+          "f1-score": 0.9850746268656716,
+          "support": 67
+        },
+        "send_sms": {
+          "precision": 0.9846153846153847,
+          "recall": 0.9846153846153847,
+          "f1-score": 0.9846153846153847,
+          "support": 65
+        },
+        "share_by_social_network": {
+          "precision": 0.9852941176470589,
+          "recall": 1.0,
+          "f1-score": 0.9925925925925926,
+          "support": 67
+        },
+        "search_by_engine": {
+          "precision": 0.8928571428571429,
+          "recall": 0.8333333333333334,
+          "f1-score": 0.8620689655172413,
+          "support": 60
+        },
+        "apply_for_job": {
+          "precision": 1.0,
+          "recall": 0.8823529411764706,
+          "f1-score": 0.9375,
+          "support": 68
+        },
+        "see_doctor_online": {
+          "precision": 0.9206349206349206,
+          "recall": 1.0,
+          "f1-score": 0.9586776859504132,
+          "support": 58
+        },
+        "consult_lawyer_online": {
+          "precision": 0.9821428571428571,
+          "recall": 1.0,
+          "f1-score": 0.990990990990991,
+          "support": 55
+        },
+        "enroll_in_course": {
+          "precision": 0.9864864864864865,
+          "recall": 0.948051948051948,
+          "f1-score": 0.9668874172185431,
+          "support": 77
+        },
+        "buy_insurance": {
+          "precision": 0.9666666666666667,
+          "recall": 0.9666666666666667,
+          "f1-score": 0.9666666666666667,
+          "support": 60
+        },
+        "online_banking": {
+          "precision": 0.9215686274509803,
+          "recall": 0.9591836734693877,
+          "f1-score": 0.94,
+          "support": 49
+        },
+        "daily_bill_payment": {
+          "precision": 0.6753246753246753,
+          "recall": 1.0,
+          "f1-score": 0.8062015503875969,
+          "support": 52
+        },
+        "sell_item_online": {
+          "precision": 0.9655172413793104,
+          "recall": 1.0,
+          "f1-score": 0.9824561403508771,
+          "support": 56
+        },
+        "do_tax_return": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 49
+        },
+        "apply_for_passport": {
+          "precision": 0.967741935483871,
+          "recall": 0.9375,
+          "f1-score": 0.9523809523809523,
+          "support": 64
+        },
+        "pay_for_credit_card": {
+          "precision": 0.9,
+          "recall": 0.9152542372881356,
+          "f1-score": 0.907563025210084,
+          "support": 59
+        },
+        "auto_housework_by_robot": {
+          "precision": 0.9571428571428572,
+          "recall": 0.9852941176470589,
+          "f1-score": 0.9710144927536232,
+          "support": 68
+        },
+        "auto_driving_to_destination": {
+          "precision": 0.9629629629629629,
+          "recall": 0.9285714285714286,
+          "f1-score": 0.9454545454545454,
+          "support": 56
+        },
+        "deliver_package": {
+          "precision": 0.9375,
+          "recall": 0.9230769230769231,
+          "f1-score": 0.9302325581395349,
+          "support": 65
+        },
+        "order_food_delivery": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 69
+        },
+        "order_taxi": {
+          "precision": 0.9577464788732394,
+          "recall": 0.9855072463768116,
+          "f1-score": 0.9714285714285714,
+          "support": 69
+        },
+        "play_music_by_title": {
+          "precision": 0.9710144927536232,
+          "recall": 0.9852941176470589,
+          "f1-score": 0.9781021897810219,
+          "support": 68
+        },
+        "play_movie_by_title": {
+          "precision": 0.9324324324324325,
+          "recall": 0.9857142857142858,
+          "f1-score": 0.9583333333333334,
+          "support": 70
+        },
+        "take_note": {
+          "precision": 0.8833333333333333,
+          "recall": 0.828125,
+          "f1-score": 0.8548387096774194,
+          "support": 64
+        },
+        "borrow_book_online": {
+          "precision": 0.9710144927536232,
+          "recall": 1.0,
+          "f1-score": 0.9852941176470589,
+          "support": 67
+        },
+        "recording_audio": {
+          "precision": 0.9347826086956522,
+          "recall": 0.9347826086956522,
+          "f1-score": 0.9347826086956522,
+          "support": 46
+        },
+        "make_video_call": {
+          "precision": 0.9558823529411765,
+          "recall": 0.9558823529411765,
+          "f1-score": 0.9558823529411765,
+          "support": 68
+        },
+        "make_voice_call": {
+          "precision": 0.9811320754716981,
+          "recall": 0.9285714285714286,
+          "f1-score": 0.9541284403669725,
+          "support": 56
+        },
+        "organize_meeting_online": {
+          "precision": 0.8875,
+          "recall": 0.9726027397260274,
+          "f1-score": 0.9281045751633987,
+          "support": 73
+        },
+        "attend_meeting_online": {
+          "precision": 0.9629629629629629,
+          "recall": 0.8,
+          "f1-score": 0.8739495798319328,
+          "support": 65
+        },
+        "software_management": {
+          "precision": 0.9358974358974359,
+          "recall": 0.9864864864864865,
+          "f1-score": 0.9605263157894737,
+          "support": 74
+        },
+        "print_document": {
+          "precision": 0.9420289855072463,
+          "recall": 0.9558823529411765,
+          "f1-score": 0.948905109489051,
+          "support": 68
+        },
+        "set_alarm": {
+          "precision": 0.875,
+          "recall": 1.0,
+          "f1-score": 0.9333333333333333,
+          "support": 63
+        }
+      },
+      "argument_task_argname_binary_f1_no_matching": 0.9151609429221013,
+      "argument_task_argname_value_binary_f1_no_matching": 0.6024384413100645,
+      "edit_distance": 0.12425295897518174,
+      "link_binary_f1": 0.7517564402810304
+    }
+  },
+  "replan_summary": {
+    "rows": 864,
+    "decision_counts": {
+      "KEEP_ORIGINAL": 814,
+      "ADD_MISSING_TOOLS": 41,
+      "REPLACE_WRONG_TOOLS": 9
+    },
+    "source_counts": {
+      "previous_workflow": 816,
+      "replan": 48
+    },
+    "retryable_failed": 0
+  },
+  "edge_repair_summary": {
+    "rows": 864,
+    "changed_rows": 51,
+    "operation_counts": {},
+    "validation_counts": {
+      "passed": 863,
+      "rejected_failed": 1
+    },
+    "temporal_changed_rows": 51,
+    "temporal_status_counts": {
+      "skipped_single_or_empty_workflow": 245,
+      "accepted": 613,
+      "validation_failed": 6
+    }
+  },
+  "delta_replan_vs_original": {
+    "node_micro_f1": -0.00033050854242544503,
+    "edge_micro_f1": -0.010769873753386672,
+    "ned": 0.00036459168403668585
+  },
+  "delta_edge_vs_replan": {
+    "node_micro_f1": 0.0,
+    "edge_micro_f1": 0.011923904395862883,
+    "ned": 0.0
+  },
+  "delta_final_vs_original": {
+    "node_micro_f1": -0.00033050854242544503,
+    "edge_micro_f1": 0.0011540306424762115,
+    "ned": 0.00036459168403668585
+  },
+  "ablation_table": [
+    {
+      "stage": "original",
+      "intent_auditor": "off",
+      "replan": "off",
+      "edge_repair": "off",
+      "rows": 864,
+      "support": 864,
+      "n_f1": 95.4527,
+      "e_f1": 75.0602,
+      "ned": 12.3888,
+      "delta_n_f1_vs_prev": "",
+      "delta_e_f1_vs_prev": "",
+      "delta_ned_vs_prev": "",
+      "delta_n_f1_vs_original": 0.0,
+      "delta_e_f1_vs_original": 0.0,
+      "delta_ned_vs_original": 0.0
+    },
+    {
+      "stage": "intent_replan",
+      "intent_auditor": "on",
+      "replan": "on",
+      "edge_repair": "off",
+      "rows": 864,
+      "support": 864,
+      "n_f1": 95.4197,
+      "e_f1": 73.9833,
+      "ned": 12.4253,
+      "delta_n_f1_vs_prev": -0.0331,
+      "delta_e_f1_vs_prev": -1.077,
+      "delta_ned_vs_prev": 0.0365,
+      "delta_n_f1_vs_original": -0.0331,
+      "delta_e_f1_vs_original": -1.077,
+      "delta_ned_vs_original": 0.0365
+    },
+    {
+      "stage": "edge_repaired",
+      "intent_auditor": "on",
+      "replan": "on",
+      "edge_repair": "on",
+      "rows": 864,
+      "support": 864,
+      "n_f1": 95.4197,
+      "e_f1": 75.1756,
+      "ned": 12.4253,
+      "delta_n_f1_vs_prev": 0.0,
+      "delta_e_f1_vs_prev": 1.1924,
+      "delta_ned_vs_prev": 0.0,
+      "delta_n_f1_vs_original": -0.0331,
+      "delta_e_f1_vs_original": 0.1154,
+      "delta_ned_vs_original": 0.0365
+    }
+  ]
+}

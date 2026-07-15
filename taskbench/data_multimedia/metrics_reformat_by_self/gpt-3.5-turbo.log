@@ -1,0 +1,747 @@
+2026-07-09 16:57:39,027 - [ gpt-3.5-turbo ] - INFO - Starts with: {'data_dir': 'taskbench/data_multimedia', 'prediction_dir': 'predictions_reformat_by_self', 'save_dir': None, 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'gpt-3.5-turbo', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-07-09 16:57:39,031 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:39,031 - [ gpt-3.5-turbo ] - INFO - Tools Number: overall, Task Split: overall
+2026-07-09 16:57:39,129 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 1111
+2026-07-09 16:57:39,129 - [ gpt-3.5-turbo ] - INFO - Node Support: 1111 / 1111
+2026-07-09 16:57:39,130 - [ gpt-3.5-turbo ] - INFO - Link Support: 1111 / 1111
+2026-07-09 16:57:39,132 - [ gpt-3.5-turbo ] - INFO - Argument Support: 1111 / 1111
+2026-07-09 16:57:39,156 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.8922155688622755
+2026-07-09 16:57:39,157 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.8819467280499835
+2026-07-09 16:57:39,157 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.8870514304613858
+2026-07-09 16:57:39,157 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.8960880048763862
+2026-07-09 16:57:39,157 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.8844397942577364
+2026-07-09 16:57:39,158 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.8853933338280813
+2026-07-09 16:57:39,158 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:39,158 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:39,158 - [ gpt-3.5-turbo ] - INFO -               Image Downloader        97.87        93.88        95.83           49
+2026-07-09 16:57:39,158 - [ gpt-3.5-turbo ] - INFO -               Video Downloader        86.76        93.65        90.08           63
+2026-07-09 16:57:39,159 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader        89.55        93.75        91.60           64
+2026-07-09 16:57:39,159 - [ gpt-3.5-turbo ] - INFO -                Text Downloader        78.05        96.97        86.49           66
+2026-07-09 16:57:39,159 - [ gpt-3.5-turbo ] - INFO -                    Text Search        79.71        75.34        77.46           73
+2026-07-09 16:57:39,159 - [ gpt-3.5-turbo ] - INFO -                   Image Search        74.51        88.37        80.85           43
+2026-07-09 16:57:39,159 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)        91.04        88.41        89.71           69
+2026-07-09 16:57:39,159 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor        97.67        82.35        89.36          102
+2026-07-09 16:57:39,160 - [ gpt-3.5-turbo ] - INFO -                   Video Search        90.00       100.00        94.74           63
+2026-07-09 16:57:39,160 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image        89.04        91.55        90.28           71
+2026-07-09 16:57:39,160 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video        88.89        94.92        91.80           59
+2026-07-09 16:57:39,160 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio        72.73        93.51        81.82           77
+2026-07-09 16:57:39,160 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text        97.60        97.60        97.60          125
+2026-07-09 16:57:39,161 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text        87.50        92.31        89.84           91
+2026-07-09 16:57:39,161 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text        92.93        85.98        89.32          107
+2026-07-09 16:57:39,161 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction        98.39        96.83        97.60           63
+2026-07-09 16:57:39,161 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects        87.18        94.44        90.67           72
+2026-07-09 16:57:39,162 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer        92.65        98.44        95.45           64
+2026-07-09 16:57:39,162 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer        91.23        80.00        85.25           65
+2026-07-09 16:57:39,162 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer        77.11        88.89        82.58           72
+2026-07-09 16:57:39,163 - [ gpt-3.5-turbo ] - INFO -                Text Translator        94.03        92.65        93.33           68
+2026-07-09 16:57:39,163 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis        97.06        88.00        92.31           75
+2026-07-09 16:57:39,163 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker        98.33        81.94        89.39           72
+2026-07-09 16:57:39,163 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier        93.85        83.56        88.41           73
+2026-07-09 16:57:39,163 - [ gpt-3.5-turbo ] - INFO -                  Text Expander        81.48        61.97        70.40           71
+2026-07-09 16:57:39,163 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor        78.89        72.45        75.53           98
+2026-07-09 16:57:39,163 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser        57.73        68.29        62.57           82
+2026-07-09 16:57:39,164 - [ gpt-3.5-turbo ] - INFO -                Article Spinner        89.74        41.67        56.91           84
+2026-07-09 16:57:39,164 - [ gpt-3.5-turbo ] - INFO -                Topic Generator        92.19        73.75        81.94           80
+2026-07-09 16:57:39,164 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image        96.88        98.94        97.89           94
+2026-07-09 16:57:39,164 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video        93.90        96.25        95.06           80
+2026-07-09 16:57:39,164 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio        83.91        93.59        88.48           78
+2026-07-09 16:57:39,164 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image        98.65        98.65        98.65           74
+2026-07-09 16:57:39,164 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher        98.55        93.15        95.77           73
+2026-07-09 16:57:39,165 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer       100.00        88.33        93.81           60
+2026-07-09 16:57:39,165 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer        97.75       100.00        98.86           87
+2026-07-09 16:57:39,165 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer        98.46        92.75        95.52           69
+2026-07-09 16:57:39,165 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer        97.67       100.00        98.82           84
+2026-07-09 16:57:39,165 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization        87.23        89.13        88.17           92
+2026-07-09 16:57:39,165 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover        87.63        95.51        91.40           89
+2026-07-09 16:57:39,166 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:39,166 - [ gpt-3.5-turbo ] - INFO -                          micro        89.22        88.19        88.71         3041
+2026-07-09 16:57:39,166 - [ gpt-3.5-turbo ] - INFO -                          macro        89.61        88.44        88.54         3041
+2026-07-09 16:57:39,173 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8265011547344111
+2026-07-09 16:57:39,182 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6535568166820641
+2026-07-09 16:57:39,189 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.13271707290609303
+2026-07-09 16:57:39,196 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.6358725013506212
+2026-07-09 16:57:39,203 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:39,204 - [ gpt-3.5-turbo ] - INFO - Tools Number: overall, Task Split: single
+2026-07-09 16:57:39,296 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 407
+2026-07-09 16:57:39,297 - [ gpt-3.5-turbo ] - INFO - Node Support: 407 / 407
+2026-07-09 16:57:39,297 - [ gpt-3.5-turbo ] - INFO - Link Support: 407 / 407
+2026-07-09 16:57:39,298 - [ gpt-3.5-turbo ] - INFO - Argument Support: 407 / 407
+2026-07-09 16:57:39,311 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.8944954128440367
+2026-07-09 16:57:39,312 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.9605911330049262
+2026-07-09 16:57:39,312 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.9263657957244655
+2026-07-09 16:57:39,313 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.9067788237089708
+2026-07-09 16:57:39,313 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.9703562062937063
+2026-07-09 16:57:39,313 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.9289194680139954
+2026-07-09 16:57:39,313 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:39,313 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:39,314 - [ gpt-3.5-turbo ] - INFO -               Image Downloader       100.00       100.00       100.00           13
+2026-07-09 16:57:39,314 - [ gpt-3.5-turbo ] - INFO -               Video Downloader        88.24       100.00        93.75           15
+2026-07-09 16:57:39,314 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader        93.33       100.00        96.55           14
+2026-07-09 16:57:39,314 - [ gpt-3.5-turbo ] - INFO -                Text Downloader        73.33       100.00        84.62           11
+2026-07-09 16:57:39,315 - [ gpt-3.5-turbo ] - INFO -                    Text Search        88.89       100.00        94.12            8
+2026-07-09 16:57:39,315 - [ gpt-3.5-turbo ] - INFO -                   Image Search       100.00        81.82        90.00           11
+2026-07-09 16:57:39,315 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)        75.00       100.00        85.71            9
+2026-07-09 16:57:39,315 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor       100.00       100.00       100.00           16
+2026-07-09 16:57:39,315 - [ gpt-3.5-turbo ] - INFO -                   Video Search       100.00       100.00       100.00            9
+2026-07-09 16:57:39,315 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image        81.25       100.00        89.66           13
+2026-07-09 16:57:39,316 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video       100.00        90.91        95.24           11
+2026-07-09 16:57:39,316 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio        86.67       100.00        92.86           13
+2026-07-09 16:57:39,317 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text       100.00       100.00       100.00           15
+2026-07-09 16:57:39,317 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text        58.33       100.00        73.68            7
+2026-07-09 16:57:39,318 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text       100.00        61.54        76.19           13
+2026-07-09 16:57:39,318 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00           10
+2026-07-09 16:57:39,318 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects        85.71       100.00        92.31            6
+2026-07-09 16:57:39,319 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer       100.00       100.00       100.00           12
+2026-07-09 16:57:39,319 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer       100.00       100.00       100.00            9
+2026-07-09 16:57:39,319 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer        53.85       100.00        70.00            7
+2026-07-09 16:57:39,319 - [ gpt-3.5-turbo ] - INFO -                Text Translator        87.50       100.00        93.33            7
+2026-07-09 16:57:39,319 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            6
+2026-07-09 16:57:39,320 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            4
+2026-07-09 16:57:39,320 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier       100.00       100.00       100.00            8
+2026-07-09 16:57:39,320 - [ gpt-3.5-turbo ] - INFO -                  Text Expander        80.00       100.00        88.89            4
+2026-07-09 16:57:39,320 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor       100.00       100.00       100.00           12
+2026-07-09 16:57:39,320 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser        58.82        90.91        71.43           11
+2026-07-09 16:57:39,320 - [ gpt-3.5-turbo ] - INFO -                Article Spinner        90.00        56.25        69.23           16
+2026-07-09 16:57:39,321 - [ gpt-3.5-turbo ] - INFO -                Topic Generator       100.00       100.00       100.00           10
+2026-07-09 16:57:39,321 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image       100.00       100.00       100.00           10
+2026-07-09 16:57:39,321 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video        92.86       100.00        96.30           13
+2026-07-09 16:57:39,321 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio        66.67       100.00        80.00           10
+2026-07-09 16:57:39,321 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image       100.00       100.00       100.00            7
+2026-07-09 16:57:39,321 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher       100.00       100.00       100.00           12
+2026-07-09 16:57:39,321 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer       100.00       100.00       100.00           12
+2026-07-09 16:57:39,322 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer       100.00       100.00       100.00            8
+2026-07-09 16:57:39,322 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer        83.33       100.00        90.91            5
+2026-07-09 16:57:39,322 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer       100.00       100.00       100.00            9
+2026-07-09 16:57:39,322 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization       100.00       100.00       100.00           15
+2026-07-09 16:57:39,322 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover        83.33       100.00        90.91            5
+2026-07-09 16:57:39,323 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:39,323 - [ gpt-3.5-turbo ] - INFO -                          micro        89.45        96.06        92.64          406
+2026-07-09 16:57:39,323 - [ gpt-3.5-turbo ] - INFO -                          macro        90.68        97.04        92.89          406
+2026-07-09 16:57:39,328 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9069767441860465
+2026-07-09 16:57:39,331 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.735632183908046
+2026-07-09 16:57:39,334 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.0633087633087629
+2026-07-09 16:57:39,337 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.0
+2026-07-09 16:57:39,339 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:39,339 - [ gpt-3.5-turbo ] - INFO - Tools Number: overall, Task Split: chain
+2026-07-09 16:57:39,411 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 594
+2026-07-09 16:57:39,412 - [ gpt-3.5-turbo ] - INFO - Node Support: 594 / 594
+2026-07-09 16:57:39,412 - [ gpt-3.5-turbo ] - INFO - Link Support: 594 / 594
+2026-07-09 16:57:39,412 - [ gpt-3.5-turbo ] - INFO - Argument Support: 594 / 594
+2026-07-09 16:57:39,421 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.891555145362252
+2026-07-09 16:57:39,421 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.8667563930013459
+2026-07-09 16:57:39,421 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.8789808917197452
+2026-07-09 16:57:39,421 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.8951246242688213
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.8719560366669828
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.8772609322914431
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO -               Image Downloader        96.55        93.33        94.92           30
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO -               Video Downloader        85.71        92.31        88.89           39
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader        84.62        89.19        86.84           37
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO -                Text Downloader        80.33        96.08        87.50           51
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO -                    Text Search        79.63        71.67        75.44           60
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO -                   Image Search        72.22        92.86        81.25           28
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)        94.34        87.72        90.91           57
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor        96.43        78.26        86.40           69
+2026-07-09 16:57:39,422 - [ gpt-3.5-turbo ] - INFO -                   Video Search        89.09       100.00        94.23           49
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image        91.11        91.11        91.11           45
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video        90.70        95.12        92.86           41
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio        69.44        90.91        78.74           55
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text        97.92        97.92        97.92           96
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text        91.55        91.55        91.55           71
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text        91.89        88.31        90.07           77
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction        97.50        97.50        97.50           40
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects        86.21        96.15        90.91           52
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer        91.84        97.83        94.74           46
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer        93.75        73.17        82.19           41
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer        83.93        88.68        86.24           53
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -                Text Translator        94.34        94.34        94.34           53
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis        97.73        89.58        93.48           48
+2026-07-09 16:57:39,423 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker        97.96        80.00        88.07           60
+2026-07-09 16:57:39,424 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier        91.49        81.13        86.00           53
+2026-07-09 16:57:39,424 - [ gpt-3.5-turbo ] - INFO -                  Text Expander        83.33        58.33        68.63           60
+2026-07-09 16:57:39,424 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor        78.57        68.75        73.33           80
+2026-07-09 16:57:39,424 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser        55.07        61.29        58.02           62
+2026-07-09 16:57:39,424 - [ gpt-3.5-turbo ] - INFO -                Article Spinner        87.50        34.43        49.41           61
+2026-07-09 16:57:39,424 - [ gpt-3.5-turbo ] - INFO -                Topic Generator        90.00        70.31        78.95           64
+2026-07-09 16:57:39,424 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image        95.95        98.61        97.26           72
+2026-07-09 16:57:39,424 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video        92.86        96.30        94.55           54
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio        85.71        94.74        90.00           57
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image        98.21        98.21        98.21           56
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher        98.04        92.59        95.24           54
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer       100.00        85.37        92.11           41
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer        98.55       100.00        99.27           68
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer       100.00        92.16        95.92           51
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer        98.39       100.00        99.19           61
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization        83.58        87.50        85.50           64
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover        88.46        94.52        91.39           73
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO -                          micro        89.16        86.68        87.90         2229
+2026-07-09 16:57:39,425 - [ gpt-3.5-turbo ] - INFO -                          macro        89.51        87.20        87.73         2229
+2026-07-09 16:57:39,429 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8143141153081511
+2026-07-09 16:57:39,439 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6476363636363637
+2026-07-09 16:57:39,443 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.16798498919710947
+2026-07-09 16:57:39,449 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.6487179487179487
+2026-07-09 16:57:39,454 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:39,454 - [ gpt-3.5-turbo ] - INFO - Tools Number: overall, Task Split: dag
+2026-07-09 16:57:39,499 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 110
+2026-07-09 16:57:39,499 - [ gpt-3.5-turbo ] - INFO - Node Support: 110 / 110
+2026-07-09 16:57:39,499 - [ gpt-3.5-turbo ] - INFO - Link Support: 110 / 110
+2026-07-09 16:57:39,500 - [ gpt-3.5-turbo ] - INFO - Argument Support: 110 / 110
+2026-07-09 16:57:39,509 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.8933002481389578
+2026-07-09 16:57:39,510 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.8866995073891626
+2026-07-09 16:57:39,510 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.8899876390605687
+2026-07-09 16:57:39,510 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.8880218984446927
+2026-07-09 16:57:39,510 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.8756260691922456
+2026-07-09 16:57:39,511 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.8736560418573746
+2026-07-09 16:57:39,511 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:39,511 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:39,512 - [ gpt-3.5-turbo ] - INFO -               Image Downloader       100.00        83.33        90.91            6
+2026-07-09 16:57:39,512 - [ gpt-3.5-turbo ] - INFO -               Video Downloader        88.89        88.89        88.89            9
+2026-07-09 16:57:39,512 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader       100.00       100.00       100.00           13
+2026-07-09 16:57:39,512 - [ gpt-3.5-turbo ] - INFO -                Text Downloader        66.67       100.00        80.00            4
+2026-07-09 16:57:39,513 - [ gpt-3.5-turbo ] - INFO -                    Text Search        66.67        80.00        72.73            5
+2026-07-09 16:57:39,513 - [ gpt-3.5-turbo ] - INFO -                   Image Search        50.00        75.00        60.00            4
+2026-07-09 16:57:39,513 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)       100.00        66.67        80.00            3
+2026-07-09 16:57:39,513 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor       100.00        82.35        90.32           17
+2026-07-09 16:57:39,514 - [ gpt-3.5-turbo ] - INFO -                   Video Search        83.33       100.00        90.91            5
+2026-07-09 16:57:39,514 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image        91.67        84.62        88.00           13
+2026-07-09 16:57:39,514 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video        70.00       100.00        82.35            7
+2026-07-09 16:57:39,514 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio        75.00       100.00        85.71            9
+2026-07-09 16:57:39,514 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text        92.86        92.86        92.86           14
+2026-07-09 16:57:39,514 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text        92.31        92.31        92.31           13
+2026-07-09 16:57:39,514 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text        94.12        94.12        94.12           17
+2026-07-09 16:57:39,515 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction       100.00        92.31        96.00           13
+2026-07-09 16:57:39,515 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects        92.31        85.71        88.89           14
+2026-07-09 16:57:39,515 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer        85.71       100.00        92.31            6
+2026-07-09 16:57:39,515 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer        81.25        86.67        83.87           15
+2026-07-09 16:57:39,515 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer        71.43        83.33        76.92           12
+2026-07-09 16:57:39,515 - [ gpt-3.5-turbo ] - INFO -                Text Translator       100.00        75.00        85.71            8
+2026-07-09 16:57:39,515 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis        94.44        80.95        87.18           21
+2026-07-09 16:57:39,515 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker       100.00        87.50        93.33            8
+2026-07-09 16:57:39,515 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier       100.00        83.33        90.91           12
+2026-07-09 16:57:39,516 - [ gpt-3.5-turbo ] - INFO -                  Text Expander        71.43        71.43        71.43            7
+2026-07-09 16:57:39,516 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor        50.00        66.67        57.14            6
+2026-07-09 16:57:39,516 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser        72.73        88.89        80.00            9
+2026-07-09 16:57:39,516 - [ gpt-3.5-turbo ] - INFO -                Article Spinner       100.00        71.43        83.33            7
+2026-07-09 16:57:39,516 - [ gpt-3.5-turbo ] - INFO -                Topic Generator       100.00        66.67        80.00            6
+2026-07-09 16:57:39,516 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image       100.00       100.00       100.00           12
+2026-07-09 16:57:39,516 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video       100.00        92.31        96.00           13
+2026-07-09 16:57:39,516 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio       100.00        81.82        90.00           11
+2026-07-09 16:57:39,516 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image       100.00       100.00       100.00           11
+2026-07-09 16:57:39,517 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher       100.00        85.71        92.31            7
+2026-07-09 16:57:39,517 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer       100.00        85.71        92.31            7
+2026-07-09 16:57:39,517 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer        91.67       100.00        95.65           11
+2026-07-09 16:57:39,517 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer       100.00        92.31        96.00           13
+2026-07-09 16:57:39,517 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer        93.33       100.00        96.55           14
+2026-07-09 16:57:39,518 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization        91.67        84.62        88.00           13
+2026-07-09 16:57:39,518 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover        84.62       100.00        91.67           11
+2026-07-09 16:57:39,518 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:39,518 - [ gpt-3.5-turbo ] - INFO -                          micro        89.33        88.67        89.00          406
+2026-07-09 16:57:39,518 - [ gpt-3.5-turbo ] - INFO -                          macro        88.80        87.56        87.37          406
+2026-07-09 16:57:39,523 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8109243697478992
+2026-07-09 16:57:39,527 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6021297192642788
+2026-07-09 16:57:39,529 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.1990810704447068
+2026-07-09 16:57:39,532 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.5956678700361011
+2026-07-09 16:57:39,533 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:39,533 - [ gpt-3.5-turbo ] - INFO - Tools Number: 1, Task Split: overall
+2026-07-09 16:57:39,570 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 407
+2026-07-09 16:57:39,571 - [ gpt-3.5-turbo ] - INFO - Node Support: 407 / 407
+2026-07-09 16:57:39,571 - [ gpt-3.5-turbo ] - INFO - Link Support: 407 / 407
+2026-07-09 16:57:39,571 - [ gpt-3.5-turbo ] - INFO - Argument Support: 407 / 407
+2026-07-09 16:57:39,576 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.8944954128440367
+2026-07-09 16:57:39,576 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.9605911330049262
+2026-07-09 16:57:39,576 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.9263657957244655
+2026-07-09 16:57:39,577 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.9067788237089708
+2026-07-09 16:57:39,577 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.9703562062937063
+2026-07-09 16:57:39,577 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.9289194680139954
+2026-07-09 16:57:39,577 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:39,577 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:39,577 - [ gpt-3.5-turbo ] - INFO -               Image Downloader       100.00       100.00       100.00           13
+2026-07-09 16:57:39,577 - [ gpt-3.5-turbo ] - INFO -               Video Downloader        88.24       100.00        93.75           15
+2026-07-09 16:57:39,577 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader        93.33       100.00        96.55           14
+2026-07-09 16:57:39,577 - [ gpt-3.5-turbo ] - INFO -                Text Downloader        73.33       100.00        84.62           11
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                    Text Search        88.89       100.00        94.12            8
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                   Image Search       100.00        81.82        90.00           11
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)        75.00       100.00        85.71            9
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor       100.00       100.00       100.00           16
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                   Video Search       100.00       100.00       100.00            9
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image        81.25       100.00        89.66           13
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video       100.00        90.91        95.24           11
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio        86.67       100.00        92.86           13
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text       100.00       100.00       100.00           15
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text        58.33       100.00        73.68            7
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text       100.00        61.54        76.19           13
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00           10
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects        85.71       100.00        92.31            6
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer       100.00       100.00       100.00           12
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer       100.00       100.00       100.00            9
+2026-07-09 16:57:39,578 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer        53.85       100.00        70.00            7
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -                Text Translator        87.50       100.00        93.33            7
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            6
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            4
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier       100.00       100.00       100.00            8
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -                  Text Expander        80.00       100.00        88.89            4
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor       100.00       100.00       100.00           12
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser        58.82        90.91        71.43           11
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -                Article Spinner        90.00        56.25        69.23           16
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -                Topic Generator       100.00       100.00       100.00           10
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image       100.00       100.00       100.00           10
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video        92.86       100.00        96.30           13
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio        66.67       100.00        80.00           10
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image       100.00       100.00       100.00            7
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher       100.00       100.00       100.00           12
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer       100.00       100.00       100.00           12
+2026-07-09 16:57:39,579 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer       100.00       100.00       100.00            8
+2026-07-09 16:57:39,580 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer        83.33       100.00        90.91            5
+2026-07-09 16:57:39,580 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer       100.00       100.00       100.00            9
+2026-07-09 16:57:39,580 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization       100.00       100.00       100.00           15
+2026-07-09 16:57:39,580 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover        83.33       100.00        90.91            5
+2026-07-09 16:57:39,580 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:39,580 - [ gpt-3.5-turbo ] - INFO -                          micro        89.45        96.06        92.64          406
+2026-07-09 16:57:39,580 - [ gpt-3.5-turbo ] - INFO -                          macro        90.68        97.04        92.89          406
+2026-07-09 16:57:39,582 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9069767441860465
+2026-07-09 16:57:39,584 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.735632183908046
+2026-07-09 16:57:39,585 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.0633087633087629
+2026-07-09 16:57:39,588 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.0
+2026-07-09 16:57:39,589 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:39,589 - [ gpt-3.5-turbo ] - INFO - Tools Number: 2, Task Split: overall
+2026-07-09 16:57:39,615 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 54
+2026-07-09 16:57:39,616 - [ gpt-3.5-turbo ] - INFO - Node Support: 54 / 54
+2026-07-09 16:57:39,616 - [ gpt-3.5-turbo ] - INFO - Link Support: 54 / 54
+2026-07-09 16:57:39,616 - [ gpt-3.5-turbo ] - INFO - Argument Support: 54 / 54
+2026-07-09 16:57:39,621 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.9090909090909091
+2026-07-09 16:57:39,628 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.9259259259259259
+2026-07-09 16:57:39,629 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.9174311926605505
+2026-07-09 16:57:39,629 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.7908333333333333
+2026-07-09 16:57:39,629 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.8375
+2026-07-09 16:57:39,629 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.8005555555555557
+2026-07-09 16:57:39,629 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:39,629 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:39,629 - [ gpt-3.5-turbo ] - INFO -               Image Downloader       100.00       100.00       100.00            3
+2026-07-09 16:57:39,630 - [ gpt-3.5-turbo ] - INFO -               Video Downloader       100.00       100.00       100.00            3
+2026-07-09 16:57:39,630 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader         0.00         0.00         0.00            0
+2026-07-09 16:57:39,630 - [ gpt-3.5-turbo ] - INFO -                Text Downloader       100.00       100.00       100.00            3
+2026-07-09 16:57:39,630 - [ gpt-3.5-turbo ] - INFO -                    Text Search       100.00       100.00       100.00            1
+2026-07-09 16:57:39,630 - [ gpt-3.5-turbo ] - INFO -                   Image Search       100.00       100.00       100.00            1
+2026-07-09 16:57:39,630 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)        80.00       100.00        88.89            4
+2026-07-09 16:57:39,630 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor        75.00       100.00        85.71            3
+2026-07-09 16:57:39,631 - [ gpt-3.5-turbo ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-07-09 16:57:39,631 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image       100.00       100.00       100.00            2
+2026-07-09 16:57:39,631 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video       100.00       100.00       100.00            4
+2026-07-09 16:57:39,631 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio       100.00       100.00       100.00            3
+2026-07-09 16:57:39,631 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text       100.00       100.00       100.00            3
+2026-07-09 16:57:39,631 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            1
+2026-07-09 16:57:39,631 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text       100.00       100.00       100.00            2
+2026-07-09 16:57:39,631 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction         0.00         0.00         0.00            0
+2026-07-09 16:57:39,632 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects       100.00       100.00       100.00            4
+2026-07-09 16:57:39,632 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer       100.00       100.00       100.00            6
+2026-07-09 16:57:39,632 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer       100.00       100.00       100.00            1
+2026-07-09 16:57:39,632 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer       100.00        50.00        66.67            4
+2026-07-09 16:57:39,632 - [ gpt-3.5-turbo ] - INFO -                Text Translator        66.67       100.00        80.00            2
+2026-07-09 16:57:39,632 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis         0.00         0.00         0.00            0
+2026-07-09 16:57:39,632 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            3
+2026-07-09 16:57:39,632 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier        75.00       100.00        85.71            3
+2026-07-09 16:57:39,632 - [ gpt-3.5-turbo ] - INFO -                  Text Expander       100.00       100.00       100.00            2
+2026-07-09 16:57:39,633 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor        50.00       100.00        66.67            1
+2026-07-09 16:57:39,633 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser        16.67       100.00        28.57            1
+2026-07-09 16:57:39,633 - [ gpt-3.5-turbo ] - INFO -                Article Spinner         0.00         0.00         0.00            5
+2026-07-09 16:57:39,633 - [ gpt-3.5-turbo ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-07-09 16:57:39,633 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            6
+2026-07-09 16:57:39,633 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video       100.00       100.00       100.00            6
+2026-07-09 16:57:39,633 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio       100.00       100.00       100.00            3
+2026-07-09 16:57:39,633 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image       100.00       100.00       100.00            5
+2026-07-09 16:57:39,634 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher       100.00       100.00       100.00            4
+2026-07-09 16:57:39,634 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer         0.00         0.00         0.00            1
+2026-07-09 16:57:39,634 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer       100.00       100.00       100.00            3
+2026-07-09 16:57:39,634 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer       100.00       100.00       100.00            2
+2026-07-09 16:57:39,634 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer       100.00       100.00       100.00            5
+2026-07-09 16:57:39,634 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization       100.00       100.00       100.00            5
+2026-07-09 16:57:39,634 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover       100.00       100.00       100.00            2
+2026-07-09 16:57:39,634 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:39,635 - [ gpt-3.5-turbo ] - INFO -                          micro        90.91        92.59        91.74          108
+2026-07-09 16:57:39,635 - [ gpt-3.5-turbo ] - INFO -                          macro        79.08        83.75        80.06          108
+2026-07-09 16:57:39,639 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9032258064516129
+2026-07-09 16:57:39,642 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.7832167832167832
+2026-07-09 16:57:39,642 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.12777777777777777
+2026-07-09 16:57:39,645 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.7524752475247525
+2026-07-09 16:57:39,645 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:39,646 - [ gpt-3.5-turbo ] - INFO - Tools Number: 3, Task Split: overall
+2026-07-09 16:57:39,745 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 253
+2026-07-09 16:57:39,745 - [ gpt-3.5-turbo ] - INFO - Node Support: 253 / 253
+2026-07-09 16:57:39,746 - [ gpt-3.5-turbo ] - INFO - Link Support: 253 / 253
+2026-07-09 16:57:39,746 - [ gpt-3.5-turbo ] - INFO - Argument Support: 253 / 253
+2026-07-09 16:57:39,760 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.8902777777777777
+2026-07-09 16:57:39,760 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.8709239130434783
+2026-07-09 16:57:39,761 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.8804945054945055
+2026-07-09 16:57:39,761 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.8948579179415471
+2026-07-09 16:57:39,761 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.8717201627434663
+2026-07-09 16:57:39,762 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.8752436644668233
+2026-07-09 16:57:39,762 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:39,762 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:39,763 - [ gpt-3.5-turbo ] - INFO -               Image Downloader       100.00        71.43        83.33            7
+2026-07-09 16:57:39,763 - [ gpt-3.5-turbo ] - INFO -               Video Downloader        72.73       100.00        84.21            8
+2026-07-09 16:57:39,763 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader        88.24        93.75        90.91           16
+2026-07-09 16:57:39,764 - [ gpt-3.5-turbo ] - INFO -                Text Downloader        68.42       100.00        81.25           13
+2026-07-09 16:57:39,764 - [ gpt-3.5-turbo ] - INFO -                    Text Search        75.00        78.95        76.92           19
+2026-07-09 16:57:39,764 - [ gpt-3.5-turbo ] - INFO -                   Image Search        88.89        88.89        88.89            9
+2026-07-09 16:57:39,765 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)        93.33        93.33        93.33           15
+2026-07-09 16:57:39,765 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor        94.74        90.00        92.31           20
+2026-07-09 16:57:39,765 - [ gpt-3.5-turbo ] - INFO -                   Video Search        91.30       100.00        95.45           21
+2026-07-09 16:57:39,765 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image        94.44        89.47        91.89           19
+2026-07-09 16:57:39,766 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video        85.71        92.31        88.89           13
+2026-07-09 16:57:39,766 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio        74.19        95.83        83.64           24
+2026-07-09 16:57:39,766 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text        96.67       100.00        98.31           29
+2026-07-09 16:57:39,766 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text        96.15        92.59        94.34           27
+2026-07-09 16:57:39,766 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text       100.00        95.24        97.56           21
+2026-07-09 16:57:39,766 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00           21
+2026-07-09 16:57:39,767 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects        95.24        95.24        95.24           21
+2026-07-09 16:57:39,767 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer        88.89       100.00        94.12           16
+2026-07-09 16:57:39,767 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer        84.62        73.33        78.57           15
+2026-07-09 16:57:39,768 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer        79.17        95.00        86.36           20
+2026-07-09 16:57:39,769 - [ gpt-3.5-turbo ] - INFO -                Text Translator        88.24        93.75        90.91           16
+2026-07-09 16:57:39,769 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis       100.00        73.91        85.00           23
+2026-07-09 16:57:39,769 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker       100.00        71.43        83.33           14
+2026-07-09 16:57:39,769 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier        93.75        75.00        83.33           20
+2026-07-09 16:57:39,769 - [ gpt-3.5-turbo ] - INFO -                  Text Expander        93.75        68.18        78.95           22
+2026-07-09 16:57:39,769 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor        75.00        62.07        67.92           29
+2026-07-09 16:57:39,770 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser        59.26        64.00        61.54           25
+2026-07-09 16:57:39,770 - [ gpt-3.5-turbo ] - INFO -                Article Spinner        66.67        23.53        34.78           17
+2026-07-09 16:57:39,770 - [ gpt-3.5-turbo ] - INFO -                Topic Generator        85.71        70.59        77.42           17
+2026-07-09 16:57:39,771 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image        92.00       100.00        95.83           23
+2026-07-09 16:57:39,771 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video        94.12        94.12        94.12           17
+2026-07-09 16:57:39,771 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio        93.75        93.75        93.75           16
+2026-07-09 16:57:39,771 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image       100.00       100.00       100.00           12
+2026-07-09 16:57:39,771 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher       100.00        85.71        92.31           14
+2026-07-09 16:57:39,772 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer       100.00        86.67        92.86           15
+2026-07-09 16:57:39,772 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer        95.45       100.00        97.67           21
+2026-07-09 16:57:39,772 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer       100.00        89.47        94.44           19
+2026-07-09 16:57:39,772 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer        95.65       100.00        97.78           22
+2026-07-09 16:57:39,773 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization        82.35        93.33        87.50           15
+2026-07-09 16:57:39,773 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover        96.00        96.00        96.00           25
+2026-07-09 16:57:39,773 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:39,774 - [ gpt-3.5-turbo ] - INFO -                          micro        89.03        87.09        88.05          736
+2026-07-09 16:57:39,774 - [ gpt-3.5-turbo ] - INFO -                          macro        89.49        87.17        87.52          736
+2026-07-09 16:57:39,780 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8248043347381095
+2026-07-09 16:57:39,786 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6180821917808219
+2026-07-09 16:57:39,789 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.16077545642763014
+2026-07-09 16:57:39,794 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.6179775280898876
+2026-07-09 16:57:39,796 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:39,796 - [ gpt-3.5-turbo ] - INFO - Tools Number: 4, Task Split: overall
+2026-07-09 16:57:39,832 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 224
+2026-07-09 16:57:39,832 - [ gpt-3.5-turbo ] - INFO - Node Support: 224 / 224
+2026-07-09 16:57:39,832 - [ gpt-3.5-turbo ] - INFO - Link Support: 224 / 224
+2026-07-09 16:57:39,832 - [ gpt-3.5-turbo ] - INFO - Argument Support: 224 / 224
+2026-07-09 16:57:39,842 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.8796296296296297
+2026-07-09 16:57:39,842 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.8909730363423212
+2026-07-09 16:57:39,842 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.885264997087944
+2026-07-09 16:57:39,843 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.8768573891870158
+2026-07-09 16:57:39,843 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.8879768457681699
+2026-07-09 16:57:39,844 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.8755005485757323
+2026-07-09 16:57:39,845 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:39,845 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:39,845 - [ gpt-3.5-turbo ] - INFO -               Image Downloader        90.91       100.00        95.24           10
+2026-07-09 16:57:39,845 - [ gpt-3.5-turbo ] - INFO -               Video Downloader        89.47        89.47        89.47           19
+2026-07-09 16:57:39,846 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader        90.48        95.00        92.68           20
+2026-07-09 16:57:39,846 - [ gpt-3.5-turbo ] - INFO -                Text Downloader        83.33        93.75        88.24           16
+2026-07-09 16:57:39,846 - [ gpt-3.5-turbo ] - INFO -                    Text Search        85.00        89.47        87.18           19
+2026-07-09 16:57:39,846 - [ gpt-3.5-turbo ] - INFO -                   Image Search        46.15        85.71        60.00            7
+2026-07-09 16:57:39,846 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)       100.00        90.91        95.24           22
+2026-07-09 16:57:39,846 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor       100.00        74.07        85.11           27
+2026-07-09 16:57:39,846 - [ gpt-3.5-turbo ] - INFO -                   Video Search        83.33       100.00        90.91           15
+2026-07-09 16:57:39,846 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image        94.44        85.00        89.47           20
+2026-07-09 16:57:39,846 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video        88.24        93.75        90.91           16
+2026-07-09 16:57:39,847 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio        68.97        95.24        80.00           21
+2026-07-09 16:57:39,848 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text        94.29        97.06        95.65           34
+2026-07-09 16:57:39,848 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text        85.71        96.00        90.57           25
+2026-07-09 16:57:39,848 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text        86.49        88.89        87.67           36
+2026-07-09 16:57:39,848 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction        94.74       100.00        97.30           18
+2026-07-09 16:57:39,848 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects        80.00        86.96        83.33           23
+2026-07-09 16:57:39,848 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer        90.00       100.00        94.74           18
+2026-07-09 16:57:39,848 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer        86.36        82.61        84.44           23
+2026-07-09 16:57:39,848 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer        82.35        87.50        84.85           16
+2026-07-09 16:57:39,848 - [ gpt-3.5-turbo ] - INFO -                Text Translator       100.00        88.89        94.12           18
+2026-07-09 16:57:39,849 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis        95.45       100.00        97.67           21
+2026-07-09 16:57:39,849 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker        94.12        84.21        88.89           19
+2026-07-09 16:57:39,849 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier        92.86        81.25        86.67           16
+2026-07-09 16:57:39,849 - [ gpt-3.5-turbo ] - INFO -                  Text Expander        73.33        68.75        70.97           16
+2026-07-09 16:57:39,849 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor        61.11        64.71        62.86           17
+2026-07-09 16:57:39,850 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser        47.62        71.43        57.14           14
+2026-07-09 16:57:39,850 - [ gpt-3.5-turbo ] - INFO -                Article Spinner        92.31        48.00        63.16           25
+2026-07-09 16:57:39,850 - [ gpt-3.5-turbo ] - INFO -                Topic Generator        93.33        63.64        75.68           22
+2026-07-09 16:57:39,850 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image        96.77        96.77        96.77           31
+2026-07-09 16:57:39,851 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video        96.30       100.00        98.11           26
+2026-07-09 16:57:39,851 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio        87.10       100.00        93.10           27
+2026-07-09 16:57:39,852 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image       100.00        95.24        97.56           21
+2026-07-09 16:57:39,852 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher        93.33        87.50        90.32           16
+2026-07-09 16:57:39,852 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer       100.00        94.74        97.30           19
+2026-07-09 16:57:39,852 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer        96.77       100.00        98.36           30
+2026-07-09 16:57:39,852 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer       100.00        95.45        97.67           22
+2026-07-09 16:57:39,853 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer       100.00       100.00       100.00           25
+2026-07-09 16:57:39,853 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization        86.11        83.78        84.93           37
+2026-07-09 16:57:39,853 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover        80.65        96.15        87.72           26
+2026-07-09 16:57:39,853 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:39,854 - [ gpt-3.5-turbo ] - INFO -                          micro        87.96        89.10        88.53          853
+2026-07-09 16:57:39,854 - [ gpt-3.5-turbo ] - INFO -                          macro        87.69        88.80        87.55          853
+2026-07-09 16:57:39,860 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.80811078140455
+2026-07-09 16:57:39,864 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6627326373127553
+2026-07-09 16:57:39,866 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.17348001700680282
+2026-07-09 16:57:39,873 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.6602717825739408
+2026-07-09 16:57:39,875 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:39,876 - [ gpt-3.5-turbo ] - INFO - Tools Number: 5, Task Split: overall
+2026-07-09 16:57:39,916 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 91
+2026-07-09 16:57:39,917 - [ gpt-3.5-turbo ] - INFO - Node Support: 91 / 91
+2026-07-09 16:57:39,917 - [ gpt-3.5-turbo ] - INFO - Link Support: 91 / 91
+2026-07-09 16:57:39,917 - [ gpt-3.5-turbo ] - INFO - Argument Support: 91 / 91
+2026-07-09 16:57:39,925 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.8904761904761904
+2026-07-09 16:57:39,925 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.8637413394919169
+2026-07-09 16:57:39,926 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.876905041031653
+2026-07-09 16:57:39,926 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.8875731906981906
+2026-07-09 16:57:39,926 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.8682060647685648
+2026-07-09 16:57:39,927 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.8658892094259544
+2026-07-09 16:57:39,927 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:39,927 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:39,927 - [ gpt-3.5-turbo ] - INFO -               Image Downloader       100.00       100.00       100.00            9
+2026-07-09 16:57:39,927 - [ gpt-3.5-turbo ] - INFO -               Video Downloader        85.71        75.00        80.00            8
+2026-07-09 16:57:39,927 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader        60.00       100.00        75.00            3
+2026-07-09 16:57:39,927 - [ gpt-3.5-turbo ] - INFO -                Text Downloader        92.31       100.00        96.00           12
+2026-07-09 16:57:39,927 - [ gpt-3.5-turbo ] - INFO -                    Text Search        77.78        63.64        70.00           11
+2026-07-09 16:57:39,927 - [ gpt-3.5-turbo ] - INFO -                   Image Search        63.64       100.00        77.78            7
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)       100.00        83.33        90.91           12
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor       100.00        80.00        88.89           15
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -                   Video Search        80.00       100.00        88.89            4
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image        88.89        88.89        88.89            9
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video        75.00       100.00        85.71            6
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio        62.50        83.33        71.43           12
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text       100.00       100.00       100.00           19
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text        84.62        91.67        88.00           12
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text        91.67        84.62        88.00           13
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            7
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects        90.00       100.00        94.74            9
+2026-07-09 16:57:39,928 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer       100.00       100.00       100.00            5
+2026-07-09 16:57:39,929 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer       100.00        66.67        80.00            9
+2026-07-09 16:57:39,929 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer        91.67        91.67        91.67           12
+2026-07-09 16:57:39,929 - [ gpt-3.5-turbo ] - INFO -                Text Translator       100.00        91.67        95.65           12
+2026-07-09 16:57:39,929 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis        90.91        90.91        90.91           11
+2026-07-09 16:57:39,929 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker       100.00        80.00        88.89           10
+2026-07-09 16:57:39,929 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier        90.91       100.00        95.24           10
+2026-07-09 16:57:39,929 - [ gpt-3.5-turbo ] - INFO -                  Text Expander        60.00        25.00        35.29           12
+2026-07-09 16:57:39,929 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor        76.92        71.43        74.07           14
+2026-07-09 16:57:39,929 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser        75.00        60.00        66.67           15
+2026-07-09 16:57:39,929 - [ gpt-3.5-turbo ] - INFO -                Article Spinner       100.00        37.50        54.55            8
+2026-07-09 16:57:39,929 - [ gpt-3.5-turbo ] - INFO -                Topic Generator        93.33       100.00        96.55           14
+2026-07-09 16:57:39,930 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image       100.00       100.00       100.00           10
+2026-07-09 16:57:39,930 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video        88.89        88.89        88.89            9
+2026-07-09 16:57:39,930 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio        75.00        81.82        78.26           11
+2026-07-09 16:57:39,930 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image       100.00       100.00       100.00           17
+2026-07-09 16:57:39,930 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher       100.00        93.75        96.77           16
+2026-07-09 16:57:39,930 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer       100.00        77.78        87.50            9
+2026-07-09 16:57:39,930 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer       100.00       100.00       100.00           17
+2026-07-09 16:57:39,930 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer       100.00        87.50        93.33            8
+2026-07-09 16:57:39,931 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer       100.00       100.00       100.00            9
+2026-07-09 16:57:39,931 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization        66.67        88.89        76.19            9
+2026-07-09 16:57:39,931 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover        88.89        88.89        88.89           18
+2026-07-09 16:57:39,931 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:39,931 - [ gpt-3.5-turbo ] - INFO -                          micro        89.05        86.37        87.69          433
+2026-07-09 16:57:39,931 - [ gpt-3.5-turbo ] - INFO -                          macro        88.76        86.82        86.59          433
+2026-07-09 16:57:39,933 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8024564994882293
+2026-07-09 16:57:39,936 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.630009319664492
+2026-07-09 16:57:39,937 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.195962767391339
+2026-07-09 16:57:39,941 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.6525037936267072
+2026-07-09 16:57:39,942 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:39,942 - [ gpt-3.5-turbo ] - INFO - Tools Number: 6, Task Split: overall
+2026-07-09 16:57:39,973 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 49
+2026-07-09 16:57:39,973 - [ gpt-3.5-turbo ] - INFO - Node Support: 49 / 49
+2026-07-09 16:57:39,974 - [ gpt-3.5-turbo ] - INFO - Link Support: 49 / 49
+2026-07-09 16:57:39,974 - [ gpt-3.5-turbo ] - INFO - Argument Support: 49 / 49
+2026-07-09 16:57:39,979 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.9076305220883534
+2026-07-09 16:57:39,980 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.8158844765342961
+2026-07-09 16:57:39,980 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.8593155893536122
+2026-07-09 16:57:39,980 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.8962400793650793
+2026-07-09 16:57:39,981 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.8240896256521255
+2026-07-09 16:57:39,981 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.8462544926580268
+2026-07-09 16:57:39,981 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:39,982 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:39,982 - [ gpt-3.5-turbo ] - INFO -               Image Downloader         0.00         0.00         0.00            0
+2026-07-09 16:57:39,982 - [ gpt-3.5-turbo ] - INFO -               Video Downloader        85.71       100.00        92.31            6
+2026-07-09 16:57:39,982 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader       100.00        71.43        83.33            7
+2026-07-09 16:57:39,982 - [ gpt-3.5-turbo ] - INFO -                Text Downloader        60.00        85.71        70.59            7
+2026-07-09 16:57:39,983 - [ gpt-3.5-turbo ] - INFO -                    Text Search        80.00        44.44        57.14            9
+2026-07-09 16:57:39,983 - [ gpt-3.5-turbo ] - INFO -                   Image Search       100.00       100.00       100.00            6
+2026-07-09 16:57:39,983 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)       100.00        66.67        80.00            3
+2026-07-09 16:57:39,983 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor       100.00        58.33        73.68           12
+2026-07-09 16:57:39,983 - [ gpt-3.5-turbo ] - INFO -                   Video Search        88.89       100.00        94.12            8
+2026-07-09 16:57:39,984 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image       100.00       100.00       100.00            6
+2026-07-09 16:57:39,984 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video        85.71       100.00        92.31            6
+2026-07-09 16:57:39,984 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio        66.67       100.00        80.00            2
+2026-07-09 16:57:39,984 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text       100.00       100.00       100.00           10
+2026-07-09 16:57:39,984 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text       100.00        91.67        95.65           12
+2026-07-09 16:57:39,984 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text        91.67        91.67        91.67           12
+2026-07-09 16:57:39,985 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            1
+2026-07-09 16:57:39,985 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects        85.71       100.00        92.31            6
+2026-07-09 16:57:39,985 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer        80.00        80.00        80.00            5
+2026-07-09 16:57:39,985 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer       100.00        85.71        92.31            7
+2026-07-09 16:57:39,985 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer        70.00        77.78        73.68            9
+2026-07-09 16:57:39,985 - [ gpt-3.5-turbo ] - INFO -                Text Translator       100.00       100.00       100.00            3
+2026-07-09 16:57:39,985 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis       100.00        66.67        80.00            6
+2026-07-09 16:57:39,985 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker       100.00        76.92        86.96           13
+2026-07-09 16:57:39,985 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier       100.00        63.64        77.78           11
+2026-07-09 16:57:39,985 - [ gpt-3.5-turbo ] - INFO -                  Text Expander       100.00        63.64        77.78           11
+2026-07-09 16:57:39,986 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor        86.67        81.25        83.87           16
+2026-07-09 16:57:39,986 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser        71.43        62.50        66.67            8
+2026-07-09 16:57:39,986 - [ gpt-3.5-turbo ] - INFO -                Article Spinner       100.00        50.00        66.67            6
+2026-07-09 16:57:39,986 - [ gpt-3.5-turbo ] - INFO -                Topic Generator        80.00        40.00        53.33           10
+2026-07-09 16:57:39,986 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            8
+2026-07-09 16:57:39,986 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video        75.00        75.00        75.00            4
+2026-07-09 16:57:39,987 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio       100.00        80.00        88.89            5
+2026-07-09 16:57:39,987 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image       100.00       100.00       100.00            6
+2026-07-09 16:57:39,987 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher       100.00       100.00       100.00            3
+2026-07-09 16:57:39,987 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer       100.00       100.00       100.00            2
+2026-07-09 16:57:39,987 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer       100.00       100.00       100.00            2
+2026-07-09 16:57:39,987 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer       100.00       100.00       100.00            7
+2026-07-09 16:57:39,987 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer        87.50       100.00        93.33            7
+2026-07-09 16:57:39,987 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization       100.00        83.33        90.91            6
+2026-07-09 16:57:39,987 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover        90.00       100.00        94.74            9
+2026-07-09 16:57:39,987 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:39,987 - [ gpt-3.5-turbo ] - INFO -                          micro        90.76        81.59        85.93          277
+2026-07-09 16:57:39,988 - [ gpt-3.5-turbo ] - INFO -                          macro        89.62        82.41        84.63          277
+2026-07-09 16:57:39,989 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7718120805369127
+2026-07-09 16:57:39,991 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5737179487179487
+2026-07-09 16:57:39,991 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.23820952290340058
+2026-07-09 16:57:39,993 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.585956416464891
+2026-07-09 16:57:39,994 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:39,994 - [ gpt-3.5-turbo ] - INFO - Tools Number: 7, Task Split: overall
+2026-07-09 16:57:40,029 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 24
+2026-07-09 16:57:40,029 - [ gpt-3.5-turbo ] - INFO - Node Support: 24 / 24
+2026-07-09 16:57:40,030 - [ gpt-3.5-turbo ] - INFO - Link Support: 24 / 24
+2026-07-09 16:57:40,030 - [ gpt-3.5-turbo ] - INFO - Argument Support: 24 / 24
+2026-07-09 16:57:40,035 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.9171974522292994
+2026-07-09 16:57:40,035 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.8944099378881988
+2026-07-09 16:57:40,035 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.9056603773584906
+2026-07-09 16:57:40,036 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.87625
+2026-07-09 16:57:40,036 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.8885714285714286
+2026-07-09 16:57:40,036 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.8703805916305918
+2026-07-09 16:57:40,036 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:40,036 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:40,036 - [ gpt-3.5-turbo ] - INFO -               Image Downloader       100.00       100.00       100.00            5
+2026-07-09 16:57:40,037 - [ gpt-3.5-turbo ] - INFO -               Video Downloader       100.00       100.00       100.00            3
+2026-07-09 16:57:40,037 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader       100.00       100.00       100.00            3
+2026-07-09 16:57:40,037 - [ gpt-3.5-turbo ] - INFO -                Text Downloader       100.00       100.00       100.00            1
+2026-07-09 16:57:40,037 - [ gpt-3.5-turbo ] - INFO -                    Text Search        50.00        50.00        50.00            4
+2026-07-09 16:57:40,037 - [ gpt-3.5-turbo ] - INFO -                   Image Search        50.00        50.00        50.00            2
+2026-07-09 16:57:40,038 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)        50.00       100.00        66.67            1
+2026-07-09 16:57:40,038 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor       100.00       100.00       100.00            6
+2026-07-09 16:57:40,038 - [ gpt-3.5-turbo ] - INFO -                   Video Search       100.00       100.00       100.00            6
+2026-07-09 16:57:40,038 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image        50.00       100.00        66.67            2
+2026-07-09 16:57:40,039 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video       100.00       100.00       100.00            2
+2026-07-09 16:57:40,039 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio        50.00       100.00        66.67            1
+2026-07-09 16:57:40,039 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text       100.00       100.00       100.00           11
+2026-07-09 16:57:40,039 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text       100.00       100.00       100.00            4
+2026-07-09 16:57:40,039 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text       100.00        83.33        90.91            6
+2026-07-09 16:57:40,040 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction       100.00       100.00       100.00            3
+2026-07-09 16:57:40,040 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects        75.00       100.00        85.71            3
+2026-07-09 16:57:40,041 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-07-09 16:57:40,041 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer         0.00         0.00         0.00            1
+2026-07-09 16:57:40,041 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer       100.00       100.00       100.00            2
+2026-07-09 16:57:40,041 - [ gpt-3.5-turbo ] - INFO -                Text Translator       100.00       100.00       100.00            6
+2026-07-09 16:57:40,041 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            6
+2026-07-09 16:57:40,041 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker       100.00       100.00       100.00            6
+2026-07-09 16:57:40,041 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier       100.00       100.00       100.00            5
+2026-07-09 16:57:40,042 - [ gpt-3.5-turbo ] - INFO -                  Text Expander        33.33        50.00        40.00            2
+2026-07-09 16:57:40,042 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor       100.00        57.14        72.73            7
+2026-07-09 16:57:40,042 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser        66.67        66.67        66.67            6
+2026-07-09 16:57:40,043 - [ gpt-3.5-turbo ] - INFO -                Article Spinner       100.00        57.14        72.73            7
+2026-07-09 16:57:40,043 - [ gpt-3.5-turbo ] - INFO -                Topic Generator       100.00        60.00        75.00            5
+2026-07-09 16:57:40,043 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            5
+2026-07-09 16:57:40,043 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video       100.00       100.00       100.00            4
+2026-07-09 16:57:40,043 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio        80.00       100.00        88.89            4
+2026-07-09 16:57:40,044 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image       100.00       100.00       100.00            3
+2026-07-09 16:57:40,044 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher       100.00       100.00       100.00            5
+2026-07-09 16:57:40,044 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer       100.00       100.00       100.00            1
+2026-07-09 16:57:40,044 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer       100.00       100.00       100.00            5
+2026-07-09 16:57:40,045 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer       100.00        80.00        88.89            5
+2026-07-09 16:57:40,045 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer       100.00       100.00       100.00            6
+2026-07-09 16:57:40,045 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization       100.00       100.00       100.00            3
+2026-07-09 16:57:40,045 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover       100.00       100.00       100.00            3
+2026-07-09 16:57:40,045 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:40,045 - [ gpt-3.5-turbo ] - INFO -                          micro        91.72        89.44        90.57          161
+2026-07-09 16:57:40,045 - [ gpt-3.5-turbo ] - INFO -                          macro        87.62        88.86        87.04          161
+2026-07-09 16:57:40,049 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8385269121813032
+2026-07-09 16:57:40,052 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6597402597402597
+2026-07-09 16:57:40,053 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.14049769674769674
+2026-07-09 16:57:40,055 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.6640926640926641
+2026-07-09 16:57:40,055 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:40,055 - [ gpt-3.5-turbo ] - INFO - Tools Number: 8, Task Split: overall
+2026-07-09 16:57:40,142 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 9
+2026-07-09 16:57:40,143 - [ gpt-3.5-turbo ] - INFO - Node Support: 9 / 9
+2026-07-09 16:57:40,143 - [ gpt-3.5-turbo ] - INFO - Link Support: 9 / 9
+2026-07-09 16:57:40,143 - [ gpt-3.5-turbo ] - INFO - Argument Support: 9 / 9
+2026-07-09 16:57:40,155 - [ gpt-3.5-turbo ] - INFO - Node Micro Precision [ No Matching ]: 0.94
+2026-07-09 16:57:40,156 - [ gpt-3.5-turbo ] - INFO - Node Micro Recall [ No Matching ]: 0.7014925373134329
+2026-07-09 16:57:40,156 - [ gpt-3.5-turbo ] - INFO - Node Micro F1 [ No Matching ]: 0.8034188034188035
+2026-07-09 16:57:40,156 - [ gpt-3.5-turbo ] - INFO - Node Macro Precision [ No Matching ]: 0.7479166666666666
+2026-07-09 16:57:40,157 - [ gpt-3.5-turbo ] - INFO - Node Macro Recall [ No Matching ]: 0.6083333333333333
+2026-07-09 16:57:40,157 - [ gpt-3.5-turbo ] - INFO - Node Macro F1 [ No Matching ]: 0.6451190476190476
+2026-07-09 16:57:40,157 - [ gpt-3.5-turbo ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 16:57:40,158 - [ gpt-3.5-turbo ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 16:57:40,158 - [ gpt-3.5-turbo ] - INFO -               Image Downloader       100.00        50.00        66.67            2
+2026-07-09 16:57:40,158 - [ gpt-3.5-turbo ] - INFO -               Video Downloader       100.00       100.00       100.00            1
+2026-07-09 16:57:40,159 - [ gpt-3.5-turbo ] - INFO -               Audio Downloader       100.00       100.00       100.00            1
+2026-07-09 16:57:40,159 - [ gpt-3.5-turbo ] - INFO -                Text Downloader       100.00       100.00       100.00            3
+2026-07-09 16:57:40,159 - [ gpt-3.5-turbo ] - INFO -                    Text Search       100.00        50.00        66.67            2
+2026-07-09 16:57:40,159 - [ gpt-3.5-turbo ] - INFO -                   Image Search         0.00         0.00         0.00            0
+2026-07-09 16:57:40,160 - [ gpt-3.5-turbo ] - INFO -        Image Search (by Image)       100.00        33.33        50.00            3
+2026-07-09 16:57:40,160 - [ gpt-3.5-turbo ] - INFO -                  URL Extractor       100.00        66.67        80.00            3
+2026-07-09 16:57:40,160 - [ gpt-3.5-turbo ] - INFO -                   Video Search         0.00         0.00         0.00            0
+2026-07-09 16:57:40,160 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Image         0.00         0.00         0.00            0
+2026-07-09 16:57:40,160 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Video       100.00       100.00       100.00            1
+2026-07-09 16:57:40,160 - [ gpt-3.5-turbo ] - INFO -                  Text-to-Audio         0.00         0.00         0.00            1
+2026-07-09 16:57:40,161 - [ gpt-3.5-turbo ] - INFO -                  Image-to-Text       100.00        50.00        66.67            4
+2026-07-09 16:57:40,161 - [ gpt-3.5-turbo ] - INFO -                  Audio-to-Text       100.00        33.33        50.00            3
+2026-07-09 16:57:40,161 - [ gpt-3.5-turbo ] - INFO -                  Video-to-Text       100.00        75.00        85.71            4
+2026-07-09 16:57:40,161 - [ gpt-3.5-turbo ] - INFO -          Audio Noise Reduction       100.00        33.33        50.00            3
+2026-07-09 16:57:40,161 - [ gpt-3.5-turbo ] - INFO -                  Audio Effects         0.00         0.00         0.00            0
+2026-07-09 16:57:40,161 - [ gpt-3.5-turbo ] - INFO -                  Audio Splicer       100.00       100.00       100.00            1
+2026-07-09 16:57:40,161 - [ gpt-3.5-turbo ] - INFO -                  Voice Changer         0.00         0.00         0.00            0
+2026-07-09 16:57:40,161 - [ gpt-3.5-turbo ] - INFO -                Text Summarizer        66.67       100.00        80.00            2
+2026-07-09 16:57:40,162 - [ gpt-3.5-turbo ] - INFO -                Text Translator       100.00        75.00        85.71            4
+2026-07-09 16:57:40,162 - [ gpt-3.5-turbo ] - INFO -        Text Sentiment Analysis       100.00       100.00       100.00            2
+2026-07-09 16:57:40,162 - [ gpt-3.5-turbo ] - INFO -           Text Grammar Checker       100.00        66.67        80.00            3
+2026-07-09 16:57:40,162 - [ gpt-3.5-turbo ] - INFO -                Text Simplifier         0.00         0.00         0.00            0
+2026-07-09 16:57:40,162 - [ gpt-3.5-turbo ] - INFO -                  Text Expander       100.00        50.00        66.67            2
+2026-07-09 16:57:40,163 - [ gpt-3.5-turbo ] - INFO -              Keyword Extractor       100.00       100.00       100.00            2
+2026-07-09 16:57:40,163 - [ gpt-3.5-turbo ] - INFO -               Text Paraphraser       100.00        50.00        66.67            2
+2026-07-09 16:57:40,163 - [ gpt-3.5-turbo ] - INFO -                Article Spinner         0.00         0.00         0.00            0
+2026-07-09 16:57:40,163 - [ gpt-3.5-turbo ] - INFO -                Topic Generator       100.00       100.00       100.00            1
+2026-07-09 16:57:40,164 - [ gpt-3.5-turbo ] - INFO -                 Audio-to-Image       100.00       100.00       100.00            1
+2026-07-09 16:57:40,164 - [ gpt-3.5-turbo ] - INFO -                 Image-to-Video       100.00       100.00       100.00            1
+2026-07-09 16:57:40,164 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Audio       100.00        50.00        66.67            2
+2026-07-09 16:57:40,164 - [ gpt-3.5-turbo ] - INFO -                 Video-to-Image        75.00       100.00        85.71            3
+2026-07-09 16:57:40,165 - [ gpt-3.5-turbo ] - INFO -                 Image Stitcher       100.00       100.00       100.00            3
+2026-07-09 16:57:40,165 - [ gpt-3.5-turbo ] - INFO -                Image Colorizer         0.00         0.00         0.00            1
+2026-07-09 16:57:40,165 - [ gpt-3.5-turbo ] - INFO -           Image Style Transfer       100.00       100.00       100.00            1
+2026-07-09 16:57:40,165 - [ gpt-3.5-turbo ] - INFO -               Video Stabilizer       100.00       100.00       100.00            1
+2026-07-09 16:57:40,166 - [ gpt-3.5-turbo ] - INFO -            Video Speed Changer       100.00       100.00       100.00            1
+2026-07-09 16:57:40,166 - [ gpt-3.5-turbo ] - INFO -          Video Synchronization       100.00        50.00        66.67            2
+2026-07-09 16:57:40,166 - [ gpt-3.5-turbo ] - INFO -                Video Voiceover        50.00       100.00        66.67            1
+2026-07-09 16:57:40,166 - [ gpt-3.5-turbo ] - INFO - 
+2026-07-09 16:57:40,166 - [ gpt-3.5-turbo ] - INFO -                          micro        94.00        70.15        80.34           67
+2026-07-09 16:57:40,166 - [ gpt-3.5-turbo ] - INFO -                          macro        74.79        60.83        64.51           67
+2026-07-09 16:57:40,170 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8
+2026-07-09 16:57:40,173 - [ gpt-3.5-turbo ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6131386861313869
+2026-07-09 16:57:40,174 - [ gpt-3.5-turbo ] - INFO - Edit Distance: 0.2632737632737633
+2026-07-09 16:57:40,177 - [ gpt-3.5-turbo ] - INFO - Link Binary F1: 0.5742574257425742
+2026-07-09 16:57:40,178 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:40,178 - [ gpt-3.5-turbo ] - INFO - Tools Number: 9, Task Split: overall
+2026-07-09 16:57:40,201 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 0
+2026-07-09 16:57:40,201 - [ gpt-3.5-turbo ] - INFO - Node Support: 0 / 0
+2026-07-09 16:57:40,202 - [ gpt-3.5-turbo ] - INFO - Link Support: 0 / 0
+2026-07-09 16:57:40,202 - [ gpt-3.5-turbo ] - INFO - Argument Support: 0 / 0
+2026-07-09 16:57:40,202 - [ gpt-3.5-turbo ] - INFO - No supports, skip
+2026-07-09 16:57:40,202 - [ gpt-3.5-turbo ] - INFO - ---------------
+2026-07-09 16:57:40,202 - [ gpt-3.5-turbo ] - INFO - Tools Number: 10, Task Split: overall
+2026-07-09 16:57:40,222 - [ gpt-3.5-turbo ] - INFO - Step Supports: 0 / 0
+2026-07-09 16:57:40,223 - [ gpt-3.5-turbo ] - INFO - Node Support: 0 / 0
+2026-07-09 16:57:40,223 - [ gpt-3.5-turbo ] - INFO - Link Support: 0 / 0
+2026-07-09 16:57:40,224 - [ gpt-3.5-turbo ] - INFO - Argument Support: 0 / 0
+2026-07-09 16:57:40,224 - [ gpt-3.5-turbo ] - INFO - No supports, skip

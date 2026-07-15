@@ -1,0 +1,1759 @@
+2026-07-14 13:39:59,889 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_huggingface', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 4, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'resource', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-14 13:39:59,890 - [ qwen3-14b ] - INFO - Detected 0 has been inferenced,
+2026-07-14 13:39:59,890 - [ qwen3-14b ] - INFO - Start inferencing 1492 tasks...
+2026-07-14 13:40:01,324 - [ qwen3-14b ] - INFO - # TASK LIST #:
+{"id": "Token Classification", "desc": "Token classification is a natural language understanding task in which a label is assigned to some tokens in a text. Some popular token classification subtasks are Named Entity Recognition (NER) and Part-of-Speech (PoS) tagging. NER models could be trained to identify specific entities in a text, such as dates, individuals and places; and PoS tagging would identify, for example, which words in a text are verbs, nouns, and punctuation marks.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Translation", "desc": "Translation is the task of converting text from one language to another.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Summarization", "desc": "Summarization is the task of producing a shorter version of a document while preserving its important information. Some models can extract text from the original input, while other models can generate entirely new text.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Question Answering", "desc": "Question Answering models can retrieve the answer to a question from a given text, which is useful for searching for an answer in a document.", "input-type": ["text", "text"], "output-type": ["text"]}
+{"id": "Conversational", "desc": "Conversational response modelling is the task of generating conversational text that is relevant, coherent and knowledgable given a prompt. These models have applications in chatbots, and as a part of voice assistants", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Text Generation", "desc": "Generating text is the task of producing new text. These models can, for example, fill in incomplete text or paraphrase.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Sentence Similarity", "desc": "Sentence Similarity is the task of determining how similar two texts are. This task is particularly useful for information retrieval and clustering/grouping.", "input-type": ["text", "text"], "output-type": []}
+{"id": "Tabular Classification", "desc": "Tabular classification is the task of classifying a table (in Image format).", "input-type": ["image"], "output-type": ["text"]}
+{"id": "Object Detection", "desc": "Object Detection models allow users to identify objects of certain defined classes. Object detection models receive an image as input and output the images with bounding boxes and labels on detected objects.", "input-type": ["image"], "output-type": ["text"]}
+{"id": "Image Classification", "desc": "Image classification is the task of assigning a label or class to an entire image. Images are expected to have only one class for each image. Image classification models take an image as input and return a prediction about which class the image belongs to.", "input-type": ["image"], "output-type": ["text"]}
+{"id": "Image-to-Image", "desc": "Image-to-image is the task of transforming a source image to match the characteristics of a target image or a target image domain. Any image manipulation and enhancement is possible with image to image models.", "input-type": ["image"], "output-type": ["image"]}
+{"id": "Image-to-Text", "desc": "Image to text models output a text from a given image. Image captioning or optical character recognition can be considered as the most common applications of image to text.", "input-type": ["image"], "output-type": ["text"]}
+{"id": "Text-to-Image", "desc": "Generates images from input text. These models can be used to generate images based on text prompts.", "input-type": ["text"], "output-type": ["image"]}
+{"id": "Text-to-Video", "desc": "Generates videos from input text. These models can be used to generate videos based on text prompts.", "input-type": ["text"], "output-type": ["video"]}
+{"id": "Visual Question Answering", "desc": "Visual Question Answering is the task of answering questions based on an image.", "input-type": ["image", "text"], "output-type": ["text"]}
+{"id": "Document Question Answering", "desc": "Document Question Answering (also known as Document Visual Question Answering) is the task of answering questions on document images. Document question answering models take a (document, question) pair as input and return an answer in natural language. Models usually rely on multi-modal features, combining text, position of words (bounding-boxes) and image.", "input-type": ["image", "text"], "output-type": ["text"]}
+{"id": "Image Segmentation", "desc": "Image Segmentation divides an image into segments where each pixel in the image is mapped to an object. This task has multiple variants such as instance segmentation, panoptic segmentation and semantic segmentation.", "input-type": ["image"], "output-type": ["image"]}
+{"id": "Depth Estimation", "desc": "Depth estimation is the task of predicting depth of the objects present in an image.", "input-type": ["image"], "output-type": ["image"]}
+{"id": "Text-to-Speech", "desc": "Text-to-Speech (TTS) is the task of generating natural sounding speech given text input. TTS models can be extended to have a single model that generates speech for multiple speakers and multiple languages.", "input-type": ["text"], "output-type": ["audio"]}
+{"id": "Automatic Speech Recognition", "desc": "Automatic Speech Recognition (ASR), also known as Speech to Text (STT), is the task of transcribing a given audio to text. It has many applications, such as voice user interfaces.", "input-type": ["audio"], "output-type": ["text"]}
+{"id": "Audio-to-Audio", "desc": "Audio-to-Audio is a family of tasks in which the input is an audio and the output is one or multiple generated audios. Some example tasks are speech enhancement and source separation.", "input-type": ["audio"], "output-type": ["audio"]}
+{"id": "Audio Classification", "desc": "Audio classification is the task of assigning a label or class to a given audio. It can be used for recognizing which command a user is giving or the emotion of a statement, as well as identifying a speaker.", "input-type": ["audio"], "output-type": ["text"]}
+{"id": "Image Editing", "desc": "Image editing is the task of modifying an image to match a given text description. It can be used to modify the attributes of an image, such as the color of an object or the background.", "input-type": ["text", "image"], "output-type": ["image"]}
+
+# GOAL #: Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ step description of one or more steps ], "task_nodes": [{"task": "tool name must be from # TOOL LIST #", "arguments": [ a concise list of arguments for the tool. Either original text, or user-mentioned filename, or tag '<node-j>' (start from 0) to refer to the output of the j-th node. ]}]} 
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. the dependencies among task steps should align with the argument dependencies of the task nodes; 
+4. the tool arguments should be align with the input-type field of # TASK LIST #;
+
+# USER REQUEST #: I've got an image named 'example.jpg' and I'm curious about the predominant color. Can you figure it out for me?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-14 13:40:01,324 - [ qwen3-14b ] - INFO - {
+  "task_steps": [
+    "Analyze the image to determine its predominant color."
+  ],
+  "task_nodes": [
+    {
+      "task": "Image Classification",
+      "arguments": ["example.jpg"]
+    }
+  ]
+}
+2026-07-14 13:40:01,325 - [ qwen3-14b ] - INFO - Success #id 27766469
+2026-07-14 13:40:02,839 - [ qwen3-14b ] - INFO - Success #id 21313605
+2026-07-14 13:40:03,363 - [ qwen3-14b ] - INFO - Success #id 30553995
+2026-07-14 13:40:03,377 - [ qwen3-14b ] - INFO - Success #id 28976968
+2026-07-14 13:40:03,696 - [ qwen3-14b ] - INFO - Success #id 42488832
+2026-07-14 13:40:04,293 - [ qwen3-14b ] - INFO - Success #id 32709055
+2026-07-14 13:40:05,483 - [ qwen3-14b ] - INFO - Success #id 33970123
+2026-07-14 13:40:05,561 - [ qwen3-14b ] - INFO - Success #id 27226618
+2026-07-14 13:40:06,434 - [ qwen3-14b ] - INFO - Success #id 27538864
+2026-07-14 13:40:06,865 - [ qwen3-14b ] - INFO - Success #id 28434536
+2026-07-14 13:40:07,043 - [ qwen3-14b ] - INFO - Success #id 52543700
+2026-07-14 13:40:07,739 - [ qwen3-14b ] - INFO - Success #id 15341781
+2026-07-14 13:40:09,051 - [ qwen3-14b ] - INFO - Success #id 23055130
+2026-07-14 13:40:09,102 - [ qwen3-14b ] - INFO - Success #id 19374645
+2026-07-14 13:40:10,299 - [ qwen3-14b ] - INFO - Success #id 36709477
+2026-07-14 13:40:10,434 - [ qwen3-14b ] - INFO - Success #id 10931290
+2026-07-14 13:40:10,696 - [ qwen3-14b ] - INFO - Success #id 18533645
+2026-07-14 13:40:11,287 - [ qwen3-14b ] - INFO - Success #id 24037322
+2026-07-14 13:40:11,931 - [ qwen3-14b ] - INFO - Success #id 33105034
+2026-07-14 13:40:13,692 - [ qwen3-14b ] - INFO - Success #id 16033757
+2026-07-14 13:40:13,912 - [ qwen3-14b ] - INFO - Success #id 47607836
+2026-07-14 13:40:13,987 - [ qwen3-14b ] - INFO - Success #id 31027789
+2026-07-14 13:40:14,256 - [ qwen3-14b ] - INFO - Success #id 20338575
+2026-07-14 13:40:15,815 - [ qwen3-14b ] - INFO - Success #id 31090887
+2026-07-14 13:40:16,728 - [ qwen3-14b ] - INFO - Success #id 33582097
+2026-07-14 13:40:17,099 - [ qwen3-14b ] - INFO - Success #id 22162885
+2026-07-14 13:40:17,200 - [ qwen3-14b ] - INFO - Success #id 29533886
+2026-07-14 13:40:17,696 - [ qwen3-14b ] - INFO - Success #id 17872227
+2026-07-14 13:40:20,001 - [ qwen3-14b ] - INFO - Success #id 25394429
+2026-07-14 13:40:20,056 - [ qwen3-14b ] - INFO - Success #id 40730329
+2026-07-14 13:40:20,128 - [ qwen3-14b ] - INFO - Success #id 22394004
+2026-07-14 13:40:21,075 - [ qwen3-14b ] - INFO - Success #id 33423665
+2026-07-14 13:40:22,126 - [ qwen3-14b ] - INFO - Success #id 16021830
+2026-07-14 13:40:22,147 - [ qwen3-14b ] - INFO - Success #id 11464364
+2026-07-14 13:40:23,290 - [ qwen3-14b ] - INFO - Success #id 32358953
+2026-07-14 13:40:23,460 - [ qwen3-14b ] - INFO - Success #id 32421407
+2026-07-14 13:40:23,972 - [ qwen3-14b ] - INFO - Success #id 22041493
+2026-07-14 13:40:24,870 - [ qwen3-14b ] - INFO - Success #id 32742251
+2026-07-14 13:40:24,912 - [ qwen3-14b ] - INFO - Success #id 25503816
+2026-07-14 13:40:26,300 - [ qwen3-14b ] - INFO - Success #id 16881996
+2026-07-14 13:40:26,907 - [ qwen3-14b ] - INFO - Success #id 27134220
+2026-07-14 13:40:28,193 - [ qwen3-14b ] - INFO - Success #id 24670605
+2026-07-14 13:40:29,424 - [ qwen3-14b ] - INFO - Success #id 12833296
+2026-07-14 13:40:29,744 - [ qwen3-14b ] - INFO - Success #id 24006074
+2026-07-14 13:40:30,572 - [ qwen3-14b ] - INFO - Success #id 14414882
+2026-07-14 13:40:31,583 - [ qwen3-14b ] - INFO - Success #id 16722410
+2026-07-14 13:40:31,807 - [ qwen3-14b ] - INFO - Success #id 22857537
+2026-07-14 13:40:31,925 - [ qwen3-14b ] - INFO - Success #id 40280067
+2026-07-14 13:40:32,749 - [ qwen3-14b ] - INFO - Success #id 29011701
+2026-07-14 13:40:33,138 - [ qwen3-14b ] - INFO - Success #id 23722359
+2026-07-14 13:40:34,206 - [ qwen3-14b ] - INFO - Success #id 22478672
+2026-07-14 13:40:34,740 - [ qwen3-14b ] - INFO - Success #id 24112796
+2026-07-14 13:40:35,051 - [ qwen3-14b ] - INFO - Success #id 16942550
+2026-07-14 13:40:35,247 - [ qwen3-14b ] - INFO - Success #id 19573989
+2026-07-14 13:40:36,673 - [ qwen3-14b ] - INFO - Success #id 15092186
+2026-07-14 13:40:36,940 - [ qwen3-14b ] - INFO - Success #id 11511228
+2026-07-14 13:40:37,194 - [ qwen3-14b ] - INFO - Success #id 27697469
+2026-07-14 13:40:38,557 - [ qwen3-14b ] - INFO - Success #id 14816473
+2026-07-14 13:40:39,854 - [ qwen3-14b ] - INFO - Success #id 67663916
+2026-07-14 13:40:40,041 - [ qwen3-14b ] - INFO - Success #id 94049616
+2026-07-14 13:40:40,920 - [ qwen3-14b ] - INFO - Success #id 11719802
+2026-07-14 13:40:41,489 - [ qwen3-14b ] - INFO - Success #id 27501400
+2026-07-14 13:40:42,790 - [ qwen3-14b ] - INFO - Success #id 28323068
+2026-07-14 13:40:43,675 - [ qwen3-14b ] - INFO - Success #id 74952892
+2026-07-14 13:40:44,282 - [ qwen3-14b ] - INFO - Success #id 19276184
+2026-07-14 13:40:45,610 - [ qwen3-14b ] - INFO - Success #id 28519630
+2026-07-14 13:40:45,869 - [ qwen3-14b ] - INFO - Success #id 30039881
+2026-07-14 13:40:46,552 - [ qwen3-14b ] - INFO - Success #id 76321365
+2026-07-14 13:40:47,310 - [ qwen3-14b ] - INFO - Success #id 25544977
+2026-07-14 13:40:47,478 - [ qwen3-14b ] - INFO - Success #id 25190828
+2026-07-14 13:40:48,775 - [ qwen3-14b ] - INFO - Success #id 10708782
+2026-07-14 13:40:49,242 - [ qwen3-14b ] - INFO - Success #id 20203258
+2026-07-14 13:40:49,575 - [ qwen3-14b ] - INFO - Success #id 29022756
+2026-07-14 13:40:49,636 - [ qwen3-14b ] - INFO - Success #id 23118182
+2026-07-14 13:40:50,987 - [ qwen3-14b ] - INFO - Success #id 29880389
+2026-07-14 13:40:51,012 - [ qwen3-14b ] - INFO - Success #id 25220155
+2026-07-14 13:40:51,029 - [ qwen3-14b ] - INFO - Success #id 17660079
+2026-07-14 13:40:52,326 - [ qwen3-14b ] - INFO - Success #id 21338418
+2026-07-14 13:40:52,341 - [ qwen3-14b ] - INFO - Success #id 16703201
+2026-07-14 13:40:53,040 - [ qwen3-14b ] - INFO - Success #id 72886455
+2026-07-14 13:40:53,973 - [ qwen3-14b ] - INFO - Success #id 33588394
+2026-07-14 13:40:54,004 - [ qwen3-14b ] - INFO - Success #id 16954821
+2026-07-14 13:40:54,156 - [ qwen3-14b ] - INFO - Success #id 16179614
+2026-07-14 13:40:55,116 - [ qwen3-14b ] - INFO - Success #id 19547914
+2026-07-14 13:40:55,242 - [ qwen3-14b ] - INFO - Success #id 23424117
+2026-07-14 13:40:55,378 - [ qwen3-14b ] - INFO - Success #id 26319950
+2026-07-14 13:40:55,670 - [ qwen3-14b ] - INFO - Success #id 30403933
+2026-07-14 13:40:56,907 - [ qwen3-14b ] - INFO - Success #id 28145763
+2026-07-14 13:40:57,209 - [ qwen3-14b ] - INFO - Success #id 52799912
+2026-07-14 13:40:58,728 - [ qwen3-14b ] - INFO - Success #id 22800579
+2026-07-14 13:40:58,759 - [ qwen3-14b ] - INFO - Success #id 70080879
+2026-07-14 13:40:59,599 - [ qwen3-14b ] - INFO - Success #id 33652662
+2026-07-14 13:41:00,208 - [ qwen3-14b ] - INFO - Success #id 22146346
+2026-07-14 13:41:00,867 - [ qwen3-14b ] - INFO - Success #id 70134586
+2026-07-14 13:41:02,195 - [ qwen3-14b ] - INFO - Success #id 16838858
+2026-07-14 13:41:02,576 - [ qwen3-14b ] - INFO - Success #id 88856362
+2026-07-14 13:41:02,755 - [ qwen3-14b ] - INFO - Success #id 29512843
+2026-07-14 13:41:02,800 - [ qwen3-14b ] - INFO - Success #id 31310733
+2026-07-14 13:41:03,617 - [ qwen3-14b ] - INFO - Success #id 13084117
+2026-07-14 13:41:04,186 - [ qwen3-14b ] - INFO - Success #id 13209996
+2026-07-14 13:41:05,785 - [ qwen3-14b ] - INFO - Success #id 92859809
+2026-07-14 13:41:06,062 - [ qwen3-14b ] - INFO - Success #id 30935856
+2026-07-14 13:41:07,070 - [ qwen3-14b ] - INFO - Success #id 21994561
+2026-07-14 13:41:07,179 - [ qwen3-14b ] - INFO - Success #id 19739964
+2026-07-14 13:41:07,254 - [ qwen3-14b ] - INFO - Success #id 90891697
+2026-07-14 13:41:08,745 - [ qwen3-14b ] - INFO - Success #id 16679728
+2026-07-14 13:41:09,808 - [ qwen3-14b ] - INFO - Success #id 26932187
+2026-07-14 13:41:09,921 - [ qwen3-14b ] - INFO - Success #id 12945654
+2026-07-14 13:41:10,959 - [ qwen3-14b ] - INFO - Success #id 10139693
+2026-07-14 13:41:12,184 - [ qwen3-14b ] - INFO - Success #id 15416924
+2026-07-14 13:41:12,810 - [ qwen3-14b ] - INFO - Success #id 18460626
+2026-07-14 13:41:13,249 - [ qwen3-14b ] - INFO - Success #id 29765923
+2026-07-14 13:41:14,299 - [ qwen3-14b ] - INFO - Success #id 30661139
+2026-07-14 13:41:14,316 - [ qwen3-14b ] - INFO - Success #id 28673992
+2026-07-14 13:41:16,279 - [ qwen3-14b ] - INFO - Success #id 13805504
+2026-07-14 13:41:16,413 - [ qwen3-14b ] - INFO - Success #id 30633199
+2026-07-14 13:41:16,696 - [ qwen3-14b ] - INFO - Success #id 18282389
+2026-07-14 13:41:17,630 - [ qwen3-14b ] - INFO - Success #id 21219149
+2026-07-14 13:41:18,245 - [ qwen3-14b ] - INFO - Success #id 33113509
+2026-07-14 13:41:18,985 - [ qwen3-14b ] - INFO - Success #id 24833798
+2026-07-14 13:41:19,820 - [ qwen3-14b ] - INFO - Success #id 14031609
+2026-07-14 13:41:20,613 - [ qwen3-14b ] - INFO - Success #id 34013729
+2026-07-14 13:41:21,721 - [ qwen3-14b ] - INFO - Success #id 17199158
+2026-07-14 13:41:21,855 - [ qwen3-14b ] - INFO - Success #id 43460977
+2026-07-14 13:41:21,975 - [ qwen3-14b ] - INFO - Success #id 24569557
+2026-07-14 13:41:22,881 - [ qwen3-14b ] - INFO - Success #id 63063677
+2026-07-14 13:41:23,404 - [ qwen3-14b ] - INFO - Success #id 29853503
+2026-07-14 13:41:24,073 - [ qwen3-14b ] - INFO - Success #id 23975625
+2026-07-14 13:41:24,149 - [ qwen3-14b ] - INFO - Success #id 11101408
+2026-07-14 13:41:24,741 - [ qwen3-14b ] - INFO - Success #id 19086327
+2026-07-14 13:41:26,559 - [ qwen3-14b ] - INFO - Success #id 16858455
+2026-07-14 13:41:26,744 - [ qwen3-14b ] - INFO - Success #id 39808500
+2026-07-14 13:41:27,151 - [ qwen3-14b ] - INFO - Success #id 18039605
+2026-07-14 13:41:27,646 - [ qwen3-14b ] - INFO - Success #id 16745601
+2026-07-14 13:41:28,377 - [ qwen3-14b ] - INFO - Success #id 17071118
+2026-07-14 13:41:28,945 - [ qwen3-14b ] - INFO - Success #id 83217293
+2026-07-14 13:41:29,673 - [ qwen3-14b ] - INFO - Success #id 11569207
+2026-07-14 13:41:30,698 - [ qwen3-14b ] - INFO - Success #id 12702978
+2026-07-14 13:41:31,527 - [ qwen3-14b ] - INFO - Success #id 16385655
+2026-07-14 13:41:32,000 - [ qwen3-14b ] - INFO - Success #id 21129317
+2026-07-14 13:41:32,063 - [ qwen3-14b ] - INFO - Success #id 23122311
+2026-07-14 13:41:32,890 - [ qwen3-14b ] - INFO - Success #id 22312072
+2026-07-14 13:41:33,725 - [ qwen3-14b ] - INFO - Success #id 72355921
+2026-07-14 13:41:34,043 - [ qwen3-14b ] - INFO - Success #id 28101968
+2026-07-14 13:41:34,389 - [ qwen3-14b ] - INFO - Success #id 30259970
+2026-07-14 13:41:36,136 - [ qwen3-14b ] - INFO - Success #id 41312314
+2026-07-14 13:41:36,638 - [ qwen3-14b ] - INFO - Success #id 31492454
+2026-07-14 13:41:36,824 - [ qwen3-14b ] - INFO - Success #id 12961301
+2026-07-14 13:41:37,739 - [ qwen3-14b ] - INFO - Success #id 11346018
+2026-07-14 13:41:37,986 - [ qwen3-14b ] - INFO - Success #id 23859482
+2026-07-14 13:41:38,890 - [ qwen3-14b ] - INFO - Success #id 83381880
+2026-07-14 13:41:39,186 - [ qwen3-14b ] - INFO - Success #id 33866667
+2026-07-14 13:41:39,271 - [ qwen3-14b ] - INFO - Success #id 27120524
+2026-07-14 13:41:39,777 - [ qwen3-14b ] - INFO - Success #id 21026495
+2026-07-14 13:41:40,459 - [ qwen3-14b ] - INFO - Success #id 15405240
+2026-07-14 13:41:41,303 - [ qwen3-14b ] - INFO - Success #id 14626405
+2026-07-14 13:41:41,870 - [ qwen3-14b ] - INFO - Success #id 10061642
+2026-07-14 13:41:43,110 - [ qwen3-14b ] - INFO - Success #id 20782196
+2026-07-14 13:41:43,641 - [ qwen3-14b ] - INFO - Success #id 20374279
+2026-07-14 13:41:43,992 - [ qwen3-14b ] - INFO - Success #id 16582824
+2026-07-14 13:41:45,247 - [ qwen3-14b ] - INFO - Success #id 30160924
+2026-07-14 13:41:45,975 - [ qwen3-14b ] - INFO - Success #id 10028057
+2026-07-14 13:41:46,182 - [ qwen3-14b ] - INFO - Success #id 73777727
+2026-07-14 13:41:47,056 - [ qwen3-14b ] - INFO - Success #id 31245610
+2026-07-14 13:41:47,277 - [ qwen3-14b ] - INFO - Success #id 26277038
+2026-07-14 13:41:47,433 - [ qwen3-14b ] - INFO - Success #id 79761125
+2026-07-14 13:41:49,670 - [ qwen3-14b ] - INFO - Success #id 32014698
+2026-07-14 13:41:49,892 - [ qwen3-14b ] - INFO - Success #id 92132571
+2026-07-14 13:41:50,014 - [ qwen3-14b ] - INFO - Success #id 39991073
+2026-07-14 13:41:51,016 - [ qwen3-14b ] - INFO - Success #id 13507520
+2026-07-14 13:41:52,079 - [ qwen3-14b ] - INFO - Success #id 27162157
+2026-07-14 13:41:52,122 - [ qwen3-14b ] - INFO - Success #id 54827531
+2026-07-14 13:41:52,563 - [ qwen3-14b ] - INFO - Success #id 18492736
+2026-07-14 13:41:52,787 - [ qwen3-14b ] - INFO - Success #id 45434997
+2026-07-14 13:41:54,100 - [ qwen3-14b ] - INFO - Success #id 80518861
+2026-07-14 13:41:55,035 - [ qwen3-14b ] - INFO - Success #id 23850831
+2026-07-14 13:41:55,329 - [ qwen3-14b ] - INFO - Success #id 29320109
+2026-07-14 13:41:56,726 - [ qwen3-14b ] - INFO - Success #id 10305875
+2026-07-14 13:41:57,317 - [ qwen3-14b ] - INFO - Success #id 96798799
+2026-07-14 13:41:57,532 - [ qwen3-14b ] - INFO - Success #id 68574382
+2026-07-14 13:41:58,174 - [ qwen3-14b ] - INFO - Success #id 69420303
+2026-07-14 13:41:58,764 - [ qwen3-14b ] - INFO - Success #id 21675763
+2026-07-14 13:41:59,684 - [ qwen3-14b ] - INFO - Success #id 14261318
+2026-07-14 13:42:00,425 - [ qwen3-14b ] - INFO - Success #id 22737536
+2026-07-14 13:42:00,492 - [ qwen3-14b ] - INFO - Success #id 39042753
+2026-07-14 13:42:01,414 - [ qwen3-14b ] - INFO - Success #id 18760367
+2026-07-14 13:42:02,001 - [ qwen3-14b ] - INFO - Success #id 10854534
+2026-07-14 13:42:02,488 - [ qwen3-14b ] - INFO - Success #id 16772256
+2026-07-14 13:42:03,793 - [ qwen3-14b ] - INFO - Success #id 82061734
+2026-07-14 13:42:03,872 - [ qwen3-14b ] - INFO - Success #id 23651639
+2026-07-14 13:42:04,270 - [ qwen3-14b ] - INFO - Success #id 21293761
+2026-07-14 13:42:05,570 - [ qwen3-14b ] - INFO - Success #id 59405454
+2026-07-14 13:42:05,623 - [ qwen3-14b ] - INFO - Success #id 10313723
+2026-07-14 13:42:06,170 - [ qwen3-14b ] - INFO - Success #id 60609507
+2026-07-14 13:42:06,832 - [ qwen3-14b ] - INFO - Success #id 22613926
+2026-07-14 13:42:08,123 - [ qwen3-14b ] - INFO - Success #id 20838496
+2026-07-14 13:42:08,187 - [ qwen3-14b ] - INFO - Success #id 10681814
+2026-07-14 13:42:08,989 - [ qwen3-14b ] - INFO - Success #id 99636674
+2026-07-14 13:42:09,452 - [ qwen3-14b ] - INFO - Success #id 17402870
+2026-07-14 13:42:10,489 - [ qwen3-14b ] - INFO - Success #id 16332160
+2026-07-14 13:42:10,984 - [ qwen3-14b ] - INFO - Success #id 98844627
+2026-07-14 13:42:11,647 - [ qwen3-14b ] - INFO - Success #id 11368903
+2026-07-14 13:42:12,865 - [ qwen3-14b ] - INFO - Success #id 30314593
+2026-07-14 13:42:13,012 - [ qwen3-14b ] - INFO - Success #id 12654206
+2026-07-14 13:42:13,207 - [ qwen3-14b ] - INFO - Success #id 12463974
+2026-07-14 13:42:14,327 - [ qwen3-14b ] - INFO - Success #id 17963048
+2026-07-14 13:42:14,740 - [ qwen3-14b ] - INFO - Success #id 83243131
+2026-07-14 13:42:15,667 - [ qwen3-14b ] - INFO - Success #id 17967556
+2026-07-14 13:42:15,729 - [ qwen3-14b ] - INFO - Success #id 10499494
+2026-07-14 13:42:16,258 - [ qwen3-14b ] - INFO - Success #id 25187013
+2026-07-14 13:42:16,995 - [ qwen3-14b ] - INFO - Success #id 31391366
+2026-07-14 13:42:17,414 - [ qwen3-14b ] - INFO - Success #id 18822532
+2026-07-14 13:42:18,539 - [ qwen3-14b ] - INFO - Success #id 29507127
+2026-07-14 13:42:19,679 - [ qwen3-14b ] - INFO - Success #id 12470031
+2026-07-14 13:42:19,706 - [ qwen3-14b ] - INFO - Success #id 28794759
+2026-07-14 13:42:20,216 - [ qwen3-14b ] - INFO - Success #id 26424818
+2026-07-14 13:42:20,957 - [ qwen3-14b ] - INFO - Success #id 15191808
+2026-07-14 13:42:21,106 - [ qwen3-14b ] - INFO - Success #id 29310696
+2026-07-14 13:42:21,872 - [ qwen3-14b ] - INFO - Success #id 20178267
+2026-07-14 13:42:22,218 - [ qwen3-14b ] - INFO - Success #id 15811959
+2026-07-14 13:42:22,224 - [ qwen3-14b ] - INFO - Success #id 23221863
+2026-07-14 13:42:22,988 - [ qwen3-14b ] - INFO - Success #id 19079999
+2026-07-14 13:42:23,485 - [ qwen3-14b ] - INFO - Success #id 26253920
+2026-07-14 13:42:23,490 - [ qwen3-14b ] - INFO - Success #id 22141438
+2026-07-14 13:42:24,111 - [ qwen3-14b ] - INFO - Success #id 22645867
+2026-07-14 13:42:25,239 - [ qwen3-14b ] - INFO - Success #id 14207167
+2026-07-14 13:42:25,847 - [ qwen3-14b ] - INFO - Success #id 70883707
+2026-07-14 13:42:26,576 - [ qwen3-14b ] - INFO - Success #id 33601174
+2026-07-14 13:42:27,846 - [ qwen3-14b ] - INFO - Success #id 38148966
+2026-07-14 13:42:28,355 - [ qwen3-14b ] - INFO - Success #id 25966901
+2026-07-14 13:42:28,979 - [ qwen3-14b ] - INFO - Success #id 16504158
+2026-07-14 13:42:30,035 - [ qwen3-14b ] - INFO - Success #id 29062658
+2026-07-14 13:42:31,690 - [ qwen3-14b ] - INFO - Success #id 19773199
+2026-07-14 13:42:32,021 - [ qwen3-14b ] - INFO - Success #id 19673996
+2026-07-14 13:42:32,127 - [ qwen3-14b ] - INFO - Success #id 15275778
+2026-07-14 13:42:32,179 - [ qwen3-14b ] - INFO - Success #id 27637459
+2026-07-14 13:42:33,622 - [ qwen3-14b ] - INFO - Success #id 11404911
+2026-07-14 13:42:33,828 - [ qwen3-14b ] - INFO - Success #id 14782011
+2026-07-14 13:42:34,073 - [ qwen3-14b ] - INFO - Success #id 20290834
+2026-07-14 13:42:34,993 - [ qwen3-14b ] - INFO - Success #id 27793145
+2026-07-14 13:42:36,063 - [ qwen3-14b ] - INFO - Success #id 14498406
+2026-07-14 13:42:36,610 - [ qwen3-14b ] - INFO - Success #id 41195466
+2026-07-14 13:42:37,270 - [ qwen3-14b ] - INFO - Success #id 16775584
+2026-07-14 13:42:38,072 - [ qwen3-14b ] - INFO - Success #id 24572211
+2026-07-14 13:42:38,146 - [ qwen3-14b ] - INFO - Success #id 26784338
+2026-07-14 13:42:39,066 - [ qwen3-14b ] - INFO - Success #id 37711980
+2026-07-14 13:42:40,329 - [ qwen3-14b ] - INFO - Success #id 27721356
+2026-07-14 13:42:40,822 - [ qwen3-14b ] - INFO - Success #id 12565618
+2026-07-14 13:42:41,550 - [ qwen3-14b ] - INFO - Success #id 94771454
+2026-07-14 13:42:42,228 - [ qwen3-14b ] - INFO - Success #id 43500193
+2026-07-14 13:42:42,772 - [ qwen3-14b ] - INFO - Success #id 17873469
+2026-07-14 13:42:43,080 - [ qwen3-14b ] - INFO - Success #id 85174090
+2026-07-14 13:42:45,095 - [ qwen3-14b ] - INFO - Success #id 62930840
+2026-07-14 13:42:45,154 - [ qwen3-14b ] - INFO - Success #id 28869212
+2026-07-14 13:42:46,031 - [ qwen3-14b ] - INFO - Success #id 21938073
+2026-07-14 13:42:46,312 - [ qwen3-14b ] - INFO - Success #id 47106566
+2026-07-14 13:42:48,098 - [ qwen3-14b ] - INFO - Success #id 10443952
+2026-07-14 13:42:48,576 - [ qwen3-14b ] - INFO - Success #id 19298097
+2026-07-14 13:42:48,586 - [ qwen3-14b ] - INFO - Success #id 27143195
+2026-07-14 13:42:48,833 - [ qwen3-14b ] - INFO - Success #id 22743533
+2026-07-14 13:42:49,955 - [ qwen3-14b ] - INFO - Success #id 27726188
+2026-07-14 13:42:49,970 - [ qwen3-14b ] - INFO - Success #id 89582486
+2026-07-14 13:42:50,637 - [ qwen3-14b ] - INFO - Success #id 68579625
+2026-07-14 13:42:50,759 - [ qwen3-14b ] - INFO - Success #id 29956613
+2026-07-14 13:42:51,940 - [ qwen3-14b ] - INFO - Success #id 28787942
+2026-07-14 13:42:52,015 - [ qwen3-14b ] - INFO - Success #id 14922247
+2026-07-14 13:42:53,385 - [ qwen3-14b ] - INFO - Success #id 11662342
+2026-07-14 13:42:54,583 - [ qwen3-14b ] - INFO - Success #id 25654597
+2026-07-14 13:42:55,145 - [ qwen3-14b ] - INFO - Success #id 40037320
+2026-07-14 13:42:55,326 - [ qwen3-14b ] - INFO - Success #id 16692754
+2026-07-14 13:42:55,381 - [ qwen3-14b ] - INFO - Success #id 14122113
+2026-07-14 13:42:56,756 - [ qwen3-14b ] - INFO - Success #id 72558431
+2026-07-14 13:42:56,941 - [ qwen3-14b ] - INFO - Success #id 30237743
+2026-07-14 13:42:57,813 - [ qwen3-14b ] - INFO - Success #id 16207230
+2026-07-14 13:42:58,726 - [ qwen3-14b ] - INFO - Success #id 90239293
+2026-07-14 13:42:58,968 - [ qwen3-14b ] - INFO - Success #id 58389739
+2026-07-14 13:42:59,499 - [ qwen3-14b ] - INFO - Success #id 73790573
+2026-07-14 13:43:00,203 - [ qwen3-14b ] - INFO - Success #id 36276918
+2026-07-14 13:43:00,600 - [ qwen3-14b ] - INFO - Success #id 36682701
+2026-07-14 13:43:00,822 - [ qwen3-14b ] - INFO - Success #id 29645572
+2026-07-14 13:43:01,153 - [ qwen3-14b ] - INFO - Success #id 12017944
+2026-07-14 13:43:02,965 - [ qwen3-14b ] - INFO - Success #id 21778746
+2026-07-14 13:43:03,863 - [ qwen3-14b ] - INFO - Success #id 15087892
+2026-07-14 13:43:03,924 - [ qwen3-14b ] - INFO - Success #id 36058190
+2026-07-14 13:43:04,260 - [ qwen3-14b ] - INFO - Success #id 12869376
+2026-07-14 13:43:05,344 - [ qwen3-14b ] - INFO - Success #id 67393364
+2026-07-14 13:43:05,697 - [ qwen3-14b ] - INFO - Success #id 18719270
+2026-07-14 13:43:05,913 - [ qwen3-14b ] - INFO - Success #id 16783349
+2026-07-14 13:43:06,645 - [ qwen3-14b ] - INFO - Success #id 13306171
+2026-07-14 13:43:07,292 - [ qwen3-14b ] - INFO - Success #id 10818159
+2026-07-14 13:43:07,536 - [ qwen3-14b ] - INFO - Success #id 23857437
+2026-07-14 13:43:08,624 - [ qwen3-14b ] - INFO - Success #id 31223718
+2026-07-14 13:43:08,981 - [ qwen3-14b ] - INFO - Success #id 31321657
+2026-07-14 13:43:09,017 - [ qwen3-14b ] - INFO - Success #id 26076211
+2026-07-14 13:43:11,002 - [ qwen3-14b ] - INFO - Success #id 54222917
+2026-07-14 13:43:11,098 - [ qwen3-14b ] - INFO - Success #id 20793241
+2026-07-14 13:43:11,616 - [ qwen3-14b ] - INFO - Success #id 21548801
+2026-07-14 13:43:12,479 - [ qwen3-14b ] - INFO - Success #id 31155127
+2026-07-14 13:43:12,940 - [ qwen3-14b ] - INFO - Success #id 31167489
+2026-07-14 13:43:13,256 - [ qwen3-14b ] - INFO - Success #id 13080327
+2026-07-14 13:43:13,316 - [ qwen3-14b ] - INFO - Success #id 14241524
+2026-07-14 13:43:14,732 - [ qwen3-14b ] - INFO - Success #id 23289730
+2026-07-14 13:43:15,386 - [ qwen3-14b ] - INFO - Success #id 29023756
+2026-07-14 13:43:15,652 - [ qwen3-14b ] - INFO - Success #id 30649985
+2026-07-14 13:43:17,363 - [ qwen3-14b ] - INFO - Success #id 27731709
+2026-07-14 13:43:18,207 - [ qwen3-14b ] - INFO - Success #id 19294505
+2026-07-14 13:43:19,116 - [ qwen3-14b ] - INFO - Success #id 29785602
+2026-07-14 13:43:19,985 - [ qwen3-14b ] - INFO - Success #id 27629751
+2026-07-14 13:43:20,172 - [ qwen3-14b ] - INFO - Success #id 10760836
+2026-07-14 13:43:21,516 - [ qwen3-14b ] - INFO - Success #id 29953006
+2026-07-14 13:43:22,569 - [ qwen3-14b ] - INFO - Success #id 28239175
+2026-07-14 13:43:23,730 - [ qwen3-14b ] - INFO - Success #id 21133860
+2026-07-14 13:43:23,823 - [ qwen3-14b ] - INFO - Success #id 51693545
+2026-07-14 13:43:24,088 - [ qwen3-14b ] - INFO - Success #id 12846115
+2026-07-14 13:43:24,910 - [ qwen3-14b ] - INFO - Success #id 85534944
+2026-07-14 13:43:25,048 - [ qwen3-14b ] - INFO - Success #id 57763039
+2026-07-14 13:43:25,560 - [ qwen3-14b ] - INFO - Success #id 40927244
+2026-07-14 13:43:27,285 - [ qwen3-14b ] - INFO - Success #id 31369316
+2026-07-14 13:43:27,853 - [ qwen3-14b ] - INFO - Success #id 10480796
+2026-07-14 13:43:28,012 - [ qwen3-14b ] - INFO - Failed #id 24203179: <class 'Exception'> {'error': {'message': 'Receive batching backend response failed!', 'type': 'internal_server_error', 'param': None, 'code': 'internal_server_error'}, 'id': 'chatcmpl-e15c994d-9b35-9ff4-8ba7-044a5b44a11f', 'request_id': 'e15c994d-9b35-9ff4-8ba7-044a5b44a11f'}
+2026-07-14 13:43:28,185 - [ qwen3-14b ] - INFO - Failed #id 66366754: <class 'Exception'> {'error': {'message': 'Receive batching backend response failed!', 'type': 'internal_server_error', 'param': None, 'code': 'internal_server_error'}, 'id': 'chatcmpl-d45a20e6-56fd-9cb5-8e53-2d5befdad829', 'request_id': 'd45a20e6-56fd-9cb5-8e53-2d5befdad829'}
+2026-07-14 13:43:30,150 - [ qwen3-14b ] - INFO - Success #id 26182206
+2026-07-14 13:43:30,151 - [ qwen3-14b ] - INFO - Success #id 20197598
+2026-07-14 13:43:31,344 - [ qwen3-14b ] - INFO - Success #id 23075375
+2026-07-14 13:43:31,660 - [ qwen3-14b ] - INFO - Success #id 96912714
+2026-07-14 13:43:33,022 - [ qwen3-14b ] - INFO - Success #id 22599324
+2026-07-14 13:43:33,432 - [ qwen3-14b ] - INFO - Success #id 18543418
+2026-07-14 13:43:33,848 - [ qwen3-14b ] - INFO - Success #id 27928959
+2026-07-14 13:43:36,282 - [ qwen3-14b ] - INFO - Success #id 33720559
+2026-07-14 13:43:36,699 - [ qwen3-14b ] - INFO - Success #id 13885441
+2026-07-14 13:43:37,165 - [ qwen3-14b ] - INFO - Success #id 31580895
+2026-07-14 13:43:37,240 - [ qwen3-14b ] - INFO - Success #id 11124801
+2026-07-14 13:43:37,824 - [ qwen3-14b ] - INFO - Success #id 29114391
+2026-07-14 13:43:38,852 - [ qwen3-14b ] - INFO - Success #id 21187577
+2026-07-14 13:43:40,807 - [ qwen3-14b ] - INFO - Success #id 29508215
+2026-07-14 13:43:41,281 - [ qwen3-14b ] - INFO - Success #id 71309385
+2026-07-14 13:43:42,629 - [ qwen3-14b ] - INFO - Success #id 11311440
+2026-07-14 13:43:42,946 - [ qwen3-14b ] - INFO - Success #id 25516084
+2026-07-14 13:43:43,120 - [ qwen3-14b ] - INFO - Success #id 19752966
+2026-07-14 13:43:43,690 - [ qwen3-14b ] - INFO - Success #id 84480584
+2026-07-14 13:43:44,541 - [ qwen3-14b ] - INFO - Success #id 63933893
+2026-07-14 13:43:45,199 - [ qwen3-14b ] - INFO - Success #id 18026453
+2026-07-14 13:43:45,351 - [ qwen3-14b ] - INFO - Success #id 13988625
+2026-07-14 13:43:46,023 - [ qwen3-14b ] - INFO - Success #id 32822941
+2026-07-14 13:43:46,663 - [ qwen3-14b ] - INFO - Success #id 33955575
+2026-07-14 13:43:47,821 - [ qwen3-14b ] - INFO - Success #id 14910635
+2026-07-14 13:43:48,838 - [ qwen3-14b ] - INFO - Success #id 31795140
+2026-07-14 13:43:48,963 - [ qwen3-14b ] - INFO - Success #id 89978204
+2026-07-14 13:43:50,091 - [ qwen3-14b ] - INFO - Success #id 25741935
+2026-07-14 13:43:50,412 - [ qwen3-14b ] - INFO - Success #id 11505993
+2026-07-14 13:43:50,476 - [ qwen3-14b ] - INFO - Success #id 20478511
+2026-07-14 13:43:52,215 - [ qwen3-14b ] - INFO - Success #id 52526995
+2026-07-14 13:43:52,272 - [ qwen3-14b ] - INFO - Success #id 31565800
+2026-07-14 13:43:52,383 - [ qwen3-14b ] - INFO - Success #id 20705058
+2026-07-14 13:43:52,890 - [ qwen3-14b ] - INFO - Success #id 10298715
+2026-07-14 13:43:56,039 - [ qwen3-14b ] - INFO - Success #id 11562040
+2026-07-14 13:43:56,081 - [ qwen3-14b ] - INFO - Success #id 16050718
+2026-07-14 13:43:56,236 - [ qwen3-14b ] - INFO - Success #id 21203072
+2026-07-14 13:43:57,005 - [ qwen3-14b ] - INFO - Success #id 32861185
+2026-07-14 13:43:58,028 - [ qwen3-14b ] - INFO - Success #id 24412246
+2026-07-14 13:44:00,002 - [ qwen3-14b ] - INFO - Success #id 32767901
+2026-07-14 13:44:00,074 - [ qwen3-14b ] - INFO - Success #id 16630722
+2026-07-14 13:44:00,418 - [ qwen3-14b ] - INFO - Success #id 11041568
+2026-07-14 13:44:00,707 - [ qwen3-14b ] - INFO - Success #id 17715342
+2026-07-14 13:44:02,042 - [ qwen3-14b ] - INFO - Success #id 31133600
+2026-07-14 13:44:02,180 - [ qwen3-14b ] - INFO - Success #id 19596322
+2026-07-14 13:44:03,046 - [ qwen3-14b ] - INFO - Success #id 28461693
+2026-07-14 13:44:03,092 - [ qwen3-14b ] - INFO - Success #id 99627875
+2026-07-14 13:44:04,102 - [ qwen3-14b ] - INFO - Success #id 24861767
+2026-07-14 13:44:05,517 - [ qwen3-14b ] - INFO - Success #id 70427071
+2026-07-14 13:44:05,561 - [ qwen3-14b ] - INFO - Success #id 19863147
+2026-07-14 13:44:06,205 - [ qwen3-14b ] - INFO - Success #id 19784394
+2026-07-14 13:44:06,997 - [ qwen3-14b ] - INFO - Success #id 29054545
+2026-07-14 13:44:07,153 - [ qwen3-14b ] - INFO - Success #id 34175058
+2026-07-14 13:44:10,003 - [ qwen3-14b ] - INFO - Success #id 27613349
+2026-07-14 13:44:10,367 - [ qwen3-14b ] - INFO - Success #id 63229441
+2026-07-14 13:44:10,875 - [ qwen3-14b ] - INFO - Success #id 46002774
+2026-07-14 13:44:11,674 - [ qwen3-14b ] - INFO - Success #id 23150361
+2026-07-14 13:44:13,250 - [ qwen3-14b ] - INFO - Success #id 33233234
+2026-07-14 13:44:13,995 - [ qwen3-14b ] - INFO - Success #id 81940446
+2026-07-14 13:44:15,008 - [ qwen3-14b ] - INFO - Success #id 25908964
+2026-07-14 13:44:16,496 - [ qwen3-14b ] - INFO - Success #id 22437408
+2026-07-14 13:44:17,192 - [ qwen3-14b ] - INFO - Success #id 18067363
+2026-07-14 13:44:17,369 - [ qwen3-14b ] - INFO - Success #id 29887680
+2026-07-14 13:44:17,958 - [ qwen3-14b ] - INFO - Success #id 11483820
+2026-07-14 13:44:18,909 - [ qwen3-14b ] - INFO - Success #id 53016531
+2026-07-14 13:44:19,041 - [ qwen3-14b ] - INFO - Success #id 15995298
+2026-07-14 13:44:20,368 - [ qwen3-14b ] - INFO - Success #id 29608696
+2026-07-14 13:44:21,032 - [ qwen3-14b ] - INFO - Success #id 20171743
+2026-07-14 13:44:22,257 - [ qwen3-14b ] - INFO - Success #id 25035486
+2026-07-14 13:44:22,289 - [ qwen3-14b ] - INFO - Success #id 27862916
+2026-07-14 13:44:23,140 - [ qwen3-14b ] - INFO - Success #id 13938200
+2026-07-14 13:44:23,941 - [ qwen3-14b ] - INFO - Success #id 24608659
+2026-07-14 13:44:24,767 - [ qwen3-14b ] - INFO - Success #id 15238019
+2026-07-14 13:44:24,884 - [ qwen3-14b ] - INFO - Success #id 14607502
+2026-07-14 13:44:25,759 - [ qwen3-14b ] - INFO - Success #id 31792170
+2026-07-14 13:44:26,966 - [ qwen3-14b ] - INFO - Success #id 31889216
+2026-07-14 13:44:27,282 - [ qwen3-14b ] - INFO - Success #id 19398070
+2026-07-14 13:44:28,546 - [ qwen3-14b ] - INFO - Success #id 29071394
+2026-07-14 13:44:29,126 - [ qwen3-14b ] - INFO - Success #id 25786136
+2026-07-14 13:44:29,479 - [ qwen3-14b ] - INFO - Success #id 57389225
+2026-07-14 13:44:30,355 - [ qwen3-14b ] - INFO - Success #id 22122444
+2026-07-14 13:44:31,546 - [ qwen3-14b ] - INFO - Success #id 18822192
+2026-07-14 13:44:33,094 - [ qwen3-14b ] - INFO - Success #id 11621685
+2026-07-14 13:44:33,395 - [ qwen3-14b ] - INFO - Success #id 29183507
+2026-07-14 13:44:33,639 - [ qwen3-14b ] - INFO - Success #id 24147534
+2026-07-14 13:44:35,087 - [ qwen3-14b ] - INFO - Success #id 86313894
+2026-07-14 13:44:36,691 - [ qwen3-14b ] - INFO - Success #id 53326827
+2026-07-14 13:44:37,380 - [ qwen3-14b ] - INFO - Success #id 33156951
+2026-07-14 13:44:37,529 - [ qwen3-14b ] - INFO - Success #id 13644646
+2026-07-14 13:44:38,145 - [ qwen3-14b ] - INFO - Success #id 28914015
+2026-07-14 13:44:38,851 - [ qwen3-14b ] - INFO - Success #id 28799708
+2026-07-14 13:44:40,603 - [ qwen3-14b ] - INFO - Success #id 24476513
+2026-07-14 13:44:41,820 - [ qwen3-14b ] - INFO - Success #id 27807880
+2026-07-14 13:44:42,602 - [ qwen3-14b ] - INFO - Success #id 15980390
+2026-07-14 13:44:43,156 - [ qwen3-14b ] - INFO - Success #id 12281664
+2026-07-14 13:44:43,889 - [ qwen3-14b ] - INFO - Success #id 56239032
+2026-07-14 13:44:44,541 - [ qwen3-14b ] - INFO - Success #id 30672183
+2026-07-14 13:44:44,853 - [ qwen3-14b ] - INFO - Success #id 28675653
+2026-07-14 13:44:45,476 - [ qwen3-14b ] - INFO - Success #id 28348320
+2026-07-14 13:44:46,397 - [ qwen3-14b ] - INFO - Success #id 17918910
+2026-07-14 13:44:46,907 - [ qwen3-14b ] - INFO - Success #id 15165879
+2026-07-14 13:44:47,140 - [ qwen3-14b ] - INFO - Success #id 21239906
+2026-07-14 13:44:48,401 - [ qwen3-14b ] - INFO - Success #id 23086240
+2026-07-14 13:44:48,866 - [ qwen3-14b ] - INFO - Success #id 65002055
+2026-07-14 13:44:50,215 - [ qwen3-14b ] - INFO - Success #id 30424424
+2026-07-14 13:44:50,456 - [ qwen3-14b ] - INFO - Success #id 79942597
+2026-07-14 13:44:51,215 - [ qwen3-14b ] - INFO - Success #id 22077941
+2026-07-14 13:44:54,054 - [ qwen3-14b ] - INFO - Success #id 20173965
+2026-07-14 13:44:54,057 - [ qwen3-14b ] - INFO - Success #id 20663179
+2026-07-14 13:44:54,696 - [ qwen3-14b ] - INFO - Success #id 51676704
+2026-07-14 13:44:54,847 - [ qwen3-14b ] - INFO - Success #id 30197848
+2026-07-14 13:44:56,449 - [ qwen3-14b ] - INFO - Success #id 17814605
+2026-07-14 13:44:57,622 - [ qwen3-14b ] - INFO - Success #id 96927427
+2026-07-14 13:44:58,201 - [ qwen3-14b ] - INFO - Success #id 28455455
+2026-07-14 13:44:59,175 - [ qwen3-14b ] - INFO - Success #id 14465569
+2026-07-14 13:45:00,103 - [ qwen3-14b ] - INFO - Success #id 19617850
+2026-07-14 13:45:00,309 - [ qwen3-14b ] - INFO - Success #id 27607322
+2026-07-14 13:45:03,749 - [ qwen3-14b ] - INFO - Success #id 17051972
+2026-07-14 13:45:05,420 - [ qwen3-14b ] - INFO - Success #id 11087776
+2026-07-14 13:45:06,055 - [ qwen3-14b ] - INFO - Success #id 29852871
+2026-07-14 13:45:06,323 - [ qwen3-14b ] - INFO - Success #id 13052256
+2026-07-14 13:45:07,263 - [ qwen3-14b ] - INFO - Success #id 25538685
+2026-07-14 13:45:07,279 - [ qwen3-14b ] - INFO - Success #id 19338535
+2026-07-14 13:45:08,923 - [ qwen3-14b ] - INFO - Success #id 33669309
+2026-07-14 13:45:09,498 - [ qwen3-14b ] - INFO - Success #id 47569003
+2026-07-14 13:45:09,709 - [ qwen3-14b ] - INFO - Success #id 82089638
+2026-07-14 13:45:10,458 - [ qwen3-14b ] - INFO - Success #id 15016068
+2026-07-14 13:45:12,072 - [ qwen3-14b ] - INFO - Success #id 44572977
+2026-07-14 13:45:12,713 - [ qwen3-14b ] - INFO - Success #id 94631892
+2026-07-14 13:45:14,149 - [ qwen3-14b ] - INFO - Success #id 51745496
+2026-07-14 13:45:14,480 - [ qwen3-14b ] - INFO - Success #id 21577103
+2026-07-14 13:45:14,739 - [ qwen3-14b ] - INFO - Success #id 10133426
+2026-07-14 13:45:14,746 - [ qwen3-14b ] - INFO - Success #id 10481672
+2026-07-14 13:45:15,837 - [ qwen3-14b ] - INFO - Success #id 23486997
+2026-07-14 13:45:16,310 - [ qwen3-14b ] - INFO - Success #id 60719612
+2026-07-14 13:45:16,860 - [ qwen3-14b ] - INFO - Success #id 11766556
+2026-07-14 13:45:18,954 - [ qwen3-14b ] - INFO - Success #id 75970522
+2026-07-14 13:45:19,336 - [ qwen3-14b ] - INFO - Success #id 21495857
+2026-07-14 13:45:20,878 - [ qwen3-14b ] - INFO - Success #id 20425115
+2026-07-14 13:45:20,960 - [ qwen3-14b ] - INFO - Success #id 62626281
+2026-07-14 13:45:21,209 - [ qwen3-14b ] - INFO - Success #id 44643237
+2026-07-14 13:45:22,310 - [ qwen3-14b ] - INFO - Success #id 25452978
+2026-07-14 13:45:23,312 - [ qwen3-14b ] - INFO - Success #id 16174971
+2026-07-14 13:45:23,996 - [ qwen3-14b ] - INFO - Success #id 71822603
+2026-07-14 13:45:24,382 - [ qwen3-14b ] - INFO - Success #id 19009938
+2026-07-14 13:45:25,132 - [ qwen3-14b ] - INFO - Success #id 10104341
+2026-07-14 13:45:26,970 - [ qwen3-14b ] - INFO - Success #id 66327529
+2026-07-14 13:45:27,698 - [ qwen3-14b ] - INFO - Success #id 31200665
+2026-07-14 13:45:29,637 - [ qwen3-14b ] - INFO - Success #id 10095853
+2026-07-14 13:45:29,724 - [ qwen3-14b ] - INFO - Success #id 33130732
+2026-07-14 13:45:29,982 - [ qwen3-14b ] - INFO - Success #id 15570591
+2026-07-14 13:45:31,205 - [ qwen3-14b ] - INFO - Success #id 21529130
+2026-07-14 13:45:32,048 - [ qwen3-14b ] - INFO - Success #id 30131132
+2026-07-14 13:45:32,843 - [ qwen3-14b ] - INFO - Success #id 74593917
+2026-07-14 13:45:33,331 - [ qwen3-14b ] - INFO - Success #id 25921380
+2026-07-14 13:45:34,268 - [ qwen3-14b ] - INFO - Success #id 28111773
+2026-07-14 13:45:37,567 - [ qwen3-14b ] - INFO - Success #id 15155313
+2026-07-14 13:45:37,761 - [ qwen3-14b ] - INFO - Success #id 31743994
+2026-07-14 13:45:38,317 - [ qwen3-14b ] - INFO - Success #id 10709972
+2026-07-14 13:45:39,707 - [ qwen3-14b ] - INFO - Success #id 22183403
+2026-07-14 13:45:40,299 - [ qwen3-14b ] - INFO - Success #id 47576572
+2026-07-14 13:45:42,799 - [ qwen3-14b ] - INFO - Success #id 17645140
+2026-07-14 13:45:43,575 - [ qwen3-14b ] - INFO - Success #id 14893538
+2026-07-14 13:45:47,883 - [ qwen3-14b ] - INFO - Success #id 27612351
+2026-07-14 13:45:49,493 - [ qwen3-14b ] - INFO - Success #id 13463297
+2026-07-14 13:45:49,945 - [ qwen3-14b ] - INFO - Success #id 33012494
+2026-07-14 13:45:50,357 - [ qwen3-14b ] - INFO - Success #id 20182685
+2026-07-14 13:45:50,824 - [ qwen3-14b ] - INFO - Success #id 16868098
+2026-07-14 13:45:52,021 - [ qwen3-14b ] - INFO - Success #id 97573453
+2026-07-14 13:45:53,043 - [ qwen3-14b ] - INFO - Success #id 16163934
+2026-07-14 13:45:53,124 - [ qwen3-14b ] - INFO - Success #id 41302818
+2026-07-14 13:45:53,634 - [ qwen3-14b ] - INFO - Success #id 65041662
+2026-07-14 13:45:53,980 - [ qwen3-14b ] - INFO - Success #id 24475870
+2026-07-14 13:45:55,201 - [ qwen3-14b ] - INFO - Success #id 63041273
+2026-07-14 13:45:55,852 - [ qwen3-14b ] - INFO - Success #id 32025853
+2026-07-14 13:45:57,750 - [ qwen3-14b ] - INFO - Success #id 31839545
+2026-07-14 13:45:57,977 - [ qwen3-14b ] - INFO - Success #id 23054880
+2026-07-14 13:45:58,826 - [ qwen3-14b ] - INFO - Success #id 59022556
+2026-07-14 13:45:59,416 - [ qwen3-14b ] - INFO - Success #id 18734038
+2026-07-14 13:45:59,588 - [ qwen3-14b ] - INFO - Success #id 22137835
+2026-07-14 13:45:59,702 - [ qwen3-14b ] - INFO - Success #id 32433776
+2026-07-14 13:46:03,288 - [ qwen3-14b ] - INFO - Success #id 81525020
+2026-07-14 13:46:03,499 - [ qwen3-14b ] - INFO - Success #id 16388049
+2026-07-14 13:46:04,355 - [ qwen3-14b ] - INFO - Success #id 60446859
+2026-07-14 13:46:04,738 - [ qwen3-14b ] - INFO - Success #id 24429160
+2026-07-14 13:46:05,622 - [ qwen3-14b ] - INFO - Success #id 14583720
+2026-07-14 13:46:05,702 - [ qwen3-14b ] - INFO - Success #id 17041925
+2026-07-14 13:46:06,673 - [ qwen3-14b ] - INFO - Success #id 17993219
+2026-07-14 13:46:08,281 - [ qwen3-14b ] - INFO - Success #id 24944707
+2026-07-14 13:46:08,790 - [ qwen3-14b ] - INFO - Success #id 17708501
+2026-07-14 13:46:09,434 - [ qwen3-14b ] - INFO - Success #id 79691865
+2026-07-14 13:46:11,653 - [ qwen3-14b ] - INFO - Success #id 29761230
+2026-07-14 13:46:11,659 - [ qwen3-14b ] - INFO - Success #id 27708356
+2026-07-14 13:46:12,678 - [ qwen3-14b ] - INFO - Success #id 15137729
+2026-07-14 13:46:13,471 - [ qwen3-14b ] - INFO - Success #id 15820565
+2026-07-14 13:46:14,601 - [ qwen3-14b ] - INFO - Success #id 29034322
+2026-07-14 13:46:15,457 - [ qwen3-14b ] - INFO - Success #id 56082608
+2026-07-14 13:46:16,075 - [ qwen3-14b ] - INFO - Success #id 17506768
+2026-07-14 13:46:16,153 - [ qwen3-14b ] - INFO - Success #id 32003642
+2026-07-14 13:46:17,575 - [ qwen3-14b ] - INFO - Success #id 13940084
+2026-07-14 13:46:17,805 - [ qwen3-14b ] - INFO - Success #id 27565002
+2026-07-14 13:46:18,454 - [ qwen3-14b ] - INFO - Success #id 31977766
+2026-07-14 13:46:18,637 - [ qwen3-14b ] - INFO - Success #id 12917293
+2026-07-14 13:46:19,418 - [ qwen3-14b ] - INFO - Success #id 32924213
+2026-07-14 13:46:21,779 - [ qwen3-14b ] - INFO - Success #id 33792932
+2026-07-14 13:46:21,998 - [ qwen3-14b ] - INFO - Success #id 16490102
+2026-07-14 13:46:22,065 - [ qwen3-14b ] - INFO - Success #id 13628674
+2026-07-14 13:46:23,041 - [ qwen3-14b ] - INFO - Success #id 27857970
+2026-07-14 13:46:24,251 - [ qwen3-14b ] - INFO - Success #id 11948157
+2026-07-14 13:46:24,586 - [ qwen3-14b ] - INFO - Success #id 39371211
+2026-07-14 13:46:27,304 - [ qwen3-14b ] - INFO - Success #id 31749381
+2026-07-14 13:46:27,364 - [ qwen3-14b ] - INFO - Success #id 12385428
+2026-07-14 13:46:27,818 - [ qwen3-14b ] - INFO - Success #id 71852473
+2026-07-14 13:46:28,184 - [ qwen3-14b ] - INFO - Success #id 31919893
+2026-07-14 13:46:28,899 - [ qwen3-14b ] - INFO - Success #id 13970529
+2026-07-14 13:46:29,286 - [ qwen3-14b ] - INFO - Success #id 24072314
+2026-07-14 13:46:30,859 - [ qwen3-14b ] - INFO - Success #id 25307569
+2026-07-14 13:46:31,762 - [ qwen3-14b ] - INFO - Success #id 21540289
+2026-07-14 13:46:31,957 - [ qwen3-14b ] - INFO - Success #id 12103863
+2026-07-14 13:46:32,893 - [ qwen3-14b ] - INFO - Success #id 21672871
+2026-07-14 13:46:33,053 - [ qwen3-14b ] - INFO - Success #id 19057544
+2026-07-14 13:46:33,468 - [ qwen3-14b ] - INFO - Success #id 32921322
+2026-07-14 13:46:34,536 - [ qwen3-14b ] - INFO - Success #id 91779831
+2026-07-14 13:46:34,864 - [ qwen3-14b ] - INFO - Success #id 15179458
+2026-07-14 13:46:35,967 - [ qwen3-14b ] - INFO - Success #id 31348629
+2026-07-14 13:46:36,221 - [ qwen3-14b ] - INFO - Success #id 30682970
+2026-07-14 13:46:36,814 - [ qwen3-14b ] - INFO - Success #id 85324960
+2026-07-14 13:46:36,924 - [ qwen3-14b ] - INFO - Success #id 24039299
+2026-07-14 13:46:37,732 - [ qwen3-14b ] - INFO - Success #id 88939948
+2026-07-14 13:46:38,285 - [ qwen3-14b ] - INFO - Success #id 16574097
+2026-07-14 13:46:38,856 - [ qwen3-14b ] - INFO - Success #id 13393128
+2026-07-14 13:46:39,703 - [ qwen3-14b ] - INFO - Success #id 10863084
+2026-07-14 13:46:39,952 - [ qwen3-14b ] - INFO - Success #id 20179639
+2026-07-14 13:46:40,642 - [ qwen3-14b ] - INFO - Success #id 28656933
+2026-07-14 13:46:41,023 - [ qwen3-14b ] - INFO - Success #id 32387949
+2026-07-14 13:46:42,013 - [ qwen3-14b ] - INFO - Success #id 27757731
+2026-07-14 13:46:43,913 - [ qwen3-14b ] - INFO - Success #id 15505366
+2026-07-14 13:46:44,348 - [ qwen3-14b ] - INFO - Success #id 87313713
+2026-07-14 13:46:45,084 - [ qwen3-14b ] - INFO - Success #id 16054253
+2026-07-14 13:46:45,384 - [ qwen3-14b ] - INFO - Success #id 13772552
+2026-07-14 13:46:45,518 - [ qwen3-14b ] - INFO - Success #id 12787103
+2026-07-14 13:46:47,548 - [ qwen3-14b ] - INFO - Success #id 31566696
+2026-07-14 13:46:49,074 - [ qwen3-14b ] - INFO - Success #id 56833500
+2026-07-14 13:46:49,821 - [ qwen3-14b ] - INFO - Success #id 11719593
+2026-07-14 13:46:51,042 - [ qwen3-14b ] - INFO - Success #id 21297446
+2026-07-14 13:46:51,090 - [ qwen3-14b ] - INFO - Success #id 75373677
+2026-07-14 13:46:53,075 - [ qwen3-14b ] - INFO - Success #id 70684385
+2026-07-14 13:46:53,695 - [ qwen3-14b ] - INFO - Success #id 66765313
+2026-07-14 13:46:53,792 - [ qwen3-14b ] - INFO - Success #id 67897606
+2026-07-14 13:46:56,204 - [ qwen3-14b ] - INFO - Success #id 11726346
+2026-07-14 13:46:57,153 - [ qwen3-14b ] - INFO - Success #id 20881001
+2026-07-14 13:46:57,870 - [ qwen3-14b ] - INFO - Success #id 26876996
+2026-07-14 13:46:58,827 - [ qwen3-14b ] - INFO - Success #id 31184424
+2026-07-14 13:46:59,175 - [ qwen3-14b ] - INFO - Success #id 31244512
+2026-07-14 13:47:00,362 - [ qwen3-14b ] - INFO - Success #id 12635352
+2026-07-14 13:47:01,230 - [ qwen3-14b ] - INFO - Success #id 17250649
+2026-07-14 13:47:01,768 - [ qwen3-14b ] - INFO - Success #id 70769224
+2026-07-14 13:47:02,130 - [ qwen3-14b ] - INFO - Success #id 31036974
+2026-07-14 13:47:02,407 - [ qwen3-14b ] - INFO - Success #id 38660266
+2026-07-14 13:47:03,632 - [ qwen3-14b ] - INFO - Success #id 25546582
+2026-07-14 13:47:04,601 - [ qwen3-14b ] - INFO - Success #id 25054813
+2026-07-14 13:47:05,608 - [ qwen3-14b ] - INFO - Success #id 31635452
+2026-07-14 13:47:06,079 - [ qwen3-14b ] - INFO - Success #id 17000923
+2026-07-14 13:47:06,314 - [ qwen3-14b ] - INFO - Success #id 10864347
+2026-07-14 13:47:07,817 - [ qwen3-14b ] - INFO - Success #id 17172713
+2026-07-14 13:47:08,310 - [ qwen3-14b ] - INFO - Success #id 80803380
+2026-07-14 13:47:08,940 - [ qwen3-14b ] - INFO - Success #id 12558531
+2026-07-14 13:47:09,522 - [ qwen3-14b ] - INFO - Success #id 42206713
+2026-07-14 13:47:10,438 - [ qwen3-14b ] - INFO - Success #id 21858831
+2026-07-14 13:47:11,837 - [ qwen3-14b ] - INFO - Success #id 75292592
+2026-07-14 13:47:12,678 - [ qwen3-14b ] - INFO - Success #id 33434295
+2026-07-14 13:47:13,291 - [ qwen3-14b ] - INFO - Success #id 11201099
+2026-07-14 13:47:13,544 - [ qwen3-14b ] - INFO - Success #id 30090937
+2026-07-14 13:47:14,524 - [ qwen3-14b ] - INFO - Success #id 31702083
+2026-07-14 13:47:15,551 - [ qwen3-14b ] - INFO - Success #id 13374803
+2026-07-14 13:47:16,920 - [ qwen3-14b ] - INFO - Success #id 21859231
+2026-07-14 13:47:17,747 - [ qwen3-14b ] - INFO - Success #id 25596641
+2026-07-14 13:47:17,805 - [ qwen3-14b ] - INFO - Success #id 33081245
+2026-07-14 13:47:18,127 - [ qwen3-14b ] - INFO - Success #id 31461503
+2026-07-14 13:47:21,100 - [ qwen3-14b ] - INFO - Success #id 54753899
+2026-07-14 13:47:21,811 - [ qwen3-14b ] - INFO - Success #id 33462738
+2026-07-14 13:47:22,197 - [ qwen3-14b ] - INFO - Success #id 59551957
+2026-07-14 13:47:23,536 - [ qwen3-14b ] - INFO - Success #id 65872715
+2026-07-14 13:47:24,070 - [ qwen3-14b ] - INFO - Success #id 32643558
+2026-07-14 13:47:24,865 - [ qwen3-14b ] - INFO - Success #id 15167517
+2026-07-14 13:47:25,172 - [ qwen3-14b ] - INFO - Success #id 16735309
+2026-07-14 13:47:25,875 - [ qwen3-14b ] - INFO - Success #id 27074242
+2026-07-14 13:47:27,288 - [ qwen3-14b ] - INFO - Success #id 16067675
+2026-07-14 13:47:27,712 - [ qwen3-14b ] - INFO - Success #id 18530042
+2026-07-14 13:47:28,523 - [ qwen3-14b ] - INFO - Success #id 15262845
+2026-07-14 13:47:29,049 - [ qwen3-14b ] - INFO - Success #id 15105246
+2026-07-14 13:47:30,138 - [ qwen3-14b ] - INFO - Success #id 14403781
+2026-07-14 13:47:31,005 - [ qwen3-14b ] - INFO - Success #id 73608064
+2026-07-14 13:47:31,952 - [ qwen3-14b ] - INFO - Success #id 33453363
+2026-07-14 13:47:33,426 - [ qwen3-14b ] - INFO - Success #id 46268378
+2026-07-14 13:47:33,852 - [ qwen3-14b ] - INFO - Success #id 86575483
+2026-07-14 13:47:34,718 - [ qwen3-14b ] - INFO - Success #id 66454405
+2026-07-14 13:47:36,881 - [ qwen3-14b ] - INFO - Success #id 55797629
+2026-07-14 13:47:36,970 - [ qwen3-14b ] - INFO - Success #id 21416666
+2026-07-14 13:47:37,122 - [ qwen3-14b ] - INFO - Success #id 77242368
+2026-07-14 13:47:38,925 - [ qwen3-14b ] - INFO - Success #id 11637407
+2026-07-14 13:47:39,447 - [ qwen3-14b ] - INFO - Success #id 19518340
+2026-07-14 13:47:39,510 - [ qwen3-14b ] - INFO - Success #id 24295242
+2026-07-14 13:47:40,473 - [ qwen3-14b ] - INFO - Success #id 18094330
+2026-07-14 13:47:41,436 - [ qwen3-14b ] - INFO - Success #id 16859933
+2026-07-14 13:47:41,838 - [ qwen3-14b ] - INFO - Success #id 93271109
+2026-07-14 13:47:42,031 - [ qwen3-14b ] - INFO - Success #id 92021406
+2026-07-14 13:47:43,249 - [ qwen3-14b ] - INFO - Success #id 19267601
+2026-07-14 13:47:45,195 - [ qwen3-14b ] - INFO - Success #id 11963436
+2026-07-14 13:47:45,502 - [ qwen3-14b ] - INFO - Success #id 10809421
+2026-07-14 13:47:47,288 - [ qwen3-14b ] - INFO - Success #id 15057251
+2026-07-14 13:47:47,578 - [ qwen3-14b ] - INFO - Success #id 21243260
+2026-07-14 13:47:48,479 - [ qwen3-14b ] - INFO - Success #id 15074132
+2026-07-14 13:47:49,651 - [ qwen3-14b ] - INFO - Success #id 26041424
+2026-07-14 13:47:50,440 - [ qwen3-14b ] - INFO - Success #id 73096016
+2026-07-14 13:47:52,103 - [ qwen3-14b ] - INFO - Success #id 91182809
+2026-07-14 13:47:52,792 - [ qwen3-14b ] - INFO - Success #id 21240075
+2026-07-14 13:47:53,086 - [ qwen3-14b ] - INFO - Success #id 26390272
+2026-07-14 13:47:54,925 - [ qwen3-14b ] - INFO - Success #id 14421557
+2026-07-14 13:47:55,592 - [ qwen3-14b ] - INFO - Success #id 10495532
+2026-07-14 13:47:55,891 - [ qwen3-14b ] - INFO - Success #id 19539737
+2026-07-14 13:47:56,103 - [ qwen3-14b ] - INFO - Success #id 32101217
+2026-07-14 13:47:57,195 - [ qwen3-14b ] - INFO - Success #id 21067470
+2026-07-14 13:47:58,174 - [ qwen3-14b ] - INFO - Success #id 24212885
+2026-07-14 13:47:59,386 - [ qwen3-14b ] - INFO - Success #id 23664184
+2026-07-14 13:47:59,559 - [ qwen3-14b ] - INFO - Success #id 16158154
+2026-07-14 13:48:00,665 - [ qwen3-14b ] - INFO - Success #id 27216858
+2026-07-14 13:48:00,887 - [ qwen3-14b ] - INFO - Success #id 30210081
+2026-07-14 13:48:01,841 - [ qwen3-14b ] - INFO - Success #id 32267111
+2026-07-14 13:48:03,959 - [ qwen3-14b ] - INFO - Success #id 18531170
+2026-07-14 13:48:05,787 - [ qwen3-14b ] - INFO - Success #id 34302755
+2026-07-14 13:48:06,493 - [ qwen3-14b ] - INFO - Success #id 33475561
+2026-07-14 13:48:07,661 - [ qwen3-14b ] - INFO - Success #id 25377929
+2026-07-14 13:48:08,291 - [ qwen3-14b ] - INFO - Success #id 10314751
+2026-07-14 13:48:10,343 - [ qwen3-14b ] - INFO - Success #id 21570326
+2026-07-14 13:48:10,350 - [ qwen3-14b ] - INFO - Success #id 20943641
+2026-07-14 13:48:14,448 - [ qwen3-14b ] - INFO - Success #id 10092628
+2026-07-14 13:48:15,027 - [ qwen3-14b ] - INFO - Success #id 14442162
+2026-07-14 13:48:15,692 - [ qwen3-14b ] - INFO - Success #id 51925951
+2026-07-14 13:48:15,757 - [ qwen3-14b ] - INFO - Success #id 15903082
+2026-07-14 13:48:16,448 - [ qwen3-14b ] - INFO - Success #id 30630720
+2026-07-14 13:48:17,486 - [ qwen3-14b ] - INFO - Success #id 19499289
+2026-07-14 13:48:17,698 - [ qwen3-14b ] - INFO - Success #id 51180890
+2026-07-14 13:48:17,983 - [ qwen3-14b ] - INFO - Success #id 31130877
+2026-07-14 13:48:18,799 - [ qwen3-14b ] - INFO - Success #id 22712443
+2026-07-14 13:48:19,062 - [ qwen3-14b ] - INFO - Success #id 12844506
+2026-07-14 13:48:20,439 - [ qwen3-14b ] - INFO - Success #id 12125940
+2026-07-14 13:48:21,294 - [ qwen3-14b ] - INFO - Success #id 95138333
+2026-07-14 13:48:22,884 - [ qwen3-14b ] - INFO - Success #id 11489805
+2026-07-14 13:48:22,949 - [ qwen3-14b ] - INFO - Success #id 89235945
+2026-07-14 13:48:22,980 - [ qwen3-14b ] - INFO - Success #id 20533232
+2026-07-14 13:48:24,407 - [ qwen3-14b ] - INFO - Success #id 16781090
+2026-07-14 13:48:26,086 - [ qwen3-14b ] - INFO - Success #id 32597427
+2026-07-14 13:48:26,838 - [ qwen3-14b ] - INFO - Success #id 15174435
+2026-07-14 13:48:28,149 - [ qwen3-14b ] - INFO - Success #id 31955907
+2026-07-14 13:48:28,335 - [ qwen3-14b ] - INFO - Success #id 22012623
+2026-07-14 13:48:28,887 - [ qwen3-14b ] - INFO - Success #id 32016920
+2026-07-14 13:48:29,763 - [ qwen3-14b ] - INFO - Success #id 22004845
+2026-07-14 13:48:31,075 - [ qwen3-14b ] - INFO - Success #id 27561082
+2026-07-14 13:48:31,934 - [ qwen3-14b ] - INFO - Success #id 25740976
+2026-07-14 13:48:32,683 - [ qwen3-14b ] - INFO - Success #id 32924190
+2026-07-14 13:48:32,687 - [ qwen3-14b ] - INFO - Success #id 27166937
+2026-07-14 13:48:33,349 - [ qwen3-14b ] - INFO - Success #id 79531969
+2026-07-14 13:48:33,877 - [ qwen3-14b ] - INFO - Success #id 32775795
+2026-07-14 13:48:36,420 - [ qwen3-14b ] - INFO - Success #id 20824611
+2026-07-14 13:48:38,460 - [ qwen3-14b ] - INFO - Success #id 22904419
+2026-07-14 13:48:40,565 - [ qwen3-14b ] - INFO - Success #id 17988520
+2026-07-14 13:48:41,913 - [ qwen3-14b ] - INFO - Success #id 64463034
+2026-07-14 13:48:42,861 - [ qwen3-14b ] - INFO - Success #id 27582690
+2026-07-14 13:48:43,761 - [ qwen3-14b ] - INFO - Success #id 32643029
+2026-07-14 13:48:45,351 - [ qwen3-14b ] - INFO - Success #id 33648020
+2026-07-14 13:48:46,046 - [ qwen3-14b ] - INFO - Success #id 29513930
+2026-07-14 13:48:47,122 - [ qwen3-14b ] - INFO - Success #id 14550869
+2026-07-14 13:48:48,499 - [ qwen3-14b ] - INFO - Success #id 27478109
+2026-07-14 13:48:48,610 - [ qwen3-14b ] - INFO - Success #id 70549706
+2026-07-14 13:48:49,416 - [ qwen3-14b ] - INFO - Success #id 21492357
+2026-07-14 13:48:49,703 - [ qwen3-14b ] - INFO - Success #id 20719278
+2026-07-14 13:48:52,353 - [ qwen3-14b ] - INFO - Success #id 47078266
+2026-07-14 13:48:53,124 - [ qwen3-14b ] - INFO - Success #id 27565895
+2026-07-14 13:48:53,210 - [ qwen3-14b ] - INFO - Success #id 33563916
+2026-07-14 13:48:54,878 - [ qwen3-14b ] - INFO - Success #id 15192053
+2026-07-14 13:48:55,101 - [ qwen3-14b ] - INFO - Success #id 15304047
+2026-07-14 13:48:56,262 - [ qwen3-14b ] - INFO - Success #id 22135829
+2026-07-14 13:48:56,709 - [ qwen3-14b ] - INFO - Success #id 33119057
+2026-07-14 13:48:58,198 - [ qwen3-14b ] - INFO - Success #id 27713116
+2026-07-14 13:49:00,374 - [ qwen3-14b ] - INFO - Success #id 32792739
+2026-07-14 13:49:01,033 - [ qwen3-14b ] - INFO - Success #id 19431079
+2026-07-14 13:49:02,320 - [ qwen3-14b ] - INFO - Success #id 31894345
+2026-07-14 13:49:02,387 - [ qwen3-14b ] - INFO - Success #id 25410646
+2026-07-14 13:49:04,581 - [ qwen3-14b ] - INFO - Success #id 11571370
+2026-07-14 13:49:06,131 - [ qwen3-14b ] - INFO - Success #id 14772451
+2026-07-14 13:49:06,480 - [ qwen3-14b ] - INFO - Success #id 21853099
+2026-07-14 13:49:06,868 - [ qwen3-14b ] - INFO - Success #id 14189991
+2026-07-14 13:49:07,498 - [ qwen3-14b ] - INFO - Success #id 50689770
+2026-07-14 13:49:08,363 - [ qwen3-14b ] - INFO - Success #id 17634369
+2026-07-14 13:49:09,318 - [ qwen3-14b ] - INFO - Success #id 20710246
+2026-07-14 13:49:10,238 - [ qwen3-14b ] - INFO - Success #id 19427468
+2026-07-14 13:49:12,237 - [ qwen3-14b ] - INFO - Success #id 56611730
+2026-07-14 13:49:13,189 - [ qwen3-14b ] - INFO - Success #id 61186143
+2026-07-14 13:49:13,842 - [ qwen3-14b ] - INFO - Success #id 13302086
+2026-07-14 13:49:14,041 - [ qwen3-14b ] - INFO - Success #id 31719847
+2026-07-14 13:49:15,264 - [ qwen3-14b ] - INFO - Success #id 14953505
+2026-07-14 13:49:15,987 - [ qwen3-14b ] - INFO - Success #id 27005055
+2026-07-14 13:49:17,149 - [ qwen3-14b ] - INFO - Success #id 59848791
+2026-07-14 13:49:17,382 - [ qwen3-14b ] - INFO - Success #id 17061273
+2026-07-14 13:49:17,929 - [ qwen3-14b ] - INFO - Success #id 33263743
+2026-07-14 13:49:18,045 - [ qwen3-14b ] - INFO - Success #id 23373297
+2026-07-14 13:49:19,642 - [ qwen3-14b ] - INFO - Success #id 18386953
+2026-07-14 13:49:20,154 - [ qwen3-14b ] - INFO - Success #id 45345620
+2026-07-14 13:49:20,225 - [ qwen3-14b ] - INFO - Success #id 18386364
+2026-07-14 13:49:21,478 - [ qwen3-14b ] - INFO - Success #id 13304108
+2026-07-14 13:49:22,053 - [ qwen3-14b ] - INFO - Success #id 15511985
+2026-07-14 13:49:23,005 - [ qwen3-14b ] - INFO - Success #id 26422351
+2026-07-14 13:49:23,256 - [ qwen3-14b ] - INFO - Success #id 17180350
+2026-07-14 13:49:23,488 - [ qwen3-14b ] - INFO - Success #id 31160609
+2026-07-14 13:49:25,326 - [ qwen3-14b ] - INFO - Success #id 39471218
+2026-07-14 13:49:25,810 - [ qwen3-14b ] - INFO - Success #id 11173541
+2026-07-14 13:49:26,484 - [ qwen3-14b ] - INFO - Success #id 31053432
+2026-07-14 13:49:26,594 - [ qwen3-14b ] - INFO - Success #id 19333505
+2026-07-14 13:49:28,111 - [ qwen3-14b ] - INFO - Success #id 32753178
+2026-07-14 13:49:28,459 - [ qwen3-14b ] - INFO - Success #id 72160294
+2026-07-14 13:49:29,982 - [ qwen3-14b ] - INFO - Success #id 29843187
+2026-07-14 13:49:30,163 - [ qwen3-14b ] - INFO - Success #id 19238967
+2026-07-14 13:49:31,395 - [ qwen3-14b ] - INFO - Success #id 82227264
+2026-07-14 13:49:32,977 - [ qwen3-14b ] - INFO - Success #id 33383008
+2026-07-14 13:49:33,882 - [ qwen3-14b ] - INFO - Success #id 93827930
+2026-07-14 13:49:34,871 - [ qwen3-14b ] - INFO - Success #id 15038725
+2026-07-14 13:49:35,854 - [ qwen3-14b ] - INFO - Success #id 39958973
+2026-07-14 13:49:36,076 - [ qwen3-14b ] - INFO - Success #id 29134930
+2026-07-14 13:49:37,955 - [ qwen3-14b ] - INFO - Success #id 15040012
+2026-07-14 13:49:38,013 - [ qwen3-14b ] - INFO - Success #id 12906301
+2026-07-14 13:49:40,316 - [ qwen3-14b ] - INFO - Success #id 18315031
+2026-07-14 13:49:41,779 - [ qwen3-14b ] - INFO - Success #id 17727443
+2026-07-14 13:49:42,317 - [ qwen3-14b ] - INFO - Success #id 15478918
+2026-07-14 13:49:43,799 - [ qwen3-14b ] - INFO - Success #id 27301389
+2026-07-14 13:49:43,808 - [ qwen3-14b ] - INFO - Success #id 20634345
+2026-07-14 13:49:44,522 - [ qwen3-14b ] - INFO - Success #id 44150724
+2026-07-14 13:49:45,908 - [ qwen3-14b ] - INFO - Success #id 31288765
+2026-07-14 13:49:46,150 - [ qwen3-14b ] - INFO - Success #id 13558975
+2026-07-14 13:49:46,792 - [ qwen3-14b ] - INFO - Success #id 99042584
+2026-07-14 13:49:48,975 - [ qwen3-14b ] - INFO - Success #id 13988806
+2026-07-14 13:49:50,239 - [ qwen3-14b ] - INFO - Success #id 25915682
+2026-07-14 13:49:50,895 - [ qwen3-14b ] - INFO - Success #id 22979462
+2026-07-14 13:49:51,178 - [ qwen3-14b ] - INFO - Success #id 15507790
+2026-07-14 13:49:51,272 - [ qwen3-14b ] - INFO - Success #id 11585632
+2026-07-14 13:49:53,034 - [ qwen3-14b ] - INFO - Success #id 53622427
+2026-07-14 13:49:53,429 - [ qwen3-14b ] - INFO - Success #id 11576663
+2026-07-14 13:49:53,855 - [ qwen3-14b ] - INFO - Success #id 14211325
+2026-07-14 13:49:55,615 - [ qwen3-14b ] - INFO - Success #id 24507393
+2026-07-14 13:49:56,202 - [ qwen3-14b ] - INFO - Success #id 84549342
+2026-07-14 13:49:56,527 - [ qwen3-14b ] - INFO - Success #id 43888420
+2026-07-14 13:49:57,042 - [ qwen3-14b ] - INFO - Success #id 18532797
+2026-07-14 13:49:58,144 - [ qwen3-14b ] - INFO - Success #id 17705788
+2026-07-14 13:49:58,743 - [ qwen3-14b ] - INFO - Success #id 30754976
+2026-07-14 13:49:59,008 - [ qwen3-14b ] - INFO - Success #id 26814791
+2026-07-14 13:50:01,346 - [ qwen3-14b ] - INFO - Success #id 27330053
+2026-07-14 13:50:01,674 - [ qwen3-14b ] - INFO - Success #id 24554571
+2026-07-14 13:50:02,151 - [ qwen3-14b ] - INFO - Success #id 64685181
+2026-07-14 13:50:02,461 - [ qwen3-14b ] - INFO - Success #id 19013083
+2026-07-14 13:50:03,187 - [ qwen3-14b ] - INFO - Success #id 22776519
+2026-07-14 13:50:03,650 - [ qwen3-14b ] - INFO - Success #id 11090034
+2026-07-14 13:50:04,588 - [ qwen3-14b ] - INFO - Success #id 11630200
+2026-07-14 13:50:06,346 - [ qwen3-14b ] - INFO - Success #id 16165098
+2026-07-14 13:50:07,502 - [ qwen3-14b ] - INFO - Success #id 28329993
+2026-07-14 13:50:07,920 - [ qwen3-14b ] - INFO - Success #id 12894848
+2026-07-14 13:50:08,647 - [ qwen3-14b ] - INFO - Success #id 30838546
+2026-07-14 13:50:10,297 - [ qwen3-14b ] - INFO - Success #id 10330022
+2026-07-14 13:50:10,556 - [ qwen3-14b ] - INFO - Success #id 22452113
+2026-07-14 13:50:10,857 - [ qwen3-14b ] - INFO - Success #id 29942795
+2026-07-14 13:50:11,819 - [ qwen3-14b ] - INFO - Success #id 56666612
+2026-07-14 13:50:12,463 - [ qwen3-14b ] - INFO - Success #id 14191086
+2026-07-14 13:50:13,929 - [ qwen3-14b ] - INFO - Success #id 11139730
+2026-07-14 13:50:14,658 - [ qwen3-14b ] - INFO - Success #id 31535947
+2026-07-14 13:50:14,844 - [ qwen3-14b ] - INFO - Success #id 16290129
+2026-07-14 13:50:15,736 - [ qwen3-14b ] - INFO - Success #id 27641066
+2026-07-14 13:50:15,830 - [ qwen3-14b ] - INFO - Success #id 27052676
+2026-07-14 13:50:16,455 - [ qwen3-14b ] - INFO - Success #id 25066034
+2026-07-14 13:50:18,025 - [ qwen3-14b ] - INFO - Success #id 21240956
+2026-07-14 13:50:18,550 - [ qwen3-14b ] - INFO - Success #id 20194325
+2026-07-14 13:50:19,573 - [ qwen3-14b ] - INFO - Success #id 28613625
+2026-07-14 13:50:20,292 - [ qwen3-14b ] - INFO - Success #id 16248077
+2026-07-14 13:50:20,823 - [ qwen3-14b ] - INFO - Success #id 23036803
+2026-07-14 13:50:22,090 - [ qwen3-14b ] - INFO - Success #id 24583705
+2026-07-14 13:50:22,488 - [ qwen3-14b ] - INFO - Success #id 22460474
+2026-07-14 13:50:23,718 - [ qwen3-14b ] - INFO - Success #id 83219429
+2026-07-14 13:50:24,330 - [ qwen3-14b ] - INFO - Success #id 26046456
+2026-07-14 13:50:24,867 - [ qwen3-14b ] - INFO - Success #id 30834786
+2026-07-14 13:50:26,080 - [ qwen3-14b ] - INFO - Success #id 25514822
+2026-07-14 13:50:27,380 - [ qwen3-14b ] - INFO - Success #id 28164648
+2026-07-14 13:50:28,668 - [ qwen3-14b ] - INFO - Success #id 32665829
+2026-07-14 13:50:29,564 - [ qwen3-14b ] - INFO - Success #id 63163692
+2026-07-14 13:50:29,657 - [ qwen3-14b ] - INFO - Success #id 94920760
+2026-07-14 13:50:31,610 - [ qwen3-14b ] - INFO - Success #id 41282623
+2026-07-14 13:50:31,686 - [ qwen3-14b ] - INFO - Success #id 32444875
+2026-07-14 13:50:32,423 - [ qwen3-14b ] - INFO - Success #id 29990179
+2026-07-14 13:50:32,462 - [ qwen3-14b ] - INFO - Success #id 49411079
+2026-07-14 13:50:32,970 - [ qwen3-14b ] - INFO - Success #id 18062674
+2026-07-14 13:50:34,452 - [ qwen3-14b ] - INFO - Success #id 33697064
+2026-07-14 13:50:34,915 - [ qwen3-14b ] - INFO - Success #id 11982974
+2026-07-14 13:50:36,009 - [ qwen3-14b ] - INFO - Success #id 28611924
+2026-07-14 13:50:37,897 - [ qwen3-14b ] - INFO - Success #id 27708071
+2026-07-14 13:50:38,562 - [ qwen3-14b ] - INFO - Success #id 22226347
+2026-07-14 13:50:39,436 - [ qwen3-14b ] - INFO - Success #id 19309011
+2026-07-14 13:50:39,644 - [ qwen3-14b ] - INFO - Success #id 27240692
+2026-07-14 13:50:39,715 - [ qwen3-14b ] - INFO - Success #id 12503854
+2026-07-14 13:50:41,662 - [ qwen3-14b ] - INFO - Success #id 22827294
+2026-07-14 13:50:42,114 - [ qwen3-14b ] - INFO - Success #id 22894567
+2026-07-14 13:50:43,225 - [ qwen3-14b ] - INFO - Success #id 17756528
+2026-07-14 13:50:43,988 - [ qwen3-14b ] - INFO - Success #id 22433229
+2026-07-14 13:50:45,252 - [ qwen3-14b ] - INFO - Success #id 98653746
+2026-07-14 13:50:45,741 - [ qwen3-14b ] - INFO - Success #id 20403221
+2026-07-14 13:50:45,880 - [ qwen3-14b ] - INFO - Success #id 33252726
+2026-07-14 13:50:47,726 - [ qwen3-14b ] - INFO - Success #id 23538715
+2026-07-14 13:50:48,245 - [ qwen3-14b ] - INFO - Success #id 98889788
+2026-07-14 13:50:49,115 - [ qwen3-14b ] - INFO - Success #id 47678424
+2026-07-14 13:50:49,334 - [ qwen3-14b ] - INFO - Success #id 33220866
+2026-07-14 13:50:50,016 - [ qwen3-14b ] - INFO - Success #id 68791472
+2026-07-14 13:50:51,368 - [ qwen3-14b ] - INFO - Success #id 11138258
+2026-07-14 13:50:52,030 - [ qwen3-14b ] - INFO - Success #id 14014289
+2026-07-14 13:50:52,787 - [ qwen3-14b ] - INFO - Success #id 80027083
+2026-07-14 13:50:54,611 - [ qwen3-14b ] - INFO - Success #id 22565640
+2026-07-14 13:50:55,300 - [ qwen3-14b ] - INFO - Success #id 27053197
+2026-07-14 13:50:55,922 - [ qwen3-14b ] - INFO - Success #id 11060040
+2026-07-14 13:50:56,932 - [ qwen3-14b ] - INFO - Success #id 46298937
+2026-07-14 13:50:57,367 - [ qwen3-14b ] - INFO - Success #id 11946351
+2026-07-14 13:50:58,226 - [ qwen3-14b ] - INFO - Success #id 22642493
+2026-07-14 13:50:59,266 - [ qwen3-14b ] - INFO - Success #id 25413922
+2026-07-14 13:51:01,727 - [ qwen3-14b ] - INFO - Success #id 18902420
+2026-07-14 13:51:01,880 - [ qwen3-14b ] - INFO - Success #id 13836109
+2026-07-14 13:51:03,176 - [ qwen3-14b ] - INFO - Success #id 29908374
+2026-07-14 13:51:04,282 - [ qwen3-14b ] - INFO - Success #id 10846396
+2026-07-14 13:51:05,832 - [ qwen3-14b ] - INFO - Success #id 33849307
+2026-07-14 13:51:06,026 - [ qwen3-14b ] - INFO - Success #id 34635258
+2026-07-14 13:51:06,041 - [ qwen3-14b ] - INFO - Success #id 19821097
+2026-07-14 13:51:07,087 - [ qwen3-14b ] - INFO - Success #id 85909785
+2026-07-14 13:51:07,920 - [ qwen3-14b ] - INFO - Success #id 33864031
+2026-07-14 13:51:09,388 - [ qwen3-14b ] - INFO - Success #id 23267403
+2026-07-14 13:51:09,703 - [ qwen3-14b ] - INFO - Success #id 23069928
+2026-07-14 13:51:10,713 - [ qwen3-14b ] - INFO - Success #id 20349636
+2026-07-14 13:51:10,794 - [ qwen3-14b ] - INFO - Success #id 73317651
+2026-07-14 13:51:10,999 - [ qwen3-14b ] - INFO - Success #id 28796027
+2026-07-14 13:51:11,076 - [ qwen3-14b ] - INFO - Success #id 93052818
+2026-07-14 13:51:12,488 - [ qwen3-14b ] - INFO - Success #id 19585014
+2026-07-14 13:51:13,554 - [ qwen3-14b ] - INFO - Success #id 25658811
+2026-07-14 13:51:14,345 - [ qwen3-14b ] - INFO - Success #id 11546486
+2026-07-14 13:51:14,400 - [ qwen3-14b ] - INFO - Success #id 75276337
+2026-07-14 13:51:16,631 - [ qwen3-14b ] - INFO - Success #id 11100605
+2026-07-14 13:51:16,689 - [ qwen3-14b ] - INFO - Success #id 11054453
+2026-07-14 13:51:19,176 - [ qwen3-14b ] - INFO - Success #id 32414316
+2026-07-14 13:51:20,402 - [ qwen3-14b ] - INFO - Success #id 11959234
+2026-07-14 13:51:21,870 - [ qwen3-14b ] - INFO - Success #id 29043671
+2026-07-14 13:51:22,264 - [ qwen3-14b ] - INFO - Success #id 17845863
+2026-07-14 13:51:22,574 - [ qwen3-14b ] - INFO - Success #id 56777184
+2026-07-14 13:51:22,867 - [ qwen3-14b ] - INFO - Success #id 31477998
+2026-07-14 13:51:23,820 - [ qwen3-14b ] - INFO - Success #id 27750155
+2026-07-14 13:51:25,443 - [ qwen3-14b ] - INFO - Success #id 47175469
+2026-07-14 13:51:26,277 - [ qwen3-14b ] - INFO - Success #id 30416995
+2026-07-14 13:51:26,288 - [ qwen3-14b ] - INFO - Success #id 24286151
+2026-07-14 13:51:28,024 - [ qwen3-14b ] - INFO - Success #id 11875256
+2026-07-14 13:51:28,325 - [ qwen3-14b ] - INFO - Success #id 16613496
+2026-07-14 13:51:30,243 - [ qwen3-14b ] - INFO - Success #id 37291990
+2026-07-14 13:51:30,247 - [ qwen3-14b ] - INFO - Success #id 33525447
+2026-07-14 13:51:31,225 - [ qwen3-14b ] - INFO - Success #id 13360278
+2026-07-14 13:51:32,438 - [ qwen3-14b ] - INFO - Success #id 76424374
+2026-07-14 13:51:33,513 - [ qwen3-14b ] - INFO - Success #id 10766009
+2026-07-14 13:51:33,667 - [ qwen3-14b ] - INFO - Success #id 16408415
+2026-07-14 13:51:36,705 - [ qwen3-14b ] - INFO - Success #id 29473725
+2026-07-14 13:51:37,778 - [ qwen3-14b ] - INFO - Success #id 82589859
+2026-07-14 13:51:37,946 - [ qwen3-14b ] - INFO - Success #id 18126084
+2026-07-14 13:51:38,727 - [ qwen3-14b ] - INFO - Success #id 70815596
+2026-07-14 13:51:39,072 - [ qwen3-14b ] - INFO - Success #id 25978866
+2026-07-14 13:51:39,274 - [ qwen3-14b ] - INFO - Success #id 53780494
+2026-07-14 13:51:39,381 - [ qwen3-14b ] - INFO - Success #id 21859460
+2026-07-14 13:51:41,649 - [ qwen3-14b ] - INFO - Success #id 24846467
+2026-07-14 13:51:41,988 - [ qwen3-14b ] - INFO - Success #id 27637086
+2026-07-14 13:51:43,931 - [ qwen3-14b ] - INFO - Success #id 30440837
+2026-07-14 13:51:44,237 - [ qwen3-14b ] - INFO - Success #id 20750867
+2026-07-14 13:51:44,665 - [ qwen3-14b ] - INFO - Success #id 24917659
+2026-07-14 13:51:44,755 - [ qwen3-14b ] - INFO - Success #id 62580853
+2026-07-14 13:51:46,894 - [ qwen3-14b ] - INFO - Success #id 16755504
+2026-07-14 13:51:47,529 - [ qwen3-14b ] - INFO - Success #id 32616262
+2026-07-14 13:51:47,785 - [ qwen3-14b ] - INFO - Success #id 60367536
+2026-07-14 13:51:49,264 - [ qwen3-14b ] - INFO - Success #id 35876253
+2026-07-14 13:51:49,708 - [ qwen3-14b ] - INFO - Success #id 23662996
+2026-07-14 13:51:49,903 - [ qwen3-14b ] - INFO - Success #id 10938485
+2026-07-14 13:51:50,325 - [ qwen3-14b ] - INFO - Success #id 12186586
+2026-07-14 13:51:50,832 - [ qwen3-14b ] - INFO - Success #id 26150692
+2026-07-14 13:51:51,987 - [ qwen3-14b ] - INFO - Success #id 17832110
+2026-07-14 13:51:51,989 - [ qwen3-14b ] - INFO - Success #id 33018423
+2026-07-14 13:51:52,377 - [ qwen3-14b ] - INFO - Success #id 12845059
+2026-07-14 13:51:52,499 - [ qwen3-14b ] - INFO - Success #id 23618906
+2026-07-14 13:51:54,213 - [ qwen3-14b ] - INFO - Success #id 31121400
+2026-07-14 13:51:54,287 - [ qwen3-14b ] - INFO - Success #id 33009064
+2026-07-14 13:51:55,047 - [ qwen3-14b ] - INFO - Success #id 25218032
+2026-07-14 13:51:55,658 - [ qwen3-14b ] - INFO - Success #id 54272994
+2026-07-14 13:51:57,390 - [ qwen3-14b ] - INFO - Success #id 53216324
+2026-07-14 13:51:58,527 - [ qwen3-14b ] - INFO - Success #id 25086415
+2026-07-14 13:51:59,275 - [ qwen3-14b ] - INFO - Success #id 15141261
+2026-07-14 13:51:59,761 - [ qwen3-14b ] - INFO - Success #id 27613514
+2026-07-14 13:52:00,582 - [ qwen3-14b ] - INFO - Success #id 31576196
+2026-07-14 13:52:01,501 - [ qwen3-14b ] - INFO - Success #id 25627579
+2026-07-14 13:52:01,812 - [ qwen3-14b ] - INFO - Success #id 10160758
+2026-07-14 13:52:01,872 - [ qwen3-14b ] - INFO - Success #id 12392865
+2026-07-14 14:06:58,052 - [ qwen3-14b ] - INFO - Failed #id 22478911: <class 'TimeoutError'> 
+2026-07-14 14:06:58,086 - [ qwen3-14b ] - INFO - Failed #id 17022014: <class 'TimeoutError'> 
+2026-07-14 14:06:58,098 - [ qwen3-14b ] - INFO - Failed #id 22799547: <class 'TimeoutError'> 
+2026-07-14 14:06:58,170 - [ qwen3-14b ] - INFO - Failed #id 25883029: <class 'TimeoutError'> 
+2026-07-14 14:06:58,652 - [ qwen3-14b ] - INFO - Failed #id 14604115: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:58,653 - [ qwen3-14b ] - INFO - Failed #id 29058451: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:58,653 - [ qwen3-14b ] - INFO - Failed #id 76613449: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:58,653 - [ qwen3-14b ] - INFO - Failed #id 23369017: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,248 - [ qwen3-14b ] - INFO - Failed #id 24554099: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,270 - [ qwen3-14b ] - INFO - Failed #id 29965279: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,292 - [ qwen3-14b ] - INFO - Failed #id 11525339: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,293 - [ qwen3-14b ] - INFO - Failed #id 79733558: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,423 - [ qwen3-14b ] - INFO - Failed #id 21975451: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,496 - [ qwen3-14b ] - INFO - Failed #id 60492240: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,505 - [ qwen3-14b ] - INFO - Failed #id 18794940: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,505 - [ qwen3-14b ] - INFO - Failed #id 15613129: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,543 - [ qwen3-14b ] - INFO - Failed #id 18613337: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,549 - [ qwen3-14b ] - INFO - Failed #id 11881454: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,564 - [ qwen3-14b ] - INFO - Failed #id 26229819: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,564 - [ qwen3-14b ] - INFO - Failed #id 78188540: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,565 - [ qwen3-14b ] - INFO - Failed #id 11976461: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,565 - [ qwen3-14b ] - INFO - Failed #id 91102950: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,569 - [ qwen3-14b ] - INFO - Failed #id 13625269: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,569 - [ qwen3-14b ] - INFO - Failed #id 76536897: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,569 - [ qwen3-14b ] - INFO - Failed #id 71664146: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,578 - [ qwen3-14b ] - INFO - Failed #id 24659418: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,579 - [ qwen3-14b ] - INFO - Failed #id 64671291: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,579 - [ qwen3-14b ] - INFO - Failed #id 77192271: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,580 - [ qwen3-14b ] - INFO - Failed #id 53275087: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,583 - [ qwen3-14b ] - INFO - Failed #id 26773658: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,583 - [ qwen3-14b ] - INFO - Failed #id 29855989: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,583 - [ qwen3-14b ] - INFO - Failed #id 12344910: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,585 - [ qwen3-14b ] - INFO - Failed #id 22214786: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,588 - [ qwen3-14b ] - INFO - Failed #id 10310398: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,588 - [ qwen3-14b ] - INFO - Failed #id 24883973: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,590 - [ qwen3-14b ] - INFO - Failed #id 31832131: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,591 - [ qwen3-14b ] - INFO - Failed #id 92691555: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,591 - [ qwen3-14b ] - INFO - Failed #id 15097561: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,592 - [ qwen3-14b ] - INFO - Failed #id 27588106: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,594 - [ qwen3-14b ] - INFO - Failed #id 24552523: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,594 - [ qwen3-14b ] - INFO - Failed #id 17973747: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,595 - [ qwen3-14b ] - INFO - Failed #id 25259371: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,597 - [ qwen3-14b ] - INFO - Failed #id 11822099: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,598 - [ qwen3-14b ] - INFO - Failed #id 32331926: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,599 - [ qwen3-14b ] - INFO - Failed #id 18233959: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,600 - [ qwen3-14b ] - INFO - Failed #id 20152037: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,602 - [ qwen3-14b ] - INFO - Failed #id 31247987: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,603 - [ qwen3-14b ] - INFO - Failed #id 12552759: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,604 - [ qwen3-14b ] - INFO - Failed #id 15509494: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,605 - [ qwen3-14b ] - INFO - Failed #id 44313095: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,607 - [ qwen3-14b ] - INFO - Failed #id 24446008: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,608 - [ qwen3-14b ] - INFO - Failed #id 32388501: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,608 - [ qwen3-14b ] - INFO - Failed #id 46380459: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,609 - [ qwen3-14b ] - INFO - Failed #id 29952161: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,611 - [ qwen3-14b ] - INFO - Failed #id 15264564: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,613 - [ qwen3-14b ] - INFO - Failed #id 23268672: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,616 - [ qwen3-14b ] - INFO - Failed #id 60752337: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,617 - [ qwen3-14b ] - INFO - Failed #id 26817384: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,619 - [ qwen3-14b ] - INFO - Failed #id 18405520: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,621 - [ qwen3-14b ] - INFO - Failed #id 10718768: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,624 - [ qwen3-14b ] - INFO - Failed #id 11650561: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,625 - [ qwen3-14b ] - INFO - Failed #id 18801248: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,628 - [ qwen3-14b ] - INFO - Failed #id 29690507: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,631 - [ qwen3-14b ] - INFO - Failed #id 33500816: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,636 - [ qwen3-14b ] - INFO - Failed #id 14323544: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,638 - [ qwen3-14b ] - INFO - Failed #id 18437925: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,647 - [ qwen3-14b ] - INFO - Failed #id 26695474: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,648 - [ qwen3-14b ] - INFO - Failed #id 29950006: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,650 - [ qwen3-14b ] - INFO - Failed #id 22513233: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,653 - [ qwen3-14b ] - INFO - Failed #id 16347563: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,655 - [ qwen3-14b ] - INFO - Failed #id 10555416: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,656 - [ qwen3-14b ] - INFO - Failed #id 11094278: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,661 - [ qwen3-14b ] - INFO - Failed #id 19813165: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,662 - [ qwen3-14b ] - INFO - Failed #id 20164540: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,663 - [ qwen3-14b ] - INFO - Failed #id 91594250: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,663 - [ qwen3-14b ] - INFO - Failed #id 18357798: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,667 - [ qwen3-14b ] - INFO - Failed #id 16277223: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,667 - [ qwen3-14b ] - INFO - Failed #id 21404627: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,670 - [ qwen3-14b ] - INFO - Failed #id 78814130: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,675 - [ qwen3-14b ] - INFO - Failed #id 77085648: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,678 - [ qwen3-14b ] - INFO - Failed #id 47565882: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,681 - [ qwen3-14b ] - INFO - Failed #id 15448737: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,682 - [ qwen3-14b ] - INFO - Failed #id 58719908: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,687 - [ qwen3-14b ] - INFO - Failed #id 29682411: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,688 - [ qwen3-14b ] - INFO - Failed #id 15000447: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,689 - [ qwen3-14b ] - INFO - Failed #id 12784071: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,691 - [ qwen3-14b ] - INFO - Failed #id 50914301: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,694 - [ qwen3-14b ] - INFO - Failed #id 59498681: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,696 - [ qwen3-14b ] - INFO - Failed #id 29609465: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,697 - [ qwen3-14b ] - INFO - Failed #id 29966300: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,700 - [ qwen3-14b ] - INFO - Failed #id 85969749: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,700 - [ qwen3-14b ] - INFO - Failed #id 25512652: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,703 - [ qwen3-14b ] - INFO - Failed #id 25886023: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,706 - [ qwen3-14b ] - INFO - Failed #id 31320380: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,707 - [ qwen3-14b ] - INFO - Failed #id 76338242: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,714 - [ qwen3-14b ] - INFO - Failed #id 12813434: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,716 - [ qwen3-14b ] - INFO - Failed #id 15462153: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,721 - [ qwen3-14b ] - INFO - Failed #id 18900798: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,725 - [ qwen3-14b ] - INFO - Failed #id 16684868: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,728 - [ qwen3-14b ] - INFO - Failed #id 12968448: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,730 - [ qwen3-14b ] - INFO - Failed #id 17176710: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,730 - [ qwen3-14b ] - INFO - Failed #id 12445364: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,735 - [ qwen3-14b ] - INFO - Failed #id 24965869: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,736 - [ qwen3-14b ] - INFO - Failed #id 10414631: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,742 - [ qwen3-14b ] - INFO - Failed #id 23531528: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,742 - [ qwen3-14b ] - INFO - Failed #id 27583653: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,746 - [ qwen3-14b ] - INFO - Failed #id 17466116: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,748 - [ qwen3-14b ] - INFO - Failed #id 21463933: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,750 - [ qwen3-14b ] - INFO - Failed #id 84848422: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,752 - [ qwen3-14b ] - INFO - Failed #id 22751188: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,755 - [ qwen3-14b ] - INFO - Failed #id 26404121: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,758 - [ qwen3-14b ] - INFO - Failed #id 25770597: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,759 - [ qwen3-14b ] - INFO - Failed #id 24868610: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,767 - [ qwen3-14b ] - INFO - Failed #id 18469964: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,772 - [ qwen3-14b ] - INFO - Failed #id 31777439: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,777 - [ qwen3-14b ] - INFO - Failed #id 18525232: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,782 - [ qwen3-14b ] - INFO - Failed #id 29088408: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,799 - [ qwen3-14b ] - INFO - Failed #id 15793750: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,801 - [ qwen3-14b ] - INFO - Failed #id 25356786: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,805 - [ qwen3-14b ] - INFO - Failed #id 35998496: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,808 - [ qwen3-14b ] - INFO - Failed #id 28774558: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,814 - [ qwen3-14b ] - INFO - Failed #id 22275811: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,815 - [ qwen3-14b ] - INFO - Failed #id 23237805: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,828 - [ qwen3-14b ] - INFO - Failed #id 14594279: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,833 - [ qwen3-14b ] - INFO - Failed #id 77440404: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,836 - [ qwen3-14b ] - INFO - Failed #id 17655609: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,838 - [ qwen3-14b ] - INFO - Failed #id 95956888: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,845 - [ qwen3-14b ] - INFO - Failed #id 23962803: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,847 - [ qwen3-14b ] - INFO - Failed #id 10045652: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,867 - [ qwen3-14b ] - INFO - Failed #id 26381965: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,870 - [ qwen3-14b ] - INFO - Failed #id 28324424: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,883 - [ qwen3-14b ] - INFO - Failed #id 68396832: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,897 - [ qwen3-14b ] - INFO - Failed #id 28153655: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,904 - [ qwen3-14b ] - INFO - Failed #id 26196999: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,916 - [ qwen3-14b ] - INFO - Failed #id 18775869: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,919 - [ qwen3-14b ] - INFO - Failed #id 23232014: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,922 - [ qwen3-14b ] - INFO - Failed #id 25652909: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,923 - [ qwen3-14b ] - INFO - Failed #id 10059430: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,925 - [ qwen3-14b ] - INFO - Failed #id 26078663: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,933 - [ qwen3-14b ] - INFO - Failed #id 23523427: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,937 - [ qwen3-14b ] - INFO - Failed #id 95882967: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,945 - [ qwen3-14b ] - INFO - Failed #id 24243757: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,957 - [ qwen3-14b ] - INFO - Failed #id 23546836: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,966 - [ qwen3-14b ] - INFO - Failed #id 40007706: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,970 - [ qwen3-14b ] - INFO - Failed #id 54327743: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,974 - [ qwen3-14b ] - INFO - Failed #id 14550012: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,982 - [ qwen3-14b ] - INFO - Failed #id 17976193: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:06:59,995 - [ qwen3-14b ] - INFO - Failed #id 15677588: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:07:00,010 - [ qwen3-14b ] - INFO - Failed #id 23477336: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:07:00,016 - [ qwen3-14b ] - INFO - Failed #id 24724400: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:07:00,018 - [ qwen3-14b ] - INFO - Failed #id 18302933: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:07:00,020 - [ qwen3-14b ] - INFO - Failed #id 78768150: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:07:00,022 - [ qwen3-14b ] - INFO - Failed #id 19850937: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:14:14,638 - [ qwen3-14b ] - INFO - Failed #id 20497766: <class 'aiohttp.client_exceptions.ClientConnectorDNSError'> Cannot connect to host dashscope.aliyuncs.com:443 ssl:default [getaddrinfo failed]
+2026-07-14 14:14:14,700 - [ qwen3-14b ] - INFO - Failed #id 26608677: <class 'TimeoutError'> 
+2026-07-14 14:14:14,701 - [ qwen3-14b ] - INFO - Failed #id 13842784: <class 'TimeoutError'> 
+2026-07-14 14:14:17,405 - [ qwen3-14b ] - INFO - Success #id 19916234
+2026-07-14 14:14:17,657 - [ qwen3-14b ] - INFO - Success #id 29732540
+2026-07-14 14:14:18,722 - [ qwen3-14b ] - INFO - Success #id 83782410
+2026-07-14 14:14:19,168 - [ qwen3-14b ] - INFO - Success #id 20241991
+2026-07-14 14:14:20,139 - [ qwen3-14b ] - INFO - Success #id 24924401
+2026-07-14 14:14:20,472 - [ qwen3-14b ] - INFO - Success #id 85488201
+2026-07-14 14:14:20,843 - [ qwen3-14b ] - INFO - Success #id 27081075
+2026-07-14 14:14:21,046 - [ qwen3-14b ] - INFO - Success #id 26282606
+2026-07-14 14:14:22,849 - [ qwen3-14b ] - INFO - Success #id 79455796
+2026-07-14 14:14:23,228 - [ qwen3-14b ] - INFO - Success #id 11795569
+2026-07-14 14:14:24,377 - [ qwen3-14b ] - INFO - Success #id 52700802
+2026-07-14 14:14:24,585 - [ qwen3-14b ] - INFO - Success #id 25460234
+2026-07-14 14:14:24,744 - [ qwen3-14b ] - INFO - Success #id 15533950
+2026-07-14 14:14:24,927 - [ qwen3-14b ] - INFO - Success #id 66963858
+2026-07-14 14:14:26,060 - [ qwen3-14b ] - INFO - Success #id 98942590
+2026-07-14 14:14:26,196 - [ qwen3-14b ] - INFO - Success #id 20916756
+2026-07-14 14:14:27,489 - [ qwen3-14b ] - INFO - Success #id 17412535
+2026-07-14 14:14:27,992 - [ qwen3-14b ] - INFO - Success #id 40279586
+2026-07-14 14:14:28,659 - [ qwen3-14b ] - INFO - Success #id 18371633
+2026-07-14 14:14:28,709 - [ qwen3-14b ] - INFO - Success #id 26128191
+2026-07-14 14:14:29,926 - [ qwen3-14b ] - INFO - Success #id 74954197
+2026-07-14 14:14:30,955 - [ qwen3-14b ] - INFO - Success #id 30212675
+2026-07-14 14:14:31,608 - [ qwen3-14b ] - INFO - Success #id 15439450
+2026-07-14 14:14:31,659 - [ qwen3-14b ] - INFO - Success #id 75129363
+2026-07-14 14:14:32,314 - [ qwen3-14b ] - INFO - Success #id 20296677
+2026-07-14 14:14:33,695 - [ qwen3-14b ] - INFO - Success #id 20845054
+2026-07-14 14:14:34,360 - [ qwen3-14b ] - INFO - Success #id 11438938
+2026-07-14 14:14:35,235 - [ qwen3-14b ] - INFO - Success #id 31231263
+2026-07-14 14:14:35,922 - [ qwen3-14b ] - INFO - Success #id 17034606
+2026-07-14 14:14:36,365 - [ qwen3-14b ] - INFO - Success #id 88993035
+2026-07-14 14:14:37,102 - [ qwen3-14b ] - INFO - Success #id 32459218
+2026-07-14 14:14:37,206 - [ qwen3-14b ] - INFO - Success #id 22071377
+2026-07-14 14:14:38,312 - [ qwen3-14b ] - INFO - Success #id 24542987
+2026-07-14 14:14:38,556 - [ qwen3-14b ] - INFO - Success #id 54723631
+2026-07-14 14:14:38,915 - [ qwen3-14b ] - INFO - Success #id 18345101
+2026-07-14 14:14:39,922 - [ qwen3-14b ] - INFO - Success #id 23902779
+2026-07-14 14:14:39,983 - [ qwen3-14b ] - INFO - Success #id 75746397
+2026-07-14 14:14:40,642 - [ qwen3-14b ] - INFO - Success #id 17250635
+2026-07-14 14:14:41,456 - [ qwen3-14b ] - INFO - Success #id 59462595
+2026-07-14 14:14:42,562 - [ qwen3-14b ] - INFO - Success #id 17250964
+2026-07-14 14:14:43,432 - [ qwen3-14b ] - INFO - Success #id 63757068
+2026-07-14 14:14:44,138 - [ qwen3-14b ] - INFO - Success #id 11930459
+2026-07-14 14:14:44,990 - [ qwen3-14b ] - INFO - Success #id 68842384
+2026-07-14 14:14:45,147 - [ qwen3-14b ] - INFO - Success #id 68246867
+2026-07-14 14:14:46,503 - [ qwen3-14b ] - INFO - Success #id 11286545
+2026-07-14 14:14:47,305 - [ qwen3-14b ] - INFO - Success #id 30951745
+2026-07-14 14:14:48,372 - [ qwen3-14b ] - INFO - Success #id 61563355
+2026-07-14 14:14:49,412 - [ qwen3-14b ] - INFO - Success #id 26705777
+2026-07-14 14:14:51,065 - [ qwen3-14b ] - INFO - Success #id 22294633
+2026-07-14 14:14:51,177 - [ qwen3-14b ] - INFO - Success #id 88348708
+2026-07-14 14:14:51,566 - [ qwen3-14b ] - INFO - Success #id 34518810
+2026-07-14 14:14:52,259 - [ qwen3-14b ] - INFO - Success #id 28831208
+2026-07-14 14:14:54,462 - [ qwen3-14b ] - INFO - Success #id 97268969
+2026-07-14 14:14:55,214 - [ qwen3-14b ] - INFO - Success #id 33925939
+2026-07-14 14:14:55,429 - [ qwen3-14b ] - INFO - Success #id 72757390
+2026-07-14 14:14:56,326 - [ qwen3-14b ] - INFO - Success #id 13727170
+2026-07-14 14:14:56,517 - [ qwen3-14b ] - INFO - Success #id 14245970
+2026-07-14 14:14:57,409 - [ qwen3-14b ] - INFO - Success #id 18830189
+2026-07-14 14:14:57,693 - [ qwen3-14b ] - INFO - Success #id 14935954
+2026-07-14 14:14:58,829 - [ qwen3-14b ] - INFO - Success #id 15201529
+2026-07-14 14:14:59,922 - [ qwen3-14b ] - INFO - Success #id 22409766
+2026-07-14 14:14:59,925 - [ qwen3-14b ] - INFO - Success #id 32236593
+2026-07-14 14:15:00,166 - [ qwen3-14b ] - INFO - Success #id 98102102
+2026-07-14 14:15:00,212 - [ qwen3-14b ] - INFO - Success #id 31850224
+2026-07-14 14:15:02,333 - [ qwen3-14b ] - INFO - Success #id 22722464
+2026-07-14 14:15:03,286 - [ qwen3-14b ] - INFO - Success #id 16924979
+2026-07-14 14:15:03,290 - [ qwen3-14b ] - INFO - Success #id 74331360
+2026-07-14 14:15:03,675 - [ qwen3-14b ] - INFO - Success #id 19755478
+2026-07-14 14:15:04,063 - [ qwen3-14b ] - INFO - Success #id 16336773
+2026-07-14 14:15:05,497 - [ qwen3-14b ] - INFO - Success #id 17862959
+2026-07-14 14:15:05,587 - [ qwen3-14b ] - INFO - Success #id 26345047
+2026-07-14 14:15:06,092 - [ qwen3-14b ] - INFO - Success #id 16147551
+2026-07-14 14:15:06,482 - [ qwen3-14b ] - INFO - Success #id 18267263
+2026-07-14 14:15:07,604 - [ qwen3-14b ] - INFO - Success #id 32627996
+2026-07-14 14:15:08,348 - [ qwen3-14b ] - INFO - Success #id 35149597
+2026-07-14 14:15:08,425 - [ qwen3-14b ] - INFO - Success #id 31329666
+2026-07-14 14:15:08,538 - [ qwen3-14b ] - INFO - Success #id 16153626
+2026-07-14 14:15:09,127 - [ qwen3-14b ] - INFO - Success #id 18877674
+2026-07-14 14:15:10,345 - [ qwen3-14b ] - INFO - Success #id 22775393
+2026-07-14 14:15:11,690 - [ qwen3-14b ] - INFO - Success #id 20824277
+2026-07-14 14:15:12,039 - [ qwen3-14b ] - INFO - Success #id 27168551
+2026-07-14 14:15:13,094 - [ qwen3-14b ] - INFO - Success #id 30646632
+2026-07-14 14:15:13,429 - [ qwen3-14b ] - INFO - Success #id 28823138
+2026-07-14 14:15:14,358 - [ qwen3-14b ] - INFO - Success #id 28370359
+2026-07-14 14:15:14,731 - [ qwen3-14b ] - INFO - Success #id 30755559
+2026-07-14 14:15:14,736 - [ qwen3-14b ] - INFO - Success #id 16271299
+2026-07-14 14:15:16,607 - [ qwen3-14b ] - INFO - Success #id 37346169
+2026-07-14 14:15:17,221 - [ qwen3-14b ] - INFO - Success #id 39626342
+2026-07-14 14:15:17,792 - [ qwen3-14b ] - INFO - Success #id 57328119
+2026-07-14 14:15:18,658 - [ qwen3-14b ] - INFO - Success #id 26205482
+2026-07-14 14:15:19,189 - [ qwen3-14b ] - INFO - Success #id 23541423
+2026-07-14 14:15:19,954 - [ qwen3-14b ] - INFO - Success #id 17121418
+2026-07-14 14:15:20,070 - [ qwen3-14b ] - INFO - Success #id 14534721
+2026-07-14 14:15:20,564 - [ qwen3-14b ] - INFO - Success #id 21304359
+2026-07-14 14:15:21,989 - [ qwen3-14b ] - INFO - Success #id 32972401
+2026-07-14 14:15:22,151 - [ qwen3-14b ] - INFO - Success #id 29083689
+2026-07-14 14:15:23,176 - [ qwen3-14b ] - INFO - Success #id 16765494
+2026-07-14 14:15:24,010 - [ qwen3-14b ] - INFO - Success #id 13850943
+2026-07-14 14:15:24,452 - [ qwen3-14b ] - INFO - Success #id 18067011
+2026-07-14 14:15:24,504 - [ qwen3-14b ] - INFO - Success #id 12018979
+2026-07-14 14:15:25,510 - [ qwen3-14b ] - INFO - Success #id 22879076
+2026-07-14 14:15:26,717 - [ qwen3-14b ] - INFO - Success #id 24354140
+2026-07-14 14:15:26,739 - [ qwen3-14b ] - INFO - Success #id 33166173
+2026-07-14 14:15:26,789 - [ qwen3-14b ] - INFO - Success #id 48455479
+2026-07-14 14:15:27,984 - [ qwen3-14b ] - INFO - Success #id 23983868
+2026-07-14 14:15:28,055 - [ qwen3-14b ] - INFO - Success #id 12924634
+2026-07-14 14:15:28,361 - [ qwen3-14b ] - INFO - Success #id 24271333
+2026-07-14 14:15:28,828 - [ qwen3-14b ] - INFO - Success #id 10252983
+2026-07-14 14:15:29,295 - [ qwen3-14b ] - INFO - Success #id 19137587
+2026-07-14 14:15:31,108 - [ qwen3-14b ] - INFO - Success #id 12645725
+2026-07-14 14:15:32,767 - [ qwen3-14b ] - INFO - Success #id 19609807
+2026-07-14 14:15:33,607 - [ qwen3-14b ] - INFO - Success #id 14472913
+2026-07-14 14:15:33,608 - [ qwen3-14b ] - INFO - Success #id 29194518
+2026-07-14 14:15:34,308 - [ qwen3-14b ] - INFO - Success #id 14120723
+2026-07-14 14:15:34,817 - [ qwen3-14b ] - INFO - Success #id 30759441
+2026-07-14 14:15:35,744 - [ qwen3-14b ] - INFO - Success #id 64172503
+2026-07-14 14:15:36,977 - [ qwen3-14b ] - INFO - Success #id 27742629
+2026-07-14 14:15:37,129 - [ qwen3-14b ] - INFO - Success #id 18148930
+2026-07-14 14:15:38,717 - [ qwen3-14b ] - INFO - Success #id 32316036
+2026-07-14 14:15:39,594 - [ qwen3-14b ] - INFO - Success #id 23634088
+2026-07-14 14:15:39,760 - [ qwen3-14b ] - INFO - Success #id 25493679
+2026-07-14 14:15:40,464 - [ qwen3-14b ] - INFO - Success #id 17934951
+2026-07-14 14:15:40,886 - [ qwen3-14b ] - INFO - Success #id 15372677
+2026-07-14 14:15:41,180 - [ qwen3-14b ] - INFO - Success #id 10368024
+2026-07-14 14:15:41,995 - [ qwen3-14b ] - INFO - Success #id 57054900
+2026-07-14 14:15:42,678 - [ qwen3-14b ] - INFO - Success #id 22374990
+2026-07-14 14:15:43,735 - [ qwen3-14b ] - INFO - Success #id 29173624
+2026-07-14 14:15:44,076 - [ qwen3-14b ] - INFO - Success #id 17498534
+2026-07-14 14:15:44,115 - [ qwen3-14b ] - INFO - Success #id 32208394
+2026-07-14 14:15:45,784 - [ qwen3-14b ] - INFO - Success #id 13677040
+2026-07-14 14:15:45,787 - [ qwen3-14b ] - INFO - Success #id 29900467
+2026-07-14 14:15:46,762 - [ qwen3-14b ] - INFO - Success #id 11334683
+2026-07-14 14:15:47,533 - [ qwen3-14b ] - INFO - Success #id 28710919
+2026-07-14 14:15:47,907 - [ qwen3-14b ] - INFO - Success #id 25475845
+2026-07-14 14:15:49,264 - [ qwen3-14b ] - INFO - Success #id 31550287
+2026-07-14 14:15:49,356 - [ qwen3-14b ] - INFO - Success #id 94609398
+2026-07-14 14:15:50,156 - [ qwen3-14b ] - INFO - Success #id 43785142
+2026-07-14 14:15:50,770 - [ qwen3-14b ] - INFO - Success #id 13285925
+2026-07-14 14:15:51,520 - [ qwen3-14b ] - INFO - Success #id 29703977
+2026-07-14 14:15:52,039 - [ qwen3-14b ] - INFO - Success #id 17292448
+2026-07-14 14:15:52,131 - [ qwen3-14b ] - INFO - Success #id 33088957
+2026-07-14 14:15:53,073 - [ qwen3-14b ] - INFO - Success #id 96041123
+2026-07-14 14:15:53,138 - [ qwen3-14b ] - INFO - Success #id 99690116
+2026-07-14 14:15:55,414 - [ qwen3-14b ] - INFO - Success #id 87123459
+2026-07-14 14:15:56,703 - [ qwen3-14b ] - INFO - Success #id 14689734
+2026-07-14 14:15:57,055 - [ qwen3-14b ] - INFO - Success #id 16352482
+2026-07-14 14:15:58,011 - [ qwen3-14b ] - INFO - Success #id 54274193
+2026-07-14 14:15:59,214 - [ qwen3-14b ] - INFO - Success #id 30345155
+2026-07-14 14:15:59,764 - [ qwen3-14b ] - INFO - Success #id 33868775
+2026-07-14 14:16:00,691 - [ qwen3-14b ] - INFO - Success #id 95442435
+2026-07-14 14:16:01,348 - [ qwen3-14b ] - INFO - Success #id 25388828
+2026-07-14 14:16:02,679 - [ qwen3-14b ] - INFO - Success #id 14138645
+2026-07-14 14:16:02,872 - [ qwen3-14b ] - INFO - Success #id 16015621
+2026-07-14 14:16:02,907 - [ qwen3-14b ] - INFO - Success #id 60459214
+2026-07-14 14:16:04,326 - [ qwen3-14b ] - INFO - Success #id 78699844
+2026-07-14 14:16:04,328 - [ qwen3-14b ] - INFO - Success #id 32057897
+2026-07-14 14:16:05,290 - [ qwen3-14b ] - INFO - Success #id 30427437
+2026-07-14 14:16:05,805 - [ qwen3-14b ] - INFO - Success #id 98336598
+2026-07-14 14:16:06,473 - [ qwen3-14b ] - INFO - Success #id 16222823
+2026-07-14 14:16:07,287 - [ qwen3-14b ] - INFO - Success #id 32331756
+2026-07-14 14:16:07,540 - [ qwen3-14b ] - INFO - Success #id 26062562
+2026-07-14 14:16:08,845 - [ qwen3-14b ] - INFO - Success #id 21204835
+2026-07-14 14:16:09,156 - [ qwen3-14b ] - INFO - Success #id 21178503
+2026-07-14 14:16:09,643 - [ qwen3-14b ] - INFO - Success #id 10594951
+2026-07-14 14:16:09,934 - [ qwen3-14b ] - INFO - Success #id 32510184
+2026-07-14 14:16:10,467 - [ qwen3-14b ] - INFO - Success #id 23049390
+2026-07-14 14:16:12,032 - [ qwen3-14b ] - INFO - Success #id 11569404
+2026-07-14 14:16:12,129 - [ qwen3-14b ] - INFO - Success #id 33166008
+2026-07-14 14:16:13,586 - [ qwen3-14b ] - INFO - Success #id 50088375
+2026-07-14 14:16:14,077 - [ qwen3-14b ] - INFO - Success #id 43794634
+2026-07-14 14:16:15,023 - [ qwen3-14b ] - INFO - Success #id 22400448
+2026-07-14 14:16:15,771 - [ qwen3-14b ] - INFO - Success #id 72002913
+2026-07-14 14:16:16,934 - [ qwen3-14b ] - INFO - Success #id 24929231
+2026-07-14 14:16:17,202 - [ qwen3-14b ] - INFO - Success #id 24545994
+2026-07-14 14:16:17,738 - [ qwen3-14b ] - INFO - Success #id 32819876
+2026-07-14 14:16:18,556 - [ qwen3-14b ] - INFO - Success #id 95042631
+2026-07-14 14:16:18,557 - [ qwen3-14b ] - INFO - Success #id 28251662
+2026-07-14 14:16:20,292 - [ qwen3-14b ] - INFO - Success #id 27081420
+2026-07-14 14:16:20,465 - [ qwen3-14b ] - INFO - Success #id 74568044
+2026-07-14 14:16:22,252 - [ qwen3-14b ] - INFO - Success #id 29203199
+2026-07-14 14:16:22,428 - [ qwen3-14b ] - INFO - Success #id 23911947
+2026-07-14 14:16:23,780 - [ qwen3-14b ] - INFO - Success #id 18931731
+2026-07-14 14:16:24,184 - [ qwen3-14b ] - INFO - Success #id 15698557
+2026-07-14 14:16:24,191 - [ qwen3-14b ] - INFO - Success #id 25132217
+2026-07-14 14:16:25,199 - [ qwen3-14b ] - INFO - Success #id 23554883
+2026-07-14 14:16:25,324 - [ qwen3-14b ] - INFO - Success #id 28781978
+2026-07-14 14:16:25,931 - [ qwen3-14b ] - INFO - Success #id 24376606
+2026-07-14 14:16:27,691 - [ qwen3-14b ] - INFO - Success #id 23927561
+2026-07-14 14:16:27,807 - [ qwen3-14b ] - INFO - Success #id 18631304
+2026-07-14 14:16:28,256 - [ qwen3-14b ] - INFO - Success #id 34733006
+2026-07-14 14:16:28,319 - [ qwen3-14b ] - INFO - Success #id 12657417
+2026-07-14 14:16:29,231 - [ qwen3-14b ] - INFO - Success #id 53789787
+2026-07-14 14:16:29,984 - [ qwen3-14b ] - INFO - Success #id 22516944
+2026-07-14 14:16:30,739 - [ qwen3-14b ] - INFO - Success #id 10170822
+2026-07-14 14:16:30,740 - [ qwen3-14b ] - INFO - Success #id 25277835
+2026-07-14 14:16:30,926 - [ qwen3-14b ] - INFO - Success #id 20921577
+2026-07-14 14:16:32,006 - [ qwen3-14b ] - INFO - Success #id 20559842
+2026-07-14 14:16:32,957 - [ qwen3-14b ] - INFO - Success #id 11437012
+2026-07-14 14:16:32,981 - [ qwen3-14b ] - INFO - Success #id 14052814
+2026-07-14 14:16:34,262 - [ qwen3-14b ] - INFO - Success #id 20139286
+2026-07-14 14:16:34,505 - [ qwen3-14b ] - INFO - Success #id 27078880
+2026-07-14 14:16:35,140 - [ qwen3-14b ] - INFO - Success #id 26473069
+2026-07-14 14:16:35,830 - [ qwen3-14b ] - INFO - Success #id 99704753
+2026-07-14 14:16:36,370 - [ qwen3-14b ] - INFO - Success #id 28254596
+2026-07-14 14:16:36,794 - [ qwen3-14b ] - INFO - Success #id 23953710
+2026-07-14 14:16:37,346 - [ qwen3-14b ] - INFO - Success #id 33584203
+2026-07-14 14:16:38,213 - [ qwen3-14b ] - INFO - Success #id 10999484
+2026-07-14 14:16:38,724 - [ qwen3-14b ] - INFO - Success #id 21437009
+2026-07-14 14:16:38,725 - [ qwen3-14b ] - INFO - Success #id 26977398
+2026-07-14 14:16:38,725 - [ qwen3-14b ] - INFO - Success #id 12616932
+2026-07-14 14:16:39,509 - [ qwen3-14b ] - INFO - Success #id 38240511
+2026-07-14 14:16:41,080 - [ qwen3-14b ] - INFO - Success #id 16093385
+2026-07-14 14:16:41,247 - [ qwen3-14b ] - INFO - Success #id 52606988
+2026-07-14 14:16:41,899 - [ qwen3-14b ] - INFO - Success #id 26314633
+2026-07-14 14:16:42,515 - [ qwen3-14b ] - INFO - Success #id 11741385
+2026-07-14 14:16:42,826 - [ qwen3-14b ] - INFO - Success #id 14191643
+2026-07-14 14:16:43,121 - [ qwen3-14b ] - INFO - Success #id 12669279
+2026-07-14 14:16:44,542 - [ qwen3-14b ] - INFO - Success #id 22637258
+2026-07-14 14:16:45,124 - [ qwen3-14b ] - INFO - Success #id 10181005
+2026-07-14 14:16:45,190 - [ qwen3-14b ] - INFO - Success #id 18886325
+2026-07-14 14:16:45,791 - [ qwen3-14b ] - INFO - Success #id 24341475
+2026-07-14 14:16:46,924 - [ qwen3-14b ] - INFO - Success #id 19605111
+2026-07-14 14:16:47,315 - [ qwen3-14b ] - INFO - Success #id 35324585
+2026-07-14 14:16:47,434 - [ qwen3-14b ] - INFO - Success #id 20848695
+2026-07-14 14:16:47,833 - [ qwen3-14b ] - INFO - Success #id 14089842
+2026-07-14 14:16:48,355 - [ qwen3-14b ] - INFO - Success #id 10063301
+2026-07-14 14:16:48,862 - [ qwen3-14b ] - INFO - Success #id 31657961
+2026-07-14 14:16:49,374 - [ qwen3-14b ] - INFO - Success #id 31726891
+2026-07-14 14:16:50,194 - [ qwen3-14b ] - INFO - Success #id 12244125
+2026-07-14 14:16:50,397 - [ qwen3-14b ] - INFO - Success #id 63353843
+2026-07-14 14:16:51,421 - [ qwen3-14b ] - INFO - Success #id 12300616
+2026-07-14 14:16:51,452 - [ qwen3-14b ] - INFO - Success #id 63284015
+2026-07-14 14:16:52,243 - [ qwen3-14b ] - INFO - Success #id 30986868
+2026-07-14 14:16:53,674 - [ qwen3-14b ] - INFO - Success #id 16011320
+2026-07-14 14:16:53,738 - [ qwen3-14b ] - INFO - Success #id 45995210
+2026-07-14 14:16:54,295 - [ qwen3-14b ] - INFO - Success #id 31279239
+2026-07-14 14:16:54,906 - [ qwen3-14b ] - INFO - Success #id 10137025
+2026-07-14 14:16:54,909 - [ qwen3-14b ] - INFO - Success #id 32826732
+2026-07-14 14:16:56,235 - [ qwen3-14b ] - INFO - Success #id 19107034
+2026-07-14 14:16:56,953 - [ qwen3-14b ] - INFO - Success #id 18656985
+2026-07-14 14:16:57,674 - [ qwen3-14b ] - INFO - Success #id 16011568
+2026-07-14 14:16:57,814 - [ qwen3-14b ] - INFO - Success #id 93504366
+2026-07-14 14:16:58,276 - [ qwen3-14b ] - INFO - Success #id 18828170
+2026-07-14 14:16:58,861 - [ qwen3-14b ] - INFO - Success #id 15587384
+2026-07-14 14:16:58,952 - [ qwen3-14b ] - INFO - Success #id 12306353
+2026-07-14 14:16:59,940 - [ qwen3-14b ] - INFO - Success #id 91496850
+2026-07-14 14:16:59,943 - [ qwen3-14b ] - INFO - Success #id 22717594
+2026-07-14 14:17:01,042 - [ qwen3-14b ] - INFO - Success #id 24443164
+2026-07-14 14:17:01,096 - [ qwen3-14b ] - INFO - Success #id 28169924
+2026-07-14 14:17:01,333 - [ qwen3-14b ] - INFO - Success #id 31068521
+2026-07-14 14:17:01,410 - [ qwen3-14b ] - INFO - Success #id 17105121
+2026-07-14 14:17:02,460 - [ qwen3-14b ] - INFO - Success #id 49530773
+2026-07-14 14:17:02,996 - [ qwen3-14b ] - INFO - Success #id 32183242
+2026-07-14 14:17:03,607 - [ qwen3-14b ] - INFO - Success #id 41266530
+2026-07-14 14:17:03,911 - [ qwen3-14b ] - INFO - Success #id 21046069
+2026-07-14 14:17:04,432 - [ qwen3-14b ] - INFO - Success #id 27399843
+2026-07-14 14:17:04,527 - [ qwen3-14b ] - INFO - Success #id 31872598
+2026-07-14 14:17:05,694 - [ qwen3-14b ] - INFO - Success #id 33276631
+2026-07-14 14:17:06,111 - [ qwen3-14b ] - INFO - Success #id 48920769
+2026-07-14 14:17:06,685 - [ qwen3-14b ] - INFO - Success #id 26082135
+2026-07-14 14:17:08,070 - [ qwen3-14b ] - INFO - Success #id 41637565
+2026-07-14 14:17:08,525 - [ qwen3-14b ] - INFO - Success #id 93380391
+2026-07-14 14:17:09,068 - [ qwen3-14b ] - INFO - Success #id 15860088
+2026-07-14 14:17:10,175 - [ qwen3-14b ] - INFO - Success #id 55018493
+2026-07-14 14:17:10,858 - [ qwen3-14b ] - INFO - Success #id 57352082
+2026-07-14 14:17:10,910 - [ qwen3-14b ] - INFO - Success #id 21368313
+2026-07-14 14:17:11,800 - [ qwen3-14b ] - INFO - Success #id 22900554
+2026-07-14 14:17:12,964 - [ qwen3-14b ] - INFO - Success #id 12668572
+2026-07-14 14:17:13,103 - [ qwen3-14b ] - INFO - Success #id 30191385
+2026-07-14 14:17:13,107 - [ qwen3-14b ] - INFO - Success #id 20892902
+2026-07-14 14:17:15,093 - [ qwen3-14b ] - INFO - Success #id 17783823
+2026-07-14 14:17:15,546 - [ qwen3-14b ] - INFO - Success #id 18652784
+2026-07-14 14:17:15,749 - [ qwen3-14b ] - INFO - Success #id 22364747
+2026-07-14 14:17:16,238 - [ qwen3-14b ] - INFO - Success #id 28842621
+2026-07-14 14:17:17,338 - [ qwen3-14b ] - INFO - Success #id 21815511
+2026-07-14 14:17:17,381 - [ qwen3-14b ] - INFO - Success #id 59543743
+2026-07-14 14:17:18,661 - [ qwen3-14b ] - INFO - Success #id 31557173
+2026-07-14 14:17:19,383 - [ qwen3-14b ] - INFO - Success #id 88757355
+2026-07-14 14:17:19,463 - [ qwen3-14b ] - INFO - Success #id 13423972
+2026-07-14 14:17:20,300 - [ qwen3-14b ] - INFO - Success #id 19348237
+2026-07-14 14:17:20,828 - [ qwen3-14b ] - INFO - Success #id 54148885
+2026-07-14 14:17:21,428 - [ qwen3-14b ] - INFO - Success #id 75101849
+2026-07-14 14:17:22,479 - [ qwen3-14b ] - INFO - Success #id 33161887
+2026-07-14 14:17:22,572 - [ qwen3-14b ] - INFO - Success #id 25831359
+2026-07-14 14:17:23,013 - [ qwen3-14b ] - INFO - Success #id 23390337
+2026-07-14 14:17:24,299 - [ qwen3-14b ] - INFO - Success #id 27273232
+2026-07-14 14:17:24,976 - [ qwen3-14b ] - INFO - Success #id 22751252
+2026-07-14 14:17:25,051 - [ qwen3-14b ] - INFO - Success #id 29810410
+2026-07-14 14:17:27,188 - [ qwen3-14b ] - INFO - Success #id 66204896
+2026-07-14 14:17:27,880 - [ qwen3-14b ] - INFO - Success #id 56127174
+2026-07-14 14:17:27,881 - [ qwen3-14b ] - INFO - Success #id 68846967
+2026-07-14 14:17:28,181 - [ qwen3-14b ] - INFO - Success #id 46071731
+2026-07-14 14:17:28,772 - [ qwen3-14b ] - INFO - Success #id 22836975
+2026-07-14 14:17:31,871 - [ qwen3-14b ] - INFO - Success #id 92364997
+2026-07-14 14:17:32,371 - [ qwen3-14b ] - INFO - Success #id 29585861
+2026-07-14 14:17:32,457 - [ qwen3-14b ] - INFO - Success #id 22513062
+2026-07-14 14:17:34,128 - [ qwen3-14b ] - INFO - Success #id 29190761
+2026-07-14 14:17:34,435 - [ qwen3-14b ] - INFO - Success #id 28919664
+2026-07-14 14:17:34,436 - [ qwen3-14b ] - INFO - Success #id 18111833
+2026-07-14 14:17:34,945 - [ qwen3-14b ] - INFO - Success #id 84938121
+2026-07-14 14:17:35,597 - [ qwen3-14b ] - INFO - Success #id 34261184
+2026-07-14 14:17:36,008 - [ qwen3-14b ] - INFO - Success #id 13241713
+2026-07-14 14:17:36,994 - [ qwen3-14b ] - INFO - Success #id 19460331
+2026-07-14 14:17:37,102 - [ qwen3-14b ] - INFO - Success #id 10967239
+2026-07-14 14:17:37,637 - [ qwen3-14b ] - INFO - Success #id 18268077
+2026-07-14 14:17:37,656 - [ qwen3-14b ] - INFO - Success #id 30199071
+2026-07-14 14:17:38,117 - [ qwen3-14b ] - INFO - Success #id 24102914
+2026-07-14 14:17:38,527 - [ qwen3-14b ] - INFO - Success #id 19698675
+2026-07-14 14:17:39,961 - [ qwen3-14b ] - INFO - Success #id 17558982
+2026-07-14 14:17:40,479 - [ qwen3-14b ] - INFO - Success #id 29421567
+2026-07-14 14:17:40,508 - [ qwen3-14b ] - INFO - Success #id 14141928
+2026-07-14 14:17:41,599 - [ qwen3-14b ] - INFO - Success #id 11311103
+2026-07-14 14:17:41,694 - [ qwen3-14b ] - INFO - Success #id 15272492
+2026-07-14 14:17:41,932 - [ qwen3-14b ] - INFO - Success #id 32954491
+2026-07-14 14:17:42,996 - [ qwen3-14b ] - INFO - Success #id 16177750
+2026-07-14 14:17:44,375 - [ qwen3-14b ] - INFO - Success #id 74883809
+2026-07-14 14:17:44,878 - [ qwen3-14b ] - INFO - Success #id 31872072
+2026-07-14 14:17:45,953 - [ qwen3-14b ] - INFO - Success #id 71196732
+2026-07-14 14:17:46,599 - [ qwen3-14b ] - INFO - Success #id 26164784
+2026-07-14 14:17:47,999 - [ qwen3-14b ] - INFO - Success #id 32434410
+2026-07-14 14:17:49,382 - [ qwen3-14b ] - INFO - Success #id 30727911
+2026-07-14 14:17:49,479 - [ qwen3-14b ] - INFO - Success #id 13007912
+2026-07-14 14:17:49,970 - [ qwen3-14b ] - INFO - Success #id 24277441
+2026-07-14 14:17:50,613 - [ qwen3-14b ] - INFO - Success #id 87327927
+2026-07-14 14:17:52,161 - [ qwen3-14b ] - INFO - Success #id 24418641
+2026-07-14 14:17:52,243 - [ qwen3-14b ] - INFO - Success #id 19872296
+2026-07-14 14:17:52,426 - [ qwen3-14b ] - INFO - Success #id 27280574
+2026-07-14 14:17:53,940 - [ qwen3-14b ] - INFO - Success #id 24420566
+2026-07-14 14:17:54,019 - [ qwen3-14b ] - INFO - Success #id 17598576
+2026-07-14 14:17:54,609 - [ qwen3-14b ] - INFO - Success #id 73566640
+2026-07-14 14:17:55,468 - [ qwen3-14b ] - INFO - Success #id 59771651
+2026-07-14 14:17:56,141 - [ qwen3-14b ] - INFO - Success #id 15889387
+2026-07-14 14:17:56,807 - [ qwen3-14b ] - INFO - Success #id 24865463
+2026-07-14 14:17:57,610 - [ qwen3-14b ] - INFO - Success #id 59626577
+2026-07-14 14:17:58,484 - [ qwen3-14b ] - INFO - Success #id 12442515
+2026-07-14 14:17:58,805 - [ qwen3-14b ] - INFO - Success #id 29637362
+2026-07-14 14:17:58,807 - [ qwen3-14b ] - INFO - Success #id 21119752
+2026-07-14 14:18:00,856 - [ qwen3-14b ] - INFO - Success #id 30288760
+2026-07-14 14:18:01,430 - [ qwen3-14b ] - INFO - Success #id 30704899
+2026-07-14 14:18:02,047 - [ qwen3-14b ] - INFO - Success #id 14138792
+2026-07-14 14:18:02,420 - [ qwen3-14b ] - INFO - Success #id 75898302
+2026-07-14 14:18:02,744 - [ qwen3-14b ] - INFO - Success #id 29700804
+2026-07-14 14:18:03,513 - [ qwen3-14b ] - INFO - Success #id 23364333
+2026-07-14 14:18:03,945 - [ qwen3-14b ] - INFO - Success #id 40289935
+2026-07-14 14:18:03,951 - [ qwen3-14b ] - INFO - Success #id 25028399
+2026-07-14 14:18:05,361 - [ qwen3-14b ] - INFO - Success #id 30669671
+2026-07-14 14:18:06,965 - [ qwen3-14b ] - INFO - Success #id 18888405
+2026-07-14 14:18:07,082 - [ qwen3-14b ] - INFO - Success #id 21558745
+2026-07-14 14:18:07,816 - [ qwen3-14b ] - INFO - Success #id 13836608
+2026-07-14 14:18:08,300 - [ qwen3-14b ] - INFO - Success #id 90333220
+2026-07-14 14:18:09,594 - [ qwen3-14b ] - INFO - Success #id 22704557
+2026-07-14 14:18:09,762 - [ qwen3-14b ] - INFO - Success #id 14090204
+2026-07-14 14:18:09,858 - [ qwen3-14b ] - INFO - Success #id 11578910
+2026-07-14 14:18:12,116 - [ qwen3-14b ] - INFO - Success #id 25053600
+2026-07-14 14:18:12,832 - [ qwen3-14b ] - INFO - Success #id 44169555
+2026-07-14 14:18:14,344 - [ qwen3-14b ] - INFO - Success #id 80607627
+2026-07-14 14:18:14,389 - [ qwen3-14b ] - INFO - Success #id 13997161
+2026-07-14 14:18:14,911 - [ qwen3-14b ] - INFO - Success #id 71963146
+2026-07-14 14:18:16,318 - [ qwen3-14b ] - INFO - Success #id 15507820
+2026-07-14 14:18:17,367 - [ qwen3-14b ] - INFO - Success #id 12974686
+2026-07-14 14:18:17,916 - [ qwen3-14b ] - INFO - Success #id 69461892
+2026-07-14 14:18:18,669 - [ qwen3-14b ] - INFO - Success #id 23008241
+2026-07-14 14:18:20,434 - [ qwen3-14b ] - INFO - Success #id 59042481
+2026-07-14 14:18:21,937 - [ qwen3-14b ] - INFO - Success #id 92715772
+2026-07-14 14:18:22,036 - [ qwen3-14b ] - INFO - Success #id 16305538
+2026-07-14 14:18:22,459 - [ qwen3-14b ] - INFO - Success #id 10768666
+2026-07-14 14:18:22,767 - [ qwen3-14b ] - INFO - Success #id 46553212
+2026-07-14 14:18:23,686 - [ qwen3-14b ] - INFO - Success #id 54083594
+2026-07-14 14:18:23,747 - [ qwen3-14b ] - INFO - Success #id 14859596
+2026-07-14 14:18:24,131 - [ qwen3-14b ] - INFO - Success #id 21697354
+2026-07-14 14:18:24,968 - [ qwen3-14b ] - INFO - Success #id 22093791
+2026-07-14 14:18:25,938 - [ qwen3-14b ] - INFO - Success #id 97324652
+2026-07-14 14:18:26,353 - [ qwen3-14b ] - INFO - Success #id 93553255
+2026-07-14 14:18:26,861 - [ qwen3-14b ] - INFO - Success #id 13737898
+2026-07-14 14:18:27,988 - [ qwen3-14b ] - INFO - Success #id 41479440
+2026-07-14 14:18:28,915 - [ qwen3-14b ] - INFO - Success #id 17088618
+2026-07-14 14:18:29,547 - [ qwen3-14b ] - INFO - Success #id 52313463
+2026-07-14 14:18:30,342 - [ qwen3-14b ] - INFO - Success #id 10790114
+2026-07-14 14:18:32,462 - [ qwen3-14b ] - INFO - Success #id 29241237
+2026-07-14 14:18:33,156 - [ qwen3-14b ] - INFO - Success #id 29462270
+2026-07-14 14:18:33,827 - [ qwen3-14b ] - INFO - Success #id 48339312
+2026-07-14 14:18:33,973 - [ qwen3-14b ] - INFO - Success #id 92518315
+2026-07-14 14:18:35,209 - [ qwen3-14b ] - INFO - Success #id 30865998
+2026-07-14 14:18:35,336 - [ qwen3-14b ] - INFO - Success #id 28472285
+2026-07-14 14:18:36,174 - [ qwen3-14b ] - INFO - Success #id 32581868
+2026-07-14 14:18:36,421 - [ qwen3-14b ] - INFO - Success #id 28885918
+2026-07-14 14:18:36,913 - [ qwen3-14b ] - INFO - Success #id 56603905
+2026-07-14 14:18:37,970 - [ qwen3-14b ] - INFO - Success #id 24981581
+2026-07-14 14:18:38,227 - [ qwen3-14b ] - INFO - Success #id 25687900
+2026-07-14 14:18:40,378 - [ qwen3-14b ] - INFO - Success #id 20415819
+2026-07-14 14:18:40,752 - [ qwen3-14b ] - INFO - Success #id 23910459
+2026-07-14 14:18:41,198 - [ qwen3-14b ] - INFO - Success #id 11243007
+2026-07-14 14:18:41,818 - [ qwen3-14b ] - INFO - Success #id 49137808
+2026-07-14 14:18:41,995 - [ qwen3-14b ] - INFO - Success #id 64780601
+2026-07-14 14:18:43,655 - [ qwen3-14b ] - INFO - Success #id 30894970
+2026-07-14 14:18:44,320 - [ qwen3-14b ] - INFO - Success #id 21770383
+2026-07-14 14:18:44,494 - [ qwen3-14b ] - INFO - Success #id 32756643
+2026-07-14 14:18:45,908 - [ qwen3-14b ] - INFO - Success #id 20912596
+2026-07-14 14:18:46,421 - [ qwen3-14b ] - INFO - Success #id 33910134
+2026-07-14 14:18:47,181 - [ qwen3-14b ] - INFO - Success #id 15099465
+2026-07-14 14:18:48,400 - [ qwen3-14b ] - INFO - Success #id 90519237
+2026-07-14 14:18:48,671 - [ qwen3-14b ] - INFO - Success #id 17984360
+2026-07-14 14:18:49,496 - [ qwen3-14b ] - INFO - Success #id 10981816
+2026-07-14 14:18:49,571 - [ qwen3-14b ] - INFO - Success #id 19883319
+2026-07-14 14:18:51,232 - [ qwen3-14b ] - INFO - Success #id 15643781
+2026-07-14 14:18:51,294 - [ qwen3-14b ] - INFO - Success #id 28642705
+2026-07-14 14:18:51,622 - [ qwen3-14b ] - INFO - Success #id 30648072
+2026-07-14 14:18:52,443 - [ qwen3-14b ] - INFO - Success #id 75370072
+2026-07-14 14:18:53,079 - [ qwen3-14b ] - INFO - Success #id 30148199
+2026-07-14 14:18:53,437 - [ qwen3-14b ] - INFO - Success #id 76329235
+2026-07-14 14:18:53,895 - [ qwen3-14b ] - INFO - Success #id 32782966
+2026-07-14 14:18:54,100 - [ qwen3-14b ] - INFO - Success #id 27553886
+2026-07-14 14:18:54,118 - [ qwen3-14b ] - INFO - Completed: 1334
+2026-07-14 14:18:54,119 - [ qwen3-14b ] - INFO - Failed: 158
+2026-07-14 14:21:57,499 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_huggingface', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 4, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'resource', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-14 14:21:57,500 - [ qwen3-14b ] - INFO - Detected 1334 has been inferenced,
+2026-07-14 14:21:57,500 - [ qwen3-14b ] - INFO - Start inferencing 158 tasks...
+2026-07-14 14:21:59,104 - [ qwen3-14b ] - INFO - # TASK LIST #:
+{"id": "Token Classification", "desc": "Token classification is a natural language understanding task in which a label is assigned to some tokens in a text. Some popular token classification subtasks are Named Entity Recognition (NER) and Part-of-Speech (PoS) tagging. NER models could be trained to identify specific entities in a text, such as dates, individuals and places; and PoS tagging would identify, for example, which words in a text are verbs, nouns, and punctuation marks.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Translation", "desc": "Translation is the task of converting text from one language to another.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Summarization", "desc": "Summarization is the task of producing a shorter version of a document while preserving its important information. Some models can extract text from the original input, while other models can generate entirely new text.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Question Answering", "desc": "Question Answering models can retrieve the answer to a question from a given text, which is useful for searching for an answer in a document.", "input-type": ["text", "text"], "output-type": ["text"]}
+{"id": "Conversational", "desc": "Conversational response modelling is the task of generating conversational text that is relevant, coherent and knowledgable given a prompt. These models have applications in chatbots, and as a part of voice assistants", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Text Generation", "desc": "Generating text is the task of producing new text. These models can, for example, fill in incomplete text or paraphrase.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Sentence Similarity", "desc": "Sentence Similarity is the task of determining how similar two texts are. This task is particularly useful for information retrieval and clustering/grouping.", "input-type": ["text", "text"], "output-type": []}
+{"id": "Tabular Classification", "desc": "Tabular classification is the task of classifying a table (in Image format).", "input-type": ["image"], "output-type": ["text"]}
+{"id": "Object Detection", "desc": "Object Detection models allow users to identify objects of certain defined classes. Object detection models receive an image as input and output the images with bounding boxes and labels on detected objects.", "input-type": ["image"], "output-type": ["text"]}
+{"id": "Image Classification", "desc": "Image classification is the task of assigning a label or class to an entire image. Images are expected to have only one class for each image. Image classification models take an image as input and return a prediction about which class the image belongs to.", "input-type": ["image"], "output-type": ["text"]}
+{"id": "Image-to-Image", "desc": "Image-to-image is the task of transforming a source image to match the characteristics of a target image or a target image domain. Any image manipulation and enhancement is possible with image to image models.", "input-type": ["image"], "output-type": ["image"]}
+{"id": "Image-to-Text", "desc": "Image to text models output a text from a given image. Image captioning or optical character recognition can be considered as the most common applications of image to text.", "input-type": ["image"], "output-type": ["text"]}
+{"id": "Text-to-Image", "desc": "Generates images from input text. These models can be used to generate images based on text prompts.", "input-type": ["text"], "output-type": ["image"]}
+{"id": "Text-to-Video", "desc": "Generates videos from input text. These models can be used to generate videos based on text prompts.", "input-type": ["text"], "output-type": ["video"]}
+{"id": "Visual Question Answering", "desc": "Visual Question Answering is the task of answering questions based on an image.", "input-type": ["image", "text"], "output-type": ["text"]}
+{"id": "Document Question Answering", "desc": "Document Question Answering (also known as Document Visual Question Answering) is the task of answering questions on document images. Document question answering models take a (document, question) pair as input and return an answer in natural language. Models usually rely on multi-modal features, combining text, position of words (bounding-boxes) and image.", "input-type": ["image", "text"], "output-type": ["text"]}
+{"id": "Image Segmentation", "desc": "Image Segmentation divides an image into segments where each pixel in the image is mapped to an object. This task has multiple variants such as instance segmentation, panoptic segmentation and semantic segmentation.", "input-type": ["image"], "output-type": ["image"]}
+{"id": "Depth Estimation", "desc": "Depth estimation is the task of predicting depth of the objects present in an image.", "input-type": ["image"], "output-type": ["image"]}
+{"id": "Text-to-Speech", "desc": "Text-to-Speech (TTS) is the task of generating natural sounding speech given text input. TTS models can be extended to have a single model that generates speech for multiple speakers and multiple languages.", "input-type": ["text"], "output-type": ["audio"]}
+{"id": "Automatic Speech Recognition", "desc": "Automatic Speech Recognition (ASR), also known as Speech to Text (STT), is the task of transcribing a given audio to text. It has many applications, such as voice user interfaces.", "input-type": ["audio"], "output-type": ["text"]}
+{"id": "Audio-to-Audio", "desc": "Audio-to-Audio is a family of tasks in which the input is an audio and the output is one or multiple generated audios. Some example tasks are speech enhancement and source separation.", "input-type": ["audio"], "output-type": ["audio"]}
+{"id": "Audio Classification", "desc": "Audio classification is the task of assigning a label or class to a given audio. It can be used for recognizing which command a user is giving or the emotion of a statement, as well as identifying a speaker.", "input-type": ["audio"], "output-type": ["text"]}
+{"id": "Image Editing", "desc": "Image editing is the task of modifying an image to match a given text description. It can be used to modify the attributes of an image, such as the color of an object or the background.", "input-type": ["text", "image"], "output-type": ["image"]}
+
+# GOAL #: Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ step description of one or more steps ], "task_nodes": [{"task": "tool name must be from # TOOL LIST #", "arguments": [ a concise list of arguments for the tool. Either original text, or user-mentioned filename, or tag '<node-j>' (start from 0) to refer to the output of the j-th node. ]}]} 
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. the dependencies among task steps should align with the argument dependencies of the task nodes; 
+4. the tool arguments should be align with the input-type field of # TASK LIST #;
+
+# USER REQUEST #: I just attended a fascinating lecture about AI and recorded it in 'example.wav' format. Can you help transcribe the audio and provide me with a concise summary highlighting the key points?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-14 14:21:59,105 - [ qwen3-14b ] - INFO - {
+  "task_steps": [
+    "Transcribe the audio file 'example.wav' into text.",
+    "Generate a concise summary of the transcribed text, highlighting the key points."
+  ],
+  "task_nodes": [
+    {
+      "task": "Automatic Speech Recognition",
+      "arguments": ["example.wav"]
+    },
+    {
+      "task": "Summarization",
+      "arguments": ["<node-0>"]
+    }
+  ]
+}
+2026-07-14 14:21:59,106 - [ qwen3-14b ] - INFO - Success #id 24203179
+2026-07-14 14:22:00,148 - [ qwen3-14b ] - INFO - Success #id 17022014
+2026-07-14 14:22:00,445 - [ qwen3-14b ] - INFO - Success #id 66366754
+2026-07-14 14:22:01,383 - [ qwen3-14b ] - INFO - Success #id 22478911
+2026-07-14 14:22:02,005 - [ qwen3-14b ] - INFO - Success #id 22799547
+2026-07-14 14:22:03,069 - [ qwen3-14b ] - INFO - Success #id 25883029
+2026-07-14 14:22:03,109 - [ qwen3-14b ] - INFO - Success #id 29058451
+2026-07-14 14:22:03,679 - [ qwen3-14b ] - INFO - Success #id 14604115
+2026-07-14 14:22:04,596 - [ qwen3-14b ] - INFO - Success #id 11525339
+2026-07-14 14:22:04,909 - [ qwen3-14b ] - INFO - Success #id 23369017
+2026-07-14 14:22:05,384 - [ qwen3-14b ] - INFO - Success #id 29965279
+2026-07-14 14:22:06,323 - [ qwen3-14b ] - INFO - Success #id 76613449
+2026-07-14 14:22:07,296 - [ qwen3-14b ] - INFO - Success #id 21975451
+2026-07-14 14:22:08,280 - [ qwen3-14b ] - INFO - Success #id 60492240
+2026-07-14 14:22:08,301 - [ qwen3-14b ] - INFO - Success #id 24554099
+2026-07-14 14:22:08,944 - [ qwen3-14b ] - INFO - Success #id 15613129
+2026-07-14 14:22:09,635 - [ qwen3-14b ] - INFO - Success #id 79733558
+2026-07-14 14:22:11,095 - [ qwen3-14b ] - INFO - Success #id 78188540
+2026-07-14 14:22:11,228 - [ qwen3-14b ] - INFO - Success #id 18613337
+2026-07-14 14:22:11,630 - [ qwen3-14b ] - INFO - Success #id 18794940
+2026-07-14 14:22:12,245 - [ qwen3-14b ] - INFO - Success #id 91102950
+2026-07-14 14:22:12,365 - [ qwen3-14b ] - INFO - Success #id 11881454
+2026-07-14 14:22:13,987 - [ qwen3-14b ] - INFO - Success #id 76536897
+2026-07-14 14:22:14,483 - [ qwen3-14b ] - INFO - Success #id 26229819
+2026-07-14 14:22:15,437 - [ qwen3-14b ] - INFO - Success #id 11976461
+2026-07-14 14:22:17,004 - [ qwen3-14b ] - INFO - Success #id 71664146
+2026-07-14 14:22:17,295 - [ qwen3-14b ] - INFO - Success #id 13625269
+2026-07-14 14:22:17,925 - [ qwen3-14b ] - INFO - Success #id 64671291
+2026-07-14 14:22:19,633 - [ qwen3-14b ] - INFO - Success #id 77192271
+2026-07-14 14:22:19,827 - [ qwen3-14b ] - INFO - Success #id 24659418
+2026-07-14 14:22:20,215 - [ qwen3-14b ] - INFO - Success #id 29855989
+2026-07-14 14:22:21,030 - [ qwen3-14b ] - INFO - Success #id 12344910
+2026-07-14 14:22:22,895 - [ qwen3-14b ] - INFO - Success #id 53275087
+2026-07-14 14:22:23,628 - [ qwen3-14b ] - INFO - Success #id 22214786
+2026-07-14 14:22:23,908 - [ qwen3-14b ] - INFO - Success #id 10310398
+2026-07-14 14:22:24,084 - [ qwen3-14b ] - INFO - Success #id 26773658
+2026-07-14 14:22:25,835 - [ qwen3-14b ] - INFO - Success #id 24883973
+2026-07-14 14:22:27,398 - [ qwen3-14b ] - INFO - Success #id 92691555
+2026-07-14 14:22:27,767 - [ qwen3-14b ] - INFO - Success #id 31832131
+2026-07-14 14:22:27,829 - [ qwen3-14b ] - INFO - Success #id 15097561
+2026-07-14 14:22:29,143 - [ qwen3-14b ] - INFO - Success #id 24552523
+2026-07-14 14:22:29,144 - [ qwen3-14b ] - INFO - Success #id 17973747
+2026-07-14 14:22:29,441 - [ qwen3-14b ] - INFO - Success #id 27588106
+2026-07-14 14:22:31,235 - [ qwen3-14b ] - INFO - Success #id 25259371
+2026-07-14 14:22:31,942 - [ qwen3-14b ] - INFO - Success #id 32331926
+2026-07-14 14:22:32,525 - [ qwen3-14b ] - INFO - Success #id 20152037
+2026-07-14 14:22:33,851 - [ qwen3-14b ] - INFO - Success #id 12552759
+2026-07-14 14:22:33,851 - [ qwen3-14b ] - INFO - Success #id 31247987
+2026-07-14 14:22:34,029 - [ qwen3-14b ] - INFO - Success #id 18233959
+2026-07-14 14:22:34,206 - [ qwen3-14b ] - INFO - Success #id 11822099
+2026-07-14 14:22:35,899 - [ qwen3-14b ] - INFO - Success #id 44313095
+2026-07-14 14:22:36,396 - [ qwen3-14b ] - INFO - Success #id 24446008
+2026-07-14 14:22:37,458 - [ qwen3-14b ] - INFO - Success #id 46380459
+2026-07-14 14:22:38,174 - [ qwen3-14b ] - INFO - Success #id 32388501
+2026-07-14 14:22:38,395 - [ qwen3-14b ] - INFO - Success #id 29952161
+2026-07-14 14:22:39,701 - [ qwen3-14b ] - INFO - Success #id 15509494
+2026-07-14 14:22:40,785 - [ qwen3-14b ] - INFO - Success #id 23268672
+2026-07-14 14:22:40,958 - [ qwen3-14b ] - INFO - Success #id 15264564
+2026-07-14 14:22:42,251 - [ qwen3-14b ] - INFO - Success #id 26817384
+2026-07-14 14:22:42,319 - [ qwen3-14b ] - INFO - Success #id 18405520
+2026-07-14 14:22:42,787 - [ qwen3-14b ] - INFO - Success #id 10718768
+2026-07-14 14:22:44,040 - [ qwen3-14b ] - INFO - Success #id 18801248
+2026-07-14 14:22:44,316 - [ qwen3-14b ] - INFO - Success #id 60752337
+2026-07-14 14:22:44,317 - [ qwen3-14b ] - INFO - Success #id 11650561
+2026-07-14 14:22:44,761 - [ qwen3-14b ] - INFO - Success #id 33500816
+2026-07-14 14:22:46,047 - [ qwen3-14b ] - INFO - Success #id 26695474
+2026-07-14 14:22:46,656 - [ qwen3-14b ] - INFO - Success #id 29690507
+2026-07-14 14:22:46,948 - [ qwen3-14b ] - INFO - Success #id 14323544
+2026-07-14 14:22:47,298 - [ qwen3-14b ] - INFO - Success #id 18437925
+2026-07-14 14:22:48,801 - [ qwen3-14b ] - INFO - Success #id 29950006
+2026-07-14 14:22:49,275 - [ qwen3-14b ] - INFO - Success #id 22513233
+2026-07-14 14:22:49,826 - [ qwen3-14b ] - INFO - Success #id 11094278
+2026-07-14 14:22:50,299 - [ qwen3-14b ] - INFO - Success #id 16347563
+2026-07-14 14:22:51,255 - [ qwen3-14b ] - INFO - Success #id 19813165
+2026-07-14 14:22:51,549 - [ qwen3-14b ] - INFO - Success #id 10555416
+2026-07-14 14:22:52,528 - [ qwen3-14b ] - INFO - Success #id 20164540
+2026-07-14 14:22:52,549 - [ qwen3-14b ] - INFO - Success #id 91594250
+2026-07-14 14:22:55,338 - [ qwen3-14b ] - INFO - Success #id 78814130
+2026-07-14 14:22:55,715 - [ qwen3-14b ] - INFO - Success #id 18357798
+2026-07-14 14:22:55,969 - [ qwen3-14b ] - INFO - Success #id 16277223
+2026-07-14 14:22:57,064 - [ qwen3-14b ] - INFO - Success #id 21404627
+2026-07-14 14:22:57,526 - [ qwen3-14b ] - INFO - Success #id 15448737
+2026-07-14 14:22:57,859 - [ qwen3-14b ] - INFO - Success #id 47565882
+2026-07-14 14:22:58,799 - [ qwen3-14b ] - INFO - Success #id 29682411
+2026-07-14 14:22:59,445 - [ qwen3-14b ] - INFO - Success #id 77085648
+2026-07-14 14:23:00,495 - [ qwen3-14b ] - INFO - Success #id 15000447
+2026-07-14 14:23:02,507 - [ qwen3-14b ] - INFO - Success #id 50914301
+2026-07-14 14:23:02,722 - [ qwen3-14b ] - INFO - Success #id 58719908
+2026-07-14 14:23:02,914 - [ qwen3-14b ] - INFO - Success #id 12784071
+2026-07-14 14:23:03,627 - [ qwen3-14b ] - INFO - Success #id 59498681
+2026-07-14 14:23:04,751 - [ qwen3-14b ] - INFO - Success #id 85969749
+2026-07-14 14:23:05,029 - [ qwen3-14b ] - INFO - Success #id 25512652
+2026-07-14 14:23:05,128 - [ qwen3-14b ] - INFO - Success #id 29966300
+2026-07-14 14:23:05,968 - [ qwen3-14b ] - INFO - Success #id 25886023
+2026-07-14 14:23:06,521 - [ qwen3-14b ] - INFO - Success #id 76338242
+2026-07-14 14:23:06,668 - [ qwen3-14b ] - INFO - Success #id 29609465
+2026-07-14 14:23:08,155 - [ qwen3-14b ] - INFO - Success #id 18900798
+2026-07-14 14:23:08,771 - [ qwen3-14b ] - INFO - Success #id 31320380
+2026-07-14 14:23:09,590 - [ qwen3-14b ] - INFO - Success #id 12813434
+2026-07-14 14:23:10,820 - [ qwen3-14b ] - INFO - Success #id 15462153
+2026-07-14 14:23:11,169 - [ qwen3-14b ] - INFO - Success #id 12445364
+2026-07-14 14:23:12,149 - [ qwen3-14b ] - INFO - Success #id 16684868
+2026-07-14 14:23:12,355 - [ qwen3-14b ] - INFO - Success #id 17176710
+2026-07-14 14:23:12,412 - [ qwen3-14b ] - INFO - Success #id 10414631
+2026-07-14 14:23:12,847 - [ qwen3-14b ] - INFO - Success #id 12968448
+2026-07-14 14:23:14,513 - [ qwen3-14b ] - INFO - Success #id 27583653
+2026-07-14 14:23:14,514 - [ qwen3-14b ] - INFO - Success #id 24965869
+2026-07-14 14:23:15,973 - [ qwen3-14b ] - INFO - Success #id 21463933
+2026-07-14 14:23:16,337 - [ qwen3-14b ] - INFO - Success #id 84848422
+2026-07-14 14:23:16,477 - [ qwen3-14b ] - INFO - Success #id 17466116
+2026-07-14 14:23:16,478 - [ qwen3-14b ] - INFO - Success #id 23531528
+2026-07-14 14:23:17,982 - [ qwen3-14b ] - INFO - Success #id 26404121
+2026-07-14 14:23:18,101 - [ qwen3-14b ] - INFO - Success #id 22751188
+2026-07-14 14:23:19,829 - [ qwen3-14b ] - INFO - Success #id 18469964
+2026-07-14 14:23:19,865 - [ qwen3-14b ] - INFO - Success #id 25770597
+2026-07-14 14:23:20,207 - [ qwen3-14b ] - INFO - Success #id 31777439
+2026-07-14 14:23:20,398 - [ qwen3-14b ] - INFO - Success #id 24868610
+2026-07-14 14:23:21,701 - [ qwen3-14b ] - INFO - Success #id 15793750
+2026-07-14 14:23:22,185 - [ qwen3-14b ] - INFO - Success #id 18525232
+2026-07-14 14:23:23,621 - [ qwen3-14b ] - INFO - Success #id 25356786
+2026-07-14 14:23:23,654 - [ qwen3-14b ] - INFO - Success #id 29088408
+2026-07-14 14:23:24,644 - [ qwen3-14b ] - INFO - Success #id 35998496
+2026-07-14 14:23:24,645 - [ qwen3-14b ] - INFO - Success #id 28774558
+2026-07-14 14:23:24,700 - [ qwen3-14b ] - INFO - Success #id 23237805
+2026-07-14 14:23:25,736 - [ qwen3-14b ] - INFO - Success #id 77440404
+2026-07-14 14:23:26,296 - [ qwen3-14b ] - INFO - Success #id 14594279
+2026-07-14 14:23:27,103 - [ qwen3-14b ] - INFO - Success #id 22275811
+2026-07-14 14:23:28,820 - [ qwen3-14b ] - INFO - Success #id 17655609
+2026-07-14 14:23:29,047 - [ qwen3-14b ] - INFO - Success #id 23962803
+2026-07-14 14:23:29,054 - [ qwen3-14b ] - INFO - Success #id 95956888
+2026-07-14 14:23:30,140 - [ qwen3-14b ] - INFO - Success #id 10045652
+2026-07-14 14:23:30,582 - [ qwen3-14b ] - INFO - Success #id 26381965
+2026-07-14 14:23:30,787 - [ qwen3-14b ] - INFO - Success #id 28324424
+2026-07-14 14:23:32,542 - [ qwen3-14b ] - INFO - Success #id 68396832
+2026-07-14 14:23:32,548 - [ qwen3-14b ] - INFO - Success #id 28153655
+2026-07-14 14:23:32,648 - [ qwen3-14b ] - INFO - Success #id 26196999
+2026-07-14 14:23:33,613 - [ qwen3-14b ] - INFO - Success #id 10059430
+2026-07-14 14:23:34,682 - [ qwen3-14b ] - INFO - Success #id 23232014
+2026-07-14 14:23:34,804 - [ qwen3-14b ] - INFO - Success #id 18775869
+2026-07-14 14:23:34,902 - [ qwen3-14b ] - INFO - Success #id 25652909
+2026-07-14 14:23:36,111 - [ qwen3-14b ] - INFO - Success #id 23523427
+2026-07-14 14:23:36,935 - [ qwen3-14b ] - INFO - Success #id 24243757
+2026-07-14 14:23:37,470 - [ qwen3-14b ] - INFO - Success #id 26078663
+2026-07-14 14:23:38,238 - [ qwen3-14b ] - INFO - Success #id 95882967
+2026-07-14 14:23:38,316 - [ qwen3-14b ] - INFO - Success #id 23546836
+2026-07-14 14:23:38,411 - [ qwen3-14b ] - INFO - Success #id 40007706
+2026-07-14 14:23:40,516 - [ qwen3-14b ] - INFO - Success #id 17976193
+2026-07-14 14:23:41,134 - [ qwen3-14b ] - INFO - Success #id 15677588
+2026-07-14 14:23:41,744 - [ qwen3-14b ] - INFO - Success #id 14550012
+2026-07-14 14:23:42,158 - [ qwen3-14b ] - INFO - Success #id 54327743
+2026-07-14 14:23:42,870 - [ qwen3-14b ] - INFO - Success #id 24724400
+2026-07-14 14:23:43,554 - [ qwen3-14b ] - INFO - Success #id 78768150
+2026-07-14 14:23:43,797 - [ qwen3-14b ] - INFO - Success #id 18302933
+2026-07-14 14:23:44,303 - [ qwen3-14b ] - INFO - Success #id 23477336
+2026-07-14 14:23:44,384 - [ qwen3-14b ] - INFO - Success #id 19850937
+2026-07-14 14:23:46,631 - [ qwen3-14b ] - INFO - Success #id 26608677
+2026-07-14 14:23:46,965 - [ qwen3-14b ] - INFO - Success #id 20497766
+2026-07-14 14:23:47,377 - [ qwen3-14b ] - INFO - Success #id 13842784
+2026-07-14 14:23:47,378 - [ qwen3-14b ] - INFO - Completed: 158
+2026-07-14 14:23:47,379 - [ qwen3-14b ] - INFO - Failed: 0

@@ -1,0 +1,7 @@
+{
+  "provider": "openai",
+  "model_name": "deepseek-v4-flash",
+  "temperature": 0,
+  "api_key_envs": ["DEEPSEEK_API_KEY"],
+  "base_url_env": "DEEPSEEK_BASE_URL"
+}

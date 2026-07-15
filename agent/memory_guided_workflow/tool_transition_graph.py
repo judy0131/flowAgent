@@ -34,10 +34,12 @@ class ToolTransitionGraph:
         tool_desc_path: str,
         graph_desc_path: str,
         data_path: Optional[str] = None,
+        exclude_data_path: Optional[str] = None,
     ):
         self.tool_desc_path = tool_desc_path
         self.graph_desc_path = graph_desc_path
         self.data_path = data_path
+        self.exclude_data_path = exclude_data_path
         self.nodes: Dict[str, ToolNode] = {}
         self.edges: Dict[Tuple[str, str], ToolTransitionEdge] = {}
         self.adjacency: Dict[str, List[ToolTransitionEdge]] = {}
@@ -47,6 +49,11 @@ class ToolTransitionGraph:
             "tool_desc_path": tool_desc_path,
             "graph_desc_path": graph_desc_path,
             "data_path": data_path,
+            "exclude_data_path": exclude_data_path,
+            "excluded_record_id_count": 0,
+            "transition_records_total": 0,
+            "transition_records_used": 0,
+            "transition_records_excluded": 0,
             "unknown_graph_tools": [],
             "out_of_graph_transitions": [],
         }
@@ -128,8 +135,18 @@ class ToolTransitionGraph:
         if not self.data_path:
             return
 
+        excluded_ids = load_record_ids(self.exclude_data_path) if self.exclude_data_path else set()
         out_of_graph_counts: Dict[Tuple[str, str], int] = {}
+        records_total = 0
+        records_used = 0
+        records_excluded = 0
         for record in _read_json_records(self.data_path):
+            records_total += 1
+            record_id = get_record_id(record)
+            if record_id and record_id in excluded_ids:
+                records_excluded += 1
+                continue
+            records_used += 1
             links = _safe_parse_links(record.get("tool_links"))
             if not links:
                 links = _safe_parse_links(record.get("sampled_links"))
@@ -155,6 +172,10 @@ class ToolTransitionGraph:
             {"source_tool_id": source, "target_tool_id": target, "count": count}
             for (source, target), count in sorted(out_of_graph_counts.items())
         ]
+        self.metadata["excluded_record_id_count"] = len(excluded_ids)
+        self.metadata["transition_records_total"] = records_total
+        self.metadata["transition_records_used"] = records_used
+        self.metadata["transition_records_excluded"] = records_excluded
         self._rebuild_adjacency()
 
     def compute_transition_probabilities(self) -> None:
@@ -221,6 +242,7 @@ class ToolTransitionGraph:
             tool_desc_path=str(metadata.get("tool_desc_path", "")),
             graph_desc_path=str(metadata.get("graph_desc_path", "")),
             data_path=metadata.get("data_path"),
+            exclude_data_path=metadata.get("exclude_data_path"),
         )
         graph.nodes = {
             normalize_tool_id(tool_id): _node_from_dict(node_payload)
@@ -265,6 +287,11 @@ class ToolTransitionGraph:
         self.metadata["tool_desc_path"] = self.tool_desc_path
         self.metadata["graph_desc_path"] = self.graph_desc_path
         self.metadata["data_path"] = self.data_path
+        self.metadata["exclude_data_path"] = self.exclude_data_path
+        self.metadata.setdefault("excluded_record_id_count", 0)
+        self.metadata.setdefault("transition_records_total", 0)
+        self.metadata.setdefault("transition_records_used", 0)
+        self.metadata.setdefault("transition_records_excluded", 0)
         self.metadata.setdefault("unknown_graph_tools", [])
         self.metadata.setdefault("out_of_graph_transitions", [])
 
@@ -272,6 +299,14 @@ class ToolTransitionGraph:
 def normalize_tool_id(value: Any) -> str:
     """Normalize tool ids while preserving case and spaces."""
     return str(value).strip()
+
+
+def get_record_id(record: Mapping[str, Any]) -> str:
+    return str(record.get("id") or record.get("ID") or "").strip()
+
+
+def load_record_ids(path: str) -> set[str]:
+    return {record_id for record_id in (get_record_id(record) for record in _read_json_records(path)) if record_id}
 
 
 def _read_json(path: str) -> Any:
@@ -409,6 +444,11 @@ def _main() -> None:
     parser.add_argument("--tool_desc", required=True, help="Path to tool_desc.json")
     parser.add_argument("--graph_desc", required=True, help="Path to graph_desc.json")
     parser.add_argument("--data", default=None, help="Optional path to data.json / JSONL")
+    parser.add_argument(
+        "--exclude-data",
+        default=None,
+        help="Optional data.json / JSONL whose record ids should be excluded from --data counts",
+    )
     parser.add_argument("--output", default=None, help="Optional output path for graph JSON")
     args = parser.parse_args()
 
@@ -416,6 +456,7 @@ def _main() -> None:
         tool_desc_path=args.tool_desc,
         graph_desc_path=args.graph_desc,
         data_path=args.data,
+        exclude_data_path=args.exclude_data,
     ).build()
 
     if args.output:
@@ -425,6 +466,11 @@ def _main() -> None:
     print(f"number of tool nodes: {len(graph.nodes)}")
     print(f"number of graph edges: {len(graph.edges)}")
     print(f"number of edges with count > 0: {len(counted_edges)}")
+    if args.exclude_data:
+        print(f"excluded record ids: {graph.metadata.get('excluded_record_id_count', 0)}")
+        print(f"transition records total: {graph.metadata.get('transition_records_total', 0)}")
+        print(f"transition records used: {graph.metadata.get('transition_records_used', 0)}")
+        print(f"transition records excluded: {graph.metadata.get('transition_records_excluded', 0)}")
 
     top_by_count = sorted(
         graph.edges.values(),

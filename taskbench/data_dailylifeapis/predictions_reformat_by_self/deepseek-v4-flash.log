@@ -1,0 +1,1088 @@
+2026-07-09 21:14:20,570 - [ deepseek-v4-flash ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-zroRbFJGCYexbM2IRI8MzPr3NuoQm3ZCTAoGWBOAvjPyk0fQ', 'api_port': 4000, 'base_url': 'https://api.vectorengine.ai/v1', 'multiworker': 8, 'llm': 'deepseek-v4-flash', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 21:14:20,572 - [ deepseek-v4-flash ] - INFO - Detected 0 has been inferenced,
+2026-07-09 21:14:20,572 - [ deepseek-v4-flash ] - INFO - Start inferencing 864 tasks...
+2026-07-09 21:14:28,223 - [ deepseek-v4-flash ] - INFO - # TASK LIST #:
+{"id": "get_weather", "desc": "Get the weather for a specific city and a specific day", "parameters": ["location", "date"]}
+{"id": "get_news_for_topic", "desc": "Get the news for a specific topic", "parameters": ["topic"]}
+{"id": "stock_operation", "desc": "Do a specific operation on a specific stock", "parameters": ["stock", "operation"]}
+{"id": "book_flight", "desc": "Book a flight for a specific date, from a specific location to a specific destination", "parameters": ["date", "from", "to"]}
+{"id": "book_hotel", "desc": "Book a specific hotel for a specific date", "parameters": ["date", "name"]}
+{"id": "book_restaurant", "desc": "Book a specific restaurant for a specific date", "parameters": ["date", "name"]}
+{"id": "book_car", "desc": "Book a car for a specific date, in a specific location", "parameters": ["date", "location"]}
+{"id": "online_shopping", "desc": "Buy a product from a specific website", "parameters": ["website", "product"]}
+{"id": "send_email", "desc": "Send an email to a specific email address", "parameters": ["email_address", "content"]}
+{"id": "send_sms", "desc": "Send an sms to a specific phone number", "parameters": ["phone_number", "content"]}
+{"id": "share_by_social_network", "desc": "Share a specific content by a specific social network", "parameters": ["content", "social_network"]}
+{"id": "search_by_engine", "desc": "Search a specific query by a specific search engine", "parameters": ["query", "engine"]}
+{"id": "apply_for_job", "desc": "Apply for a specific job", "parameters": ["job"]}
+{"id": "see_doctor_online", "desc": "See a specific doctor for a specific disease", "parameters": ["disease", "doctor"]}
+{"id": "consult_lawyer_online", "desc": "Consult a specific lawyer for a specific legal issue", "parameters": ["issue", "lawyer"]}
+{"id": "enroll_in_course", "desc": "Enroll in a specific course at a specific university", "parameters": ["course", "university"]}
+{"id": "buy_insurance", "desc": "Buy a specific insurance from a specific insurance company", "parameters": ["insurance", "company"]}
+{"id": "online_banking", "desc": "Do a specific banking operation online at a specific bank", "parameters": ["instruction", "bank"]}
+{"id": "daily_bill_payment", "desc": "Pay a specific bill", "parameters": ["bill"]}
+{"id": "sell_item_online", "desc": "Sell a specific item at a specific online store", "parameters": ["item", "store"]}
+{"id": "do_tax_return", "desc": "Do the tax return for a specific year", "parameters": ["year"]}
+{"id": "apply_for_passport", "desc": "Apply for a passport", "parameters": ["country"]}
+{"id": "pay_for_credit_card", "desc": "Pay for a specific credit card", "parameters": ["credit_card"]}
+{"id": "auto_housework_by_robot", "desc": "Let a robot do a housework by following a specific instruction", "parameters": ["instruction"]}
+{"id": "auto_driving_to_destination", "desc": "Let a car drive to a specific destination", "parameters": ["destination"]}
+{"id": "deliver_package", "desc": "Deliver a specific package to a specific destination", "parameters": ["package", "destination"]}
+{"id": "order_food_delivery", "desc": "Order a specific food to be delivered to a specific location at a specific platform", "parameters": ["food", "location", "platform"]}
+{"id": "order_taxi", "desc": "Order a taxi to a specific location at a specific platform", "parameters": ["location", "platform"]}
+{"id": "play_music_by_title", "desc": "Play a specific music by a specific title", "parameters": ["title"]}
+{"id": "play_movie_by_title", "desc": "Play a specific movie by a specific title", "parameters": ["title"]}
+{"id": "take_note", "desc": "Take a note", "parameters": ["content"]}
+{"id": "borrow_book_online", "desc": "Borrow a specific book from a specific library", "parameters": ["book", "library"]}
+{"id": "recording_audio", "desc": "Record an audio", "parameters": ["content"]}
+{"id": "make_video_call", "desc": "Make a video call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "make_voice_call", "desc": "Make a voice call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "organize_meeting_online", "desc": "Organize a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "attend_meeting_online", "desc": "Attend a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "software_management", "desc": "Manage a specific software by a specific instruction", "parameters": ["software", "instruction"]}
+{"id": "print_document", "desc": "Print a specific document", "parameters": ["document"]}
+{"id": "set_alarm", "desc": "Set an alarm for a specific time", "parameters": ["time"]}
+
+# GOAL #:
+Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;
+
+# USER REQUEST #: I've got a business trip planned for New York City on August 1, 2023. Could you help me arrange a car rental for that day, please?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 21:14:28,252 - [ deepseek-v4-flash ] - INFO - {
+  "task_steps": [
+    "Step 1: Call book_car tool with date: 'August 1, 2023' and location: 'New York City'"
+  ],
+  "task_nodes": [
+    {
+      "task": "book_car",
+      "arguments": [
+        { "name": "date", "value": "August 1, 2023" },
+        { "name": "location", "value": "New York City" }
+      ]
+    }
+  ],
+  "task_links": []
+}
+2026-07-09 21:14:28,253 - [ deepseek-v4-flash ] - INFO - Success #id 30350054
+2026-07-09 21:14:38,414 - [ deepseek-v4-flash ] - INFO - Success #id 11607967
+2026-07-09 21:14:38,465 - [ deepseek-v4-flash ] - INFO - Success #id 17286260
+2026-07-09 21:14:38,490 - [ deepseek-v4-flash ] - INFO - Success #id 13511816
+2026-07-09 21:14:38,776 - [ deepseek-v4-flash ] - INFO - Success #id 27512819
+2026-07-09 21:14:46,456 - [ deepseek-v4-flash ] - INFO - Success #id 33823825
+2026-07-09 21:14:56,659 - [ deepseek-v4-flash ] - INFO - Success #id 47963323
+2026-07-09 21:14:56,663 - [ deepseek-v4-flash ] - INFO - Success #id 11765317
+2026-07-09 21:14:56,663 - [ deepseek-v4-flash ] - INFO - Success #id 29839767
+2026-07-09 21:14:59,726 - [ deepseek-v4-flash ] - INFO - Success #id 24412925
+2026-07-09 21:15:06,385 - [ deepseek-v4-flash ] - INFO - Success #id 78951114
+2026-07-09 21:15:06,603 - [ deepseek-v4-flash ] - INFO - Success #id 16988029
+2026-07-09 21:15:07,760 - [ deepseek-v4-flash ] - INFO - Success #id 12524744
+2026-07-09 21:15:13,352 - [ deepseek-v4-flash ] - INFO - Success #id 13232332
+2026-07-09 21:15:13,896 - [ deepseek-v4-flash ] - INFO - Success #id 19072758
+2026-07-09 21:15:20,604 - [ deepseek-v4-flash ] - INFO - Success #id 15357694
+2026-07-09 21:15:20,831 - [ deepseek-v4-flash ] - INFO - Success #id 67476865
+2026-07-09 21:15:21,404 - [ deepseek-v4-flash ] - INFO - Success #id 42725169
+2026-07-09 21:15:23,426 - [ deepseek-v4-flash ] - INFO - Success #id 82630016
+2026-07-09 21:15:29,718 - [ deepseek-v4-flash ] - INFO - Success #id 32648504
+2026-07-09 21:15:30,639 - [ deepseek-v4-flash ] - INFO - Success #id 24521591
+2026-07-09 21:15:32,787 - [ deepseek-v4-flash ] - INFO - Success #id 22387452
+2026-07-09 21:15:34,298 - [ deepseek-v4-flash ] - INFO - Success #id 29870771
+2026-07-09 21:15:36,929 - [ deepseek-v4-flash ] - INFO - Success #id 47046656
+2026-07-09 21:15:38,209 - [ deepseek-v4-flash ] - INFO - Success #id 89900993
+2026-07-09 21:15:42,280 - [ deepseek-v4-flash ] - INFO - Success #id 29979407
+2026-07-09 21:15:42,824 - [ deepseek-v4-flash ] - INFO - Success #id 73847600
+2026-07-09 21:15:44,565 - [ deepseek-v4-flash ] - INFO - Success #id 71137873
+2026-07-09 21:15:47,933 - [ deepseek-v4-flash ] - INFO - Success #id 22478668
+2026-07-09 21:15:48,821 - [ deepseek-v4-flash ] - INFO - Success #id 33523828
+2026-07-09 21:15:50,542 - [ deepseek-v4-flash ] - INFO - Success #id 28962008
+2026-07-09 21:15:52,088 - [ deepseek-v4-flash ] - INFO - Success #id 25560946
+2026-07-09 21:15:52,757 - [ deepseek-v4-flash ] - INFO - Success #id 12883055
+2026-07-09 21:15:58,599 - [ deepseek-v4-flash ] - INFO - Success #id 19407653
+2026-07-09 21:16:02,452 - [ deepseek-v4-flash ] - INFO - Success #id 17027426
+2026-07-09 21:16:05,352 - [ deepseek-v4-flash ] - INFO - Success #id 22402314
+2026-07-09 21:16:08,242 - [ deepseek-v4-flash ] - INFO - Success #id 29601062
+2026-07-09 21:16:11,333 - [ deepseek-v4-flash ] - INFO - Success #id 10186930
+2026-07-09 21:16:13,347 - [ deepseek-v4-flash ] - INFO - Success #id 27373817
+2026-07-09 21:16:16,105 - [ deepseek-v4-flash ] - INFO - Success #id 28058748
+2026-07-09 21:16:18,467 - [ deepseek-v4-flash ] - INFO - Success #id 23734731
+2026-07-09 21:16:19,178 - [ deepseek-v4-flash ] - INFO - Success #id 27775949
+2026-07-09 21:16:19,707 - [ deepseek-v4-flash ] - INFO - Success #id 30667964
+2026-07-09 21:16:23,193 - [ deepseek-v4-flash ] - INFO - Success #id 18743393
+2026-07-09 21:16:24,036 - [ deepseek-v4-flash ] - INFO - Success #id 32447246
+2026-07-09 21:16:26,604 - [ deepseek-v4-flash ] - INFO - Success #id 12727825
+2026-07-09 21:16:26,767 - [ deepseek-v4-flash ] - INFO - Success #id 13635184
+2026-07-09 21:16:27,679 - [ deepseek-v4-flash ] - INFO - Success #id 31446558
+2026-07-09 21:16:31,136 - [ deepseek-v4-flash ] - INFO - Success #id 90851010
+2026-07-09 21:16:31,882 - [ deepseek-v4-flash ] - INFO - Success #id 11995538
+2026-07-09 21:16:33,104 - [ deepseek-v4-flash ] - INFO - Success #id 23020133
+2026-07-09 21:16:33,243 - [ deepseek-v4-flash ] - INFO - Success #id 30531459
+2026-07-09 21:16:37,641 - [ deepseek-v4-flash ] - INFO - Success #id 15468586
+2026-07-09 21:16:40,972 - [ deepseek-v4-flash ] - INFO - Success #id 10843077
+2026-07-09 21:16:40,979 - [ deepseek-v4-flash ] - INFO - Success #id 12456255
+2026-07-09 21:16:41,165 - [ deepseek-v4-flash ] - INFO - Success #id 30413962
+2026-07-09 21:16:45,186 - [ deepseek-v4-flash ] - INFO - Success #id 51723456
+2026-07-09 21:16:46,778 - [ deepseek-v4-flash ] - INFO - Success #id 17699712
+2026-07-09 21:16:51,229 - [ deepseek-v4-flash ] - INFO - Success #id 20436096
+2026-07-09 21:16:52,046 - [ deepseek-v4-flash ] - INFO - Success #id 25906766
+2026-07-09 21:16:52,374 - [ deepseek-v4-flash ] - INFO - Success #id 11662760
+2026-07-09 21:16:52,928 - [ deepseek-v4-flash ] - INFO - Success #id 51419931
+2026-07-09 21:16:57,475 - [ deepseek-v4-flash ] - INFO - Success #id 31301433
+2026-07-09 21:17:05,825 - [ deepseek-v4-flash ] - INFO - Success #id 16513760
+2026-07-09 21:17:06,794 - [ deepseek-v4-flash ] - INFO - Success #id 95038598
+2026-07-09 21:17:12,714 - [ deepseek-v4-flash ] - INFO - Success #id 31872047
+2026-07-09 21:17:14,966 - [ deepseek-v4-flash ] - INFO - Success #id 29204212
+2026-07-09 21:17:18,701 - [ deepseek-v4-flash ] - INFO - Success #id 70652938
+2026-07-09 21:17:19,492 - [ deepseek-v4-flash ] - INFO - Success #id 21555806
+2026-07-09 21:17:19,903 - [ deepseek-v4-flash ] - INFO - Success #id 28227483
+2026-07-09 21:17:26,300 - [ deepseek-v4-flash ] - INFO - Success #id 26722166
+2026-07-09 21:17:29,105 - [ deepseek-v4-flash ] - INFO - Success #id 14171505
+2026-07-09 21:17:29,527 - [ deepseek-v4-flash ] - INFO - Success #id 28281055
+2026-07-09 21:17:31,985 - [ deepseek-v4-flash ] - INFO - Success #id 63306474
+2026-07-09 21:17:33,223 - [ deepseek-v4-flash ] - INFO - Success #id 17414012
+2026-07-09 21:17:39,546 - [ deepseek-v4-flash ] - INFO - Success #id 15072082
+2026-07-09 21:17:39,598 - [ deepseek-v4-flash ] - INFO - Success #id 16673290
+2026-07-09 21:17:39,600 - [ deepseek-v4-flash ] - INFO - Success #id 32571030
+2026-07-09 21:17:39,771 - [ deepseek-v4-flash ] - INFO - Success #id 10890339
+2026-07-09 21:17:46,630 - [ deepseek-v4-flash ] - INFO - Success #id 31408870
+2026-07-09 21:17:46,917 - [ deepseek-v4-flash ] - INFO - Success #id 22502723
+2026-07-09 21:17:54,194 - [ deepseek-v4-flash ] - INFO - Success #id 44361693
+2026-07-09 21:17:57,849 - [ deepseek-v4-flash ] - INFO - Success #id 16475846
+2026-07-09 21:17:59,583 - [ deepseek-v4-flash ] - INFO - Success #id 12866688
+2026-07-09 21:18:00,162 - [ deepseek-v4-flash ] - INFO - Success #id 10399505
+2026-07-09 21:18:12,141 - [ deepseek-v4-flash ] - INFO - Success #id 10907512
+2026-07-09 21:18:22,811 - [ deepseek-v4-flash ] - INFO - Success #id 13697824
+2026-07-09 21:18:23,338 - [ deepseek-v4-flash ] - INFO - Success #id 32203471
+2026-07-09 21:18:29,804 - [ deepseek-v4-flash ] - INFO - Success #id 53510501
+2026-07-09 21:18:45,324 - [ deepseek-v4-flash ] - INFO - Success #id 14523593
+2026-07-09 21:18:45,527 - [ deepseek-v4-flash ] - INFO - Success #id 26051009
+2026-07-09 21:18:48,283 - [ deepseek-v4-flash ] - INFO - Success #id 21968596
+2026-07-09 21:18:49,605 - [ deepseek-v4-flash ] - INFO - Success #id 52957370
+2026-07-09 21:18:53,140 - [ deepseek-v4-flash ] - INFO - Success #id 55354311
+2026-07-09 21:18:53,749 - [ deepseek-v4-flash ] - INFO - Success #id 27150191
+2026-07-09 21:18:57,078 - [ deepseek-v4-flash ] - INFO - Success #id 19847434
+2026-07-09 21:19:02,404 - [ deepseek-v4-flash ] - INFO - Success #id 23511335
+2026-07-09 21:19:04,025 - [ deepseek-v4-flash ] - INFO - Success #id 22475777
+2026-07-09 21:19:05,056 - [ deepseek-v4-flash ] - INFO - Success #id 41556561
+2026-07-09 21:19:19,095 - [ deepseek-v4-flash ] - INFO - Failed #id 30846316: <class '__main__.ContentFormatError'> 
+2026-07-09 21:19:24,215 - [ deepseek-v4-flash ] - INFO - Success #id 18450312
+2026-07-09 21:19:26,263 - [ deepseek-v4-flash ] - INFO - Success #id 70690808
+2026-07-09 21:19:27,499 - [ deepseek-v4-flash ] - INFO - Success #id 16242474
+2026-07-09 21:19:27,544 - [ deepseek-v4-flash ] - INFO - Success #id 70641642
+2026-07-09 21:19:31,629 - [ deepseek-v4-flash ] - INFO - Success #id 65013021
+2026-07-09 21:19:33,559 - [ deepseek-v4-flash ] - INFO - Success #id 38163810
+2026-07-09 21:19:37,783 - [ deepseek-v4-flash ] - INFO - Success #id 11479905
+2026-07-09 21:19:37,861 - [ deepseek-v4-flash ] - INFO - Success #id 99785297
+2026-07-09 21:19:41,716 - [ deepseek-v4-flash ] - INFO - Success #id 48235596
+2026-07-09 21:19:42,700 - [ deepseek-v4-flash ] - INFO - Success #id 17530601
+2026-07-09 21:19:43,615 - [ deepseek-v4-flash ] - INFO - Success #id 11401515
+2026-07-09 21:19:44,777 - [ deepseek-v4-flash ] - INFO - Success #id 15297867
+2026-07-09 21:19:45,530 - [ deepseek-v4-flash ] - INFO - Success #id 85752364
+2026-07-09 21:19:50,128 - [ deepseek-v4-flash ] - INFO - Success #id 29192758
+2026-07-09 21:19:50,761 - [ deepseek-v4-flash ] - INFO - Success #id 23971756
+2026-07-09 21:19:52,262 - [ deepseek-v4-flash ] - INFO - Success #id 41702089
+2026-07-09 21:19:56,574 - [ deepseek-v4-flash ] - INFO - Success #id 92400293
+2026-07-09 21:20:01,703 - [ deepseek-v4-flash ] - INFO - Success #id 18002761
+2026-07-09 21:20:02,111 - [ deepseek-v4-flash ] - INFO - Success #id 21494330
+2026-07-09 21:20:04,960 - [ deepseek-v4-flash ] - INFO - Success #id 21426816
+2026-07-09 21:20:04,976 - [ deepseek-v4-flash ] - INFO - Success #id 23594484
+2026-07-09 21:20:05,281 - [ deepseek-v4-flash ] - INFO - Success #id 22620321
+2026-07-09 21:20:18,421 - [ deepseek-v4-flash ] - INFO - Success #id 19084352
+2026-07-09 21:20:19,709 - [ deepseek-v4-flash ] - INFO - Success #id 16807233
+2026-07-09 21:20:20,899 - [ deepseek-v4-flash ] - INFO - Success #id 14556200
+2026-07-09 21:20:23,638 - [ deepseek-v4-flash ] - INFO - Success #id 24909271
+2026-07-09 21:20:24,074 - [ deepseek-v4-flash ] - INFO - Success #id 23589421
+2026-07-09 21:20:25,042 - [ deepseek-v4-flash ] - INFO - Success #id 24106579
+2026-07-09 21:20:26,241 - [ deepseek-v4-flash ] - INFO - Success #id 53018023
+2026-07-09 21:20:38,844 - [ deepseek-v4-flash ] - INFO - Success #id 33685282
+2026-07-09 21:20:39,389 - [ deepseek-v4-flash ] - INFO - Success #id 27919508
+2026-07-09 21:20:41,349 - [ deepseek-v4-flash ] - INFO - Success #id 93581716
+2026-07-09 21:20:47,503 - [ deepseek-v4-flash ] - INFO - Success #id 62838005
+2026-07-09 21:20:48,799 - [ deepseek-v4-flash ] - INFO - Success #id 25426847
+2026-07-09 21:20:48,807 - [ deepseek-v4-flash ] - INFO - Success #id 86611976
+2026-07-09 21:20:56,974 - [ deepseek-v4-flash ] - INFO - Success #id 13273835
+2026-07-09 21:21:00,896 - [ deepseek-v4-flash ] - INFO - Success #id 15271749
+2026-07-09 21:21:08,763 - [ deepseek-v4-flash ] - INFO - Success #id 33866628
+2026-07-09 21:21:11,797 - [ deepseek-v4-flash ] - INFO - Success #id 32750887
+2026-07-09 21:21:17,267 - [ deepseek-v4-flash ] - INFO - Success #id 27943034
+2026-07-09 21:21:23,308 - [ deepseek-v4-flash ] - INFO - Success #id 22374064
+2026-07-09 21:21:32,730 - [ deepseek-v4-flash ] - INFO - Success #id 13846602
+2026-07-09 21:21:35,335 - [ deepseek-v4-flash ] - INFO - Success #id 21401569
+2026-07-09 21:21:35,765 - [ deepseek-v4-flash ] - INFO - Success #id 31783177
+2026-07-09 21:21:38,567 - [ deepseek-v4-flash ] - INFO - Failed #id 23302187: <class '__main__.ContentFormatError'> 
+2026-07-09 21:21:38,695 - [ deepseek-v4-flash ] - INFO - Success #id 26138270
+2026-07-09 21:21:47,172 - [ deepseek-v4-flash ] - INFO - Success #id 13481217
+2026-07-09 21:21:47,372 - [ deepseek-v4-flash ] - INFO - Success #id 26233285
+2026-07-09 21:21:52,669 - [ deepseek-v4-flash ] - INFO - Success #id 59758012
+2026-07-09 21:21:55,885 - [ deepseek-v4-flash ] - INFO - Success #id 22084539
+2026-07-09 21:21:59,764 - [ deepseek-v4-flash ] - INFO - Success #id 64245918
+2026-07-09 21:22:04,709 - [ deepseek-v4-flash ] - INFO - Success #id 62669402
+2026-07-09 21:22:06,755 - [ deepseek-v4-flash ] - INFO - Success #id 11109403
+2026-07-09 21:22:11,430 - [ deepseek-v4-flash ] - INFO - Success #id 22297893
+2026-07-09 21:22:15,360 - [ deepseek-v4-flash ] - INFO - Success #id 10379166
+2026-07-09 21:22:16,922 - [ deepseek-v4-flash ] - INFO - Success #id 26898696
+2026-07-09 21:22:20,134 - [ deepseek-v4-flash ] - INFO - Success #id 32343389
+2026-07-09 21:22:22,086 - [ deepseek-v4-flash ] - INFO - Success #id 24237371
+2026-07-09 21:22:22,394 - [ deepseek-v4-flash ] - INFO - Success #id 19737602
+2026-07-09 21:22:27,075 - [ deepseek-v4-flash ] - INFO - Success #id 25570506
+2026-07-09 21:22:27,734 - [ deepseek-v4-flash ] - INFO - Success #id 14147261
+2026-07-09 21:22:29,844 - [ deepseek-v4-flash ] - INFO - Success #id 23729988
+2026-07-09 21:22:31,712 - [ deepseek-v4-flash ] - INFO - Success #id 30538014
+2026-07-09 21:22:37,038 - [ deepseek-v4-flash ] - INFO - Success #id 12618159
+2026-07-09 21:22:41,637 - [ deepseek-v4-flash ] - INFO - Success #id 23230863
+2026-07-09 21:22:42,570 - [ deepseek-v4-flash ] - INFO - Success #id 16900777
+2026-07-09 21:22:42,684 - [ deepseek-v4-flash ] - INFO - Success #id 14620980
+2026-07-09 21:22:44,323 - [ deepseek-v4-flash ] - INFO - Success #id 50927362
+2026-07-09 21:22:48,646 - [ deepseek-v4-flash ] - INFO - Success #id 20566589
+2026-07-09 21:22:51,265 - [ deepseek-v4-flash ] - INFO - Success #id 30964562
+2026-07-09 21:22:58,817 - [ deepseek-v4-flash ] - INFO - Success #id 27961180
+2026-07-09 21:23:00,392 - [ deepseek-v4-flash ] - INFO - Success #id 31788445
+2026-07-09 21:23:01,889 - [ deepseek-v4-flash ] - INFO - Success #id 18164773
+2026-07-09 21:23:08,743 - [ deepseek-v4-flash ] - INFO - Success #id 24702349
+2026-07-09 21:23:08,904 - [ deepseek-v4-flash ] - INFO - Success #id 23573452
+2026-07-09 21:23:15,437 - [ deepseek-v4-flash ] - INFO - Success #id 12138072
+2026-07-09 21:23:22,689 - [ deepseek-v4-flash ] - INFO - Success #id 29558987
+2026-07-09 21:23:27,704 - [ deepseek-v4-flash ] - INFO - Success #id 14619383
+2026-07-09 21:23:30,051 - [ deepseek-v4-flash ] - INFO - Success #id 19809375
+2026-07-09 21:23:32,146 - [ deepseek-v4-flash ] - INFO - Success #id 32997405
+2026-07-09 21:23:33,390 - [ deepseek-v4-flash ] - INFO - Success #id 10324264
+2026-07-09 21:23:34,381 - [ deepseek-v4-flash ] - INFO - Success #id 77604532
+2026-07-09 21:23:38,482 - [ deepseek-v4-flash ] - INFO - Success #id 20541414
+2026-07-09 21:23:40,281 - [ deepseek-v4-flash ] - INFO - Success #id 32007807
+2026-07-09 21:23:49,437 - [ deepseek-v4-flash ] - INFO - Success #id 81678049
+2026-07-09 21:23:49,573 - [ deepseek-v4-flash ] - INFO - Success #id 16851522
+2026-07-09 21:23:50,460 - [ deepseek-v4-flash ] - INFO - Success #id 51278699
+2026-07-09 21:23:51,323 - [ deepseek-v4-flash ] - INFO - Success #id 15975909
+2026-07-09 21:23:59,945 - [ deepseek-v4-flash ] - INFO - Success #id 19499619
+2026-07-09 21:24:03,415 - [ deepseek-v4-flash ] - INFO - Success #id 27742362
+2026-07-09 21:24:04,151 - [ deepseek-v4-flash ] - INFO - Success #id 33311238
+2026-07-09 21:24:10,223 - [ deepseek-v4-flash ] - INFO - Success #id 17628428
+2026-07-09 21:24:15,553 - [ deepseek-v4-flash ] - INFO - Success #id 12979902
+2026-07-09 21:24:16,130 - [ deepseek-v4-flash ] - INFO - Success #id 77744719
+2026-07-09 21:24:16,943 - [ deepseek-v4-flash ] - INFO - Success #id 16755079
+2026-07-09 21:24:21,771 - [ deepseek-v4-flash ] - INFO - Success #id 30923084
+2026-07-09 21:24:30,096 - [ deepseek-v4-flash ] - INFO - Success #id 27818026
+2026-07-09 21:24:30,422 - [ deepseek-v4-flash ] - INFO - Success #id 15792499
+2026-07-09 21:24:31,189 - [ deepseek-v4-flash ] - INFO - Success #id 92820169
+2026-07-09 21:24:37,863 - [ deepseek-v4-flash ] - INFO - Success #id 15562486
+2026-07-09 21:24:39,389 - [ deepseek-v4-flash ] - INFO - Success #id 11301226
+2026-07-09 21:24:40,314 - [ deepseek-v4-flash ] - INFO - Success #id 31281197
+2026-07-09 21:24:45,934 - [ deepseek-v4-flash ] - INFO - Success #id 22684914
+2026-07-09 21:24:54,336 - [ deepseek-v4-flash ] - INFO - Success #id 25519785
+2026-07-09 21:24:55,270 - [ deepseek-v4-flash ] - INFO - Success #id 84857854
+2026-07-09 21:24:59,477 - [ deepseek-v4-flash ] - INFO - Success #id 20768554
+2026-07-09 21:25:03,496 - [ deepseek-v4-flash ] - INFO - Success #id 32486321
+2026-07-09 21:25:03,779 - [ deepseek-v4-flash ] - INFO - Success #id 32686353
+2026-07-09 21:25:11,970 - [ deepseek-v4-flash ] - INFO - Success #id 51016460
+2026-07-09 21:25:12,565 - [ deepseek-v4-flash ] - INFO - Success #id 14108000
+2026-07-09 21:25:16,284 - [ deepseek-v4-flash ] - INFO - Success #id 28282312
+2026-07-09 21:25:23,059 - [ deepseek-v4-flash ] - INFO - Success #id 18932799
+2026-07-09 21:25:26,067 - [ deepseek-v4-flash ] - INFO - Success #id 55286240
+2026-07-09 21:25:30,197 - [ deepseek-v4-flash ] - INFO - Success #id 24271966
+2026-07-09 21:25:31,630 - [ deepseek-v4-flash ] - INFO - Success #id 29329981
+2026-07-09 21:25:33,902 - [ deepseek-v4-flash ] - INFO - Success #id 31093934
+2026-07-09 21:25:41,018 - [ deepseek-v4-flash ] - INFO - Success #id 24590737
+2026-07-09 21:25:43,777 - [ deepseek-v4-flash ] - INFO - Success #id 30630684
+2026-07-09 21:25:47,695 - [ deepseek-v4-flash ] - INFO - Success #id 17770061
+2026-07-09 21:25:54,534 - [ deepseek-v4-flash ] - INFO - Success #id 76904888
+2026-07-09 21:25:54,724 - [ deepseek-v4-flash ] - INFO - Success #id 30916047
+2026-07-09 21:25:56,217 - [ deepseek-v4-flash ] - INFO - Success #id 14971382
+2026-07-09 21:25:57,947 - [ deepseek-v4-flash ] - INFO - Success #id 18033635
+2026-07-09 21:25:58,767 - [ deepseek-v4-flash ] - INFO - Success #id 12883344
+2026-07-09 21:26:05,959 - [ deepseek-v4-flash ] - INFO - Success #id 32606532
+2026-07-09 21:26:08,099 - [ deepseek-v4-flash ] - INFO - Success #id 31498909
+2026-07-09 21:26:14,088 - [ deepseek-v4-flash ] - INFO - Success #id 29186217
+2026-07-09 21:26:14,348 - [ deepseek-v4-flash ] - INFO - Success #id 17871465
+2026-07-09 21:26:19,454 - [ deepseek-v4-flash ] - INFO - Success #id 22489604
+2026-07-09 21:26:22,360 - [ deepseek-v4-flash ] - INFO - Success #id 32082021
+2026-07-09 21:26:27,234 - [ deepseek-v4-flash ] - INFO - Success #id 13819551
+2026-07-09 21:26:27,530 - [ deepseek-v4-flash ] - INFO - Success #id 12878163
+2026-07-09 21:26:34,504 - [ deepseek-v4-flash ] - INFO - Success #id 32959403
+2026-07-09 21:26:36,348 - [ deepseek-v4-flash ] - INFO - Success #id 21124282
+2026-07-09 21:26:37,569 - [ deepseek-v4-flash ] - INFO - Success #id 19359900
+2026-07-09 21:26:44,836 - [ deepseek-v4-flash ] - INFO - Success #id 32762258
+2026-07-09 21:26:48,842 - [ deepseek-v4-flash ] - INFO - Success #id 32397764
+2026-07-09 21:26:48,935 - [ deepseek-v4-flash ] - INFO - Success #id 26309756
+2026-07-09 21:26:51,503 - [ deepseek-v4-flash ] - INFO - Success #id 52796300
+2026-07-09 21:26:55,190 - [ deepseek-v4-flash ] - INFO - Success #id 22476582
+2026-07-09 21:26:58,574 - [ deepseek-v4-flash ] - INFO - Success #id 25507520
+2026-07-09 21:27:01,291 - [ deepseek-v4-flash ] - INFO - Success #id 33157096
+2026-07-09 21:27:02,721 - [ deepseek-v4-flash ] - INFO - Success #id 31033904
+2026-07-09 21:27:03,762 - [ deepseek-v4-flash ] - INFO - Success #id 96882095
+2026-07-09 21:27:04,797 - [ deepseek-v4-flash ] - INFO - Success #id 33097542
+2026-07-09 21:27:13,654 - [ deepseek-v4-flash ] - INFO - Success #id 20717355
+2026-07-09 21:27:15,937 - [ deepseek-v4-flash ] - INFO - Success #id 23193846
+2026-07-09 21:27:16,019 - [ deepseek-v4-flash ] - INFO - Success #id 25178778
+2026-07-09 21:27:17,746 - [ deepseek-v4-flash ] - INFO - Success #id 11070794
+2026-07-09 21:27:18,041 - [ deepseek-v4-flash ] - INFO - Success #id 26726010
+2026-07-09 21:27:27,799 - [ deepseek-v4-flash ] - INFO - Success #id 20968182
+2026-07-09 21:27:28,053 - [ deepseek-v4-flash ] - INFO - Success #id 80480634
+2026-07-09 21:27:28,445 - [ deepseek-v4-flash ] - INFO - Success #id 21330955
+2026-07-09 21:27:30,944 - [ deepseek-v4-flash ] - INFO - Success #id 33117970
+2026-07-09 21:27:36,649 - [ deepseek-v4-flash ] - INFO - Success #id 16767907
+2026-07-09 21:27:40,810 - [ deepseek-v4-flash ] - INFO - Success #id 25158642
+2026-07-09 21:27:41,894 - [ deepseek-v4-flash ] - INFO - Success #id 33170988
+2026-07-09 21:27:47,825 - [ deepseek-v4-flash ] - INFO - Success #id 29108446
+2026-07-09 21:27:54,415 - [ deepseek-v4-flash ] - INFO - Success #id 58136014
+2026-07-09 21:28:33,919 - [ deepseek-v4-flash ] - INFO - Success #id 10061660
+2026-07-09 21:28:52,384 - [ deepseek-v4-flash ] - INFO - Success #id 30604895
+2026-07-09 21:28:53,184 - [ deepseek-v4-flash ] - INFO - Success #id 11231522
+2026-07-09 21:28:53,967 - [ deepseek-v4-flash ] - INFO - Success #id 13112342
+2026-07-09 21:28:57,355 - [ deepseek-v4-flash ] - INFO - Success #id 28049074
+2026-07-09 21:29:00,083 - [ deepseek-v4-flash ] - INFO - Success #id 33387015
+2026-07-09 21:29:00,631 - [ deepseek-v4-flash ] - INFO - Success #id 81030667
+2026-07-09 21:29:03,573 - [ deepseek-v4-flash ] - INFO - Success #id 24716445
+2026-07-09 21:29:10,534 - [ deepseek-v4-flash ] - INFO - Success #id 55781984
+2026-07-09 21:29:14,337 - [ deepseek-v4-flash ] - INFO - Success #id 19595713
+2026-07-09 21:29:14,950 - [ deepseek-v4-flash ] - INFO - Success #id 68670098
+2026-07-09 21:29:15,987 - [ deepseek-v4-flash ] - INFO - Success #id 27158475
+2026-07-09 21:29:23,897 - [ deepseek-v4-flash ] - INFO - Success #id 28663512
+2026-07-09 21:29:25,974 - [ deepseek-v4-flash ] - INFO - Success #id 32850193
+2026-07-09 21:29:27,871 - [ deepseek-v4-flash ] - INFO - Success #id 22950292
+2026-07-09 21:29:36,164 - [ deepseek-v4-flash ] - INFO - Success #id 25539428
+2026-07-09 21:29:37,850 - [ deepseek-v4-flash ] - INFO - Success #id 15567080
+2026-07-09 21:29:39,237 - [ deepseek-v4-flash ] - INFO - Success #id 40829581
+2026-07-09 21:29:45,779 - [ deepseek-v4-flash ] - INFO - Success #id 15526402
+2026-07-09 21:29:46,434 - [ deepseek-v4-flash ] - INFO - Success #id 13293637
+2026-07-09 21:29:53,563 - [ deepseek-v4-flash ] - INFO - Success #id 27730464
+2026-07-09 21:29:59,921 - [ deepseek-v4-flash ] - INFO - Success #id 22429827
+2026-07-09 21:30:00,311 - [ deepseek-v4-flash ] - INFO - Success #id 30621448
+2026-07-09 21:30:03,818 - [ deepseek-v4-flash ] - INFO - Success #id 17881643
+2026-07-09 21:30:04,051 - [ deepseek-v4-flash ] - INFO - Success #id 18976866
+2026-07-09 21:30:04,920 - [ deepseek-v4-flash ] - INFO - Success #id 31258510
+2026-07-09 21:30:07,242 - [ deepseek-v4-flash ] - INFO - Success #id 20896755
+2026-07-09 21:30:12,134 - [ deepseek-v4-flash ] - INFO - Success #id 14768418
+2026-07-09 21:30:14,525 - [ deepseek-v4-flash ] - INFO - Success #id 17108070
+2026-07-09 21:30:15,771 - [ deepseek-v4-flash ] - INFO - Success #id 80602683
+2026-07-09 21:30:19,159 - [ deepseek-v4-flash ] - INFO - Success #id 21449312
+2026-07-09 21:30:19,378 - [ deepseek-v4-flash ] - INFO - Success #id 49413660
+2026-07-09 21:30:23,678 - [ deepseek-v4-flash ] - INFO - Success #id 25762468
+2026-07-09 21:30:29,377 - [ deepseek-v4-flash ] - INFO - Success #id 85711392
+2026-07-09 21:30:29,399 - [ deepseek-v4-flash ] - INFO - Success #id 84696141
+2026-07-09 21:30:30,641 - [ deepseek-v4-flash ] - INFO - Success #id 10832275
+2026-07-09 21:30:30,955 - [ deepseek-v4-flash ] - INFO - Success #id 26416769
+2026-07-09 21:30:31,760 - [ deepseek-v4-flash ] - INFO - Success #id 28571815
+2026-07-09 21:30:34,942 - [ deepseek-v4-flash ] - INFO - Success #id 22186065
+2026-07-09 21:30:39,708 - [ deepseek-v4-flash ] - INFO - Success #id 18792404
+2026-07-09 21:30:41,799 - [ deepseek-v4-flash ] - INFO - Success #id 32500554
+2026-07-09 21:30:42,789 - [ deepseek-v4-flash ] - INFO - Success #id 24566914
+2026-07-09 21:30:50,200 - [ deepseek-v4-flash ] - INFO - Success #id 26018434
+2026-07-09 21:30:52,145 - [ deepseek-v4-flash ] - INFO - Success #id 11237996
+2026-07-09 21:30:52,804 - [ deepseek-v4-flash ] - INFO - Success #id 23739687
+2026-07-09 21:30:53,081 - [ deepseek-v4-flash ] - INFO - Success #id 23720259
+2026-07-09 21:30:55,808 - [ deepseek-v4-flash ] - INFO - Success #id 18249183
+2026-07-09 21:30:59,640 - [ deepseek-v4-flash ] - INFO - Success #id 17319238
+2026-07-09 21:31:01,330 - [ deepseek-v4-flash ] - INFO - Success #id 32448801
+2026-07-09 21:31:05,459 - [ deepseek-v4-flash ] - INFO - Success #id 20966488
+2026-07-09 21:31:06,765 - [ deepseek-v4-flash ] - INFO - Success #id 21621031
+2026-07-09 21:31:10,527 - [ deepseek-v4-flash ] - INFO - Success #id 31803119
+2026-07-09 21:31:14,599 - [ deepseek-v4-flash ] - INFO - Success #id 14254501
+2026-07-09 21:31:16,855 - [ deepseek-v4-flash ] - INFO - Success #id 14644157
+2026-07-09 21:31:18,139 - [ deepseek-v4-flash ] - INFO - Success #id 15390970
+2026-07-09 21:31:19,900 - [ deepseek-v4-flash ] - INFO - Success #id 11943462
+2026-07-09 21:31:20,795 - [ deepseek-v4-flash ] - INFO - Success #id 80546198
+2026-07-09 21:31:23,868 - [ deepseek-v4-flash ] - INFO - Success #id 21044531
+2026-07-09 21:31:24,612 - [ deepseek-v4-flash ] - INFO - Success #id 13371224
+2026-07-09 21:31:25,179 - [ deepseek-v4-flash ] - INFO - Success #id 25527683
+2026-07-09 21:31:25,375 - [ deepseek-v4-flash ] - INFO - Success #id 99299170
+2026-07-09 21:31:28,703 - [ deepseek-v4-flash ] - INFO - Success #id 31937449
+2026-07-09 21:31:29,684 - [ deepseek-v4-flash ] - INFO - Success #id 19562798
+2026-07-09 21:31:31,412 - [ deepseek-v4-flash ] - INFO - Success #id 93082544
+2026-07-09 21:31:33,476 - [ deepseek-v4-flash ] - INFO - Success #id 12236335
+2026-07-09 21:31:34,752 - [ deepseek-v4-flash ] - INFO - Success #id 26709801
+2026-07-09 21:31:37,069 - [ deepseek-v4-flash ] - INFO - Success #id 15542538
+2026-07-09 21:31:41,331 - [ deepseek-v4-flash ] - INFO - Success #id 28745104
+2026-07-09 21:31:42,803 - [ deepseek-v4-flash ] - INFO - Success #id 27756204
+2026-07-09 21:31:44,063 - [ deepseek-v4-flash ] - INFO - Success #id 25273215
+2026-07-09 21:31:45,292 - [ deepseek-v4-flash ] - INFO - Success #id 59895399
+2026-07-09 21:31:50,514 - [ deepseek-v4-flash ] - INFO - Success #id 95769629
+2026-07-09 21:31:50,719 - [ deepseek-v4-flash ] - INFO - Success #id 14443254
+2026-07-09 21:31:52,416 - [ deepseek-v4-flash ] - INFO - Success #id 29187835
+2026-07-09 21:31:55,143 - [ deepseek-v4-flash ] - INFO - Success #id 16069483
+2026-07-09 21:31:57,383 - [ deepseek-v4-flash ] - INFO - Success #id 17071602
+2026-07-09 21:31:58,766 - [ deepseek-v4-flash ] - INFO - Success #id 20969144
+2026-07-09 21:32:01,650 - [ deepseek-v4-flash ] - INFO - Success #id 33846762
+2026-07-09 21:32:04,538 - [ deepseek-v4-flash ] - INFO - Success #id 33589549
+2026-07-09 21:32:04,814 - [ deepseek-v4-flash ] - INFO - Success #id 16108608
+2026-07-09 21:32:08,395 - [ deepseek-v4-flash ] - INFO - Success #id 24500817
+2026-07-09 21:32:08,832 - [ deepseek-v4-flash ] - INFO - Success #id 16765465
+2026-07-09 21:32:13,656 - [ deepseek-v4-flash ] - INFO - Success #id 17413645
+2026-07-09 21:32:13,965 - [ deepseek-v4-flash ] - INFO - Success #id 15008846
+2026-07-09 21:32:15,193 - [ deepseek-v4-flash ] - INFO - Success #id 29096737
+2026-07-09 21:32:17,399 - [ deepseek-v4-flash ] - INFO - Success #id 20006636
+2026-07-09 21:32:24,356 - [ deepseek-v4-flash ] - INFO - Success #id 37342459
+2026-07-09 21:32:27,202 - [ deepseek-v4-flash ] - INFO - Success #id 31770318
+2026-07-09 21:32:27,691 - [ deepseek-v4-flash ] - INFO - Success #id 20690157
+2026-07-09 21:32:29,690 - [ deepseek-v4-flash ] - INFO - Success #id 10857849
+2026-07-09 21:32:31,529 - [ deepseek-v4-flash ] - INFO - Success #id 40192617
+2026-07-09 21:32:36,812 - [ deepseek-v4-flash ] - INFO - Success #id 94844374
+2026-07-09 21:32:37,903 - [ deepseek-v4-flash ] - INFO - Success #id 20901121
+2026-07-09 21:32:38,235 - [ deepseek-v4-flash ] - INFO - Success #id 33530381
+2026-07-09 21:32:39,894 - [ deepseek-v4-flash ] - INFO - Success #id 20157457
+2026-07-09 21:32:43,046 - [ deepseek-v4-flash ] - INFO - Success #id 17186056
+2026-07-09 21:32:44,666 - [ deepseek-v4-flash ] - INFO - Success #id 12453287
+2026-07-09 21:32:47,950 - [ deepseek-v4-flash ] - INFO - Success #id 29014857
+2026-07-09 21:32:49,090 - [ deepseek-v4-flash ] - INFO - Success #id 29104192
+2026-07-09 21:32:54,947 - [ deepseek-v4-flash ] - INFO - Success #id 16715639
+2026-07-09 21:32:55,138 - [ deepseek-v4-flash ] - INFO - Success #id 29129148
+2026-07-09 21:32:56,737 - [ deepseek-v4-flash ] - INFO - Success #id 28301589
+2026-07-09 21:32:57,537 - [ deepseek-v4-flash ] - INFO - Success #id 11462676
+2026-07-09 21:33:00,322 - [ deepseek-v4-flash ] - INFO - Success #id 21201380
+2026-07-09 21:33:05,819 - [ deepseek-v4-flash ] - INFO - Success #id 20148955
+2026-07-09 21:33:10,362 - [ deepseek-v4-flash ] - INFO - Success #id 12118235
+2026-07-09 21:33:13,848 - [ deepseek-v4-flash ] - INFO - Success #id 61813598
+2026-07-09 21:33:14,920 - [ deepseek-v4-flash ] - INFO - Success #id 30415263
+2026-07-09 21:33:19,888 - [ deepseek-v4-flash ] - INFO - Success #id 10439775
+2026-07-09 21:33:21,281 - [ deepseek-v4-flash ] - INFO - Success #id 19279407
+2026-07-09 21:33:24,662 - [ deepseek-v4-flash ] - INFO - Success #id 19329484
+2026-07-09 21:33:26,259 - [ deepseek-v4-flash ] - INFO - Success #id 24248250
+2026-07-09 21:33:29,331 - [ deepseek-v4-flash ] - INFO - Success #id 18083389
+2026-07-09 21:33:29,842 - [ deepseek-v4-flash ] - INFO - Success #id 49867500
+2026-07-09 21:33:31,120 - [ deepseek-v4-flash ] - INFO - Success #id 11948892
+2026-07-09 21:33:33,364 - [ deepseek-v4-flash ] - INFO - Success #id 17257567
+2026-07-09 21:33:35,373 - [ deepseek-v4-flash ] - INFO - Success #id 28217797
+2026-07-09 21:33:36,558 - [ deepseek-v4-flash ] - INFO - Success #id 95260038
+2026-07-09 21:33:37,093 - [ deepseek-v4-flash ] - INFO - Success #id 24942333
+2026-07-09 21:33:38,420 - [ deepseek-v4-flash ] - INFO - Success #id 29960282
+2026-07-09 21:33:45,027 - [ deepseek-v4-flash ] - INFO - Success #id 52489881
+2026-07-09 21:33:50,893 - [ deepseek-v4-flash ] - INFO - Success #id 61550119
+2026-07-09 21:33:54,214 - [ deepseek-v4-flash ] - INFO - Success #id 30429044
+2026-07-09 21:33:54,936 - [ deepseek-v4-flash ] - INFO - Success #id 12110318
+2026-07-09 21:33:59,234 - [ deepseek-v4-flash ] - INFO - Success #id 27239291
+2026-07-09 21:34:02,374 - [ deepseek-v4-flash ] - INFO - Success #id 16842090
+2026-07-09 21:34:02,376 - [ deepseek-v4-flash ] - INFO - Success #id 99072780
+2026-07-09 21:34:04,601 - [ deepseek-v4-flash ] - INFO - Success #id 62906538
+2026-07-09 21:34:05,320 - [ deepseek-v4-flash ] - INFO - Success #id 75146402
+2026-07-09 21:34:06,996 - [ deepseek-v4-flash ] - INFO - Success #id 25648533
+2026-07-09 21:34:15,824 - [ deepseek-v4-flash ] - INFO - Success #id 29667353
+2026-07-09 21:34:21,191 - [ deepseek-v4-flash ] - INFO - Success #id 18501458
+2026-07-09 21:34:22,296 - [ deepseek-v4-flash ] - INFO - Success #id 59783839
+2026-07-09 21:34:25,777 - [ deepseek-v4-flash ] - INFO - Success #id 15264036
+2026-07-09 21:34:31,014 - [ deepseek-v4-flash ] - INFO - Success #id 29736113
+2026-07-09 21:34:31,895 - [ deepseek-v4-flash ] - INFO - Success #id 35101491
+2026-07-09 21:34:32,057 - [ deepseek-v4-flash ] - INFO - Failed #id 27776877: <class '__main__.ContentFormatError'> 
+2026-07-09 21:34:37,521 - [ deepseek-v4-flash ] - INFO - Success #id 11403354
+2026-07-09 21:34:39,011 - [ deepseek-v4-flash ] - INFO - Success #id 23235429
+2026-07-09 21:34:39,687 - [ deepseek-v4-flash ] - INFO - Success #id 23205179
+2026-07-09 21:34:39,688 - [ deepseek-v4-flash ] - INFO - Success #id 24378128
+2026-07-09 21:34:45,536 - [ deepseek-v4-flash ] - INFO - Success #id 32465199
+2026-07-09 21:34:46,933 - [ deepseek-v4-flash ] - INFO - Success #id 23980717
+2026-07-09 21:34:51,661 - [ deepseek-v4-flash ] - INFO - Success #id 27441986
+2026-07-09 21:34:53,202 - [ deepseek-v4-flash ] - INFO - Success #id 19996892
+2026-07-09 21:34:59,860 - [ deepseek-v4-flash ] - INFO - Success #id 52385018
+2026-07-09 21:35:01,985 - [ deepseek-v4-flash ] - INFO - Success #id 10470334
+2026-07-09 21:35:03,886 - [ deepseek-v4-flash ] - INFO - Success #id 28159889
+2026-07-09 21:35:04,437 - [ deepseek-v4-flash ] - INFO - Success #id 19611066
+2026-07-09 21:35:06,407 - [ deepseek-v4-flash ] - INFO - Success #id 28592419
+2026-07-09 21:35:10,395 - [ deepseek-v4-flash ] - INFO - Success #id 27730148
+2026-07-09 21:35:15,515 - [ deepseek-v4-flash ] - INFO - Success #id 21147432
+2026-07-09 21:35:15,854 - [ deepseek-v4-flash ] - INFO - Success #id 16628271
+2026-07-09 21:35:16,677 - [ deepseek-v4-flash ] - INFO - Success #id 19628125
+2026-07-09 21:35:17,792 - [ deepseek-v4-flash ] - INFO - Success #id 22550699
+2026-07-09 21:35:24,534 - [ deepseek-v4-flash ] - INFO - Success #id 22376637
+2026-07-09 21:35:25,811 - [ deepseek-v4-flash ] - INFO - Success #id 21239207
+2026-07-09 21:35:31,368 - [ deepseek-v4-flash ] - INFO - Success #id 32365343
+2026-07-09 21:35:32,028 - [ deepseek-v4-flash ] - INFO - Success #id 30894994
+2026-07-09 21:35:37,017 - [ deepseek-v4-flash ] - INFO - Success #id 29795276
+2026-07-09 21:35:38,099 - [ deepseek-v4-flash ] - INFO - Success #id 25181991
+2026-07-09 21:35:39,184 - [ deepseek-v4-flash ] - INFO - Success #id 37006440
+2026-07-09 21:35:41,581 - [ deepseek-v4-flash ] - INFO - Success #id 24739975
+2026-07-09 21:35:45,220 - [ deepseek-v4-flash ] - INFO - Success #id 19177096
+2026-07-09 21:35:46,343 - [ deepseek-v4-flash ] - INFO - Success #id 25718361
+2026-07-09 21:35:47,023 - [ deepseek-v4-flash ] - INFO - Success #id 21353640
+2026-07-09 21:35:48,043 - [ deepseek-v4-flash ] - INFO - Success #id 14965615
+2026-07-09 21:35:49,784 - [ deepseek-v4-flash ] - INFO - Success #id 15357614
+2026-07-09 21:35:50,045 - [ deepseek-v4-flash ] - INFO - Success #id 93639631
+2026-07-09 21:35:54,536 - [ deepseek-v4-flash ] - INFO - Success #id 20895739
+2026-07-09 21:36:03,033 - [ deepseek-v4-flash ] - INFO - Success #id 28829532
+2026-07-09 21:36:03,147 - [ deepseek-v4-flash ] - INFO - Success #id 25723001
+2026-07-09 21:36:03,296 - [ deepseek-v4-flash ] - INFO - Success #id 11719836
+2026-07-09 21:36:03,717 - [ deepseek-v4-flash ] - INFO - Success #id 29911371
+2026-07-09 21:36:05,494 - [ deepseek-v4-flash ] - INFO - Success #id 33975397
+2026-07-09 21:36:06,473 - [ deepseek-v4-flash ] - INFO - Success #id 28442425
+2026-07-09 21:36:10,921 - [ deepseek-v4-flash ] - INFO - Success #id 17418547
+2026-07-09 21:36:17,594 - [ deepseek-v4-flash ] - INFO - Success #id 25519479
+2026-07-09 21:36:18,427 - [ deepseek-v4-flash ] - INFO - Success #id 16070773
+2026-07-09 21:36:19,932 - [ deepseek-v4-flash ] - INFO - Success #id 47894934
+2026-07-09 21:36:20,547 - [ deepseek-v4-flash ] - INFO - Success #id 22059331
+2026-07-09 21:36:21,890 - [ deepseek-v4-flash ] - INFO - Success #id 28599340
+2026-07-09 21:36:24,028 - [ deepseek-v4-flash ] - INFO - Success #id 18163146
+2026-07-09 21:36:26,488 - [ deepseek-v4-flash ] - INFO - Success #id 27102387
+2026-07-09 21:36:32,224 - [ deepseek-v4-flash ] - INFO - Success #id 12230095
+2026-07-09 21:36:33,471 - [ deepseek-v4-flash ] - INFO - Success #id 22884249
+2026-07-09 21:36:33,653 - [ deepseek-v4-flash ] - INFO - Success #id 80020033
+2026-07-09 21:36:36,112 - [ deepseek-v4-flash ] - INFO - Success #id 10723602
+2026-07-09 21:36:39,388 - [ deepseek-v4-flash ] - INFO - Success #id 89926158
+2026-07-09 21:36:40,105 - [ deepseek-v4-flash ] - INFO - Success #id 22424325
+2026-07-09 21:36:40,202 - [ deepseek-v4-flash ] - INFO - Success #id 24443716
+2026-07-09 21:36:43,263 - [ deepseek-v4-flash ] - INFO - Success #id 33264101
+2026-07-09 21:36:47,375 - [ deepseek-v4-flash ] - INFO - Success #id 11279321
+2026-07-09 21:36:50,857 - [ deepseek-v4-flash ] - INFO - Success #id 12447001
+2026-07-09 21:36:56,593 - [ deepseek-v4-flash ] - INFO - Success #id 25005170
+2026-07-09 21:36:57,591 - [ deepseek-v4-flash ] - INFO - Success #id 25283317
+2026-07-09 21:37:00,524 - [ deepseek-v4-flash ] - INFO - Success #id 33919691
+2026-07-09 21:37:01,953 - [ deepseek-v4-flash ] - INFO - Success #id 21965571
+2026-07-09 21:37:06,445 - [ deepseek-v4-flash ] - INFO - Success #id 15750481
+2026-07-09 21:37:08,303 - [ deepseek-v4-flash ] - INFO - Failed #id 51155708: <class '__main__.ContentFormatError'> 
+2026-07-09 21:37:10,547 - [ deepseek-v4-flash ] - INFO - Success #id 84282405
+2026-07-09 21:37:19,671 - [ deepseek-v4-flash ] - INFO - Success #id 14960874
+2026-07-09 21:37:34,172 - [ deepseek-v4-flash ] - INFO - Success #id 15809194
+2026-07-09 21:37:34,721 - [ deepseek-v4-flash ] - INFO - Success #id 11043756
+2026-07-09 21:37:35,138 - [ deepseek-v4-flash ] - INFO - Success #id 45258211
+2026-07-09 21:37:38,371 - [ deepseek-v4-flash ] - INFO - Success #id 33112549
+2026-07-09 21:37:39,611 - [ deepseek-v4-flash ] - INFO - Success #id 14815625
+2026-07-09 21:37:40,726 - [ deepseek-v4-flash ] - INFO - Success #id 26053207
+2026-07-09 21:37:41,407 - [ deepseek-v4-flash ] - INFO - Success #id 27463706
+2026-07-09 21:37:46,011 - [ deepseek-v4-flash ] - INFO - Success #id 18401024
+2026-07-09 21:37:47,075 - [ deepseek-v4-flash ] - INFO - Success #id 33318821
+2026-07-09 21:37:47,898 - [ deepseek-v4-flash ] - INFO - Success #id 78514929
+2026-07-09 21:37:49,020 - [ deepseek-v4-flash ] - INFO - Success #id 45138128
+2026-07-09 21:37:51,478 - [ deepseek-v4-flash ] - INFO - Success #id 30573257
+2026-07-09 21:37:55,461 - [ deepseek-v4-flash ] - INFO - Success #id 16212126
+2026-07-09 21:37:56,905 - [ deepseek-v4-flash ] - INFO - Success #id 12868276
+2026-07-09 21:37:58,043 - [ deepseek-v4-flash ] - INFO - Success #id 22730987
+2026-07-09 21:37:59,465 - [ deepseek-v4-flash ] - INFO - Success #id 22316136
+2026-07-09 21:38:01,133 - [ deepseek-v4-flash ] - INFO - Success #id 13530193
+2026-07-09 21:38:01,854 - [ deepseek-v4-flash ] - INFO - Success #id 15774395
+2026-07-09 21:38:02,756 - [ deepseek-v4-flash ] - INFO - Success #id 27452931
+2026-07-09 21:38:03,066 - [ deepseek-v4-flash ] - INFO - Success #id 14879344
+2026-07-09 21:38:10,473 - [ deepseek-v4-flash ] - INFO - Success #id 31841754
+2026-07-09 21:38:10,483 - [ deepseek-v4-flash ] - INFO - Success #id 19383232
+2026-07-09 21:38:12,369 - [ deepseek-v4-flash ] - INFO - Success #id 13552222
+2026-07-09 21:38:13,259 - [ deepseek-v4-flash ] - INFO - Success #id 89568852
+2026-07-09 21:38:15,791 - [ deepseek-v4-flash ] - INFO - Success #id 13228699
+2026-07-09 21:38:17,535 - [ deepseek-v4-flash ] - INFO - Success #id 29607896
+2026-07-09 21:38:18,158 - [ deepseek-v4-flash ] - INFO - Success #id 32867636
+2026-07-09 21:38:18,592 - [ deepseek-v4-flash ] - INFO - Success #id 67161855
+2026-07-09 21:38:22,129 - [ deepseek-v4-flash ] - INFO - Success #id 13322370
+2026-07-09 21:38:25,154 - [ deepseek-v4-flash ] - INFO - Success #id 22496976
+2026-07-09 21:38:30,321 - [ deepseek-v4-flash ] - INFO - Success #id 10449586
+2026-07-09 21:38:31,147 - [ deepseek-v4-flash ] - INFO - Success #id 90069253
+2026-07-09 21:38:31,214 - [ deepseek-v4-flash ] - INFO - Success #id 22765721
+2026-07-09 21:38:31,842 - [ deepseek-v4-flash ] - INFO - Success #id 25102556
+2026-07-09 21:38:36,157 - [ deepseek-v4-flash ] - INFO - Success #id 37483131
+2026-07-09 21:38:37,439 - [ deepseek-v4-flash ] - INFO - Success #id 32415147
+2026-07-09 21:38:38,972 - [ deepseek-v4-flash ] - INFO - Success #id 31989693
+2026-07-09 21:38:42,788 - [ deepseek-v4-flash ] - INFO - Success #id 20364215
+2026-07-09 21:38:44,111 - [ deepseek-v4-flash ] - INFO - Success #id 20943847
+2026-07-09 21:38:44,670 - [ deepseek-v4-flash ] - INFO - Success #id 33479148
+2026-07-09 21:38:44,740 - [ deepseek-v4-flash ] - INFO - Success #id 30058530
+2026-07-09 21:38:49,775 - [ deepseek-v4-flash ] - INFO - Success #id 21135501
+2026-07-09 21:38:52,984 - [ deepseek-v4-flash ] - INFO - Success #id 11030640
+2026-07-09 21:38:58,981 - [ deepseek-v4-flash ] - INFO - Success #id 18908629
+2026-07-09 21:38:59,747 - [ deepseek-v4-flash ] - INFO - Success #id 31083595
+2026-07-09 21:39:04,188 - [ deepseek-v4-flash ] - INFO - Success #id 50898433
+2026-07-09 21:39:05,231 - [ deepseek-v4-flash ] - INFO - Success #id 25872656
+2026-07-09 21:39:06,611 - [ deepseek-v4-flash ] - INFO - Success #id 28584622
+2026-07-09 21:39:15,447 - [ deepseek-v4-flash ] - INFO - Success #id 14293831
+2026-07-09 21:39:17,091 - [ deepseek-v4-flash ] - INFO - Success #id 24588063
+2026-07-09 21:39:18,639 - [ deepseek-v4-flash ] - INFO - Success #id 31358965
+2026-07-09 21:39:20,696 - [ deepseek-v4-flash ] - INFO - Failed #id 15940373: <class '__main__.ContentFormatError'> 
+2026-07-09 21:39:21,982 - [ deepseek-v4-flash ] - INFO - Success #id 21037478
+2026-07-09 21:39:25,891 - [ deepseek-v4-flash ] - INFO - Success #id 13138722
+2026-07-09 21:39:33,066 - [ deepseek-v4-flash ] - INFO - Success #id 22700306
+2026-07-09 21:39:35,005 - [ deepseek-v4-flash ] - INFO - Success #id 26810385
+2026-07-09 21:39:38,612 - [ deepseek-v4-flash ] - INFO - Success #id 27054257
+2026-07-09 21:39:42,535 - [ deepseek-v4-flash ] - INFO - Success #id 32962806
+2026-07-09 21:39:50,242 - [ deepseek-v4-flash ] - INFO - Success #id 21438359
+2026-07-09 21:39:51,222 - [ deepseek-v4-flash ] - INFO - Success #id 20593074
+2026-07-09 21:39:57,441 - [ deepseek-v4-flash ] - INFO - Success #id 65464000
+2026-07-09 21:40:20,676 - [ deepseek-v4-flash ] - INFO - Success #id 71812115
+2026-07-09 21:40:50,680 - [ deepseek-v4-flash ] - INFO - Success #id 22109710
+2026-07-09 21:42:44,551 - [ deepseek-v4-flash ] - INFO - Success #id 20852737
+2026-07-09 21:43:00,525 - [ deepseek-v4-flash ] - INFO - Success #id 18649647
+2026-07-09 21:43:10,772 - [ deepseek-v4-flash ] - INFO - Success #id 24723563
+2026-07-09 21:43:16,947 - [ deepseek-v4-flash ] - INFO - Success #id 18505027
+2026-07-09 21:43:26,524 - [ deepseek-v4-flash ] - INFO - Success #id 10668996
+2026-07-09 21:43:34,112 - [ deepseek-v4-flash ] - INFO - Success #id 22061785
+2026-07-09 21:43:36,876 - [ deepseek-v4-flash ] - INFO - Success #id 10123444
+2026-07-09 21:43:39,415 - [ deepseek-v4-flash ] - INFO - Success #id 32548464
+2026-07-09 21:43:44,400 - [ deepseek-v4-flash ] - INFO - Success #id 16279427
+2026-07-09 21:43:46,707 - [ deepseek-v4-flash ] - INFO - Success #id 30529057
+2026-07-09 21:43:55,310 - [ deepseek-v4-flash ] - INFO - Success #id 14485792
+2026-07-09 21:43:56,508 - [ deepseek-v4-flash ] - INFO - Success #id 29518420
+2026-07-09 21:43:56,687 - [ deepseek-v4-flash ] - INFO - Success #id 25985287
+2026-07-09 21:43:58,969 - [ deepseek-v4-flash ] - INFO - Success #id 32541972
+2026-07-09 21:44:03,809 - [ deepseek-v4-flash ] - INFO - Success #id 17250175
+2026-07-09 21:44:06,063 - [ deepseek-v4-flash ] - INFO - Success #id 28584569
+2026-07-09 21:44:10,213 - [ deepseek-v4-flash ] - INFO - Success #id 49492180
+2026-07-09 21:44:13,561 - [ deepseek-v4-flash ] - INFO - Success #id 23223147
+2026-07-09 21:44:15,159 - [ deepseek-v4-flash ] - INFO - Success #id 11092844
+2026-07-09 21:44:16,323 - [ deepseek-v4-flash ] - INFO - Success #id 15884759
+2026-07-09 21:44:18,043 - [ deepseek-v4-flash ] - INFO - Success #id 92840089
+2026-07-09 21:44:19,301 - [ deepseek-v4-flash ] - INFO - Success #id 21790625
+2026-07-09 21:44:29,281 - [ deepseek-v4-flash ] - INFO - Success #id 80368022
+2026-07-09 21:44:29,622 - [ deepseek-v4-flash ] - INFO - Success #id 69864984
+2026-07-09 21:44:34,732 - [ deepseek-v4-flash ] - INFO - Success #id 18169589
+2026-07-09 21:44:34,879 - [ deepseek-v4-flash ] - INFO - Success #id 85835626
+2026-07-09 21:44:42,003 - [ deepseek-v4-flash ] - INFO - Success #id 11039675
+2026-07-09 21:44:42,344 - [ deepseek-v4-flash ] - INFO - Success #id 69835722
+2026-07-09 21:44:43,131 - [ deepseek-v4-flash ] - INFO - Success #id 26633860
+2026-07-09 21:44:45,076 - [ deepseek-v4-flash ] - INFO - Success #id 63999641
+2026-07-09 21:44:48,767 - [ deepseek-v4-flash ] - INFO - Success #id 20072101
+2026-07-09 21:44:55,623 - [ deepseek-v4-flash ] - INFO - Success #id 90198806
+2026-07-09 21:44:58,163 - [ deepseek-v4-flash ] - INFO - Failed #id 17259422: <class 'TimeoutError'> 
+2026-07-09 21:44:59,441 - [ deepseek-v4-flash ] - INFO - Success #id 18960093
+2026-07-09 21:45:04,091 - [ deepseek-v4-flash ] - INFO - Success #id 96593772
+2026-07-09 21:45:19,781 - [ deepseek-v4-flash ] - INFO - Success #id 16501728
+2026-07-09 21:45:20,098 - [ deepseek-v4-flash ] - INFO - Success #id 11194048
+2026-07-09 21:45:20,918 - [ deepseek-v4-flash ] - INFO - Success #id 30280569
+2026-07-09 21:45:23,064 - [ deepseek-v4-flash ] - INFO - Success #id 23460833
+2026-07-09 21:45:28,523 - [ deepseek-v4-flash ] - INFO - Success #id 19088738
+2026-07-09 21:45:29,270 - [ deepseek-v4-flash ] - INFO - Success #id 60831017
+2026-07-09 21:45:30,682 - [ deepseek-v4-flash ] - INFO - Success #id 82001537
+2026-07-09 21:45:32,695 - [ deepseek-v4-flash ] - INFO - Success #id 27656803
+2026-07-09 21:45:33,287 - [ deepseek-v4-flash ] - INFO - Success #id 57085117
+2026-07-09 21:45:34,022 - [ deepseek-v4-flash ] - INFO - Failed #id 19953474: <class '__main__.ContentFormatError'> 
+2026-07-09 21:45:38,019 - [ deepseek-v4-flash ] - INFO - Success #id 80764000
+2026-07-09 21:45:42,358 - [ deepseek-v4-flash ] - INFO - Success #id 16972439
+2026-07-09 21:45:45,390 - [ deepseek-v4-flash ] - INFO - Success #id 22531284
+2026-07-09 21:45:47,866 - [ deepseek-v4-flash ] - INFO - Success #id 24429832
+2026-07-09 21:45:52,667 - [ deepseek-v4-flash ] - INFO - Success #id 15511580
+2026-07-09 21:45:53,552 - [ deepseek-v4-flash ] - INFO - Success #id 16551168
+2026-07-09 21:45:53,893 - [ deepseek-v4-flash ] - INFO - Success #id 30622081
+2026-07-09 21:46:00,034 - [ deepseek-v4-flash ] - INFO - Success #id 12807715
+2026-07-09 21:46:00,601 - [ deepseek-v4-flash ] - INFO - Success #id 56383695
+2026-07-09 21:46:03,931 - [ deepseek-v4-flash ] - INFO - Success #id 29404651
+2026-07-09 21:46:06,357 - [ deepseek-v4-flash ] - INFO - Success #id 89501937
+2026-07-09 21:46:10,293 - [ deepseek-v4-flash ] - INFO - Success #id 21326446
+2026-07-09 21:46:11,879 - [ deepseek-v4-flash ] - INFO - Success #id 12825282
+2026-07-09 21:46:12,691 - [ deepseek-v4-flash ] - INFO - Success #id 23718276
+2026-07-09 21:46:15,395 - [ deepseek-v4-flash ] - INFO - Success #id 14440030
+2026-07-09 21:46:17,339 - [ deepseek-v4-flash ] - INFO - Success #id 11613817
+2026-07-09 21:46:23,024 - [ deepseek-v4-flash ] - INFO - Success #id 92645949
+2026-07-09 21:46:23,680 - [ deepseek-v4-flash ] - INFO - Success #id 20316691
+2026-07-09 21:46:23,880 - [ deepseek-v4-flash ] - INFO - Success #id 33446906
+2026-07-09 21:46:26,967 - [ deepseek-v4-flash ] - INFO - Success #id 20449210
+2026-07-09 21:46:26,968 - [ deepseek-v4-flash ] - INFO - Success #id 71306697
+2026-07-09 21:46:30,810 - [ deepseek-v4-flash ] - INFO - Success #id 30962807
+2026-07-09 21:46:31,848 - [ deepseek-v4-flash ] - INFO - Success #id 14532621
+2026-07-09 21:46:33,934 - [ deepseek-v4-flash ] - INFO - Success #id 29533374
+2026-07-09 21:46:42,598 - [ deepseek-v4-flash ] - INFO - Success #id 25019450
+2026-07-09 21:46:43,349 - [ deepseek-v4-flash ] - INFO - Success #id 12610783
+2026-07-09 21:46:46,934 - [ deepseek-v4-flash ] - INFO - Success #id 24408278
+2026-07-09 21:46:49,391 - [ deepseek-v4-flash ] - INFO - Success #id 21983098
+2026-07-09 21:46:53,777 - [ deepseek-v4-flash ] - INFO - Success #id 30413053
+2026-07-09 21:47:01,065 - [ deepseek-v4-flash ] - INFO - Success #id 41172676
+2026-07-09 21:47:04,174 - [ deepseek-v4-flash ] - INFO - Success #id 62441232
+2026-07-09 21:47:04,420 - [ deepseek-v4-flash ] - INFO - Success #id 24808622
+2026-07-09 21:47:05,775 - [ deepseek-v4-flash ] - INFO - Success #id 31626264
+2026-07-09 21:47:09,189 - [ deepseek-v4-flash ] - INFO - Success #id 14299670
+2026-07-09 21:47:10,693 - [ deepseek-v4-flash ] - INFO - Success #id 12148984
+2026-07-09 21:47:15,093 - [ deepseek-v4-flash ] - INFO - Success #id 12848687
+2026-07-09 21:47:18,737 - [ deepseek-v4-flash ] - INFO - Success #id 30523125
+2026-07-09 21:47:18,815 - [ deepseek-v4-flash ] - INFO - Success #id 49499370
+2026-07-09 21:47:19,625 - [ deepseek-v4-flash ] - INFO - Success #id 30846256
+2026-07-09 21:47:20,220 - [ deepseek-v4-flash ] - INFO - Success #id 27333717
+2026-07-09 21:47:20,223 - [ deepseek-v4-flash ] - INFO - Success #id 34291377
+2026-07-09 21:47:24,179 - [ deepseek-v4-flash ] - INFO - Success #id 96088441
+2026-07-09 21:47:26,890 - [ deepseek-v4-flash ] - INFO - Success #id 13274608
+2026-07-09 21:47:28,868 - [ deepseek-v4-flash ] - INFO - Success #id 13441679
+2026-07-09 21:47:31,786 - [ deepseek-v4-flash ] - INFO - Success #id 11924717
+2026-07-09 21:47:32,798 - [ deepseek-v4-flash ] - INFO - Success #id 13533558
+2026-07-09 21:47:33,936 - [ deepseek-v4-flash ] - INFO - Success #id 21595444
+2026-07-09 21:47:34,318 - [ deepseek-v4-flash ] - INFO - Success #id 16061572
+2026-07-09 21:47:39,055 - [ deepseek-v4-flash ] - INFO - Success #id 24991762
+2026-07-09 21:47:44,075 - [ deepseek-v4-flash ] - INFO - Success #id 25119755
+2026-07-09 21:47:49,297 - [ deepseek-v4-flash ] - INFO - Success #id 11714517
+2026-07-09 21:47:52,689 - [ deepseek-v4-flash ] - INFO - Success #id 17554838
+2026-07-09 21:47:54,675 - [ deepseek-v4-flash ] - INFO - Success #id 23339618
+2026-07-09 21:47:56,195 - [ deepseek-v4-flash ] - INFO - Success #id 33780705
+2026-07-09 21:47:58,719 - [ deepseek-v4-flash ] - INFO - Success #id 20533047
+2026-07-09 21:48:04,233 - [ deepseek-v4-flash ] - INFO - Success #id 16296421
+2026-07-09 21:48:04,259 - [ deepseek-v4-flash ] - INFO - Success #id 50284050
+2026-07-09 21:48:04,292 - [ deepseek-v4-flash ] - INFO - Success #id 94628693
+2026-07-09 21:48:11,005 - [ deepseek-v4-flash ] - INFO - Success #id 27795790
+2026-07-09 21:48:11,650 - [ deepseek-v4-flash ] - INFO - Success #id 33138948
+2026-07-09 21:48:30,434 - [ deepseek-v4-flash ] - INFO - Success #id 11397110
+2026-07-09 21:48:31,383 - [ deepseek-v4-flash ] - INFO - Success #id 15075864
+2026-07-09 21:48:35,684 - [ deepseek-v4-flash ] - INFO - Success #id 29548568
+2026-07-09 21:48:38,757 - [ deepseek-v4-flash ] - INFO - Success #id 52629086
+2026-07-09 21:48:39,094 - [ deepseek-v4-flash ] - INFO - Success #id 32774643
+2026-07-09 21:48:43,430 - [ deepseek-v4-flash ] - INFO - Success #id 30113486
+2026-07-09 21:48:45,527 - [ deepseek-v4-flash ] - INFO - Success #id 15747739
+2026-07-09 21:48:46,005 - [ deepseek-v4-flash ] - INFO - Success #id 13142779
+2026-07-09 21:48:49,292 - [ deepseek-v4-flash ] - INFO - Success #id 49516546
+2026-07-09 21:48:52,458 - [ deepseek-v4-flash ] - INFO - Success #id 11393129
+2026-07-09 21:48:55,191 - [ deepseek-v4-flash ] - INFO - Success #id 84011914
+2026-07-09 21:48:55,915 - [ deepseek-v4-flash ] - INFO - Success #id 70253162
+2026-07-09 21:49:02,483 - [ deepseek-v4-flash ] - INFO - Success #id 16936903
+2026-07-09 21:49:02,980 - [ deepseek-v4-flash ] - INFO - Success #id 18186013
+2026-07-09 21:49:06,096 - [ deepseek-v4-flash ] - INFO - Success #id 21955858
+2026-07-09 21:49:08,850 - [ deepseek-v4-flash ] - INFO - Success #id 15000632
+2026-07-09 21:49:09,634 - [ deepseek-v4-flash ] - INFO - Success #id 11265827
+2026-07-09 21:49:15,108 - [ deepseek-v4-flash ] - INFO - Success #id 21970313
+2026-07-09 21:49:15,897 - [ deepseek-v4-flash ] - INFO - Success #id 19104289
+2026-07-09 21:49:16,425 - [ deepseek-v4-flash ] - INFO - Success #id 17165062
+2026-07-09 21:49:20,331 - [ deepseek-v4-flash ] - INFO - Success #id 27471798
+2026-07-09 21:49:22,480 - [ deepseek-v4-flash ] - INFO - Success #id 15592937
+2026-07-09 21:49:24,374 - [ deepseek-v4-flash ] - INFO - Success #id 25919792
+2026-07-09 21:49:25,862 - [ deepseek-v4-flash ] - INFO - Success #id 10992118
+2026-07-09 21:49:29,401 - [ deepseek-v4-flash ] - INFO - Success #id 31997654
+2026-07-09 21:49:32,413 - [ deepseek-v4-flash ] - INFO - Success #id 21969070
+2026-07-09 21:49:33,849 - [ deepseek-v4-flash ] - INFO - Success #id 57854255
+2026-07-09 21:49:34,049 - [ deepseek-v4-flash ] - INFO - Success #id 33455161
+2026-07-09 21:49:34,351 - [ deepseek-v4-flash ] - INFO - Success #id 18687148
+2026-07-09 21:49:35,272 - [ deepseek-v4-flash ] - INFO - Success #id 21604833
+2026-07-09 21:49:37,905 - [ deepseek-v4-flash ] - INFO - Success #id 97429636
+2026-07-09 21:49:42,123 - [ deepseek-v4-flash ] - INFO - Success #id 32844876
+2026-07-09 21:49:42,398 - [ deepseek-v4-flash ] - INFO - Success #id 14534648
+2026-07-09 21:49:44,190 - [ deepseek-v4-flash ] - INFO - Success #id 16348546
+2026-07-09 21:49:46,512 - [ deepseek-v4-flash ] - INFO - Success #id 32839408
+2026-07-09 21:49:48,436 - [ deepseek-v4-flash ] - INFO - Success #id 20459370
+2026-07-09 21:49:51,936 - [ deepseek-v4-flash ] - INFO - Success #id 30907497
+2026-07-09 21:49:55,178 - [ deepseek-v4-flash ] - INFO - Success #id 14574306
+2026-07-09 21:49:55,974 - [ deepseek-v4-flash ] - INFO - Success #id 29095326
+2026-07-09 21:49:56,087 - [ deepseek-v4-flash ] - INFO - Success #id 94436290
+2026-07-09 21:49:57,708 - [ deepseek-v4-flash ] - INFO - Success #id 32095182
+2026-07-09 21:50:00,137 - [ deepseek-v4-flash ] - INFO - Success #id 32697936
+2026-07-09 21:50:00,425 - [ deepseek-v4-flash ] - INFO - Success #id 14203474
+2026-07-09 21:50:02,726 - [ deepseek-v4-flash ] - INFO - Success #id 13298148
+2026-07-09 21:50:12,555 - [ deepseek-v4-flash ] - INFO - Success #id 22505171
+2026-07-09 21:50:14,091 - [ deepseek-v4-flash ] - INFO - Success #id 32877577
+2026-07-09 21:50:16,910 - [ deepseek-v4-flash ] - INFO - Success #id 26034492
+2026-07-09 21:50:21,773 - [ deepseek-v4-flash ] - INFO - Success #id 16479247
+2026-07-09 21:50:25,151 - [ deepseek-v4-flash ] - INFO - Success #id 10193749
+2026-07-09 21:50:27,035 - [ deepseek-v4-flash ] - INFO - Success #id 59191485
+2026-07-09 21:50:30,308 - [ deepseek-v4-flash ] - INFO - Success #id 32173403
+2026-07-09 21:50:30,651 - [ deepseek-v4-flash ] - INFO - Success #id 20296014
+2026-07-09 21:50:31,402 - [ deepseek-v4-flash ] - INFO - Success #id 99746356
+2026-07-09 21:50:36,723 - [ deepseek-v4-flash ] - INFO - Success #id 31122290
+2026-07-09 21:50:36,931 - [ deepseek-v4-flash ] - INFO - Success #id 11501998
+2026-07-09 21:50:47,020 - [ deepseek-v4-flash ] - INFO - Success #id 18523190
+2026-07-09 21:50:55,051 - [ deepseek-v4-flash ] - INFO - Success #id 78696894
+2026-07-09 21:50:56,968 - [ deepseek-v4-flash ] - INFO - Success #id 71988921
+2026-07-09 21:50:59,673 - [ deepseek-v4-flash ] - INFO - Success #id 15209044
+2026-07-09 21:51:01,913 - [ deepseek-v4-flash ] - INFO - Success #id 29807318
+2026-07-09 21:51:02,035 - [ deepseek-v4-flash ] - INFO - Success #id 33711070
+2026-07-09 21:51:13,074 - [ deepseek-v4-flash ] - INFO - Success #id 20421462
+2026-07-09 21:51:16,659 - [ deepseek-v4-flash ] - INFO - Success #id 59838833
+2026-07-09 21:51:28,506 - [ deepseek-v4-flash ] - INFO - Success #id 16272753
+2026-07-09 21:51:39,419 - [ deepseek-v4-flash ] - INFO - Success #id 28378400
+2026-07-09 21:51:42,835 - [ deepseek-v4-flash ] - INFO - Success #id 92023696
+2026-07-09 21:51:52,293 - [ deepseek-v4-flash ] - INFO - Success #id 13344592
+2026-07-09 21:51:53,781 - [ deepseek-v4-flash ] - INFO - Success #id 35261140
+2026-07-09 21:51:55,161 - [ deepseek-v4-flash ] - INFO - Success #id 33782593
+2026-07-09 21:52:06,220 - [ deepseek-v4-flash ] - INFO - Success #id 59519281
+2026-07-09 21:52:09,194 - [ deepseek-v4-flash ] - INFO - Failed #id 15216393: <class '__main__.ContentFormatError'> 
+2026-07-09 21:52:10,521 - [ deepseek-v4-flash ] - INFO - Success #id 18889434
+2026-07-09 21:52:12,262 - [ deepseek-v4-flash ] - INFO - Success #id 28868528
+2026-07-09 21:52:20,452 - [ deepseek-v4-flash ] - INFO - Success #id 31505214
+2026-07-09 21:52:22,098 - [ deepseek-v4-flash ] - INFO - Success #id 12258358
+2026-07-09 21:52:23,309 - [ deepseek-v4-flash ] - INFO - Success #id 12801450
+2026-07-09 21:52:27,008 - [ deepseek-v4-flash ] - INFO - Success #id 33186293
+2026-07-09 21:52:29,357 - [ deepseek-v4-flash ] - INFO - Success #id 32436687
+2026-07-09 21:52:30,591 - [ deepseek-v4-flash ] - INFO - Success #id 10046237
+2026-07-09 21:52:35,663 - [ deepseek-v4-flash ] - INFO - Success #id 14470875
+2026-07-09 21:52:40,729 - [ deepseek-v4-flash ] - INFO - Success #id 22507212
+2026-07-09 21:52:46,975 - [ deepseek-v4-flash ] - INFO - Success #id 40824958
+2026-07-09 21:52:49,316 - [ deepseek-v4-flash ] - INFO - Success #id 10616371
+2026-07-09 21:52:49,708 - [ deepseek-v4-flash ] - INFO - Success #id 30005172
+2026-07-09 21:52:53,006 - [ deepseek-v4-flash ] - INFO - Success #id 33867048
+2026-07-09 21:52:53,657 - [ deepseek-v4-flash ] - INFO - Success #id 16908970
+2026-07-09 21:52:57,510 - [ deepseek-v4-flash ] - INFO - Success #id 17160809
+2026-07-09 21:53:00,802 - [ deepseek-v4-flash ] - INFO - Success #id 28204850
+2026-07-09 21:53:12,064 - [ deepseek-v4-flash ] - INFO - Success #id 25446687
+2026-07-09 21:53:15,556 - [ deepseek-v4-flash ] - INFO - Success #id 36137048
+2026-07-09 21:53:17,389 - [ deepseek-v4-flash ] - INFO - Success #id 29430299
+2026-07-09 21:53:20,350 - [ deepseek-v4-flash ] - INFO - Success #id 11457985
+2026-07-09 21:53:20,561 - [ deepseek-v4-flash ] - INFO - Success #id 27017603
+2026-07-09 21:53:23,738 - [ deepseek-v4-flash ] - INFO - Success #id 18802420
+2026-07-09 21:53:29,984 - [ deepseek-v4-flash ] - INFO - Success #id 99715560
+2026-07-09 21:53:30,618 - [ deepseek-v4-flash ] - INFO - Success #id 17888990
+2026-07-09 21:53:33,159 - [ deepseek-v4-flash ] - INFO - Success #id 47857468
+2026-07-09 21:53:37,152 - [ deepseek-v4-flash ] - INFO - Success #id 23690726
+2026-07-09 21:53:39,579 - [ deepseek-v4-flash ] - INFO - Success #id 14075020
+2026-07-09 21:53:39,804 - [ deepseek-v4-flash ] - INFO - Success #id 32382233
+2026-07-09 21:53:40,841 - [ deepseek-v4-flash ] - INFO - Success #id 22206964
+2026-07-09 21:53:40,971 - [ deepseek-v4-flash ] - INFO - Success #id 66251623
+2026-07-09 21:53:47,499 - [ deepseek-v4-flash ] - INFO - Success #id 27015971
+2026-07-09 21:53:54,150 - [ deepseek-v4-flash ] - INFO - Success #id 32684318
+2026-07-09 21:53:57,979 - [ deepseek-v4-flash ] - INFO - Success #id 88652065
+2026-07-09 21:54:00,396 - [ deepseek-v4-flash ] - INFO - Success #id 92223394
+2026-07-09 21:54:00,439 - [ deepseek-v4-flash ] - INFO - Success #id 29663142
+2026-07-09 21:54:05,904 - [ deepseek-v4-flash ] - INFO - Success #id 34007928
+2026-07-09 21:54:07,872 - [ deepseek-v4-flash ] - INFO - Success #id 21966519
+2026-07-09 21:54:08,063 - [ deepseek-v4-flash ] - INFO - Success #id 50832683
+2026-07-09 21:54:11,632 - [ deepseek-v4-flash ] - INFO - Success #id 17253945
+2026-07-09 21:54:19,419 - [ deepseek-v4-flash ] - INFO - Success #id 26559773
+2026-07-09 21:54:19,437 - [ deepseek-v4-flash ] - INFO - Success #id 13376272
+2026-07-09 21:54:26,223 - [ deepseek-v4-flash ] - INFO - Success #id 17855657
+2026-07-09 21:54:28,353 - [ deepseek-v4-flash ] - INFO - Success #id 12212420
+2026-07-09 21:54:30,902 - [ deepseek-v4-flash ] - INFO - Success #id 24468541
+2026-07-09 21:54:31,983 - [ deepseek-v4-flash ] - INFO - Success #id 27209181
+2026-07-09 21:54:33,683 - [ deepseek-v4-flash ] - INFO - Success #id 97096429
+2026-07-09 21:54:39,072 - [ deepseek-v4-flash ] - INFO - Success #id 29758172
+2026-07-09 21:54:40,850 - [ deepseek-v4-flash ] - INFO - Success #id 14798933
+2026-07-09 21:54:43,099 - [ deepseek-v4-flash ] - INFO - Success #id 12767677
+2026-07-09 21:54:46,274 - [ deepseek-v4-flash ] - INFO - Success #id 14383208
+2026-07-09 21:54:48,838 - [ deepseek-v4-flash ] - INFO - Success #id 15986102
+2026-07-09 21:54:49,449 - [ deepseek-v4-flash ] - INFO - Success #id 17140604
+2026-07-09 21:54:58,039 - [ deepseek-v4-flash ] - INFO - Success #id 42520146
+2026-07-09 21:55:05,934 - [ deepseek-v4-flash ] - INFO - Success #id 19694851
+2026-07-09 21:55:07,868 - [ deepseek-v4-flash ] - INFO - Success #id 85131168
+2026-07-09 21:55:08,867 - [ deepseek-v4-flash ] - INFO - Failed #id 20820098: <class '__main__.ContentFormatError'> 
+2026-07-09 21:55:09,194 - [ deepseek-v4-flash ] - INFO - Success #id 28742364
+2026-07-09 21:55:15,354 - [ deepseek-v4-flash ] - INFO - Success #id 35710823
+2026-07-09 21:55:20,986 - [ deepseek-v4-flash ] - INFO - Success #id 18241731
+2026-07-09 21:55:21,192 - [ deepseek-v4-flash ] - INFO - Success #id 30340086
+2026-07-09 21:55:22,317 - [ deepseek-v4-flash ] - INFO - Success #id 19344092
+2026-07-09 21:55:24,146 - [ deepseek-v4-flash ] - INFO - Success #id 32780398
+2026-07-09 21:55:28,661 - [ deepseek-v4-flash ] - INFO - Success #id 20161024
+2026-07-09 21:55:29,078 - [ deepseek-v4-flash ] - INFO - Success #id 10234598
+2026-07-09 21:55:31,841 - [ deepseek-v4-flash ] - INFO - Success #id 21234124
+2026-07-09 21:55:31,959 - [ deepseek-v4-flash ] - INFO - Success #id 94876926
+2026-07-09 21:55:38,902 - [ deepseek-v4-flash ] - INFO - Success #id 13049897
+2026-07-09 21:55:41,203 - [ deepseek-v4-flash ] - INFO - Success #id 33700715
+2026-07-09 21:55:45,366 - [ deepseek-v4-flash ] - INFO - Success #id 22083131
+2026-07-09 21:55:47,818 - [ deepseek-v4-flash ] - INFO - Success #id 16723275
+2026-07-09 21:55:49,919 - [ deepseek-v4-flash ] - INFO - Success #id 31429152
+2026-07-09 21:55:51,093 - [ deepseek-v4-flash ] - INFO - Success #id 15517790
+2026-07-09 21:55:51,706 - [ deepseek-v4-flash ] - INFO - Success #id 33643070
+2026-07-09 21:55:53,857 - [ deepseek-v4-flash ] - INFO - Success #id 28298440
+2026-07-09 21:55:58,568 - [ deepseek-v4-flash ] - INFO - Success #id 11589349
+2026-07-09 21:56:04,640 - [ deepseek-v4-flash ] - INFO - Success #id 31361237
+2026-07-09 21:56:06,251 - [ deepseek-v4-flash ] - INFO - Success #id 81862745
+2026-07-09 21:56:07,583 - [ deepseek-v4-flash ] - INFO - Success #id 16018021
+2026-07-09 21:56:09,943 - [ deepseek-v4-flash ] - INFO - Success #id 11121876
+2026-07-09 21:56:16,812 - [ deepseek-v4-flash ] - INFO - Success #id 12820350
+2026-07-09 21:56:17,683 - [ deepseek-v4-flash ] - INFO - Success #id 10164138
+2026-07-09 21:56:19,048 - [ deepseek-v4-flash ] - INFO - Success #id 83616175
+2026-07-09 21:56:20,792 - [ deepseek-v4-flash ] - INFO - Success #id 77906071
+2026-07-09 21:56:22,467 - [ deepseek-v4-flash ] - INFO - Success #id 25127075
+2026-07-09 21:56:28,572 - [ deepseek-v4-flash ] - INFO - Success #id 21309301
+2026-07-09 21:56:31,567 - [ deepseek-v4-flash ] - INFO - Success #id 77326771
+2026-07-09 21:56:34,010 - [ deepseek-v4-flash ] - INFO - Success #id 28683876
+2026-07-09 21:56:34,740 - [ deepseek-v4-flash ] - INFO - Success #id 19461336
+2026-07-09 21:56:34,946 - [ deepseek-v4-flash ] - INFO - Success #id 29499124
+2026-07-09 21:56:39,426 - [ deepseek-v4-flash ] - INFO - Success #id 36443715
+2026-07-09 21:56:40,066 - [ deepseek-v4-flash ] - INFO - Success #id 30703133
+2026-07-09 21:56:40,761 - [ deepseek-v4-flash ] - INFO - Success #id 24000997
+2026-07-09 21:56:46,433 - [ deepseek-v4-flash ] - INFO - Success #id 73951043
+2026-07-09 21:56:47,618 - [ deepseek-v4-flash ] - INFO - Success #id 15128231
+2026-07-09 21:56:51,611 - [ deepseek-v4-flash ] - INFO - Success #id 13888841
+2026-07-09 21:56:52,811 - [ deepseek-v4-flash ] - INFO - Success #id 13312030
+2026-07-09 21:56:58,690 - [ deepseek-v4-flash ] - INFO - Success #id 25832374
+2026-07-09 21:56:58,758 - [ deepseek-v4-flash ] - INFO - Success #id 92449798
+2026-07-09 21:56:59,301 - [ deepseek-v4-flash ] - INFO - Success #id 20556972
+2026-07-09 21:56:59,604 - [ deepseek-v4-flash ] - INFO - Success #id 92309086
+2026-07-09 21:57:00,117 - [ deepseek-v4-flash ] - INFO - Success #id 17423018
+2026-07-09 21:57:05,193 - [ deepseek-v4-flash ] - INFO - Success #id 13570389
+2026-07-09 21:57:06,732 - [ deepseek-v4-flash ] - INFO - Success #id 30481355
+2026-07-09 21:57:09,942 - [ deepseek-v4-flash ] - INFO - Success #id 26916535
+2026-07-09 21:57:13,014 - [ deepseek-v4-flash ] - INFO - Success #id 17963441
+2026-07-09 21:57:13,525 - [ deepseek-v4-flash ] - INFO - Success #id 11935957
+2026-07-09 21:57:18,646 - [ deepseek-v4-flash ] - INFO - Success #id 17426998
+2026-07-09 21:57:19,324 - [ deepseek-v4-flash ] - INFO - Success #id 30935728
+2026-07-09 21:57:27,147 - [ deepseek-v4-flash ] - INFO - Success #id 19733897
+2026-07-09 21:57:30,731 - [ deepseek-v4-flash ] - INFO - Success #id 22112968
+2026-07-09 21:57:30,733 - [ deepseek-v4-flash ] - INFO - Success #id 28653034
+2026-07-09 21:57:35,747 - [ deepseek-v4-flash ] - INFO - Success #id 20321998
+2026-07-09 21:57:44,117 - [ deepseek-v4-flash ] - INFO - Success #id 11173362
+2026-07-09 21:57:48,102 - [ deepseek-v4-flash ] - INFO - Success #id 24561458
+2026-07-09 21:57:48,163 - [ deepseek-v4-flash ] - INFO - Success #id 52180879
+2026-07-09 21:57:49,700 - [ deepseek-v4-flash ] - INFO - Success #id 10234542
+2026-07-09 21:57:51,213 - [ deepseek-v4-flash ] - INFO - Success #id 22032689
+2026-07-09 21:57:53,173 - [ deepseek-v4-flash ] - INFO - Failed #id 21357313: <class 'TimeoutError'> 
+2026-07-09 21:57:55,714 - [ deepseek-v4-flash ] - INFO - Success #id 15570432
+2026-07-09 21:57:59,709 - [ deepseek-v4-flash ] - INFO - Success #id 28259409
+2026-07-09 21:58:01,142 - [ deepseek-v4-flash ] - INFO - Success #id 20096033
+2026-07-09 21:58:03,129 - [ deepseek-v4-flash ] - INFO - Success #id 29763702
+2026-07-09 21:58:09,846 - [ deepseek-v4-flash ] - INFO - Success #id 24245824
+2026-07-09 21:58:11,484 - [ deepseek-v4-flash ] - INFO - Success #id 14362396
+2026-07-09 21:58:12,273 - [ deepseek-v4-flash ] - INFO - Success #id 18490219
+2026-07-09 21:58:14,761 - [ deepseek-v4-flash ] - INFO - Success #id 17706504
+2026-07-09 21:58:21,111 - [ deepseek-v4-flash ] - INFO - Success #id 31339515
+2026-07-09 21:58:25,728 - [ deepseek-v4-flash ] - INFO - Success #id 33939316
+2026-07-09 21:58:28,476 - [ deepseek-v4-flash ] - INFO - Success #id 28712032
+2026-07-09 21:58:28,995 - [ deepseek-v4-flash ] - INFO - Success #id 23360423
+2026-07-09 21:58:29,618 - [ deepseek-v4-flash ] - INFO - Success #id 12157866
+2026-07-09 21:58:33,705 - [ deepseek-v4-flash ] - INFO - Success #id 19747040
+2026-07-09 21:58:34,031 - [ deepseek-v4-flash ] - INFO - Success #id 12070402
+2026-07-09 21:58:37,295 - [ deepseek-v4-flash ] - INFO - Success #id 30440259
+2026-07-09 21:58:38,825 - [ deepseek-v4-flash ] - INFO - Success #id 21322416
+2026-07-09 21:58:44,355 - [ deepseek-v4-flash ] - INFO - Success #id 14569977
+2026-07-09 21:58:52,612 - [ deepseek-v4-flash ] - INFO - Success #id 26328637
+2026-07-09 21:58:53,171 - [ deepseek-v4-flash ] - INFO - Success #id 10198862
+2026-07-09 21:58:53,222 - [ deepseek-v4-flash ] - INFO - Success #id 10620456
+2026-07-09 21:58:55,557 - [ deepseek-v4-flash ] - INFO - Success #id 27688661
+2026-07-09 21:58:59,697 - [ deepseek-v4-flash ] - INFO - Success #id 37922646
+2026-07-09 21:58:59,824 - [ deepseek-v4-flash ] - INFO - Success #id 15397071
+2026-07-09 21:59:02,879 - [ deepseek-v4-flash ] - INFO - Success #id 21037669
+2026-07-09 21:59:21,560 - [ deepseek-v4-flash ] - INFO - Success #id 13153974
+2026-07-09 21:59:26,190 - [ deepseek-v4-flash ] - INFO - Success #id 14439564
+2026-07-09 21:59:28,251 - [ deepseek-v4-flash ] - INFO - Success #id 27581763
+2026-07-09 21:59:43,336 - [ deepseek-v4-flash ] - INFO - Success #id 11624016
+2026-07-09 21:59:45,286 - [ deepseek-v4-flash ] - INFO - Success #id 10616021
+2026-07-09 21:59:49,837 - [ deepseek-v4-flash ] - INFO - Success #id 18576067
+2026-07-09 21:59:51,908 - [ deepseek-v4-flash ] - INFO - Success #id 18093183
+2026-07-09 21:59:51,977 - [ deepseek-v4-flash ] - INFO - Success #id 30274553
+2026-07-09 21:59:53,989 - [ deepseek-v4-flash ] - INFO - Success #id 29116376
+2026-07-09 21:59:58,186 - [ deepseek-v4-flash ] - INFO - Success #id 20427944
+2026-07-09 21:59:59,517 - [ deepseek-v4-flash ] - INFO - Success #id 52287923
+2026-07-09 22:00:01,772 - [ deepseek-v4-flash ] - INFO - Success #id 34233977
+2026-07-09 22:00:07,328 - [ deepseek-v4-flash ] - INFO - Success #id 18070782
+2026-07-09 22:00:11,676 - [ deepseek-v4-flash ] - INFO - Success #id 13916672
+2026-07-09 22:00:14,467 - [ deepseek-v4-flash ] - INFO - Success #id 16985283
+2026-07-09 22:00:20,435 - [ deepseek-v4-flash ] - INFO - Success #id 10600808
+2026-07-09 22:00:24,197 - [ deepseek-v4-flash ] - INFO - Success #id 23210049
+2026-07-09 22:00:26,246 - [ deepseek-v4-flash ] - INFO - Success #id 23411945
+2026-07-09 22:00:31,936 - [ deepseek-v4-flash ] - INFO - Success #id 24261327
+2026-07-09 22:00:48,678 - [ deepseek-v4-flash ] - INFO - Success #id 19230316
+2026-07-09 22:00:48,679 - [ deepseek-v4-flash ] - INFO - Completed: 854
+2026-07-09 22:00:48,679 - [ deepseek-v4-flash ] - INFO - Failed: 10
+2026-07-09 23:43:29,632 - [ deepseek-v4-flash ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-zroRbFJGCYexbM2IRI8MzPr3NuoQm3ZCTAoGWBOAvjPyk0fQ', 'api_port': 4000, 'base_url': 'https://api.vectorengine.ai/v1', 'multiworker': 4, 'llm': 'deepseek-v4-flash', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 23:43:29,634 - [ deepseek-v4-flash ] - INFO - Detected 854 has been inferenced,
+2026-07-09 23:43:29,634 - [ deepseek-v4-flash ] - INFO - Start inferencing 10 tasks...
+2026-07-09 23:43:57,181 - [ deepseek-v4-flash ] - INFO - # TASK LIST #:
+{"id": "get_weather", "desc": "Get the weather for a specific city and a specific day", "parameters": ["location", "date"]}
+{"id": "get_news_for_topic", "desc": "Get the news for a specific topic", "parameters": ["topic"]}
+{"id": "stock_operation", "desc": "Do a specific operation on a specific stock", "parameters": ["stock", "operation"]}
+{"id": "book_flight", "desc": "Book a flight for a specific date, from a specific location to a specific destination", "parameters": ["date", "from", "to"]}
+{"id": "book_hotel", "desc": "Book a specific hotel for a specific date", "parameters": ["date", "name"]}
+{"id": "book_restaurant", "desc": "Book a specific restaurant for a specific date", "parameters": ["date", "name"]}
+{"id": "book_car", "desc": "Book a car for a specific date, in a specific location", "parameters": ["date", "location"]}
+{"id": "online_shopping", "desc": "Buy a product from a specific website", "parameters": ["website", "product"]}
+{"id": "send_email", "desc": "Send an email to a specific email address", "parameters": ["email_address", "content"]}
+{"id": "send_sms", "desc": "Send an sms to a specific phone number", "parameters": ["phone_number", "content"]}
+{"id": "share_by_social_network", "desc": "Share a specific content by a specific social network", "parameters": ["content", "social_network"]}
+{"id": "search_by_engine", "desc": "Search a specific query by a specific search engine", "parameters": ["query", "engine"]}
+{"id": "apply_for_job", "desc": "Apply for a specific job", "parameters": ["job"]}
+{"id": "see_doctor_online", "desc": "See a specific doctor for a specific disease", "parameters": ["disease", "doctor"]}
+{"id": "consult_lawyer_online", "desc": "Consult a specific lawyer for a specific legal issue", "parameters": ["issue", "lawyer"]}
+{"id": "enroll_in_course", "desc": "Enroll in a specific course at a specific university", "parameters": ["course", "university"]}
+{"id": "buy_insurance", "desc": "Buy a specific insurance from a specific insurance company", "parameters": ["insurance", "company"]}
+{"id": "online_banking", "desc": "Do a specific banking operation online at a specific bank", "parameters": ["instruction", "bank"]}
+{"id": "daily_bill_payment", "desc": "Pay a specific bill", "parameters": ["bill"]}
+{"id": "sell_item_online", "desc": "Sell a specific item at a specific online store", "parameters": ["item", "store"]}
+{"id": "do_tax_return", "desc": "Do the tax return for a specific year", "parameters": ["year"]}
+{"id": "apply_for_passport", "desc": "Apply for a passport", "parameters": ["country"]}
+{"id": "pay_for_credit_card", "desc": "Pay for a specific credit card", "parameters": ["credit_card"]}
+{"id": "auto_housework_by_robot", "desc": "Let a robot do a housework by following a specific instruction", "parameters": ["instruction"]}
+{"id": "auto_driving_to_destination", "desc": "Let a car drive to a specific destination", "parameters": ["destination"]}
+{"id": "deliver_package", "desc": "Deliver a specific package to a specific destination", "parameters": ["package", "destination"]}
+{"id": "order_food_delivery", "desc": "Order a specific food to be delivered to a specific location at a specific platform", "parameters": ["food", "location", "platform"]}
+{"id": "order_taxi", "desc": "Order a taxi to a specific location at a specific platform", "parameters": ["location", "platform"]}
+{"id": "play_music_by_title", "desc": "Play a specific music by a specific title", "parameters": ["title"]}
+{"id": "play_movie_by_title", "desc": "Play a specific movie by a specific title", "parameters": ["title"]}
+{"id": "take_note", "desc": "Take a note", "parameters": ["content"]}
+{"id": "borrow_book_online", "desc": "Borrow a specific book from a specific library", "parameters": ["book", "library"]}
+{"id": "recording_audio", "desc": "Record an audio", "parameters": ["content"]}
+{"id": "make_video_call", "desc": "Make a video call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "make_voice_call", "desc": "Make a voice call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "organize_meeting_online", "desc": "Organize a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "attend_meeting_online", "desc": "Attend a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "software_management", "desc": "Manage a specific software by a specific instruction", "parameters": ["software", "instruction"]}
+{"id": "print_document", "desc": "Print a specific document", "parameters": ["document"]}
+{"id": "set_alarm", "desc": "Set an alarm for a specific time", "parameters": ["time"]}
+
+# GOAL #:
+Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;
+
+# USER REQUEST #: I'm currently dealing with a contract dispute and would like to seek professional advice. Can you arrange a consultation for me with the lawyer John Doe? I'd like to use my Visa 1234 credit card to settle the consultation fee. Also, once that's done, could you help me share my experience on Twitter?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 23:43:57,183 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 23:43:57,184 - [ deepseek-v4-flash ] - INFO - [warning] #id 30846316 Illegal JSON format: 
+2026-07-09 23:43:57,186 - [ deepseek-v4-flash ] - INFO - [reformat] #id 30846316 Detected illegal JSON format, try to reformat by deepseek-v4-flash...
+2026-07-09 23:44:09,488 - [ deepseek-v4-flash ] - INFO - Please format the result # RESULT # to a strict JSON format # STRICT JSON FORMAT #. 
+Requirements:
+1. Do not change the meaning of task steps, task nodes and task links;
+2. Don't tolerate any possible irregular formatting to ensure that the generated content can be converted by json.loads();
+3. Pay attention to the matching of brackets. Write in a compact format and avoid using too many space formatting controls;
+4. You must output the result in this schema: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+# RESULT #:
+# STRICT JSON FORMAT #:
+2026-07-09 23:44:09,489 - [ deepseek-v4-flash ] - INFO - I need the actual result content to format it into the specified JSON schema. Please provide the result you want me to convert.
+2026-07-09 23:44:09,489 - [ deepseek-v4-flash ] - INFO - Failed #id 30846316: <class '__main__.ContentFormatError'> I need the actual result content to format it into the specified JSON schema. Please provide the result you want me to convert.
+2026-07-09 23:44:31,790 - [ deepseek-v4-flash ] - INFO - Success #id 51155708
+2026-07-09 23:44:43,494 - [ deepseek-v4-flash ] - INFO - Success #id 23302187
+2026-07-09 23:44:52,269 - [ deepseek-v4-flash ] - INFO - Success #id 15940373
+2026-07-09 23:45:07,316 - [ deepseek-v4-flash ] - INFO - Success #id 27776877
+2026-07-09 23:45:17,572 - [ deepseek-v4-flash ] - INFO - Success #id 19953474
+2026-07-09 23:45:27,086 - [ deepseek-v4-flash ] - INFO - Success #id 17259422
+2026-07-09 23:45:34,614 - [ deepseek-v4-flash ] - INFO - Success #id 20820098
+2026-07-09 23:45:37,600 - [ deepseek-v4-flash ] - INFO - Success #id 15216393
+2026-07-09 23:45:47,669 - [ deepseek-v4-flash ] - INFO - Success #id 21357313
+2026-07-09 23:45:47,670 - [ deepseek-v4-flash ] - INFO - Completed: 9
+2026-07-09 23:45:47,671 - [ deepseek-v4-flash ] - INFO - Failed: 1
+2026-07-09 23:45:52,705 - [ deepseek-v4-flash ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-zroRbFJGCYexbM2IRI8MzPr3NuoQm3ZCTAoGWBOAvjPyk0fQ', 'api_port': 4000, 'base_url': 'https://api.vectorengine.ai/v1', 'multiworker': 4, 'llm': 'deepseek-v4-flash', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 23:45:52,707 - [ deepseek-v4-flash ] - INFO - Detected 863 has been inferenced,
+2026-07-09 23:45:52,707 - [ deepseek-v4-flash ] - INFO - Start inferencing 1 tasks...
+2026-07-09 23:46:28,418 - [ deepseek-v4-flash ] - INFO - # TASK LIST #:
+{"id": "get_weather", "desc": "Get the weather for a specific city and a specific day", "parameters": ["location", "date"]}
+{"id": "get_news_for_topic", "desc": "Get the news for a specific topic", "parameters": ["topic"]}
+{"id": "stock_operation", "desc": "Do a specific operation on a specific stock", "parameters": ["stock", "operation"]}
+{"id": "book_flight", "desc": "Book a flight for a specific date, from a specific location to a specific destination", "parameters": ["date", "from", "to"]}
+{"id": "book_hotel", "desc": "Book a specific hotel for a specific date", "parameters": ["date", "name"]}
+{"id": "book_restaurant", "desc": "Book a specific restaurant for a specific date", "parameters": ["date", "name"]}
+{"id": "book_car", "desc": "Book a car for a specific date, in a specific location", "parameters": ["date", "location"]}
+{"id": "online_shopping", "desc": "Buy a product from a specific website", "parameters": ["website", "product"]}
+{"id": "send_email", "desc": "Send an email to a specific email address", "parameters": ["email_address", "content"]}
+{"id": "send_sms", "desc": "Send an sms to a specific phone number", "parameters": ["phone_number", "content"]}
+{"id": "share_by_social_network", "desc": "Share a specific content by a specific social network", "parameters": ["content", "social_network"]}
+{"id": "search_by_engine", "desc": "Search a specific query by a specific search engine", "parameters": ["query", "engine"]}
+{"id": "apply_for_job", "desc": "Apply for a specific job", "parameters": ["job"]}
+{"id": "see_doctor_online", "desc": "See a specific doctor for a specific disease", "parameters": ["disease", "doctor"]}
+{"id": "consult_lawyer_online", "desc": "Consult a specific lawyer for a specific legal issue", "parameters": ["issue", "lawyer"]}
+{"id": "enroll_in_course", "desc": "Enroll in a specific course at a specific university", "parameters": ["course", "university"]}
+{"id": "buy_insurance", "desc": "Buy a specific insurance from a specific insurance company", "parameters": ["insurance", "company"]}
+{"id": "online_banking", "desc": "Do a specific banking operation online at a specific bank", "parameters": ["instruction", "bank"]}
+{"id": "daily_bill_payment", "desc": "Pay a specific bill", "parameters": ["bill"]}
+{"id": "sell_item_online", "desc": "Sell a specific item at a specific online store", "parameters": ["item", "store"]}
+{"id": "do_tax_return", "desc": "Do the tax return for a specific year", "parameters": ["year"]}
+{"id": "apply_for_passport", "desc": "Apply for a passport", "parameters": ["country"]}
+{"id": "pay_for_credit_card", "desc": "Pay for a specific credit card", "parameters": ["credit_card"]}
+{"id": "auto_housework_by_robot", "desc": "Let a robot do a housework by following a specific instruction", "parameters": ["instruction"]}
+{"id": "auto_driving_to_destination", "desc": "Let a car drive to a specific destination", "parameters": ["destination"]}
+{"id": "deliver_package", "desc": "Deliver a specific package to a specific destination", "parameters": ["package", "destination"]}
+{"id": "order_food_delivery", "desc": "Order a specific food to be delivered to a specific location at a specific platform", "parameters": ["food", "location", "platform"]}
+{"id": "order_taxi", "desc": "Order a taxi to a specific location at a specific platform", "parameters": ["location", "platform"]}
+{"id": "play_music_by_title", "desc": "Play a specific music by a specific title", "parameters": ["title"]}
+{"id": "play_movie_by_title", "desc": "Play a specific movie by a specific title", "parameters": ["title"]}
+{"id": "take_note", "desc": "Take a note", "parameters": ["content"]}
+{"id": "borrow_book_online", "desc": "Borrow a specific book from a specific library", "parameters": ["book", "library"]}
+{"id": "recording_audio", "desc": "Record an audio", "parameters": ["content"]}
+{"id": "make_video_call", "desc": "Make a video call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "make_voice_call", "desc": "Make a voice call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "organize_meeting_online", "desc": "Organize a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "attend_meeting_online", "desc": "Attend a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "software_management", "desc": "Manage a specific software by a specific instruction", "parameters": ["software", "instruction"]}
+{"id": "print_document", "desc": "Print a specific document", "parameters": ["document"]}
+{"id": "set_alarm", "desc": "Set an alarm for a specific time", "parameters": ["time"]}
+
+# GOAL #:
+Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;
+
+# USER REQUEST #: I'm currently dealing with a contract dispute and would like to seek professional advice. Can you arrange a consultation for me with the lawyer John Doe? I'd like to use my Visa 1234 credit card to settle the consultation fee. Also, once that's done, could you help me share my experience on Twitter?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 23:46:28,419 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 23:46:28,420 - [ deepseek-v4-flash ] - INFO - [warning] #id 30846316 Illegal JSON format: 
+2026-07-09 23:46:28,420 - [ deepseek-v4-flash ] - INFO - [reformat] #id 30846316 Detected illegal JSON format, try to reformat by deepseek-v4-flash...
+2026-07-09 23:46:41,124 - [ deepseek-v4-flash ] - INFO - Please format the result # RESULT # to a strict JSON format # STRICT JSON FORMAT #. 
+Requirements:
+1. Do not change the meaning of task steps, task nodes and task links;
+2. Don't tolerate any possible irregular formatting to ensure that the generated content can be converted by json.loads();
+3. Pay attention to the matching of brackets. Write in a compact format and avoid using too many space formatting controls;
+4. You must output the result in this schema: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+# RESULT #:
+# STRICT JSON FORMAT #:
+2026-07-09 23:46:41,124 - [ deepseek-v4-flash ] - INFO - {"task_steps": [], "task_nodes": [], "task_links": []}
+2026-07-09 23:46:41,125 - [ deepseek-v4-flash ] - INFO - Success #id 30846316
+2026-07-09 23:46:41,126 - [ deepseek-v4-flash ] - INFO - Completed: 1
+2026-07-09 23:46:41,126 - [ deepseek-v4-flash ] - INFO - Failed: 0

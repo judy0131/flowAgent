@@ -1,0 +1,543 @@
+2026-07-14 14:25:36,639 - [ qwen3-14b ] - INFO - Starts with: {'data_dir': 'taskbench/data_huggingface', 'prediction_dir': 'predictions_reformat_by_self', 'save_dir': None, 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'qwen3-14b', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-07-14 14:25:36,642 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:36,642 - [ qwen3-14b ] - INFO - Tools Number: overall, Task Split: overall
+2026-07-14 14:25:36,896 - [ qwen3-14b ] - INFO - Step Supports: 0 / 1492
+2026-07-14 14:25:36,897 - [ qwen3-14b ] - INFO - Node Support: 1492 / 1492
+2026-07-14 14:25:36,897 - [ qwen3-14b ] - INFO - Link Support: 1492 / 1492
+2026-07-14 14:25:36,924 - [ qwen3-14b ] - INFO - Argument Support: 1492 / 1492
+2026-07-14 14:25:36,966 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.7360728075013789
+2026-07-14 14:25:36,967 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.7397450110864745
+2026-07-14 14:25:36,967 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.7379043406137683
+2026-07-14 14:25:36,967 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.7623563540517273
+2026-07-14 14:25:36,968 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.7306556112927566
+2026-07-14 14:25:36,968 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.7224066183606496
+2026-07-14 14:25:36,968 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:36,969 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:36,969 - [ qwen3-14b ] - INFO -           Token Classification        89.81        66.90        76.68          145
+2026-07-14 14:25:36,971 - [ qwen3-14b ] - INFO -                    Translation        97.04        91.62        94.25          179
+2026-07-14 14:25:36,972 - [ qwen3-14b ] - INFO -                  Summarization        70.59        85.71        77.42          182
+2026-07-14 14:25:36,973 - [ qwen3-14b ] - INFO -             Question Answering        62.50        60.28        61.37          141
+2026-07-14 14:25:36,974 - [ qwen3-14b ] - INFO -                 Conversational        86.46        51.88        64.84          160
+2026-07-14 14:25:36,975 - [ qwen3-14b ] - INFO -                Text Generation        45.56        69.33        54.99          163
+2026-07-14 14:25:36,976 - [ qwen3-14b ] - INFO -            Sentence Similarity        94.44        88.81        91.54          134
+2026-07-14 14:25:36,976 - [ qwen3-14b ] - INFO -         Tabular Classification        74.63        81.97        78.12          122
+2026-07-14 14:25:36,976 - [ qwen3-14b ] - INFO -               Object Detection        71.35        79.87        75.37          159
+2026-07-14 14:25:36,976 - [ qwen3-14b ] - INFO -           Image Classification        53.14        77.44        63.03          164
+2026-07-14 14:25:36,977 - [ qwen3-14b ] - INFO -                 Image-to-Image        56.82        51.55        54.05           97
+2026-07-14 14:25:36,977 - [ qwen3-14b ] - INFO -                  Image-to-Text        47.21        88.34        61.54          163
+2026-07-14 14:25:36,977 - [ qwen3-14b ] - INFO -                  Text-to-Image        85.00        90.91        87.86          187
+2026-07-14 14:25:36,978 - [ qwen3-14b ] - INFO -                  Text-to-Video        96.61        95.80        96.20          119
+2026-07-14 14:25:36,979 - [ qwen3-14b ] - INFO -      Visual Question Answering        62.12        22.91        33.47          179
+2026-07-14 14:25:36,979 - [ qwen3-14b ] - INFO -    Document Question Answering        62.12        25.15        35.81          163
+2026-07-14 14:25:36,979 - [ qwen3-14b ] - INFO -             Image Segmentation        90.38        59.87        72.03          157
+2026-07-14 14:25:36,980 - [ qwen3-14b ] - INFO -               Depth Estimation        99.32        89.02        93.89          164
+2026-07-14 14:25:36,980 - [ qwen3-14b ] - INFO -                 Text-to-Speech        97.00        95.10        96.04          204
+2026-07-14 14:25:36,980 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        56.69        98.63        72.00          146
+2026-07-14 14:25:36,980 - [ qwen3-14b ] - INFO -                 Audio-to-Audio        81.73        80.19        80.95          106
+2026-07-14 14:25:36,982 - [ qwen3-14b ] - INFO -           Audio Classification        86.79        35.38        50.27          130
+2026-07-14 14:25:36,982 - [ qwen3-14b ] - INFO -                  Image Editing        86.09        93.85        89.80          244
+2026-07-14 14:25:36,982 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:36,983 - [ qwen3-14b ] - INFO -                          micro        73.61        73.97        73.79         3608
+2026-07-14 14:25:36,983 - [ qwen3-14b ] - INFO -                          macro        76.24        73.07        72.24         3608
+2026-07-14 14:25:37,004 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5852574391900235
+2026-07-14 14:25:37,023 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.38956444837497234
+2026-07-14 14:25:37,037 - [ qwen3-14b ] - INFO - Edit Distance: 0.29486656663265476
+2026-07-14 14:25:37,055 - [ qwen3-14b ] - INFO - Link Binary F1: 0.39069979484841577
+2026-07-14 14:25:37,069 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:37,070 - [ qwen3-14b ] - INFO - Tools Number: overall, Task Split: single
+2026-07-14 14:25:37,239 - [ qwen3-14b ] - INFO - Step Supports: 0 / 613
+2026-07-14 14:25:37,240 - [ qwen3-14b ] - INFO - Node Support: 613 / 613
+2026-07-14 14:25:37,241 - [ qwen3-14b ] - INFO - Link Support: 613 / 613
+2026-07-14 14:25:37,241 - [ qwen3-14b ] - INFO - Argument Support: 613 / 613
+2026-07-14 14:25:37,252 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.6979591836734694
+2026-07-14 14:25:37,252 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.8724489795918368
+2026-07-14 14:25:37,252 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.7755102040816326
+2026-07-14 14:25:37,253 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.7657689606856242
+2026-07-14 14:25:37,253 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.8455879306723451
+2026-07-14 14:25:37,253 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.7443621799286729
+2026-07-14 14:25:37,254 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:37,254 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:37,255 - [ qwen3-14b ] - INFO -           Token Classification        97.37       100.00        98.67           37
+2026-07-14 14:25:37,255 - [ qwen3-14b ] - INFO -                    Translation       100.00       100.00       100.00           23
+2026-07-14 14:25:37,255 - [ qwen3-14b ] - INFO -                  Summarization        60.38       100.00        75.29           32
+2026-07-14 14:25:37,255 - [ qwen3-14b ] - INFO -             Question Answering        82.14        95.83        88.46           24
+2026-07-14 14:25:37,256 - [ qwen3-14b ] - INFO -                 Conversational        93.33        46.67        62.22           30
+2026-07-14 14:25:37,256 - [ qwen3-14b ] - INFO -                Text Generation        32.31        91.30        47.73           23
+2026-07-14 14:25:37,256 - [ qwen3-14b ] - INFO -            Sentence Similarity       100.00       100.00       100.00           36
+2026-07-14 14:25:37,256 - [ qwen3-14b ] - INFO -         Tabular Classification        60.87        87.50        71.79           16
+2026-07-14 14:25:37,256 - [ qwen3-14b ] - INFO -               Object Detection        77.78        96.55        86.15           29
+2026-07-14 14:25:37,256 - [ qwen3-14b ] - INFO -           Image Classification        53.85        96.55        69.14           29
+2026-07-14 14:25:37,257 - [ qwen3-14b ] - INFO -                 Image-to-Image        27.27        60.00        37.50            5
+2026-07-14 14:25:37,259 - [ qwen3-14b ] - INFO -                  Image-to-Text        49.25       100.00        66.00           33
+2026-07-14 14:25:37,259 - [ qwen3-14b ] - INFO -                  Text-to-Image        65.91       100.00        79.45           29
+2026-07-14 14:25:37,260 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00        95.00        97.44           20
+2026-07-14 14:25:37,260 - [ qwen3-14b ] - INFO -      Visual Question Answering       100.00        11.11        20.00           18
+2026-07-14 14:25:37,261 - [ qwen3-14b ] - INFO -    Document Question Answering       100.00        12.50        22.22           24
+2026-07-14 14:25:37,261 - [ qwen3-14b ] - INFO -             Image Segmentation        82.14        95.83        88.46           24
+2026-07-14 14:25:37,262 - [ qwen3-14b ] - INFO -               Depth Estimation       100.00       100.00       100.00           28
+2026-07-14 14:25:37,262 - [ qwen3-14b ] - INFO -                 Text-to-Speech        93.75       100.00        96.77           30
+2026-07-14 14:25:37,263 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        44.23       100.00        61.33           23
+2026-07-14 14:25:37,263 - [ qwen3-14b ] - INFO -                 Audio-to-Audio        77.78       100.00        87.50           21
+2026-07-14 14:25:37,265 - [ qwen3-14b ] - INFO -           Audio Classification        82.35        56.00        66.67           25
+2026-07-14 14:25:37,265 - [ qwen3-14b ] - INFO -                  Image Editing        80.56       100.00        89.23           29
+2026-07-14 14:25:37,265 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:37,265 - [ qwen3-14b ] - INFO -                          micro        69.80        87.24        77.55          588
+2026-07-14 14:25:37,268 - [ qwen3-14b ] - INFO -                          macro        76.58        84.56        74.44          588
+2026-07-14 14:25:37,274 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5950413223140496
+2026-07-14 14:25:37,283 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4351297405189621
+2026-07-14 14:25:37,289 - [ qwen3-14b ] - INFO - Edit Distance: 0.22952691680260895
+2026-07-14 14:25:37,297 - [ qwen3-14b ] - INFO - Link Binary F1: 0.0
+2026-07-14 14:25:37,303 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:37,303 - [ qwen3-14b ] - INFO - Tools Number: overall, Task Split: chain
+2026-07-14 14:25:37,426 - [ qwen3-14b ] - INFO - Step Supports: 0 / 720
+2026-07-14 14:25:37,428 - [ qwen3-14b ] - INFO - Node Support: 720 / 720
+2026-07-14 14:25:37,428 - [ qwen3-14b ] - INFO - Link Support: 720 / 720
+2026-07-14 14:25:37,429 - [ qwen3-14b ] - INFO - Argument Support: 720 / 720
+2026-07-14 14:25:37,446 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.7434464976364418
+2026-07-14 14:25:37,447 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.7131079967023908
+2026-07-14 14:25:37,447 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.7279612876078266
+2026-07-14 14:25:37,447 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.7638014282345794
+2026-07-14 14:25:37,448 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.7029111711067764
+2026-07-14 14:25:37,448 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.7091781060476461
+2026-07-14 14:25:37,449 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:37,449 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:37,450 - [ qwen3-14b ] - INFO -           Token Classification        87.27        56.47        68.57           85
+2026-07-14 14:25:37,450 - [ qwen3-14b ] - INFO -                    Translation        96.67        89.92        93.17          129
+2026-07-14 14:25:37,450 - [ qwen3-14b ] - INFO -                  Summarization        76.47        82.54        79.39          126
+2026-07-14 14:25:37,450 - [ qwen3-14b ] - INFO -             Question Answering        60.00        53.12        56.35           96
+2026-07-14 14:25:37,452 - [ qwen3-14b ] - INFO -                 Conversational        85.07        53.77        65.90          106
+2026-07-14 14:25:37,452 - [ qwen3-14b ] - INFO -                Text Generation        49.32        63.48        55.51          115
+2026-07-14 14:25:37,453 - [ qwen3-14b ] - INFO -            Sentence Similarity        90.48        80.28        85.07           71
+2026-07-14 14:25:37,453 - [ qwen3-14b ] - INFO -         Tabular Classification        75.53        80.68        78.02           88
+2026-07-14 14:25:37,454 - [ qwen3-14b ] - INFO -               Object Detection        69.83        77.14        73.30          105
+2026-07-14 14:25:37,456 - [ qwen3-14b ] - INFO -           Image Classification        53.19        75.00        62.24          100
+2026-07-14 14:25:37,456 - [ qwen3-14b ] - INFO -                 Image-to-Image        61.11        53.01        56.77           83
+2026-07-14 14:25:37,457 - [ qwen3-14b ] - INFO -                  Image-to-Text        46.63        84.11        60.00          107
+2026-07-14 14:25:37,457 - [ qwen3-14b ] - INFO -                  Text-to-Image        90.77        89.39        90.08          132
+2026-07-14 14:25:37,458 - [ qwen3-14b ] - INFO -                  Text-to-Video        94.59        97.22        95.89           72
+2026-07-14 14:25:37,458 - [ qwen3-14b ] - INFO -      Visual Question Answering        57.69        25.64        35.50          117
+2026-07-14 14:25:37,459 - [ qwen3-14b ] - INFO -    Document Question Answering        63.04        25.66        36.48          113
+2026-07-14 14:25:37,459 - [ qwen3-14b ] - INFO -             Image Segmentation        92.19        52.21        66.67          113
+2026-07-14 14:25:37,459 - [ qwen3-14b ] - INFO -               Depth Estimation        98.95        88.68        93.53          106
+2026-07-14 14:25:37,460 - [ qwen3-14b ] - INFO -                 Text-to-Speech        97.10        95.04        96.06          141
+2026-07-14 14:25:37,460 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        57.23        98.91        72.51           92
+2026-07-14 14:25:37,461 - [ qwen3-14b ] - INFO -                 Audio-to-Audio        81.25        73.24        77.04           71
+2026-07-14 14:25:37,461 - [ qwen3-14b ] - INFO -           Audio Classification        85.71        29.63        44.04           81
+2026-07-14 14:25:37,462 - [ qwen3-14b ] - INFO -                  Image Editing        86.63        91.53        89.01          177
+2026-07-14 14:25:37,463 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:37,463 - [ qwen3-14b ] - INFO -                          micro        74.34        71.31        72.80         2426
+2026-07-14 14:25:37,464 - [ qwen3-14b ] - INFO -                          macro        76.38        70.29        70.92         2426
+2026-07-14 14:25:37,474 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5804788213627993
+2026-07-14 14:25:37,492 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.3734083016371755
+2026-07-14 14:25:37,501 - [ qwen3-14b ] - INFO - Edit Distance: 0.3445058375266701
+2026-07-14 14:25:37,514 - [ qwen3-14b ] - INFO - Link Binary F1: 0.397196261682243
+2026-07-14 14:25:37,520 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:37,521 - [ qwen3-14b ] - INFO - Tools Number: overall, Task Split: dag
+2026-07-14 14:25:37,670 - [ qwen3-14b ] - INFO - Step Supports: 0 / 159
+2026-07-14 14:25:37,670 - [ qwen3-14b ] - INFO - Node Support: 159 / 159
+2026-07-14 14:25:37,671 - [ qwen3-14b ] - INFO - Link Support: 159 / 159
+2026-07-14 14:25:37,671 - [ qwen3-14b ] - INFO - Argument Support: 159 / 159
+2026-07-14 14:25:37,682 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.7553191489361702
+2026-07-14 14:25:37,683 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.7171717171717171
+2026-07-14 14:25:37,683 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.7357512953367875
+2026-07-14 14:25:37,684 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.785188180255985
+2026-07-14 14:25:37,684 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.7105106501478231
+2026-07-14 14:25:37,684 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.7188869841938501
+2026-07-14 14:25:37,684 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:37,684 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:37,684 - [ qwen3-14b ] - INFO -           Token Classification        80.00        52.17        63.16           23
+2026-07-14 14:25:37,685 - [ qwen3-14b ] - INFO -                    Translation        96.15        92.59        94.34           27
+2026-07-14 14:25:37,685 - [ qwen3-14b ] - INFO -                  Summarization        62.50        83.33        71.43           24
+2026-07-14 14:25:37,685 - [ qwen3-14b ] - INFO -             Question Answering        47.83        52.38        50.00           21
+2026-07-14 14:25:37,685 - [ qwen3-14b ] - INFO -                 Conversational        85.71        50.00        63.16           24
+2026-07-14 14:25:37,686 - [ qwen3-14b ] - INFO -                Text Generation        54.29        76.00        63.33           25
+2026-07-14 14:25:37,687 - [ qwen3-14b ] - INFO -            Sentence Similarity        96.30        96.30        96.30           27
+2026-07-14 14:25:37,687 - [ qwen3-14b ] - INFO -         Tabular Classification        88.24        83.33        85.71           18
+2026-07-14 14:25:37,688 - [ qwen3-14b ] - INFO -               Object Detection        69.23        72.00        70.59           25
+2026-07-14 14:25:37,689 - [ qwen3-14b ] - INFO -           Image Classification        52.17        68.57        59.26           35
+2026-07-14 14:25:37,690 - [ qwen3-14b ] - INFO -                 Image-to-Image        60.00        33.33        42.86            9
+2026-07-14 14:25:37,691 - [ qwen3-14b ] - INFO -                  Image-to-Text        46.67        91.30        61.76           23
+2026-07-14 14:25:37,692 - [ qwen3-14b ] - INFO -                  Text-to-Image        88.46        88.46        88.46           26
+2026-07-14 14:25:37,693 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00        92.59        96.15           27
+2026-07-14 14:25:37,693 - [ qwen3-14b ] - INFO -      Visual Question Answering        75.00        20.45        32.14           44
+2026-07-14 14:25:37,693 - [ qwen3-14b ] - INFO -    Document Question Answering        52.94        34.62        41.86           26
+2026-07-14 14:25:37,694 - [ qwen3-14b ] - INFO -             Image Segmentation       100.00        60.00        75.00           20
+2026-07-14 14:25:37,694 - [ qwen3-14b ] - INFO -               Depth Estimation       100.00        80.00        88.89           30
+2026-07-14 14:25:37,694 - [ qwen3-14b ] - INFO -                 Text-to-Speech       100.00        90.91        95.24           33
+2026-07-14 14:25:37,695 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        69.77        96.77        81.08           31
+2026-07-14 14:25:37,695 - [ qwen3-14b ] - INFO -                 Audio-to-Audio        92.31        85.71        88.89           14
+2026-07-14 14:25:37,695 - [ qwen3-14b ] - INFO -           Audio Classification       100.00        33.33        50.00           24
+2026-07-14 14:25:37,696 - [ qwen3-14b ] - INFO -                  Image Editing        88.37       100.00        93.83           38
+2026-07-14 14:25:37,696 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:37,696 - [ qwen3-14b ] - INFO -                          micro        75.53        71.72        73.58          594
+2026-07-14 14:25:37,696 - [ qwen3-14b ] - INFO -                          macro        78.52        71.05        71.89          594
+2026-07-14 14:25:37,701 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5949177877428998
+2026-07-14 14:25:37,707 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4090909090909091
+2026-07-14 14:25:37,710 - [ qwen3-14b ] - INFO - Edit Distance: 0.3219919144447445
+2026-07-14 14:25:37,721 - [ qwen3-14b ] - INFO - Link Binary F1: 0.4392059553349876
+2026-07-14 14:25:37,724 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:37,724 - [ qwen3-14b ] - INFO - Tools Number: 1, Task Split: overall
+2026-07-14 14:25:37,817 - [ qwen3-14b ] - INFO - Step Supports: 0 / 613
+2026-07-14 14:25:37,817 - [ qwen3-14b ] - INFO - Node Support: 613 / 613
+2026-07-14 14:25:37,818 - [ qwen3-14b ] - INFO - Link Support: 613 / 613
+2026-07-14 14:25:37,818 - [ qwen3-14b ] - INFO - Argument Support: 613 / 613
+2026-07-14 14:25:37,830 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.6979591836734694
+2026-07-14 14:25:37,831 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.8724489795918368
+2026-07-14 14:25:37,831 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.7755102040816326
+2026-07-14 14:25:37,831 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.7657689606856242
+2026-07-14 14:25:37,831 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.8455879306723451
+2026-07-14 14:25:37,832 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.7443621799286729
+2026-07-14 14:25:37,832 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:37,832 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:37,832 - [ qwen3-14b ] - INFO -           Token Classification        97.37       100.00        98.67           37
+2026-07-14 14:25:37,832 - [ qwen3-14b ] - INFO -                    Translation       100.00       100.00       100.00           23
+2026-07-14 14:25:37,832 - [ qwen3-14b ] - INFO -                  Summarization        60.38       100.00        75.29           32
+2026-07-14 14:25:37,832 - [ qwen3-14b ] - INFO -             Question Answering        82.14        95.83        88.46           24
+2026-07-14 14:25:37,834 - [ qwen3-14b ] - INFO -                 Conversational        93.33        46.67        62.22           30
+2026-07-14 14:25:37,834 - [ qwen3-14b ] - INFO -                Text Generation        32.31        91.30        47.73           23
+2026-07-14 14:25:37,834 - [ qwen3-14b ] - INFO -            Sentence Similarity       100.00       100.00       100.00           36
+2026-07-14 14:25:37,835 - [ qwen3-14b ] - INFO -         Tabular Classification        60.87        87.50        71.79           16
+2026-07-14 14:25:37,835 - [ qwen3-14b ] - INFO -               Object Detection        77.78        96.55        86.15           29
+2026-07-14 14:25:37,835 - [ qwen3-14b ] - INFO -           Image Classification        53.85        96.55        69.14           29
+2026-07-14 14:25:37,835 - [ qwen3-14b ] - INFO -                 Image-to-Image        27.27        60.00        37.50            5
+2026-07-14 14:25:37,836 - [ qwen3-14b ] - INFO -                  Image-to-Text        49.25       100.00        66.00           33
+2026-07-14 14:25:37,836 - [ qwen3-14b ] - INFO -                  Text-to-Image        65.91       100.00        79.45           29
+2026-07-14 14:25:37,836 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00        95.00        97.44           20
+2026-07-14 14:25:37,836 - [ qwen3-14b ] - INFO -      Visual Question Answering       100.00        11.11        20.00           18
+2026-07-14 14:25:37,836 - [ qwen3-14b ] - INFO -    Document Question Answering       100.00        12.50        22.22           24
+2026-07-14 14:25:37,838 - [ qwen3-14b ] - INFO -             Image Segmentation        82.14        95.83        88.46           24
+2026-07-14 14:25:37,838 - [ qwen3-14b ] - INFO -               Depth Estimation       100.00       100.00       100.00           28
+2026-07-14 14:25:37,838 - [ qwen3-14b ] - INFO -                 Text-to-Speech        93.75       100.00        96.77           30
+2026-07-14 14:25:37,838 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        44.23       100.00        61.33           23
+2026-07-14 14:25:37,838 - [ qwen3-14b ] - INFO -                 Audio-to-Audio        77.78       100.00        87.50           21
+2026-07-14 14:25:37,839 - [ qwen3-14b ] - INFO -           Audio Classification        82.35        56.00        66.67           25
+2026-07-14 14:25:37,839 - [ qwen3-14b ] - INFO -                  Image Editing        80.56       100.00        89.23           29
+2026-07-14 14:25:37,839 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:37,839 - [ qwen3-14b ] - INFO -                          micro        69.80        87.24        77.55          588
+2026-07-14 14:25:37,839 - [ qwen3-14b ] - INFO -                          macro        76.58        84.56        74.44          588
+2026-07-14 14:25:37,847 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5950413223140496
+2026-07-14 14:25:37,851 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4351297405189621
+2026-07-14 14:25:37,854 - [ qwen3-14b ] - INFO - Edit Distance: 0.22952691680260895
+2026-07-14 14:25:37,857 - [ qwen3-14b ] - INFO - Link Binary F1: 0.0
+2026-07-14 14:25:37,859 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:37,860 - [ qwen3-14b ] - INFO - Tools Number: 2, Task Split: overall
+2026-07-14 14:25:37,917 - [ qwen3-14b ] - INFO - Step Supports: 0 / 103
+2026-07-14 14:25:37,919 - [ qwen3-14b ] - INFO - Node Support: 103 / 103
+2026-07-14 14:25:37,919 - [ qwen3-14b ] - INFO - Link Support: 103 / 103
+2026-07-14 14:25:37,919 - [ qwen3-14b ] - INFO - Argument Support: 103 / 103
+2026-07-14 14:25:37,928 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.698019801980198
+2026-07-14 14:25:37,929 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.734375
+2026-07-14 14:25:37,929 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.7157360406091371
+2026-07-14 14:25:37,929 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.7483311374615722
+2026-07-14 14:25:37,930 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.7232463188984929
+2026-07-14 14:25:37,930 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.6840011859040548
+2026-07-14 14:25:37,930 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:37,932 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:37,932 - [ qwen3-14b ] - INFO -           Token Classification        66.67        50.00        57.14            4
+2026-07-14 14:25:37,932 - [ qwen3-14b ] - INFO -                    Translation       100.00        85.71        92.31           14
+2026-07-14 14:25:37,932 - [ qwen3-14b ] - INFO -                  Summarization        86.67       100.00        92.86           13
+2026-07-14 14:25:37,932 - [ qwen3-14b ] - INFO -             Question Answering        20.00        50.00        28.57            4
+2026-07-14 14:25:37,933 - [ qwen3-14b ] - INFO -                 Conversational        60.00        30.00        40.00           10
+2026-07-14 14:25:37,933 - [ qwen3-14b ] - INFO -                Text Generation        55.00        91.67        68.75           12
+2026-07-14 14:25:37,933 - [ qwen3-14b ] - INFO -            Sentence Similarity       100.00        66.67        80.00            9
+2026-07-14 14:25:37,933 - [ qwen3-14b ] - INFO -         Tabular Classification        50.00        66.67        57.14            3
+2026-07-14 14:25:37,934 - [ qwen3-14b ] - INFO -               Object Detection       100.00        81.82        90.00           11
+2026-07-14 14:25:37,934 - [ qwen3-14b ] - INFO -           Image Classification        50.00        57.14        53.33            7
+2026-07-14 14:25:37,934 - [ qwen3-14b ] - INFO -                 Image-to-Image        83.33        71.43        76.92            7
+2026-07-14 14:25:37,934 - [ qwen3-14b ] - INFO -                  Image-to-Text        27.78       100.00        43.48            5
+2026-07-14 14:25:37,934 - [ qwen3-14b ] - INFO -                  Text-to-Image        88.89       100.00        94.12            8
+2026-07-14 14:25:37,934 - [ qwen3-14b ] - INFO -                  Text-to-Video        88.89       100.00        94.12            8
+2026-07-14 14:25:37,934 - [ qwen3-14b ] - INFO -      Visual Question Answering       100.00        33.33        50.00           12
+2026-07-14 14:25:37,934 - [ qwen3-14b ] - INFO -    Document Question Answering        75.00        23.08        35.29           13
+2026-07-14 14:25:37,935 - [ qwen3-14b ] - INFO -             Image Segmentation        75.00        75.00        75.00            4
+2026-07-14 14:25:37,935 - [ qwen3-14b ] - INFO -               Depth Estimation       100.00       100.00       100.00            7
+2026-07-14 14:25:37,935 - [ qwen3-14b ] - INFO -                 Text-to-Speech       100.00       100.00       100.00           12
+2026-07-14 14:25:37,935 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        45.45       100.00        62.50           10
+2026-07-14 14:25:37,935 - [ qwen3-14b ] - INFO -                 Audio-to-Audio        66.67        66.67        66.67            3
+2026-07-14 14:25:37,935 - [ qwen3-14b ] - INFO -           Audio Classification       100.00        14.29        25.00            7
+2026-07-14 14:25:37,935 - [ qwen3-14b ] - INFO -                  Image Editing        81.82       100.00        90.00            9
+2026-07-14 14:25:37,936 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:37,936 - [ qwen3-14b ] - INFO -                          micro        69.80        73.44        71.57          192
+2026-07-14 14:25:37,936 - [ qwen3-14b ] - INFO -                          macro        74.83        72.32        68.40          192
+2026-07-14 14:25:37,939 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5681818181818182
+2026-07-14 14:25:37,943 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.42535787321063395
+2026-07-14 14:25:37,944 - [ qwen3-14b ] - INFO - Edit Distance: 0.3210355987055017
+2026-07-14 14:25:37,947 - [ qwen3-14b ] - INFO - Link Binary F1: 0.43434343434343436
+2026-07-14 14:25:37,947 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:37,948 - [ qwen3-14b ] - INFO - Tools Number: 3, Task Split: overall
+2026-07-14 14:25:38,019 - [ qwen3-14b ] - INFO - Step Supports: 0 / 305
+2026-07-14 14:25:38,020 - [ qwen3-14b ] - INFO - Node Support: 305 / 305
+2026-07-14 14:25:38,020 - [ qwen3-14b ] - INFO - Link Support: 305 / 305
+2026-07-14 14:25:38,021 - [ qwen3-14b ] - INFO - Argument Support: 305 / 305
+2026-07-14 14:25:38,031 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.7228915662650602
+2026-07-14 14:25:38,032 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.7228915662650602
+2026-07-14 14:25:38,032 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.7228915662650602
+2026-07-14 14:25:38,032 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.7720124733768172
+2026-07-14 14:25:38,032 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.7235931221181208
+2026-07-14 14:25:38,033 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.7184916655993081
+2026-07-14 14:25:38,033 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:38,033 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:38,033 - [ qwen3-14b ] - INFO -           Token Classification        77.27        56.67        65.38           30
+2026-07-14 14:25:38,034 - [ qwen3-14b ] - INFO -                    Translation        96.97        91.43        94.12           35
+2026-07-14 14:25:38,034 - [ qwen3-14b ] - INFO -                  Summarization        71.93        78.85        75.23           52
+2026-07-14 14:25:38,034 - [ qwen3-14b ] - INFO -             Question Answering        69.05        76.32        72.50           38
+2026-07-14 14:25:38,034 - [ qwen3-14b ] - INFO -                 Conversational        89.47        45.95        60.71           37
+2026-07-14 14:25:38,035 - [ qwen3-14b ] - INFO -                Text Generation        43.55        67.50        52.94           40
+2026-07-14 14:25:38,035 - [ qwen3-14b ] - INFO -            Sentence Similarity        86.96        83.33        85.11           24
+2026-07-14 14:25:38,035 - [ qwen3-14b ] - INFO -         Tabular Classification        76.47        81.25        78.79           32
+2026-07-14 14:25:38,035 - [ qwen3-14b ] - INFO -               Object Detection        73.53        73.53        73.53           34
+2026-07-14 14:25:38,035 - [ qwen3-14b ] - INFO -           Image Classification        44.83        76.47        56.52           34
+2026-07-14 14:25:38,036 - [ qwen3-14b ] - INFO -                 Image-to-Image        58.33        66.67        62.22           21
+2026-07-14 14:25:38,036 - [ qwen3-14b ] - INFO -                  Image-to-Text        45.35        86.67        59.54           45
+2026-07-14 14:25:38,036 - [ qwen3-14b ] - INFO -                  Text-to-Image        90.62        87.88        89.23           33
+2026-07-14 14:25:38,036 - [ qwen3-14b ] - INFO -                  Text-to-Video        96.67        96.67        96.67           30
+2026-07-14 14:25:38,036 - [ qwen3-14b ] - INFO -      Visual Question Answering        78.57        23.91        36.67           46
+2026-07-14 14:25:38,036 - [ qwen3-14b ] - INFO -    Document Question Answering        65.22        31.91        42.86           47
+2026-07-14 14:25:38,037 - [ qwen3-14b ] - INFO -             Image Segmentation        89.47        51.52        65.38           33
+2026-07-14 14:25:38,037 - [ qwen3-14b ] - INFO -               Depth Estimation       100.00        90.32        94.92           31
+2026-07-14 14:25:38,037 - [ qwen3-14b ] - INFO -                 Text-to-Speech        96.00        92.31        94.12           52
+2026-07-14 14:25:38,037 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        66.07        97.37        78.72           38
+2026-07-14 14:25:38,037 - [ qwen3-14b ] - INFO -                 Audio-to-Audio        83.33        86.96        85.11           23
+2026-07-14 14:25:38,037 - [ qwen3-14b ] - INFO -           Audio Classification        87.50        26.92        41.18           26
+2026-07-14 14:25:38,039 - [ qwen3-14b ] - INFO -                  Image Editing        88.46        93.88        91.09           49
+2026-07-14 14:25:38,039 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:38,039 - [ qwen3-14b ] - INFO -                          micro        72.29        72.29        72.29          830
+2026-07-14 14:25:38,039 - [ qwen3-14b ] - INFO -                          macro        77.20        72.36        71.85          830
+2026-07-14 14:25:38,044 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5812236286919831
+2026-07-14 14:25:38,051 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.39622641509433965
+2026-07-14 14:25:38,053 - [ qwen3-14b ] - INFO - Edit Distance: 0.3411501431173558
+2026-07-14 14:25:38,057 - [ qwen3-14b ] - INFO - Link Binary F1: 0.423728813559322
+2026-07-14 14:25:38,060 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:38,060 - [ qwen3-14b ] - INFO - Tools Number: 4, Task Split: overall
+2026-07-14 14:25:38,203 - [ qwen3-14b ] - INFO - Step Supports: 0 / 268
+2026-07-14 14:25:38,204 - [ qwen3-14b ] - INFO - Node Support: 268 / 268
+2026-07-14 14:25:38,205 - [ qwen3-14b ] - INFO - Link Support: 268 / 268
+2026-07-14 14:25:38,205 - [ qwen3-14b ] - INFO - Argument Support: 268 / 268
+2026-07-14 14:25:38,215 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.7670514165792235
+2026-07-14 14:25:38,215 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.7331995987963892
+2026-07-14 14:25:38,215 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.7497435897435898
+2026-07-14 14:25:38,216 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.7846957294180801
+2026-07-14 14:25:38,216 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.7147387967022746
+2026-07-14 14:25:38,216 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.7228127258601225
+2026-07-14 14:25:38,216 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:38,217 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:38,217 - [ qwen3-14b ] - INFO -           Token Classification        90.62        65.91        76.32           44
+2026-07-14 14:25:38,217 - [ qwen3-14b ] - INFO -                    Translation        98.11        96.30        97.20           54
+2026-07-14 14:25:38,217 - [ qwen3-14b ] - INFO -                  Summarization        69.09        88.37        77.55           43
+2026-07-14 14:25:38,218 - [ qwen3-14b ] - INFO -             Question Answering        55.56        45.45        50.00           33
+2026-07-14 14:25:38,218 - [ qwen3-14b ] - INFO -                 Conversational       100.00        54.76        70.77           42
+2026-07-14 14:25:38,218 - [ qwen3-14b ] - INFO -                Text Generation        53.57        61.22        57.14           49
+2026-07-14 14:25:38,218 - [ qwen3-14b ] - INFO -            Sentence Similarity        94.29        86.84        90.41           38
+2026-07-14 14:25:38,218 - [ qwen3-14b ] - INFO -         Tabular Classification        74.36        80.56        77.33           36
+2026-07-14 14:25:38,219 - [ qwen3-14b ] - INFO -               Object Detection        69.39        77.27        73.12           44
+2026-07-14 14:25:38,219 - [ qwen3-14b ] - INFO -           Image Classification        51.56        70.21        59.46           47
+2026-07-14 14:25:38,219 - [ qwen3-14b ] - INFO -                 Image-to-Image        57.14        44.44        50.00           27
+2026-07-14 14:25:38,220 - [ qwen3-14b ] - INFO -                  Image-to-Text        44.59        84.62        58.41           39
+2026-07-14 14:25:38,220 - [ qwen3-14b ] - INFO -                  Text-to-Image        94.55        96.30        95.41           54
+2026-07-14 14:25:38,221 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00        96.67        98.31           30
+2026-07-14 14:25:38,221 - [ qwen3-14b ] - INFO -      Visual Question Answering        64.29        17.65        27.69           51
+2026-07-14 14:25:38,221 - [ qwen3-14b ] - INFO -    Document Question Answering        53.33        24.24        33.33           33
+2026-07-14 14:25:38,222 - [ qwen3-14b ] - INFO -             Image Segmentation        93.33        58.33        71.79           48
+2026-07-14 14:25:38,222 - [ qwen3-14b ] - INFO -               Depth Estimation        97.56        90.91        94.12           44
+2026-07-14 14:25:38,222 - [ qwen3-14b ] - INFO -                 Text-to-Speech       100.00        98.11        99.05           53
+2026-07-14 14:25:38,222 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        64.71        97.78        77.88           45
+2026-07-14 14:25:38,223 - [ qwen3-14b ] - INFO -                 Audio-to-Audio        92.00        79.31        85.19           29
+2026-07-14 14:25:38,223 - [ qwen3-14b ] - INFO -           Audio Classification       100.00        35.14        52.00           37
+2026-07-14 14:25:38,223 - [ qwen3-14b ] - INFO -                  Image Editing        86.75        93.51        90.00           77
+2026-07-14 14:25:38,223 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:38,223 - [ qwen3-14b ] - INFO -                          micro        76.71        73.32        74.97          997
+2026-07-14 14:25:38,223 - [ qwen3-14b ] - INFO -                          macro        78.47        71.47        72.28          997
+2026-07-14 14:25:38,228 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6105357946870779
+2026-07-14 14:25:38,237 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.3928860145513339
+2026-07-14 14:25:38,240 - [ qwen3-14b ] - INFO - Edit Distance: 0.31685619521440356
+2026-07-14 14:25:38,247 - [ qwen3-14b ] - INFO - Link Binary F1: 0.43781094527363185
+2026-07-14 14:25:38,251 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:38,252 - [ qwen3-14b ] - INFO - Tools Number: 5, Task Split: overall
+2026-07-14 14:25:38,327 - [ qwen3-14b ] - INFO - Step Supports: 0 / 115
+2026-07-14 14:25:38,327 - [ qwen3-14b ] - INFO - Node Support: 115 / 115
+2026-07-14 14:25:38,328 - [ qwen3-14b ] - INFO - Link Support: 115 / 115
+2026-07-14 14:25:38,328 - [ qwen3-14b ] - INFO - Argument Support: 115 / 115
+2026-07-14 14:25:38,339 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.7473233404710921
+2026-07-14 14:25:38,340 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.687007874015748
+2026-07-14 14:25:38,340 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.7158974358974359
+2026-07-14 14:25:38,340 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.7424605666294556
+2026-07-14 14:25:38,341 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.6728306713627837
+2026-07-14 14:25:38,341 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.6795198110301669
+2026-07-14 14:25:38,341 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:38,341 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:38,342 - [ qwen3-14b ] - INFO -           Token Classification        80.00        33.33        47.06           12
+2026-07-14 14:25:38,342 - [ qwen3-14b ] - INFO -                    Translation        95.45        84.00        89.36           25
+2026-07-14 14:25:38,342 - [ qwen3-14b ] - INFO -                  Summarization        83.33        80.00        81.63           25
+2026-07-14 14:25:38,342 - [ qwen3-14b ] - INFO -             Question Answering        50.00        35.00        41.18           20
+2026-07-14 14:25:38,342 - [ qwen3-14b ] - INFO -                 Conversational        72.22        72.22        72.22           18
+2026-07-14 14:25:38,343 - [ qwen3-14b ] - INFO -                Text Generation        60.87        70.00        65.12           20
+2026-07-14 14:25:38,343 - [ qwen3-14b ] - INFO -            Sentence Similarity       100.00        93.75        96.77           16
+2026-07-14 14:25:38,343 - [ qwen3-14b ] - INFO -         Tabular Classification        90.91        83.33        86.96           24
+2026-07-14 14:25:38,344 - [ qwen3-14b ] - INFO -               Object Detection        57.14        66.67        61.54           24
+2026-07-14 14:25:38,344 - [ qwen3-14b ] - INFO -           Image Classification        52.94        81.82        64.29           22
+2026-07-14 14:25:38,344 - [ qwen3-14b ] - INFO -                 Image-to-Image        55.56        52.63        54.05           19
+2026-07-14 14:25:38,344 - [ qwen3-14b ] - INFO -                  Image-to-Text        59.38        90.48        71.70           21
+2026-07-14 14:25:38,345 - [ qwen3-14b ] - INFO -                  Text-to-Image        88.00        73.33        80.00           30
+2026-07-14 14:25:38,345 - [ qwen3-14b ] - INFO -                  Text-to-Video        92.86        92.86        92.86           14
+2026-07-14 14:25:38,345 - [ qwen3-14b ] - INFO -      Visual Question Answering        37.50        22.22        27.91           27
+2026-07-14 14:25:38,346 - [ qwen3-14b ] - INFO -    Document Question Answering        20.00         5.26         8.33           19
+2026-07-14 14:25:38,346 - [ qwen3-14b ] - INFO -             Image Segmentation       100.00        46.15        63.16           26
+2026-07-14 14:25:38,346 - [ qwen3-14b ] - INFO -               Depth Estimation       100.00        80.65        89.29           31
+2026-07-14 14:25:38,346 - [ qwen3-14b ] - INFO -                 Text-to-Speech        96.55        96.55        96.55           29
+2026-07-14 14:25:38,347 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        51.85       100.00        68.29           14
+2026-07-14 14:25:38,347 - [ qwen3-14b ] - INFO -                 Audio-to-Audio        75.00        69.23        72.00           13
+2026-07-14 14:25:38,347 - [ qwen3-14b ] - INFO -           Audio Classification       100.00        27.78        43.48           18
+2026-07-14 14:25:38,347 - [ qwen3-14b ] - INFO -                  Image Editing        88.10        90.24        89.16           41
+2026-07-14 14:25:38,348 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:38,348 - [ qwen3-14b ] - INFO -                          micro        74.73        68.70        71.59          508
+2026-07-14 14:25:38,348 - [ qwen3-14b ] - INFO -                          macro        74.25        67.28        67.95          508
+2026-07-14 14:25:38,353 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5516014234875445
+2026-07-14 14:25:38,358 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.3274760383386581
+2026-07-14 14:25:38,360 - [ qwen3-14b ] - INFO - Edit Distance: 0.38104398017441543
+2026-07-14 14:25:38,365 - [ qwen3-14b ] - INFO - Link Binary F1: 0.354140127388535
+2026-07-14 14:25:38,367 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:38,367 - [ qwen3-14b ] - INFO - Tools Number: 6, Task Split: overall
+2026-07-14 14:25:38,429 - [ qwen3-14b ] - INFO - Step Supports: 0 / 53
+2026-07-14 14:25:38,429 - [ qwen3-14b ] - INFO - Node Support: 53 / 53
+2026-07-14 14:25:38,430 - [ qwen3-14b ] - INFO - Link Support: 53 / 53
+2026-07-14 14:25:38,430 - [ qwen3-14b ] - INFO - Argument Support: 53 / 53
+2026-07-14 14:25:38,440 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.7470817120622568
+2026-07-14 14:25:38,441 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.6881720430107527
+2026-07-14 14:25:38,441 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.7164179104477612
+2026-07-14 14:25:38,441 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.720098299819662
+2026-07-14 14:25:38,442 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.6648199245453251
+2026-07-14 14:25:38,442 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.6671458634150642
+2026-07-14 14:25:38,442 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:38,442 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:38,442 - [ qwen3-14b ] - INFO -           Token Classification       100.00        41.67        58.82           12
+2026-07-14 14:25:38,443 - [ qwen3-14b ] - INFO -                    Translation        93.33        87.50        90.32           16
+2026-07-14 14:25:38,443 - [ qwen3-14b ] - INFO -                  Summarization        70.00        77.78        73.68            9
+2026-07-14 14:25:38,444 - [ qwen3-14b ] - INFO -             Question Answering        75.00        42.86        54.55           14
+2026-07-14 14:25:38,444 - [ qwen3-14b ] - INFO -                 Conversational        71.43        50.00        58.82           10
+2026-07-14 14:25:38,445 - [ qwen3-14b ] - INFO -                Text Generation        60.00        60.00        60.00           15
+2026-07-14 14:25:38,445 - [ qwen3-14b ] - INFO -            Sentence Similarity        85.71        85.71        85.71            7
+2026-07-14 14:25:38,445 - [ qwen3-14b ] - INFO -         Tabular Classification        50.00        75.00        60.00            4
+2026-07-14 14:25:38,445 - [ qwen3-14b ] - INFO -               Object Detection        57.14        88.89        69.57            9
+2026-07-14 14:25:38,445 - [ qwen3-14b ] - INFO -           Image Classification        85.71        85.71        85.71           14
+2026-07-14 14:25:38,446 - [ qwen3-14b ] - INFO -                 Image-to-Image        60.00        33.33        42.86            9
+2026-07-14 14:25:38,446 - [ qwen3-14b ] - INFO -                  Image-to-Text        57.89        73.33        64.71           15
+2026-07-14 14:25:38,446 - [ qwen3-14b ] - INFO -                  Text-to-Image        90.00        94.74        92.31           19
+2026-07-14 14:25:38,446 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00        92.31        96.00           13
+2026-07-14 14:25:38,446 - [ qwen3-14b ] - INFO -      Visual Question Answering        60.00        46.15        52.17           13
+2026-07-14 14:25:38,446 - [ qwen3-14b ] - INFO -    Document Question Answering        72.73        50.00        59.26           16
+2026-07-14 14:25:38,447 - [ qwen3-14b ] - INFO -             Image Segmentation       100.00        45.45        62.50           11
+2026-07-14 14:25:38,447 - [ qwen3-14b ] - INFO -               Depth Estimation       100.00        78.57        88.00           14
+2026-07-14 14:25:38,447 - [ qwen3-14b ] - INFO -                 Text-to-Speech        90.91        90.91        90.91           11
+2026-07-14 14:25:38,447 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        41.18       100.00        58.33            7
+2026-07-14 14:25:38,448 - [ qwen3-14b ] - INFO -                 Audio-to-Audio        50.00        33.33        40.00            9
+2026-07-14 14:25:38,448 - [ qwen3-14b ] - INFO -           Audio Classification         0.00         0.00         0.00            8
+2026-07-14 14:25:38,448 - [ qwen3-14b ] - INFO -                  Image Editing        85.19        95.83        90.20           24
+2026-07-14 14:25:38,448 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:38,448 - [ qwen3-14b ] - INFO -                          micro        74.71        68.82        71.64          279
+2026-07-14 14:25:38,448 - [ qwen3-14b ] - INFO -                          macro        72.01        66.48        66.71          279
+2026-07-14 14:25:38,451 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5919003115264797
+2026-07-14 14:25:38,456 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.3707865168539326
+2026-07-14 14:25:38,457 - [ qwen3-14b ] - INFO - Edit Distance: 0.3642329368744466
+2026-07-14 14:25:38,462 - [ qwen3-14b ] - INFO - Link Binary F1: 0.35476718403547675
+2026-07-14 14:25:38,463 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:38,463 - [ qwen3-14b ] - INFO - Tools Number: 7, Task Split: overall
+2026-07-14 14:25:38,529 - [ qwen3-14b ] - INFO - Step Supports: 0 / 25
+2026-07-14 14:25:38,530 - [ qwen3-14b ] - INFO - Node Support: 25 / 25
+2026-07-14 14:25:38,530 - [ qwen3-14b ] - INFO - Link Support: 25 / 25
+2026-07-14 14:25:38,531 - [ qwen3-14b ] - INFO - Argument Support: 25 / 25
+2026-07-14 14:25:38,539 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.776
+2026-07-14 14:25:38,540 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.6643835616438356
+2026-07-14 14:25:38,540 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.7158671586715867
+2026-07-14 14:25:38,540 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.7684233640755379
+2026-07-14 14:25:38,541 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.6753450655624569
+2026-07-14 14:25:38,542 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.694908600171758
+2026-07-14 14:25:38,542 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:38,543 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:38,544 - [ qwen3-14b ] - INFO -           Token Classification       100.00        66.67        80.00            3
+2026-07-14 14:25:38,544 - [ qwen3-14b ] - INFO -                    Translation        85.71        75.00        80.00            8
+2026-07-14 14:25:38,545 - [ qwen3-14b ] - INFO -                  Summarization        75.00        60.00        66.67            5
+2026-07-14 14:25:38,545 - [ qwen3-14b ] - INFO -             Question Answering        40.00        40.00        40.00            5
+2026-07-14 14:25:38,545 - [ qwen3-14b ] - INFO -                 Conversational       100.00        55.56        71.43            9
+2026-07-14 14:25:38,546 - [ qwen3-14b ] - INFO -                Text Generation        14.29        33.33        20.00            3
+2026-07-14 14:25:38,546 - [ qwen3-14b ] - INFO -            Sentence Similarity        66.67       100.00        80.00            2
+2026-07-14 14:25:38,547 - [ qwen3-14b ] - INFO -         Tabular Classification       100.00        83.33        90.91            6
+2026-07-14 14:25:38,548 - [ qwen3-14b ] - INFO -               Object Detection        83.33       100.00        90.91            5
+2026-07-14 14:25:38,548 - [ qwen3-14b ] - INFO -           Image Classification        66.67        57.14        61.54            7
+2026-07-14 14:25:38,550 - [ qwen3-14b ] - INFO -                 Image-to-Image       100.00        37.50        54.55            8
+2026-07-14 14:25:38,550 - [ qwen3-14b ] - INFO -                  Image-to-Text        50.00        66.67        57.14            3
+2026-07-14 14:25:38,550 - [ qwen3-14b ] - INFO -                  Text-to-Image        88.89        80.00        84.21           10
+2026-07-14 14:25:38,550 - [ qwen3-14b ] - INFO -                  Text-to-Video        75.00       100.00        85.71            3
+2026-07-14 14:25:38,551 - [ qwen3-14b ] - INFO -      Visual Question Answering        40.00        25.00        30.77            8
+2026-07-14 14:25:38,551 - [ qwen3-14b ] - INFO -    Document Question Answering        50.00        12.50        20.00            8
+2026-07-14 14:25:38,551 - [ qwen3-14b ] - INFO -             Image Segmentation       100.00        62.50        76.92            8
+2026-07-14 14:25:38,551 - [ qwen3-14b ] - INFO -               Depth Estimation       100.00        71.43        83.33            7
+2026-07-14 14:25:38,551 - [ qwen3-14b ] - INFO -                 Text-to-Speech       100.00        83.33        90.91           12
+2026-07-14 14:25:38,551 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        75.00       100.00        85.71            6
+2026-07-14 14:25:38,552 - [ qwen3-14b ] - INFO -                 Audio-to-Audio       100.00        83.33        90.91            6
+2026-07-14 14:25:38,552 - [ qwen3-14b ] - INFO -           Audio Classification        75.00        60.00        66.67            5
+2026-07-14 14:25:38,552 - [ qwen3-14b ] - INFO -                  Image Editing        81.82       100.00        90.00            9
+2026-07-14 14:25:38,552 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:38,552 - [ qwen3-14b ] - INFO -                          micro        77.60        66.44        71.59          146
+2026-07-14 14:25:38,552 - [ qwen3-14b ] - INFO -                          macro        76.84        67.53        69.49          146
+2026-07-14 14:25:38,555 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5307443365695793
+2026-07-14 14:25:38,558 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.3488372093023256
+2026-07-14 14:25:38,558 - [ qwen3-14b ] - INFO - Edit Distance: 0.4108424908424909
+2026-07-14 14:25:38,561 - [ qwen3-14b ] - INFO - Link Binary F1: 0.375
+2026-07-14 14:25:38,562 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:38,562 - [ qwen3-14b ] - INFO - Tools Number: 8, Task Split: overall
+2026-07-14 14:25:38,619 - [ qwen3-14b ] - INFO - Step Supports: 0 / 10
+2026-07-14 14:25:38,619 - [ qwen3-14b ] - INFO - Node Support: 10 / 10
+2026-07-14 14:25:38,620 - [ qwen3-14b ] - INFO - Link Support: 10 / 10
+2026-07-14 14:25:38,620 - [ qwen3-14b ] - INFO - Argument Support: 10 / 10
+2026-07-14 14:25:38,627 - [ qwen3-14b ] - INFO - Node Micro Precision [ No Matching ]: 0.8070175438596491
+2026-07-14 14:25:38,628 - [ qwen3-14b ] - INFO - Node Micro Recall [ No Matching ]: 0.6764705882352942
+2026-07-14 14:25:38,628 - [ qwen3-14b ] - INFO - Node Micro F1 [ No Matching ]: 0.736
+2026-07-14 14:25:38,628 - [ qwen3-14b ] - INFO - Node Macro Precision [ No Matching ]: 0.7855072463768116
+2026-07-14 14:25:38,628 - [ qwen3-14b ] - INFO - Node Macro Recall [ No Matching ]: 0.6615942028985508
+2026-07-14 14:25:38,629 - [ qwen3-14b ] - INFO - Node Macro F1 [ No Matching ]: 0.6824361628709456
+2026-07-14 14:25:38,629 - [ qwen3-14b ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 14:25:38,629 - [ qwen3-14b ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 14:25:38,630 - [ qwen3-14b ] - INFO -           Token Classification       100.00        33.33        50.00            3
+2026-07-14 14:25:38,630 - [ qwen3-14b ] - INFO -                    Translation       100.00       100.00       100.00            4
+2026-07-14 14:25:38,630 - [ qwen3-14b ] - INFO -                  Summarization        66.67        66.67        66.67            3
+2026-07-14 14:25:38,630 - [ qwen3-14b ] - INFO -             Question Answering        50.00        33.33        40.00            3
+2026-07-14 14:25:38,630 - [ qwen3-14b ] - INFO -                 Conversational        75.00        75.00        75.00            4
+2026-07-14 14:25:38,631 - [ qwen3-14b ] - INFO -                Text Generation         0.00         0.00         0.00            1
+2026-07-14 14:25:38,631 - [ qwen3-14b ] - INFO -            Sentence Similarity       100.00        50.00        66.67            2
+2026-07-14 14:25:38,631 - [ qwen3-14b ] - INFO -         Tabular Classification       100.00       100.00       100.00            1
+2026-07-14 14:25:38,631 - [ qwen3-14b ] - INFO -               Object Detection       100.00        66.67        80.00            3
+2026-07-14 14:25:38,632 - [ qwen3-14b ] - INFO -           Image Classification        66.67        50.00        57.14            4
+2026-07-14 14:25:38,632 - [ qwen3-14b ] - INFO -                 Image-to-Image         0.00         0.00         0.00            1
+2026-07-14 14:25:38,632 - [ qwen3-14b ] - INFO -                  Image-to-Text        40.00       100.00        57.14            2
+2026-07-14 14:25:38,633 - [ qwen3-14b ] - INFO -                  Text-to-Image        66.67       100.00        80.00            4
+2026-07-14 14:25:38,633 - [ qwen3-14b ] - INFO -                  Text-to-Video       100.00       100.00       100.00            1
+2026-07-14 14:25:38,633 - [ qwen3-14b ] - INFO -      Visual Question Answering       100.00        25.00        40.00            4
+2026-07-14 14:25:38,633 - [ qwen3-14b ] - INFO -    Document Question Answering        66.67        66.67        66.67            3
+2026-07-14 14:25:38,634 - [ qwen3-14b ] - INFO -             Image Segmentation       100.00        33.33        50.00            3
+2026-07-14 14:25:38,634 - [ qwen3-14b ] - INFO -               Depth Estimation       100.00       100.00       100.00            2
+2026-07-14 14:25:38,634 - [ qwen3-14b ] - INFO -                 Text-to-Speech       100.00        80.00        88.89            5
+2026-07-14 14:25:38,634 - [ qwen3-14b ] - INFO -   Automatic Speech Recognition        75.00       100.00        85.71            3
+2026-07-14 14:25:38,634 - [ qwen3-14b ] - INFO -                 Audio-to-Audio       100.00       100.00       100.00            2
+2026-07-14 14:25:38,634 - [ qwen3-14b ] - INFO -           Audio Classification       100.00        75.00        85.71            4
+2026-07-14 14:25:38,635 - [ qwen3-14b ] - INFO -                  Image Editing       100.00        66.67        80.00            6
+2026-07-14 14:25:38,635 - [ qwen3-14b ] - INFO - 
+2026-07-14 14:25:38,635 - [ qwen3-14b ] - INFO -                          micro        80.70        67.65        73.60           68
+2026-07-14 14:25:38,635 - [ qwen3-14b ] - INFO -                          macro        78.55        66.16        68.24           68
+2026-07-14 14:25:38,637 - [ qwen3-14b ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5588235294117647
+2026-07-14 14:25:38,640 - [ qwen3-14b ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.3684210526315789
+2026-07-14 14:25:38,640 - [ qwen3-14b ] - INFO - Edit Distance: 0.38105311355311344
+2026-07-14 14:25:38,644 - [ qwen3-14b ] - INFO - Link Binary F1: 0.3883495145631068
+2026-07-14 14:25:38,645 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:38,645 - [ qwen3-14b ] - INFO - Tools Number: 9, Task Split: overall
+2026-07-14 14:25:38,696 - [ qwen3-14b ] - INFO - Step Supports: 0 / 0
+2026-07-14 14:25:38,697 - [ qwen3-14b ] - INFO - Node Support: 0 / 0
+2026-07-14 14:25:38,698 - [ qwen3-14b ] - INFO - Link Support: 0 / 0
+2026-07-14 14:25:38,698 - [ qwen3-14b ] - INFO - Argument Support: 0 / 0
+2026-07-14 14:25:38,699 - [ qwen3-14b ] - INFO - No supports, skip
+2026-07-14 14:25:38,699 - [ qwen3-14b ] - INFO - ---------------
+2026-07-14 14:25:38,699 - [ qwen3-14b ] - INFO - Tools Number: 10, Task Split: overall
+2026-07-14 14:25:38,824 - [ qwen3-14b ] - INFO - Step Supports: 0 / 0
+2026-07-14 14:25:38,825 - [ qwen3-14b ] - INFO - Node Support: 0 / 0
+2026-07-14 14:25:38,825 - [ qwen3-14b ] - INFO - Link Support: 0 / 0
+2026-07-14 14:25:38,826 - [ qwen3-14b ] - INFO - Argument Support: 0 / 0
+2026-07-14 14:25:38,826 - [ qwen3-14b ] - INFO - No supports, skip

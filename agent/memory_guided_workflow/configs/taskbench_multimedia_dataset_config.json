@@ -1,0 +1,44 @@
+{
+  "tool_desc_intent": "taskbench/data_multimedia/tool_desc_intent.json",
+  "semantic_tool_families": {
+    "text_rewrite": [
+      "Article Spinner",
+      "Text Paraphraser",
+      "Text Simplifier",
+      "Text Summarizer",
+      "Text Expander"
+    ],
+    "image_composition": [
+      "Image Stitcher",
+      "Image Style Transfer"
+    ],
+    "audio_editing": [
+      "Audio Effects",
+      "Voice Changer",
+      "Audio Noise Reduction",
+      "Audio Splicer"
+    ]
+  },
+  "coverage_prompt_variables": {
+    "dataset": "taskbench/data_multimedia",
+    "tool_taxonomy": "multimedia"
+  },
+  "coverage_prompt_rules": [
+    "URL phrases decompose by role: direct resource, embedded link in text, or link extraction target. This is coverage, not execution-order inference.",
+    "For rewrite-like intents, distinguish the requested object and modifier: article-level objects and modifiers like unique version, synonyms, syntax changes, or plagiarism avoidance are stronger evidence for article-spinning intents; text-level objects and modifiers like different words, same meaning, paraphrase, or rephrase are stronger evidence for text paraphrasing intents.",
+    "Examples of synonym or morphological coverage: summary/summarize cover Summarize intents; combination/combinating cover Combination intents; sentiment covers sentiment analysis intents; paraphrase/paraphrased/rephrase/rewrite/different words/avoid plagiarism can cover paraphrase or rewrite intents, using object and modifier evidence to choose the closest rewrite intent.",
+    "If an explicit http(s) URL is the source resource to process, cover the matching URL download intent from url_download_candidates as strongly_implied.",
+    "If the URL is embedded inside a larger text or message and must be used later, cover URL extraction plus the matching URL download intent. Cover URL extraction alone only when the request asks to extract, find, list, or return URLs/links themselves.",
+    "Image/images/picture/illustration/visualize/visualise/visual representation/represent visually can cover image-related intents. If the request asks to find/search/get existing images, cover image search intents. If it asks to create/generate/visualize an idea or meaning as images, cover image generation intents.",
+    "If the request provides non-English text, explicitly says the input text is written in another language, or asks for the result in a different language, cover the matching translation intent. Use direct when explicitly asked to translate, and strongly_implied when translation is needed for understanding before another content-level operation."
+  ],
+  "replan_prompt_variables": {
+    "dataset": "taskbench/data_multimedia",
+    "tool_taxonomy": "multimedia"
+  },
+  "replan_prompt_rules": [
+    "For media URLs, preserve required download and modality conversion steps before downstream audio, image, video, or text processing.",
+    "Do not replace a correct multi-step media workflow with a shortcut unless the shortcut exactly matches the requested modality and intent.",
+    "Keep rewrite/paraphrase/article-spinning tools distinct when the request object or modifier points to one specific rewrite family."
+  ]
+}

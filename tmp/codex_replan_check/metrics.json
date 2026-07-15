@@ -1,0 +1,75 @@
+{
+  "evaluation_scope": "common-with-prediction",
+  "original": {
+    "sample_ids": 597,
+    "gold_ids": 553,
+    "prediction_ids": 0,
+    "common_ids": 0,
+    "support": 0,
+    "skipped": 0,
+    "node_micro_precision": 0.0,
+    "node_micro_recall": 0.0,
+    "node_micro_f1": 0.0,
+    "edge_micro_precision": 0.0,
+    "edge_micro_recall": 0.0,
+    "edge_micro_f1": 0.0,
+    "ned": 1.0
+  },
+  "intent_replan": {
+    "sample_ids": 597,
+    "gold_ids": 553,
+    "prediction_ids": 0,
+    "common_ids": 0,
+    "support": 0,
+    "skipped": 0,
+    "node_micro_precision": 0.0,
+    "node_micro_recall": 0.0,
+    "node_micro_f1": 0.0,
+    "edge_micro_precision": 0.0,
+    "edge_micro_recall": 0.0,
+    "edge_micro_f1": 0.0,
+    "ned": 1.0
+  },
+  "edge_repaired": {
+    "sample_ids": 597,
+    "gold_ids": 553,
+    "prediction_ids": 0,
+    "common_ids": 0,
+    "support": 0,
+    "skipped": 0,
+    "node_micro_precision": 0.0,
+    "node_micro_recall": 0.0,
+    "node_micro_f1": 0.0,
+    "edge_micro_precision": 0.0,
+    "edge_micro_recall": 0.0,
+    "edge_micro_f1": 0.0,
+    "ned": 1.0
+  },
+  "replan_summary": {
+    "rows": 0,
+    "decision_counts": {},
+    "source_counts": {},
+    "retryable_failed": 0
+  },
+  "edge_repair_summary": {
+    "rows": 0,
+    "changed_rows": 0,
+    "operation_counts": {},
+    "validation_counts": {}
+  },
+  "delta_replan_vs_original": {
+    "node_micro_f1": 0.0,
+    "edge_micro_f1": 0.0,
+    "ned": 0.0
+  },
+  "delta_edge_vs_replan": {
+    "node_micro_f1": 0.0,
+    "edge_micro_f1": 0.0,
+    "ned": 0.0
+  },
+  "delta_final_vs_original": {
+    "node_micro_f1": 0.0,
+    "edge_micro_f1": 0.0,
+    "ned": 0.0
+  }
+}

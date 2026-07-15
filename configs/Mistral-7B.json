@@ -1,0 +1,8 @@
+{
+  "provider": "openai",
+  "model_name": "mistral",
+  "temperature": 0,
+  "api_key_envs": ["MISTRAL_API_KEY"],
+  "base_url_env": "MISTRAL_BASE_URL",
+  "trust_env": false
+}

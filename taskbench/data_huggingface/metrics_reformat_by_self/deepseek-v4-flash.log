@@ -1,0 +1,543 @@
+2026-07-14 20:08:55,490 - [ deepseek-v4-flash ] - INFO - Starts with: {'data_dir': 'taskbench/data_huggingface', 'prediction_dir': 'predictions_reformat_by_self', 'save_dir': None, 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'deepseek-v4-flash', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-07-14 20:08:55,494 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:55,495 - [ deepseek-v4-flash ] - INFO - Tools Number: overall, Task Split: overall
+2026-07-14 20:08:55,667 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 1492
+2026-07-14 20:08:55,667 - [ deepseek-v4-flash ] - INFO - Node Support: 1492 / 1492
+2026-07-14 20:08:55,699 - [ deepseek-v4-flash ] - INFO - Link Support: 1492 / 1492
+2026-07-14 20:08:55,700 - [ deepseek-v4-flash ] - INFO - Argument Support: 1492 / 1492
+2026-07-14 20:08:55,740 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.779081461615823
+2026-07-14 20:08:55,741 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.6441241685144125
+2026-07-14 20:08:55,741 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.7052040661508117
+2026-07-14 20:08:55,742 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.8096574437306691
+2026-07-14 20:08:55,742 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.6335896286829957
+2026-07-14 20:08:55,742 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.6914311289577103
+2026-07-14 20:08:55,743 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:55,743 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:55,743 - [ deepseek-v4-flash ] - INFO -           Token Classification        87.88        60.00        71.31          145
+2026-07-14 20:08:55,743 - [ deepseek-v4-flash ] - INFO -                    Translation        97.96        80.45        88.34          179
+2026-07-14 20:08:55,743 - [ deepseek-v4-flash ] - INFO -                  Summarization        69.44        68.68        69.06          182
+2026-07-14 20:08:55,744 - [ deepseek-v4-flash ] - INFO -             Question Answering        60.44        39.01        47.41          141
+2026-07-14 20:08:55,744 - [ deepseek-v4-flash ] - INFO -                 Conversational        86.27        55.00        67.18          160
+2026-07-14 20:08:55,744 - [ deepseek-v4-flash ] - INFO -                Text Generation        54.76        56.44        55.59          163
+2026-07-14 20:08:55,744 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity        96.12        73.88        83.54          134
+2026-07-14 20:08:55,744 - [ deepseek-v4-flash ] - INFO -         Tabular Classification        97.44        31.15        47.20          122
+2026-07-14 20:08:55,745 - [ deepseek-v4-flash ] - INFO -               Object Detection        75.16        72.33        73.72          159
+2026-07-14 20:08:55,745 - [ deepseek-v4-flash ] - INFO -           Image Classification        75.22        51.83        61.37          164
+2026-07-14 20:08:55,745 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image        64.41        39.18        48.72           97
+2026-07-14 20:08:55,745 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        43.75        81.60        56.96          163
+2026-07-14 20:08:55,745 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image        94.51        82.89        88.32          187
+2026-07-14 20:08:55,745 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video        97.37        93.28        95.28          119
+2026-07-14 20:08:55,746 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering        66.67        52.51        58.75          179
+2026-07-14 20:08:55,746 - [ deepseek-v4-flash ] - INFO -    Document Question Answering        75.36        31.90        44.83          163
+2026-07-14 20:08:55,746 - [ deepseek-v4-flash ] - INFO -             Image Segmentation        96.10        47.13        63.25          157
+2026-07-14 20:08:55,746 - [ deepseek-v4-flash ] - INFO -               Depth Estimation        99.10        67.07        80.00          164
+2026-07-14 20:08:55,747 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech        98.84        83.33        90.43          204
+2026-07-14 20:08:55,747 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition        64.10        85.62        73.31          146
+2026-07-14 20:08:55,747 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio        82.35        79.25        80.77          106
+2026-07-14 20:08:55,747 - [ deepseek-v4-flash ] - INFO -           Audio Classification        89.86        47.69        62.31          130
+2026-07-14 20:08:55,747 - [ deepseek-v4-flash ] - INFO -                  Image Editing        89.10        77.05        82.64          244
+2026-07-14 20:08:55,748 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:55,748 - [ deepseek-v4-flash ] - INFO -                          micro        77.91        64.41        70.52         3608
+2026-07-14 20:08:55,748 - [ deepseek-v4-flash ] - INFO -                          macro        80.97        63.36        69.14         3608
+2026-07-14 20:08:55,761 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6280292345172458
+2026-07-14 20:08:55,776 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4216938034438327
+2026-07-14 20:08:55,784 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.3147352312566808
+2026-07-14 20:08:55,795 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.36095965103598693
+2026-07-14 20:08:55,804 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:55,805 - [ deepseek-v4-flash ] - INFO - Tools Number: overall, Task Split: single
+2026-07-14 20:08:55,949 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 613
+2026-07-14 20:08:55,950 - [ deepseek-v4-flash ] - INFO - Node Support: 613 / 613
+2026-07-14 20:08:55,951 - [ deepseek-v4-flash ] - INFO - Link Support: 613 / 613
+2026-07-14 20:08:55,951 - [ deepseek-v4-flash ] - INFO - Argument Support: 613 / 613
+2026-07-14 20:08:55,961 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.8485804416403786
+2026-07-14 20:08:55,962 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.9149659863945578
+2026-07-14 20:08:55,962 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.8805237315875614
+2026-07-14 20:08:55,963 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.8851829198034405
+2026-07-14 20:08:55,963 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.8985104815661819
+2026-07-14 20:08:55,964 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.879125971003245
+2026-07-14 20:08:55,964 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:55,965 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:55,965 - [ deepseek-v4-flash ] - INFO -           Token Classification        91.89        91.89        91.89           37
+2026-07-14 20:08:55,965 - [ deepseek-v4-flash ] - INFO -                    Translation       100.00       100.00       100.00           23
+2026-07-14 20:08:55,965 - [ deepseek-v4-flash ] - INFO -                  Summarization        69.77        93.75        80.00           32
+2026-07-14 20:08:55,965 - [ deepseek-v4-flash ] - INFO -             Question Answering        95.00        79.17        86.36           24
+2026-07-14 20:08:55,965 - [ deepseek-v4-flash ] - INFO -                 Conversational        95.65        73.33        83.02           30
+2026-07-14 20:08:55,966 - [ deepseek-v4-flash ] - INFO -                Text Generation        56.41        95.65        70.97           23
+2026-07-14 20:08:55,966 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity       100.00       100.00       100.00           36
+2026-07-14 20:08:55,966 - [ deepseek-v4-flash ] - INFO -         Tabular Classification        92.31        75.00        82.76           16
+2026-07-14 20:08:55,966 - [ deepseek-v4-flash ] - INFO -               Object Detection        87.50        96.55        91.80           29
+2026-07-14 20:08:55,966 - [ deepseek-v4-flash ] - INFO -           Image Classification        85.71        82.76        84.21           29
+2026-07-14 20:08:55,966 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image       100.00        60.00        75.00            5
+2026-07-14 20:08:55,967 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        54.24        96.97        69.57           33
+2026-07-14 20:08:55,967 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image       100.00       100.00       100.00           29
+2026-07-14 20:08:55,967 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video       100.00       100.00       100.00           20
+2026-07-14 20:08:55,967 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering        93.75        83.33        88.24           18
+2026-07-14 20:08:55,967 - [ deepseek-v4-flash ] - INFO -    Document Question Answering        93.33        58.33        71.79           24
+2026-07-14 20:08:55,967 - [ deepseek-v4-flash ] - INFO -             Image Segmentation        95.83        95.83        95.83           24
+2026-07-14 20:08:55,968 - [ deepseek-v4-flash ] - INFO -               Depth Estimation       100.00       100.00       100.00           28
+2026-07-14 20:08:55,968 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech       100.00       100.00       100.00           30
+2026-07-14 20:08:55,968 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition        71.88       100.00        83.64           23
+2026-07-14 20:08:55,968 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio        80.77       100.00        89.36           21
+2026-07-14 20:08:55,968 - [ deepseek-v4-flash ] - INFO -           Audio Classification        84.00        84.00        84.00           25
+2026-07-14 20:08:55,968 - [ deepseek-v4-flash ] - INFO -                  Image Editing        87.88       100.00        93.55           29
+2026-07-14 20:08:55,969 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:55,969 - [ deepseek-v4-flash ] - INFO -                          micro        84.86        91.50        88.05          588
+2026-07-14 20:08:55,969 - [ deepseek-v4-flash ] - INFO -                          macro        88.52        89.85        87.91          588
+2026-07-14 20:08:55,976 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8418038654259127
+2026-07-14 20:08:55,980 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6337662337662338
+2026-07-14 20:08:55,984 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.13567156063077757
+2026-07-14 20:08:55,986 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.0
+2026-07-14 20:08:55,987 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:55,988 - [ deepseek-v4-flash ] - INFO - Tools Number: overall, Task Split: chain
+2026-07-14 20:08:56,108 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 720
+2026-07-14 20:08:56,108 - [ deepseek-v4-flash ] - INFO - Node Support: 720 / 720
+2026-07-14 20:08:56,109 - [ deepseek-v4-flash ] - INFO - Link Support: 720 / 720
+2026-07-14 20:08:56,109 - [ deepseek-v4-flash ] - INFO - Argument Support: 720 / 720
+2026-07-14 20:08:56,122 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.7597266035751841
+2026-07-14 20:08:56,123 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.5956306677658697
+2026-07-14 20:08:56,124 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.6677449168207024
+2026-07-14 20:08:56,124 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.7906002861362967
+2026-07-14 20:08:56,125 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.5845680219329098
+2026-07-14 20:08:56,125 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.6475328429832757
+2026-07-14 20:08:56,126 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:56,126 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:56,127 - [ deepseek-v4-flash ] - INFO -           Token Classification        84.78        45.88        59.54           85
+2026-07-14 20:08:56,127 - [ deepseek-v4-flash ] - INFO -                    Translation        98.06        78.29        87.07          129
+2026-07-14 20:08:56,127 - [ deepseek-v4-flash ] - INFO -                  Summarization        71.82        62.70        66.95          126
+2026-07-14 20:08:56,128 - [ deepseek-v4-flash ] - INFO -             Question Answering        51.79        30.21        38.16           96
+2026-07-14 20:08:56,128 - [ deepseek-v4-flash ] - INFO -                 Conversational        83.33        51.89        63.95          106
+2026-07-14 20:08:56,129 - [ deepseek-v4-flash ] - INFO -                Text Generation        54.29        49.57        51.82          115
+2026-07-14 20:08:56,129 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity        93.18        57.75        71.30           71
+2026-07-14 20:08:56,129 - [ deepseek-v4-flash ] - INFO -         Tabular Classification       100.00        23.86        38.53           88
+2026-07-14 20:08:56,130 - [ deepseek-v4-flash ] - INFO -               Object Detection        70.59        68.57        69.57          105
+2026-07-14 20:08:56,131 - [ deepseek-v4-flash ] - INFO -           Image Classification        70.59        48.00        57.14          100
+2026-07-14 20:08:56,131 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image        60.78        37.35        46.27           83
+2026-07-14 20:08:56,131 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        42.56        77.57        54.97          107
+2026-07-14 20:08:56,131 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image        93.16        82.58        87.55          132
+2026-07-14 20:08:56,132 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video        95.65        91.67        93.62           72
+2026-07-14 20:08:56,133 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering        63.44        50.43        56.19          117
+2026-07-14 20:08:56,133 - [ deepseek-v4-flash ] - INFO -    Document Question Answering        69.05        25.66        37.42          113
+2026-07-14 20:08:56,133 - [ deepseek-v4-flash ] - INFO -             Image Segmentation        95.56        38.05        54.43          113
+2026-07-14 20:08:56,133 - [ deepseek-v4-flash ] - INFO -               Depth Estimation        98.53        63.21        77.01          106
+2026-07-14 20:08:56,133 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech        98.35        84.40        90.84          141
+2026-07-14 20:08:56,134 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition        61.83        88.04        72.65           92
+2026-07-14 20:08:56,134 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio        81.54        74.65        77.94           71
+2026-07-14 20:08:56,134 - [ deepseek-v4-flash ] - INFO -           Audio Classification        91.67        40.74        56.41           81
+2026-07-14 20:08:56,134 - [ deepseek-v4-flash ] - INFO -                  Image Editing        87.84        73.45        80.00          177
+2026-07-14 20:08:56,134 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:56,134 - [ deepseek-v4-flash ] - INFO -                          micro        75.97        59.56        66.77         2426
+2026-07-14 20:08:56,134 - [ deepseek-v4-flash ] - INFO -                          macro        79.06        58.46        64.75         2426
+2026-07-14 20:08:56,150 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5800815375655213
+2026-07-14 20:08:56,158 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.37184500533238535
+2026-07-14 20:08:56,168 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.4350326833660161
+2026-07-14 20:08:56,178 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.3624747814391392
+2026-07-14 20:08:56,184 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:56,184 - [ deepseek-v4-flash ] - INFO - Tools Number: overall, Task Split: dag
+2026-07-14 20:08:56,251 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 159
+2026-07-14 20:08:56,253 - [ deepseek-v4-flash ] - INFO - Node Support: 159 / 159
+2026-07-14 20:08:56,254 - [ deepseek-v4-flash ] - INFO - Link Support: 159 / 159
+2026-07-14 20:08:56,254 - [ deepseek-v4-flash ] - INFO - Argument Support: 159 / 159
+2026-07-14 20:08:56,263 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.7628635346756152
+2026-07-14 20:08:56,263 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.5740740740740741
+2026-07-14 20:08:56,265 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.6551392891450528
+2026-07-14 20:08:56,265 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.817244089145941
+2026-07-14 20:08:56,265 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.5662554497563211
+2026-07-14 20:08:56,265 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.6445111043567638
+2026-07-14 20:08:56,265 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:56,265 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:56,265 - [ deepseek-v4-flash ] - INFO -           Token Classification        87.50        60.87        71.79           23
+2026-07-14 20:08:56,265 - [ deepseek-v4-flash ] - INFO -                    Translation        95.24        74.07        83.33           27
+2026-07-14 20:08:56,265 - [ deepseek-v4-flash ] - INFO -                  Summarization        59.26        66.67        62.75           24
+2026-07-14 20:08:56,265 - [ deepseek-v4-flash ] - INFO -             Question Answering        46.67        33.33        38.89           21
+2026-07-14 20:08:56,267 - [ deepseek-v4-flash ] - INFO -                 Conversational        84.62        45.83        59.46           24
+2026-07-14 20:08:56,267 - [ deepseek-v4-flash ] - INFO -                Text Generation        54.17        52.00        53.06           25
+2026-07-14 20:08:56,268 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity        95.65        81.48        88.00           27
+2026-07-14 20:08:56,268 - [ deepseek-v4-flash ] - INFO -         Tabular Classification       100.00        27.78        43.48           18
+2026-07-14 20:08:56,268 - [ deepseek-v4-flash ] - INFO -               Object Detection        78.95        60.00        68.18           25
+2026-07-14 20:08:56,268 - [ deepseek-v4-flash ] - INFO -           Image Classification        76.47        37.14        50.00           35
+2026-07-14 20:08:56,268 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image        80.00        44.44        57.14            9
+2026-07-14 20:08:56,268 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        36.00        78.26        49.32           23
+2026-07-14 20:08:56,268 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image        94.44        65.38        77.27           26
+2026-07-14 20:08:56,268 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video       100.00        92.59        96.15           27
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering        62.50        45.45        52.63           44
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO -    Document Question Answering        75.00        34.62        47.37           26
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO -             Image Segmentation       100.00        40.00        57.14           20
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO -               Depth Estimation       100.00        50.00        66.67           30
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech       100.00        63.64        77.78           33
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition        65.62        67.74        66.67           31
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio        90.91        71.43        80.00           14
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO -           Audio Classification       100.00        33.33        50.00           24
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO -                  Image Editing        96.67        76.32        85.29           38
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO -                          micro        76.29        57.41        65.51          594
+2026-07-14 20:08:56,269 - [ deepseek-v4-flash ] - INFO -                          macro        81.72        56.63        64.45          594
+2026-07-14 20:08:56,274 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.586730615507594
+2026-07-14 20:08:56,280 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.38803792851932895
+2026-07-14 20:08:56,282 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.460344442419914
+2026-07-14 20:08:56,285 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.3649851632047478
+2026-07-14 20:08:56,288 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:56,288 - [ deepseek-v4-flash ] - INFO - Tools Number: 1, Task Split: overall
+2026-07-14 20:08:56,419 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 613
+2026-07-14 20:08:56,420 - [ deepseek-v4-flash ] - INFO - Node Support: 613 / 613
+2026-07-14 20:08:56,421 - [ deepseek-v4-flash ] - INFO - Link Support: 613 / 613
+2026-07-14 20:08:56,421 - [ deepseek-v4-flash ] - INFO - Argument Support: 613 / 613
+2026-07-14 20:08:56,432 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.8485804416403786
+2026-07-14 20:08:56,432 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.9149659863945578
+2026-07-14 20:08:56,433 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.8805237315875614
+2026-07-14 20:08:56,433 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.8851829198034405
+2026-07-14 20:08:56,433 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.8985104815661819
+2026-07-14 20:08:56,433 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.879125971003245
+2026-07-14 20:08:56,435 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:56,435 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:56,436 - [ deepseek-v4-flash ] - INFO -           Token Classification        91.89        91.89        91.89           37
+2026-07-14 20:08:56,436 - [ deepseek-v4-flash ] - INFO -                    Translation       100.00       100.00       100.00           23
+2026-07-14 20:08:56,436 - [ deepseek-v4-flash ] - INFO -                  Summarization        69.77        93.75        80.00           32
+2026-07-14 20:08:56,437 - [ deepseek-v4-flash ] - INFO -             Question Answering        95.00        79.17        86.36           24
+2026-07-14 20:08:56,437 - [ deepseek-v4-flash ] - INFO -                 Conversational        95.65        73.33        83.02           30
+2026-07-14 20:08:56,437 - [ deepseek-v4-flash ] - INFO -                Text Generation        56.41        95.65        70.97           23
+2026-07-14 20:08:56,438 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity       100.00       100.00       100.00           36
+2026-07-14 20:08:56,438 - [ deepseek-v4-flash ] - INFO -         Tabular Classification        92.31        75.00        82.76           16
+2026-07-14 20:08:56,439 - [ deepseek-v4-flash ] - INFO -               Object Detection        87.50        96.55        91.80           29
+2026-07-14 20:08:56,439 - [ deepseek-v4-flash ] - INFO -           Image Classification        85.71        82.76        84.21           29
+2026-07-14 20:08:56,440 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image       100.00        60.00        75.00            5
+2026-07-14 20:08:56,440 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        54.24        96.97        69.57           33
+2026-07-14 20:08:56,440 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image       100.00       100.00       100.00           29
+2026-07-14 20:08:56,440 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video       100.00       100.00       100.00           20
+2026-07-14 20:08:56,441 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering        93.75        83.33        88.24           18
+2026-07-14 20:08:56,441 - [ deepseek-v4-flash ] - INFO -    Document Question Answering        93.33        58.33        71.79           24
+2026-07-14 20:08:56,441 - [ deepseek-v4-flash ] - INFO -             Image Segmentation        95.83        95.83        95.83           24
+2026-07-14 20:08:56,441 - [ deepseek-v4-flash ] - INFO -               Depth Estimation       100.00       100.00       100.00           28
+2026-07-14 20:08:56,441 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech       100.00       100.00       100.00           30
+2026-07-14 20:08:56,442 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition        71.88       100.00        83.64           23
+2026-07-14 20:08:56,442 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio        80.77       100.00        89.36           21
+2026-07-14 20:08:56,442 - [ deepseek-v4-flash ] - INFO -           Audio Classification        84.00        84.00        84.00           25
+2026-07-14 20:08:56,442 - [ deepseek-v4-flash ] - INFO -                  Image Editing        87.88       100.00        93.55           29
+2026-07-14 20:08:56,442 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:56,443 - [ deepseek-v4-flash ] - INFO -                          micro        84.86        91.50        88.05          588
+2026-07-14 20:08:56,443 - [ deepseek-v4-flash ] - INFO -                          macro        88.52        89.85        87.91          588
+2026-07-14 20:08:56,449 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8418038654259127
+2026-07-14 20:08:56,454 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6337662337662338
+2026-07-14 20:08:56,459 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.13567156063077757
+2026-07-14 20:08:56,465 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.0
+2026-07-14 20:08:56,467 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:56,467 - [ deepseek-v4-flash ] - INFO - Tools Number: 2, Task Split: overall
+2026-07-14 20:08:56,531 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 103
+2026-07-14 20:08:56,531 - [ deepseek-v4-flash ] - INFO - Node Support: 103 / 103
+2026-07-14 20:08:56,531 - [ deepseek-v4-flash ] - INFO - Link Support: 103 / 103
+2026-07-14 20:08:56,532 - [ deepseek-v4-flash ] - INFO - Argument Support: 103 / 103
+2026-07-14 20:08:56,540 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.7564766839378239
+2026-07-14 20:08:56,541 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.7604166666666666
+2026-07-14 20:08:56,541 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.7584415584415585
+2026-07-14 20:08:56,542 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.8150111184638038
+2026-07-14 20:08:56,542 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.717537052319661
+2026-07-14 20:08:56,543 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.7180119708318844
+2026-07-14 20:08:56,544 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:56,544 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:56,544 - [ deepseek-v4-flash ] - INFO -           Token Classification       100.00        25.00        40.00            4
+2026-07-14 20:08:56,545 - [ deepseek-v4-flash ] - INFO -                    Translation       100.00       100.00       100.00           14
+2026-07-14 20:08:56,545 - [ deepseek-v4-flash ] - INFO -                  Summarization        76.92        76.92        76.92           13
+2026-07-14 20:08:56,545 - [ deepseek-v4-flash ] - INFO -             Question Answering        33.33        75.00        46.15            4
+2026-07-14 20:08:56,545 - [ deepseek-v4-flash ] - INFO -                 Conversational        66.67        40.00        50.00           10
+2026-07-14 20:08:56,546 - [ deepseek-v4-flash ] - INFO -                Text Generation        64.71        91.67        75.86           12
+2026-07-14 20:08:56,546 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity       100.00        77.78        87.50            9
+2026-07-14 20:08:56,546 - [ deepseek-v4-flash ] - INFO -         Tabular Classification       100.00        33.33        50.00            3
+2026-07-14 20:08:56,546 - [ deepseek-v4-flash ] - INFO -               Object Detection       100.00        90.91        95.24           11
+2026-07-14 20:08:56,547 - [ deepseek-v4-flash ] - INFO -           Image Classification       100.00        42.86        60.00            7
+2026-07-14 20:08:56,547 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image        80.00        57.14        66.67            7
+2026-07-14 20:08:56,547 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        29.41       100.00        45.45            5
+2026-07-14 20:08:56,548 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image        88.89       100.00        94.12            8
+2026-07-14 20:08:56,548 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video        88.89       100.00        94.12            8
+2026-07-14 20:08:56,548 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering        88.89        66.67        76.19           12
+2026-07-14 20:08:56,549 - [ deepseek-v4-flash ] - INFO -    Document Question Answering        75.00        46.15        57.14           13
+2026-07-14 20:08:56,549 - [ deepseek-v4-flash ] - INFO -             Image Segmentation       100.00        75.00        85.71            4
+2026-07-14 20:08:56,549 - [ deepseek-v4-flash ] - INFO -               Depth Estimation       100.00        71.43        83.33            7
+2026-07-14 20:08:56,549 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech       100.00       100.00       100.00           12
+2026-07-14 20:08:56,549 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition        50.00        90.00        64.29           10
+2026-07-14 20:08:56,549 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio        50.00        33.33        40.00            3
+2026-07-14 20:08:56,549 - [ deepseek-v4-flash ] - INFO -           Audio Classification       100.00        57.14        72.73            7
+2026-07-14 20:08:56,550 - [ deepseek-v4-flash ] - INFO -                  Image Editing        81.82       100.00        90.00            9
+2026-07-14 20:08:56,550 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:56,550 - [ deepseek-v4-flash ] - INFO -                          micro        75.65        76.04        75.84          192
+2026-07-14 20:08:56,550 - [ deepseek-v4-flash ] - INFO -                          macro        81.50        71.75        71.80          192
+2026-07-14 20:08:56,554 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6914660831509847
+2026-07-14 20:08:56,557 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5129224652087475
+2026-07-14 20:08:56,560 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.30064724919093844
+2026-07-14 20:08:56,565 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.5053763440860215
+2026-07-14 20:08:56,566 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:56,566 - [ deepseek-v4-flash ] - INFO - Tools Number: 3, Task Split: overall
+2026-07-14 20:08:56,639 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 305
+2026-07-14 20:08:56,640 - [ deepseek-v4-flash ] - INFO - Node Support: 305 / 305
+2026-07-14 20:08:56,641 - [ deepseek-v4-flash ] - INFO - Link Support: 305 / 305
+2026-07-14 20:08:56,641 - [ deepseek-v4-flash ] - INFO - Argument Support: 305 / 305
+2026-07-14 20:08:56,655 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.7405857740585774
+2026-07-14 20:08:56,656 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.6397590361445783
+2026-07-14 20:08:56,656 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.6864899806076277
+2026-07-14 20:08:56,656 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.782225938491581
+2026-07-14 20:08:56,656 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.6349133200224053
+2026-07-14 20:08:56,656 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.6762321530393155
+2026-07-14 20:08:56,657 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:56,657 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:56,657 - [ deepseek-v4-flash ] - INFO -           Token Classification        66.67        40.00        50.00           30
+2026-07-14 20:08:56,657 - [ deepseek-v4-flash ] - INFO -                    Translation       100.00        80.00        88.89           35
+2026-07-14 20:08:56,657 - [ deepseek-v4-flash ] - INFO -                  Summarization        71.74        63.46        67.35           52
+2026-07-14 20:08:56,657 - [ deepseek-v4-flash ] - INFO -             Question Answering        64.00        42.11        50.79           38
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -                 Conversational        85.19        62.16        71.88           37
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -                Text Generation        47.37        45.00        46.15           40
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity        90.48        79.17        84.44           24
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -         Tabular Classification       100.00        18.75        31.58           32
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -               Object Detection        75.86        64.71        69.84           34
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -           Image Classification        69.23        52.94        60.00           34
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image        55.56        47.62        51.28           21
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        45.45        88.89        60.15           45
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image        90.62        87.88        89.23           33
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video        96.77       100.00        98.36           30
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering        55.00        47.83        51.16           46
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -    Document Question Answering        66.67        34.04        45.07           47
+2026-07-14 20:08:56,658 - [ deepseek-v4-flash ] - INFO -             Image Segmentation       100.00        51.52        68.00           33
+2026-07-14 20:08:56,659 - [ deepseek-v4-flash ] - INFO -               Depth Estimation       100.00        70.97        83.02           31
+2026-07-14 20:08:56,659 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech        97.87        88.46        92.93           52
+2026-07-14 20:08:56,659 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition        68.63        92.11        78.65           38
+2026-07-14 20:08:56,659 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio        76.00        82.61        79.17           23
+2026-07-14 20:08:56,659 - [ deepseek-v4-flash ] - INFO -           Audio Classification        90.91        38.46        54.05           26
+2026-07-14 20:08:56,659 - [ deepseek-v4-flash ] - INFO -                  Image Editing        85.11        81.63        83.33           49
+2026-07-14 20:08:56,659 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:56,660 - [ deepseek-v4-flash ] - INFO -                          micro        74.06        63.98        68.65          830
+2026-07-14 20:08:56,660 - [ deepseek-v4-flash ] - INFO -                          macro        78.22        63.49        67.62          830
+2026-07-14 20:08:56,664 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5990338164251208
+2026-07-14 20:08:56,671 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4015748031496063
+2026-07-14 20:08:56,675 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.41199063231850086
+2026-07-14 20:08:56,679 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.39144385026737966
+2026-07-14 20:08:56,681 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:56,681 - [ deepseek-v4-flash ] - INFO - Tools Number: 4, Task Split: overall
+2026-07-14 20:08:56,751 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 268
+2026-07-14 20:08:56,751 - [ deepseek-v4-flash ] - INFO - Node Support: 268 / 268
+2026-07-14 20:08:56,752 - [ deepseek-v4-flash ] - INFO - Link Support: 268 / 268
+2026-07-14 20:08:56,752 - [ deepseek-v4-flash ] - INFO - Argument Support: 268 / 268
+2026-07-14 20:08:56,762 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.7961538461538461
+2026-07-14 20:08:56,763 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.6228686058174524
+2026-07-14 20:08:56,763 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.69893078221722
+2026-07-14 20:08:56,763 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.8255220045212622
+2026-07-14 20:08:56,764 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.6054879859483934
+2026-07-14 20:08:56,764 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.677010453960358
+2026-07-14 20:08:56,764 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:56,764 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:56,765 - [ deepseek-v4-flash ] - INFO -           Token Classification        93.10        61.36        73.97           44
+2026-07-14 20:08:56,765 - [ deepseek-v4-flash ] - INFO -                    Translation        97.67        77.78        86.60           54
+2026-07-14 20:08:56,765 - [ deepseek-v4-flash ] - INFO -                  Summarization        63.04        67.44        65.17           43
+2026-07-14 20:08:56,765 - [ deepseek-v4-flash ] - INFO -             Question Answering        52.94        27.27        36.00           33
+2026-07-14 20:08:56,765 - [ deepseek-v4-flash ] - INFO -                 Conversational        91.30        50.00        64.62           42
+2026-07-14 20:08:56,765 - [ deepseek-v4-flash ] - INFO -                Text Generation        61.90        53.06        57.14           49
+2026-07-14 20:08:56,766 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity       100.00        68.42        81.25           38
+2026-07-14 20:08:56,766 - [ deepseek-v4-flash ] - INFO -         Tabular Classification       100.00        30.56        46.81           36
+2026-07-14 20:08:56,766 - [ deepseek-v4-flash ] - INFO -               Object Detection        73.81        70.45        72.09           44
+2026-07-14 20:08:56,766 - [ deepseek-v4-flash ] - INFO -           Image Classification        80.00        51.06        62.34           47
+2026-07-14 20:08:56,766 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image        63.16        44.44        52.17           27
+2026-07-14 20:08:56,766 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        38.16        74.36        50.43           39
+2026-07-14 20:08:56,767 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image        97.92        87.04        92.16           54
+2026-07-14 20:08:56,767 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video       100.00        86.67        92.86           30
+2026-07-14 20:08:56,767 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering        68.29        54.90        60.87           51
+2026-07-14 20:08:56,767 - [ deepseek-v4-flash ] - INFO -    Document Question Answering        70.00        21.21        32.56           33
+2026-07-14 20:08:56,767 - [ deepseek-v4-flash ] - INFO -             Image Segmentation        95.65        45.83        61.97           48
+2026-07-14 20:08:56,767 - [ deepseek-v4-flash ] - INFO -               Depth Estimation        96.77        68.18        80.00           44
+2026-07-14 20:08:56,767 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech       100.00        79.25        88.42           53
+2026-07-14 20:08:56,767 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition        65.38        75.56        70.10           45
+2026-07-14 20:08:56,767 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio        95.83        79.31        86.79           29
+2026-07-14 20:08:56,767 - [ deepseek-v4-flash ] - INFO -           Audio Classification       100.00        40.54        57.69           37
+2026-07-14 20:08:56,768 - [ deepseek-v4-flash ] - INFO -                  Image Editing        93.75        77.92        85.11           77
+2026-07-14 20:08:56,768 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:56,768 - [ deepseek-v4-flash ] - INFO -                          micro        79.62        62.29        69.89          997
+2026-07-14 20:08:56,768 - [ deepseek-v4-flash ] - INFO -                          macro        82.55        60.55        67.70          997
+2026-07-14 20:08:56,772 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6192068800764453
+2026-07-14 20:08:56,778 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.3893728222996516
+2026-07-14 20:08:56,781 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.43054290237126014
+2026-07-14 20:08:56,786 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.38548387096774195
+2026-07-14 20:08:56,789 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:56,789 - [ deepseek-v4-flash ] - INFO - Tools Number: 5, Task Split: overall
+2026-07-14 20:08:56,915 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 115
+2026-07-14 20:08:56,915 - [ deepseek-v4-flash ] - INFO - Node Support: 115 / 115
+2026-07-14 20:08:56,916 - [ deepseek-v4-flash ] - INFO - Link Support: 115 / 115
+2026-07-14 20:08:56,916 - [ deepseek-v4-flash ] - INFO - Argument Support: 115 / 115
+2026-07-14 20:08:56,927 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.7207207207207207
+2026-07-14 20:08:56,928 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.47244094488188976
+2026-07-14 20:08:56,928 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.5707491082045184
+2026-07-14 20:08:56,928 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.7363084462216389
+2026-07-14 20:08:56,928 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.4637225716927311
+2026-07-14 20:08:56,929 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.5298171871097433
+2026-07-14 20:08:56,929 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:56,929 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:56,929 - [ deepseek-v4-flash ] - INFO -           Token Classification        75.00        25.00        37.50           12
+2026-07-14 20:08:56,929 - [ deepseek-v4-flash ] - INFO -                    Translation        94.74        72.00        81.82           25
+2026-07-14 20:08:56,929 - [ deepseek-v4-flash ] - INFO -                  Summarization        81.25        52.00        63.41           25
+2026-07-14 20:08:56,930 - [ deepseek-v4-flash ] - INFO -             Question Answering        20.00         5.00         8.00           20
+2026-07-14 20:08:56,930 - [ deepseek-v4-flash ] - INFO -                 Conversational        72.73        44.44        55.17           18
+2026-07-14 20:08:56,930 - [ deepseek-v4-flash ] - INFO -                Text Generation        42.86        45.00        43.90           20
+2026-07-14 20:08:56,930 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity        85.71        37.50        52.17           16
+2026-07-14 20:08:56,930 - [ deepseek-v4-flash ] - INFO -         Tabular Classification       100.00        20.83        34.48           24
+2026-07-14 20:08:56,930 - [ deepseek-v4-flash ] - INFO -               Object Detection        63.64        58.33        60.87           24
+2026-07-14 20:08:56,930 - [ deepseek-v4-flash ] - INFO -           Image Classification        46.15        27.27        34.29           22
+2026-07-14 20:08:56,931 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image        60.00        15.79        25.00           19
+2026-07-14 20:08:56,931 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        36.84        66.67        47.46           21
+2026-07-14 20:08:56,931 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image        90.91        66.67        76.92           30
+2026-07-14 20:08:56,931 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video       100.00        78.57        88.00           14
+2026-07-14 20:08:56,931 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering        60.00        44.44        51.06           27
+2026-07-14 20:08:56,931 - [ deepseek-v4-flash ] - INFO -    Document Question Answering        66.67        10.53        18.18           19
+2026-07-14 20:08:56,931 - [ deepseek-v4-flash ] - INFO -             Image Segmentation        75.00        11.54        20.00           26
+2026-07-14 20:08:56,931 - [ deepseek-v4-flash ] - INFO -               Depth Estimation       100.00        48.39        65.22           31
+2026-07-14 20:08:56,931 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech        95.65        75.86        84.62           29
+2026-07-14 20:08:56,932 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition        63.64       100.00        77.78           14
+2026-07-14 20:08:56,932 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio        72.73        61.54        66.67           13
+2026-07-14 20:08:56,932 - [ deepseek-v4-flash ] - INFO -           Audio Classification       100.00        33.33        50.00           18
+2026-07-14 20:08:56,933 - [ deepseek-v4-flash ] - INFO -                  Image Editing        90.00        65.85        76.06           41
+2026-07-14 20:08:56,933 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:56,933 - [ deepseek-v4-flash ] - INFO -                          micro        72.07        47.24        57.07          508
+2026-07-14 20:08:56,934 - [ deepseek-v4-flash ] - INFO -                          macro        73.63        46.37        52.98          508
+2026-07-14 20:08:56,939 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.499009900990099
+2026-07-14 20:08:56,943 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.28701180744777477
+2026-07-14 20:08:56,944 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.5725371729719559
+2026-07-14 20:08:56,948 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.29199372056514916
+2026-07-14 20:08:56,949 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:56,949 - [ deepseek-v4-flash ] - INFO - Tools Number: 6, Task Split: overall
+2026-07-14 20:08:57,002 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 53
+2026-07-14 20:08:57,003 - [ deepseek-v4-flash ] - INFO - Node Support: 53 / 53
+2026-07-14 20:08:57,003 - [ deepseek-v4-flash ] - INFO - Link Support: 53 / 53
+2026-07-14 20:08:57,004 - [ deepseek-v4-flash ] - INFO - Argument Support: 53 / 53
+2026-07-14 20:08:57,016 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.7688442211055276
+2026-07-14 20:08:57,017 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.5483870967741935
+2026-07-14 20:08:57,017 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.6401673640167364
+2026-07-14 20:08:57,017 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.7841543083231063
+2026-07-14 20:08:57,017 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.5278049150188737
+2026-07-14 20:08:57,017 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.6023160523975364
+2026-07-14 20:08:57,018 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:57,018 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:57,018 - [ deepseek-v4-flash ] - INFO -           Token Classification       100.00        66.67        80.00           12
+2026-07-14 20:08:57,018 - [ deepseek-v4-flash ] - INFO -                    Translation       100.00        81.25        89.66           16
+2026-07-14 20:08:57,018 - [ deepseek-v4-flash ] - INFO -                  Summarization        85.71        66.67        75.00            9
+2026-07-14 20:08:57,018 - [ deepseek-v4-flash ] - INFO -             Question Answering        45.45        35.71        40.00           14
+2026-07-14 20:08:57,019 - [ deepseek-v4-flash ] - INFO -                 Conversational        66.67        40.00        50.00           10
+2026-07-14 20:08:57,019 - [ deepseek-v4-flash ] - INFO -                Text Generation        55.56        33.33        41.67           15
+2026-07-14 20:08:57,019 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity       100.00        42.86        60.00            7
+2026-07-14 20:08:57,019 - [ deepseek-v4-flash ] - INFO -         Tabular Classification       100.00        25.00        40.00            4
+2026-07-14 20:08:57,019 - [ deepseek-v4-flash ] - INFO -               Object Detection        54.55        66.67        60.00            9
+2026-07-14 20:08:57,019 - [ deepseek-v4-flash ] - INFO -           Image Classification       100.00        57.14        72.73           14
+2026-07-14 20:08:57,019 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image        25.00        11.11        15.38            9
+2026-07-14 20:08:57,020 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        58.82        66.67        62.50           15
+2026-07-14 20:08:57,020 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image        93.33        73.68        82.35           19
+2026-07-14 20:08:57,020 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video       100.00        92.31        96.00           13
+2026-07-14 20:08:57,020 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering        66.67        46.15        54.55           13
+2026-07-14 20:08:57,021 - [ deepseek-v4-flash ] - INFO -    Document Question Answering        80.00        25.00        38.10           16
+2026-07-14 20:08:57,021 - [ deepseek-v4-flash ] - INFO -             Image Segmentation       100.00        27.27        42.86           11
+2026-07-14 20:08:57,022 - [ deepseek-v4-flash ] - INFO -               Depth Estimation       100.00        42.86        60.00           14
+2026-07-14 20:08:57,022 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech       100.00        72.73        84.21           11
+2026-07-14 20:08:57,022 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition        38.46        71.43        50.00            7
+2026-07-14 20:08:57,022 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio        77.78        77.78        77.78            9
+2026-07-14 20:08:57,023 - [ deepseek-v4-flash ] - INFO -           Audio Classification        66.67        25.00        36.36            8
+2026-07-14 20:08:57,023 - [ deepseek-v4-flash ] - INFO -                  Image Editing        88.89        66.67        76.19           24
+2026-07-14 20:08:57,023 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:57,024 - [ deepseek-v4-flash ] - INFO -                          micro        76.88        54.84        64.02          279
+2026-07-14 20:08:57,025 - [ deepseek-v4-flash ] - INFO -                          macro        78.42        52.78        60.23          279
+2026-07-14 20:08:57,029 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5485519591141397
+2026-07-14 20:08:57,032 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.35569422776911075
+2026-07-14 20:08:57,033 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.5057926350379182
+2026-07-14 20:08:57,036 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.3220779220779221
+2026-07-14 20:08:57,036 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:57,037 - [ deepseek-v4-flash ] - INFO - Tools Number: 7, Task Split: overall
+2026-07-14 20:08:57,087 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 25
+2026-07-14 20:08:57,099 - [ deepseek-v4-flash ] - INFO - Node Support: 25 / 25
+2026-07-14 20:08:57,100 - [ deepseek-v4-flash ] - INFO - Link Support: 25 / 25
+2026-07-14 20:08:57,100 - [ deepseek-v4-flash ] - INFO - Argument Support: 25 / 25
+2026-07-14 20:08:57,107 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.7291666666666666
+2026-07-14 20:08:57,107 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.4794520547945205
+2026-07-14 20:08:57,107 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.5785123966942148
+2026-07-14 20:08:57,107 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.7611801242236026
+2026-07-14 20:08:57,108 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.49760179434092483
+2026-07-14 20:08:57,108 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.5660284384406069
+2026-07-14 20:08:57,108 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:57,108 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:57,108 - [ deepseek-v4-flash ] - INFO -           Token Classification       100.00        33.33        50.00            3
+2026-07-14 20:08:57,109 - [ deepseek-v4-flash ] - INFO -                    Translation        83.33        62.50        71.43            8
+2026-07-14 20:08:57,110 - [ deepseek-v4-flash ] - INFO -                  Summarization        66.67        80.00        72.73            5
+2026-07-14 20:08:57,110 - [ deepseek-v4-flash ] - INFO -             Question Answering        50.00        40.00        44.44            5
+2026-07-14 20:08:57,110 - [ deepseek-v4-flash ] - INFO -                 Conversational       100.00        44.44        61.54            9
+2026-07-14 20:08:57,111 - [ deepseek-v4-flash ] - INFO -                Text Generation       100.00        33.33        50.00            3
+2026-07-14 20:08:57,111 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity        66.67       100.00        80.00            2
+2026-07-14 20:08:57,111 - [ deepseek-v4-flash ] - INFO -         Tabular Classification       100.00        16.67        28.57            6
+2026-07-14 20:08:57,112 - [ deepseek-v4-flash ] - INFO -               Object Detection        50.00        60.00        54.55            5
+2026-07-14 20:08:57,112 - [ deepseek-v4-flash ] - INFO -           Image Classification        40.00        28.57        33.33            7
+2026-07-14 20:08:57,112 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image       100.00        62.50        76.92            8
+2026-07-14 20:08:57,113 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        20.00        33.33        25.00            3
+2026-07-14 20:08:57,113 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image        85.71        60.00        70.59           10
+2026-07-14 20:08:57,113 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video        75.00       100.00        85.71            3
+2026-07-14 20:08:57,114 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering        40.00        25.00        30.77            8
+2026-07-14 20:08:57,114 - [ deepseek-v4-flash ] - INFO -    Document Question Answering        66.67        25.00        36.36            8
+2026-07-14 20:08:57,114 - [ deepseek-v4-flash ] - INFO -             Image Segmentation       100.00        37.50        54.55            8
+2026-07-14 20:08:57,114 - [ deepseek-v4-flash ] - INFO -               Depth Estimation       100.00        42.86        60.00            7
+2026-07-14 20:08:57,115 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech       100.00        58.33        73.68           12
+2026-07-14 20:08:57,115 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition        60.00        50.00        54.55            6
+2026-07-14 20:08:57,115 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio       100.00        66.67        80.00            6
+2026-07-14 20:08:57,115 - [ deepseek-v4-flash ] - INFO -           Audio Classification        66.67        40.00        50.00            5
+2026-07-14 20:08:57,116 - [ deepseek-v4-flash ] - INFO -                  Image Editing        80.00        44.44        57.14            9
+2026-07-14 20:08:57,116 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:57,116 - [ deepseek-v4-flash ] - INFO -                          micro        72.92        47.95        57.85          146
+2026-07-14 20:08:57,116 - [ deepseek-v4-flash ] - INFO -                          macro        76.12        49.76        56.60          146
+2026-07-14 20:08:57,121 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.45229681978798586
+2026-07-14 20:08:57,125 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.2819672131147541
+2026-07-14 20:08:57,126 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.5947026307026306
+2026-07-14 20:08:57,129 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.30687830687830686
+2026-07-14 20:08:57,129 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:57,129 - [ deepseek-v4-flash ] - INFO - Tools Number: 8, Task Split: overall
+2026-07-14 20:08:57,187 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 10
+2026-07-14 20:08:57,188 - [ deepseek-v4-flash ] - INFO - Node Support: 10 / 10
+2026-07-14 20:08:57,188 - [ deepseek-v4-flash ] - INFO - Link Support: 10 / 10
+2026-07-14 20:08:57,189 - [ deepseek-v4-flash ] - INFO - Argument Support: 10 / 10
+2026-07-14 20:08:57,195 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.8064516129032258
+2026-07-14 20:08:57,196 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.36764705882352944
+2026-07-14 20:08:57,196 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.5050505050505051
+2026-07-14 20:08:57,197 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.6739130434782609
+2026-07-14 20:08:57,197 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.38115942028985506
+2026-07-14 20:08:57,197 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.4572463768115941
+2026-07-14 20:08:57,198 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-14 20:08:57,198 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-14 20:08:57,198 - [ deepseek-v4-flash ] - INFO -           Token Classification       100.00        33.33        50.00            3
+2026-07-14 20:08:57,198 - [ deepseek-v4-flash ] - INFO -                    Translation       100.00        25.00        40.00            4
+2026-07-14 20:08:57,198 - [ deepseek-v4-flash ] - INFO -                  Summarization         0.00         0.00         0.00            3
+2026-07-14 20:08:57,199 - [ deepseek-v4-flash ] - INFO -             Question Answering         0.00         0.00         0.00            3
+2026-07-14 20:08:57,199 - [ deepseek-v4-flash ] - INFO -                 Conversational       100.00        50.00        66.67            4
+2026-07-14 20:08:57,199 - [ deepseek-v4-flash ] - INFO -                Text Generation         0.00         0.00         0.00            1
+2026-07-14 20:08:57,199 - [ deepseek-v4-flash ] - INFO -            Sentence Similarity         0.00         0.00         0.00            2
+2026-07-14 20:08:57,199 - [ deepseek-v4-flash ] - INFO -         Tabular Classification       100.00       100.00       100.00            1
+2026-07-14 20:08:57,199 - [ deepseek-v4-flash ] - INFO -               Object Detection       100.00        33.33        50.00            3
+2026-07-14 20:08:57,199 - [ deepseek-v4-flash ] - INFO -           Image Classification         0.00         0.00         0.00            4
+2026-07-14 20:08:57,200 - [ deepseek-v4-flash ] - INFO -                 Image-to-Image         0.00         0.00         0.00            1
+2026-07-14 20:08:57,200 - [ deepseek-v4-flash ] - INFO -                  Image-to-Text        50.00       100.00        66.67            2
+2026-07-14 20:08:57,200 - [ deepseek-v4-flash ] - INFO -                  Text-to-Image       100.00        50.00        66.67            4
+2026-07-14 20:08:57,201 - [ deepseek-v4-flash ] - INFO -                  Text-to-Video       100.00       100.00       100.00            1
+2026-07-14 20:08:57,201 - [ deepseek-v4-flash ] - INFO -      Visual Question Answering       100.00        25.00        40.00            4
+2026-07-14 20:08:57,201 - [ deepseek-v4-flash ] - INFO -    Document Question Answering       100.00        33.33        50.00            3
+2026-07-14 20:08:57,201 - [ deepseek-v4-flash ] - INFO -             Image Segmentation         0.00         0.00         0.00            3
+2026-07-14 20:08:57,201 - [ deepseek-v4-flash ] - INFO -               Depth Estimation       100.00        50.00        66.67            2
+2026-07-14 20:08:57,201 - [ deepseek-v4-flash ] - INFO -                 Text-to-Speech       100.00        60.00        75.00            5
+2026-07-14 20:08:57,201 - [ deepseek-v4-flash ] - INFO -   Automatic Speech Recognition       100.00        66.67        80.00            3
+2026-07-14 20:08:57,201 - [ deepseek-v4-flash ] - INFO -                 Audio-to-Audio       100.00        50.00        66.67            2
+2026-07-14 20:08:57,201 - [ deepseek-v4-flash ] - INFO -           Audio Classification       100.00        50.00        66.67            4
+2026-07-14 20:08:57,202 - [ deepseek-v4-flash ] - INFO -                  Image Editing       100.00        50.00        66.67            6
+2026-07-14 20:08:57,202 - [ deepseek-v4-flash ] - INFO - 
+2026-07-14 20:08:57,202 - [ deepseek-v4-flash ] - INFO -                          micro        80.65        36.76        50.51           68
+2026-07-14 20:08:57,202 - [ deepseek-v4-flash ] - INFO -                          macro        67.39        38.12        45.72           68
+2026-07-14 20:08:57,206 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.3669724770642202
+2026-07-14 20:08:57,209 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.2184873949579832
+2026-07-14 20:08:57,210 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.6892640692640692
+2026-07-14 20:08:57,214 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.23684210526315788
+2026-07-14 20:08:57,215 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:57,216 - [ deepseek-v4-flash ] - INFO - Tools Number: 9, Task Split: overall
+2026-07-14 20:08:57,278 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 0
+2026-07-14 20:08:57,279 - [ deepseek-v4-flash ] - INFO - Node Support: 0 / 0
+2026-07-14 20:08:57,279 - [ deepseek-v4-flash ] - INFO - Link Support: 0 / 0
+2026-07-14 20:08:57,280 - [ deepseek-v4-flash ] - INFO - Argument Support: 0 / 0
+2026-07-14 20:08:57,280 - [ deepseek-v4-flash ] - INFO - No supports, skip
+2026-07-14 20:08:57,280 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-14 20:08:57,281 - [ deepseek-v4-flash ] - INFO - Tools Number: 10, Task Split: overall
+2026-07-14 20:08:57,342 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 0
+2026-07-14 20:08:57,343 - [ deepseek-v4-flash ] - INFO - Node Support: 0 / 0
+2026-07-14 20:08:57,344 - [ deepseek-v4-flash ] - INFO - Link Support: 0 / 0
+2026-07-14 20:08:57,344 - [ deepseek-v4-flash ] - INFO - Argument Support: 0 / 0
+2026-07-14 20:08:57,344 - [ deepseek-v4-flash ] - INFO - No supports, skip

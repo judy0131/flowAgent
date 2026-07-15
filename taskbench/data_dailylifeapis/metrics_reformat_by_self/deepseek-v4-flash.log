@@ -1,0 +1,747 @@
+2026-07-09 22:25:50,000 - [ deepseek-v4-flash ] - INFO - Starts with: {'data_dir': 'taskbench/data_dailylifeapis', 'prediction_dir': 'predictions_reformat_by_self', 'save_dir': None, 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'deepseek-v4-flash', 'dependency_type': 'temporal', 'alignment': None, 'prompting': 'cot'}
+2026-07-09 22:25:50,005 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:50,005 - [ deepseek-v4-flash ] - INFO - Tools Number: overall, Task Split: overall
+2026-07-09 22:25:50,095 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 854
+2026-07-09 22:25:50,099 - [ deepseek-v4-flash ] - INFO - Node Support: 854 / 854
+2026-07-09 22:25:50,101 - [ deepseek-v4-flash ] - INFO - Link Support: 854 / 854
+2026-07-09 22:25:50,102 - [ deepseek-v4-flash ] - INFO - Argument Support: 854 / 854
+2026-07-09 22:25:50,123 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.95702559150169
+2026-07-09 22:25:50,126 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.8004846526655897
+2026-07-09 22:25:50,127 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.8717835935781835
+2026-07-09 22:25:50,128 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.9567072286603244
+2026-07-09 22:25:50,131 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.7989455844812781
+2026-07-09 22:25:50,131 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.8692130376609828
+2026-07-09 22:25:50,132 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:50,132 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:50,133 - [ deepseek-v4-flash ] - INFO -                    get_weather        93.18        73.21        82.00           56
+2026-07-09 22:25:50,133 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic        97.67        80.77        88.42           52
+2026-07-09 22:25:50,133 - [ deepseek-v4-flash ] - INFO -                stock_operation        98.25        82.35        89.60           68
+2026-07-09 22:25:50,134 - [ deepseek-v4-flash ] - INFO -                    book_flight       100.00        88.41        93.85           69
+2026-07-09 22:25:50,135 - [ deepseek-v4-flash ] - INFO -                     book_hotel        98.36        82.19        89.55           73
+2026-07-09 22:25:50,135 - [ deepseek-v4-flash ] - INFO -                book_restaurant       100.00        88.46        93.88           52
+2026-07-09 22:25:50,136 - [ deepseek-v4-flash ] - INFO -                       book_car        94.55        81.25        87.39           64
+2026-07-09 22:25:50,137 - [ deepseek-v4-flash ] - INFO -                online_shopping        94.34        76.92        84.75           65
+2026-07-09 22:25:50,137 - [ deepseek-v4-flash ] - INFO -                     send_email        98.04        76.92        86.21           65
+2026-07-09 22:25:50,139 - [ deepseek-v4-flash ] - INFO -                       send_sms       100.00        82.26        90.27           62
+2026-07-09 22:25:50,140 - [ deepseek-v4-flash ] - INFO -        share_by_social_network       100.00        80.30        89.08           66
+2026-07-09 22:25:50,140 - [ deepseek-v4-flash ] - INFO -               search_by_engine        90.48        64.41        75.25           59
+2026-07-09 22:25:50,140 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00        73.44        84.68           64
+2026-07-09 22:25:50,140 - [ deepseek-v4-flash ] - INFO -              see_doctor_online        94.12        82.76        88.07           58
+2026-07-09 22:25:50,141 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online        97.73        79.63        87.76           54
+2026-07-09 22:25:50,141 - [ deepseek-v4-flash ] - INFO -               enroll_in_course        98.31        76.32        85.93           76
+2026-07-09 22:25:50,142 - [ deepseek-v4-flash ] - INFO -                  buy_insurance        98.00        81.67        89.09           60
+2026-07-09 22:25:50,142 - [ deepseek-v4-flash ] - INFO -                 online_banking        89.47        72.34        80.00           47
+2026-07-09 22:25:50,143 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment        79.25        80.77        80.00           52
+2026-07-09 22:25:50,143 - [ deepseek-v4-flash ] - INFO -               sell_item_online        96.00        85.71        90.57           56
+2026-07-09 22:25:50,144 - [ deepseek-v4-flash ] - INFO -                  do_tax_return       100.00        91.84        95.74           49
+2026-07-09 22:25:50,144 - [ deepseek-v4-flash ] - INFO -             apply_for_passport        97.92        74.60        84.68           63
+2026-07-09 22:25:50,144 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card        86.00        76.79        81.13           56
+2026-07-09 22:25:50,145 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot        94.83        82.09        88.00           67
+2026-07-09 22:25:50,145 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination       100.00        67.27        80.43           55
+2026-07-09 22:25:50,145 - [ deepseek-v4-flash ] - INFO -                deliver_package        93.88        74.19        82.88           62
+2026-07-09 22:25:50,145 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00        87.69        93.44           65
+2026-07-09 22:25:50,146 - [ deepseek-v4-flash ] - INFO -                     order_taxi        94.83        83.33        88.71           66
+2026-07-09 22:25:50,149 - [ deepseek-v4-flash ] - INFO -            play_music_by_title        96.72        86.76        91.47           68
+2026-07-09 22:25:50,149 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title        92.31        85.71        88.89           70
+2026-07-09 22:25:50,150 - [ deepseek-v4-flash ] - INFO -                      take_note        89.13        65.08        75.23           63
+2026-07-09 22:25:50,150 - [ deepseek-v4-flash ] - INFO -             borrow_book_online        98.18        81.82        89.26           66
+2026-07-09 22:25:50,151 - [ deepseek-v4-flash ] - INFO -                recording_audio        91.67        73.33        81.48           45
+2026-07-09 22:25:50,151 - [ deepseek-v4-flash ] - INFO -                make_video_call        96.67        86.57        91.34           67
+2026-07-09 22:25:50,151 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00        78.57        88.00           56
+2026-07-09 22:25:50,152 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online        92.65        86.30        89.36           73
+2026-07-09 22:25:50,152 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online        95.65        68.75        80.00           64
+2026-07-09 22:25:50,153 - [ deepseek-v4-flash ] - INFO -            software_management        94.83        76.39        84.62           72
+2026-07-09 22:25:50,153 - [ deepseek-v4-flash ] - INFO -                 print_document        93.85        89.71        91.73           68
+2026-07-09 22:25:50,153 - [ deepseek-v4-flash ] - INFO -                      set_alarm       100.00        88.89        94.12           63
+2026-07-09 22:25:50,154 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:50,154 - [ deepseek-v4-flash ] - INFO -                          micro        95.70        80.05        87.18         2476
+2026-07-09 22:25:50,156 - [ deepseek-v4-flash ] - INFO -                          macro        95.67        79.89        86.92         2476
+2026-07-09 22:25:50,165 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8289034326165353
+2026-07-09 22:25:50,177 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5514754973961811
+2026-07-09 22:25:50,185 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.19762247575479475
+2026-07-09 22:25:50,194 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.4687246141348497
+2026-07-09 22:25:50,201 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:50,202 - [ deepseek-v4-flash ] - INFO - Tools Number: overall, Task Split: single
+2026-07-09 22:25:50,245 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 251
+2026-07-09 22:25:50,249 - [ deepseek-v4-flash ] - INFO - Node Support: 251 / 251
+2026-07-09 22:25:50,250 - [ deepseek-v4-flash ] - INFO - Link Support: 251 / 251
+2026-07-09 22:25:50,252 - [ deepseek-v4-flash ] - INFO - Argument Support: 251 / 251
+2026-07-09 22:25:50,260 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.9606299212598425
+2026-07-09 22:25:50,262 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.9959183673469387
+2026-07-09 22:25:50,262 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.9779559118236473
+2026-07-09 22:25:50,267 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.9496717171717173
+2026-07-09 22:25:50,267 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.996875
+2026-07-09 22:25:50,269 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.9665972222222223
+2026-07-09 22:25:50,275 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:50,276 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:50,277 - [ deepseek-v4-flash ] - INFO -                    get_weather       100.00       100.00       100.00            7
+2026-07-09 22:25:50,277 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic        75.00       100.00        85.71            3
+2026-07-09 22:25:50,278 - [ deepseek-v4-flash ] - INFO -                stock_operation       100.00       100.00       100.00           11
+2026-07-09 22:25:50,279 - [ deepseek-v4-flash ] - INFO -                    book_flight       100.00       100.00       100.00            5
+2026-07-09 22:25:50,279 - [ deepseek-v4-flash ] - INFO -                     book_hotel       100.00       100.00       100.00            7
+2026-07-09 22:25:50,280 - [ deepseek-v4-flash ] - INFO -                book_restaurant       100.00       100.00       100.00            2
+2026-07-09 22:25:50,281 - [ deepseek-v4-flash ] - INFO -                       book_car       100.00       100.00       100.00            5
+2026-07-09 22:25:50,282 - [ deepseek-v4-flash ] - INFO -                online_shopping       100.00       100.00       100.00            5
+2026-07-09 22:25:50,282 - [ deepseek-v4-flash ] - INFO -                     send_email       100.00       100.00       100.00            4
+2026-07-09 22:25:50,282 - [ deepseek-v4-flash ] - INFO -                       send_sms       100.00       100.00       100.00            8
+2026-07-09 22:25:50,283 - [ deepseek-v4-flash ] - INFO -        share_by_social_network       100.00        87.50        93.33            8
+2026-07-09 22:25:50,284 - [ deepseek-v4-flash ] - INFO -               search_by_engine        77.78       100.00        87.50            7
+2026-07-09 22:25:50,284 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00       100.00       100.00            7
+2026-07-09 22:25:50,284 - [ deepseek-v4-flash ] - INFO -              see_doctor_online       100.00       100.00       100.00            5
+2026-07-09 22:25:50,284 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online       100.00       100.00       100.00            2
+2026-07-09 22:25:50,285 - [ deepseek-v4-flash ] - INFO -               enroll_in_course       100.00       100.00       100.00            6
+2026-07-09 22:25:50,285 - [ deepseek-v4-flash ] - INFO -                  buy_insurance       100.00       100.00       100.00            5
+2026-07-09 22:25:50,285 - [ deepseek-v4-flash ] - INFO -                 online_banking        66.67       100.00        80.00            4
+2026-07-09 22:25:50,285 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment        33.33       100.00        50.00            1
+2026-07-09 22:25:50,286 - [ deepseek-v4-flash ] - INFO -               sell_item_online        75.00       100.00        85.71            3
+2026-07-09 22:25:50,286 - [ deepseek-v4-flash ] - INFO -                  do_tax_return       100.00       100.00       100.00            5
+2026-07-09 22:25:50,286 - [ deepseek-v4-flash ] - INFO -             apply_for_passport       100.00       100.00       100.00            5
+2026-07-09 22:25:50,286 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card       100.00       100.00       100.00            8
+2026-07-09 22:25:50,287 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot       100.00       100.00       100.00            1
+2026-07-09 22:25:50,287 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination       100.00       100.00       100.00            5
+2026-07-09 22:25:50,288 - [ deepseek-v4-flash ] - INFO -                deliver_package       100.00       100.00       100.00            9
+2026-07-09 22:25:50,289 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00       100.00       100.00            8
+2026-07-09 22:25:50,290 - [ deepseek-v4-flash ] - INFO -                     order_taxi       100.00       100.00       100.00            7
+2026-07-09 22:25:50,290 - [ deepseek-v4-flash ] - INFO -            play_music_by_title       100.00       100.00       100.00           11
+2026-07-09 22:25:50,290 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title       100.00       100.00       100.00           11
+2026-07-09 22:25:50,291 - [ deepseek-v4-flash ] - INFO -                      take_note       100.00       100.00       100.00            9
+2026-07-09 22:25:50,291 - [ deepseek-v4-flash ] - INFO -             borrow_book_online       100.00       100.00       100.00            4
+2026-07-09 22:25:50,291 - [ deepseek-v4-flash ] - INFO -                recording_audio       100.00       100.00       100.00            4
+2026-07-09 22:25:50,292 - [ deepseek-v4-flash ] - INFO -                make_video_call       100.00       100.00       100.00            8
+2026-07-09 22:25:50,292 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00       100.00       100.00            5
+2026-07-09 22:25:50,292 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online       100.00       100.00       100.00            8
+2026-07-09 22:25:50,292 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online        80.00       100.00        88.89            4
+2026-07-09 22:25:50,293 - [ deepseek-v4-flash ] - INFO -            software_management        90.91       100.00        95.24           10
+2026-07-09 22:25:50,293 - [ deepseek-v4-flash ] - INFO -                 print_document       100.00       100.00       100.00           13
+2026-07-09 22:25:50,294 - [ deepseek-v4-flash ] - INFO -                      set_alarm       100.00       100.00       100.00            5
+2026-07-09 22:25:50,295 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:50,295 - [ deepseek-v4-flash ] - INFO -                          micro        96.06        99.59        97.80          245
+2026-07-09 22:25:50,295 - [ deepseek-v4-flash ] - INFO -                          macro        94.97        99.69        96.66          245
+2026-07-09 22:25:50,305 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9395807644882861
+2026-07-09 22:25:50,313 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.7127003699136868
+2026-07-09 22:25:50,315 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.03320053120849942
+2026-07-09 22:25:50,322 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.0
+2026-07-09 22:25:50,325 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:50,327 - [ deepseek-v4-flash ] - INFO - Tools Number: overall, Task Split: chain
+2026-07-09 22:25:50,526 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 548
+2026-07-09 22:25:50,526 - [ deepseek-v4-flash ] - INFO - Node Support: 548 / 548
+2026-07-09 22:25:50,529 - [ deepseek-v4-flash ] - INFO - Link Support: 548 / 548
+2026-07-09 22:25:50,530 - [ deepseek-v4-flash ] - INFO - Argument Support: 548 / 548
+2026-07-09 22:25:50,556 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.9585834333733494
+2026-07-09 22:25:50,557 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.7700096432015429
+2026-07-09 22:25:50,557 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.8540106951871658
+2026-07-09 22:25:50,558 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.9591569453696114
+2026-07-09 22:25:50,558 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.7678717098004391
+2026-07-09 22:25:50,558 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.8507386234528717
+2026-07-09 22:25:50,559 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:50,559 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:50,559 - [ deepseek-v4-flash ] - INFO -                    get_weather        91.43        68.09        78.05           47
+2026-07-09 22:25:50,560 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic       100.00        76.19        86.49           42
+2026-07-09 22:25:50,560 - [ deepseek-v4-flash ] - INFO -                stock_operation       100.00        78.00        87.64           50
+2026-07-09 22:25:50,560 - [ deepseek-v4-flash ] - INFO -                    book_flight       100.00        86.89        92.98           61
+2026-07-09 22:25:50,561 - [ deepseek-v4-flash ] - INFO -                     book_hotel       100.00        78.69        88.07           61
+2026-07-09 22:25:50,561 - [ deepseek-v4-flash ] - INFO -                book_restaurant       100.00        87.76        93.48           49
+2026-07-09 22:25:50,561 - [ deepseek-v4-flash ] - INFO -                       book_car        95.56        78.18        86.00           55
+2026-07-09 22:25:50,562 - [ deepseek-v4-flash ] - INFO -                online_shopping        93.02        72.73        81.63           55
+2026-07-09 22:25:50,562 - [ deepseek-v4-flash ] - INFO -                     send_email        97.83        75.00        84.91           60
+2026-07-09 22:25:50,562 - [ deepseek-v4-flash ] - INFO -                       send_sms       100.00        78.00        87.64           50
+2026-07-09 22:25:50,563 - [ deepseek-v4-flash ] - INFO -        share_by_social_network       100.00        78.57        88.00           56
+2026-07-09 22:25:50,563 - [ deepseek-v4-flash ] - INFO -               search_by_engine        93.10        58.70        72.00           46
+2026-07-09 22:25:50,564 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00        67.92        80.90           53
+2026-07-09 22:25:50,564 - [ deepseek-v4-flash ] - INFO -              see_doctor_online        93.33        80.77        86.60           52
+2026-07-09 22:25:50,564 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online        97.30        76.60        85.71           47
+2026-07-09 22:25:50,565 - [ deepseek-v4-flash ] - INFO -               enroll_in_course        97.87        71.88        82.88           64
+2026-07-09 22:25:50,566 - [ deepseek-v4-flash ] - INFO -                  buy_insurance       100.00        79.63        88.66           54
+2026-07-09 22:25:50,566 - [ deepseek-v4-flash ] - INFO -                 online_banking        93.55        70.73        80.56           41
+2026-07-09 22:25:50,567 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment        81.63        80.00        80.81           50
+2026-07-09 22:25:50,567 - [ deepseek-v4-flash ] - INFO -               sell_item_online        97.30        81.82        88.89           44
+2026-07-09 22:25:50,568 - [ deepseek-v4-flash ] - INFO -                  do_tax_return       100.00        90.00        94.74           40
+2026-07-09 22:25:50,569 - [ deepseek-v4-flash ] - INFO -             apply_for_passport        97.56        72.73        83.33           55
+2026-07-09 22:25:50,569 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card        87.50        74.47        80.46           47
+2026-07-09 22:25:50,569 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot        94.34        80.65        86.96           62
+2026-07-09 22:25:50,569 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination       100.00        63.04        77.33           46
+2026-07-09 22:25:50,570 - [ deepseek-v4-flash ] - INFO -                deliver_package        94.44        68.00        79.07           50
+2026-07-09 22:25:50,570 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00        84.62        91.67           52
+2026-07-09 22:25:50,571 - [ deepseek-v4-flash ] - INFO -                     order_taxi        93.75        80.36        86.54           56
+2026-07-09 22:25:50,571 - [ deepseek-v4-flash ] - INFO -            play_music_by_title        95.45        82.35        88.42           51
+2026-07-09 22:25:50,571 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title        89.80        81.48        85.44           54
+2026-07-09 22:25:50,572 - [ deepseek-v4-flash ] - INFO -                      take_note        87.88        60.42        71.60           48
+2026-07-09 22:25:50,572 - [ deepseek-v4-flash ] - INFO -             borrow_book_online        98.00        81.67        89.09           60
+2026-07-09 22:25:50,573 - [ deepseek-v4-flash ] - INFO -                recording_audio        92.86        68.42        78.79           38
+2026-07-09 22:25:50,573 - [ deepseek-v4-flash ] - INFO -                make_video_call        95.83        85.19        90.20           54
+2026-07-09 22:25:50,573 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00        73.33        84.62           45
+2026-07-09 22:25:50,574 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online        92.98        85.48        89.08           62
+2026-07-09 22:25:50,574 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online        97.37        66.07        78.72           56
+2026-07-09 22:25:50,575 - [ deepseek-v4-flash ] - INFO -            software_management        95.45        72.41        82.35           58
+2026-07-09 22:25:50,575 - [ deepseek-v4-flash ] - INFO -                 print_document        91.49        86.00        88.66           50
+2026-07-09 22:25:50,576 - [ deepseek-v4-flash ] - INFO -                      set_alarm       100.00        88.68        94.00           53
+2026-07-09 22:25:50,576 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:50,576 - [ deepseek-v4-flash ] - INFO -                          micro        95.86        77.00        85.40         2074
+2026-07-09 22:25:50,576 - [ deepseek-v4-flash ] - INFO -                          macro        95.92        76.79        85.07         2074
+2026-07-09 22:25:50,589 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.810565548533463
+2026-07-09 22:25:50,603 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5261623197796857
+2026-07-09 22:25:50,612 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.27324135211908884
+2026-07-09 22:25:50,624 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.4650959860383944
+2026-07-09 22:25:50,637 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:50,637 - [ deepseek-v4-flash ] - INFO - Tools Number: overall, Task Split: dag
+2026-07-09 22:25:50,733 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 55
+2026-07-09 22:25:50,734 - [ deepseek-v4-flash ] - INFO - Node Support: 55 / 55
+2026-07-09 22:25:50,735 - [ deepseek-v4-flash ] - INFO - Link Support: 55 / 55
+2026-07-09 22:25:50,739 - [ deepseek-v4-flash ] - INFO - Argument Support: 55 / 55
+2026-07-09 22:25:50,755 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.9337748344370861
+2026-07-09 22:25:50,756 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.8980891719745223
+2026-07-09 22:25:50,757 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.9155844155844156
+2026-07-09 22:25:50,757 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.9226785714285715
+2026-07-09 22:25:50,757 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.8801785714285714
+2026-07-09 22:25:50,758 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.8896320346320348
+2026-07-09 22:25:50,759 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:50,759 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:50,759 - [ deepseek-v4-flash ] - INFO -                    get_weather       100.00       100.00       100.00            2
+2026-07-09 22:25:50,760 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic       100.00       100.00       100.00            7
+2026-07-09 22:25:50,760 - [ deepseek-v4-flash ] - INFO -                stock_operation        85.71        85.71        85.71            7
+2026-07-09 22:25:50,761 - [ deepseek-v4-flash ] - INFO -                    book_flight       100.00       100.00       100.00            3
+2026-07-09 22:25:50,761 - [ deepseek-v4-flash ] - INFO -                     book_hotel        83.33       100.00        90.91            5
+2026-07-09 22:25:50,761 - [ deepseek-v4-flash ] - INFO -                book_restaurant       100.00       100.00       100.00            1
+2026-07-09 22:25:50,762 - [ deepseek-v4-flash ] - INFO -                       book_car        80.00       100.00        88.89            4
+2026-07-09 22:25:50,763 - [ deepseek-v4-flash ] - INFO -                online_shopping       100.00       100.00       100.00            5
+2026-07-09 22:25:50,763 - [ deepseek-v4-flash ] - INFO -                     send_email       100.00       100.00       100.00            1
+2026-07-09 22:25:50,763 - [ deepseek-v4-flash ] - INFO -                       send_sms       100.00       100.00       100.00            4
+2026-07-09 22:25:50,764 - [ deepseek-v4-flash ] - INFO -        share_by_social_network       100.00       100.00       100.00            2
+2026-07-09 22:25:50,764 - [ deepseek-v4-flash ] - INFO -               search_by_engine       100.00        66.67        80.00            6
+2026-07-09 22:25:50,771 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00       100.00       100.00            4
+2026-07-09 22:25:50,772 - [ deepseek-v4-flash ] - INFO -              see_doctor_online       100.00       100.00       100.00            1
+2026-07-09 22:25:50,773 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online       100.00       100.00       100.00            5
+2026-07-09 22:25:50,774 - [ deepseek-v4-flash ] - INFO -               enroll_in_course       100.00       100.00       100.00            6
+2026-07-09 22:25:50,774 - [ deepseek-v4-flash ] - INFO -                  buy_insurance        50.00       100.00        66.67            1
+2026-07-09 22:25:50,774 - [ deepseek-v4-flash ] - INFO -                 online_banking       100.00        50.00        66.67            2
+2026-07-09 22:25:50,775 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment       100.00       100.00       100.00            1
+2026-07-09 22:25:50,775 - [ deepseek-v4-flash ] - INFO -               sell_item_online       100.00       100.00       100.00            9
+2026-07-09 22:25:50,776 - [ deepseek-v4-flash ] - INFO -                  do_tax_return       100.00       100.00       100.00            4
+2026-07-09 22:25:50,776 - [ deepseek-v4-flash ] - INFO -             apply_for_passport       100.00        66.67        80.00            3
+2026-07-09 22:25:50,776 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card         0.00         0.00         0.00            1
+2026-07-09 22:25:50,777 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot       100.00       100.00       100.00            4
+2026-07-09 22:25:50,777 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination       100.00        75.00        85.71            4
+2026-07-09 22:25:50,778 - [ deepseek-v4-flash ] - INFO -                deliver_package        75.00       100.00        85.71            3
+2026-07-09 22:25:50,778 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00       100.00       100.00            5
+2026-07-09 22:25:50,778 - [ deepseek-v4-flash ] - INFO -                     order_taxi       100.00       100.00       100.00            3
+2026-07-09 22:25:50,779 - [ deepseek-v4-flash ] - INFO -            play_music_by_title       100.00       100.00       100.00            6
+2026-07-09 22:25:50,779 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title       100.00       100.00       100.00            5
+2026-07-09 22:25:50,779 - [ deepseek-v4-flash ] - INFO -                      take_note        75.00        50.00        60.00            6
+2026-07-09 22:25:50,780 - [ deepseek-v4-flash ] - INFO -             borrow_book_online       100.00        50.00        66.67            2
+2026-07-09 22:25:50,780 - [ deepseek-v4-flash ] - INFO -                recording_audio        75.00       100.00        85.71            3
+2026-07-09 22:25:50,782 - [ deepseek-v4-flash ] - INFO -                make_video_call       100.00        80.00        88.89            5
+2026-07-09 22:25:50,783 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00       100.00       100.00            6
+2026-07-09 22:25:50,783 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online        66.67        66.67        66.67            3
+2026-07-09 22:25:50,784 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online       100.00        75.00        85.71            4
+2026-07-09 22:25:50,784 - [ deepseek-v4-flash ] - INFO -            software_management       100.00        75.00        85.71            4
+2026-07-09 22:25:50,785 - [ deepseek-v4-flash ] - INFO -                 print_document       100.00       100.00       100.00            5
+2026-07-09 22:25:50,785 - [ deepseek-v4-flash ] - INFO -                      set_alarm       100.00        80.00        88.89            5
+2026-07-09 22:25:50,786 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:50,786 - [ deepseek-v4-flash ] - INFO -                          micro        93.38        89.81        91.56          157
+2026-07-09 22:25:50,786 - [ deepseek-v4-flash ] - INFO -                          macro        92.27        88.02        88.96          157
+2026-07-09 22:25:50,793 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8752475247524752
+2026-07-09 22:25:50,802 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.601980198019802
+2026-07-09 22:25:50,803 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.19454545454545458
+2026-07-09 22:25:50,809 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.5333333333333333
+2026-07-09 22:25:50,810 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:50,811 - [ deepseek-v4-flash ] - INFO - Tools Number: 1, Task Split: overall
+2026-07-09 22:25:51,350 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 251
+2026-07-09 22:25:51,350 - [ deepseek-v4-flash ] - INFO - Node Support: 251 / 251
+2026-07-09 22:25:51,351 - [ deepseek-v4-flash ] - INFO - Link Support: 251 / 251
+2026-07-09 22:25:51,351 - [ deepseek-v4-flash ] - INFO - Argument Support: 251 / 251
+2026-07-09 22:25:51,387 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.9606299212598425
+2026-07-09 22:25:51,388 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.9959183673469387
+2026-07-09 22:25:51,392 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.9779559118236473
+2026-07-09 22:25:51,393 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.9496717171717173
+2026-07-09 22:25:51,393 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.996875
+2026-07-09 22:25:51,394 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.9665972222222223
+2026-07-09 22:25:51,394 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:51,395 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:51,395 - [ deepseek-v4-flash ] - INFO -                    get_weather       100.00       100.00       100.00            7
+2026-07-09 22:25:51,395 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic        75.00       100.00        85.71            3
+2026-07-09 22:25:51,396 - [ deepseek-v4-flash ] - INFO -                stock_operation       100.00       100.00       100.00           11
+2026-07-09 22:25:51,396 - [ deepseek-v4-flash ] - INFO -                    book_flight       100.00       100.00       100.00            5
+2026-07-09 22:25:51,396 - [ deepseek-v4-flash ] - INFO -                     book_hotel       100.00       100.00       100.00            7
+2026-07-09 22:25:51,396 - [ deepseek-v4-flash ] - INFO -                book_restaurant       100.00       100.00       100.00            2
+2026-07-09 22:25:51,396 - [ deepseek-v4-flash ] - INFO -                       book_car       100.00       100.00       100.00            5
+2026-07-09 22:25:51,397 - [ deepseek-v4-flash ] - INFO -                online_shopping       100.00       100.00       100.00            5
+2026-07-09 22:25:51,397 - [ deepseek-v4-flash ] - INFO -                     send_email       100.00       100.00       100.00            4
+2026-07-09 22:25:51,397 - [ deepseek-v4-flash ] - INFO -                       send_sms       100.00       100.00       100.00            8
+2026-07-09 22:25:51,398 - [ deepseek-v4-flash ] - INFO -        share_by_social_network       100.00        87.50        93.33            8
+2026-07-09 22:25:51,398 - [ deepseek-v4-flash ] - INFO -               search_by_engine        77.78       100.00        87.50            7
+2026-07-09 22:25:51,398 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00       100.00       100.00            7
+2026-07-09 22:25:51,399 - [ deepseek-v4-flash ] - INFO -              see_doctor_online       100.00       100.00       100.00            5
+2026-07-09 22:25:51,399 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online       100.00       100.00       100.00            2
+2026-07-09 22:25:51,399 - [ deepseek-v4-flash ] - INFO -               enroll_in_course       100.00       100.00       100.00            6
+2026-07-09 22:25:51,399 - [ deepseek-v4-flash ] - INFO -                  buy_insurance       100.00       100.00       100.00            5
+2026-07-09 22:25:51,400 - [ deepseek-v4-flash ] - INFO -                 online_banking        66.67       100.00        80.00            4
+2026-07-09 22:25:51,400 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment        33.33       100.00        50.00            1
+2026-07-09 22:25:51,400 - [ deepseek-v4-flash ] - INFO -               sell_item_online        75.00       100.00        85.71            3
+2026-07-09 22:25:51,400 - [ deepseek-v4-flash ] - INFO -                  do_tax_return       100.00       100.00       100.00            5
+2026-07-09 22:25:51,400 - [ deepseek-v4-flash ] - INFO -             apply_for_passport       100.00       100.00       100.00            5
+2026-07-09 22:25:51,401 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card       100.00       100.00       100.00            8
+2026-07-09 22:25:51,401 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot       100.00       100.00       100.00            1
+2026-07-09 22:25:51,402 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination       100.00       100.00       100.00            5
+2026-07-09 22:25:51,402 - [ deepseek-v4-flash ] - INFO -                deliver_package       100.00       100.00       100.00            9
+2026-07-09 22:25:51,402 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00       100.00       100.00            8
+2026-07-09 22:25:51,402 - [ deepseek-v4-flash ] - INFO -                     order_taxi       100.00       100.00       100.00            7
+2026-07-09 22:25:51,403 - [ deepseek-v4-flash ] - INFO -            play_music_by_title       100.00       100.00       100.00           11
+2026-07-09 22:25:51,403 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title       100.00       100.00       100.00           11
+2026-07-09 22:25:51,403 - [ deepseek-v4-flash ] - INFO -                      take_note       100.00       100.00       100.00            9
+2026-07-09 22:25:51,403 - [ deepseek-v4-flash ] - INFO -             borrow_book_online       100.00       100.00       100.00            4
+2026-07-09 22:25:51,403 - [ deepseek-v4-flash ] - INFO -                recording_audio       100.00       100.00       100.00            4
+2026-07-09 22:25:51,404 - [ deepseek-v4-flash ] - INFO -                make_video_call       100.00       100.00       100.00            8
+2026-07-09 22:25:51,404 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00       100.00       100.00            5
+2026-07-09 22:25:51,405 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online       100.00       100.00       100.00            8
+2026-07-09 22:25:51,410 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online        80.00       100.00        88.89            4
+2026-07-09 22:25:51,411 - [ deepseek-v4-flash ] - INFO -            software_management        90.91       100.00        95.24           10
+2026-07-09 22:25:51,411 - [ deepseek-v4-flash ] - INFO -                 print_document       100.00       100.00       100.00           13
+2026-07-09 22:25:51,412 - [ deepseek-v4-flash ] - INFO -                      set_alarm       100.00       100.00       100.00            5
+2026-07-09 22:25:51,412 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:51,413 - [ deepseek-v4-flash ] - INFO -                          micro        96.06        99.59        97.80          245
+2026-07-09 22:25:51,413 - [ deepseek-v4-flash ] - INFO -                          macro        94.97        99.69        96.66          245
+2026-07-09 22:25:51,428 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.9395807644882861
+2026-07-09 22:25:51,441 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.7127003699136868
+2026-07-09 22:25:51,444 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.03320053120849942
+2026-07-09 22:25:51,454 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.0
+2026-07-09 22:25:51,461 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:51,461 - [ deepseek-v4-flash ] - INFO - Tools Number: 2, Task Split: overall
+2026-07-09 22:25:51,562 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 59
+2026-07-09 22:25:51,563 - [ deepseek-v4-flash ] - INFO - Node Support: 59 / 59
+2026-07-09 22:25:51,564 - [ deepseek-v4-flash ] - INFO - Link Support: 59 / 59
+2026-07-09 22:25:51,564 - [ deepseek-v4-flash ] - INFO - Argument Support: 59 / 59
+2026-07-09 22:25:51,586 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.9217391304347826
+2026-07-09 22:25:51,587 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.9298245614035088
+2026-07-09 22:25:51,588 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.925764192139738
+2026-07-09 22:25:51,588 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.8533333333333335
+2026-07-09 22:25:51,589 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.8903571428571428
+2026-07-09 22:25:51,589 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.8593985181485181
+2026-07-09 22:25:51,590 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:51,590 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:51,591 - [ deepseek-v4-flash ] - INFO -                    get_weather       100.00       100.00       100.00            3
+2026-07-09 22:25:51,594 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic         0.00         0.00         0.00            0
+2026-07-09 22:25:51,595 - [ deepseek-v4-flash ] - INFO -                stock_operation       100.00       100.00       100.00            3
+2026-07-09 22:25:51,595 - [ deepseek-v4-flash ] - INFO -                    book_flight       100.00       100.00       100.00            4
+2026-07-09 22:25:51,595 - [ deepseek-v4-flash ] - INFO -                     book_hotel       100.00       100.00       100.00            5
+2026-07-09 22:25:51,596 - [ deepseek-v4-flash ] - INFO -                book_restaurant       100.00       100.00       100.00            3
+2026-07-09 22:25:51,596 - [ deepseek-v4-flash ] - INFO -                       book_car       100.00       100.00       100.00            2
+2026-07-09 22:25:51,596 - [ deepseek-v4-flash ] - INFO -                online_shopping        50.00       100.00        66.67            1
+2026-07-09 22:25:51,597 - [ deepseek-v4-flash ] - INFO -                     send_email       100.00       100.00       100.00            8
+2026-07-09 22:25:51,597 - [ deepseek-v4-flash ] - INFO -                       send_sms       100.00       100.00       100.00            2
+2026-07-09 22:25:51,597 - [ deepseek-v4-flash ] - INFO -        share_by_social_network       100.00       100.00       100.00            2
+2026-07-09 22:25:51,598 - [ deepseek-v4-flash ] - INFO -               search_by_engine        66.67       100.00        80.00            2
+2026-07-09 22:25:51,598 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00        75.00        85.71            4
+2026-07-09 22:25:51,599 - [ deepseek-v4-flash ] - INFO -              see_doctor_online       100.00       100.00       100.00            2
+2026-07-09 22:25:51,599 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online        66.67       100.00        80.00            2
+2026-07-09 22:25:51,599 - [ deepseek-v4-flash ] - INFO -               enroll_in_course        83.33        71.43        76.92            7
+2026-07-09 22:25:51,600 - [ deepseek-v4-flash ] - INFO -                  buy_insurance       100.00       100.00       100.00            2
+2026-07-09 22:25:51,600 - [ deepseek-v4-flash ] - INFO -                 online_banking       100.00       100.00       100.00            2
+2026-07-09 22:25:51,600 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment         0.00         0.00         0.00            0
+2026-07-09 22:25:51,600 - [ deepseek-v4-flash ] - INFO -               sell_item_online       100.00       100.00       100.00            2
+2026-07-09 22:25:51,600 - [ deepseek-v4-flash ] - INFO -                  do_tax_return       100.00       100.00       100.00            4
+2026-07-09 22:25:51,601 - [ deepseek-v4-flash ] - INFO -             apply_for_passport       100.00       100.00       100.00            1
+2026-07-09 22:25:51,601 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card        33.33       100.00        50.00            1
+2026-07-09 22:25:51,601 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot       100.00       100.00       100.00            2
+2026-07-09 22:25:51,601 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination       100.00       100.00       100.00            2
+2026-07-09 22:25:51,601 - [ deepseek-v4-flash ] - INFO -                deliver_package       100.00       100.00       100.00            3
+2026-07-09 22:25:51,602 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00       100.00       100.00            3
+2026-07-09 22:25:51,602 - [ deepseek-v4-flash ] - INFO -                     order_taxi       100.00       100.00       100.00            3
+2026-07-09 22:25:51,602 - [ deepseek-v4-flash ] - INFO -            play_music_by_title       100.00       100.00       100.00            6
+2026-07-09 22:25:51,603 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title       100.00       100.00       100.00            2
+2026-07-09 22:25:51,603 - [ deepseek-v4-flash ] - INFO -                      take_note       100.00       100.00       100.00            4
+2026-07-09 22:25:51,603 - [ deepseek-v4-flash ] - INFO -             borrow_book_online       100.00       100.00       100.00            3
+2026-07-09 22:25:51,603 - [ deepseek-v4-flash ] - INFO -                recording_audio         0.00         0.00         0.00            1
+2026-07-09 22:25:51,604 - [ deepseek-v4-flash ] - INFO -                make_video_call        80.00        80.00        80.00            5
+2026-07-09 22:25:51,604 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00       100.00       100.00            2
+2026-07-09 22:25:51,604 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online        83.33       100.00        90.91            5
+2026-07-09 22:25:51,605 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online       100.00        60.00        75.00            5
+2026-07-09 22:25:51,605 - [ deepseek-v4-flash ] - INFO -            software_management       100.00        75.00        85.71            4
+2026-07-09 22:25:51,605 - [ deepseek-v4-flash ] - INFO -                 print_document        50.00       100.00        66.67            1
+2026-07-09 22:25:51,606 - [ deepseek-v4-flash ] - INFO -                      set_alarm       100.00       100.00       100.00            1
+2026-07-09 22:25:51,606 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:51,606 - [ deepseek-v4-flash ] - INFO -                          micro        92.17        92.98        92.58          114
+2026-07-09 22:25:51,606 - [ deepseek-v4-flash ] - INFO -                          macro        85.33        89.04        85.94          114
+2026-07-09 22:25:51,614 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8564102564102564
+2026-07-09 22:25:51,620 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5421994884910486
+2026-07-09 22:25:51,621 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.11242937853107349
+2026-07-09 22:25:51,627 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.6262626262626263
+2026-07-09 22:25:51,628 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:51,629 - [ deepseek-v4-flash ] - INFO - Tools Number: 3, Task Split: overall
+2026-07-09 22:25:51,821 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 246
+2026-07-09 22:25:51,822 - [ deepseek-v4-flash ] - INFO - Node Support: 246 / 246
+2026-07-09 22:25:51,822 - [ deepseek-v4-flash ] - INFO - Link Support: 246 / 246
+2026-07-09 22:25:51,823 - [ deepseek-v4-flash ] - INFO - Argument Support: 246 / 246
+2026-07-09 22:25:51,847 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.952959028831563
+2026-07-09 22:25:51,848 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.8870056497175142
+2026-07-09 22:25:51,848 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.9188002926115582
+2026-07-09 22:25:51,849 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.9534081926845085
+2026-07-09 22:25:51,849 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.8821118448899778
+2026-07-09 22:25:51,849 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.9123199473356287
+2026-07-09 22:25:51,850 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:51,850 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:51,850 - [ deepseek-v4-flash ] - INFO -                    get_weather       100.00        86.67        92.86           15
+2026-07-09 22:25:51,850 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic       100.00        92.86        96.30           14
+2026-07-09 22:25:51,851 - [ deepseek-v4-flash ] - INFO -                stock_operation        95.00        90.48        92.68           21
+2026-07-09 22:25:51,851 - [ deepseek-v4-flash ] - INFO -                    book_flight       100.00        95.24        97.56           21
+2026-07-09 22:25:51,851 - [ deepseek-v4-flash ] - INFO -                     book_hotel        95.00        90.48        92.68           21
+2026-07-09 22:25:51,851 - [ deepseek-v4-flash ] - INFO -                book_restaurant       100.00        87.50        93.33           16
+2026-07-09 22:25:51,852 - [ deepseek-v4-flash ] - INFO -                       book_car        91.67       100.00        95.65           22
+2026-07-09 22:25:51,852 - [ deepseek-v4-flash ] - INFO -                online_shopping       100.00        90.00        94.74           20
+2026-07-09 22:25:51,852 - [ deepseek-v4-flash ] - INFO -                     send_email       100.00       100.00       100.00           16
+2026-07-09 22:25:51,853 - [ deepseek-v4-flash ] - INFO -                       send_sms       100.00        93.75        96.77           16
+2026-07-09 22:25:51,853 - [ deepseek-v4-flash ] - INFO -        share_by_social_network       100.00       100.00       100.00           17
+2026-07-09 22:25:51,853 - [ deepseek-v4-flash ] - INFO -               search_by_engine       100.00        83.33        90.91           18
+2026-07-09 22:25:51,854 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00        75.00        85.71           16
+2026-07-09 22:25:51,854 - [ deepseek-v4-flash ] - INFO -              see_doctor_online        85.71        85.71        85.71           14
+2026-07-09 22:25:51,854 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online       100.00        93.75        96.77           16
+2026-07-09 22:25:51,856 - [ deepseek-v4-flash ] - INFO -               enroll_in_course       100.00        86.96        93.02           23
+2026-07-09 22:25:51,860 - [ deepseek-v4-flash ] - INFO -                  buy_insurance        92.86       100.00        96.30           13
+2026-07-09 22:25:51,861 - [ deepseek-v4-flash ] - INFO -                 online_banking       100.00        46.15        63.16           13
+2026-07-09 22:25:51,862 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment        86.67        86.67        86.67           15
+2026-07-09 22:25:51,864 - [ deepseek-v4-flash ] - INFO -               sell_item_online       100.00       100.00       100.00           24
+2026-07-09 22:25:51,864 - [ deepseek-v4-flash ] - INFO -                  do_tax_return       100.00        93.33        96.55           15
+2026-07-09 22:25:51,865 - [ deepseek-v4-flash ] - INFO -             apply_for_passport       100.00        86.36        92.68           22
+2026-07-09 22:25:51,865 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card        61.54        57.14        59.26           14
+2026-07-09 22:25:51,865 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot        90.91        95.24        93.02           21
+2026-07-09 22:25:51,866 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination       100.00        76.92        86.96           13
+2026-07-09 22:25:51,866 - [ deepseek-v4-flash ] - INFO -                deliver_package        83.33        88.24        85.71           17
+2026-07-09 22:25:51,866 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00       100.00       100.00           16
+2026-07-09 22:25:51,867 - [ deepseek-v4-flash ] - INFO -                     order_taxi       100.00        95.00        97.44           20
+2026-07-09 22:25:51,867 - [ deepseek-v4-flash ] - INFO -            play_music_by_title       100.00       100.00       100.00           13
+2026-07-09 22:25:51,867 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title        90.48        95.00        92.68           20
+2026-07-09 22:25:51,868 - [ deepseek-v4-flash ] - INFO -                      take_note        84.62        61.11        70.97           18
+2026-07-09 22:25:51,868 - [ deepseek-v4-flash ] - INFO -             borrow_book_online       100.00        92.86        96.30           14
+2026-07-09 22:25:51,868 - [ deepseek-v4-flash ] - INFO -                recording_audio        92.86        86.67        89.66           15
+2026-07-09 22:25:51,869 - [ deepseek-v4-flash ] - INFO -                make_video_call        94.44        85.00        89.47           20
+2026-07-09 22:25:51,869 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00        88.24        93.75           17
+2026-07-09 22:25:51,869 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online        84.21        88.89        86.49           18
+2026-07-09 22:25:51,870 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online        94.44        85.00        89.47           20
+2026-07-09 22:25:51,870 - [ deepseek-v4-flash ] - INFO -            software_management        94.44        73.91        82.93           23
+2026-07-09 22:25:51,870 - [ deepseek-v4-flash ] - INFO -                 print_document        95.45       100.00        97.67           21
+2026-07-09 22:25:51,871 - [ deepseek-v4-flash ] - INFO -                      set_alarm       100.00        95.00        97.44           20
+2026-07-09 22:25:51,874 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:51,876 - [ deepseek-v4-flash ] - INFO -                          micro        95.30        88.70        91.88          708
+2026-07-09 22:25:51,876 - [ deepseek-v4-flash ] - INFO -                          macro        95.34        88.21        91.23          708
+2026-07-09 22:25:51,884 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8649362076550814
+2026-07-09 22:25:51,893 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5684117905851298
+2026-07-09 22:25:51,897 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.1964963221060777
+2026-07-09 22:25:51,908 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.5248990578734859
+2026-07-09 22:25:51,911 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:51,912 - [ deepseek-v4-flash ] - INFO - Tools Number: 4, Task Split: overall
+2026-07-09 22:25:52,008 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 144
+2026-07-09 22:25:52,008 - [ deepseek-v4-flash ] - INFO - Node Support: 144 / 144
+2026-07-09 22:25:52,010 - [ deepseek-v4-flash ] - INFO - Link Support: 144 / 144
+2026-07-09 22:25:52,012 - [ deepseek-v4-flash ] - INFO - Argument Support: 144 / 144
+2026-07-09 22:25:52,037 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.9664570230607966
+2026-07-09 22:25:52,038 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.8246869409660107
+2026-07-09 22:25:52,038 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.88996138996139
+2026-07-09 22:25:52,038 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.965640552795158
+2026-07-09 22:25:52,039 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.8275347982555801
+2026-07-09 22:25:52,039 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.8857821695405885
+2026-07-09 22:25:52,039 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:52,040 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:52,040 - [ deepseek-v4-flash ] - INFO -                    get_weather        81.82        81.82        81.82           11
+2026-07-09 22:25:52,040 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic       100.00        87.50        93.33           16
+2026-07-09 22:25:52,041 - [ deepseek-v4-flash ] - INFO -                stock_operation       100.00       100.00       100.00            4
+2026-07-09 22:25:52,041 - [ deepseek-v4-flash ] - INFO -                    book_flight       100.00        85.71        92.31           21
+2026-07-09 22:25:52,041 - [ deepseek-v4-flash ] - INFO -                     book_hotel       100.00        90.48        95.00           21
+2026-07-09 22:25:52,042 - [ deepseek-v4-flash ] - INFO -                book_restaurant       100.00       100.00       100.00           20
+2026-07-09 22:25:52,042 - [ deepseek-v4-flash ] - INFO -                       book_car       100.00        66.67        80.00           15
+2026-07-09 22:25:52,042 - [ deepseek-v4-flash ] - INFO -                online_shopping       100.00        86.67        92.86           15
+2026-07-09 22:25:52,043 - [ deepseek-v4-flash ] - INFO -                     send_email       100.00        78.57        88.00           14
+2026-07-09 22:25:52,043 - [ deepseek-v4-flash ] - INFO -                       send_sms       100.00        90.91        95.24           11
+2026-07-09 22:25:52,043 - [ deepseek-v4-flash ] - INFO -        share_by_social_network       100.00        77.27        87.18           22
+2026-07-09 22:25:52,044 - [ deepseek-v4-flash ] - INFO -               search_by_engine       100.00        50.00        66.67           14
+2026-07-09 22:25:52,045 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00        72.73        84.21           11
+2026-07-09 22:25:52,046 - [ deepseek-v4-flash ] - INFO -              see_doctor_online       100.00       100.00       100.00           13
+2026-07-09 22:25:52,046 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online       100.00        83.33        90.91           18
+2026-07-09 22:25:52,047 - [ deepseek-v4-flash ] - INFO -               enroll_in_course       100.00        66.67        80.00           18
+2026-07-09 22:25:52,047 - [ deepseek-v4-flash ] - INFO -                  buy_insurance       100.00        73.33        84.62           15
+2026-07-09 22:25:52,047 - [ deepseek-v4-flash ] - INFO -                 online_banking        92.31        85.71        88.89           14
+2026-07-09 22:25:52,048 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment        81.25        81.25        81.25           16
+2026-07-09 22:25:52,049 - [ deepseek-v4-flash ] - INFO -               sell_item_online        83.33        71.43        76.92            7
+2026-07-09 22:25:52,049 - [ deepseek-v4-flash ] - INFO -                  do_tax_return       100.00        88.89        94.12            9
+2026-07-09 22:25:52,050 - [ deepseek-v4-flash ] - INFO -             apply_for_passport        90.91        83.33        86.96           12
+2026-07-09 22:25:52,050 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card       100.00        80.00        88.89           10
+2026-07-09 22:25:52,050 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot        93.33       100.00        96.55           14
+2026-07-09 22:25:52,050 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination       100.00        73.33        84.62           15
+2026-07-09 22:25:52,051 - [ deepseek-v4-flash ] - INFO -                deliver_package       100.00        71.43        83.33           14
+2026-07-09 22:25:52,052 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00        78.57        88.00           14
+2026-07-09 22:25:52,052 - [ deepseek-v4-flash ] - INFO -                     order_taxi        81.82        60.00        69.23           15
+2026-07-09 22:25:52,052 - [ deepseek-v4-flash ] - INFO -            play_music_by_title        94.74        94.74        94.74           19
+2026-07-09 22:25:52,053 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title        93.33        93.33        93.33           15
+2026-07-09 22:25:52,053 - [ deepseek-v4-flash ] - INFO -                      take_note        88.89        72.73        80.00           11
+2026-07-09 22:25:52,053 - [ deepseek-v4-flash ] - INFO -             borrow_book_online       100.00        76.47        86.67           17
+2026-07-09 22:25:52,054 - [ deepseek-v4-flash ] - INFO -                recording_audio        87.50        87.50        87.50            8
+2026-07-09 22:25:52,054 - [ deepseek-v4-flash ] - INFO -                make_video_call       100.00       100.00       100.00           16
+2026-07-09 22:25:52,054 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00        81.82        90.00           11
+2026-07-09 22:25:52,055 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online        93.33        93.33        93.33           15
+2026-07-09 22:25:52,055 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online       100.00        60.00        75.00           15
+2026-07-09 22:25:52,056 - [ deepseek-v4-flash ] - INFO -            software_management       100.00        84.62        91.67           13
+2026-07-09 22:25:52,056 - [ deepseek-v4-flash ] - INFO -                 print_document       100.00       100.00       100.00            9
+2026-07-09 22:25:52,057 - [ deepseek-v4-flash ] - INFO -                      set_alarm       100.00       100.00       100.00           11
+2026-07-09 22:25:52,058 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:52,059 - [ deepseek-v4-flash ] - INFO -                          micro        96.65        82.47        89.00          559
+2026-07-09 22:25:52,059 - [ deepseek-v4-flash ] - INFO -                          macro        96.56        82.75        88.58          559
+2026-07-09 22:25:52,067 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8339140534262486
+2026-07-09 22:25:52,074 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5365853658536586
+2026-07-09 22:25:52,085 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.2616347001763667
+2026-07-09 22:25:52,095 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.5337423312883436
+2026-07-09 22:25:52,098 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:52,098 - [ deepseek-v4-flash ] - INFO - Tools Number: 5, Task Split: overall
+2026-07-09 22:25:52,275 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 73
+2026-07-09 22:25:52,275 - [ deepseek-v4-flash ] - INFO - Node Support: 73 / 73
+2026-07-09 22:25:52,276 - [ deepseek-v4-flash ] - INFO - Link Support: 73 / 73
+2026-07-09 22:25:52,276 - [ deepseek-v4-flash ] - INFO - Argument Support: 73 / 73
+2026-07-09 22:25:52,326 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.967741935483871
+2026-07-09 22:25:52,327 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.7648725212464589
+2026-07-09 22:25:52,328 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.8544303797468354
+2026-07-09 22:25:52,328 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.9729058441558441
+2026-07-09 22:25:52,328 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.7653821872571872
+2026-07-09 22:25:52,329 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.8505947122025163
+2026-07-09 22:25:52,329 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:52,329 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:52,329 - [ deepseek-v4-flash ] - INFO -                    get_weather       100.00        66.67        80.00            6
+2026-07-09 22:25:52,329 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic       100.00        75.00        85.71            8
+2026-07-09 22:25:52,330 - [ deepseek-v4-flash ] - INFO -                stock_operation       100.00        75.00        85.71            8
+2026-07-09 22:25:52,330 - [ deepseek-v4-flash ] - INFO -                    book_flight       100.00        66.67        80.00            9
+2026-07-09 22:25:52,331 - [ deepseek-v4-flash ] - INFO -                     book_hotel       100.00        50.00        66.67            8
+2026-07-09 22:25:52,333 - [ deepseek-v4-flash ] - INFO -                book_restaurant       100.00        80.00        88.89            5
+2026-07-09 22:25:52,333 - [ deepseek-v4-flash ] - INFO -                       book_car        90.91        83.33        86.96           12
+2026-07-09 22:25:52,333 - [ deepseek-v4-flash ] - INFO -                online_shopping        91.67        91.67        91.67           12
+2026-07-09 22:25:52,333 - [ deepseek-v4-flash ] - INFO -                     send_email       100.00        71.43        83.33            7
+2026-07-09 22:25:52,334 - [ deepseek-v4-flash ] - INFO -                       send_sms       100.00        66.67        80.00           12
+2026-07-09 22:25:52,334 - [ deepseek-v4-flash ] - INFO -        share_by_social_network       100.00        83.33        90.91            6
+2026-07-09 22:25:52,335 - [ deepseek-v4-flash ] - INFO -               search_by_engine       100.00        57.14        72.73            7
+2026-07-09 22:25:52,336 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00        80.00        88.89           10
+2026-07-09 22:25:52,336 - [ deepseek-v4-flash ] - INFO -              see_doctor_online       100.00        85.71        92.31            7
+2026-07-09 22:25:52,337 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online       100.00        62.50        76.92            8
+2026-07-09 22:25:52,338 - [ deepseek-v4-flash ] - INFO -               enroll_in_course       100.00        70.00        82.35           10
+2026-07-09 22:25:52,338 - [ deepseek-v4-flash ] - INFO -                  buy_insurance       100.00        80.00        88.89           10
+2026-07-09 22:25:52,339 - [ deepseek-v4-flash ] - INFO -                 online_banking        83.33        83.33        83.33            6
+2026-07-09 22:25:52,339 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment        90.00        75.00        81.82           12
+2026-07-09 22:25:52,339 - [ deepseek-v4-flash ] - INFO -               sell_item_online       100.00        77.78        87.50            9
+2026-07-09 22:25:52,339 - [ deepseek-v4-flash ] - INFO -                  do_tax_return       100.00       100.00       100.00            5
+2026-07-09 22:25:52,368 - [ deepseek-v4-flash ] - INFO -             apply_for_passport       100.00        57.14        72.73            7
+2026-07-09 22:25:52,370 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card       100.00        90.91        95.24           11
+2026-07-09 22:25:52,374 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot       100.00        84.62        91.67           13
+2026-07-09 22:25:52,376 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination       100.00        71.43        83.33            7
+2026-07-09 22:25:52,378 - [ deepseek-v4-flash ] - INFO -                deliver_package       100.00        60.00        75.00           10
+2026-07-09 22:25:52,378 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00        90.00        94.74           10
+2026-07-09 22:25:52,378 - [ deepseek-v4-flash ] - INFO -                     order_taxi       100.00        90.00        94.74           10
+2026-07-09 22:25:52,379 - [ deepseek-v4-flash ] - INFO -            play_music_by_title        85.71        85.71        85.71            7
+2026-07-09 22:25:52,379 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title       100.00        70.00        82.35           10
+2026-07-09 22:25:52,379 - [ deepseek-v4-flash ] - INFO -                      take_note        75.00        50.00        60.00           12
+2026-07-09 22:25:52,380 - [ deepseek-v4-flash ] - INFO -             borrow_book_online       100.00        80.00        88.89           10
+2026-07-09 22:25:52,380 - [ deepseek-v4-flash ] - INFO -                recording_audio       100.00        71.43        83.33            7
+2026-07-09 22:25:52,380 - [ deepseek-v4-flash ] - INFO -                make_video_call       100.00        88.89        94.12            9
+2026-07-09 22:25:52,380 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00       100.00       100.00            6
+2026-07-09 22:25:52,381 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online       100.00        77.78        87.50            9
+2026-07-09 22:25:52,381 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online       100.00        62.50        76.92            8
+2026-07-09 22:25:52,382 - [ deepseek-v4-flash ] - INFO -            software_management        87.50        87.50        87.50            8
+2026-07-09 22:25:52,382 - [ deepseek-v4-flash ] - INFO -                 print_document        87.50        77.78        82.35            9
+2026-07-09 22:25:52,382 - [ deepseek-v4-flash ] - INFO -                      set_alarm       100.00        84.62        91.67           13
+2026-07-09 22:25:52,383 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:52,383 - [ deepseek-v4-flash ] - INFO -                          micro        96.77        76.49        85.44          353
+2026-07-09 22:25:52,383 - [ deepseek-v4-flash ] - INFO -                          macro        97.29        76.54        85.06          353
+2026-07-09 22:25:52,404 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8227228207639569
+2026-07-09 22:25:52,413 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5504407443682664
+2026-07-09 22:25:52,416 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.3477168949771692
+2026-07-09 22:25:52,427 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.37
+2026-07-09 22:25:52,429 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:52,429 - [ deepseek-v4-flash ] - INFO - Tools Number: 6, Task Split: overall
+2026-07-09 22:25:52,763 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 47
+2026-07-09 22:25:52,764 - [ deepseek-v4-flash ] - INFO - Node Support: 47 / 47
+2026-07-09 22:25:52,766 - [ deepseek-v4-flash ] - INFO - Link Support: 47 / 47
+2026-07-09 22:25:52,767 - [ deepseek-v4-flash ] - INFO - Argument Support: 47 / 47
+2026-07-09 22:25:52,782 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.9414893617021277
+2026-07-09 22:25:52,782 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.6679245283018868
+2026-07-09 22:25:52,783 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.7814569536423841
+2026-07-09 22:25:52,783 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.9552380952380952
+2026-07-09 22:25:52,784 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.6661751443001444
+2026-07-09 22:25:52,784 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.7646655086399669
+2026-07-09 22:25:52,784 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:52,785 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:52,786 - [ deepseek-v4-flash ] - INFO -                    get_weather        75.00        42.86        54.55            7
+2026-07-09 22:25:52,786 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic       100.00        50.00        66.67            6
+2026-07-09 22:25:52,786 - [ deepseek-v4-flash ] - INFO -                stock_operation       100.00        71.43        83.33           14
+2026-07-09 22:25:52,786 - [ deepseek-v4-flash ] - INFO -                    book_flight       100.00       100.00       100.00            6
+2026-07-09 22:25:52,787 - [ deepseek-v4-flash ] - INFO -                     book_hotel       100.00        75.00        85.71            4
+2026-07-09 22:25:52,788 - [ deepseek-v4-flash ] - INFO -                book_restaurant       100.00        66.67        80.00            3
+2026-07-09 22:25:52,788 - [ deepseek-v4-flash ] - INFO -                       book_car       100.00        50.00        66.67            2
+2026-07-09 22:25:52,788 - [ deepseek-v4-flash ] - INFO -                online_shopping       100.00        25.00        40.00            8
+2026-07-09 22:25:52,789 - [ deepseek-v4-flash ] - INFO -                     send_email        83.33        45.45        58.82           11
+2026-07-09 22:25:52,789 - [ deepseek-v4-flash ] - INFO -                       send_sms       100.00        88.89        94.12            9
+2026-07-09 22:25:52,789 - [ deepseek-v4-flash ] - INFO -        share_by_social_network       100.00        60.00        75.00            5
+2026-07-09 22:25:52,789 - [ deepseek-v4-flash ] - INFO -               search_by_engine        75.00        42.86        54.55            7
+2026-07-09 22:25:52,790 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00        60.00        75.00           10
+2026-07-09 22:25:52,790 - [ deepseek-v4-flash ] - INFO -              see_doctor_online        83.33        62.50        71.43            8
+2026-07-09 22:25:52,790 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online       100.00        66.67        80.00            3
+2026-07-09 22:25:52,791 - [ deepseek-v4-flash ] - INFO -               enroll_in_course       100.00        66.67        80.00            6
+2026-07-09 22:25:52,791 - [ deepseek-v4-flash ] - INFO -                  buy_insurance       100.00        75.00        85.71            8
+2026-07-09 22:25:52,791 - [ deepseek-v4-flash ] - INFO -                 online_banking       100.00        57.14        72.73            7
+2026-07-09 22:25:52,791 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment        57.14        80.00        66.67            5
+2026-07-09 22:25:52,791 - [ deepseek-v4-flash ] - INFO -               sell_item_online       100.00        75.00        85.71            4
+2026-07-09 22:25:52,792 - [ deepseek-v4-flash ] - INFO -                  do_tax_return       100.00       100.00       100.00            7
+2026-07-09 22:25:52,792 - [ deepseek-v4-flash ] - INFO -             apply_for_passport       100.00        83.33        90.91            6
+2026-07-09 22:25:52,792 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card       100.00        42.86        60.00            7
+2026-07-09 22:25:52,792 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot       100.00        33.33        50.00            6
+2026-07-09 22:25:52,793 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination       100.00        66.67        80.00            6
+2026-07-09 22:25:52,793 - [ deepseek-v4-flash ] - INFO -                deliver_package       100.00        33.33        50.00            6
+2026-07-09 22:25:52,793 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00        75.00        85.71            8
+2026-07-09 22:25:52,793 - [ deepseek-v4-flash ] - INFO -                     order_taxi       100.00        85.71        92.31            7
+2026-07-09 22:25:52,794 - [ deepseek-v4-flash ] - INFO -            play_music_by_title       100.00        57.14        72.73            7
+2026-07-09 22:25:52,795 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title        71.43        83.33        76.92            6
+2026-07-09 22:25:52,795 - [ deepseek-v4-flash ] - INFO -                      take_note       100.00        50.00        66.67            6
+2026-07-09 22:25:52,797 - [ deepseek-v4-flash ] - INFO -             borrow_book_online        90.00       100.00        94.74            9
+2026-07-09 22:25:52,797 - [ deepseek-v4-flash ] - INFO -                recording_audio       100.00        40.00        57.14            5
+2026-07-09 22:25:52,797 - [ deepseek-v4-flash ] - INFO -                make_video_call       100.00       100.00       100.00            3
+2026-07-09 22:25:52,799 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00        60.00        75.00            5
+2026-07-09 22:25:52,799 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online       100.00       100.00       100.00            8
+2026-07-09 22:25:52,799 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online       100.00        57.14        72.73            7
+2026-07-09 22:25:52,800 - [ deepseek-v4-flash ] - INFO -            software_management       100.00        75.00        85.71            8
+2026-07-09 22:25:52,800 - [ deepseek-v4-flash ] - INFO -                 print_document        85.71        85.71        85.71            7
+2026-07-09 22:25:52,801 - [ deepseek-v4-flash ] - INFO -                      set_alarm       100.00        75.00        85.71            8
+2026-07-09 22:25:52,801 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:52,801 - [ deepseek-v4-flash ] - INFO -                          micro        94.15        66.79        78.15          265
+2026-07-09 22:25:52,802 - [ deepseek-v4-flash ] - INFO -                          macro        95.52        66.62        76.47          265
+2026-07-09 22:25:52,807 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7620320855614974
+2026-07-09 22:25:52,814 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4993324432576769
+2026-07-09 22:25:52,815 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.4323662153449387
+2026-07-09 22:25:52,820 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.36893203883495146
+2026-07-09 22:25:52,822 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:52,822 - [ deepseek-v4-flash ] - INFO - Tools Number: 7, Task Split: overall
+2026-07-09 22:25:52,902 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 27
+2026-07-09 22:25:52,902 - [ deepseek-v4-flash ] - INFO - Node Support: 27 / 27
+2026-07-09 22:25:52,905 - [ deepseek-v4-flash ] - INFO - Link Support: 27 / 27
+2026-07-09 22:25:52,906 - [ deepseek-v4-flash ] - INFO - Argument Support: 27 / 27
+2026-07-09 22:25:52,927 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 0.96
+2026-07-09 22:25:52,928 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.4090909090909091
+2026-07-09 22:25:52,928 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.5737051792828686
+2026-07-09 22:25:52,929 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.8291666666666666
+2026-07-09 22:25:52,929 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.4167361111111111
+2026-07-09 22:25:52,930 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.5289804639804639
+2026-07-09 22:25:52,930 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:52,931 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:52,931 - [ deepseek-v4-flash ] - INFO -                    get_weather       100.00        20.00        33.33            5
+2026-07-09 22:25:52,931 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic       100.00        50.00        66.67            4
+2026-07-09 22:25:52,932 - [ deepseek-v4-flash ] - INFO -                stock_operation       100.00        50.00        66.67            6
+2026-07-09 22:25:52,932 - [ deepseek-v4-flash ] - INFO -                    book_flight       100.00       100.00       100.00            2
+2026-07-09 22:25:52,933 - [ deepseek-v4-flash ] - INFO -                     book_hotel       100.00        33.33        50.00            6
+2026-07-09 22:25:52,933 - [ deepseek-v4-flash ] - INFO -                book_restaurant       100.00       100.00       100.00            1
+2026-07-09 22:25:52,934 - [ deepseek-v4-flash ] - INFO -                       book_car       100.00        40.00        57.14            5
+2026-07-09 22:25:52,934 - [ deepseek-v4-flash ] - INFO -                online_shopping         0.00         0.00         0.00            3
+2026-07-09 22:25:52,936 - [ deepseek-v4-flash ] - INFO -                     send_email       100.00        25.00        40.00            4
+2026-07-09 22:25:52,937 - [ deepseek-v4-flash ] - INFO -                       send_sms         0.00         0.00         0.00            3
+2026-07-09 22:25:52,938 - [ deepseek-v4-flash ] - INFO -        share_by_social_network       100.00        40.00        57.14            5
+2026-07-09 22:25:52,939 - [ deepseek-v4-flash ] - INFO -               search_by_engine         0.00         0.00         0.00            3
+2026-07-09 22:25:52,939 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00        40.00        57.14            5
+2026-07-09 22:25:52,940 - [ deepseek-v4-flash ] - INFO -              see_doctor_online       100.00        62.50        76.92            8
+2026-07-09 22:25:52,940 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online       100.00        33.33        50.00            3
+2026-07-09 22:25:52,941 - [ deepseek-v4-flash ] - INFO -               enroll_in_course       100.00        66.67        80.00            6
+2026-07-09 22:25:52,941 - [ deepseek-v4-flash ] - INFO -                  buy_insurance       100.00        50.00        66.67            6
+2026-07-09 22:25:52,942 - [ deepseek-v4-flash ] - INFO -                 online_banking         0.00         0.00         0.00            0
+2026-07-09 22:25:52,942 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment       100.00        50.00        66.67            2
+2026-07-09 22:25:52,943 - [ deepseek-v4-flash ] - INFO -               sell_item_online       100.00       100.00       100.00            3
+2026-07-09 22:25:52,943 - [ deepseek-v4-flash ] - INFO -                  do_tax_return       100.00        66.67        80.00            3
+2026-07-09 22:25:52,944 - [ deepseek-v4-flash ] - INFO -             apply_for_passport       100.00        28.57        44.44            7
+2026-07-09 22:25:52,944 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card       100.00       100.00       100.00            4
+2026-07-09 22:25:52,944 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot       100.00        42.86        60.00            7
+2026-07-09 22:25:52,945 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination         0.00         0.00         0.00            6
+2026-07-09 22:25:52,945 - [ deepseek-v4-flash ] - INFO -                deliver_package       100.00        33.33        50.00            3
+2026-07-09 22:25:52,946 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00        75.00        85.71            4
+2026-07-09 22:25:52,946 - [ deepseek-v4-flash ] - INFO -                     order_taxi        66.67        50.00        57.14            4
+2026-07-09 22:25:52,946 - [ deepseek-v4-flash ] - INFO -            play_music_by_title       100.00        33.33        50.00            3
+2026-07-09 22:25:52,947 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title       100.00        50.00        66.67            4
+2026-07-09 22:25:52,947 - [ deepseek-v4-flash ] - INFO -                      take_note         0.00         0.00         0.00            3
+2026-07-09 22:25:52,947 - [ deepseek-v4-flash ] - INFO -             borrow_book_online       100.00        16.67        28.57            6
+2026-07-09 22:25:52,948 - [ deepseek-v4-flash ] - INFO -                recording_audio        50.00        25.00        33.33            4
+2026-07-09 22:25:52,948 - [ deepseek-v4-flash ] - INFO -                make_video_call       100.00        33.33        50.00            3
+2026-07-09 22:25:52,948 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00        28.57        44.44            7
+2026-07-09 22:25:52,949 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online       100.00        44.44        61.54            9
+2026-07-09 22:25:52,949 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online       100.00        50.00        66.67            4
+2026-07-09 22:25:52,949 - [ deepseek-v4-flash ] - INFO -            software_management       100.00        20.00        33.33            5
+2026-07-09 22:25:52,951 - [ deepseek-v4-flash ] - INFO -                 print_document       100.00        33.33        50.00            6
+2026-07-09 22:25:52,952 - [ deepseek-v4-flash ] - INFO -                      set_alarm       100.00        75.00        85.71            4
+2026-07-09 22:25:52,952 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:52,953 - [ deepseek-v4-flash ] - INFO -                          micro        96.00        40.91        57.37          176
+2026-07-09 22:25:52,953 - [ deepseek-v4-flash ] - INFO -                          macro        82.92        41.67        52.90          176
+2026-07-09 22:25:52,961 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.57356608478803
+2026-07-09 22:25:52,967 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.34413965087281795
+2026-07-09 22:25:52,968 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.655921855921856
+2026-07-09 22:25:52,972 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.3939393939393939
+2026-07-09 22:25:52,974 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:52,974 - [ deepseek-v4-flash ] - INFO - Tools Number: 8, Task Split: overall
+2026-07-09 22:25:53,152 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 7
+2026-07-09 22:25:53,153 - [ deepseek-v4-flash ] - INFO - Node Support: 7 / 7
+2026-07-09 22:25:53,153 - [ deepseek-v4-flash ] - INFO - Link Support: 7 / 7
+2026-07-09 22:25:53,154 - [ deepseek-v4-flash ] - INFO - Argument Support: 7 / 7
+2026-07-09 22:25:53,170 - [ deepseek-v4-flash ] - INFO - Node Micro Precision [ No Matching ]: 1.0
+2026-07-09 22:25:53,172 - [ deepseek-v4-flash ] - INFO - Node Micro Recall [ No Matching ]: 0.42857142857142855
+2026-07-09 22:25:53,173 - [ deepseek-v4-flash ] - INFO - Node Micro F1 [ No Matching ]: 0.6
+2026-07-09 22:25:53,173 - [ deepseek-v4-flash ] - INFO - Node Macro Precision [ No Matching ]: 0.475
+2026-07-09 22:25:53,174 - [ deepseek-v4-flash ] - INFO - Node Macro Recall [ No Matching ]: 0.36875
+2026-07-09 22:25:53,174 - [ deepseek-v4-flash ] - INFO - Node Macro F1 [ No Matching ]: 0.4
+2026-07-09 22:25:53,174 - [ deepseek-v4-flash ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-09 22:25:53,175 - [ deepseek-v4-flash ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-09 22:25:53,175 - [ deepseek-v4-flash ] - INFO -                    get_weather       100.00        50.00        66.67            2
+2026-07-09 22:25:53,176 - [ deepseek-v4-flash ] - INFO -             get_news_for_topic       100.00       100.00       100.00            1
+2026-07-09 22:25:53,177 - [ deepseek-v4-flash ] - INFO -                stock_operation         0.00         0.00         0.00            1
+2026-07-09 22:25:53,177 - [ deepseek-v4-flash ] - INFO -                    book_flight         0.00         0.00         0.00            1
+2026-07-09 22:25:53,177 - [ deepseek-v4-flash ] - INFO -                     book_hotel       100.00       100.00       100.00            1
+2026-07-09 22:25:53,178 - [ deepseek-v4-flash ] - INFO -                book_restaurant         0.00         0.00         0.00            2
+2026-07-09 22:25:53,178 - [ deepseek-v4-flash ] - INFO -                       book_car         0.00         0.00         0.00            1
+2026-07-09 22:25:53,178 - [ deepseek-v4-flash ] - INFO -                online_shopping         0.00         0.00         0.00            1
+2026-07-09 22:25:53,179 - [ deepseek-v4-flash ] - INFO -                     send_email         0.00         0.00         0.00            1
+2026-07-09 22:25:53,179 - [ deepseek-v4-flash ] - INFO -                       send_sms         0.00         0.00         0.00            1
+2026-07-09 22:25:53,180 - [ deepseek-v4-flash ] - INFO -        share_by_social_network         0.00         0.00         0.00            1
+2026-07-09 22:25:53,180 - [ deepseek-v4-flash ] - INFO -               search_by_engine         0.00         0.00         0.00            1
+2026-07-09 22:25:53,181 - [ deepseek-v4-flash ] - INFO -                  apply_for_job       100.00       100.00       100.00            1
+2026-07-09 22:25:53,181 - [ deepseek-v4-flash ] - INFO -              see_doctor_online         0.00         0.00         0.00            1
+2026-07-09 22:25:53,181 - [ deepseek-v4-flash ] - INFO -          consult_lawyer_online       100.00        50.00        66.67            2
+2026-07-09 22:25:53,182 - [ deepseek-v4-flash ] - INFO -               enroll_in_course         0.00         0.00         0.00            0
+2026-07-09 22:25:53,182 - [ deepseek-v4-flash ] - INFO -                  buy_insurance       100.00       100.00       100.00            1
+2026-07-09 22:25:53,183 - [ deepseek-v4-flash ] - INFO -                 online_banking       100.00       100.00       100.00            1
+2026-07-09 22:25:53,183 - [ deepseek-v4-flash ] - INFO -             daily_bill_payment       100.00       100.00       100.00            1
+2026-07-09 22:25:53,183 - [ deepseek-v4-flash ] - INFO -               sell_item_online       100.00        25.00        40.00            4
+2026-07-09 22:25:53,184 - [ deepseek-v4-flash ] - INFO -                  do_tax_return         0.00         0.00         0.00            1
+2026-07-09 22:25:53,184 - [ deepseek-v4-flash ] - INFO -             apply_for_passport       100.00        33.33        50.00            3
+2026-07-09 22:25:53,184 - [ deepseek-v4-flash ] - INFO -            pay_for_credit_card       100.00       100.00       100.00            1
+2026-07-09 22:25:53,185 - [ deepseek-v4-flash ] - INFO -        auto_housework_by_robot       100.00        66.67        80.00            3
+2026-07-09 22:25:53,185 - [ deepseek-v4-flash ] - INFO -    auto_driving_to_destination         0.00         0.00         0.00            1
+2026-07-09 22:25:53,185 - [ deepseek-v4-flash ] - INFO -                deliver_package         0.00         0.00         0.00            0
+2026-07-09 22:25:53,186 - [ deepseek-v4-flash ] - INFO -            order_food_delivery       100.00        50.00        66.67            2
+2026-07-09 22:25:53,188 - [ deepseek-v4-flash ] - INFO -                     order_taxi         0.00         0.00         0.00            0
+2026-07-09 22:25:53,188 - [ deepseek-v4-flash ] - INFO -            play_music_by_title         0.00         0.00         0.00            2
+2026-07-09 22:25:53,188 - [ deepseek-v4-flash ] - INFO -            play_movie_by_title         0.00         0.00         0.00            2
+2026-07-09 22:25:53,189 - [ deepseek-v4-flash ] - INFO -                      take_note         0.00         0.00         0.00            0
+2026-07-09 22:25:53,189 - [ deepseek-v4-flash ] - INFO -             borrow_book_online       100.00       100.00       100.00            3
+2026-07-09 22:25:53,189 - [ deepseek-v4-flash ] - INFO -                recording_audio       100.00       100.00       100.00            1
+2026-07-09 22:25:53,190 - [ deepseek-v4-flash ] - INFO -                make_video_call       100.00        33.33        50.00            3
+2026-07-09 22:25:53,190 - [ deepseek-v4-flash ] - INFO -                make_voice_call       100.00        66.67        80.00            3
+2026-07-09 22:25:53,190 - [ deepseek-v4-flash ] - INFO -        organize_meeting_online       100.00       100.00       100.00            1
+2026-07-09 22:25:53,191 - [ deepseek-v4-flash ] - INFO -          attend_meeting_online         0.00         0.00         0.00            1
+2026-07-09 22:25:53,191 - [ deepseek-v4-flash ] - INFO -            software_management         0.00         0.00         0.00            1
+2026-07-09 22:25:53,191 - [ deepseek-v4-flash ] - INFO -                 print_document       100.00       100.00       100.00            2
+2026-07-09 22:25:53,192 - [ deepseek-v4-flash ] - INFO -                      set_alarm         0.00         0.00         0.00            1
+2026-07-09 22:25:53,192 - [ deepseek-v4-flash ] - INFO - 
+2026-07-09 22:25:53,193 - [ deepseek-v4-flash ] - INFO -                          micro       100.00        42.86        60.00           56
+2026-07-09 22:25:53,193 - [ deepseek-v4-flash ] - INFO -                          macro        47.50        36.88        40.00           56
+2026-07-09 22:25:53,198 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5619834710743802
+2026-07-09 22:25:53,205 - [ deepseek-v4-flash ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4132231404958678
+2026-07-09 22:25:53,206 - [ deepseek-v4-flash ] - INFO - Edit Distance: 0.625
+2026-07-09 22:25:53,211 - [ deepseek-v4-flash ] - INFO - Link Binary F1: 0.25
+2026-07-09 22:25:53,212 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:53,212 - [ deepseek-v4-flash ] - INFO - Tools Number: 9, Task Split: overall
+2026-07-09 22:25:53,303 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 0
+2026-07-09 22:25:53,304 - [ deepseek-v4-flash ] - INFO - Node Support: 0 / 0
+2026-07-09 22:25:53,304 - [ deepseek-v4-flash ] - INFO - Link Support: 0 / 0
+2026-07-09 22:25:53,305 - [ deepseek-v4-flash ] - INFO - Argument Support: 0 / 0
+2026-07-09 22:25:53,305 - [ deepseek-v4-flash ] - INFO - No supports, skip
+2026-07-09 22:25:53,306 - [ deepseek-v4-flash ] - INFO - ---------------
+2026-07-09 22:25:53,307 - [ deepseek-v4-flash ] - INFO - Tools Number: 10, Task Split: overall
+2026-07-09 22:25:53,395 - [ deepseek-v4-flash ] - INFO - Step Supports: 0 / 0
+2026-07-09 22:25:53,396 - [ deepseek-v4-flash ] - INFO - Node Support: 0 / 0
+2026-07-09 22:25:53,396 - [ deepseek-v4-flash ] - INFO - Link Support: 0 / 0
+2026-07-09 22:25:53,397 - [ deepseek-v4-flash ] - INFO - Argument Support: 0 / 0
+2026-07-09 22:25:53,397 - [ deepseek-v4-flash ] - INFO - No supports, skip

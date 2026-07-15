@@ -1,0 +1,1296 @@
+2026-07-09 09:21:37,506 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_multimedia', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-CpppM02rc7FM4GIzWP6VQFGecv4GbbpFXGIaIkMbPMTop0bZ', 'api_port': 4000, 'base_url': 'https://api.vectorengine.ai/v1', 'multiworker': 4, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'resource', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 09:21:37,506 - [ qwen3-14b ] - INFO - Detected 0 has been inferenced,
+2026-07-09 09:21:37,507 - [ qwen3-14b ] - INFO - Start inferencing 1111 tasks...
+2026-07-09 09:21:48,597 - [ qwen3-14b ] - INFO - Failed #id 20503682: <class '__main__.RateLimitError'> {'error': {'message': '当前分组上游负载已饱和，请稍后再试 (request id: 202607090921384046112600XCtGrrq)', 'type': 'new_api_error', 'param': '', 'code': ''}}
+2026-07-09 09:22:45,378 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_multimedia', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-CpppM02rc7FM4GIzWP6VQFGecv4GbbpFXGIaIkMbPMTop0bZ', 'api_port': 4000, 'base_url': 'https://api.vectorengine.ai/v1', 'multiworker': 1, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'resource', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 09:22:45,379 - [ qwen3-14b ] - INFO - Detected 0 has been inferenced,
+2026-07-09 09:22:45,379 - [ qwen3-14b ] - INFO - Start inferencing 1111 tasks...
+2026-07-09 09:22:55,389 - [ qwen3-14b ] - INFO - Failed #id 20503682: <class '__main__.RateLimitError'> {'error': {'message': '当前分组上游负载已饱和，请稍后再试 (request id: 20260709092246299141706VTRoysbg)', 'type': 'new_api_error', 'param': '', 'code': ''}}
+2026-07-09 09:41:19,673 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_multimedia', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 4, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'resource', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 09:41:19,674 - [ qwen3-14b ] - INFO - Detected 0 has been inferenced,
+2026-07-09 09:41:19,674 - [ qwen3-14b ] - INFO - Start inferencing 1111 tasks...
+2026-07-09 09:41:20,130 - [ qwen3-14b ] - INFO - Failed #id 20503682: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-fb0e7bdf-6aa8-9667-8e59-1179c1ce0293', 'request_id': 'fb0e7bdf-6aa8-9667-8e59-1179c1ce0293'}
+2026-07-09 09:41:20,268 - [ qwen3-14b ] - INFO - Failed #id 32697808: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-dd6e9155-d353-99a8-9cbd-709fab421f26', 'request_id': 'dd6e9155-d353-99a8-9cbd-709fab421f26'}
+2026-07-09 09:41:20,311 - [ qwen3-14b ] - INFO - Failed #id 19122651: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-36980e23-2778-9c6e-bef2-b3d4c19d9519', 'request_id': '36980e23-2778-9c6e-bef2-b3d4c19d9519'}
+2026-07-09 09:41:20,331 - [ qwen3-14b ] - INFO - Failed #id 23427738: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-0047d47a-da36-9a2e-84c7-f5ba470d543f', 'request_id': '0047d47a-da36-9a2e-84c7-f5ba470d543f'}
+2026-07-09 09:41:20,434 - [ qwen3-14b ] - INFO - Failed #id 33570182: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-8e93c085-a961-9444-a5f7-e17f13f30c52', 'request_id': '8e93c085-a961-9444-a5f7-e17f13f30c52'}
+2026-07-09 09:41:20,448 - [ qwen3-14b ] - INFO - Failed #id 32486954: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-fe8d34e8-1af7-90ee-80b9-73bf0be25399', 'request_id': 'fe8d34e8-1af7-90ee-80b9-73bf0be25399'}
+2026-07-09 09:41:20,459 - [ qwen3-14b ] - INFO - Failed #id 19642613: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-258d01ff-b101-9c7b-b56f-059e1ec75035', 'request_id': '258d01ff-b101-9c7b-b56f-059e1ec75035'}
+2026-07-09 09:41:20,524 - [ qwen3-14b ] - INFO - Failed #id 33314517: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-c424bf44-723f-98ac-9295-7415f1c3dc73', 'request_id': 'c424bf44-723f-98ac-9295-7415f1c3dc73'}
+2026-07-09 09:41:20,580 - [ qwen3-14b ] - INFO - Failed #id 17306349: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-78a51839-f241-9b29-bcd9-6e8094f1ad4f', 'request_id': '78a51839-f241-9b29-bcd9-6e8094f1ad4f'}
+2026-07-09 09:41:20,583 - [ qwen3-14b ] - INFO - Failed #id 12214320: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '47d53053-ae3a-90b5-aea4-55238e394680'}
+2026-07-09 09:41:20,648 - [ qwen3-14b ] - INFO - Failed #id 19645330: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '01b798aa-9924-9c23-856a-17bd5cb5a73e'}
+2026-07-09 09:41:20,651 - [ qwen3-14b ] - INFO - Failed #id 24305501: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '4c9aae4d-6252-9274-a246-6231a816e362'}
+2026-07-09 09:41:20,719 - [ qwen3-14b ] - INFO - Failed #id 32580114: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '94e85f25-415c-9cd8-bf52-2d6c7b64cfba'}
+2026-07-09 09:41:20,723 - [ qwen3-14b ] - INFO - Failed #id 12347598: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'cb1f2344-a4d7-9114-958c-1869364f0d5e'}
+2026-07-09 09:41:20,725 - [ qwen3-14b ] - INFO - Failed #id 30420883: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-0cbc6a95-a2d7-92df-9d90-5167c06c0dbe', 'request_id': '0cbc6a95-a2d7-92df-9d90-5167c06c0dbe'}
+2026-07-09 09:41:21,012 - [ qwen3-14b ] - INFO - Failed #id 54487864: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-5ea91c20-c6d4-93e1-a93a-10ed986385cc', 'request_id': '5ea91c20-c6d4-93e1-a93a-10ed986385cc'}
+2026-07-09 09:41:21,043 - [ qwen3-14b ] - INFO - Failed #id 30243989: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-79c17c2b-0d62-93a6-a04e-6a2fda91c497', 'request_id': '79c17c2b-0d62-93a6-a04e-6a2fda91c497'}
+2026-07-09 09:41:21,171 - [ qwen3-14b ] - INFO - Failed #id 13563445: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-4a55f686-49d8-9d2b-9336-7f2532476382', 'request_id': '4a55f686-49d8-9d2b-9336-7f2532476382'}
+2026-07-09 09:41:21,206 - [ qwen3-14b ] - INFO - Failed #id 31250413: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-d85bfc40-3054-907d-a01f-f5994675f4fc', 'request_id': 'd85bfc40-3054-907d-a01f-f5994675f4fc'}
+2026-07-09 09:41:21,440 - [ qwen3-14b ] - INFO - Failed #id 59923748: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-ce2ba5bb-45a8-9852-8c1d-fb539cd064de', 'request_id': 'ce2ba5bb-45a8-9852-8c1d-fb539cd064de'}
+2026-07-09 09:41:21,490 - [ qwen3-14b ] - INFO - Failed #id 27570553: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-ebc991bc-2c4d-9585-b414-01da534f88e9', 'request_id': 'ebc991bc-2c4d-9585-b414-01da534f88e9'}
+2026-07-09 09:41:21,504 - [ qwen3-14b ] - INFO - Failed #id 12483664: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-eaa33fcc-83d7-9491-a958-a1b1aef13fd2', 'request_id': 'eaa33fcc-83d7-9491-a958-a1b1aef13fd2'}
+2026-07-09 09:41:21,595 - [ qwen3-14b ] - INFO - Failed #id 29314366: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-3ca35d21-dc3b-9a30-9ac3-37eebe7196ce', 'request_id': '3ca35d21-dc3b-9a30-9ac3-37eebe7196ce'}
+2026-07-09 09:41:21,667 - [ qwen3-14b ] - INFO - Failed #id 21914813: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '1b95b5de-d6c6-9034-9e88-2a29b9dd254e'}
+2026-07-09 09:41:21,738 - [ qwen3-14b ] - INFO - Failed #id 15383295: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '1badd98b-3ea1-9287-8ff1-7c55127ea345'}
+2026-07-09 09:41:21,765 - [ qwen3-14b ] - INFO - Failed #id 15307609: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-de349001-c681-962f-ac3e-537119da7758', 'request_id': 'de349001-c681-962f-ac3e-537119da7758'}
+2026-07-09 09:41:21,931 - [ qwen3-14b ] - INFO - Failed #id 14367009: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-4eb71628-119f-95a6-bdd1-1573845164de', 'request_id': '4eb71628-119f-95a6-bdd1-1573845164de'}
+2026-07-09 09:41:21,999 - [ qwen3-14b ] - INFO - Failed #id 16245561: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-a270396d-fd47-9d27-aa2c-0934370bebce', 'request_id': 'a270396d-fd47-9d27-aa2c-0934370bebce'}
+2026-07-09 09:41:22,034 - [ qwen3-14b ] - INFO - Failed #id 25062474: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-1b70e92f-f7eb-9c77-9f0f-a7d3b7338d08', 'request_id': '1b70e92f-f7eb-9c77-9f0f-a7d3b7338d08'}
+2026-07-09 09:41:22,125 - [ qwen3-14b ] - INFO - Failed #id 33717666: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-5fe945a6-0370-9bec-b9c0-7965205013d8', 'request_id': '5fe945a6-0370-9bec-b9c0-7965205013d8'}
+2026-07-09 09:41:22,162 - [ qwen3-14b ] - INFO - Failed #id 15376372: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-9e83adee-2d3a-9938-a728-4036f160cd0b', 'request_id': '9e83adee-2d3a-9938-a728-4036f160cd0b'}
+2026-07-09 09:41:22,163 - [ qwen3-14b ] - INFO - Failed #id 26559903: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-bd2a13b7-a806-945f-a464-c37409481655', 'request_id': 'bd2a13b7-a806-945f-a464-c37409481655'}
+2026-07-09 09:41:22,320 - [ qwen3-14b ] - INFO - Failed #id 29815919: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-50a3e635-aad6-9689-a781-576bd0e708f1', 'request_id': '50a3e635-aad6-9689-a781-576bd0e708f1'}
+2026-07-09 09:41:22,348 - [ qwen3-14b ] - INFO - Failed #id 17934342: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-60f07edc-aa3e-97d1-8999-9c8bc86fa9a2', 'request_id': '60f07edc-aa3e-97d1-8999-9c8bc86fa9a2'}
+2026-07-09 09:41:22,390 - [ qwen3-14b ] - INFO - Failed #id 31761373: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-ff4855f2-1041-917f-998d-e80355e47959', 'request_id': 'ff4855f2-1041-917f-998d-e80355e47959'}
+2026-07-09 09:41:22,451 - [ qwen3-14b ] - INFO - Failed #id 14452314: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '2785462f-dd72-9373-a5dd-2d25cc927e9d'}
+2026-07-09 09:41:22,511 - [ qwen3-14b ] - INFO - Failed #id 27823301: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'ccbbca42-1228-95e1-816d-498b5c08056a'}
+2026-07-09 09:41:22,568 - [ qwen3-14b ] - INFO - Failed #id 29080629: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'b6ca63a3-b7d4-9cf6-9b82-8e4aee4e2510'}
+2026-07-09 09:41:22,628 - [ qwen3-14b ] - INFO - Failed #id 10686884: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '7d214d2c-abf9-9c98-b79e-51fb395fe06c'}
+2026-07-09 09:41:22,688 - [ qwen3-14b ] - INFO - Failed #id 33065416: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'a261aff5-a315-9d9c-8556-eae20c781ee0'}
+2026-07-09 09:41:22,746 - [ qwen3-14b ] - INFO - Failed #id 88630651: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-8e6efb4c-3d9f-9501-a7ca-85fd7c93674c', 'request_id': '8e6efb4c-3d9f-9501-a7ca-85fd7c93674c'}
+2026-07-09 09:41:22,752 - [ qwen3-14b ] - INFO - Failed #id 31310133: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'dd1e0d74-6718-9e5b-a717-f044aae43e41'}
+2026-07-09 09:41:22,870 - [ qwen3-14b ] - INFO - Failed #id 16300269: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-e924322a-3700-9153-905a-b6ba6a83472a', 'request_id': 'e924322a-3700-9153-905a-b6ba6a83472a'}
+2026-07-09 09:41:22,909 - [ qwen3-14b ] - INFO - Failed #id 11565320: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-432d0a33-b878-99f9-9ad9-eebc62c7c4e2', 'request_id': '432d0a33-b878-99f9-9ad9-eebc62c7c4e2'}
+2026-07-09 09:41:23,033 - [ qwen3-14b ] - INFO - Failed #id 16886229: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-c5c3d7ff-acd2-9782-977a-3e6de040f550', 'request_id': 'c5c3d7ff-acd2-9782-977a-3e6de040f550'}
+2026-07-09 09:41:23,130 - [ qwen3-14b ] - INFO - Failed #id 21725713: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-b93b3848-f135-9fba-a5bf-f779bd5c3329', 'request_id': 'b93b3848-f135-9fba-a5bf-f779bd5c3329'}
+2026-07-09 09:41:23,158 - [ qwen3-14b ] - INFO - Failed #id 27599500: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-4a5f447c-3685-9a6e-9cf7-9b462331b191', 'request_id': '4a5f447c-3685-9a6e-9cf7-9b462331b191'}
+2026-07-09 09:41:23,236 - [ qwen3-14b ] - INFO - Failed #id 11609332: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-34a39e7c-6711-9f38-893d-7fb5a3c424dd', 'request_id': '34a39e7c-6711-9f38-893d-7fb5a3c424dd'}
+2026-07-09 09:41:23,261 - [ qwen3-14b ] - INFO - Failed #id 31884288: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-fc657eae-cd14-90b0-ae48-8ae8812c3d34', 'request_id': 'fc657eae-cd14-90b0-ae48-8ae8812c3d34'}
+2026-07-09 09:41:23,466 - [ qwen3-14b ] - INFO - Failed #id 24694333: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-8302d359-f1c5-9f85-ad8c-8342179dccd2', 'request_id': '8302d359-f1c5-9f85-ad8c-8342179dccd2'}
+2026-07-09 09:41:23,496 - [ qwen3-14b ] - INFO - Failed #id 29220418: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-ca0cdb20-54f9-9611-af01-cd7619a73ed5', 'request_id': 'ca0cdb20-54f9-9611-af01-cd7619a73ed5'}
+2026-07-09 09:41:23,578 - [ qwen3-14b ] - INFO - Failed #id 14046029: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '09779ff8-afd7-9066-9c5a-46bc100a986c'}
+2026-07-09 09:41:23,589 - [ qwen3-14b ] - INFO - Failed #id 20055368: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-8d90f919-95c2-9171-befa-324184d735ad', 'request_id': '8d90f919-95c2-9171-befa-324184d735ad'}
+2026-07-09 09:41:23,606 - [ qwen3-14b ] - INFO - Failed #id 92619748: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-918a766e-068d-9337-b014-371ae3d2ba79', 'request_id': '918a766e-068d-9337-b014-371ae3d2ba79'}
+2026-07-09 09:41:23,644 - [ qwen3-14b ] - INFO - Failed #id 44403562: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '1779fbcf-6f0e-977f-89ba-b27894dc8bde'}
+2026-07-09 09:41:23,657 - [ qwen3-14b ] - INFO - Failed #id 18489270: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'f43b0a62-fb8f-9205-9d2b-f59ff21a883f'}
+2026-07-09 09:41:23,670 - [ qwen3-14b ] - INFO - Failed #id 77281257: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '0a2eca58-19c6-9ef8-9c35-073355fbdcd9'}
+2026-07-09 09:41:23,707 - [ qwen3-14b ] - INFO - Failed #id 34229615: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '86a3199e-e4b9-9aaa-8baf-717dde3520ea'}
+2026-07-09 09:41:23,725 - [ qwen3-14b ] - INFO - Failed #id 63958008: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'ccd3862e-d343-9adb-a695-d734cc1f75c5'}
+2026-07-09 09:41:23,745 - [ qwen3-14b ] - INFO - Failed #id 20363313: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'e344ce44-7d2c-914d-a872-b3cd1f511b84'}
+2026-07-09 09:41:23,779 - [ qwen3-14b ] - INFO - Failed #id 33439445: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '608b923e-4d8d-9fd9-be7a-374d6dcd4642'}
+2026-07-09 09:41:23,787 - [ qwen3-14b ] - INFO - Failed #id 87476971: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'b6c4c338-ee95-9fff-943e-6f86005e27c7'}
+2026-07-09 09:41:23,801 - [ qwen3-14b ] - INFO - Failed #id 14055362: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-49a19fce-3ef1-9d00-9676-9314381f89c9', 'request_id': '49a19fce-3ef1-9d00-9676-9314381f89c9'}
+2026-07-09 09:41:24,092 - [ qwen3-14b ] - INFO - Failed #id 24021065: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-13b1cd08-7cf3-9d36-8b08-26f854b57a7d', 'request_id': '13b1cd08-7cf3-9d36-8b08-26f854b57a7d'}
+2026-07-09 09:41:24,113 - [ qwen3-14b ] - INFO - Failed #id 19965243: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-2a0529ab-0524-9974-8104-3eb2cf80ade1', 'request_id': '2a0529ab-0524-9974-8104-3eb2cf80ade1'}
+2026-07-09 09:41:24,130 - [ qwen3-14b ] - INFO - Failed #id 28013953: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-6ec91e00-8256-9d74-89cf-2749df2dce75', 'request_id': '6ec91e00-8256-9d74-89cf-2749df2dce75'}
+2026-07-09 09:51:20,095 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_multimedia', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 4, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'resource', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 09:51:20,096 - [ qwen3-14b ] - INFO - Detected 0 has been inferenced,
+2026-07-09 09:51:20,096 - [ qwen3-14b ] - INFO - Start inferencing 1111 tasks...
+2026-07-09 09:51:20,532 - [ qwen3-14b ] - INFO - Failed #id 20503682: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-303031c9-110e-9711-b5e5-7200cd7bf96a', 'request_id': '303031c9-110e-9711-b5e5-7200cd7bf96a'}
+2026-07-09 09:51:20,787 - [ qwen3-14b ] - INFO - Failed #id 23427738: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-5cb87b92-1f8a-98a8-8f34-8dd40b902218', 'request_id': '5cb87b92-1f8a-98a8-8f34-8dd40b902218'}
+2026-07-09 09:51:21,025 - [ qwen3-14b ] - INFO - Failed #id 33314517: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-f4a4c491-a972-9422-a87b-f255bc3639a7', 'request_id': 'f4a4c491-a972-9422-a87b-f255bc3639a7'}
+2026-07-09 09:51:21,029 - [ qwen3-14b ] - INFO - Failed #id 32486954: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-74a96d66-eb93-9f31-9f30-d20fd3311838', 'request_id': '74a96d66-eb93-9f31-9f30-d20fd3311838'}
+2026-07-09 09:51:21,125 - [ qwen3-14b ] - INFO - Failed #id 32697808: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-6633d3ed-57e6-923a-b774-97fededee3d8', 'request_id': '6633d3ed-57e6-923a-b774-97fededee3d8'}
+2026-07-09 09:51:21,153 - [ qwen3-14b ] - INFO - Failed #id 19122651: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-d36a7929-f109-9e1c-a23f-ce0818e97362', 'request_id': 'd36a7929-f109-9e1c-a23f-ce0818e97362'}
+2026-07-09 09:51:21,162 - [ qwen3-14b ] - INFO - Failed #id 33570182: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-3c391b9f-9d13-9d99-a768-a81ccdc38364', 'request_id': '3c391b9f-9d13-9d99-a768-a81ccdc38364'}
+2026-07-09 09:51:21,312 - [ qwen3-14b ] - INFO - Failed #id 19642613: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-a19cfb68-aaa5-90de-9020-8d5cb20b882d', 'request_id': 'a19cfb68-aaa5-90de-9020-8d5cb20b882d'}
+2026-07-09 09:51:21,353 - [ qwen3-14b ] - INFO - Failed #id 17306349: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-544cc81e-ee38-9d12-92df-035ed6549712', 'request_id': '544cc81e-ee38-9d12-92df-035ed6549712'}
+2026-07-09 09:51:21,508 - [ qwen3-14b ] - INFO - Failed #id 30243989: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-b1d3ecce-0e91-9981-ba22-3ed8ef1fadc2', 'request_id': 'b1d3ecce-0e91-9981-ba22-3ed8ef1fadc2'}
+2026-07-09 09:51:21,615 - [ qwen3-14b ] - INFO - Failed #id 30420883: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-25f46c7e-8e94-93da-b8dd-5eb1c5967d84', 'request_id': '25f46c7e-8e94-93da-b8dd-5eb1c5967d84'}
+2026-07-09 09:51:21,698 - [ qwen3-14b ] - INFO - Failed #id 19645330: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-8e63c873-e258-9de9-b141-e9502de07a55', 'request_id': '8e63c873-e258-9de9-b141-e9502de07a55'}
+2026-07-09 09:51:21,749 - [ qwen3-14b ] - INFO - Failed #id 12214320: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-8e837110-3905-9c56-a4cd-6616a50ecb52', 'request_id': '8e837110-3905-9c56-a4cd-6616a50ecb52'}
+2026-07-09 09:51:21,757 - [ qwen3-14b ] - INFO - Failed #id 12347598: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'ba146db2-4479-937e-b042-4915836fde25'}
+2026-07-09 09:51:21,872 - [ qwen3-14b ] - INFO - Failed #id 32580114: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-10aae134-6442-97d0-91e5-a5e8846d1cca', 'request_id': '10aae134-6442-97d0-91e5-a5e8846d1cca'}
+2026-07-09 09:51:21,932 - [ qwen3-14b ] - INFO - Failed #id 24305501: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-353ea94a-75fc-94c2-8377-341b46a13a64', 'request_id': '353ea94a-75fc-94c2-8377-341b46a13a64'}
+2026-07-09 09:51:22,233 - [ qwen3-14b ] - INFO - Failed #id 54487864: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-33296403-4edc-90e6-9b83-ccd258dde2ea', 'request_id': '33296403-4edc-90e6-9b83-ccd258dde2ea'}
+2026-07-09 09:51:22,261 - [ qwen3-14b ] - INFO - Failed #id 31250413: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-7d4f3d80-5130-930d-bb31-07b765424f71', 'request_id': '7d4f3d80-5130-930d-bb31-07b765424f71'}
+2026-07-09 09:51:22,366 - [ qwen3-14b ] - INFO - Failed #id 13563445: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-c6adbc11-0575-953a-ba76-c8555c207ca6', 'request_id': 'c6adbc11-0575-953a-ba76-c8555c207ca6'}
+2026-07-09 09:51:22,423 - [ qwen3-14b ] - INFO - Failed #id 29314366: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-b8c99bde-3828-9bae-b4c2-9f6281825532', 'request_id': 'b8c99bde-3828-9bae-b4c2-9f6281825532'}
+2026-07-09 09:51:22,462 - [ qwen3-14b ] - INFO - Failed #id 12483664: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-8a79ea37-f9ed-9e9c-8e8b-950959a19db0', 'request_id': '8a79ea37-f9ed-9e9c-8e8b-950959a19db0'}
+2026-07-09 09:51:22,576 - [ qwen3-14b ] - INFO - Failed #id 59923748: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-724f93a9-cb68-95ea-857c-95c779cc78e3', 'request_id': '724f93a9-cb68-95ea-857c-95c779cc78e3'}
+2026-07-09 09:51:22,648 - [ qwen3-14b ] - INFO - Failed #id 27570553: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-e95ae90d-e61c-922e-9501-ac999b868652', 'request_id': 'e95ae90d-e61c-922e-9501-ac999b868652'}
+2026-07-09 09:51:22,708 - [ qwen3-14b ] - INFO - Failed #id 21914813: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': '6571db97-fc60-9109-a318-300319d59264'}
+2026-07-09 09:51:22,716 - [ qwen3-14b ] - INFO - Failed #id 14367009: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-66f73aba-f42a-94f4-b8a6-1e8f5622696b', 'request_id': '66f73aba-f42a-94f4-b8a6-1e8f5622696b'}
+2026-07-09 09:51:22,732 - [ qwen3-14b ] - INFO - Failed #id 16245561: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-bfe2daab-7cea-9175-8afe-63b4e24ef048', 'request_id': 'bfe2daab-7cea-9175-8afe-63b4e24ef048'}
+2026-07-09 09:51:22,770 - [ qwen3-14b ] - INFO - Failed #id 15383295: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'dca2ccaf-ec9f-9b84-8c9e-04d749c9612c'}
+2026-07-09 09:51:22,791 - [ qwen3-14b ] - INFO - Failed #id 33717666: <class '__main__.RateLimitError'> {'error': {'message': 'You have exceeded your current request limit. For details, see: https://help.aliyun.com/zh/model-studio/error-code#rate-limit', 'type': 'limit_requests', 'param': None, 'code': 'limit_requests'}, 'request_id': 'febf669b-f513-9103-9f56-a4fa93065f71'}
+2026-07-09 09:51:22,881 - [ qwen3-14b ] - INFO - Failed #id 25062474: <class 'Exception'> {'error': {'message': 'parameter.enable_thinking must be set to false for non-streaming calls', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-bfdd0dac-e007-9b2a-a628-ad627c244bfb', 'request_id': 'bfdd0dac-e007-9b2a-a628-ad627c244bfb'}
+2026-07-09 18:42:38,452 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_multimedia', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 4, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'resource', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 18:42:38,454 - [ qwen3-14b ] - INFO - Detected 0 has been inferenced,
+2026-07-09 18:42:38,454 - [ qwen3-14b ] - INFO - Start inferencing 1111 tasks...
+2026-07-09 18:42:40,594 - [ qwen3-14b ] - INFO - # TASK LIST #:
+{"id": "Image Downloader", "desc": "Downloads an image from a given URL.", "input-type": ["url"], "output-type": ["image"]}
+{"id": "Video Downloader", "desc": "Downloads a video from a given URL.", "input-type": ["url"], "output-type": ["video"]}
+{"id": "Audio Downloader", "desc": "Downloads an audio file from a given URL.", "input-type": ["url"], "output-type": ["audio"]}
+{"id": "Text Downloader", "desc": "Downloads the text content from a given URL.", "input-type": ["url"], "output-type": ["text"]}
+{"id": "Text Search", "desc": "Searches for a specific text or keyword on the internet.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Image Search", "desc": "Searches for images on the internet based on a given query.", "input-type": ["text"], "output-type": ["Image"]}
+{"id": "Image Search (by Image)", "desc": "Performs a similar image search using an input image.", "input-type": ["image"], "output-type": ["image"]}
+{"id": "URL Extractor", "desc": "Extracts URL from text", "input-type": ["text"], "output-type": ["url"]}
+{"id": "Video Search", "desc": "Searches for videos on the internet based on a given query.", "input-type": ["text"], "output-type": ["video"]}
+{"id": "Text-to-Image", "desc": "Generates an image based on a given text description.", "input-type": ["text"], "output-type": ["image"]}
+{"id": "Text-to-Video", "desc": "Generates a video based on a given text description.", "input-type": ["text"], "output-type": ["video"]}
+{"id": "Text-to-Audio", "desc": "Generates an audio file based on a given text description.", "input-type": ["text"], "output-type": ["audio"]}
+{"id": "Image-to-Text", "desc": "Extracts text from an input image using Optical Character Recognition (OCR).", "input-type": ["image"], "output-type": ["text"]}
+{"id": "Audio-to-Text", "desc": "Transcribes speech from an audio file into text.", "input-type": ["audio"], "output-type": ["text"]}
+{"id": "Video-to-Text", "desc": "Transcribes speech from a video file into text.", "input-type": ["video"], "output-type": ["text"]}
+{"id": "Audio Noise Reduction", "desc": "Reduces background noise or unwanted sounds from a given audio file.", "input-type": ["audio"], "output-type": ["audio"]}
+{"id": "Audio Effects", "desc": "Applies various audio effects to a given audio file according to human instruction, such as reverb, chorus, or equalization.", "input-type": ["audio", "text"], "output-type": ["audio"]}
+{"id": "Audio Splicer", "desc": "Combines two audio files into a single output file.", "input-type": ["audio", "audio"], "output-type": ["audio"]}
+{"id": "Voice Changer", "desc": "Modifies the characteristics of a recorded voice according to human instruction, such as tone, pitch, or gender.", "input-type": ["audio", "text"], "output-type": ["audio"]}
+{"id": "Text Summarizer", "desc": "Summarizes a given text into a shorter version while retaining the main points.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Text Translator", "desc": "Translates a given text from one language to english.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Text Sentiment Analysis", "desc": "Analyzes the sentiment of a given text, identifying if it is positive, negative, or neutral.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Text Grammar Checker", "desc": "Checks a given text for grammatical errors and suggests corrections.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Text Simplifier", "desc": "Rewrites a given text in a simpler and more understandable manner.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Text Expander", "desc": "Expands a given short text into a more detailed and descriptive version.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Keyword Extractor", "desc": "Extracts the most important keywords and phrases from a given text.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Text Paraphraser", "desc": "Rewrites a given text using different words while maintaining its original meaning.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Article Spinner", "desc": "Rewrites a given article using synonyms and syntax changes to create a new, unique version.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Topic Generator", "desc": "Generates a list of relevant topics or ideas based on a given input.", "input-type": ["text"], "output-type": ["text"]}
+{"id": "Audio-to-Image", "desc": "Generates an image that visually represents a given audio, such as a waveform or spectrogram.", "input-type": ["audio"], "output-type": ["image"]}
+{"id": "Image-to-Video", "desc": "Creates a slideshow video using two input images.", "input-type": ["image", "image"], "output-type": ["video"]}
+{"id": "Video-to-Audio", "desc": "Extracts the audio track from a given video file.", "input-type": ["video"], "output-type": ["audio"]}
+{"id": "Video-to-Image", "desc": "Extracts a still image from a given video.", "input-type": ["video"], "output-type": ["image"]}
+{"id": "Image Stitcher", "desc": "Stitches together two input images to create a panorama or collage.", "input-type": ["image", "image"], "output-type": ["image"]}
+{"id": "Image Colorizer", "desc": "Adds color to a black and white input image using deep learning techniques.", "input-type": ["image"], "output-type": ["image"]}
+{"id": "Image Style Transfer", "desc": "Applies the visual style of one image (style) to the content of another image (content) using neural style transfer techniques.", "input-type": ["image", "image"], "output-type": ["image"]}
+{"id": "Video Stabilizer", "desc": "Stabilizes a shaky input video to produce a smoother output video.", "input-type": ["video"], "output-type": ["video"]}
+{"id": "Video Speed Changer", "desc": "Adjusts the playback speed of a given video according to human instruction, either speeding it up or slowing it down.", "input-type": ["video", "text"], "output-type": ["video"]}
+{"id": "Video Synchronization", "desc": "Synchronizes the timing of an existing voiceover or audio file with the visuals of a given video.", "input-type": ["video", "audio"], "output-type": ["video"]}
+{"id": "Video Voiceover", "desc": "Adds a voiceover to a given video using a provided script or text.", "input-type": ["video", "text"], "output-type": ["video"]}
+
+# GOAL #: Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ step description of one or more steps ], "task_nodes": [{"task": "tool name must be from # TOOL LIST #", "arguments": [ a concise list of arguments for the tool. Either original text, or user-mentioned filename, or tag '<node-j>' (start from 0) to refer to the output of the j-th node. ]}]} 
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. the dependencies among task steps should align with the argument dependencies of the task nodes; 
+4. the tool arguments should be align with the input-type field of # TASK LIST #;
+
+# USER REQUEST #: I was working on a report and I realized that the best information for my project is actually in a video titled 'example.mp4'. Could you help me extract the spoken words from this video into a text format?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 18:42:40,595 - [ qwen3-14b ] - INFO - {
+  "task_steps": [
+    "Extract the audio track from the video file 'example.mp4'.",
+    "Transcribe the speech from the extracted audio into text."
+  ],
+  "task_nodes": [
+    {
+      "task": "Video-to-Audio",
+      "arguments": ["example.mp4"]
+    },
+    {
+      "task": "Audio-to-Text",
+      "arguments": ["<node-0>"]
+    }
+  ]
+}
+2026-07-09 18:42:40,595 - [ qwen3-14b ] - INFO - Success #id 20503682
+2026-07-09 18:42:42,378 - [ qwen3-14b ] - INFO - Success #id 32697808
+2026-07-09 18:42:42,406 - [ qwen3-14b ] - INFO - Success #id 23427738
+2026-07-09 18:42:42,529 - [ qwen3-14b ] - INFO - Success #id 32486954
+2026-07-09 18:42:42,592 - [ qwen3-14b ] - INFO - Success #id 19122651
+2026-07-09 18:42:44,047 - [ qwen3-14b ] - INFO - Success #id 33570182
+2026-07-09 18:42:45,527 - [ qwen3-14b ] - INFO - Success #id 33314517
+2026-07-09 18:42:46,359 - [ qwen3-14b ] - INFO - Success #id 19642613
+2026-07-09 18:42:46,413 - [ qwen3-14b ] - INFO - Success #id 17306349
+2026-07-09 18:42:47,949 - [ qwen3-14b ] - INFO - Success #id 30243989
+2026-07-09 18:42:47,955 - [ qwen3-14b ] - INFO - Success #id 30420883
+2026-07-09 18:42:48,330 - [ qwen3-14b ] - INFO - Success #id 19645330
+2026-07-09 18:42:49,436 - [ qwen3-14b ] - INFO - Success #id 32580114
+2026-07-09 18:42:51,255 - [ qwen3-14b ] - INFO - Success #id 24305501
+2026-07-09 18:42:51,598 - [ qwen3-14b ] - INFO - Success #id 12214320
+2026-07-09 18:42:51,669 - [ qwen3-14b ] - INFO - Success #id 12347598
+2026-07-09 18:42:53,233 - [ qwen3-14b ] - INFO - Success #id 12483664
+2026-07-09 18:42:53,631 - [ qwen3-14b ] - INFO - Success #id 54487864
+2026-07-09 18:42:53,736 - [ qwen3-14b ] - INFO - Success #id 31250413
+2026-07-09 18:42:54,294 - [ qwen3-14b ] - INFO - Success #id 13563445
+2026-07-09 18:42:55,450 - [ qwen3-14b ] - INFO - Success #id 29314366
+2026-07-09 18:42:55,982 - [ qwen3-14b ] - INFO - Success #id 14367009
+2026-07-09 18:42:56,948 - [ qwen3-14b ] - INFO - Success #id 27570553
+2026-07-09 18:42:57,040 - [ qwen3-14b ] - INFO - Success #id 59923748
+2026-07-09 18:42:57,234 - [ qwen3-14b ] - INFO - Success #id 16245561
+2026-07-09 18:42:58,872 - [ qwen3-14b ] - INFO - Success #id 21914813
+2026-07-09 18:42:59,848 - [ qwen3-14b ] - INFO - Success #id 15307609
+2026-07-09 18:43:00,633 - [ qwen3-14b ] - INFO - Success #id 25062474
+2026-07-09 18:43:03,026 - [ qwen3-14b ] - INFO - Success #id 15376372
+2026-07-09 18:43:03,876 - [ qwen3-14b ] - INFO - Success #id 15383295
+2026-07-09 18:43:04,502 - [ qwen3-14b ] - INFO - Success #id 33717666
+2026-07-09 18:43:05,320 - [ qwen3-14b ] - INFO - Success #id 31761373
+2026-07-09 18:43:06,843 - [ qwen3-14b ] - INFO - Success #id 88630651
+2026-07-09 18:43:07,046 - [ qwen3-14b ] - INFO - Success #id 29815919
+2026-07-09 18:43:07,296 - [ qwen3-14b ] - INFO - Success #id 26559903
+2026-07-09 18:43:07,401 - [ qwen3-14b ] - INFO - Success #id 17934342
+2026-07-09 18:43:08,902 - [ qwen3-14b ] - INFO - Success #id 11565320
+2026-07-09 18:43:11,746 - [ qwen3-14b ] - INFO - Success #id 27823301
+2026-07-09 18:43:11,793 - [ qwen3-14b ] - INFO - Success #id 16300269
+2026-07-09 18:43:12,041 - [ qwen3-14b ] - INFO - Success #id 29080629
+2026-07-09 18:43:12,642 - [ qwen3-14b ] - INFO - Success #id 14452314
+2026-07-09 18:43:14,216 - [ qwen3-14b ] - INFO - Success #id 33065416
+2026-07-09 18:43:15,257 - [ qwen3-14b ] - INFO - Success #id 31310133
+2026-07-09 18:43:17,111 - [ qwen3-14b ] - INFO - Success #id 31884288
+2026-07-09 18:43:18,207 - [ qwen3-14b ] - INFO - Success #id 16886229
+2026-07-09 18:43:19,546 - [ qwen3-14b ] - INFO - Success #id 27599500
+2026-07-09 18:43:19,634 - [ qwen3-14b ] - INFO - Success #id 29220418
+2026-07-09 18:43:19,637 - [ qwen3-14b ] - INFO - Success #id 10686884
+2026-07-09 18:43:21,232 - [ qwen3-14b ] - INFO - Success #id 11609332
+2026-07-09 18:43:21,576 - [ qwen3-14b ] - INFO - Success #id 20055368
+2026-07-09 18:43:22,819 - [ qwen3-14b ] - INFO - Success #id 21725713
+2026-07-09 18:43:23,928 - [ qwen3-14b ] - INFO - Success #id 92619748
+2026-07-09 18:43:24,323 - [ qwen3-14b ] - INFO - Success #id 24694333
+2026-07-09 18:43:24,989 - [ qwen3-14b ] - INFO - Success #id 14046029
+2026-07-09 18:43:25,982 - [ qwen3-14b ] - INFO - Success #id 18489270
+2026-07-09 18:43:26,032 - [ qwen3-14b ] - INFO - Success #id 14055362
+2026-07-09 18:43:27,545 - [ qwen3-14b ] - INFO - Success #id 63958008
+2026-07-09 18:43:28,081 - [ qwen3-14b ] - INFO - Success #id 34229615
+2026-07-09 18:43:28,289 - [ qwen3-14b ] - INFO - Success #id 44403562
+2026-07-09 18:43:30,984 - [ qwen3-14b ] - INFO - Success #id 87476971
+2026-07-09 18:43:31,030 - [ qwen3-14b ] - INFO - Success #id 77281257
+2026-07-09 18:43:32,187 - [ qwen3-14b ] - INFO - Success #id 33439445
+2026-07-09 18:43:32,563 - [ qwen3-14b ] - INFO - Success #id 28013953
+2026-07-09 18:43:32,833 - [ qwen3-14b ] - INFO - Success #id 20363313
+2026-07-09 18:43:33,920 - [ qwen3-14b ] - INFO - Success #id 24021065
+2026-07-09 18:43:34,310 - [ qwen3-14b ] - INFO - Success #id 99016806
+2026-07-09 18:43:35,814 - [ qwen3-14b ] - INFO - Success #id 19965243
+2026-07-09 18:43:35,935 - [ qwen3-14b ] - INFO - Success #id 10375723
+2026-07-09 18:43:37,472 - [ qwen3-14b ] - INFO - Success #id 14798877
+2026-07-09 18:43:37,627 - [ qwen3-14b ] - INFO - Success #id 26046746
+2026-07-09 18:43:38,297 - [ qwen3-14b ] - INFO - Success #id 90821846
+2026-07-09 18:43:38,500 - [ qwen3-14b ] - INFO - Success #id 29114913
+2026-07-09 18:43:39,885 - [ qwen3-14b ] - INFO - Success #id 78662083
+2026-07-09 18:43:40,249 - [ qwen3-14b ] - INFO - Success #id 24411650
+2026-07-09 18:43:40,989 - [ qwen3-14b ] - INFO - Success #id 10846280
+2026-07-09 18:43:41,452 - [ qwen3-14b ] - INFO - Success #id 26579656
+2026-07-09 18:43:42,038 - [ qwen3-14b ] - INFO - Success #id 24443812
+2026-07-09 18:43:42,609 - [ qwen3-14b ] - INFO - Success #id 16884887
+2026-07-09 18:43:43,147 - [ qwen3-14b ] - INFO - Success #id 22729176
+2026-07-09 18:43:43,676 - [ qwen3-14b ] - INFO - Success #id 18012100
+2026-07-09 18:43:44,133 - [ qwen3-14b ] - INFO - Success #id 41557330
+2026-07-09 18:43:44,587 - [ qwen3-14b ] - INFO - Success #id 28555743
+2026-07-09 18:43:45,452 - [ qwen3-14b ] - INFO - Success #id 27780863
+2026-07-09 18:43:45,688 - [ qwen3-14b ] - INFO - Success #id 26338629
+2026-07-09 18:43:45,930 - [ qwen3-14b ] - INFO - Success #id 23418188
+2026-07-09 18:43:46,923 - [ qwen3-14b ] - INFO - Success #id 13689407
+2026-07-09 18:43:47,299 - [ qwen3-14b ] - INFO - Success #id 21203251
+2026-07-09 18:43:50,271 - [ qwen3-14b ] - INFO - Success #id 33237951
+2026-07-09 18:43:50,882 - [ qwen3-14b ] - INFO - Success #id 21045373
+2026-07-09 18:43:50,903 - [ qwen3-14b ] - INFO - Success #id 21794376
+2026-07-09 18:43:50,975 - [ qwen3-14b ] - INFO - Success #id 72347498
+2026-07-09 18:43:51,737 - [ qwen3-14b ] - INFO - Success #id 30156849
+2026-07-09 18:43:52,405 - [ qwen3-14b ] - INFO - Success #id 12220739
+2026-07-09 18:43:54,542 - [ qwen3-14b ] - INFO - Success #id 96157488
+2026-07-09 18:43:55,889 - [ qwen3-14b ] - INFO - Success #id 28120861
+2026-07-09 18:43:56,954 - [ qwen3-14b ] - INFO - Success #id 10923990
+2026-07-09 18:43:56,955 - [ qwen3-14b ] - INFO - Success #id 21931325
+2026-07-09 18:43:57,310 - [ qwen3-14b ] - INFO - Success #id 33408030
+2026-07-09 18:43:58,111 - [ qwen3-14b ] - INFO - Success #id 26055601
+2026-07-09 18:43:59,349 - [ qwen3-14b ] - INFO - Success #id 10505816
+2026-07-09 18:44:00,768 - [ qwen3-14b ] - INFO - Success #id 21723680
+2026-07-09 18:44:01,343 - [ qwen3-14b ] - INFO - Success #id 10277798
+2026-07-09 18:44:01,673 - [ qwen3-14b ] - INFO - Success #id 22242104
+2026-07-09 18:44:01,771 - [ qwen3-14b ] - INFO - Success #id 25511517
+2026-07-09 18:44:02,766 - [ qwen3-14b ] - INFO - Success #id 70046689
+2026-07-09 18:44:03,936 - [ qwen3-14b ] - INFO - Success #id 18982606
+2026-07-09 18:44:04,221 - [ qwen3-14b ] - INFO - Success #id 22617480
+2026-07-09 18:44:04,778 - [ qwen3-14b ] - INFO - Success #id 20265514
+2026-07-09 18:44:06,259 - [ qwen3-14b ] - INFO - Success #id 23437576
+2026-07-09 18:44:07,578 - [ qwen3-14b ] - INFO - Success #id 20282771
+2026-07-09 18:44:07,588 - [ qwen3-14b ] - INFO - Success #id 93708475
+2026-07-09 18:44:09,885 - [ qwen3-14b ] - INFO - Success #id 28095039
+2026-07-09 18:44:10,950 - [ qwen3-14b ] - INFO - Success #id 30302713
+2026-07-09 18:44:11,848 - [ qwen3-14b ] - INFO - Success #id 23512890
+2026-07-09 18:44:12,175 - [ qwen3-14b ] - INFO - Success #id 32282456
+2026-07-09 18:44:12,303 - [ qwen3-14b ] - INFO - Success #id 25668169
+2026-07-09 18:44:13,821 - [ qwen3-14b ] - INFO - Success #id 24402294
+2026-07-09 18:44:13,915 - [ qwen3-14b ] - INFO - Success #id 23843351
+2026-07-09 18:44:15,217 - [ qwen3-14b ] - INFO - Success #id 27670002
+2026-07-09 18:44:16,490 - [ qwen3-14b ] - INFO - Success #id 13191750
+2026-07-09 18:44:16,585 - [ qwen3-14b ] - INFO - Success #id 19474763
+2026-07-09 18:44:17,516 - [ qwen3-14b ] - INFO - Success #id 12527002
+2026-07-09 18:44:17,808 - [ qwen3-14b ] - INFO - Success #id 22608985
+2026-07-09 18:44:21,757 - [ qwen3-14b ] - INFO - Success #id 22387171
+2026-07-09 18:44:21,849 - [ qwen3-14b ] - INFO - Success #id 16017611
+2026-07-09 18:44:22,474 - [ qwen3-14b ] - INFO - Success #id 26608785
+2026-07-09 18:44:22,675 - [ qwen3-14b ] - INFO - Success #id 62747985
+2026-07-09 18:44:23,207 - [ qwen3-14b ] - INFO - Success #id 89025253
+2026-07-09 18:44:23,998 - [ qwen3-14b ] - INFO - Success #id 35233153
+2026-07-09 18:44:25,577 - [ qwen3-14b ] - INFO - Success #id 27440252
+2026-07-09 18:44:25,714 - [ qwen3-14b ] - INFO - Success #id 62452405
+2026-07-09 18:44:26,115 - [ qwen3-14b ] - INFO - Success #id 96812775
+2026-07-09 18:44:26,732 - [ qwen3-14b ] - INFO - Success #id 30674665
+2026-07-09 18:44:27,167 - [ qwen3-14b ] - INFO - Success #id 89964487
+2026-07-09 18:44:27,567 - [ qwen3-14b ] - INFO - Success #id 15834651
+2026-07-09 18:44:28,260 - [ qwen3-14b ] - INFO - Success #id 32407984
+2026-07-09 18:44:28,602 - [ qwen3-14b ] - INFO - Success #id 75269679
+2026-07-09 18:44:30,800 - [ qwen3-14b ] - INFO - Success #id 20897254
+2026-07-09 18:44:30,945 - [ qwen3-14b ] - INFO - Success #id 19563449
+2026-07-09 18:44:31,033 - [ qwen3-14b ] - INFO - Success #id 46051366
+2026-07-09 18:44:32,651 - [ qwen3-14b ] - INFO - Success #id 31247575
+2026-07-09 18:44:32,763 - [ qwen3-14b ] - INFO - Success #id 27253961
+2026-07-09 18:44:33,982 - [ qwen3-14b ] - INFO - Success #id 24180514
+2026-07-09 18:44:34,866 - [ qwen3-14b ] - INFO - Success #id 23776031
+2026-07-09 18:44:35,837 - [ qwen3-14b ] - INFO - Success #id 64715735
+2026-07-09 18:44:37,014 - [ qwen3-14b ] - INFO - Success #id 55092630
+2026-07-09 18:44:38,710 - [ qwen3-14b ] - INFO - Success #id 26887673
+2026-07-09 18:44:38,721 - [ qwen3-14b ] - INFO - Success #id 32862581
+2026-07-09 18:44:39,392 - [ qwen3-14b ] - INFO - Success #id 32552570
+2026-07-09 18:44:40,088 - [ qwen3-14b ] - INFO - Success #id 26631272
+2026-07-09 18:44:40,996 - [ qwen3-14b ] - INFO - Success #id 25048174
+2026-07-09 18:44:42,854 - [ qwen3-14b ] - INFO - Success #id 14480544
+2026-07-09 18:44:42,985 - [ qwen3-14b ] - INFO - Success #id 13450285
+2026-07-09 18:44:44,367 - [ qwen3-14b ] - INFO - Success #id 98293818
+2026-07-09 18:44:46,606 - [ qwen3-14b ] - INFO - Success #id 29863077
+2026-07-09 18:44:47,471 - [ qwen3-14b ] - INFO - Success #id 15284557
+2026-07-09 18:44:47,528 - [ qwen3-14b ] - INFO - Success #id 14083234
+2026-07-09 18:44:47,607 - [ qwen3-14b ] - INFO - Success #id 24276856
+2026-07-09 18:44:49,277 - [ qwen3-14b ] - INFO - Success #id 26551935
+2026-07-09 18:44:49,936 - [ qwen3-14b ] - INFO - Success #id 19842589
+2026-07-09 18:44:51,450 - [ qwen3-14b ] - INFO - Success #id 10219651
+2026-07-09 18:44:52,442 - [ qwen3-14b ] - INFO - Success #id 19355466
+2026-07-09 18:44:53,029 - [ qwen3-14b ] - INFO - Success #id 20631231
+2026-07-09 18:44:55,297 - [ qwen3-14b ] - INFO - Success #id 28080976
+2026-07-09 18:44:55,802 - [ qwen3-14b ] - INFO - Success #id 45875119
+2026-07-09 18:44:55,819 - [ qwen3-14b ] - INFO - Success #id 27607093
+2026-07-09 18:44:56,852 - [ qwen3-14b ] - INFO - Success #id 24583433
+2026-07-09 18:44:57,153 - [ qwen3-14b ] - INFO - Success #id 22721756
+2026-07-09 18:44:57,718 - [ qwen3-14b ] - INFO - Success #id 66976025
+2026-07-09 18:44:58,665 - [ qwen3-14b ] - INFO - Success #id 28220564
+2026-07-09 18:44:59,055 - [ qwen3-14b ] - INFO - Success #id 17037083
+2026-07-09 18:44:59,954 - [ qwen3-14b ] - INFO - Success #id 21162809
+2026-07-09 18:45:00,655 - [ qwen3-14b ] - INFO - Success #id 58466120
+2026-07-09 18:45:01,023 - [ qwen3-14b ] - INFO - Success #id 15854959
+2026-07-09 18:45:01,456 - [ qwen3-14b ] - INFO - Success #id 19838389
+2026-07-09 18:45:02,475 - [ qwen3-14b ] - INFO - Success #id 15489668
+2026-07-09 18:45:02,818 - [ qwen3-14b ] - INFO - Success #id 31734078
+2026-07-09 18:45:04,053 - [ qwen3-14b ] - INFO - Success #id 18805795
+2026-07-09 18:45:04,114 - [ qwen3-14b ] - INFO - Success #id 14392782
+2026-07-09 18:45:05,417 - [ qwen3-14b ] - INFO - Success #id 33837419
+2026-07-09 18:45:05,708 - [ qwen3-14b ] - INFO - Success #id 52479682
+2026-07-09 18:45:06,880 - [ qwen3-14b ] - INFO - Success #id 20920168
+2026-07-09 18:45:07,216 - [ qwen3-14b ] - INFO - Success #id 27605596
+2026-07-09 18:45:07,644 - [ qwen3-14b ] - INFO - Success #id 15549689
+2026-07-09 18:45:08,297 - [ qwen3-14b ] - INFO - Success #id 20688391
+2026-07-09 18:45:08,379 - [ qwen3-14b ] - INFO - Success #id 26347820
+2026-07-09 18:45:10,619 - [ qwen3-14b ] - INFO - Success #id 12858137
+2026-07-09 18:45:11,047 - [ qwen3-14b ] - INFO - Success #id 23228100
+2026-07-09 18:45:11,237 - [ qwen3-14b ] - INFO - Success #id 30546653
+2026-07-09 18:45:11,558 - [ qwen3-14b ] - INFO - Success #id 22135879
+2026-07-09 18:45:12,028 - [ qwen3-14b ] - INFO - Success #id 19289200
+2026-07-09 18:45:12,860 - [ qwen3-14b ] - INFO - Success #id 46668585
+2026-07-09 18:45:13,197 - [ qwen3-14b ] - INFO - Success #id 16273916
+2026-07-09 18:45:15,335 - [ qwen3-14b ] - INFO - Success #id 24128765
+2026-07-09 18:45:15,936 - [ qwen3-14b ] - INFO - Success #id 20786177
+2026-07-09 18:45:16,506 - [ qwen3-14b ] - INFO - Success #id 18169831
+2026-07-09 18:45:16,550 - [ qwen3-14b ] - INFO - Success #id 26988311
+2026-07-09 18:45:18,268 - [ qwen3-14b ] - INFO - Success #id 30873053
+2026-07-09 18:45:18,380 - [ qwen3-14b ] - INFO - Success #id 29360324
+2026-07-09 18:45:20,299 - [ qwen3-14b ] - INFO - Success #id 29272607
+2026-07-09 18:45:20,615 - [ qwen3-14b ] - INFO - Success #id 20933750
+2026-07-09 18:45:22,944 - [ qwen3-14b ] - INFO - Success #id 30905649
+2026-07-09 18:45:23,573 - [ qwen3-14b ] - INFO - Success #id 25583899
+2026-07-09 18:45:23,893 - [ qwen3-14b ] - INFO - Success #id 86569424
+2026-07-09 18:45:24,613 - [ qwen3-14b ] - INFO - Success #id 28722540
+2026-07-09 18:45:25,327 - [ qwen3-14b ] - INFO - Success #id 18303031
+2026-07-09 18:45:25,954 - [ qwen3-14b ] - INFO - Success #id 19826080
+2026-07-09 18:45:26,839 - [ qwen3-14b ] - INFO - Success #id 50953250
+2026-07-09 18:45:28,589 - [ qwen3-14b ] - INFO - Success #id 29912692
+2026-07-09 18:45:29,375 - [ qwen3-14b ] - INFO - Success #id 54874621
+2026-07-09 18:45:30,215 - [ qwen3-14b ] - INFO - Success #id 28962002
+2026-07-09 18:45:30,637 - [ qwen3-14b ] - INFO - Success #id 53751058
+2026-07-09 18:45:31,019 - [ qwen3-14b ] - INFO - Success #id 74015436
+2026-07-09 18:45:31,667 - [ qwen3-14b ] - INFO - Success #id 20075510
+2026-07-09 18:45:32,695 - [ qwen3-14b ] - INFO - Success #id 53886633
+2026-07-09 18:45:33,335 - [ qwen3-14b ] - INFO - Success #id 54687187
+2026-07-09 18:45:33,456 - [ qwen3-14b ] - INFO - Success #id 12988567
+2026-07-09 18:45:36,038 - [ qwen3-14b ] - INFO - Success #id 33304857
+2026-07-09 18:45:36,147 - [ qwen3-14b ] - INFO - Success #id 24782437
+2026-07-09 18:45:36,194 - [ qwen3-14b ] - INFO - Success #id 15212737
+2026-07-09 18:45:36,709 - [ qwen3-14b ] - INFO - Success #id 28376419
+2026-07-09 18:45:37,769 - [ qwen3-14b ] - INFO - Success #id 25586957
+2026-07-09 18:45:38,567 - [ qwen3-14b ] - INFO - Success #id 41999382
+2026-07-09 18:45:39,264 - [ qwen3-14b ] - INFO - Success #id 22093760
+2026-07-09 18:45:39,570 - [ qwen3-14b ] - INFO - Success #id 14051527
+2026-07-09 18:45:39,698 - [ qwen3-14b ] - INFO - Success #id 22347997
+2026-07-09 18:45:40,510 - [ qwen3-14b ] - INFO - Success #id 30916057
+2026-07-09 18:45:40,750 - [ qwen3-14b ] - INFO - Success #id 85476792
+2026-07-09 18:45:41,734 - [ qwen3-14b ] - INFO - Success #id 21326487
+2026-07-09 18:45:42,550 - [ qwen3-14b ] - INFO - Success #id 24614815
+2026-07-09 18:45:43,555 - [ qwen3-14b ] - INFO - Success #id 21849689
+2026-07-09 18:45:44,131 - [ qwen3-14b ] - INFO - Success #id 34450680
+2026-07-09 18:45:44,370 - [ qwen3-14b ] - INFO - Success #id 15504195
+2026-07-09 18:45:45,536 - [ qwen3-14b ] - INFO - Success #id 14628829
+2026-07-09 18:45:45,653 - [ qwen3-14b ] - INFO - Success #id 23305290
+2026-07-09 18:45:46,089 - [ qwen3-14b ] - INFO - Success #id 11349142
+2026-07-09 18:45:47,029 - [ qwen3-14b ] - INFO - Success #id 10176126
+2026-07-09 18:45:47,749 - [ qwen3-14b ] - INFO - Success #id 52480095
+2026-07-09 18:45:48,003 - [ qwen3-14b ] - INFO - Success #id 19725323
+2026-07-09 18:45:48,503 - [ qwen3-14b ] - INFO - Success #id 24934781
+2026-07-09 18:45:48,762 - [ qwen3-14b ] - INFO - Success #id 30162809
+2026-07-09 18:45:49,583 - [ qwen3-14b ] - INFO - Success #id 21300903
+2026-07-09 18:45:49,688 - [ qwen3-14b ] - INFO - Success #id 56163320
+2026-07-09 18:45:51,873 - [ qwen3-14b ] - INFO - Success #id 32330193
+2026-07-09 18:45:52,882 - [ qwen3-14b ] - INFO - Success #id 23612558
+2026-07-09 18:45:53,254 - [ qwen3-14b ] - INFO - Success #id 21286112
+2026-07-09 18:45:53,532 - [ qwen3-14b ] - INFO - Success #id 19133962
+2026-07-09 18:45:54,272 - [ qwen3-14b ] - INFO - Success #id 94007888
+2026-07-09 18:45:55,127 - [ qwen3-14b ] - INFO - Success #id 11382433
+2026-07-09 18:45:55,827 - [ qwen3-14b ] - INFO - Success #id 25398638
+2026-07-09 18:45:56,482 - [ qwen3-14b ] - INFO - Success #id 20883638
+2026-07-09 18:45:56,674 - [ qwen3-14b ] - INFO - Success #id 23094284
+2026-07-09 18:45:58,268 - [ qwen3-14b ] - INFO - Success #id 67635630
+2026-07-09 18:45:58,786 - [ qwen3-14b ] - INFO - Success #id 28367485
+2026-07-09 18:45:59,309 - [ qwen3-14b ] - INFO - Success #id 33918944
+2026-07-09 18:45:59,717 - [ qwen3-14b ] - INFO - Success #id 24043969
+2026-07-09 18:46:00,408 - [ qwen3-14b ] - INFO - Success #id 30752874
+2026-07-09 18:46:00,994 - [ qwen3-14b ] - INFO - Success #id 14473826
+2026-07-09 18:46:01,670 - [ qwen3-14b ] - INFO - Success #id 90555577
+2026-07-09 18:46:03,312 - [ qwen3-14b ] - INFO - Success #id 22153002
+2026-07-09 18:46:04,196 - [ qwen3-14b ] - INFO - Success #id 24168723
+2026-07-09 18:46:04,501 - [ qwen3-14b ] - INFO - Success #id 16008267
+2026-07-09 18:46:05,686 - [ qwen3-14b ] - INFO - Success #id 92815957
+2026-07-09 18:46:05,703 - [ qwen3-14b ] - INFO - Success #id 78797459
+2026-07-09 18:46:06,145 - [ qwen3-14b ] - INFO - Success #id 72252509
+2026-07-09 18:46:06,868 - [ qwen3-14b ] - INFO - Success #id 97555441
+2026-07-09 18:46:07,374 - [ qwen3-14b ] - INFO - Success #id 23496617
+2026-07-09 18:46:07,688 - [ qwen3-14b ] - INFO - Success #id 29078592
+2026-07-09 18:46:08,696 - [ qwen3-14b ] - INFO - Success #id 27340928
+2026-07-09 18:46:09,212 - [ qwen3-14b ] - INFO - Success #id 13317513
+2026-07-09 18:46:09,256 - [ qwen3-14b ] - INFO - Success #id 27083487
+2026-07-09 18:46:09,696 - [ qwen3-14b ] - INFO - Success #id 30633537
+2026-07-09 18:46:10,191 - [ qwen3-14b ] - INFO - Success #id 34612150
+2026-07-09 18:46:13,408 - [ qwen3-14b ] - INFO - Success #id 17156873
+2026-07-09 18:46:13,831 - [ qwen3-14b ] - INFO - Success #id 16375814
+2026-07-09 18:46:14,382 - [ qwen3-14b ] - INFO - Success #id 16360453
+2026-07-09 18:46:14,411 - [ qwen3-14b ] - INFO - Success #id 15289357
+2026-07-09 18:46:15,621 - [ qwen3-14b ] - INFO - Success #id 31986896
+2026-07-09 18:46:16,811 - [ qwen3-14b ] - INFO - Success #id 14905279
+2026-07-09 18:46:17,402 - [ qwen3-14b ] - INFO - Success #id 29432279
+2026-07-09 18:46:17,579 - [ qwen3-14b ] - INFO - Success #id 12448286
+2026-07-09 18:46:18,575 - [ qwen3-14b ] - INFO - Success #id 11569602
+2026-07-09 18:46:19,810 - [ qwen3-14b ] - INFO - Success #id 16875579
+2026-07-09 18:46:20,777 - [ qwen3-14b ] - INFO - Success #id 24347029
+2026-07-09 18:46:21,878 - [ qwen3-14b ] - INFO - Success #id 88823141
+2026-07-09 18:46:22,750 - [ qwen3-14b ] - INFO - Success #id 21871773
+2026-07-09 18:46:24,463 - [ qwen3-14b ] - INFO - Success #id 20265862
+2026-07-09 18:46:24,863 - [ qwen3-14b ] - INFO - Success #id 32487237
+2026-07-09 18:46:27,921 - [ qwen3-14b ] - INFO - Success #id 23228967
+2026-07-09 18:46:27,939 - [ qwen3-14b ] - INFO - Success #id 14621793
+2026-07-09 18:46:28,216 - [ qwen3-14b ] - INFO - Success #id 94393561
+2026-07-09 18:46:29,933 - [ qwen3-14b ] - INFO - Success #id 11063125
+2026-07-09 18:46:30,697 - [ qwen3-14b ] - INFO - Success #id 33577070
+2026-07-09 18:46:31,212 - [ qwen3-14b ] - INFO - Success #id 72028366
+2026-07-09 18:46:31,386 - [ qwen3-14b ] - INFO - Success #id 62651092
+2026-07-09 18:46:32,749 - [ qwen3-14b ] - INFO - Success #id 14038724
+2026-07-09 18:46:33,683 - [ qwen3-14b ] - INFO - Success #id 19726743
+2026-07-09 18:46:34,007 - [ qwen3-14b ] - INFO - Success #id 23001766
+2026-07-09 18:46:34,337 - [ qwen3-14b ] - INFO - Success #id 32089993
+2026-07-09 18:46:35,506 - [ qwen3-14b ] - INFO - Success #id 33880502
+2026-07-09 18:46:35,564 - [ qwen3-14b ] - INFO - Success #id 16470009
+2026-07-09 18:46:35,650 - [ qwen3-14b ] - INFO - Success #id 64865711
+2026-07-09 18:46:37,102 - [ qwen3-14b ] - INFO - Success #id 29908471
+2026-07-09 18:46:38,528 - [ qwen3-14b ] - INFO - Success #id 17983386
+2026-07-09 18:46:39,316 - [ qwen3-14b ] - INFO - Success #id 17604395
+2026-07-09 18:46:39,383 - [ qwen3-14b ] - INFO - Success #id 15684197
+2026-07-09 18:46:39,689 - [ qwen3-14b ] - INFO - Success #id 70814638
+2026-07-09 18:46:40,513 - [ qwen3-14b ] - INFO - Success #id 21272406
+2026-07-09 18:46:42,869 - [ qwen3-14b ] - INFO - Success #id 33076153
+2026-07-09 18:46:43,300 - [ qwen3-14b ] - INFO - Success #id 44333784
+2026-07-09 18:46:43,305 - [ qwen3-14b ] - INFO - Success #id 14910866
+2026-07-09 18:46:43,331 - [ qwen3-14b ] - INFO - Success #id 15308033
+2026-07-09 18:46:44,633 - [ qwen3-14b ] - INFO - Success #id 32490560
+2026-07-09 18:46:46,040 - [ qwen3-14b ] - INFO - Success #id 27999798
+2026-07-09 18:46:46,183 - [ qwen3-14b ] - INFO - Success #id 78235810
+2026-07-09 18:46:46,209 - [ qwen3-14b ] - INFO - Success #id 98462948
+2026-07-09 18:46:47,780 - [ qwen3-14b ] - INFO - Success #id 14302938
+2026-07-09 18:46:48,405 - [ qwen3-14b ] - INFO - Success #id 27452509
+2026-07-09 18:46:49,215 - [ qwen3-14b ] - INFO - Success #id 27960395
+2026-07-09 18:46:49,974 - [ qwen3-14b ] - INFO - Success #id 25697140
+2026-07-09 18:46:51,346 - [ qwen3-14b ] - INFO - Success #id 31997788
+2026-07-09 18:46:51,442 - [ qwen3-14b ] - INFO - Success #id 80283187
+2026-07-09 18:46:51,805 - [ qwen3-14b ] - INFO - Success #id 62468277
+2026-07-09 18:46:52,575 - [ qwen3-14b ] - INFO - Success #id 29081939
+2026-07-09 18:46:53,362 - [ qwen3-14b ] - INFO - Success #id 50734528
+2026-07-09 18:46:54,146 - [ qwen3-14b ] - INFO - Success #id 37504447
+2026-07-09 18:46:55,300 - [ qwen3-14b ] - INFO - Success #id 27690577
+2026-07-09 18:46:57,152 - [ qwen3-14b ] - INFO - Success #id 15254968
+2026-07-09 18:46:57,803 - [ qwen3-14b ] - INFO - Success #id 26480608
+2026-07-09 18:46:57,881 - [ qwen3-14b ] - INFO - Success #id 17308325
+2026-07-09 18:46:59,128 - [ qwen3-14b ] - INFO - Success #id 28404603
+2026-07-09 18:46:59,270 - [ qwen3-14b ] - INFO - Success #id 29298104
+2026-07-09 18:46:59,521 - [ qwen3-14b ] - INFO - Success #id 32572187
+2026-07-09 18:47:01,876 - [ qwen3-14b ] - INFO - Success #id 32212489
+2026-07-09 18:47:02,117 - [ qwen3-14b ] - INFO - Success #id 48045127
+2026-07-09 18:47:02,485 - [ qwen3-14b ] - INFO - Success #id 14867813
+2026-07-09 18:47:03,183 - [ qwen3-14b ] - INFO - Success #id 19764617
+2026-07-09 18:47:04,115 - [ qwen3-14b ] - INFO - Success #id 61498524
+2026-07-09 18:47:04,821 - [ qwen3-14b ] - INFO - Success #id 19817381
+2026-07-09 18:47:04,855 - [ qwen3-14b ] - INFO - Success #id 17137286
+2026-07-09 18:47:05,895 - [ qwen3-14b ] - INFO - Success #id 16674948
+2026-07-09 18:47:06,349 - [ qwen3-14b ] - INFO - Success #id 30108117
+2026-07-09 18:47:07,063 - [ qwen3-14b ] - INFO - Success #id 13291860
+2026-07-09 18:47:08,318 - [ qwen3-14b ] - INFO - Success #id 21367327
+2026-07-09 18:47:08,750 - [ qwen3-14b ] - INFO - Success #id 17465495
+2026-07-09 18:47:09,521 - [ qwen3-14b ] - INFO - Success #id 20519645
+2026-07-09 18:47:10,132 - [ qwen3-14b ] - INFO - Success #id 24508675
+2026-07-09 18:47:11,010 - [ qwen3-14b ] - INFO - Success #id 32684007
+2026-07-09 18:47:11,735 - [ qwen3-14b ] - INFO - Success #id 80262334
+2026-07-09 18:47:11,813 - [ qwen3-14b ] - INFO - Success #id 65333173
+2026-07-09 18:47:12,586 - [ qwen3-14b ] - INFO - Success #id 18087059
+2026-07-09 18:47:13,350 - [ qwen3-14b ] - INFO - Success #id 74973789
+2026-07-09 18:47:15,928 - [ qwen3-14b ] - INFO - Success #id 23073202
+2026-07-09 18:47:16,018 - [ qwen3-14b ] - INFO - Success #id 55350252
+2026-07-09 18:47:16,785 - [ qwen3-14b ] - INFO - Success #id 20520288
+2026-07-09 18:47:18,104 - [ qwen3-14b ] - INFO - Success #id 36434680
+2026-07-09 18:47:18,736 - [ qwen3-14b ] - INFO - Success #id 24635315
+2026-07-09 18:47:19,009 - [ qwen3-14b ] - INFO - Success #id 10585809
+2026-07-09 18:47:20,089 - [ qwen3-14b ] - INFO - Success #id 38774174
+2026-07-09 18:47:21,239 - [ qwen3-14b ] - INFO - Success #id 15490795
+2026-07-09 18:47:21,847 - [ qwen3-14b ] - INFO - Success #id 14085128
+2026-07-09 18:47:21,933 - [ qwen3-14b ] - INFO - Success #id 20323700
+2026-07-09 18:47:23,187 - [ qwen3-14b ] - INFO - Success #id 29925599
+2026-07-09 18:47:23,317 - [ qwen3-14b ] - INFO - Success #id 25274864
+2026-07-09 18:47:23,803 - [ qwen3-14b ] - INFO - Success #id 21218778
+2026-07-09 18:47:24,618 - [ qwen3-14b ] - INFO - Success #id 11022746
+2026-07-09 18:47:24,688 - [ qwen3-14b ] - INFO - Success #id 23106041
+2026-07-09 18:47:25,429 - [ qwen3-14b ] - INFO - Success #id 23192338
+2026-07-09 18:47:25,563 - [ qwen3-14b ] - INFO - Success #id 11515885
+2026-07-09 18:47:26,387 - [ qwen3-14b ] - INFO - Success #id 25383051
+2026-07-09 18:47:27,066 - [ qwen3-14b ] - INFO - Success #id 37118154
+2026-07-09 18:47:27,705 - [ qwen3-14b ] - INFO - Success #id 30772388
+2026-07-09 18:47:28,093 - [ qwen3-14b ] - INFO - Success #id 25443927
+2026-07-09 18:47:29,016 - [ qwen3-14b ] - INFO - Success #id 25022496
+2026-07-09 18:47:30,262 - [ qwen3-14b ] - INFO - Success #id 27339101
+2026-07-09 18:47:30,398 - [ qwen3-14b ] - INFO - Success #id 10163269
+2026-07-09 18:47:31,538 - [ qwen3-14b ] - INFO - Success #id 32674279
+2026-07-09 18:47:31,813 - [ qwen3-14b ] - INFO - Success #id 23532342
+2026-07-09 18:47:32,295 - [ qwen3-14b ] - INFO - Success #id 16304332
+2026-07-09 18:47:33,830 - [ qwen3-14b ] - INFO - Success #id 19123574
+2026-07-09 18:47:34,114 - [ qwen3-14b ] - INFO - Success #id 29024087
+2026-07-09 18:47:35,563 - [ qwen3-14b ] - INFO - Success #id 30947518
+2026-07-09 18:47:35,876 - [ qwen3-14b ] - INFO - Success #id 29762202
+2026-07-09 18:47:36,280 - [ qwen3-14b ] - INFO - Success #id 22357041
+2026-07-09 18:47:37,542 - [ qwen3-14b ] - INFO - Success #id 31064808
+2026-07-09 18:47:37,638 - [ qwen3-14b ] - INFO - Success #id 29561593
+2026-07-09 18:47:38,764 - [ qwen3-14b ] - INFO - Success #id 33629099
+2026-07-09 18:47:39,876 - [ qwen3-14b ] - INFO - Success #id 10816606
+2026-07-09 18:47:40,901 - [ qwen3-14b ] - INFO - Success #id 11013338
+2026-07-09 18:47:42,018 - [ qwen3-14b ] - INFO - Success #id 15170631
+2026-07-09 18:47:43,787 - [ qwen3-14b ] - INFO - Success #id 21596896
+2026-07-09 18:47:43,984 - [ qwen3-14b ] - INFO - Success #id 27918285
+2026-07-09 18:47:44,461 - [ qwen3-14b ] - INFO - Success #id 22556736
+2026-07-09 18:47:44,653 - [ qwen3-14b ] - INFO - Success #id 45260116
+2026-07-09 18:47:45,525 - [ qwen3-14b ] - INFO - Success #id 29603942
+2026-07-09 18:47:45,963 - [ qwen3-14b ] - INFO - Success #id 15515953
+2026-07-09 18:47:46,780 - [ qwen3-14b ] - INFO - Success #id 12402395
+2026-07-09 18:47:46,912 - [ qwen3-14b ] - INFO - Success #id 13110717
+2026-07-09 18:47:48,079 - [ qwen3-14b ] - INFO - Success #id 32215556
+2026-07-09 18:47:48,164 - [ qwen3-14b ] - INFO - Success #id 82669323
+2026-07-09 18:47:49,082 - [ qwen3-14b ] - INFO - Success #id 30841305
+2026-07-09 18:47:49,608 - [ qwen3-14b ] - INFO - Success #id 65796373
+2026-07-09 18:47:49,664 - [ qwen3-14b ] - INFO - Success #id 26389790
+2026-07-09 18:47:52,140 - [ qwen3-14b ] - INFO - Success #id 77876598
+2026-07-09 18:47:52,681 - [ qwen3-14b ] - INFO - Success #id 54815946
+2026-07-09 18:47:53,086 - [ qwen3-14b ] - INFO - Success #id 31113538
+2026-07-09 18:47:54,458 - [ qwen3-14b ] - INFO - Success #id 19981620
+2026-07-09 18:47:55,087 - [ qwen3-14b ] - INFO - Success #id 29697374
+2026-07-09 18:47:56,483 - [ qwen3-14b ] - INFO - Success #id 30975696
+2026-07-09 18:47:57,320 - [ qwen3-14b ] - INFO - Success #id 70076937
+2026-07-09 18:47:58,483 - [ qwen3-14b ] - INFO - Success #id 66578973
+2026-07-09 18:47:59,492 - [ qwen3-14b ] - INFO - Success #id 32259726
+2026-07-09 18:48:00,424 - [ qwen3-14b ] - INFO - Success #id 32040431
+2026-07-09 18:48:00,959 - [ qwen3-14b ] - INFO - Success #id 16202252
+2026-07-09 18:48:01,802 - [ qwen3-14b ] - INFO - Success #id 10646179
+2026-07-09 18:48:02,100 - [ qwen3-14b ] - INFO - Success #id 12794177
+2026-07-09 18:48:02,891 - [ qwen3-14b ] - INFO - Success #id 12449778
+2026-07-09 18:48:03,928 - [ qwen3-14b ] - INFO - Success #id 18673584
+2026-07-09 18:48:04,497 - [ qwen3-14b ] - INFO - Success #id 18912269
+2026-07-09 18:48:05,354 - [ qwen3-14b ] - INFO - Success #id 44432745
+2026-07-09 18:48:06,801 - [ qwen3-14b ] - INFO - Success #id 29083818
+2026-07-09 18:48:08,116 - [ qwen3-14b ] - INFO - Success #id 26105740
+2026-07-09 18:48:08,407 - [ qwen3-14b ] - INFO - Success #id 26802771
+2026-07-09 18:48:08,895 - [ qwen3-14b ] - INFO - Success #id 32902578
+2026-07-09 18:48:09,524 - [ qwen3-14b ] - INFO - Success #id 92550786
+2026-07-09 18:48:10,104 - [ qwen3-14b ] - INFO - Success #id 90712005
+2026-07-09 18:48:11,323 - [ qwen3-14b ] - INFO - Success #id 33947379
+2026-07-09 18:48:11,539 - [ qwen3-14b ] - INFO - Success #id 23597551
+2026-07-09 18:48:12,071 - [ qwen3-14b ] - INFO - Success #id 82085658
+2026-07-09 18:48:13,031 - [ qwen3-14b ] - INFO - Success #id 46182237
+2026-07-09 18:48:13,403 - [ qwen3-14b ] - INFO - Success #id 34017871
+2026-07-09 18:48:14,296 - [ qwen3-14b ] - INFO - Success #id 29464969
+2026-07-09 18:48:16,149 - [ qwen3-14b ] - INFO - Success #id 59855945
+2026-07-09 18:48:16,269 - [ qwen3-14b ] - INFO - Success #id 18888991
+2026-07-09 18:48:16,471 - [ qwen3-14b ] - INFO - Success #id 11376966
+2026-07-09 18:48:16,939 - [ qwen3-14b ] - INFO - Success #id 26750760
+2026-07-09 18:48:17,701 - [ qwen3-14b ] - INFO - Success #id 17259732
+2026-07-09 18:48:19,699 - [ qwen3-14b ] - INFO - Success #id 21743555
+2026-07-09 18:48:19,800 - [ qwen3-14b ] - INFO - Success #id 15145248
+2026-07-09 18:48:20,279 - [ qwen3-14b ] - INFO - Success #id 20739025
+2026-07-09 18:48:21,887 - [ qwen3-14b ] - INFO - Success #id 32841626
+2026-07-09 18:48:22,048 - [ qwen3-14b ] - INFO - Success #id 26762320
+2026-07-09 18:48:22,445 - [ qwen3-14b ] - INFO - Success #id 27275169
+2026-07-09 18:48:23,818 - [ qwen3-14b ] - INFO - Success #id 91454413
+2026-07-09 18:48:24,605 - [ qwen3-14b ] - INFO - Success #id 31774753
+2026-07-09 18:48:24,795 - [ qwen3-14b ] - INFO - Success #id 44599149
+2026-07-09 18:48:24,870 - [ qwen3-14b ] - INFO - Success #id 26527627
+2026-07-09 18:48:26,802 - [ qwen3-14b ] - INFO - Success #id 33787084
+2026-07-09 18:48:26,946 - [ qwen3-14b ] - INFO - Success #id 32739131
+2026-07-09 18:48:27,619 - [ qwen3-14b ] - INFO - Success #id 95625273
+2026-07-09 18:48:27,829 - [ qwen3-14b ] - INFO - Success #id 15228760
+2026-07-09 18:48:29,529 - [ qwen3-14b ] - INFO - Success #id 18277369
+2026-07-09 18:48:29,929 - [ qwen3-14b ] - INFO - Success #id 15076392
+2026-07-09 18:48:30,859 - [ qwen3-14b ] - INFO - Success #id 29028793
+2026-07-09 18:48:30,890 - [ qwen3-14b ] - INFO - Success #id 17210672
+2026-07-09 18:48:31,155 - [ qwen3-14b ] - INFO - Success #id 80372449
+2026-07-09 18:48:31,605 - [ qwen3-14b ] - INFO - Success #id 14859910
+2026-07-09 18:48:33,926 - [ qwen3-14b ] - INFO - Success #id 20200359
+2026-07-09 18:48:34,967 - [ qwen3-14b ] - INFO - Success #id 17977153
+2026-07-09 18:48:35,781 - [ qwen3-14b ] - INFO - Success #id 14200501
+2026-07-09 18:48:35,842 - [ qwen3-14b ] - INFO - Success #id 74061861
+2026-07-09 18:48:36,525 - [ qwen3-14b ] - INFO - Success #id 18381584
+2026-07-09 18:48:36,529 - [ qwen3-14b ] - INFO - Success #id 11689255
+2026-07-09 18:48:37,655 - [ qwen3-14b ] - INFO - Success #id 30390123
+2026-07-09 18:48:37,655 - [ qwen3-14b ] - INFO - Success #id 48965173
+2026-07-09 18:48:39,232 - [ qwen3-14b ] - INFO - Success #id 38438548
+2026-07-09 18:48:39,333 - [ qwen3-14b ] - INFO - Success #id 31969085
+2026-07-09 18:48:40,329 - [ qwen3-14b ] - INFO - Success #id 21622781
+2026-07-09 18:48:40,424 - [ qwen3-14b ] - INFO - Success #id 42312636
+2026-07-09 18:48:40,504 - [ qwen3-14b ] - INFO - Success #id 19513526
+2026-07-09 18:48:40,575 - [ qwen3-14b ] - INFO - Success #id 66597218
+2026-07-09 18:48:41,891 - [ qwen3-14b ] - INFO - Success #id 31477389
+2026-07-09 18:48:43,404 - [ qwen3-14b ] - INFO - Success #id 11411474
+2026-07-09 18:48:44,123 - [ qwen3-14b ] - INFO - Success #id 20563090
+2026-07-09 18:48:44,850 - [ qwen3-14b ] - INFO - Success #id 26359501
+2026-07-09 18:48:46,570 - [ qwen3-14b ] - INFO - Success #id 12280451
+2026-07-09 18:48:47,098 - [ qwen3-14b ] - INFO - Success #id 16224098
+2026-07-09 18:48:47,586 - [ qwen3-14b ] - INFO - Success #id 20728978
+2026-07-09 18:48:47,810 - [ qwen3-14b ] - INFO - Success #id 27831745
+2026-07-09 18:48:49,052 - [ qwen3-14b ] - INFO - Success #id 12781222
+2026-07-09 18:48:49,877 - [ qwen3-14b ] - INFO - Success #id 33515283
+2026-07-09 18:48:50,674 - [ qwen3-14b ] - INFO - Success #id 24337357
+2026-07-09 18:48:50,723 - [ qwen3-14b ] - INFO - Success #id 25564699
+2026-07-09 18:48:51,257 - [ qwen3-14b ] - INFO - Success #id 74124211
+2026-07-09 18:48:52,172 - [ qwen3-14b ] - INFO - Success #id 30451063
+2026-07-09 18:48:53,765 - [ qwen3-14b ] - INFO - Success #id 64311241
+2026-07-09 18:48:54,466 - [ qwen3-14b ] - INFO - Success #id 15954172
+2026-07-09 18:48:54,796 - [ qwen3-14b ] - INFO - Success #id 18843274
+2026-07-09 18:48:54,812 - [ qwen3-14b ] - INFO - Success #id 32275903
+2026-07-09 18:48:55,795 - [ qwen3-14b ] - INFO - Success #id 11464425
+2026-07-09 18:48:56,736 - [ qwen3-14b ] - INFO - Success #id 12617049
+2026-07-09 18:48:56,885 - [ qwen3-14b ] - INFO - Success #id 40548358
+2026-07-09 18:48:57,146 - [ qwen3-14b ] - INFO - Success #id 15720213
+2026-07-09 18:48:59,091 - [ qwen3-14b ] - INFO - Success #id 28024875
+2026-07-09 18:48:59,288 - [ qwen3-14b ] - INFO - Success #id 10653366
+2026-07-09 18:48:59,746 - [ qwen3-14b ] - INFO - Success #id 33428851
+2026-07-09 18:49:00,351 - [ qwen3-14b ] - INFO - Success #id 15696588
+2026-07-09 18:49:00,909 - [ qwen3-14b ] - INFO - Success #id 17993638
+2026-07-09 18:49:01,800 - [ qwen3-14b ] - INFO - Success #id 24349553
+2026-07-09 18:49:02,223 - [ qwen3-14b ] - INFO - Success #id 15777077
+2026-07-09 18:49:03,087 - [ qwen3-14b ] - INFO - Success #id 14389463
+2026-07-09 18:49:04,168 - [ qwen3-14b ] - INFO - Success #id 29280374
+2026-07-09 18:49:04,519 - [ qwen3-14b ] - INFO - Success #id 30609706
+2026-07-09 18:49:05,389 - [ qwen3-14b ] - INFO - Success #id 12750373
+2026-07-09 18:49:05,784 - [ qwen3-14b ] - INFO - Success #id 33853120
+2026-07-09 18:49:05,840 - [ qwen3-14b ] - INFO - Success #id 11974153
+2026-07-09 18:49:07,190 - [ qwen3-14b ] - INFO - Success #id 67383345
+2026-07-09 18:49:07,600 - [ qwen3-14b ] - INFO - Success #id 31364971
+2026-07-09 18:49:07,603 - [ qwen3-14b ] - INFO - Success #id 33378522
+2026-07-09 18:49:08,466 - [ qwen3-14b ] - INFO - Success #id 29045205
+2026-07-09 18:49:09,239 - [ qwen3-14b ] - INFO - Success #id 76652702
+2026-07-09 18:49:09,865 - [ qwen3-14b ] - INFO - Success #id 18694724
+2026-07-09 18:49:11,828 - [ qwen3-14b ] - INFO - Success #id 12066196
+2026-07-09 18:49:13,722 - [ qwen3-14b ] - INFO - Success #id 24270503
+2026-07-09 18:49:14,924 - [ qwen3-14b ] - INFO - Success #id 10653436
+2026-07-09 18:49:15,348 - [ qwen3-14b ] - INFO - Success #id 27277939
+2026-07-09 18:49:15,697 - [ qwen3-14b ] - INFO - Success #id 31365228
+2026-07-09 18:49:17,760 - [ qwen3-14b ] - INFO - Success #id 28525927
+2026-07-09 18:49:17,973 - [ qwen3-14b ] - INFO - Success #id 11835130
+2026-07-09 18:49:19,573 - [ qwen3-14b ] - INFO - Success #id 67359014
+2026-07-09 18:49:19,800 - [ qwen3-14b ] - INFO - Success #id 14295287
+2026-07-09 18:49:20,991 - [ qwen3-14b ] - INFO - Success #id 27178638
+2026-07-09 18:49:21,904 - [ qwen3-14b ] - INFO - Success #id 21451635
+2026-07-09 18:49:22,889 - [ qwen3-14b ] - INFO - Success #id 18879108
+2026-07-09 18:49:22,933 - [ qwen3-14b ] - INFO - Success #id 14641428
+2026-07-09 18:49:23,328 - [ qwen3-14b ] - INFO - Success #id 64958475
+2026-07-09 18:49:25,005 - [ qwen3-14b ] - INFO - Success #id 11887943
+2026-07-09 18:49:25,866 - [ qwen3-14b ] - INFO - Success #id 63632051
+2026-07-09 18:49:26,541 - [ qwen3-14b ] - INFO - Success #id 58008169
+2026-07-09 18:49:27,155 - [ qwen3-14b ] - INFO - Success #id 27145102
+2026-07-09 18:49:27,487 - [ qwen3-14b ] - INFO - Success #id 13588243
+2026-07-09 18:49:27,911 - [ qwen3-14b ] - INFO - Success #id 40765680
+2026-07-09 18:49:29,602 - [ qwen3-14b ] - INFO - Success #id 48456785
+2026-07-09 18:49:30,016 - [ qwen3-14b ] - INFO - Success #id 32890952
+2026-07-09 18:49:30,101 - [ qwen3-14b ] - INFO - Success #id 63006627
+2026-07-09 18:49:31,536 - [ qwen3-14b ] - INFO - Success #id 33032178
+2026-07-09 18:49:32,580 - [ qwen3-14b ] - INFO - Success #id 48318288
+2026-07-09 18:49:32,700 - [ qwen3-14b ] - INFO - Success #id 23312957
+2026-07-09 18:49:35,402 - [ qwen3-14b ] - INFO - Success #id 20548432
+2026-07-09 18:49:35,416 - [ qwen3-14b ] - INFO - Success #id 99382622
+2026-07-09 18:49:36,669 - [ qwen3-14b ] - INFO - Success #id 10631495
+2026-07-09 18:49:38,059 - [ qwen3-14b ] - INFO - Success #id 11010090
+2026-07-09 18:49:38,392 - [ qwen3-14b ] - INFO - Success #id 77594266
+2026-07-09 18:49:38,494 - [ qwen3-14b ] - INFO - Success #id 17254908
+2026-07-09 18:49:39,336 - [ qwen3-14b ] - INFO - Success #id 93902579
+2026-07-09 18:49:39,470 - [ qwen3-14b ] - INFO - Success #id 31516004
+2026-07-09 18:49:39,889 - [ qwen3-14b ] - INFO - Success #id 29831612
+2026-07-09 18:49:39,963 - [ qwen3-14b ] - INFO - Success #id 13502937
+2026-07-09 18:49:40,766 - [ qwen3-14b ] - INFO - Success #id 18854023
+2026-07-09 18:49:42,099 - [ qwen3-14b ] - INFO - Success #id 28445263
+2026-07-09 18:49:42,936 - [ qwen3-14b ] - INFO - Success #id 44765767
+2026-07-09 18:49:44,124 - [ qwen3-14b ] - INFO - Success #id 62756572
+2026-07-09 18:49:44,268 - [ qwen3-14b ] - INFO - Success #id 13993681
+2026-07-09 18:49:45,595 - [ qwen3-14b ] - INFO - Success #id 30760371
+2026-07-09 18:49:45,634 - [ qwen3-14b ] - INFO - Success #id 36055785
+2026-07-09 18:49:45,931 - [ qwen3-14b ] - INFO - Success #id 18630775
+2026-07-09 18:49:47,027 - [ qwen3-14b ] - INFO - Success #id 14226666
+2026-07-09 18:49:47,153 - [ qwen3-14b ] - INFO - Success #id 14983504
+2026-07-09 18:49:47,231 - [ qwen3-14b ] - INFO - Success #id 40249685
+2026-07-09 18:49:48,871 - [ qwen3-14b ] - INFO - Success #id 20937627
+2026-07-09 18:49:49,598 - [ qwen3-14b ] - INFO - Success #id 86444943
+2026-07-09 18:49:49,731 - [ qwen3-14b ] - INFO - Success #id 61001723
+2026-07-09 18:49:50,030 - [ qwen3-14b ] - INFO - Success #id 19703332
+2026-07-09 18:49:51,251 - [ qwen3-14b ] - INFO - Success #id 15042626
+2026-07-09 18:49:52,266 - [ qwen3-14b ] - INFO - Success #id 59828118
+2026-07-09 18:49:52,996 - [ qwen3-14b ] - INFO - Success #id 32426387
+2026-07-09 18:49:53,452 - [ qwen3-14b ] - INFO - Success #id 49712248
+2026-07-09 18:49:54,535 - [ qwen3-14b ] - INFO - Success #id 18900567
+2026-07-09 18:49:56,725 - [ qwen3-14b ] - INFO - Success #id 15858997
+2026-07-09 18:49:57,214 - [ qwen3-14b ] - INFO - Success #id 35953962
+2026-07-09 18:49:57,539 - [ qwen3-14b ] - INFO - Success #id 14720869
+2026-07-09 18:49:58,777 - [ qwen3-14b ] - INFO - Success #id 11949239
+2026-07-09 18:49:59,291 - [ qwen3-14b ] - INFO - Success #id 46089815
+2026-07-09 18:49:59,706 - [ qwen3-14b ] - INFO - Success #id 10937786
+2026-07-09 18:50:00,157 - [ qwen3-14b ] - INFO - Success #id 92489713
+2026-07-09 18:50:00,336 - [ qwen3-14b ] - INFO - Success #id 10567096
+2026-07-09 18:50:01,582 - [ qwen3-14b ] - INFO - Success #id 86923961
+2026-07-09 18:50:02,543 - [ qwen3-14b ] - INFO - Success #id 28198259
+2026-07-09 18:50:02,593 - [ qwen3-14b ] - INFO - Success #id 25415725
+2026-07-09 18:50:03,282 - [ qwen3-14b ] - INFO - Success #id 13149135
+2026-07-09 18:50:05,298 - [ qwen3-14b ] - INFO - Success #id 18629239
+2026-07-09 18:50:05,504 - [ qwen3-14b ] - INFO - Success #id 90034513
+2026-07-09 18:50:07,728 - [ qwen3-14b ] - INFO - Success #id 23460000
+2026-07-09 18:50:07,777 - [ qwen3-14b ] - INFO - Success #id 19950824
+2026-07-09 18:50:07,892 - [ qwen3-14b ] - INFO - Success #id 19842393
+2026-07-09 18:50:08,015 - [ qwen3-14b ] - INFO - Success #id 52785089
+2026-07-09 18:50:10,761 - [ qwen3-14b ] - INFO - Success #id 19960078
+2026-07-09 18:50:11,848 - [ qwen3-14b ] - INFO - Success #id 45638205
+2026-07-09 18:50:13,111 - [ qwen3-14b ] - INFO - Success #id 31544467
+2026-07-09 18:50:13,236 - [ qwen3-14b ] - INFO - Success #id 34400494
+2026-07-09 18:50:14,173 - [ qwen3-14b ] - INFO - Success #id 20620174
+2026-07-09 18:50:14,300 - [ qwen3-14b ] - INFO - Success #id 86964208
+2026-07-09 18:50:14,694 - [ qwen3-14b ] - INFO - Success #id 13431808
+2026-07-09 18:50:15,290 - [ qwen3-14b ] - INFO - Success #id 11336466
+2026-07-09 18:50:16,042 - [ qwen3-14b ] - INFO - Success #id 23441929
+2026-07-09 18:50:17,299 - [ qwen3-14b ] - INFO - Success #id 19216170
+2026-07-09 18:50:17,613 - [ qwen3-14b ] - INFO - Success #id 26747221
+2026-07-09 18:50:18,653 - [ qwen3-14b ] - INFO - Success #id 83802924
+2026-07-09 18:50:18,832 - [ qwen3-14b ] - INFO - Success #id 20948758
+2026-07-09 18:50:20,194 - [ qwen3-14b ] - INFO - Success #id 19065292
+2026-07-09 18:50:21,441 - [ qwen3-14b ] - INFO - Success #id 28965919
+2026-07-09 18:50:22,313 - [ qwen3-14b ] - INFO - Success #id 32975659
+2026-07-09 18:50:22,917 - [ qwen3-14b ] - INFO - Success #id 69250882
+2026-07-09 18:50:23,609 - [ qwen3-14b ] - INFO - Success #id 17008774
+2026-07-09 18:50:23,778 - [ qwen3-14b ] - INFO - Success #id 23808715
+2026-07-09 18:50:25,140 - [ qwen3-14b ] - INFO - Success #id 21873537
+2026-07-09 18:50:25,284 - [ qwen3-14b ] - INFO - Success #id 15921889
+2026-07-09 18:50:25,546 - [ qwen3-14b ] - INFO - Success #id 33495175
+2026-07-09 18:50:26,273 - [ qwen3-14b ] - INFO - Success #id 25279925
+2026-07-09 18:50:26,676 - [ qwen3-14b ] - INFO - Success #id 13845095
+2026-07-09 18:50:27,513 - [ qwen3-14b ] - INFO - Success #id 13300103
+2026-07-09 18:50:27,600 - [ qwen3-14b ] - INFO - Success #id 12489859
+2026-07-09 18:50:29,577 - [ qwen3-14b ] - INFO - Success #id 25285764
+2026-07-09 18:50:30,227 - [ qwen3-14b ] - INFO - Success #id 25697264
+2026-07-09 18:50:31,691 - [ qwen3-14b ] - INFO - Success #id 14479551
+2026-07-09 18:50:32,206 - [ qwen3-14b ] - INFO - Success #id 32142676
+2026-07-09 18:50:33,143 - [ qwen3-14b ] - INFO - Success #id 36689733
+2026-07-09 18:50:33,379 - [ qwen3-14b ] - INFO - Success #id 32397774
+2026-07-09 18:50:33,851 - [ qwen3-14b ] - INFO - Success #id 16905288
+2026-07-09 18:50:34,298 - [ qwen3-14b ] - INFO - Success #id 28573775
+2026-07-09 18:50:36,136 - [ qwen3-14b ] - INFO - Success #id 79253895
+2026-07-09 18:50:36,211 - [ qwen3-14b ] - INFO - Success #id 10353129
+2026-07-09 18:50:36,580 - [ qwen3-14b ] - INFO - Success #id 25860845
+2026-07-09 18:50:37,452 - [ qwen3-14b ] - INFO - Success #id 24890234
+2026-07-09 18:50:40,513 - [ qwen3-14b ] - INFO - Success #id 10598182
+2026-07-09 18:50:40,866 - [ qwen3-14b ] - INFO - Success #id 28577141
+2026-07-09 18:50:41,442 - [ qwen3-14b ] - INFO - Success #id 25460645
+2026-07-09 18:50:42,306 - [ qwen3-14b ] - INFO - Success #id 16962083
+2026-07-09 18:50:43,535 - [ qwen3-14b ] - INFO - Success #id 32124161
+2026-07-09 18:50:44,814 - [ qwen3-14b ] - INFO - Success #id 15274789
+2026-07-09 18:50:46,046 - [ qwen3-14b ] - INFO - Success #id 44902802
+2026-07-09 18:50:46,142 - [ qwen3-14b ] - INFO - Success #id 16796236
+2026-07-09 18:50:47,001 - [ qwen3-14b ] - INFO - Success #id 29348560
+2026-07-09 18:50:47,579 - [ qwen3-14b ] - INFO - Success #id 67915139
+2026-07-09 18:50:48,719 - [ qwen3-14b ] - INFO - Success #id 20776578
+2026-07-09 18:50:49,465 - [ qwen3-14b ] - INFO - Success #id 13585152
+2026-07-09 18:50:49,490 - [ qwen3-14b ] - INFO - Success #id 13483370
+2026-07-09 18:50:50,127 - [ qwen3-14b ] - INFO - Success #id 12271501
+2026-07-09 18:50:51,166 - [ qwen3-14b ] - INFO - Success #id 30167208
+2026-07-09 18:50:52,392 - [ qwen3-14b ] - INFO - Success #id 17300480
+2026-07-09 18:50:52,399 - [ qwen3-14b ] - INFO - Success #id 18235741
+2026-07-09 18:50:52,530 - [ qwen3-14b ] - INFO - Success #id 33663431
+2026-07-09 18:50:53,368 - [ qwen3-14b ] - INFO - Success #id 15476710
+2026-07-09 18:50:53,954 - [ qwen3-14b ] - INFO - Success #id 27871541
+2026-07-09 18:50:55,017 - [ qwen3-14b ] - INFO - Success #id 16540451
+2026-07-09 18:50:56,015 - [ qwen3-14b ] - INFO - Success #id 19195928
+2026-07-09 18:50:56,621 - [ qwen3-14b ] - INFO - Success #id 14106997
+2026-07-09 18:50:56,793 - [ qwen3-14b ] - INFO - Success #id 56602914
+2026-07-09 18:50:57,241 - [ qwen3-14b ] - INFO - Success #id 66335908
+2026-07-09 18:50:59,891 - [ qwen3-14b ] - INFO - Success #id 11024227
+2026-07-09 18:50:59,920 - [ qwen3-14b ] - INFO - Success #id 20738621
+2026-07-09 18:51:02,955 - [ qwen3-14b ] - INFO - Success #id 28816772
+2026-07-09 18:51:03,282 - [ qwen3-14b ] - INFO - Success #id 79963580
+2026-07-09 18:51:03,839 - [ qwen3-14b ] - INFO - Success #id 27411132
+2026-07-09 18:51:03,980 - [ qwen3-14b ] - INFO - Success #id 14551179
+2026-07-09 18:51:05,248 - [ qwen3-14b ] - INFO - Success #id 26021366
+2026-07-09 18:51:06,082 - [ qwen3-14b ] - INFO - Success #id 28087984
+2026-07-09 18:51:07,176 - [ qwen3-14b ] - INFO - Success #id 41866981
+2026-07-09 18:51:08,165 - [ qwen3-14b ] - INFO - Success #id 92689099
+2026-07-09 18:51:08,229 - [ qwen3-14b ] - INFO - Success #id 27142937
+2026-07-09 18:51:08,561 - [ qwen3-14b ] - INFO - Success #id 27499953
+2026-07-09 18:51:10,438 - [ qwen3-14b ] - INFO - Success #id 28282369
+2026-07-09 18:51:10,698 - [ qwen3-14b ] - INFO - Success #id 21304833
+2026-07-09 18:51:11,630 - [ qwen3-14b ] - INFO - Success #id 69292186
+2026-07-09 18:51:11,936 - [ qwen3-14b ] - INFO - Success #id 16728088
+2026-07-09 18:51:13,074 - [ qwen3-14b ] - INFO - Success #id 77534017
+2026-07-09 18:51:13,123 - [ qwen3-14b ] - INFO - Success #id 62375714
+2026-07-09 18:51:13,445 - [ qwen3-14b ] - INFO - Success #id 20060926
+2026-07-09 18:51:15,820 - [ qwen3-14b ] - INFO - Success #id 22954139
+2026-07-09 18:51:15,863 - [ qwen3-14b ] - INFO - Success #id 17741534
+2026-07-09 18:51:16,245 - [ qwen3-14b ] - INFO - Success #id 20425348
+2026-07-09 18:51:17,066 - [ qwen3-14b ] - INFO - Success #id 28710398
+2026-07-09 18:51:17,439 - [ qwen3-14b ] - INFO - Success #id 24328950
+2026-07-09 18:51:18,581 - [ qwen3-14b ] - INFO - Success #id 20561661
+2026-07-09 18:51:18,682 - [ qwen3-14b ] - INFO - Success #id 32474546
+2026-07-09 18:51:19,112 - [ qwen3-14b ] - INFO - Success #id 16718060
+2026-07-09 18:51:20,889 - [ qwen3-14b ] - INFO - Success #id 75694859
+2026-07-09 18:51:21,792 - [ qwen3-14b ] - INFO - Success #id 27852601
+2026-07-09 18:51:22,157 - [ qwen3-14b ] - INFO - Success #id 16065760
+2026-07-09 18:51:22,410 - [ qwen3-14b ] - INFO - Success #id 48797854
+2026-07-09 18:51:23,124 - [ qwen3-14b ] - INFO - Success #id 10387115
+2026-07-09 18:51:23,847 - [ qwen3-14b ] - INFO - Success #id 32919539
+2026-07-09 18:51:24,329 - [ qwen3-14b ] - INFO - Success #id 30541686
+2026-07-09 18:51:24,449 - [ qwen3-14b ] - INFO - Success #id 20561814
+2026-07-09 18:51:25,524 - [ qwen3-14b ] - INFO - Success #id 17036871
+2026-07-09 18:51:26,896 - [ qwen3-14b ] - INFO - Success #id 24211359
+2026-07-09 18:51:27,409 - [ qwen3-14b ] - INFO - Success #id 33886358
+2026-07-09 18:51:27,959 - [ qwen3-14b ] - INFO - Success #id 33167925
+2026-07-09 18:51:27,992 - [ qwen3-14b ] - INFO - Success #id 27427530
+2026-07-09 18:51:29,471 - [ qwen3-14b ] - INFO - Success #id 20037795
+2026-07-09 18:51:30,327 - [ qwen3-14b ] - INFO - Success #id 47755372
+2026-07-09 18:51:31,446 - [ qwen3-14b ] - INFO - Success #id 28199695
+2026-07-09 18:51:32,971 - [ qwen3-14b ] - INFO - Success #id 20683496
+2026-07-09 18:51:34,607 - [ qwen3-14b ] - INFO - Success #id 29642774
+2026-07-09 18:51:34,860 - [ qwen3-14b ] - INFO - Success #id 12470930
+2026-07-09 18:51:35,623 - [ qwen3-14b ] - INFO - Success #id 11156791
+2026-07-09 18:51:35,676 - [ qwen3-14b ] - INFO - Success #id 22991334
+2026-07-09 18:51:37,649 - [ qwen3-14b ] - INFO - Success #id 29475352
+2026-07-09 18:51:37,804 - [ qwen3-14b ] - INFO - Success #id 30229894
+2026-07-09 18:51:38,504 - [ qwen3-14b ] - INFO - Success #id 11346952
+2026-07-09 18:51:40,005 - [ qwen3-14b ] - INFO - Success #id 28018115
+2026-07-09 18:51:40,420 - [ qwen3-14b ] - INFO - Success #id 15207094
+2026-07-09 18:51:41,559 - [ qwen3-14b ] - INFO - Success #id 30394190
+2026-07-09 18:51:41,624 - [ qwen3-14b ] - INFO - Success #id 32532295
+2026-07-09 18:51:43,079 - [ qwen3-14b ] - INFO - Success #id 24983808
+2026-07-09 18:51:43,285 - [ qwen3-14b ] - INFO - Success #id 29875204
+2026-07-09 18:51:43,471 - [ qwen3-14b ] - INFO - Success #id 19946937
+2026-07-09 18:51:44,169 - [ qwen3-14b ] - INFO - Success #id 30106827
+2026-07-09 18:51:45,848 - [ qwen3-14b ] - INFO - Success #id 31564653
+2026-07-09 18:51:46,344 - [ qwen3-14b ] - INFO - Success #id 26011848
+2026-07-09 18:51:46,970 - [ qwen3-14b ] - INFO - Success #id 16430068
+2026-07-09 18:51:47,774 - [ qwen3-14b ] - INFO - Success #id 11519971
+2026-07-09 18:51:48,599 - [ qwen3-14b ] - INFO - Success #id 18065245
+2026-07-09 18:51:48,848 - [ qwen3-14b ] - INFO - Success #id 19379150
+2026-07-09 18:51:51,736 - [ qwen3-14b ] - INFO - Success #id 21322896
+2026-07-09 18:51:52,396 - [ qwen3-14b ] - INFO - Success #id 27850301
+2026-07-09 18:51:52,909 - [ qwen3-14b ] - INFO - Success #id 30308761
+2026-07-09 18:51:53,773 - [ qwen3-14b ] - INFO - Success #id 21122036
+2026-07-09 18:51:54,323 - [ qwen3-14b ] - INFO - Success #id 93488468
+2026-07-09 18:51:55,885 - [ qwen3-14b ] - INFO - Success #id 16939652
+2026-07-09 18:51:56,358 - [ qwen3-14b ] - INFO - Success #id 17583578
+2026-07-09 18:51:57,230 - [ qwen3-14b ] - INFO - Success #id 27360239
+2026-07-09 18:51:57,440 - [ qwen3-14b ] - INFO - Success #id 16387315
+2026-07-09 18:51:58,030 - [ qwen3-14b ] - INFO - Success #id 85957555
+2026-07-09 18:51:59,727 - [ qwen3-14b ] - INFO - Success #id 65950926
+2026-07-09 18:52:00,491 - [ qwen3-14b ] - INFO - Success #id 28112891
+2026-07-09 18:52:02,026 - [ qwen3-14b ] - INFO - Success #id 24565775
+2026-07-09 18:52:02,356 - [ qwen3-14b ] - INFO - Success #id 33244627
+2026-07-09 18:52:02,727 - [ qwen3-14b ] - INFO - Success #id 10029029
+2026-07-09 18:52:02,916 - [ qwen3-14b ] - INFO - Success #id 18772019
+2026-07-09 18:52:04,111 - [ qwen3-14b ] - INFO - Success #id 16709161
+2026-07-09 18:52:04,648 - [ qwen3-14b ] - INFO - Success #id 34538670
+2026-07-09 18:52:06,475 - [ qwen3-14b ] - INFO - Success #id 29648673
+2026-07-09 18:52:06,819 - [ qwen3-14b ] - INFO - Success #id 23219194
+2026-07-09 18:52:07,445 - [ qwen3-14b ] - INFO - Success #id 63414346
+2026-07-09 18:52:07,841 - [ qwen3-14b ] - INFO - Success #id 10245403
+2026-07-09 18:52:08,293 - [ qwen3-14b ] - INFO - Success #id 90466839
+2026-07-09 18:52:09,561 - [ qwen3-14b ] - INFO - Success #id 86744140
+2026-07-09 18:52:10,029 - [ qwen3-14b ] - INFO - Success #id 18246913
+2026-07-09 18:52:11,762 - [ qwen3-14b ] - INFO - Success #id 13428598
+2026-07-09 18:52:11,815 - [ qwen3-14b ] - INFO - Success #id 10407511
+2026-07-09 18:52:12,675 - [ qwen3-14b ] - INFO - Success #id 30735821
+2026-07-09 18:52:13,369 - [ qwen3-14b ] - INFO - Success #id 17969364
+2026-07-09 18:52:14,113 - [ qwen3-14b ] - INFO - Success #id 39066258
+2026-07-09 18:52:17,071 - [ qwen3-14b ] - INFO - Success #id 29360258
+2026-07-09 18:52:17,240 - [ qwen3-14b ] - INFO - Success #id 21731693
+2026-07-09 18:52:18,036 - [ qwen3-14b ] - INFO - Success #id 32367222
+2026-07-09 18:52:18,305 - [ qwen3-14b ] - INFO - Success #id 50700088
+2026-07-09 18:52:18,679 - [ qwen3-14b ] - INFO - Success #id 22729576
+2026-07-09 18:52:20,892 - [ qwen3-14b ] - INFO - Success #id 78537534
+2026-07-09 18:52:20,941 - [ qwen3-14b ] - INFO - Success #id 50508056
+2026-07-09 18:52:22,145 - [ qwen3-14b ] - INFO - Success #id 29172112
+2026-07-09 18:52:22,535 - [ qwen3-14b ] - INFO - Success #id 31659244
+2026-07-09 18:52:23,522 - [ qwen3-14b ] - INFO - Success #id 31401678
+2026-07-09 18:52:23,952 - [ qwen3-14b ] - INFO - Success #id 65904827
+2026-07-09 18:52:24,135 - [ qwen3-14b ] - INFO - Success #id 52895655
+2026-07-09 18:52:25,354 - [ qwen3-14b ] - INFO - Success #id 86303230
+2026-07-09 18:52:25,715 - [ qwen3-14b ] - INFO - Success #id 22805233
+2026-07-09 18:52:27,134 - [ qwen3-14b ] - INFO - Success #id 28244995
+2026-07-09 18:52:27,337 - [ qwen3-14b ] - INFO - Success #id 29230517
+2026-07-09 18:52:28,529 - [ qwen3-14b ] - INFO - Success #id 28761899
+2026-07-09 18:52:28,877 - [ qwen3-14b ] - INFO - Success #id 15128556
+2026-07-09 18:52:29,420 - [ qwen3-14b ] - INFO - Success #id 19135161
+2026-07-09 18:52:30,484 - [ qwen3-14b ] - INFO - Success #id 21601179
+2026-07-09 18:52:30,550 - [ qwen3-14b ] - INFO - Success #id 24360154
+2026-07-09 18:52:31,059 - [ qwen3-14b ] - INFO - Success #id 26205550
+2026-07-09 18:52:32,234 - [ qwen3-14b ] - INFO - Success #id 18752274
+2026-07-09 18:52:32,833 - [ qwen3-14b ] - INFO - Success #id 29421500
+2026-07-09 18:52:33,361 - [ qwen3-14b ] - INFO - Success #id 25699805
+2026-07-09 18:52:34,664 - [ qwen3-14b ] - INFO - Success #id 13599452
+2026-07-09 18:52:34,823 - [ qwen3-14b ] - INFO - Success #id 13091012
+2026-07-09 18:52:35,859 - [ qwen3-14b ] - INFO - Success #id 24419096
+2026-07-09 18:52:36,791 - [ qwen3-14b ] - INFO - Success #id 31107902
+2026-07-09 18:52:37,361 - [ qwen3-14b ] - INFO - Success #id 27179094
+2026-07-09 18:52:39,353 - [ qwen3-14b ] - INFO - Success #id 10646155
+2026-07-09 18:52:40,319 - [ qwen3-14b ] - INFO - Success #id 25329505
+2026-07-09 18:52:40,432 - [ qwen3-14b ] - INFO - Success #id 17123290
+2026-07-09 18:52:41,312 - [ qwen3-14b ] - INFO - Success #id 30031933
+2026-07-09 18:52:41,695 - [ qwen3-14b ] - INFO - Success #id 67404291
+2026-07-09 18:52:43,451 - [ qwen3-14b ] - INFO - Success #id 27567441
+2026-07-09 18:52:44,671 - [ qwen3-14b ] - INFO - Success #id 24112059
+2026-07-09 18:52:44,884 - [ qwen3-14b ] - INFO - Success #id 11454305
+2026-07-09 18:52:45,919 - [ qwen3-14b ] - INFO - Success #id 17181545
+2026-07-09 18:52:46,458 - [ qwen3-14b ] - INFO - Success #id 32335867
+2026-07-09 18:52:47,287 - [ qwen3-14b ] - INFO - Success #id 15136333
+2026-07-09 18:52:48,552 - [ qwen3-14b ] - INFO - Success #id 21912262
+2026-07-09 18:52:49,320 - [ qwen3-14b ] - INFO - Success #id 19544544
+2026-07-09 18:52:49,685 - [ qwen3-14b ] - INFO - Success #id 33771728
+2026-07-09 18:52:49,716 - [ qwen3-14b ] - INFO - Success #id 21045610
+2026-07-09 18:52:52,351 - [ qwen3-14b ] - INFO - Success #id 10715038
+2026-07-09 18:52:53,460 - [ qwen3-14b ] - INFO - Success #id 17736127
+2026-07-09 18:52:54,156 - [ qwen3-14b ] - INFO - Success #id 27324437
+2026-07-09 18:52:54,549 - [ qwen3-14b ] - INFO - Success #id 25303313
+2026-07-09 18:52:54,828 - [ qwen3-14b ] - INFO - Success #id 28777927
+2026-07-09 18:52:55,563 - [ qwen3-14b ] - INFO - Success #id 33266879
+2026-07-09 18:52:56,942 - [ qwen3-14b ] - INFO - Success #id 25169163
+2026-07-09 18:52:57,223 - [ qwen3-14b ] - INFO - Success #id 33274120
+2026-07-09 18:52:58,801 - [ qwen3-14b ] - INFO - Success #id 26527376
+2026-07-09 18:52:59,489 - [ qwen3-14b ] - INFO - Success #id 24796416
+2026-07-09 18:52:59,500 - [ qwen3-14b ] - INFO - Success #id 61247441
+2026-07-09 18:53:00,597 - [ qwen3-14b ] - INFO - Success #id 50664274
+2026-07-09 18:53:01,680 - [ qwen3-14b ] - INFO - Success #id 14866036
+2026-07-09 18:53:02,012 - [ qwen3-14b ] - INFO - Success #id 74833536
+2026-07-09 18:53:02,522 - [ qwen3-14b ] - INFO - Success #id 14177345
+2026-07-09 18:53:04,657 - [ qwen3-14b ] - INFO - Success #id 96049139
+2026-07-09 18:53:04,745 - [ qwen3-14b ] - INFO - Success #id 13282328
+2026-07-09 18:53:06,511 - [ qwen3-14b ] - INFO - Success #id 92284140
+2026-07-09 18:53:06,773 - [ qwen3-14b ] - INFO - Success #id 30422289
+2026-07-09 18:53:07,577 - [ qwen3-14b ] - INFO - Success #id 23664133
+2026-07-09 18:53:07,818 - [ qwen3-14b ] - INFO - Success #id 11991696
+2026-07-09 18:53:08,042 - [ qwen3-14b ] - INFO - Success #id 50720449
+2026-07-09 18:53:09,860 - [ qwen3-14b ] - INFO - Success #id 17880714
+2026-07-09 18:53:10,232 - [ qwen3-14b ] - INFO - Success #id 19876577
+2026-07-09 18:53:11,069 - [ qwen3-14b ] - INFO - Success #id 33050649
+2026-07-09 18:53:12,078 - [ qwen3-14b ] - INFO - Success #id 15752907
+2026-07-09 18:53:13,844 - [ qwen3-14b ] - INFO - Success #id 14498903
+2026-07-09 18:53:14,513 - [ qwen3-14b ] - INFO - Success #id 15191895
+2026-07-09 18:53:14,842 - [ qwen3-14b ] - INFO - Success #id 14159984
+2026-07-09 18:53:16,196 - [ qwen3-14b ] - INFO - Success #id 43266586
+2026-07-09 18:53:16,308 - [ qwen3-14b ] - INFO - Success #id 70144702
+2026-07-09 18:53:16,712 - [ qwen3-14b ] - INFO - Success #id 19035461
+2026-07-09 18:53:18,024 - [ qwen3-14b ] - INFO - Success #id 14212158
+2026-07-09 18:53:19,290 - [ qwen3-14b ] - INFO - Success #id 82036277
+2026-07-09 18:53:19,848 - [ qwen3-14b ] - INFO - Success #id 33913849
+2026-07-09 18:53:20,752 - [ qwen3-14b ] - INFO - Success #id 32042255
+2026-07-09 18:53:21,682 - [ qwen3-14b ] - INFO - Success #id 44993782
+2026-07-09 18:53:22,270 - [ qwen3-14b ] - INFO - Success #id 14817630
+2026-07-09 18:53:22,381 - [ qwen3-14b ] - INFO - Success #id 20554586
+2026-07-09 18:53:23,802 - [ qwen3-14b ] - INFO - Success #id 32816765
+2026-07-09 18:53:24,284 - [ qwen3-14b ] - INFO - Success #id 83283317
+2026-07-09 18:53:24,609 - [ qwen3-14b ] - INFO - Success #id 37990524
+2026-07-09 18:53:25,643 - [ qwen3-14b ] - INFO - Success #id 94321166
+2026-07-09 18:53:25,996 - [ qwen3-14b ] - INFO - Success #id 27355251
+2026-07-09 18:53:26,199 - [ qwen3-14b ] - INFO - Success #id 12002206
+2026-07-09 18:53:27,366 - [ qwen3-14b ] - INFO - Success #id 23531418
+2026-07-09 18:53:28,402 - [ qwen3-14b ] - INFO - Success #id 59629618
+2026-07-09 18:53:29,051 - [ qwen3-14b ] - INFO - Success #id 29880049
+2026-07-09 18:53:30,623 - [ qwen3-14b ] - INFO - Success #id 10692067
+2026-07-09 18:53:31,255 - [ qwen3-14b ] - INFO - Success #id 14802736
+2026-07-09 18:53:31,761 - [ qwen3-14b ] - INFO - Success #id 18461175
+2026-07-09 18:53:32,153 - [ qwen3-14b ] - INFO - Success #id 94028309
+2026-07-09 18:53:33,723 - [ qwen3-14b ] - INFO - Success #id 29353569
+2026-07-09 18:53:35,004 - [ qwen3-14b ] - INFO - Success #id 29564549
+2026-07-09 18:53:36,075 - [ qwen3-14b ] - INFO - Success #id 24902388
+2026-07-09 18:53:36,291 - [ qwen3-14b ] - INFO - Success #id 77739327
+2026-07-09 18:53:36,608 - [ qwen3-14b ] - INFO - Success #id 29315406
+2026-07-09 18:53:37,237 - [ qwen3-14b ] - INFO - Success #id 31380443
+2026-07-09 18:53:37,936 - [ qwen3-14b ] - INFO - Success #id 25450293
+2026-07-09 18:53:38,148 - [ qwen3-14b ] - INFO - Success #id 27907015
+2026-07-09 18:53:39,195 - [ qwen3-14b ] - INFO - Success #id 17348631
+2026-07-09 18:53:39,279 - [ qwen3-14b ] - INFO - Success #id 58364206
+2026-07-09 18:53:40,081 - [ qwen3-14b ] - INFO - Success #id 88148369
+2026-07-09 18:53:40,777 - [ qwen3-14b ] - INFO - Success #id 22991033
+2026-07-09 18:53:41,421 - [ qwen3-14b ] - INFO - Success #id 26391787
+2026-07-09 18:53:42,164 - [ qwen3-14b ] - INFO - Success #id 27467779
+2026-07-09 18:53:42,601 - [ qwen3-14b ] - INFO - Success #id 11680303
+2026-07-09 18:53:43,581 - [ qwen3-14b ] - INFO - Success #id 73585352
+2026-07-09 18:53:43,960 - [ qwen3-14b ] - INFO - Success #id 21567215
+2026-07-09 18:53:44,170 - [ qwen3-14b ] - INFO - Success #id 30409963
+2026-07-09 18:53:45,504 - [ qwen3-14b ] - INFO - Success #id 20650585
+2026-07-09 18:53:46,084 - [ qwen3-14b ] - INFO - Success #id 33446792
+2026-07-09 18:53:46,990 - [ qwen3-14b ] - INFO - Success #id 27529736
+2026-07-09 18:53:47,550 - [ qwen3-14b ] - INFO - Success #id 13574657
+2026-07-09 18:53:47,733 - [ qwen3-14b ] - INFO - Success #id 10003060
+2026-07-09 18:53:47,756 - [ qwen3-14b ] - INFO - Success #id 20906164
+2026-07-09 18:53:48,683 - [ qwen3-14b ] - INFO - Success #id 11171245
+2026-07-09 18:53:49,646 - [ qwen3-14b ] - INFO - Success #id 30778529
+2026-07-09 18:53:50,046 - [ qwen3-14b ] - INFO - Success #id 32767066
+2026-07-09 18:53:50,875 - [ qwen3-14b ] - INFO - Success #id 13323023
+2026-07-09 18:53:51,175 - [ qwen3-14b ] - INFO - Success #id 11759644
+2026-07-09 18:53:51,297 - [ qwen3-14b ] - INFO - Success #id 21778329
+2026-07-09 18:53:51,636 - [ qwen3-14b ] - INFO - Success #id 20810090
+2026-07-09 18:53:53,302 - [ qwen3-14b ] - INFO - Success #id 48602490
+2026-07-09 18:53:56,824 - [ qwen3-14b ] - INFO - Success #id 12479296
+2026-07-09 18:53:57,165 - [ qwen3-14b ] - INFO - Success #id 21494947
+2026-07-09 18:53:58,456 - [ qwen3-14b ] - INFO - Success #id 15724728
+2026-07-09 18:53:58,457 - [ qwen3-14b ] - INFO - Success #id 99413817
+2026-07-09 18:53:58,640 - [ qwen3-14b ] - INFO - Success #id 13411703
+2026-07-09 18:53:58,960 - [ qwen3-14b ] - INFO - Success #id 14684474
+2026-07-09 18:53:59,924 - [ qwen3-14b ] - INFO - Success #id 18721297
+2026-07-09 18:54:01,183 - [ qwen3-14b ] - INFO - Success #id 14262994
+2026-07-09 18:54:01,527 - [ qwen3-14b ] - INFO - Success #id 11952865
+2026-07-09 18:54:01,620 - [ qwen3-14b ] - INFO - Success #id 33700908
+2026-07-09 18:54:05,338 - [ qwen3-14b ] - INFO - Success #id 30703898
+2026-07-09 18:54:05,930 - [ qwen3-14b ] - INFO - Success #id 28842243
+2026-07-09 18:54:06,080 - [ qwen3-14b ] - INFO - Success #id 19735051
+2026-07-09 18:54:08,253 - [ qwen3-14b ] - INFO - Success #id 72528270
+2026-07-09 18:54:08,334 - [ qwen3-14b ] - INFO - Success #id 21322507
+2026-07-09 18:54:09,929 - [ qwen3-14b ] - INFO - Success #id 99152367
+2026-07-09 18:54:10,054 - [ qwen3-14b ] - INFO - Success #id 19403666
+2026-07-09 18:54:11,254 - [ qwen3-14b ] - INFO - Success #id 10798070
+2026-07-09 18:54:11,559 - [ qwen3-14b ] - INFO - Success #id 20742900
+2026-07-09 18:54:12,264 - [ qwen3-14b ] - INFO - Success #id 16196447
+2026-07-09 18:54:13,030 - [ qwen3-14b ] - INFO - Success #id 12671262
+2026-07-09 18:54:14,227 - [ qwen3-14b ] - INFO - Success #id 20847230
+2026-07-09 18:54:14,537 - [ qwen3-14b ] - INFO - Success #id 14738929
+2026-07-09 18:54:15,849 - [ qwen3-14b ] - INFO - Success #id 17404615
+2026-07-09 18:54:17,375 - [ qwen3-14b ] - INFO - Success #id 95346841
+2026-07-09 18:54:18,815 - [ qwen3-14b ] - INFO - Success #id 22751411
+2026-07-09 18:54:20,619 - [ qwen3-14b ] - INFO - Success #id 26414205
+2026-07-09 18:54:21,189 - [ qwen3-14b ] - INFO - Success #id 15529058
+2026-07-09 18:54:22,793 - [ qwen3-14b ] - INFO - Success #id 27583944
+2026-07-09 18:54:22,961 - [ qwen3-14b ] - INFO - Success #id 22588394
+2026-07-09 18:54:24,536 - [ qwen3-14b ] - INFO - Success #id 26437788
+2026-07-09 18:54:25,602 - [ qwen3-14b ] - INFO - Success #id 24500356
+2026-07-09 18:54:25,743 - [ qwen3-14b ] - INFO - Success #id 32379764
+2026-07-09 18:54:25,762 - [ qwen3-14b ] - INFO - Success #id 19598030
+2026-07-09 18:54:27,219 - [ qwen3-14b ] - INFO - Success #id 41441409
+2026-07-09 18:54:28,730 - [ qwen3-14b ] - INFO - Success #id 13153147
+2026-07-09 18:54:28,754 - [ qwen3-14b ] - INFO - Success #id 75625997
+2026-07-09 18:54:29,378 - [ qwen3-14b ] - INFO - Success #id 27351233
+2026-07-09 18:54:30,665 - [ qwen3-14b ] - INFO - Success #id 26159720
+2026-07-09 18:54:31,516 - [ qwen3-14b ] - INFO - Success #id 26357350
+2026-07-09 18:54:32,559 - [ qwen3-14b ] - INFO - Success #id 37900068
+2026-07-09 18:54:32,766 - [ qwen3-14b ] - INFO - Success #id 12874769
+2026-07-09 18:54:32,975 - [ qwen3-14b ] - INFO - Success #id 82856941
+2026-07-09 18:54:33,622 - [ qwen3-14b ] - INFO - Success #id 29369557
+2026-07-09 18:54:34,618 - [ qwen3-14b ] - INFO - Success #id 22790352
+2026-07-09 18:54:35,413 - [ qwen3-14b ] - INFO - Success #id 84463175
+2026-07-09 18:54:36,494 - [ qwen3-14b ] - INFO - Success #id 22355049
+2026-07-09 18:54:37,669 - [ qwen3-14b ] - INFO - Success #id 32537750
+2026-07-09 18:54:38,640 - [ qwen3-14b ] - INFO - Success #id 18197804
+2026-07-09 18:54:39,302 - [ qwen3-14b ] - INFO - Success #id 45277413
+2026-07-09 18:54:40,721 - [ qwen3-14b ] - INFO - Success #id 22062303
+2026-07-09 18:54:41,424 - [ qwen3-14b ] - INFO - Success #id 78149229
+2026-07-09 18:54:41,777 - [ qwen3-14b ] - INFO - Success #id 26508475
+2026-07-09 18:54:43,005 - [ qwen3-14b ] - INFO - Success #id 71313059
+2026-07-09 18:54:43,038 - [ qwen3-14b ] - INFO - Success #id 29071441
+2026-07-09 18:54:44,745 - [ qwen3-14b ] - INFO - Success #id 81124934
+2026-07-09 18:54:46,093 - [ qwen3-14b ] - INFO - Success #id 64875690
+2026-07-09 18:54:46,994 - [ qwen3-14b ] - INFO - Success #id 29115638
+2026-07-09 18:54:47,027 - [ qwen3-14b ] - INFO - Success #id 15230259
+2026-07-09 18:54:47,231 - [ qwen3-14b ] - INFO - Success #id 13975464
+2026-07-09 18:54:47,825 - [ qwen3-14b ] - INFO - Success #id 92269730
+2026-07-09 18:54:48,897 - [ qwen3-14b ] - INFO - Success #id 32879386
+2026-07-09 18:54:49,347 - [ qwen3-14b ] - INFO - Success #id 17690296
+2026-07-09 18:54:50,062 - [ qwen3-14b ] - INFO - Success #id 58448859
+2026-07-09 18:54:51,198 - [ qwen3-14b ] - INFO - Success #id 96215197
+2026-07-09 18:54:52,599 - [ qwen3-14b ] - INFO - Success #id 27310170
+2026-07-09 18:54:52,804 - [ qwen3-14b ] - INFO - Success #id 82646347
+2026-07-09 18:54:54,331 - [ qwen3-14b ] - INFO - Success #id 13896051
+2026-07-09 18:54:54,412 - [ qwen3-14b ] - INFO - Success #id 99473559
+2026-07-09 18:54:54,462 - [ qwen3-14b ] - INFO - Success #id 27331309
+2026-07-09 18:54:55,721 - [ qwen3-14b ] - INFO - Success #id 25774935
+2026-07-09 18:54:57,493 - [ qwen3-14b ] - INFO - Success #id 12864671
+2026-07-09 18:54:58,181 - [ qwen3-14b ] - INFO - Success #id 19042866
+2026-07-09 18:54:58,310 - [ qwen3-14b ] - INFO - Success #id 31740039
+2026-07-09 18:54:58,638 - [ qwen3-14b ] - INFO - Success #id 14216062
+2026-07-09 18:55:01,086 - [ qwen3-14b ] - INFO - Success #id 20595714
+2026-07-09 18:55:01,507 - [ qwen3-14b ] - INFO - Success #id 89833181
+2026-07-09 18:55:01,630 - [ qwen3-14b ] - INFO - Success #id 21458774
+2026-07-09 18:55:04,605 - [ qwen3-14b ] - INFO - Success #id 27363224
+2026-07-09 18:55:04,658 - [ qwen3-14b ] - INFO - Success #id 22611366
+2026-07-09 18:55:04,954 - [ qwen3-14b ] - INFO - Success #id 32750718
+2026-07-09 18:55:05,558 - [ qwen3-14b ] - INFO - Success #id 91708276
+2026-07-09 18:55:08,845 - [ qwen3-14b ] - INFO - Success #id 32591813
+2026-07-09 18:55:09,516 - [ qwen3-14b ] - INFO - Success #id 73826980
+2026-07-09 18:55:09,842 - [ qwen3-14b ] - INFO - Success #id 17325328
+2026-07-09 18:55:10,958 - [ qwen3-14b ] - INFO - Success #id 24552633
+2026-07-09 18:55:13,019 - [ qwen3-14b ] - INFO - Success #id 82014160
+2026-07-09 18:55:13,254 - [ qwen3-14b ] - INFO - Success #id 21614526
+2026-07-09 18:55:13,351 - [ qwen3-14b ] - INFO - Success #id 25140246
+2026-07-09 18:55:15,344 - [ qwen3-14b ] - INFO - Success #id 18964002
+2026-07-09 18:55:15,548 - [ qwen3-14b ] - INFO - Success #id 27451280
+2026-07-09 18:55:17,157 - [ qwen3-14b ] - INFO - Success #id 16251366
+2026-07-09 18:55:18,337 - [ qwen3-14b ] - INFO - Success #id 38050943
+2026-07-09 18:55:19,071 - [ qwen3-14b ] - INFO - Success #id 26269578
+2026-07-09 18:55:20,038 - [ qwen3-14b ] - INFO - Success #id 20717412
+2026-07-09 18:55:20,635 - [ qwen3-14b ] - INFO - Success #id 27472913
+2026-07-09 18:55:21,163 - [ qwen3-14b ] - INFO - Success #id 16095472
+2026-07-09 18:55:23,646 - [ qwen3-14b ] - INFO - Success #id 16672494
+2026-07-09 18:55:23,758 - [ qwen3-14b ] - INFO - Success #id 38374017
+2026-07-09 18:55:24,275 - [ qwen3-14b ] - INFO - Success #id 28467603
+2026-07-09 18:55:25,356 - [ qwen3-14b ] - INFO - Success #id 19050816
+2026-07-09 18:55:26,492 - [ qwen3-14b ] - INFO - Success #id 23664004
+2026-07-09 18:55:27,073 - [ qwen3-14b ] - INFO - Success #id 41795057
+2026-07-09 18:55:28,648 - [ qwen3-14b ] - INFO - Success #id 11522944
+2026-07-09 18:55:28,774 - [ qwen3-14b ] - INFO - Success #id 12893487
+2026-07-09 18:55:30,242 - [ qwen3-14b ] - INFO - Success #id 29334168
+2026-07-09 18:55:30,485 - [ qwen3-14b ] - INFO - Success #id 20443554
+2026-07-09 18:55:31,651 - [ qwen3-14b ] - INFO - Success #id 15899551
+2026-07-09 18:55:31,824 - [ qwen3-14b ] - INFO - Success #id 14028789
+2026-07-09 18:55:33,048 - [ qwen3-14b ] - INFO - Success #id 12722711
+2026-07-09 18:55:33,464 - [ qwen3-14b ] - INFO - Success #id 24946271
+2026-07-09 18:55:33,568 - [ qwen3-14b ] - INFO - Success #id 28981836
+2026-07-09 18:55:33,886 - [ qwen3-14b ] - INFO - Success #id 22000459
+2026-07-09 18:55:35,650 - [ qwen3-14b ] - INFO - Success #id 20558368
+2026-07-09 18:55:36,666 - [ qwen3-14b ] - INFO - Success #id 25548653
+2026-07-09 18:55:37,107 - [ qwen3-14b ] - INFO - Success #id 19436744
+2026-07-09 18:55:37,184 - [ qwen3-14b ] - INFO - Success #id 14479219
+2026-07-09 18:55:38,250 - [ qwen3-14b ] - INFO - Success #id 23730051
+2026-07-09 18:55:39,806 - [ qwen3-14b ] - INFO - Success #id 22295962
+2026-07-09 18:55:40,671 - [ qwen3-14b ] - INFO - Success #id 19656071
+2026-07-09 18:55:41,073 - [ qwen3-14b ] - INFO - Success #id 86498636
+2026-07-09 18:55:41,592 - [ qwen3-14b ] - INFO - Success #id 16418841
+2026-07-09 18:55:43,022 - [ qwen3-14b ] - INFO - Success #id 16271492
+2026-07-09 18:55:44,152 - [ qwen3-14b ] - INFO - Success #id 20105868
+2026-07-09 18:55:44,384 - [ qwen3-14b ] - INFO - Success #id 33281233
+2026-07-09 18:55:47,653 - [ qwen3-14b ] - INFO - Success #id 27517183
+2026-07-09 18:55:47,825 - [ qwen3-14b ] - INFO - Success #id 76939153
+2026-07-09 18:55:47,839 - [ qwen3-14b ] - INFO - Success #id 11517294
+2026-07-09 18:55:49,365 - [ qwen3-14b ] - INFO - Success #id 30671559
+2026-07-09 18:55:49,388 - [ qwen3-14b ] - INFO - Success #id 65316510
+2026-07-09 18:55:49,486 - [ qwen3-14b ] - INFO - Success #id 67241536
+2026-07-09 18:55:50,118 - [ qwen3-14b ] - INFO - Success #id 87420418
+2026-07-09 18:55:50,942 - [ qwen3-14b ] - INFO - Success #id 18319079
+2026-07-09 18:55:51,732 - [ qwen3-14b ] - INFO - Success #id 33802619
+2026-07-09 18:55:52,357 - [ qwen3-14b ] - INFO - Success #id 80909670
+2026-07-09 18:55:53,108 - [ qwen3-14b ] - INFO - Success #id 25879377
+2026-07-09 18:55:56,748 - [ qwen3-14b ] - INFO - Success #id 11362043
+2026-07-09 18:55:56,856 - [ qwen3-14b ] - INFO - Success #id 20263282
+2026-07-09 18:55:57,846 - [ qwen3-14b ] - INFO - Success #id 10242608
+2026-07-09 18:55:58,026 - [ qwen3-14b ] - INFO - Success #id 38333480
+2026-07-09 18:55:58,670 - [ qwen3-14b ] - INFO - Success #id 23929921
+2026-07-09 18:55:58,680 - [ qwen3-14b ] - INFO - Success #id 13798094
+2026-07-09 18:56:01,189 - [ qwen3-14b ] - INFO - Success #id 29789144
+2026-07-09 18:56:02,740 - [ qwen3-14b ] - INFO - Success #id 24320542
+2026-07-09 18:56:05,030 - [ qwen3-14b ] - INFO - Success #id 20105430
+2026-07-09 18:56:05,102 - [ qwen3-14b ] - INFO - Success #id 20607478
+2026-07-09 18:56:05,813 - [ qwen3-14b ] - INFO - Success #id 20354600
+2026-07-09 18:56:07,433 - [ qwen3-14b ] - INFO - Success #id 24666287
+2026-07-09 18:56:07,905 - [ qwen3-14b ] - INFO - Success #id 25850214
+2026-07-09 18:56:08,265 - [ qwen3-14b ] - INFO - Success #id 39115310
+2026-07-09 18:56:08,481 - [ qwen3-14b ] - INFO - Success #id 73517277
+2026-07-09 18:56:09,838 - [ qwen3-14b ] - INFO - Success #id 19550162
+2026-07-09 18:56:10,406 - [ qwen3-14b ] - INFO - Success #id 10857007
+2026-07-09 18:56:12,306 - [ qwen3-14b ] - INFO - Success #id 23683836
+2026-07-09 18:56:13,188 - [ qwen3-14b ] - INFO - Success #id 11214820
+2026-07-09 18:56:13,414 - [ qwen3-14b ] - INFO - Success #id 20267587
+2026-07-09 18:56:14,798 - [ qwen3-14b ] - INFO - Success #id 55078170
+2026-07-09 18:56:15,045 - [ qwen3-14b ] - INFO - Success #id 19722081
+2026-07-09 18:56:16,230 - [ qwen3-14b ] - INFO - Success #id 96666586
+2026-07-09 18:56:18,368 - [ qwen3-14b ] - INFO - Success #id 30807946
+2026-07-09 18:56:18,601 - [ qwen3-14b ] - INFO - Success #id 39785516
+2026-07-09 18:56:20,235 - [ qwen3-14b ] - INFO - Success #id 19056972
+2026-07-09 18:56:21,014 - [ qwen3-14b ] - INFO - Success #id 29787811
+2026-07-09 18:56:21,347 - [ qwen3-14b ] - INFO - Success #id 88432068
+2026-07-09 18:56:22,221 - [ qwen3-14b ] - INFO - Success #id 26461454
+2026-07-09 18:56:22,627 - [ qwen3-14b ] - INFO - Success #id 83685751
+2026-07-09 18:56:22,826 - [ qwen3-14b ] - INFO - Success #id 32935240
+2026-07-09 18:56:22,856 - [ qwen3-14b ] - INFO - Success #id 12699412
+2026-07-09 18:56:24,234 - [ qwen3-14b ] - INFO - Success #id 25454986
+2026-07-09 18:56:25,446 - [ qwen3-14b ] - INFO - Success #id 27539787
+2026-07-09 18:56:25,519 - [ qwen3-14b ] - INFO - Success #id 23142308
+2026-07-09 18:56:27,255 - [ qwen3-14b ] - INFO - Success #id 32220206
+2026-07-09 18:56:27,477 - [ qwen3-14b ] - INFO - Success #id 25217205
+2026-07-09 18:56:28,218 - [ qwen3-14b ] - INFO - Success #id 18819820
+2026-07-09 18:56:28,619 - [ qwen3-14b ] - INFO - Success #id 75475955
+2026-07-09 18:56:29,626 - [ qwen3-14b ] - INFO - Success #id 27699025
+2026-07-09 18:56:31,931 - [ qwen3-14b ] - INFO - Success #id 31260533
+2026-07-09 18:56:33,241 - [ qwen3-14b ] - INFO - Success #id 20343638
+2026-07-09 18:56:33,286 - [ qwen3-14b ] - INFO - Success #id 96321586
+2026-07-09 18:56:33,761 - [ qwen3-14b ] - INFO - Success #id 30985847
+2026-07-09 18:56:34,705 - [ qwen3-14b ] - INFO - Success #id 27230721
+2026-07-09 18:56:37,729 - [ qwen3-14b ] - INFO - Success #id 70163480
+2026-07-09 18:56:37,765 - [ qwen3-14b ] - INFO - Success #id 27744832
+2026-07-09 18:56:38,349 - [ qwen3-14b ] - INFO - Success #id 25093221
+2026-07-09 18:56:39,682 - [ qwen3-14b ] - INFO - Success #id 21718588
+2026-07-09 18:56:40,303 - [ qwen3-14b ] - INFO - Success #id 31309726
+2026-07-09 18:56:41,817 - [ qwen3-14b ] - INFO - Success #id 12931756
+2026-07-09 18:56:42,057 - [ qwen3-14b ] - INFO - Success #id 12571777
+2026-07-09 18:56:43,824 - [ qwen3-14b ] - INFO - Success #id 14531879
+2026-07-09 18:56:43,847 - [ qwen3-14b ] - INFO - Success #id 12576292
+2026-07-09 18:56:44,526 - [ qwen3-14b ] - INFO - Success #id 26423418
+2026-07-09 18:56:46,063 - [ qwen3-14b ] - INFO - Success #id 18107068
+2026-07-09 18:56:46,567 - [ qwen3-14b ] - INFO - Success #id 29599823
+2026-07-09 18:56:46,942 - [ qwen3-14b ] - INFO - Success #id 24173977
+2026-07-09 18:56:47,828 - [ qwen3-14b ] - INFO - Success #id 11832192
+2026-07-09 18:56:48,493 - [ qwen3-14b ] - INFO - Success #id 11690244
+2026-07-09 18:56:49,002 - [ qwen3-14b ] - INFO - Success #id 44226170
+2026-07-09 18:56:49,754 - [ qwen3-14b ] - INFO - Success #id 64283097
+2026-07-09 18:56:49,967 - [ qwen3-14b ] - INFO - Success #id 24690842
+2026-07-09 18:56:51,270 - [ qwen3-14b ] - INFO - Success #id 12897692
+2026-07-09 18:56:53,312 - [ qwen3-14b ] - INFO - Success #id 28271252
+2026-07-09 18:56:53,444 - [ qwen3-14b ] - INFO - Success #id 10541874
+2026-07-09 18:56:54,459 - [ qwen3-14b ] - INFO - Success #id 34495848
+2026-07-09 18:56:54,479 - [ qwen3-14b ] - INFO - Success #id 28266738
+2026-07-09 18:56:56,108 - [ qwen3-14b ] - INFO - Success #id 19793459
+2026-07-09 18:56:56,271 - [ qwen3-14b ] - INFO - Success #id 78075861
+2026-07-09 18:56:57,572 - [ qwen3-14b ] - INFO - Success #id 27963750
+2026-07-09 18:56:57,725 - [ qwen3-14b ] - INFO - Success #id 33125664
+2026-07-09 18:57:01,059 - [ qwen3-14b ] - INFO - Success #id 54987328
+2026-07-09 18:57:01,352 - [ qwen3-14b ] - INFO - Success #id 21835000
+2026-07-09 18:57:01,921 - [ qwen3-14b ] - INFO - Success #id 20476385
+2026-07-09 18:57:02,077 - [ qwen3-14b ] - INFO - Success #id 14281432
+2026-07-09 18:57:03,678 - [ qwen3-14b ] - INFO - Success #id 15995920
+2026-07-09 18:57:05,413 - [ qwen3-14b ] - INFO - Success #id 26279119
+2026-07-09 18:57:06,009 - [ qwen3-14b ] - INFO - Success #id 19744202
+2026-07-09 18:57:06,592 - [ qwen3-14b ] - INFO - Success #id 18528312
+2026-07-09 18:57:06,635 - [ qwen3-14b ] - INFO - Success #id 53950808
+2026-07-09 18:57:07,159 - [ qwen3-14b ] - INFO - Success #id 28743498
+2026-07-09 18:57:07,778 - [ qwen3-14b ] - INFO - Success #id 15277942
+2026-07-09 18:57:08,105 - [ qwen3-14b ] - INFO - Success #id 29346567
+2026-07-09 18:57:09,343 - [ qwen3-14b ] - INFO - Success #id 30099338
+2026-07-09 18:57:09,705 - [ qwen3-14b ] - INFO - Success #id 16991312
+2026-07-09 18:57:10,293 - [ qwen3-14b ] - INFO - Success #id 24874713
+2026-07-09 18:57:11,708 - [ qwen3-14b ] - INFO - Success #id 11383460
+2026-07-09 18:57:13,715 - [ qwen3-14b ] - INFO - Success #id 12459708
+2026-07-09 18:57:13,892 - [ qwen3-14b ] - INFO - Success #id 33986145
+2026-07-09 18:57:14,195 - [ qwen3-14b ] - INFO - Success #id 10694951
+2026-07-09 18:57:15,645 - [ qwen3-14b ] - INFO - Success #id 28310959
+2026-07-09 18:57:15,705 - [ qwen3-14b ] - INFO - Success #id 14050932
+2026-07-09 18:57:16,951 - [ qwen3-14b ] - INFO - Success #id 76088504
+2026-07-09 18:57:17,843 - [ qwen3-14b ] - INFO - Success #id 31913793
+2026-07-09 18:57:18,558 - [ qwen3-14b ] - INFO - Success #id 17383480
+2026-07-09 18:57:19,101 - [ qwen3-14b ] - INFO - Success #id 31250786
+2026-07-09 18:57:20,576 - [ qwen3-14b ] - INFO - Success #id 73890826
+2026-07-09 18:57:21,857 - [ qwen3-14b ] - INFO - Success #id 18243759
+2026-07-09 18:57:22,089 - [ qwen3-14b ] - INFO - Success #id 16307083
+2026-07-09 18:57:23,542 - [ qwen3-14b ] - INFO - Success #id 24824876
+2026-07-09 18:57:24,724 - [ qwen3-14b ] - INFO - Success #id 29392203
+2026-07-09 18:57:24,726 - [ qwen3-14b ] - INFO - Completed: 1111
+2026-07-09 18:57:24,726 - [ qwen3-14b ] - INFO - Failed: 0
+2026-07-14 13:37:49,938 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_multimedia', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 4, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'resource', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-14 13:37:49,940 - [ qwen3-14b ] - INFO - All Completed!

@@ -26,7 +26,7 @@ class OpenAICompatibleLLMClient:
         self.default_config_path = default_config_path
         self._resolved_config: Dict[str, Any] | None = None
         self._chat_client: Any = None
-        self._chat_client_signature: tuple[str, str | None, float] | None = None
+        self._chat_client_signature: tuple[str, str | None, float, int, bool] | None = None
 
     def chat(self, messages: List[Dict[str, str]]) -> str:
         config = self.resolve_config()
@@ -37,17 +37,26 @@ class OpenAICompatibleLLMClient:
 
         base_url = self.resolve_base_url(config)
         timeout = float(config.get("timeout", 30))
+        max_retries = int(config.get("max_retries", 0))
+        trust_env = self.resolve_trust_env(config)
         client = self._get_chat_client(
             api_key=api_key,
             base_url=base_url,
             timeout=timeout,
+            max_retries=max_retries,
+            trust_env=trust_env,
         )
 
-        response = client.chat.completions.create(
-            model=model,
-            temperature=float(config.get("temperature", 0)),
-            messages=messages,
-        )
+        request_kwargs: Dict[str, Any] = {
+            "model": model,
+            "temperature": float(config.get("temperature", 0)),
+            "messages": messages,
+        }
+        extra_body = self.resolve_extra_body(config)
+        if extra_body:
+            request_kwargs["extra_body"] = extra_body
+
+        response = client.chat.completions.create(**request_kwargs)
         content = response.choices[0].message.content
         if not content:
             raise ValueError("empty LLM response")
@@ -89,8 +98,10 @@ class OpenAICompatibleLLMClient:
         api_key: str,
         base_url: str | None,
         timeout: float,
+        max_retries: int,
+        trust_env: bool,
     ) -> Any:
-        signature = (api_key, base_url, timeout)
+        signature = (api_key, base_url, timeout, max_retries, trust_env)
         if self._chat_client is not None and self._chat_client_signature == signature:
             return self._chat_client
 
@@ -99,9 +110,14 @@ class OpenAICompatibleLLMClient:
         client_kwargs: Dict[str, Any] = {
             "api_key": api_key,
             "timeout": timeout,
+            "max_retries": max_retries,
         }
         if base_url:
             client_kwargs["base_url"] = base_url
+        if not trust_env:
+            import httpx
+
+            client_kwargs["http_client"] = httpx.Client(trust_env=False, timeout=timeout)
         self._chat_client = OpenAI(**client_kwargs)
         self._chat_client_signature = signature
         return self._chat_client
@@ -186,6 +202,24 @@ class OpenAICompatibleLLMClient:
             if value:
                 return value
         return None
+
+    @staticmethod
+    def resolve_extra_body(config: Dict[str, Any]) -> Dict[str, Any]:
+        value = config.get("extra_body")
+        if value is None:
+            return {}
+        if not isinstance(value, dict):
+            raise ValueError("llm config extra_body must be a JSON object")
+        return dict(value)
+
+    @staticmethod
+    def resolve_trust_env(config: Dict[str, Any]) -> bool:
+        value = config.get("trust_env", True)
+        if isinstance(value, bool):
+            return value
+        if isinstance(value, str):
+            return value.strip().lower() not in {"0", "false", "no", "off"}
+        return bool(value)
 
     @staticmethod
     def looks_like_api_key(value: str) -> bool:

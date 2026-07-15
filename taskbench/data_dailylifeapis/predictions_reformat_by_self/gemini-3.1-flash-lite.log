@@ -1,0 +1,1018 @@
+2026-07-09 21:13:45,329 - [ gemini-3.1-flash-lite ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-6qXcSRX9NYK4h7zl9uJkqVsXEtfw3zl2v9jdrfxF38CvXRR4', 'api_port': 4000, 'base_url': 'https://api.vectorengine.ai/v1', 'multiworker': 1, 'llm': 'gemini-3.1-flash-lite', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 21:13:45,330 - [ gemini-3.1-flash-lite ] - INFO - Detected 0 has been inferenced,
+2026-07-09 21:13:45,331 - [ gemini-3.1-flash-lite ] - INFO - Start inferencing 864 tasks...
+2026-07-09 21:13:47,675 - [ gemini-3.1-flash-lite ] - INFO - # TASK LIST #:
+{"id": "get_weather", "desc": "Get the weather for a specific city and a specific day", "parameters": ["location", "date"]}
+{"id": "get_news_for_topic", "desc": "Get the news for a specific topic", "parameters": ["topic"]}
+{"id": "stock_operation", "desc": "Do a specific operation on a specific stock", "parameters": ["stock", "operation"]}
+{"id": "book_flight", "desc": "Book a flight for a specific date, from a specific location to a specific destination", "parameters": ["date", "from", "to"]}
+{"id": "book_hotel", "desc": "Book a specific hotel for a specific date", "parameters": ["date", "name"]}
+{"id": "book_restaurant", "desc": "Book a specific restaurant for a specific date", "parameters": ["date", "name"]}
+{"id": "book_car", "desc": "Book a car for a specific date, in a specific location", "parameters": ["date", "location"]}
+{"id": "online_shopping", "desc": "Buy a product from a specific website", "parameters": ["website", "product"]}
+{"id": "send_email", "desc": "Send an email to a specific email address", "parameters": ["email_address", "content"]}
+{"id": "send_sms", "desc": "Send an sms to a specific phone number", "parameters": ["phone_number", "content"]}
+{"id": "share_by_social_network", "desc": "Share a specific content by a specific social network", "parameters": ["content", "social_network"]}
+{"id": "search_by_engine", "desc": "Search a specific query by a specific search engine", "parameters": ["query", "engine"]}
+{"id": "apply_for_job", "desc": "Apply for a specific job", "parameters": ["job"]}
+{"id": "see_doctor_online", "desc": "See a specific doctor for a specific disease", "parameters": ["disease", "doctor"]}
+{"id": "consult_lawyer_online", "desc": "Consult a specific lawyer for a specific legal issue", "parameters": ["issue", "lawyer"]}
+{"id": "enroll_in_course", "desc": "Enroll in a specific course at a specific university", "parameters": ["course", "university"]}
+{"id": "buy_insurance", "desc": "Buy a specific insurance from a specific insurance company", "parameters": ["insurance", "company"]}
+{"id": "online_banking", "desc": "Do a specific banking operation online at a specific bank", "parameters": ["instruction", "bank"]}
+{"id": "daily_bill_payment", "desc": "Pay a specific bill", "parameters": ["bill"]}
+{"id": "sell_item_online", "desc": "Sell a specific item at a specific online store", "parameters": ["item", "store"]}
+{"id": "do_tax_return", "desc": "Do the tax return for a specific year", "parameters": ["year"]}
+{"id": "apply_for_passport", "desc": "Apply for a passport", "parameters": ["country"]}
+{"id": "pay_for_credit_card", "desc": "Pay for a specific credit card", "parameters": ["credit_card"]}
+{"id": "auto_housework_by_robot", "desc": "Let a robot do a housework by following a specific instruction", "parameters": ["instruction"]}
+{"id": "auto_driving_to_destination", "desc": "Let a car drive to a specific destination", "parameters": ["destination"]}
+{"id": "deliver_package", "desc": "Deliver a specific package to a specific destination", "parameters": ["package", "destination"]}
+{"id": "order_food_delivery", "desc": "Order a specific food to be delivered to a specific location at a specific platform", "parameters": ["food", "location", "platform"]}
+{"id": "order_taxi", "desc": "Order a taxi to a specific location at a specific platform", "parameters": ["location", "platform"]}
+{"id": "play_music_by_title", "desc": "Play a specific music by a specific title", "parameters": ["title"]}
+{"id": "play_movie_by_title", "desc": "Play a specific movie by a specific title", "parameters": ["title"]}
+{"id": "take_note", "desc": "Take a note", "parameters": ["content"]}
+{"id": "borrow_book_online", "desc": "Borrow a specific book from a specific library", "parameters": ["book", "library"]}
+{"id": "recording_audio", "desc": "Record an audio", "parameters": ["content"]}
+{"id": "make_video_call", "desc": "Make a video call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "make_voice_call", "desc": "Make a voice call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "organize_meeting_online", "desc": "Organize a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "attend_meeting_online", "desc": "Attend a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "software_management", "desc": "Manage a specific software by a specific instruction", "parameters": ["software", "instruction"]}
+{"id": "print_document", "desc": "Print a specific document", "parameters": ["document"]}
+{"id": "set_alarm", "desc": "Set an alarm for a specific time", "parameters": ["time"]}
+
+# GOAL #:
+Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;
+
+# USER REQUEST #: I've got a business trip planned for New York City on August 1, 2023. Could you help me arrange a car rental for that day, please?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 21:13:47,678 - [ gemini-3.1-flash-lite ] - INFO - # RESULT #:
+{
+  "task_steps": [
+    "Step 1: Call book_car tool with date: 'August 1, 2023' and location: 'New York City'"
+  ],
+  "task_nodes": [
+    {
+      "task": "book_car",
+      "arguments": [
+        {
+          "name": "date",
+          "value": "August 1, 2023"
+        },
+        {
+          "name": "location",
+          "value": "New York City"
+        }
+      ]
+    }
+  ],
+  "task_links": []
+}
+2026-07-09 21:13:47,678 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30350054
+2026-07-09 21:13:50,076 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17286260
+2026-07-09 21:13:52,181 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13511816
+2026-07-09 21:13:55,263 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16988029
+2026-07-09 21:13:57,724 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22478668
+2026-07-09 21:14:01,580 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27512819
+2026-07-09 21:14:04,516 - [ gemini-3.1-flash-lite ] - INFO - Success #id 78951114
+2026-07-09 21:14:07,254 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19072758
+2026-07-09 21:14:09,582 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11607967
+2026-07-09 21:14:12,568 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24412925
+2026-07-09 21:14:14,843 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33823825
+2026-07-09 21:14:17,612 - [ gemini-3.1-flash-lite ] - INFO - Success #id 47963323
+2026-07-09 21:14:21,417 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11765317
+2026-07-09 21:14:24,078 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29839767
+2026-07-09 21:14:26,868 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15357694
+2026-07-09 21:14:29,960 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13232332
+2026-07-09 21:14:32,475 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12524744
+2026-07-09 21:14:35,444 - [ gemini-3.1-flash-lite ] - INFO - Success #id 67476865
+2026-07-09 21:14:38,970 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29979407
+2026-07-09 21:14:41,385 - [ gemini-3.1-flash-lite ] - INFO - Success #id 42725169
+2026-07-09 21:14:44,557 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33523828
+2026-07-09 21:14:47,037 - [ gemini-3.1-flash-lite ] - INFO - Success #id 82630016
+2026-07-09 21:14:50,227 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22387452
+2026-07-09 21:14:53,139 - [ gemini-3.1-flash-lite ] - INFO - Success #id 47046656
+2026-07-09 21:14:56,657 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29870771
+2026-07-09 21:14:59,023 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24521591
+2026-07-09 21:15:03,086 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32648504
+2026-07-09 21:15:06,203 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27373817
+2026-07-09 21:15:08,471 - [ gemini-3.1-flash-lite ] - INFO - Success #id 71137873
+2026-07-09 21:15:10,695 - [ gemini-3.1-flash-lite ] - INFO - Success #id 89900993
+2026-07-09 21:15:13,402 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25560946
+2026-07-09 21:15:15,381 - [ gemini-3.1-flash-lite ] - INFO - Success #id 73847600
+2026-07-09 21:15:19,681 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10186930
+2026-07-09 21:15:22,412 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28962008
+2026-07-09 21:15:25,006 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17027426
+2026-07-09 21:15:27,567 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12883055
+2026-07-09 21:15:30,686 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32447246
+2026-07-09 21:15:33,506 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18743393
+2026-07-09 21:15:35,983 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29601062
+2026-07-09 21:15:38,533 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19407653
+2026-07-09 21:15:41,699 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22402314
+2026-07-09 21:15:43,733 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23734731
+2026-07-09 21:15:47,485 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12727825
+2026-07-09 21:15:50,028 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27775949
+2026-07-09 21:15:54,421 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30667964
+2026-07-09 21:15:58,603 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28058748
+2026-07-09 21:16:01,330 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31446558
+2026-07-09 21:16:03,781 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30531459
+2026-07-09 21:16:06,461 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13635184
+2026-07-09 21:16:09,223 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15468586
+2026-07-09 21:16:12,277 - [ gemini-3.1-flash-lite ] - INFO - Success #id 51723456
+2026-07-09 21:16:14,599 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12456255
+2026-07-09 21:16:16,822 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11995538
+2026-07-09 21:16:19,380 - [ gemini-3.1-flash-lite ] - INFO - Success #id 90851010
+2026-07-09 21:16:21,739 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23020133
+2026-07-09 21:16:26,242 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25906766
+2026-07-09 21:16:28,646 - [ gemini-3.1-flash-lite ] - INFO - Success #id 51419931
+2026-07-09 21:16:32,759 - [ gemini-3.1-flash-lite ] - INFO - Success #id 70652938
+2026-07-09 21:16:43,435 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10843077
+2026-07-09 21:16:46,249 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30413962
+2026-07-09 21:16:48,737 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11662760
+2026-07-09 21:16:51,486 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31301433
+2026-07-09 21:16:53,407 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17699712
+2026-07-09 21:16:57,168 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32203471
+2026-07-09 21:17:00,804 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28227483
+2026-07-09 21:17:03,160 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20436096
+2026-07-09 21:17:05,460 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16513760
+2026-07-09 21:17:08,525 - [ gemini-3.1-flash-lite ] - INFO - Success #id 95038598
+2026-07-09 21:17:12,036 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31872047
+2026-07-09 21:17:15,457 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17414012
+2026-07-09 21:17:18,089 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21555806
+2026-07-09 21:17:21,570 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15072082
+2026-07-09 21:17:25,080 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29204212
+2026-07-09 21:17:27,815 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26722166
+2026-07-09 21:17:32,614 - [ gemini-3.1-flash-lite ] - INFO - Success #id 44361693
+2026-07-09 21:17:35,272 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14171505
+2026-07-09 21:17:39,169 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10890339
+2026-07-09 21:17:44,170 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28281055
+2026-07-09 21:17:47,286 - [ gemini-3.1-flash-lite ] - INFO - Success #id 63306474
+2026-07-09 21:17:50,722 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16673290
+2026-07-09 21:17:53,967 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32571030
+2026-07-09 21:18:05,921 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31408870
+2026-07-09 21:18:16,255 - [ gemini-3.1-flash-lite ] - INFO - Success #id 41702089
+2026-07-09 21:18:21,570 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16475846
+2026-07-09 21:18:26,132 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21968596
+2026-07-09 21:18:29,248 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22502723
+2026-07-09 21:18:33,732 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10399505
+2026-07-09 21:18:39,130 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10907512
+2026-07-09 21:18:41,868 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12866688
+2026-07-09 21:18:44,111 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14523593
+2026-07-09 21:18:47,130 - [ gemini-3.1-flash-lite ] - INFO - Success #id 55354311
+2026-07-09 21:18:49,604 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26051009
+2026-07-09 21:18:53,788 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30846316
+2026-07-09 21:18:55,676 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13697824
+2026-07-09 21:18:58,185 - [ gemini-3.1-flash-lite ] - INFO - Success #id 85752364
+2026-07-09 21:19:00,791 - [ gemini-3.1-flash-lite ] - INFO - Success #id 53510501
+2026-07-09 21:19:04,261 - [ gemini-3.1-flash-lite ] - INFO - Success #id 52957370
+2026-07-09 21:19:07,627 - [ gemini-3.1-flash-lite ] - INFO - Success #id 70641642
+2026-07-09 21:19:10,273 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19847434
+2026-07-09 21:19:12,406 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27150191
+2026-07-09 21:19:15,818 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22475777
+2026-07-09 21:19:19,178 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23511335
+2026-07-09 21:19:22,058 - [ gemini-3.1-flash-lite ] - INFO - Success #id 41556561
+2026-07-09 21:19:24,743 - [ gemini-3.1-flash-lite ] - INFO - Success #id 65013021
+2026-07-09 21:19:28,043 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16242474
+2026-07-09 21:19:30,607 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18450312
+2026-07-09 21:19:33,281 - [ gemini-3.1-flash-lite ] - INFO - Success #id 70690808
+2026-07-09 21:19:37,508 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11401515
+2026-07-09 21:19:40,087 - [ gemini-3.1-flash-lite ] - INFO - Success #id 99785297
+2026-07-09 21:19:43,879 - [ gemini-3.1-flash-lite ] - INFO - Success #id 48235596
+2026-07-09 21:19:47,352 - [ gemini-3.1-flash-lite ] - INFO - Success #id 38163810
+2026-07-09 21:19:49,938 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11479905
+2026-07-09 21:19:54,730 - [ gemini-3.1-flash-lite ] - INFO - Success #id 62669402
+2026-07-09 21:19:58,710 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17530601
+2026-07-09 21:20:02,612 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21494330
+2026-07-09 21:20:05,831 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15297867
+2026-07-09 21:20:10,513 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29192758
+2026-07-09 21:20:14,644 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23971756
+2026-07-09 21:20:20,855 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22620321
+2026-07-09 21:20:25,543 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23594484
+2026-07-09 21:20:29,575 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21426816
+2026-07-09 21:20:32,511 - [ gemini-3.1-flash-lite ] - INFO - Success #id 92400293
+2026-07-09 21:20:36,563 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24106579
+2026-07-09 21:20:39,729 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18002761
+2026-07-09 21:20:43,785 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19084352
+2026-07-09 21:20:47,672 - [ gemini-3.1-flash-lite ] - INFO - Success #id 53018023
+2026-07-09 21:20:53,185 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23589421
+2026-07-09 21:20:58,413 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24909271
+2026-07-09 21:21:01,504 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16807233
+2026-07-09 21:21:08,962 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14556200
+2026-07-09 21:21:12,863 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33685282
+2026-07-09 21:21:15,660 - [ gemini-3.1-flash-lite ] - INFO - Success #id 62838005
+2026-07-09 21:21:22,204 - [ gemini-3.1-flash-lite ] - INFO - Success #id 93581716
+2026-07-09 21:21:25,329 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27919508
+2026-07-09 21:21:27,813 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27943034
+2026-07-09 21:21:30,987 - [ gemini-3.1-flash-lite ] - INFO - Success #id 86611976
+2026-07-09 21:21:33,377 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25426847
+2026-07-09 21:21:36,402 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15271749
+2026-07-09 21:21:39,312 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23302187
+2026-07-09 21:21:42,327 - [ gemini-3.1-flash-lite ] - INFO - Success #id 64245918
+2026-07-09 21:21:45,786 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21401569
+2026-07-09 21:21:48,958 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33866628
+2026-07-09 21:21:52,184 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13273835
+2026-07-09 21:21:55,457 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32750887
+2026-07-09 21:21:59,253 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22374064
+2026-07-09 21:22:03,163 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13846602
+2026-07-09 21:22:07,095 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22084539
+2026-07-09 21:22:11,371 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26138270
+2026-07-09 21:22:16,378 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31783177
+2026-07-09 21:22:20,128 - [ gemini-3.1-flash-lite ] - INFO - Success #id 59758012
+2026-07-09 21:22:26,284 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26898696
+2026-07-09 21:22:29,639 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13481217
+2026-07-09 21:22:33,657 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25570506
+2026-07-09 21:22:37,113 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26233285
+2026-07-09 21:22:40,451 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32343389
+2026-07-09 21:22:44,199 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11109403
+2026-07-09 21:22:48,368 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24237371
+2026-07-09 21:22:52,737 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22297893
+2026-07-09 21:22:58,063 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12618159
+2026-07-09 21:23:01,510 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10379166
+2026-07-09 21:23:05,067 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14147261
+2026-07-09 21:23:07,143 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19737602
+2026-07-09 21:23:11,217 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27961180
+2026-07-09 21:23:15,198 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23729988
+2026-07-09 21:23:19,021 - [ gemini-3.1-flash-lite ] - INFO - Success #id 50927362
+2026-07-09 21:23:22,249 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16900777
+2026-07-09 21:23:24,960 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19809375
+2026-07-09 21:23:27,238 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30538014
+2026-07-09 21:23:30,429 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12138072
+2026-07-09 21:23:33,346 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14620980
+2026-07-09 21:23:35,442 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23230863
+2026-07-09 21:23:37,745 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20566589
+2026-07-09 21:23:40,646 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10324264
+2026-07-09 21:23:43,142 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30964562
+2026-07-09 21:23:46,530 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23573452
+2026-07-09 21:23:49,598 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18164773
+2026-07-09 21:23:52,021 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31788445
+2026-07-09 21:23:54,922 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24702349
+2026-07-09 21:23:57,012 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29558987
+2026-07-09 21:23:59,695 - [ gemini-3.1-flash-lite ] - INFO - Success #id 77604532
+2026-07-09 21:24:03,831 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14619383
+2026-07-09 21:24:06,507 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20541414
+2026-07-09 21:24:13,150 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15562486
+2026-07-09 21:24:15,643 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12883344
+2026-07-09 21:24:18,905 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32997405
+2026-07-09 21:24:22,406 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17628428
+2026-07-09 21:24:25,206 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16851522
+2026-07-09 21:24:27,958 - [ gemini-3.1-flash-lite ] - INFO - Success #id 51278699
+2026-07-09 21:24:30,292 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32007807
+2026-07-09 21:24:33,075 - [ gemini-3.1-flash-lite ] - INFO - Success #id 81678049
+2026-07-09 21:24:36,362 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19499619
+2026-07-09 21:24:38,967 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15975909
+2026-07-09 21:24:41,685 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27742362
+2026-07-09 21:24:44,321 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16755079
+2026-07-09 21:24:47,129 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33311238
+2026-07-09 21:24:50,705 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30923084
+2026-07-09 21:24:53,332 - [ gemini-3.1-flash-lite ] - INFO - Success #id 77744719
+2026-07-09 21:24:56,125 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31281197
+2026-07-09 21:24:58,122 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12979902
+2026-07-09 21:25:02,958 - [ gemini-3.1-flash-lite ] - INFO - Success #id 92820169
+2026-07-09 21:25:06,578 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27818026
+2026-07-09 21:25:09,655 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14971382
+2026-07-09 21:25:12,175 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15792499
+2026-07-09 21:25:14,964 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32686353
+2026-07-09 21:25:18,415 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32486321
+2026-07-09 21:25:21,517 - [ gemini-3.1-flash-lite ] - INFO - Success #id 84857854
+2026-07-09 21:25:24,104 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11301226
+2026-07-09 21:25:26,161 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22684914
+2026-07-09 21:25:30,197 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25519785
+2026-07-09 21:25:32,245 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24590737
+2026-07-09 21:25:36,886 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20768554
+2026-07-09 21:25:40,269 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29329981
+2026-07-09 21:25:43,183 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14108000
+2026-07-09 21:25:45,966 - [ gemini-3.1-flash-lite ] - INFO - Success #id 55286240
+2026-07-09 21:25:48,258 - [ gemini-3.1-flash-lite ] - INFO - Success #id 51016460
+2026-07-09 21:25:50,711 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28282312
+2026-07-09 21:25:52,930 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18932799
+2026-07-09 21:25:56,619 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20717355
+2026-07-09 21:25:59,895 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24271966
+2026-07-09 21:26:02,673 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31093934
+2026-07-09 21:26:06,885 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18033635
+2026-07-09 21:26:10,133 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17770061
+2026-07-09 21:26:12,847 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30630684
+2026-07-09 21:26:18,407 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30916047
+2026-07-09 21:26:20,604 - [ gemini-3.1-flash-lite ] - INFO - Success #id 76904888
+2026-07-09 21:26:23,524 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22489604
+2026-07-09 21:26:26,569 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31498909
+2026-07-09 21:26:28,597 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32606532
+2026-07-09 21:26:31,944 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17871465
+2026-07-09 21:26:33,991 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12878163
+2026-07-09 21:26:36,859 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32082021
+2026-07-09 21:26:39,932 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26309756
+2026-07-09 21:26:55,890 - [ gemini-3.1-flash-lite ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-6qXcSRX9NYK4h7zl9uJkqVsXEtfw3zl2v9jdrfxF38CvXRR4', 'api_port': 4000, 'base_url': 'https://api.vectorengine.ai/v1', 'multiworker': 4, 'llm': 'gemini-3.1-flash-lite', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 21:26:55,892 - [ gemini-3.1-flash-lite ] - INFO - Detected 232 has been inferenced,
+2026-07-09 21:26:55,893 - [ gemini-3.1-flash-lite ] - INFO - Start inferencing 632 tasks...
+2026-07-09 21:26:58,568 - [ gemini-3.1-flash-lite ] - INFO - # TASK LIST #:
+{"id": "get_weather", "desc": "Get the weather for a specific city and a specific day", "parameters": ["location", "date"]}
+{"id": "get_news_for_topic", "desc": "Get the news for a specific topic", "parameters": ["topic"]}
+{"id": "stock_operation", "desc": "Do a specific operation on a specific stock", "parameters": ["stock", "operation"]}
+{"id": "book_flight", "desc": "Book a flight for a specific date, from a specific location to a specific destination", "parameters": ["date", "from", "to"]}
+{"id": "book_hotel", "desc": "Book a specific hotel for a specific date", "parameters": ["date", "name"]}
+{"id": "book_restaurant", "desc": "Book a specific restaurant for a specific date", "parameters": ["date", "name"]}
+{"id": "book_car", "desc": "Book a car for a specific date, in a specific location", "parameters": ["date", "location"]}
+{"id": "online_shopping", "desc": "Buy a product from a specific website", "parameters": ["website", "product"]}
+{"id": "send_email", "desc": "Send an email to a specific email address", "parameters": ["email_address", "content"]}
+{"id": "send_sms", "desc": "Send an sms to a specific phone number", "parameters": ["phone_number", "content"]}
+{"id": "share_by_social_network", "desc": "Share a specific content by a specific social network", "parameters": ["content", "social_network"]}
+{"id": "search_by_engine", "desc": "Search a specific query by a specific search engine", "parameters": ["query", "engine"]}
+{"id": "apply_for_job", "desc": "Apply for a specific job", "parameters": ["job"]}
+{"id": "see_doctor_online", "desc": "See a specific doctor for a specific disease", "parameters": ["disease", "doctor"]}
+{"id": "consult_lawyer_online", "desc": "Consult a specific lawyer for a specific legal issue", "parameters": ["issue", "lawyer"]}
+{"id": "enroll_in_course", "desc": "Enroll in a specific course at a specific university", "parameters": ["course", "university"]}
+{"id": "buy_insurance", "desc": "Buy a specific insurance from a specific insurance company", "parameters": ["insurance", "company"]}
+{"id": "online_banking", "desc": "Do a specific banking operation online at a specific bank", "parameters": ["instruction", "bank"]}
+{"id": "daily_bill_payment", "desc": "Pay a specific bill", "parameters": ["bill"]}
+{"id": "sell_item_online", "desc": "Sell a specific item at a specific online store", "parameters": ["item", "store"]}
+{"id": "do_tax_return", "desc": "Do the tax return for a specific year", "parameters": ["year"]}
+{"id": "apply_for_passport", "desc": "Apply for a passport", "parameters": ["country"]}
+{"id": "pay_for_credit_card", "desc": "Pay for a specific credit card", "parameters": ["credit_card"]}
+{"id": "auto_housework_by_robot", "desc": "Let a robot do a housework by following a specific instruction", "parameters": ["instruction"]}
+{"id": "auto_driving_to_destination", "desc": "Let a car drive to a specific destination", "parameters": ["destination"]}
+{"id": "deliver_package", "desc": "Deliver a specific package to a specific destination", "parameters": ["package", "destination"]}
+{"id": "order_food_delivery", "desc": "Order a specific food to be delivered to a specific location at a specific platform", "parameters": ["food", "location", "platform"]}
+{"id": "order_taxi", "desc": "Order a taxi to a specific location at a specific platform", "parameters": ["location", "platform"]}
+{"id": "play_music_by_title", "desc": "Play a specific music by a specific title", "parameters": ["title"]}
+{"id": "play_movie_by_title", "desc": "Play a specific movie by a specific title", "parameters": ["title"]}
+{"id": "take_note", "desc": "Take a note", "parameters": ["content"]}
+{"id": "borrow_book_online", "desc": "Borrow a specific book from a specific library", "parameters": ["book", "library"]}
+{"id": "recording_audio", "desc": "Record an audio", "parameters": ["content"]}
+{"id": "make_video_call", "desc": "Make a video call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "make_voice_call", "desc": "Make a voice call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "organize_meeting_online", "desc": "Organize a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "attend_meeting_online", "desc": "Attend a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "software_management", "desc": "Manage a specific software by a specific instruction", "parameters": ["software", "instruction"]}
+{"id": "print_document", "desc": "Print a specific document", "parameters": ["document"]}
+{"id": "set_alarm", "desc": "Set an alarm for a specific time", "parameters": ["time"]}
+
+# GOAL #:
+Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;
+
+# USER REQUEST #: I have an important meeting tomorrow morning and I don't want to be late. Can you help me set an alarm for 07:30?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 21:26:58,569 - [ gemini-3.1-flash-lite ] - INFO - # RESULT #:
+{
+  "task_steps": [
+    "Step 1: Call set_alarm tool with time: '07:30'"
+  ],
+  "task_nodes": [
+    {
+      "task": "set_alarm",
+      "arguments": [
+        {
+          "name": "time",
+          "value": "07:30"
+        }
+      ]
+    }
+  ],
+  "task_links": []
+}
+2026-07-09 21:26:58,570 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29186217
+2026-07-09 21:27:01,128 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19359900
+2026-07-09 21:27:01,167 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13819551
+2026-07-09 21:27:01,781 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22476582
+2026-07-09 21:27:02,661 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30621448
+2026-07-09 21:27:03,313 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32959403
+2026-07-09 21:27:03,935 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21124282
+2026-07-09 21:27:04,541 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32762258
+2026-07-09 21:27:06,092 - [ gemini-3.1-flash-lite ] - INFO - Success #id 52796300
+2026-07-09 21:27:06,215 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11070794
+2026-07-09 21:27:07,059 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32397764
+2026-07-09 21:27:07,380 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25507520
+2026-07-09 21:27:08,198 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33157096
+2026-07-09 21:27:09,092 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33097542
+2026-07-09 21:27:09,645 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31033904
+2026-07-09 21:27:09,968 - [ gemini-3.1-flash-lite ] - INFO - Success #id 96882095
+2026-07-09 21:27:11,433 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25178778
+2026-07-09 21:27:11,573 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10061660
+2026-07-09 21:27:11,776 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23193846
+2026-07-09 21:27:13,287 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26726010
+2026-07-09 21:27:14,109 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25158642
+2026-07-09 21:27:14,128 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20968182
+2026-07-09 21:27:15,112 - [ gemini-3.1-flash-lite ] - INFO - Success #id 80480634
+2026-07-09 21:27:16,285 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33117970
+2026-07-09 21:27:17,566 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21330955
+2026-07-09 21:27:17,692 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11231522
+2026-07-09 21:27:18,028 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29108446
+2026-07-09 21:27:19,081 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33170988
+2026-07-09 21:27:20,585 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16767907
+2026-07-09 21:27:21,029 - [ gemini-3.1-flash-lite ] - INFO - Success #id 58136014
+2026-07-09 21:27:21,813 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30604895
+2026-07-09 21:27:22,780 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28049074
+2026-07-09 21:27:23,146 - [ gemini-3.1-flash-lite ] - INFO - Success #id 81030667
+2026-07-09 21:27:24,297 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33387015
+2026-07-09 21:27:24,752 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11237996
+2026-07-09 21:27:25,455 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13112342
+2026-07-09 21:27:26,550 - [ gemini-3.1-flash-lite ] - INFO - Success #id 55781984
+2026-07-09 21:27:26,830 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25539428
+2026-07-09 21:27:27,754 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24716445
+2026-07-09 21:27:28,565 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27158475
+2026-07-09 21:27:28,869 - [ gemini-3.1-flash-lite ] - INFO - Success #id 68670098
+2026-07-09 21:27:29,880 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19595713
+2026-07-09 21:27:31,337 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15526402
+2026-07-09 21:27:31,445 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22429827
+2026-07-09 21:27:31,780 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22950292
+2026-07-09 21:27:32,287 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28663512
+2026-07-09 21:27:33,753 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32850193
+2026-07-09 21:27:34,107 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15567080
+2026-07-09 21:27:34,511 - [ gemini-3.1-flash-lite ] - INFO - Success #id 40829581
+2026-07-09 21:27:35,433 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18976866
+2026-07-09 21:27:36,548 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13293637
+2026-07-09 21:27:38,003 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27730464
+2026-07-09 21:27:38,432 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17881643
+2026-07-09 21:27:38,780 - [ gemini-3.1-flash-lite ] - INFO - Success #id 49413660
+2026-07-09 21:27:39,101 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31258510
+2026-07-09 21:27:41,618 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22186065
+2026-07-09 21:27:41,643 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17108070
+2026-07-09 21:27:41,804 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21449312
+2026-07-09 21:27:42,796 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20896755
+2026-07-09 21:27:43,893 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14768418
+2026-07-09 21:27:44,363 - [ gemini-3.1-flash-lite ] - INFO - Success #id 80602683
+2026-07-09 21:27:44,650 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25762468
+2026-07-09 21:27:45,726 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26416769
+2026-07-09 21:27:46,801 - [ gemini-3.1-flash-lite ] - INFO - Success #id 85711392
+2026-07-09 21:27:46,922 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28571815
+2026-07-09 21:27:47,274 - [ gemini-3.1-flash-lite ] - INFO - Success #id 84696141
+2026-07-09 21:27:48,424 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10832275
+2026-07-09 21:27:49,446 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24566914
+2026-07-09 21:27:49,667 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32448801
+2026-07-09 21:27:50,384 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14644157
+2026-07-09 21:27:51,518 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23720259
+2026-07-09 21:27:51,924 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32500554
+2026-07-09 21:27:51,960 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18792404
+2026-07-09 21:27:53,384 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15390970
+2026-07-09 21:27:53,968 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26018434
+2026-07-09 21:27:54,379 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23739687
+2026-07-09 21:27:54,885 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18249183
+2026-07-09 21:27:56,119 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17319238
+2026-07-09 21:27:56,227 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16108608
+2026-07-09 21:27:58,371 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31803119
+2026-07-09 21:27:58,411 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20966488
+2026-07-09 21:27:58,681 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21621031
+2026-07-09 21:27:59,794 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13371224
+2026-07-09 21:28:00,725 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14254501
+2026-07-09 21:28:01,312 - [ gemini-3.1-flash-lite ] - INFO - Success #id 80546198
+2026-07-09 21:28:01,404 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21044531
+2026-07-09 21:28:02,243 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11943462
+2026-07-09 21:28:03,070 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26709801
+2026-07-09 21:28:03,464 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25527683
+2026-07-09 21:28:04,187 - [ gemini-3.1-flash-lite ] - INFO - Success #id 99299170
+2026-07-09 21:28:04,424 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31937449
+2026-07-09 21:28:06,201 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16765465
+2026-07-09 21:28:06,455 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12236335
+2026-07-09 21:28:06,665 - [ gemini-3.1-flash-lite ] - INFO - Success #id 93082544
+2026-07-09 21:28:07,725 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19562798
+2026-07-09 21:28:08,920 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28745104
+2026-07-09 21:28:09,478 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24500817
+2026-07-09 21:28:10,322 - [ gemini-3.1-flash-lite ] - INFO - Success #id 59895399
+2026-07-09 21:28:11,683 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25273215
+2026-07-09 21:28:13,079 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17071602
+2026-07-09 21:28:13,425 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27756204
+2026-07-09 21:28:13,636 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29187835
+2026-07-09 21:28:15,164 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14443254
+2026-07-09 21:28:15,472 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15542538
+2026-07-09 21:28:15,785 - [ gemini-3.1-flash-lite ] - INFO - Success #id 95769629
+2026-07-09 21:28:16,429 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33846762
+2026-07-09 21:28:17,947 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16069483
+2026-07-09 21:28:18,289 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20969144
+2026-07-09 21:28:18,755 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29096737
+2026-07-09 21:28:20,303 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15008846
+2026-07-09 21:28:20,338 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20006636
+2026-07-09 21:28:20,422 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33589549
+2026-07-09 21:28:22,400 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10857849
+2026-07-09 21:28:22,782 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17413645
+2026-07-09 21:28:23,052 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20690157
+2026-07-09 21:28:25,705 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20157457
+2026-07-09 21:28:25,706 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31770318
+2026-07-09 21:28:27,515 - [ gemini-3.1-flash-lite ] - INFO - Success #id 37342459
+2026-07-09 21:28:27,746 - [ gemini-3.1-flash-lite ] - INFO - Success #id 40192617
+2026-07-09 21:28:28,689 - [ gemini-3.1-flash-lite ] - INFO - Success #id 94844374
+2026-07-09 21:28:29,010 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33530381
+2026-07-09 21:28:29,742 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20901121
+2026-07-09 21:28:30,796 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29104192
+2026-07-09 21:28:31,523 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29014857
+2026-07-09 21:28:31,959 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17186056
+2026-07-09 21:28:32,827 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12453287
+2026-07-09 21:28:33,501 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11948892
+2026-07-09 21:28:34,376 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28301589
+2026-07-09 21:28:35,235 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11462676
+2026-07-09 21:28:36,949 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20148955
+2026-07-09 21:28:37,169 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16715639
+2026-07-09 21:28:37,866 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29129148
+2026-07-09 21:28:38,103 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24248250
+2026-07-09 21:28:39,127 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21201380
+2026-07-09 21:28:40,750 - [ gemini-3.1-flash-lite ] - INFO - Success #id 61813598
+2026-07-09 21:28:41,359 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30415263
+2026-07-09 21:28:41,888 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10439775
+2026-07-09 21:28:42,101 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12118235
+2026-07-09 21:28:44,144 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12110318
+2026-07-09 21:28:44,242 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19329484
+2026-07-09 21:28:44,499 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19279407
+2026-07-09 21:28:45,234 - [ gemini-3.1-flash-lite ] - INFO - Success #id 49867500
+2026-07-09 21:28:46,590 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18083389
+2026-07-09 21:28:47,290 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17257567
+2026-07-09 21:28:47,829 - [ gemini-3.1-flash-lite ] - INFO - Success #id 75146402
+2026-07-09 21:28:48,929 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28217797
+2026-07-09 21:28:49,163 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25648533
+2026-07-09 21:28:50,392 - [ gemini-3.1-flash-lite ] - INFO - Success #id 95260038
+2026-07-09 21:28:50,735 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24942333
+2026-07-09 21:28:50,800 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29960282
+2026-07-09 21:28:52,229 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30429044
+2026-07-09 21:28:52,474 - [ gemini-3.1-flash-lite ] - INFO - Success #id 52489881
+2026-07-09 21:28:53,065 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27239291
+2026-07-09 21:28:53,641 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27776877
+2026-07-09 21:28:55,306 - [ gemini-3.1-flash-lite ] - INFO - Success #id 61550119
+2026-07-09 21:28:55,308 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16842090
+2026-07-09 21:28:55,915 - [ gemini-3.1-flash-lite ] - INFO - Success #id 37006440
+2026-07-09 21:28:56,240 - [ gemini-3.1-flash-lite ] - INFO - Success #id 62906538
+2026-07-09 21:28:57,473 - [ gemini-3.1-flash-lite ] - INFO - Success #id 99072780
+2026-07-09 21:28:57,555 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18501458
+2026-07-09 21:28:58,376 - [ gemini-3.1-flash-lite ] - INFO - Success #id 59783839
+2026-07-09 21:28:59,762 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29667353
+2026-07-09 21:29:00,938 - [ gemini-3.1-flash-lite ] - INFO - Success #id 35101491
+2026-07-09 21:29:01,915 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15264036
+2026-07-09 21:29:02,698 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23980717
+2026-07-09 21:29:03,042 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28159889
+2026-07-09 21:29:03,172 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23205179
+2026-07-09 21:29:04,551 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29736113
+2026-07-09 21:29:05,297 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11403354
+2026-07-09 21:29:05,649 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24378128
+2026-07-09 21:29:06,405 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32465199
+2026-07-09 21:29:07,146 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23235429
+2026-07-09 21:29:08,214 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19996892
+2026-07-09 21:29:08,637 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16628271
+2026-07-09 21:29:08,933 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27441986
+2026-07-09 21:29:10,165 - [ gemini-3.1-flash-lite ] - INFO - Success #id 52385018
+2026-07-09 21:29:11,195 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10470334
+2026-07-09 21:29:11,556 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19611066
+2026-07-09 21:29:12,452 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28592419
+2026-07-09 21:29:13,799 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22550699
+2026-07-09 21:29:14,253 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27730148
+2026-07-09 21:29:14,254 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21147432
+2026-07-09 21:29:14,917 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25181991
+2026-07-09 21:29:16,298 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19628125
+2026-07-09 21:29:17,031 - [ gemini-3.1-flash-lite ] - INFO - Success #id 93639631
+2026-07-09 21:29:17,747 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32365343
+2026-07-09 21:29:17,871 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15357614
+2026-07-09 21:29:18,304 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22376637
+2026-07-09 21:29:19,906 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21239207
+2026-07-09 21:29:19,922 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30894994
+2026-07-09 21:29:20,434 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29795276
+2026-07-09 21:29:20,478 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28442425
+2026-07-09 21:29:22,544 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24739975
+2026-07-09 21:29:22,585 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19177096
+2026-07-09 21:29:22,844 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14965615
+2026-07-09 21:29:23,170 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25718361
+2026-07-09 21:29:24,797 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21353640
+2026-07-09 21:29:26,313 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20895739
+2026-07-09 21:29:26,321 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22884249
+2026-07-09 21:29:27,054 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28829532
+2026-07-09 21:29:27,472 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11719836
+2026-07-09 21:29:29,338 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25723001
+2026-07-09 21:29:29,360 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29911371
+2026-07-09 21:29:29,715 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33975397
+2026-07-09 21:29:29,719 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17418547
+2026-07-09 21:29:31,658 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25519479
+2026-07-09 21:29:31,766 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18163146
+2026-07-09 21:29:31,966 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28599340
+2026-07-09 21:29:32,286 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22059331
+2026-07-09 21:29:33,713 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16070773
+2026-07-09 21:29:34,014 - [ gemini-3.1-flash-lite ] - INFO - Success #id 47894934
+2026-07-09 21:29:34,062 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22424325
+2026-07-09 21:29:34,703 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10723602
+2026-07-09 21:29:35,921 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27102387
+2026-07-09 21:29:36,222 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12230095
+2026-07-09 21:29:37,081 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33264101
+2026-07-09 21:29:37,292 - [ gemini-3.1-flash-lite ] - INFO - Success #id 51155708
+2026-07-09 21:29:38,224 - [ gemini-3.1-flash-lite ] - INFO - Success #id 80020033
+2026-07-09 21:29:39,543 - [ gemini-3.1-flash-lite ] - INFO - Success #id 89926158
+2026-07-09 21:29:40,260 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25005170
+2026-07-09 21:29:40,582 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12447001
+2026-07-09 21:29:41,186 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15809194
+2026-07-09 21:29:42,820 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24443716
+2026-07-09 21:29:43,354 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11279321
+2026-07-09 21:29:44,622 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11043756
+2026-07-09 21:29:45,894 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21965571
+2026-07-09 21:29:46,136 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25283317
+2026-07-09 21:29:46,901 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33919691
+2026-07-09 21:29:48,565 - [ gemini-3.1-flash-lite ] - INFO - Success #id 84282405
+2026-07-09 21:29:48,760 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15750481
+2026-07-09 21:29:49,790 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14960874
+2026-07-09 21:29:50,799 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18401024
+2026-07-09 21:29:51,897 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30573257
+2026-07-09 21:29:52,369 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33112549
+2026-07-09 21:29:52,689 - [ gemini-3.1-flash-lite ] - INFO - Success #id 45258211
+2026-07-09 21:29:55,314 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27463706
+2026-07-09 21:29:55,620 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14815625
+2026-07-09 21:29:55,626 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26053207
+2026-07-09 21:29:58,573 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33318821
+2026-07-09 21:29:59,105 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12868276
+2026-07-09 21:29:59,185 - [ gemini-3.1-flash-lite ] - INFO - Success #id 45138128
+2026-07-09 21:30:02,482 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13552222
+2026-07-09 21:30:02,483 - [ gemini-3.1-flash-lite ] - INFO - Success #id 78514929
+2026-07-09 21:30:02,786 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16212126
+2026-07-09 21:30:05,665 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22496976
+2026-07-09 21:30:05,892 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27452931
+2026-07-09 21:30:06,082 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14879344
+2026-07-09 21:30:06,375 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22730987
+2026-07-09 21:30:09,367 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22316136
+2026-07-09 21:30:09,614 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13530193
+2026-07-09 21:30:09,788 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15774395
+2026-07-09 21:30:10,432 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13228699
+2026-07-09 21:30:13,233 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31841754
+2026-07-09 21:30:13,546 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32867636
+2026-07-09 21:30:13,551 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29607896
+2026-07-09 21:30:13,646 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19383232
+2026-07-09 21:30:17,405 - [ gemini-3.1-flash-lite ] - INFO - Success #id 89568852
+2026-07-09 21:30:17,508 - [ gemini-3.1-flash-lite ] - INFO - Success #id 67161855
+2026-07-09 21:30:17,623 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20364215
+2026-07-09 21:30:18,865 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10449586
+2026-07-09 21:30:20,241 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13322370
+2026-07-09 21:30:21,021 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25102556
+2026-07-09 21:30:21,496 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18908629
+2026-07-09 21:30:22,068 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22765721
+2026-07-09 21:30:24,209 - [ gemini-3.1-flash-lite ] - INFO - Success #id 90069253
+2026-07-09 21:30:24,396 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25872656
+2026-07-09 21:30:25,016 - [ gemini-3.1-flash-lite ] - INFO - Success #id 37483131
+2026-07-09 21:30:25,018 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32415147
+2026-07-09 21:30:27,471 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31989693
+2026-07-09 21:30:27,986 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21135501
+2026-07-09 21:30:28,318 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20943847
+2026-07-09 21:30:29,300 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15940373
+2026-07-09 21:30:30,328 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33479148
+2026-07-09 21:30:31,460 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11030640
+2026-07-09 21:30:34,942 - [ gemini-3.1-flash-lite ] - INFO - Success #id 50898433
+2026-07-09 21:30:35,299 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22700306
+2026-07-09 21:30:35,647 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13138722
+2026-07-09 21:30:38,360 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31083595
+2026-07-09 21:30:38,930 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24588063
+2026-07-09 21:30:39,140 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28584622
+2026-07-09 21:30:42,381 - [ gemini-3.1-flash-lite ] - INFO - Success #id 71812115
+2026-07-09 21:30:42,929 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31358965
+2026-07-09 21:30:43,123 - [ gemini-3.1-flash-lite ] - INFO - Success #id 65464000
+2026-07-09 21:30:43,956 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30058530
+2026-07-09 21:30:45,592 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14293831
+2026-07-09 21:30:46,171 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21037478
+2026-07-09 21:30:46,822 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26810385
+2026-07-09 21:30:48,301 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32962806
+2026-07-09 21:30:48,988 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27054257
+2026-07-09 21:30:50,508 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21438359
+2026-07-09 21:30:51,634 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20593074
+2026-07-09 21:30:52,821 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17250175
+2026-07-09 21:30:52,941 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22109710
+2026-07-09 21:30:53,589 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14485792
+2026-07-09 21:30:55,012 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32541972
+2026-07-09 21:30:56,245 - [ gemini-3.1-flash-lite ] - INFO - Success #id 92840089
+2026-07-09 21:30:56,451 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28584569
+2026-07-09 21:30:57,555 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17259422
+2026-07-09 21:30:59,324 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20852737
+2026-07-09 21:30:59,327 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24723563
+2026-07-09 21:31:00,884 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18505027
+2026-07-09 21:31:02,149 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18649647
+2026-07-09 21:31:02,318 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10668996
+2026-07-09 21:31:03,930 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10123444
+2026-07-09 21:31:04,200 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22061785
+2026-07-09 21:31:05,058 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32548464
+2026-07-09 21:31:05,167 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16279427
+2026-07-09 21:31:06,207 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30529057
+2026-07-09 21:31:07,711 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29518420
+2026-07-09 21:31:08,224 - [ gemini-3.1-flash-lite ] - INFO - Success #id 49492180
+2026-07-09 21:31:08,946 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11092844
+2026-07-09 21:31:09,192 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25985287
+2026-07-09 21:31:11,475 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23223147
+2026-07-09 21:31:11,739 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20072101
+2026-07-09 21:31:11,908 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21790625
+2026-07-09 21:31:12,609 - [ gemini-3.1-flash-lite ] - INFO - Success #id 85835626
+2026-07-09 21:31:13,446 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15884759
+2026-07-09 21:31:14,574 - [ gemini-3.1-flash-lite ] - INFO - Success #id 80368022
+2026-07-09 21:31:14,878 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18169589
+2026-07-09 21:31:15,214 - [ gemini-3.1-flash-lite ] - INFO - Success #id 69864984
+2026-07-09 21:31:16,619 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18960093
+2026-07-09 21:31:17,521 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11039675
+2026-07-09 21:31:17,602 - [ gemini-3.1-flash-lite ] - INFO - Success #id 69835722
+2026-07-09 21:31:18,037 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26633860
+2026-07-09 21:31:19,437 - [ gemini-3.1-flash-lite ] - INFO - Success #id 63999641
+2026-07-09 21:31:20,613 - [ gemini-3.1-flash-lite ] - INFO - Success #id 90198806
+2026-07-09 21:31:20,784 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16501728
+2026-07-09 21:31:22,502 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19088738
+2026-07-09 21:31:23,302 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30523125
+2026-07-09 21:31:24,607 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19953474
+2026-07-09 21:31:24,812 - [ gemini-3.1-flash-lite ] - INFO - Success #id 96593772
+2026-07-09 21:31:24,916 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11194048
+2026-07-09 21:31:25,889 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30280569
+2026-07-09 21:31:26,737 - [ gemini-3.1-flash-lite ] - INFO - Success #id 60831017
+2026-07-09 21:31:27,474 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23460833
+2026-07-09 21:31:27,843 - [ gemini-3.1-flash-lite ] - INFO - Success #id 57085117
+2026-07-09 21:31:29,422 - [ gemini-3.1-flash-lite ] - INFO - Success #id 82001537
+2026-07-09 21:31:29,711 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27656803
+2026-07-09 21:31:29,860 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16972439
+2026-07-09 21:31:31,391 - [ gemini-3.1-flash-lite ] - INFO - Success #id 80764000
+2026-07-09 21:31:31,846 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12807715
+2026-07-09 21:31:33,022 - [ gemini-3.1-flash-lite ] - INFO - Success #id 56383695
+2026-07-09 21:31:34,432 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22531284
+2026-07-09 21:31:34,609 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15511580
+2026-07-09 21:31:35,565 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14440030
+2026-07-09 21:31:35,568 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24429832
+2026-07-09 21:31:37,037 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30622081
+2026-07-09 21:31:37,138 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16551168
+2026-07-09 21:31:38,738 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21326446
+2026-07-09 21:31:38,838 - [ gemini-3.1-flash-lite ] - INFO - Success #id 89501937
+2026-07-09 21:31:39,047 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23718276
+2026-07-09 21:31:39,359 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29404651
+2026-07-09 21:31:40,779 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11613817
+2026-07-09 21:31:41,280 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12825282
+2026-07-09 21:31:41,472 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33446906
+2026-07-09 21:31:43,039 - [ gemini-3.1-flash-lite ] - INFO - Success #id 71306697
+2026-07-09 21:31:43,261 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20316691
+2026-07-09 21:31:43,778 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20449210
+2026-07-09 21:31:44,418 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30962807
+2026-07-09 21:31:44,991 - [ gemini-3.1-flash-lite ] - INFO - Success #id 92645949
+2026-07-09 21:31:46,224 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14532621
+2026-07-09 21:31:46,828 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25019450
+2026-07-09 21:31:47,852 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31626264
+2026-07-09 21:31:47,853 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12610783
+2026-07-09 21:31:48,517 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29533374
+2026-07-09 21:31:49,388 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30413053
+2026-07-09 21:31:50,824 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21983098
+2026-07-09 21:31:50,870 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12148984
+2026-07-09 21:31:51,154 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24408278
+2026-07-09 21:31:52,004 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24991762
+2026-07-09 21:31:53,689 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24808622
+2026-07-09 21:31:54,136 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14299670
+2026-07-09 21:31:54,714 - [ gemini-3.1-flash-lite ] - INFO - Success #id 41172676
+2026-07-09 21:31:54,941 - [ gemini-3.1-flash-lite ] - INFO - Success #id 62441232
+2026-07-09 21:31:56,863 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13274608
+2026-07-09 21:31:57,029 - [ gemini-3.1-flash-lite ] - INFO - Success #id 34291377
+2026-07-09 21:31:57,277 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27333717
+2026-07-09 21:31:57,282 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12848687
+2026-07-09 21:31:59,014 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30846256
+2026-07-09 21:31:59,441 - [ gemini-3.1-flash-lite ] - INFO - Success #id 96088441
+2026-07-09 21:31:59,561 - [ gemini-3.1-flash-lite ] - INFO - Success #id 49499370
+2026-07-09 21:32:00,290 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16061572
+2026-07-09 21:32:01,720 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33780705
+2026-07-09 21:32:01,954 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11924717
+2026-07-09 21:32:02,806 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13533558
+2026-07-09 21:32:03,368 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13441679
+2026-07-09 21:32:04,152 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21595444
+2026-07-09 21:32:04,229 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17554838
+2026-07-09 21:32:06,083 - [ gemini-3.1-flash-lite ] - INFO - Success #id 94628693
+2026-07-09 21:32:06,084 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33138948
+2026-07-09 21:32:06,798 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25119755
+2026-07-09 21:32:07,074 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27795790
+2026-07-09 21:32:08,127 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11714517
+2026-07-09 21:32:08,754 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29548568
+2026-07-09 21:32:09,194 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20533047
+2026-07-09 21:32:10,073 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23339618
+2026-07-09 21:32:11,518 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11393129
+2026-07-09 21:32:12,125 - [ gemini-3.1-flash-lite ] - INFO - Success #id 50284050
+2026-07-09 21:32:12,177 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16296421
+2026-07-09 21:32:14,163 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21955858
+2026-07-09 21:32:14,642 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15075864
+2026-07-09 21:32:15,753 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11397110
+2026-07-09 21:32:16,219 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11265827
+2026-07-09 21:32:17,666 - [ gemini-3.1-flash-lite ] - INFO - Success #id 52629086
+2026-07-09 21:32:18,517 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19104289
+2026-07-09 21:32:18,756 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32774643
+2026-07-09 21:32:20,907 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15747739
+2026-07-09 21:32:21,957 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30113486
+2026-07-09 21:32:22,289 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13142779
+2026-07-09 21:32:24,005 - [ gemini-3.1-flash-lite ] - INFO - Success #id 49516546
+2026-07-09 21:32:25,220 - [ gemini-3.1-flash-lite ] - INFO - Success #id 84011914
+2026-07-09 21:32:25,563 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16936903
+2026-07-09 21:32:26,426 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25919792
+2026-07-09 21:32:27,993 - [ gemini-3.1-flash-lite ] - INFO - Success #id 70253162
+2026-07-09 21:32:29,222 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21970313
+2026-07-09 21:32:29,657 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15000632
+2026-07-09 21:32:29,834 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18186013
+2026-07-09 21:32:31,166 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27471798
+2026-07-09 21:32:32,962 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15592937
+2026-07-09 21:32:33,211 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10992118
+2026-07-09 21:32:33,648 - [ gemini-3.1-flash-lite ] - INFO - Success #id 57854255
+2026-07-09 21:32:34,354 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17165062
+2026-07-09 21:32:37,613 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33455161
+2026-07-09 21:32:37,911 - [ gemini-3.1-flash-lite ] - INFO - Success #id 97429636
+2026-07-09 21:32:38,278 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18687148
+2026-07-09 21:32:38,468 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21969070
+2026-07-09 21:32:41,510 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21604833
+2026-07-09 21:32:41,520 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32844876
+2026-07-09 21:32:42,352 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31997654
+2026-07-09 21:32:42,803 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30907497
+2026-07-09 21:32:44,819 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20459370
+2026-07-09 21:32:45,298 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14534648
+2026-07-09 21:32:45,931 - [ gemini-3.1-flash-lite ] - INFO - Success #id 94436290
+2026-07-09 21:32:46,350 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16348546
+2026-07-09 21:32:48,036 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32839408
+2026-07-09 21:32:49,118 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20296014
+2026-07-09 21:32:50,009 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14574306
+2026-07-09 21:32:50,971 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32697936
+2026-07-09 21:32:52,704 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32095182
+2026-07-09 21:32:52,712 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14203474
+2026-07-09 21:32:53,136 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29095326
+2026-07-09 21:32:54,719 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22505171
+2026-07-09 21:32:55,818 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13298148
+2026-07-09 21:32:57,506 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32877577
+2026-07-09 21:32:57,828 - [ gemini-3.1-flash-lite ] - INFO - Success #id 99746356
+2026-07-09 21:32:58,716 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26034492
+2026-07-09 21:32:58,768 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10193749
+2026-07-09 21:33:00,853 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32173403
+2026-07-09 21:33:01,504 - [ gemini-3.1-flash-lite ] - INFO - Success #id 59191485
+2026-07-09 21:33:02,933 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15209044
+2026-07-09 21:33:03,461 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16479247
+2026-07-09 21:33:04,559 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20421462
+2026-07-09 21:33:05,413 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18889434
+2026-07-09 21:33:07,176 - [ gemini-3.1-flash-lite ] - INFO - Success #id 78696894
+2026-07-09 21:33:07,386 - [ gemini-3.1-flash-lite ] - INFO - Success #id 71988921
+2026-07-09 21:33:07,930 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31122290
+2026-07-09 21:33:09,469 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33867048
+2026-07-09 21:33:10,174 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11501998
+2026-07-09 21:33:10,696 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18523190
+2026-07-09 21:33:11,821 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29807318
+2026-07-09 21:33:12,157 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33711070
+2026-07-09 21:33:12,640 - [ gemini-3.1-flash-lite ] - INFO - Success #id 92023696
+2026-07-09 21:33:13,925 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15216393
+2026-07-09 21:33:14,072 - [ gemini-3.1-flash-lite ] - INFO - Success #id 59838833
+2026-07-09 21:33:16,020 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33782593
+2026-07-09 21:33:16,408 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16272753
+2026-07-09 21:33:16,736 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12258358
+2026-07-09 21:33:16,812 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28378400
+2026-07-09 21:33:19,810 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16908970
+2026-07-09 21:33:19,956 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13344592
+2026-07-09 21:33:20,014 - [ gemini-3.1-flash-lite ] - INFO - Success #id 35261140
+2026-07-09 21:33:20,676 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28868528
+2026-07-09 21:33:23,187 - [ gemini-3.1-flash-lite ] - INFO - Success #id 59519281
+2026-07-09 21:33:23,579 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14470875
+2026-07-09 21:33:24,574 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32436687
+2026-07-09 21:33:25,234 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33186293
+2026-07-09 21:33:26,589 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31505214
+2026-07-09 21:33:26,766 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12801450
+2026-07-09 21:33:27,947 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10046237
+2026-07-09 21:33:29,127 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10616371
+2026-07-09 21:33:29,997 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22507212
+2026-07-09 21:33:30,998 - [ gemini-3.1-flash-lite ] - INFO - Success #id 40824958
+2026-07-09 21:33:32,257 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18802420
+2026-07-09 21:33:35,578 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30005172
+2026-07-09 21:33:35,929 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27017603
+2026-07-09 21:33:36,193 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28204850
+2026-07-09 21:33:36,350 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17160809
+2026-07-09 21:33:39,879 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25446687
+2026-07-09 21:33:40,511 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21357313
+2026-07-09 21:33:40,599 - [ gemini-3.1-flash-lite ] - INFO - Success #id 36137048
+2026-07-09 21:33:40,784 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29430299
+2026-07-09 21:33:44,179 - [ gemini-3.1-flash-lite ] - INFO - Success #id 99715560
+2026-07-09 21:33:45,690 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11457985
+2026-07-09 21:33:45,826 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23690726
+2026-07-09 21:33:46,786 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14075020
+2026-07-09 21:33:49,700 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22206964
+2026-07-09 21:33:49,914 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17888990
+2026-07-09 21:33:51,143 - [ gemini-3.1-flash-lite ] - INFO - Success #id 66251623
+2026-07-09 21:33:51,853 - [ gemini-3.1-flash-lite ] - INFO - Success #id 47857468
+2026-07-09 21:33:54,353 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32382233
+2026-07-09 21:33:54,360 - [ gemini-3.1-flash-lite ] - INFO - Success #id 50832683
+2026-07-09 21:33:56,334 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27015971
+2026-07-09 21:33:58,263 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12212420
+2026-07-09 21:33:59,951 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29663142
+2026-07-09 21:34:00,958 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21966519
+2026-07-09 21:34:02,173 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32684318
+2026-07-09 21:34:03,806 - [ gemini-3.1-flash-lite ] - INFO - Success #id 88652065
+2026-07-09 21:34:04,698 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17253945
+2026-07-09 21:34:05,663 - [ gemini-3.1-flash-lite ] - INFO - Success #id 34007928
+2026-07-09 21:34:07,929 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27209181
+2026-07-09 21:34:08,615 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17855657
+2026-07-09 21:34:09,074 - [ gemini-3.1-flash-lite ] - INFO - Success #id 97096429
+2026-07-09 21:34:11,623 - [ gemini-3.1-flash-lite ] - INFO - Success #id 92223394
+2026-07-09 21:34:11,943 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24468541
+2026-07-09 21:34:13,023 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26559773
+2026-07-09 21:34:13,481 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13376272
+2026-07-09 21:34:15,411 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12767677
+2026-07-09 21:34:15,720 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28742364
+2026-07-09 21:34:16,526 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14798933
+2026-07-09 21:34:17,409 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15986102
+2026-07-09 21:34:17,919 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20820098
+2026-07-09 21:34:18,116 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29758172
+2026-07-09 21:34:19,411 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14383208
+2026-07-09 21:34:19,712 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18241731
+2026-07-09 21:34:20,213 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17140604
+2026-07-09 21:34:20,845 - [ gemini-3.1-flash-lite ] - INFO - Success #id 42520146
+2026-07-09 21:34:22,504 - [ gemini-3.1-flash-lite ] - INFO - Success #id 85131168
+2026-07-09 21:34:22,952 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19694851
+2026-07-09 21:34:23,005 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20161024
+2026-07-09 21:34:23,807 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10234598
+2026-07-09 21:34:25,141 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19344092
+2026-07-09 21:34:25,142 - [ gemini-3.1-flash-lite ] - INFO - Success #id 35710823
+2026-07-09 21:34:25,274 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30340086
+2026-07-09 21:34:26,885 - [ gemini-3.1-flash-lite ] - INFO - Success #id 32780398
+2026-07-09 21:34:28,110 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21234124
+2026-07-09 21:34:28,110 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33700715
+2026-07-09 21:34:28,314 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15517790
+2026-07-09 21:34:30,362 - [ gemini-3.1-flash-lite ] - INFO - Success #id 94876926
+2026-07-09 21:34:30,450 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13049897
+2026-07-09 21:34:30,984 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22083131
+2026-07-09 21:34:31,488 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28298440
+2026-07-09 21:34:32,811 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31429152
+2026-07-09 21:34:32,865 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16723275
+2026-07-09 21:34:33,313 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11589349
+2026-07-09 21:34:34,355 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33643070
+2026-07-09 21:34:35,790 - [ gemini-3.1-flash-lite ] - INFO - Success #id 81862745
+2026-07-09 21:34:35,971 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31361237
+2026-07-09 21:34:37,099 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16018021
+2026-07-09 21:34:37,735 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11121876
+2026-07-09 21:34:38,782 - [ gemini-3.1-flash-lite ] - INFO - Success #id 83616175
+2026-07-09 21:34:39,336 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12820350
+2026-07-09 21:34:40,474 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28683876
+2026-07-09 21:34:40,779 - [ gemini-3.1-flash-lite ] - INFO - Success #id 77906071
+2026-07-09 21:34:41,831 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25127075
+2026-07-09 21:34:42,319 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13888841
+2026-07-09 21:34:42,568 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10164138
+2026-07-09 21:34:43,777 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24000997
+2026-07-09 21:34:44,453 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21309301
+2026-07-09 21:34:44,776 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29499124
+2026-07-09 21:34:45,006 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19461336
+2026-07-09 21:34:46,030 - [ gemini-3.1-flash-lite ] - INFO - Success #id 77326771
+2026-07-09 21:34:46,579 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30703133
+2026-07-09 21:34:46,895 - [ gemini-3.1-flash-lite ] - INFO - Success #id 36443715
+2026-07-09 21:34:47,907 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15128231
+2026-07-09 21:34:49,036 - [ gemini-3.1-flash-lite ] - INFO - Success #id 92309086
+2026-07-09 21:34:49,383 - [ gemini-3.1-flash-lite ] - INFO - Success #id 73951043
+2026-07-09 21:34:49,986 - [ gemini-3.1-flash-lite ] - INFO - Success #id 92449798
+2026-07-09 21:34:51,365 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13312030
+2026-07-09 21:34:52,073 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20556972
+2026-07-09 21:34:52,142 - [ gemini-3.1-flash-lite ] - INFO - Success #id 25832374
+2026-07-09 21:34:54,521 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17423018
+2026-07-09 21:34:54,606 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13570389
+2026-07-09 21:34:54,664 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11935957
+2026-07-09 21:34:55,532 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24561458
+2026-07-09 21:34:56,966 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30481355
+2026-07-09 21:34:56,968 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26916535
+2026-07-09 21:34:58,205 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17963441
+2026-07-09 21:34:58,347 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28653034
+2026-07-09 21:34:59,952 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22112968
+2026-07-09 21:35:00,582 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30935728
+2026-07-09 21:35:00,720 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19733897
+2026-07-09 21:35:02,338 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17426998
+2026-07-09 21:35:02,892 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20321998
+2026-07-09 21:35:04,437 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24245824
+2026-07-09 21:35:05,283 - [ gemini-3.1-flash-lite ] - INFO - Success #id 22032689
+2026-07-09 21:35:06,832 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18490219
+2026-07-09 21:35:07,562 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11173362
+2026-07-09 21:35:08,832 - [ gemini-3.1-flash-lite ] - INFO - Success #id 52180879
+2026-07-09 21:35:09,115 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10234542
+2026-07-09 21:35:09,737 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29763702
+2026-07-09 21:35:09,815 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14569977
+2026-07-09 21:35:12,091 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28259409
+2026-07-09 21:35:12,314 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20096033
+2026-07-09 21:35:12,691 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14362396
+2026-07-09 21:35:13,860 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15570432
+2026-07-09 21:35:14,587 - [ gemini-3.1-flash-lite ] - INFO - Success #id 17706504
+2026-07-09 21:35:15,019 - [ gemini-3.1-flash-lite ] - INFO - Success #id 28712032
+2026-07-09 21:35:16,488 - [ gemini-3.1-flash-lite ] - INFO - Success #id 31339515
+2026-07-09 21:35:16,802 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19747040
+2026-07-09 21:35:16,954 - [ gemini-3.1-flash-lite ] - INFO - Success #id 33939316
+2026-07-09 21:35:18,684 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12157866
+2026-07-09 21:35:21,189 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27688661
+2026-07-09 21:35:21,818 - [ gemini-3.1-flash-lite ] - INFO - Success #id 12070402
+2026-07-09 21:35:24,593 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21322416
+2026-07-09 21:35:25,778 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23360423
+2026-07-09 21:35:26,091 - [ gemini-3.1-flash-lite ] - INFO - Success #id 15397071
+2026-07-09 21:35:27,903 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10198862
+2026-07-09 21:35:31,084 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10616021
+2026-07-09 21:35:31,312 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10620456
+2026-07-09 21:35:31,608 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30440259
+2026-07-09 21:35:31,785 - [ gemini-3.1-flash-lite ] - INFO - Success #id 37922646
+2026-07-09 21:35:33,268 - [ gemini-3.1-flash-lite ] - INFO - Success #id 26328637
+2026-07-09 21:35:34,643 - [ gemini-3.1-flash-lite ] - INFO - Success #id 27581763
+2026-07-09 21:35:34,902 - [ gemini-3.1-flash-lite ] - INFO - Success #id 14439564
+2026-07-09 21:35:35,328 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18093183
+2026-07-09 21:35:35,763 - [ gemini-3.1-flash-lite ] - INFO - Success #id 21037669
+2026-07-09 21:35:37,743 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18576067
+2026-07-09 21:35:37,773 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13153974
+2026-07-09 21:35:39,355 - [ gemini-3.1-flash-lite ] - INFO - Success #id 29116376
+2026-07-09 21:35:40,817 - [ gemini-3.1-flash-lite ] - INFO - Success #id 34233977
+2026-07-09 21:35:41,155 - [ gemini-3.1-flash-lite ] - INFO - Success #id 30274553
+2026-07-09 21:35:41,247 - [ gemini-3.1-flash-lite ] - INFO - Success #id 52287923
+2026-07-09 21:35:42,057 - [ gemini-3.1-flash-lite ] - INFO - Success #id 11624016
+2026-07-09 21:35:43,374 - [ gemini-3.1-flash-lite ] - INFO - Success #id 20427944
+2026-07-09 21:35:43,746 - [ gemini-3.1-flash-lite ] - INFO - Success #id 18070782
+2026-07-09 21:35:44,200 - [ gemini-3.1-flash-lite ] - INFO - Success #id 13916672
+2026-07-09 21:35:45,628 - [ gemini-3.1-flash-lite ] - INFO - Success #id 19230316
+2026-07-09 21:35:46,348 - [ gemini-3.1-flash-lite ] - INFO - Success #id 24261327
+2026-07-09 21:35:46,959 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23411945
+2026-07-09 21:35:46,969 - [ gemini-3.1-flash-lite ] - INFO - Success #id 10600808
+2026-07-09 21:35:48,553 - [ gemini-3.1-flash-lite ] - INFO - Success #id 16985283
+2026-07-09 21:35:50,646 - [ gemini-3.1-flash-lite ] - INFO - Success #id 23210049
+2026-07-09 21:35:50,648 - [ gemini-3.1-flash-lite ] - INFO - Completed: 632
+2026-07-09 21:35:50,649 - [ gemini-3.1-flash-lite ] - INFO - Failed: 0

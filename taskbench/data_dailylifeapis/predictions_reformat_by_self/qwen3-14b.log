@@ -1,0 +1,1398 @@
+2026-07-09 21:12:44,038 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 4, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 21:12:44,039 - [ qwen3-14b ] - INFO - Detected 0 has been inferenced,
+2026-07-09 21:12:44,040 - [ qwen3-14b ] - INFO - Start inferencing 864 tasks...
+2026-07-09 21:12:46,865 - [ qwen3-14b ] - INFO - # TASK LIST #:
+{"id": "get_weather", "desc": "Get the weather for a specific city and a specific day", "parameters": ["location", "date"]}
+{"id": "get_news_for_topic", "desc": "Get the news for a specific topic", "parameters": ["topic"]}
+{"id": "stock_operation", "desc": "Do a specific operation on a specific stock", "parameters": ["stock", "operation"]}
+{"id": "book_flight", "desc": "Book a flight for a specific date, from a specific location to a specific destination", "parameters": ["date", "from", "to"]}
+{"id": "book_hotel", "desc": "Book a specific hotel for a specific date", "parameters": ["date", "name"]}
+{"id": "book_restaurant", "desc": "Book a specific restaurant for a specific date", "parameters": ["date", "name"]}
+{"id": "book_car", "desc": "Book a car for a specific date, in a specific location", "parameters": ["date", "location"]}
+{"id": "online_shopping", "desc": "Buy a product from a specific website", "parameters": ["website", "product"]}
+{"id": "send_email", "desc": "Send an email to a specific email address", "parameters": ["email_address", "content"]}
+{"id": "send_sms", "desc": "Send an sms to a specific phone number", "parameters": ["phone_number", "content"]}
+{"id": "share_by_social_network", "desc": "Share a specific content by a specific social network", "parameters": ["content", "social_network"]}
+{"id": "search_by_engine", "desc": "Search a specific query by a specific search engine", "parameters": ["query", "engine"]}
+{"id": "apply_for_job", "desc": "Apply for a specific job", "parameters": ["job"]}
+{"id": "see_doctor_online", "desc": "See a specific doctor for a specific disease", "parameters": ["disease", "doctor"]}
+{"id": "consult_lawyer_online", "desc": "Consult a specific lawyer for a specific legal issue", "parameters": ["issue", "lawyer"]}
+{"id": "enroll_in_course", "desc": "Enroll in a specific course at a specific university", "parameters": ["course", "university"]}
+{"id": "buy_insurance", "desc": "Buy a specific insurance from a specific insurance company", "parameters": ["insurance", "company"]}
+{"id": "online_banking", "desc": "Do a specific banking operation online at a specific bank", "parameters": ["instruction", "bank"]}
+{"id": "daily_bill_payment", "desc": "Pay a specific bill", "parameters": ["bill"]}
+{"id": "sell_item_online", "desc": "Sell a specific item at a specific online store", "parameters": ["item", "store"]}
+{"id": "do_tax_return", "desc": "Do the tax return for a specific year", "parameters": ["year"]}
+{"id": "apply_for_passport", "desc": "Apply for a passport", "parameters": ["country"]}
+{"id": "pay_for_credit_card", "desc": "Pay for a specific credit card", "parameters": ["credit_card"]}
+{"id": "auto_housework_by_robot", "desc": "Let a robot do a housework by following a specific instruction", "parameters": ["instruction"]}
+{"id": "auto_driving_to_destination", "desc": "Let a car drive to a specific destination", "parameters": ["destination"]}
+{"id": "deliver_package", "desc": "Deliver a specific package to a specific destination", "parameters": ["package", "destination"]}
+{"id": "order_food_delivery", "desc": "Order a specific food to be delivered to a specific location at a specific platform", "parameters": ["food", "location", "platform"]}
+{"id": "order_taxi", "desc": "Order a taxi to a specific location at a specific platform", "parameters": ["location", "platform"]}
+{"id": "play_music_by_title", "desc": "Play a specific music by a specific title", "parameters": ["title"]}
+{"id": "play_movie_by_title", "desc": "Play a specific movie by a specific title", "parameters": ["title"]}
+{"id": "take_note", "desc": "Take a note", "parameters": ["content"]}
+{"id": "borrow_book_online", "desc": "Borrow a specific book from a specific library", "parameters": ["book", "library"]}
+{"id": "recording_audio", "desc": "Record an audio", "parameters": ["content"]}
+{"id": "make_video_call", "desc": "Make a video call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "make_voice_call", "desc": "Make a voice call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "organize_meeting_online", "desc": "Organize a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "attend_meeting_online", "desc": "Attend a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "software_management", "desc": "Manage a specific software by a specific instruction", "parameters": ["software", "instruction"]}
+{"id": "print_document", "desc": "Print a specific document", "parameters": ["document"]}
+{"id": "set_alarm", "desc": "Set an alarm for a specific time", "parameters": ["time"]}
+
+# GOAL #:
+Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;
+
+# USER REQUEST #: I've got a business trip planned for New York City on August 1, 2023. Could you help me arrange a car rental for that day, please?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 21:12:46,866 - [ qwen3-14b ] - INFO - {
+  "task_steps": [
+    "Step 1: Call book_car tool with date: 'August 1, 2023' and location: 'New York City'"
+  ],
+  "task_nodes": [
+    {
+      "task": "book_car",
+      "arguments": [
+        { "name": "date", "value": "August 1, 2023" },
+        { "name": "location", "value": "New York City" }
+      ]
+    }
+  ],
+  "task_links": []
+}
+2026-07-09 21:12:46,867 - [ qwen3-14b ] - INFO - Success #id 30350054
+2026-07-09 21:12:49,665 - [ qwen3-14b ] - INFO - Success #id 13511816
+2026-07-09 21:12:50,608 - [ qwen3-14b ] - INFO - Success #id 17286260
+2026-07-09 21:12:50,996 - [ qwen3-14b ] - INFO - Success #id 22478668
+2026-07-09 21:12:52,141 - [ qwen3-14b ] - INFO - Success #id 27512819
+2026-07-09 21:12:55,101 - [ qwen3-14b ] - INFO - Success #id 16988029
+2026-07-09 21:12:55,206 - [ qwen3-14b ] - INFO - Success #id 11607967
+2026-07-09 21:12:58,164 - [ qwen3-14b ] - INFO - Success #id 33823825
+2026-07-09 21:12:58,778 - [ qwen3-14b ] - INFO - Success #id 78951114
+2026-07-09 21:12:58,817 - [ qwen3-14b ] - INFO - Success #id 19072758
+2026-07-09 21:13:00,930 - [ qwen3-14b ] - INFO - Success #id 29839767
+2026-07-09 21:13:03,203 - [ qwen3-14b ] - INFO - Success #id 24412925
+2026-07-09 21:13:04,860 - [ qwen3-14b ] - INFO - Success #id 47963323
+2026-07-09 21:13:06,191 - [ qwen3-14b ] - INFO - Success #id 11765317
+2026-07-09 21:13:08,915 - [ qwen3-14b ] - INFO - Success #id 12524744
+2026-07-09 21:13:10,451 - [ qwen3-14b ] - INFO - Success #id 13232332
+2026-07-09 21:13:10,520 - [ qwen3-14b ] - INFO - Success #id 15357694
+2026-07-09 21:13:14,548 - [ qwen3-14b ] - INFO - Success #id 67476865
+2026-07-09 21:13:14,745 - [ qwen3-14b ] - INFO - Success #id 42725169
+2026-07-09 21:13:18,795 - [ qwen3-14b ] - INFO - Success #id 33523828
+2026-07-09 21:13:18,914 - [ qwen3-14b ] - INFO - Success #id 82630016
+2026-07-09 21:13:20,056 - [ qwen3-14b ] - INFO - Success #id 29979407
+2026-07-09 21:13:22,405 - [ qwen3-14b ] - INFO - Success #id 24521591
+2026-07-09 21:13:22,837 - [ qwen3-14b ] - INFO - Success #id 22387452
+2026-07-09 21:13:25,095 - [ qwen3-14b ] - INFO - Success #id 47046656
+2026-07-09 21:13:27,008 - [ qwen3-14b ] - INFO - Success #id 29870771
+2026-07-09 21:13:27,859 - [ qwen3-14b ] - INFO - Success #id 32648504
+2026-07-09 21:13:29,319 - [ qwen3-14b ] - INFO - Success #id 71137873
+2026-07-09 21:13:29,703 - [ qwen3-14b ] - INFO - Success #id 89900993
+2026-07-09 21:13:31,481 - [ qwen3-14b ] - INFO - Success #id 73847600
+2026-07-09 21:13:34,687 - [ qwen3-14b ] - INFO - Success #id 27373817
+2026-07-09 21:13:36,299 - [ qwen3-14b ] - INFO - Success #id 25560946
+2026-07-09 21:13:36,810 - [ qwen3-14b ] - INFO - Success #id 28962008
+2026-07-09 21:13:39,542 - [ qwen3-14b ] - INFO - Success #id 12883055
+2026-07-09 21:13:40,046 - [ qwen3-14b ] - INFO - Success #id 10186930
+2026-07-09 21:13:41,478 - [ qwen3-14b ] - INFO - Success #id 17027426
+2026-07-09 21:13:45,571 - [ qwen3-14b ] - INFO - Success #id 32447246
+2026-07-09 21:13:45,972 - [ qwen3-14b ] - INFO - Success #id 29601062
+2026-07-09 21:13:47,473 - [ qwen3-14b ] - INFO - Success #id 18743393
+2026-07-09 21:13:48,444 - [ qwen3-14b ] - INFO - Success #id 23734731
+2026-07-09 21:13:48,855 - [ qwen3-14b ] - INFO - Success #id 19407653
+2026-07-09 21:13:53,753 - [ qwen3-14b ] - INFO - Success #id 27775949
+2026-07-09 21:13:54,568 - [ qwen3-14b ] - INFO - Success #id 22402314
+2026-07-09 21:13:55,058 - [ qwen3-14b ] - INFO - Success #id 30667964
+2026-07-09 21:13:55,793 - [ qwen3-14b ] - INFO - Success #id 28058748
+2026-07-09 21:14:00,172 - [ qwen3-14b ] - INFO - Success #id 13635184
+2026-07-09 21:14:00,812 - [ qwen3-14b ] - INFO - Success #id 31446558
+2026-07-09 21:14:01,831 - [ qwen3-14b ] - INFO - Success #id 12727825
+2026-07-09 21:14:03,471 - [ qwen3-14b ] - INFO - Success #id 30531459
+2026-07-09 21:14:06,221 - [ qwen3-14b ] - INFO - Success #id 11995538
+2026-07-09 21:14:06,655 - [ qwen3-14b ] - INFO - Success #id 12456255
+2026-07-09 21:14:08,621 - [ qwen3-14b ] - INFO - Success #id 90851010
+2026-07-09 21:14:08,622 - [ qwen3-14b ] - INFO - Success #id 23020133
+2026-07-09 21:14:08,787 - [ qwen3-14b ] - INFO - Success #id 15468586
+2026-07-09 21:14:10,883 - [ qwen3-14b ] - INFO - Failed #id 51723456: <class '__main__.ContentFormatError'> {"task_steps": ["Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'","Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"],"task_nodes":[{"task":"send_sms","arguments":[{"name":"phone_number","value":"+1234567890"},{"name":"content","value":"Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}]},{"task":"play_music_by_title","arguments":[{"name":"title","value":"Stayin' Alive"}]}],"task_links":[{"source":"send_sms","target":"play_music_by_title"}]}
+2026-07-09 21:14:13,326 - [ qwen3-14b ] - INFO - Success #id 10843077
+2026-07-09 21:14:13,939 - [ qwen3-14b ] - INFO - Success #id 51419931
+2026-07-09 21:14:16,009 - [ qwen3-14b ] - INFO - Success #id 30413962
+2026-07-09 21:14:17,644 - [ qwen3-14b ] - INFO - Success #id 70652938
+2026-07-09 21:14:18,792 - [ qwen3-14b ] - INFO - Success #id 25906766
+2026-07-09 21:14:19,552 - [ qwen3-14b ] - INFO - Success #id 11662760
+2026-07-09 21:14:20,801 - [ qwen3-14b ] - INFO - Success #id 17699712
+2026-07-09 21:14:22,312 - [ qwen3-14b ] - INFO - Success #id 31301433
+2026-07-09 21:14:23,877 - [ qwen3-14b ] - INFO - Success #id 20436096
+2026-07-09 21:14:27,662 - [ qwen3-14b ] - INFO - Success #id 28227483
+2026-07-09 21:14:27,708 - [ qwen3-14b ] - INFO - Success #id 16513760
+2026-07-09 21:14:32,678 - [ qwen3-14b ] - INFO - Success #id 32203471
+2026-07-09 21:14:33,453 - [ qwen3-14b ] - INFO - Success #id 95038598
+2026-07-09 21:14:36,668 - [ qwen3-14b ] - INFO - Success #id 31872047
+2026-07-09 21:14:36,706 - [ qwen3-14b ] - INFO - Success #id 21555806
+2026-07-09 21:14:38,653 - [ qwen3-14b ] - INFO - Success #id 17414012
+2026-07-09 21:14:39,981 - [ qwen3-14b ] - INFO - Success #id 29204212
+2026-07-09 21:14:45,225 - [ qwen3-14b ] - INFO - Success #id 26722166
+2026-07-09 21:14:46,111 - [ qwen3-14b ] - INFO - Success #id 14171505
+2026-07-09 21:14:46,996 - [ qwen3-14b ] - INFO - Success #id 15072082
+2026-07-09 21:14:48,193 - [ qwen3-14b ] - INFO - Success #id 28281055
+2026-07-09 21:14:49,802 - [ qwen3-14b ] - INFO - Success #id 63306474
+2026-07-09 21:14:50,286 - [ qwen3-14b ] - INFO - Success #id 44361693
+2026-07-09 21:14:52,034 - [ qwen3-14b ] - INFO - Success #id 32571030
+2026-07-09 21:14:52,585 - [ qwen3-14b ] - INFO - Success #id 16673290
+2026-07-09 21:14:53,057 - [ qwen3-14b ] - INFO - Success #id 10890339
+2026-07-09 21:14:53,817 - [ qwen3-14b ] - INFO - Success #id 41702089
+2026-07-09 21:14:56,658 - [ qwen3-14b ] - INFO - Success #id 22502723
+2026-07-09 21:14:57,670 - [ qwen3-14b ] - INFO - Success #id 31408870
+2026-07-09 21:14:58,587 - [ qwen3-14b ] - INFO - Success #id 16475846
+2026-07-09 21:15:04,115 - [ qwen3-14b ] - INFO - Success #id 21968596
+2026-07-09 21:15:05,018 - [ qwen3-14b ] - INFO - Success #id 12866688
+2026-07-09 21:15:06,006 - [ qwen3-14b ] - INFO - Success #id 14523593
+2026-07-09 21:15:08,252 - [ qwen3-14b ] - INFO - Success #id 26051009
+2026-07-09 21:15:08,782 - [ qwen3-14b ] - INFO - Success #id 10399505
+2026-07-09 21:15:09,302 - [ qwen3-14b ] - INFO - Success #id 10907512
+2026-07-09 21:15:12,940 - [ qwen3-14b ] - INFO - Success #id 55354311
+2026-07-09 21:15:13,551 - [ qwen3-14b ] - INFO - Success #id 85752364
+2026-07-09 21:15:14,152 - [ qwen3-14b ] - INFO - Success #id 30846316
+2026-07-09 21:15:14,799 - [ qwen3-14b ] - INFO - Success #id 53510501
+2026-07-09 21:15:16,014 - [ qwen3-14b ] - INFO - Success #id 13697824
+2026-07-09 21:15:18,555 - [ qwen3-14b ] - INFO - Success #id 27150191
+2026-07-09 21:15:19,736 - [ qwen3-14b ] - INFO - Success #id 19847434
+2026-07-09 21:15:23,676 - [ qwen3-14b ] - INFO - Success #id 52957370
+2026-07-09 21:15:24,802 - [ qwen3-14b ] - INFO - Success #id 70641642
+2026-07-09 21:15:29,730 - [ qwen3-14b ] - INFO - Success #id 23511335
+2026-07-09 21:15:29,772 - [ qwen3-14b ] - INFO - Success #id 22475777
+2026-07-09 21:15:31,470 - [ qwen3-14b ] - INFO - Success #id 41556561
+2026-07-09 21:15:31,715 - [ qwen3-14b ] - INFO - Success #id 65013021
+2026-07-09 21:15:34,245 - [ qwen3-14b ] - INFO - Success #id 18450312
+2026-07-09 21:15:39,002 - [ qwen3-14b ] - INFO - Success #id 16242474
+2026-07-09 21:15:39,501 - [ qwen3-14b ] - INFO - Success #id 11401515
+2026-07-09 21:15:39,854 - [ qwen3-14b ] - INFO - Success #id 99785297
+2026-07-09 21:15:40,778 - [ qwen3-14b ] - INFO - Success #id 70690808
+2026-07-09 21:15:42,614 - [ qwen3-14b ] - INFO - Success #id 38163810
+2026-07-09 21:15:43,278 - [ qwen3-14b ] - INFO - Success #id 11479905
+2026-07-09 21:15:43,839 - [ qwen3-14b ] - INFO - Success #id 48235596
+2026-07-09 21:15:45,185 - [ qwen3-14b ] - INFO - Success #id 17530601
+2026-07-09 21:15:47,718 - [ qwen3-14b ] - INFO - Success #id 15297867
+2026-07-09 21:15:47,797 - [ qwen3-14b ] - INFO - Success #id 29192758
+2026-07-09 21:15:51,587 - [ qwen3-14b ] - INFO - Success #id 21494330
+2026-07-09 21:15:52,110 - [ qwen3-14b ] - INFO - Success #id 23971756
+2026-07-09 21:15:54,090 - [ qwen3-14b ] - INFO - Success #id 62669402
+2026-07-09 21:15:56,788 - [ qwen3-14b ] - INFO - Success #id 22620321
+2026-07-09 21:15:57,010 - [ qwen3-14b ] - INFO - Success #id 92400293
+2026-07-09 21:15:58,033 - [ qwen3-14b ] - INFO - Success #id 21426816
+2026-07-09 21:15:59,718 - [ qwen3-14b ] - INFO - Success #id 18002761
+2026-07-09 21:16:02,550 - [ qwen3-14b ] - INFO - Success #id 23594484
+2026-07-09 21:16:02,873 - [ qwen3-14b ] - INFO - Success #id 24106579
+2026-07-09 21:16:05,031 - [ qwen3-14b ] - INFO - Success #id 24909271
+2026-07-09 21:16:06,071 - [ qwen3-14b ] - INFO - Success #id 19084352
+2026-07-09 21:16:07,022 - [ qwen3-14b ] - INFO - Success #id 53018023
+2026-07-09 21:16:07,056 - [ qwen3-14b ] - INFO - Success #id 23589421
+2026-07-09 21:16:10,263 - [ qwen3-14b ] - INFO - Success #id 16807233
+2026-07-09 21:16:12,840 - [ qwen3-14b ] - INFO - Success #id 14556200
+2026-07-09 21:16:13,639 - [ qwen3-14b ] - INFO - Success #id 33685282
+2026-07-09 21:16:15,593 - [ qwen3-14b ] - INFO - Success #id 93581716
+2026-07-09 21:16:15,745 - [ qwen3-14b ] - INFO - Success #id 62838005
+2026-07-09 21:16:18,572 - [ qwen3-14b ] - INFO - Success #id 27943034
+2026-07-09 21:16:18,596 - [ qwen3-14b ] - INFO - Success #id 27919508
+2026-07-09 21:16:20,286 - [ qwen3-14b ] - INFO - Success #id 25426847
+2026-07-09 21:16:24,067 - [ qwen3-14b ] - INFO - Success #id 86611976
+2026-07-09 21:16:27,059 - [ qwen3-14b ] - INFO - Success #id 23302187
+2026-07-09 21:16:28,188 - [ qwen3-14b ] - INFO - Success #id 64245918
+2026-07-09 21:16:31,253 - [ qwen3-14b ] - INFO - Success #id 13273835
+2026-07-09 21:16:33,346 - [ qwen3-14b ] - INFO - Success #id 15271749
+2026-07-09 21:16:34,026 - [ qwen3-14b ] - INFO - Success #id 32750887
+2026-07-09 21:16:36,790 - [ qwen3-14b ] - INFO - Success #id 21401569
+2026-07-09 21:16:38,980 - [ qwen3-14b ] - INFO - Success #id 22374064
+2026-07-09 21:16:39,033 - [ qwen3-14b ] - INFO - Success #id 33866628
+2026-07-09 21:16:41,123 - [ qwen3-14b ] - INFO - Success #id 22084539
+2026-07-09 21:16:41,996 - [ qwen3-14b ] - INFO - Success #id 13846602
+2026-07-09 21:16:45,576 - [ qwen3-14b ] - INFO - Success #id 59758012
+2026-07-09 21:16:46,007 - [ qwen3-14b ] - INFO - Success #id 31783177
+2026-07-09 21:16:46,327 - [ qwen3-14b ] - INFO - Success #id 26138270
+2026-07-09 21:16:48,566 - [ qwen3-14b ] - INFO - Success #id 13481217
+2026-07-09 21:16:48,691 - [ qwen3-14b ] - INFO - Success #id 26233285
+2026-07-09 21:16:53,001 - [ qwen3-14b ] - INFO - Success #id 26898696
+2026-07-09 21:16:54,329 - [ qwen3-14b ] - INFO - Success #id 32343389
+2026-07-09 21:16:55,341 - [ qwen3-14b ] - INFO - Success #id 25570506
+2026-07-09 21:16:56,420 - [ qwen3-14b ] - INFO - Success #id 11109403
+2026-07-09 21:16:58,412 - [ qwen3-14b ] - INFO - Success #id 10379166
+2026-07-09 21:17:00,695 - [ qwen3-14b ] - INFO - Success #id 22297893
+2026-07-09 21:17:01,545 - [ qwen3-14b ] - INFO - Success #id 24237371
+2026-07-09 21:17:03,635 - [ qwen3-14b ] - INFO - Success #id 19737602
+2026-07-09 21:17:06,837 - [ qwen3-14b ] - INFO - Success #id 14147261
+2026-07-09 21:17:06,912 - [ qwen3-14b ] - INFO - Success #id 12618159
+2026-07-09 21:17:11,219 - [ qwen3-14b ] - INFO - Success #id 23729988
+2026-07-09 21:17:14,211 - [ qwen3-14b ] - INFO - Success #id 16900777
+2026-07-09 21:17:15,628 - [ qwen3-14b ] - INFO - Success #id 50927362
+2026-07-09 21:17:16,112 - [ qwen3-14b ] - INFO - Success #id 27961180
+2026-07-09 21:17:16,191 - [ qwen3-14b ] - INFO - Success #id 30538014
+2026-07-09 21:17:17,786 - [ qwen3-14b ] - INFO - Success #id 19809375
+2026-07-09 21:17:18,519 - [ qwen3-14b ] - INFO - Success #id 23230863
+2026-07-09 21:17:23,332 - [ qwen3-14b ] - INFO - Success #id 20566589
+2026-07-09 21:17:23,366 - [ qwen3-14b ] - INFO - Success #id 14620980
+2026-07-09 21:17:25,510 - [ qwen3-14b ] - INFO - Success #id 12138072
+2026-07-09 21:17:26,659 - [ qwen3-14b ] - INFO - Success #id 10324264
+2026-07-09 21:17:28,092 - [ qwen3-14b ] - INFO - Success #id 30964562
+2026-07-09 21:17:28,785 - [ qwen3-14b ] - INFO - Success #id 31788445
+2026-07-09 21:17:31,062 - [ qwen3-14b ] - INFO - Success #id 29558987
+2026-07-09 21:17:32,254 - [ qwen3-14b ] - INFO - Success #id 18164773
+2026-07-09 21:17:34,031 - [ qwen3-14b ] - INFO - Success #id 23573452
+2026-07-09 21:17:35,465 - [ qwen3-14b ] - INFO - Success #id 77604532
+2026-07-09 21:17:37,750 - [ qwen3-14b ] - INFO - Success #id 24702349
+2026-07-09 21:17:38,128 - [ qwen3-14b ] - INFO - Success #id 14619383
+2026-07-09 21:17:39,652 - [ qwen3-14b ] - INFO - Success #id 20541414
+2026-07-09 21:17:40,150 - [ qwen3-14b ] - INFO - Success #id 32997405
+2026-07-09 21:17:42,130 - [ qwen3-14b ] - INFO - Success #id 12883344
+2026-07-09 21:17:46,862 - [ qwen3-14b ] - INFO - Success #id 16851522
+2026-07-09 21:17:48,243 - [ qwen3-14b ] - INFO - Success #id 15562486
+2026-07-09 21:17:48,328 - [ qwen3-14b ] - INFO - Success #id 51278699
+2026-07-09 21:17:49,398 - [ qwen3-14b ] - INFO - Success #id 32007807
+2026-07-09 21:17:51,343 - [ qwen3-14b ] - INFO - Success #id 17628428
+2026-07-09 21:17:51,747 - [ qwen3-14b ] - INFO - Success #id 81678049
+2026-07-09 21:17:53,285 - [ qwen3-14b ] - INFO - Success #id 15975909
+2026-07-09 21:17:57,595 - [ qwen3-14b ] - INFO - Success #id 16755079
+2026-07-09 21:17:57,651 - [ qwen3-14b ] - INFO - Success #id 27742362
+2026-07-09 21:17:58,814 - [ qwen3-14b ] - INFO - Success #id 19499619
+2026-07-09 21:18:03,072 - [ qwen3-14b ] - INFO - Success #id 33311238
+2026-07-09 21:18:04,089 - [ qwen3-14b ] - INFO - Success #id 77744719
+2026-07-09 21:18:05,008 - [ qwen3-14b ] - INFO - Success #id 12979902
+2026-07-09 21:18:09,872 - [ qwen3-14b ] - INFO - Success #id 30923084
+2026-07-09 21:18:10,283 - [ qwen3-14b ] - INFO - Success #id 31281197
+2026-07-09 21:18:15,192 - [ qwen3-14b ] - INFO - Success #id 92820169
+2026-07-09 21:18:15,308 - [ qwen3-14b ] - INFO - Success #id 27818026
+2026-07-09 21:18:16,425 - [ qwen3-14b ] - INFO - Success #id 15792499
+2026-07-09 21:18:17,363 - [ qwen3-14b ] - INFO - Success #id 14971382
+2026-07-09 21:18:21,791 - [ qwen3-14b ] - INFO - Success #id 11301226
+2026-07-09 21:18:22,706 - [ qwen3-14b ] - INFO - Success #id 32486321
+2026-07-09 21:18:23,799 - [ qwen3-14b ] - INFO - Success #id 22684914
+2026-07-09 21:18:24,857 - [ qwen3-14b ] - INFO - Success #id 84857854
+2026-07-09 21:18:24,893 - [ qwen3-14b ] - INFO - Success #id 32686353
+2026-07-09 21:18:28,253 - [ qwen3-14b ] - INFO - Success #id 24590737
+2026-07-09 21:18:28,456 - [ qwen3-14b ] - INFO - Success #id 25519785
+2026-07-09 21:18:31,516 - [ qwen3-14b ] - INFO - Success #id 20768554
+2026-07-09 21:18:33,735 - [ qwen3-14b ] - INFO - Success #id 51016460
+2026-07-09 21:18:34,053 - [ qwen3-14b ] - INFO - Success #id 14108000
+2026-07-09 21:18:34,692 - [ qwen3-14b ] - INFO - Success #id 55286240
+2026-07-09 21:18:36,116 - [ qwen3-14b ] - INFO - Success #id 18932799
+2026-07-09 21:18:37,190 - [ qwen3-14b ] - INFO - Success #id 29329981
+2026-07-09 21:18:40,732 - [ qwen3-14b ] - INFO - Success #id 28282312
+2026-07-09 21:18:43,037 - [ qwen3-14b ] - INFO - Success #id 31093934
+2026-07-09 21:18:45,501 - [ qwen3-14b ] - INFO - Success #id 20717355
+2026-07-09 21:18:48,121 - [ qwen3-14b ] - INFO - Success #id 24271966
+2026-07-09 21:18:49,762 - [ qwen3-14b ] - INFO - Success #id 17770061
+2026-07-09 21:18:52,038 - [ qwen3-14b ] - INFO - Success #id 76904888
+2026-07-09 21:18:52,240 - [ qwen3-14b ] - INFO - Success #id 30630684
+2026-07-09 21:18:52,973 - [ qwen3-14b ] - INFO - Success #id 18033635
+2026-07-09 21:18:56,835 - [ qwen3-14b ] - INFO - Success #id 32606532
+2026-07-09 21:19:00,089 - [ qwen3-14b ] - INFO - Success #id 31498909
+2026-07-09 21:19:01,737 - [ qwen3-14b ] - INFO - Success #id 30916047
+2026-07-09 21:19:02,071 - [ qwen3-14b ] - INFO - Success #id 12878163
+2026-07-09 21:19:03,605 - [ qwen3-14b ] - INFO - Success #id 22489604
+2026-07-09 21:19:05,627 - [ qwen3-14b ] - INFO - Success #id 29186217
+2026-07-09 21:19:07,004 - [ qwen3-14b ] - INFO - Success #id 17871465
+2026-07-09 21:19:08,156 - [ qwen3-14b ] - INFO - Success #id 32082021
+2026-07-09 21:19:11,188 - [ qwen3-14b ] - INFO - Success #id 13819551
+2026-07-09 21:19:12,804 - [ qwen3-14b ] - INFO - Success #id 26309756
+2026-07-09 21:19:13,464 - [ qwen3-14b ] - INFO - Success #id 19359900
+2026-07-09 21:19:15,353 - [ qwen3-14b ] - INFO - Success #id 32959403
+2026-07-09 21:19:17,206 - [ qwen3-14b ] - INFO - Success #id 22476582
+2026-07-09 21:19:17,241 - [ qwen3-14b ] - INFO - Success #id 30621448
+2026-07-09 21:19:18,345 - [ qwen3-14b ] - INFO - Success #id 21124282
+2026-07-09 21:19:21,818 - [ qwen3-14b ] - INFO - Success #id 52796300
+2026-07-09 21:19:24,690 - [ qwen3-14b ] - INFO - Success #id 32397764
+2026-07-09 21:19:27,537 - [ qwen3-14b ] - INFO - Success #id 33157096
+2026-07-09 21:19:28,209 - [ qwen3-14b ] - INFO - Success #id 25507520
+2026-07-09 21:19:29,542 - [ qwen3-14b ] - INFO - Success #id 32762258
+2026-07-09 21:19:31,314 - [ qwen3-14b ] - INFO - Success #id 11070794
+2026-07-09 21:19:31,751 - [ qwen3-14b ] - INFO - Success #id 31033904
+2026-07-09 21:19:33,236 - [ qwen3-14b ] - INFO - Success #id 33097542
+2026-07-09 21:19:33,905 - [ qwen3-14b ] - INFO - Success #id 25178778
+2026-07-09 21:19:35,511 - [ qwen3-14b ] - INFO - Success #id 23193846
+2026-07-09 21:19:35,848 - [ qwen3-14b ] - INFO - Success #id 96882095
+2026-07-09 21:19:35,911 - [ qwen3-14b ] - INFO - Success #id 26726010
+2026-07-09 21:19:39,780 - [ qwen3-14b ] - INFO - Success #id 25158642
+2026-07-09 21:19:40,353 - [ qwen3-14b ] - INFO - Success #id 20968182
+2026-07-09 21:19:42,922 - [ qwen3-14b ] - INFO - Success #id 10061660
+2026-07-09 21:19:44,766 - [ qwen3-14b ] - INFO - Success #id 21330955
+2026-07-09 21:19:45,430 - [ qwen3-14b ] - INFO - Success #id 80480634
+2026-07-09 21:19:49,611 - [ qwen3-14b ] - INFO - Success #id 33117970
+2026-07-09 21:19:49,663 - [ qwen3-14b ] - INFO - Success #id 29108446
+2026-07-09 21:19:52,476 - [ qwen3-14b ] - INFO - Success #id 16767907
+2026-07-09 21:19:53,163 - [ qwen3-14b ] - INFO - Success #id 33170988
+2026-07-09 21:19:55,701 - [ qwen3-14b ] - INFO - Success #id 11231522
+2026-07-09 21:19:58,612 - [ qwen3-14b ] - INFO - Success #id 28049074
+2026-07-09 21:20:02,376 - [ qwen3-14b ] - INFO - Success #id 58136014
+2026-07-09 21:20:03,576 - [ qwen3-14b ] - INFO - Success #id 81030667
+2026-07-09 21:20:05,348 - [ qwen3-14b ] - INFO - Success #id 30604895
+2026-07-09 21:20:05,388 - [ qwen3-14b ] - INFO - Success #id 11237996
+2026-07-09 21:20:08,166 - [ qwen3-14b ] - INFO - Success #id 55781984
+2026-07-09 21:20:09,275 - [ qwen3-14b ] - INFO - Success #id 33387015
+2026-07-09 21:20:09,275 - [ qwen3-14b ] - INFO - Success #id 13112342
+2026-07-09 21:20:11,560 - [ qwen3-14b ] - INFO - Success #id 27158475
+2026-07-09 21:20:14,803 - [ qwen3-14b ] - INFO - Success #id 24716445
+2026-07-09 21:20:15,723 - [ qwen3-14b ] - INFO - Success #id 68670098
+2026-07-09 21:20:17,687 - [ qwen3-14b ] - INFO - Success #id 25539428
+2026-07-09 21:20:18,457 - [ qwen3-14b ] - INFO - Success #id 19595713
+2026-07-09 21:20:20,392 - [ qwen3-14b ] - INFO - Success #id 28663512
+2026-07-09 21:20:23,609 - [ qwen3-14b ] - INFO - Success #id 32850193
+2026-07-09 21:20:24,405 - [ qwen3-14b ] - INFO - Success #id 22429827
+2026-07-09 21:20:25,372 - [ qwen3-14b ] - INFO - Success #id 15526402
+2026-07-09 21:20:26,884 - [ qwen3-14b ] - INFO - Success #id 22950292
+2026-07-09 21:20:29,888 - [ qwen3-14b ] - INFO - Success #id 40829581
+2026-07-09 21:20:30,366 - [ qwen3-14b ] - INFO - Success #id 15567080
+2026-07-09 21:20:32,614 - [ qwen3-14b ] - INFO - Success #id 13293637
+2026-07-09 21:20:33,580 - [ qwen3-14b ] - INFO - Success #id 27730464
+2026-07-09 21:20:34,462 - [ qwen3-14b ] - INFO - Success #id 18976866
+2026-07-09 21:20:38,047 - [ qwen3-14b ] - INFO - Success #id 17881643
+2026-07-09 21:20:39,920 - [ qwen3-14b ] - INFO - Success #id 31258510
+2026-07-09 21:20:40,503 - [ qwen3-14b ] - INFO - Success #id 20896755
+2026-07-09 21:20:43,145 - [ qwen3-14b ] - INFO - Success #id 49413660
+2026-07-09 21:20:45,216 - [ qwen3-14b ] - INFO - Success #id 14768418
+2026-07-09 21:20:46,468 - [ qwen3-14b ] - INFO - Success #id 21449312
+2026-07-09 21:20:46,686 - [ qwen3-14b ] - INFO - Success #id 17108070
+2026-07-09 21:20:48,876 - [ qwen3-14b ] - INFO - Success #id 80602683
+2026-07-09 21:20:49,666 - [ qwen3-14b ] - INFO - Success #id 22186065
+2026-07-09 21:20:52,331 - [ qwen3-14b ] - INFO - Success #id 26416769
+2026-07-09 21:20:53,818 - [ qwen3-14b ] - INFO - Success #id 28571815
+2026-07-09 21:20:53,820 - [ qwen3-14b ] - INFO - Success #id 25762468
+2026-07-09 21:20:54,183 - [ qwen3-14b ] - INFO - Success #id 85711392
+2026-07-09 21:20:57,889 - [ qwen3-14b ] - INFO - Success #id 84696141
+2026-07-09 21:20:57,925 - [ qwen3-14b ] - INFO - Success #id 10832275
+2026-07-09 21:21:00,063 - [ qwen3-14b ] - INFO - Success #id 32448801
+2026-07-09 21:21:02,673 - [ qwen3-14b ] - INFO - Success #id 24566914
+2026-07-09 21:21:04,288 - [ qwen3-14b ] - INFO - Success #id 32500554
+2026-07-09 21:21:05,592 - [ qwen3-14b ] - INFO - Success #id 18792404
+2026-07-09 21:21:05,677 - [ qwen3-14b ] - INFO - Success #id 14644157
+2026-07-09 21:21:06,504 - [ qwen3-14b ] - INFO - Success #id 23720259
+2026-07-09 21:21:08,491 - [ qwen3-14b ] - INFO - Success #id 26018434
+2026-07-09 21:21:10,271 - [ qwen3-14b ] - INFO - Success #id 15390970
+2026-07-09 21:21:12,037 - [ qwen3-14b ] - INFO - Success #id 23739687
+2026-07-09 21:21:12,864 - [ qwen3-14b ] - INFO - Success #id 18249183
+2026-07-09 21:21:13,036 - [ qwen3-14b ] - INFO - Success #id 17319238
+2026-07-09 21:21:18,802 - [ qwen3-14b ] - INFO - Success #id 16108608
+2026-07-09 21:21:18,942 - [ qwen3-14b ] - INFO - Success #id 21621031
+2026-07-09 21:21:19,290 - [ qwen3-14b ] - INFO - Success #id 20966488
+2026-07-09 21:21:21,646 - [ qwen3-14b ] - INFO - Success #id 31803119
+2026-07-09 21:21:23,517 - [ qwen3-14b ] - INFO - Success #id 14254501
+2026-07-09 21:21:27,902 - [ qwen3-14b ] - INFO - Success #id 21044531
+2026-07-09 21:21:28,075 - [ qwen3-14b ] - INFO - Success #id 11943462
+2026-07-09 21:21:30,271 - [ qwen3-14b ] - INFO - Success #id 26709801
+2026-07-09 21:21:30,681 - [ qwen3-14b ] - INFO - Success #id 25527683
+2026-07-09 21:21:30,724 - [ qwen3-14b ] - INFO - Success #id 80546198
+2026-07-09 21:21:32,964 - [ qwen3-14b ] - INFO - Success #id 99299170
+2026-07-09 21:21:33,491 - [ qwen3-14b ] - INFO - Success #id 13371224
+2026-07-09 21:21:35,816 - [ qwen3-14b ] - INFO - Success #id 12236335
+2026-07-09 21:21:37,101 - [ qwen3-14b ] - INFO - Success #id 31937449
+2026-07-09 21:21:37,254 - [ qwen3-14b ] - INFO - Success #id 16765465
+2026-07-09 21:21:38,590 - [ qwen3-14b ] - INFO - Success #id 93082544
+2026-07-09 21:21:38,654 - [ qwen3-14b ] - INFO - Success #id 19562798
+2026-07-09 21:21:43,604 - [ qwen3-14b ] - INFO - Success #id 59895399
+2026-07-09 21:21:46,282 - [ qwen3-14b ] - INFO - Success #id 15542538
+2026-07-09 21:21:47,577 - [ qwen3-14b ] - INFO - Success #id 24500817
+2026-07-09 21:21:48,213 - [ qwen3-14b ] - INFO - Success #id 28745104
+2026-07-09 21:21:50,769 - [ qwen3-14b ] - INFO - Success #id 29187835
+2026-07-09 21:21:51,366 - [ qwen3-14b ] - INFO - Success #id 25273215
+2026-07-09 21:21:52,743 - [ qwen3-14b ] - INFO - Success #id 27756204
+2026-07-09 21:21:53,043 - [ qwen3-14b ] - INFO - Success #id 14443254
+2026-07-09 21:21:55,359 - [ qwen3-14b ] - INFO - Success #id 95769629
+2026-07-09 21:21:55,496 - [ qwen3-14b ] - INFO - Success #id 16069483
+2026-07-09 21:21:57,481 - [ qwen3-14b ] - INFO - Success #id 17071602
+2026-07-09 21:21:57,655 - [ qwen3-14b ] - INFO - Success #id 20969144
+2026-07-09 21:22:02,243 - [ qwen3-14b ] - INFO - Success #id 33846762
+2026-07-09 21:22:02,573 - [ qwen3-14b ] - INFO - Success #id 20006636
+2026-07-09 21:22:05,294 - [ qwen3-14b ] - INFO - Success #id 33589549
+2026-07-09 21:22:06,419 - [ qwen3-14b ] - INFO - Success #id 29096737
+2026-07-09 21:22:08,569 - [ qwen3-14b ] - INFO - Success #id 17413645
+2026-07-09 21:22:10,386 - [ qwen3-14b ] - INFO - Success #id 15008846
+2026-07-09 21:22:10,410 - [ qwen3-14b ] - INFO - Success #id 10857849
+2026-07-09 21:22:10,716 - [ qwen3-14b ] - INFO - Success #id 20690157
+2026-07-09 21:22:16,662 - [ qwen3-14b ] - INFO - Success #id 20157457
+2026-07-09 21:22:16,663 - [ qwen3-14b ] - INFO - Success #id 31770318
+2026-07-09 21:22:17,534 - [ qwen3-14b ] - INFO - Success #id 40192617
+2026-07-09 21:22:19,526 - [ qwen3-14b ] - INFO - Success #id 37342459
+2026-07-09 21:22:21,475 - [ qwen3-14b ] - INFO - Success #id 94844374
+2026-07-09 21:22:22,086 - [ qwen3-14b ] - INFO - Success #id 20901121
+2026-07-09 21:22:24,163 - [ qwen3-14b ] - INFO - Success #id 17186056
+2026-07-09 21:22:24,372 - [ qwen3-14b ] - INFO - Success #id 33530381
+2026-07-09 21:22:25,638 - [ qwen3-14b ] - INFO - Success #id 29104192
+2026-07-09 21:22:26,284 - [ qwen3-14b ] - INFO - Success #id 12453287
+2026-07-09 21:22:26,877 - [ qwen3-14b ] - INFO - Success #id 29014857
+2026-07-09 21:22:30,648 - [ qwen3-14b ] - INFO - Success #id 28301589
+2026-07-09 21:22:31,369 - [ qwen3-14b ] - INFO - Success #id 11462676
+2026-07-09 21:22:35,957 - [ qwen3-14b ] - INFO - Success #id 20148955
+2026-07-09 21:22:38,825 - [ qwen3-14b ] - INFO - Success #id 11948892
+2026-07-09 21:22:39,004 - [ qwen3-14b ] - INFO - Success #id 16715639
+2026-07-09 21:22:40,314 - [ qwen3-14b ] - INFO - Success #id 24248250
+2026-07-09 21:22:41,381 - [ qwen3-14b ] - INFO - Success #id 21201380
+2026-07-09 21:22:42,291 - [ qwen3-14b ] - INFO - Success #id 10439775
+2026-07-09 21:22:43,897 - [ qwen3-14b ] - INFO - Success #id 29129148
+2026-07-09 21:22:49,737 - [ qwen3-14b ] - INFO - Success #id 61813598
+2026-07-09 21:22:50,186 - [ qwen3-14b ] - INFO - Success #id 30415263
+2026-07-09 21:22:50,447 - [ qwen3-14b ] - INFO - Success #id 12118235
+2026-07-09 21:22:54,211 - [ qwen3-14b ] - INFO - Success #id 19279407
+2026-07-09 21:22:55,854 - [ qwen3-14b ] - INFO - Success #id 19329484
+2026-07-09 21:22:56,615 - [ qwen3-14b ] - INFO - Success #id 12110318
+2026-07-09 21:22:59,258 - [ qwen3-14b ] - INFO - Success #id 49867500
+2026-07-09 21:22:59,291 - [ qwen3-14b ] - INFO - Success #id 28217797
+2026-07-09 21:22:59,770 - [ qwen3-14b ] - INFO - Success #id 18083389
+2026-07-09 21:23:01,888 - [ qwen3-14b ] - INFO - Success #id 17257567
+2026-07-09 21:23:05,413 - [ qwen3-14b ] - INFO - Success #id 95260038
+2026-07-09 21:23:06,384 - [ qwen3-14b ] - INFO - Success #id 29960282
+2026-07-09 21:23:07,450 - [ qwen3-14b ] - INFO - Success #id 24942333
+2026-07-09 21:23:08,308 - [ qwen3-14b ] - INFO - Success #id 75146402
+2026-07-09 21:23:08,531 - [ qwen3-14b ] - INFO - Success #id 25648533
+2026-07-09 21:23:11,078 - [ qwen3-14b ] - INFO - Success #id 52489881
+2026-07-09 21:23:13,723 - [ qwen3-14b ] - INFO - Success #id 27239291
+2026-07-09 21:23:16,460 - [ qwen3-14b ] - INFO - Success #id 30429044
+2026-07-09 21:23:17,795 - [ qwen3-14b ] - INFO - Success #id 61550119
+2026-07-09 21:23:21,964 - [ qwen3-14b ] - INFO - Success #id 27776877
+2026-07-09 21:23:22,119 - [ qwen3-14b ] - INFO - Success #id 62906538
+2026-07-09 21:23:22,589 - [ qwen3-14b ] - INFO - Success #id 16842090
+2026-07-09 21:23:24,210 - [ qwen3-14b ] - INFO - Success #id 18501458
+2026-07-09 21:23:24,960 - [ qwen3-14b ] - INFO - Success #id 37006440
+2026-07-09 21:23:24,961 - [ qwen3-14b ] - INFO - Success #id 99072780
+2026-07-09 21:23:27,123 - [ qwen3-14b ] - INFO - Success #id 29667353
+2026-07-09 21:23:28,069 - [ qwen3-14b ] - INFO - Success #id 59783839
+2026-07-09 21:23:32,091 - [ qwen3-14b ] - INFO - Success #id 35101491
+2026-07-09 21:23:34,849 - [ qwen3-14b ] - INFO - Success #id 23980717
+2026-07-09 21:23:36,121 - [ qwen3-14b ] - INFO - Success #id 23205179
+2026-07-09 21:23:36,725 - [ qwen3-14b ] - INFO - Success #id 29736113
+2026-07-09 21:23:38,871 - [ qwen3-14b ] - INFO - Success #id 15264036
+2026-07-09 21:23:39,370 - [ qwen3-14b ] - INFO - Success #id 24378128
+2026-07-09 21:23:39,911 - [ qwen3-14b ] - INFO - Success #id 28159889
+2026-07-09 21:23:42,780 - [ qwen3-14b ] - INFO - Success #id 11403354
+2026-07-09 21:23:43,392 - [ qwen3-14b ] - INFO - Success #id 23235429
+2026-07-09 21:23:46,539 - [ qwen3-14b ] - INFO - Success #id 27441986
+2026-07-09 21:23:48,441 - [ qwen3-14b ] - INFO - Success #id 32465199
+2026-07-09 21:23:50,496 - [ qwen3-14b ] - INFO - Success #id 19996892
+2026-07-09 21:23:51,194 - [ qwen3-14b ] - INFO - Success #id 16628271
+2026-07-09 21:23:54,694 - [ qwen3-14b ] - INFO - Success #id 28592419
+2026-07-09 21:23:55,579 - [ qwen3-14b ] - INFO - Success #id 10470334
+2026-07-09 21:23:55,921 - [ qwen3-14b ] - INFO - Success #id 52385018
+2026-07-09 21:23:56,806 - [ qwen3-14b ] - INFO - Success #id 19611066
+2026-07-09 21:23:57,860 - [ qwen3-14b ] - INFO - Success #id 22550699
+2026-07-09 21:23:59,115 - [ qwen3-14b ] - INFO - Success #id 21147432
+2026-07-09 21:24:01,619 - [ qwen3-14b ] - INFO - Success #id 19628125
+2026-07-09 21:24:02,059 - [ qwen3-14b ] - INFO - Success #id 27730148
+2026-07-09 21:24:02,657 - [ qwen3-14b ] - INFO - Success #id 25181991
+2026-07-09 21:24:03,507 - [ qwen3-14b ] - INFO - Success #id 93639631
+2026-07-09 21:24:04,933 - [ qwen3-14b ] - INFO - Success #id 22376637
+2026-07-09 21:24:07,214 - [ qwen3-14b ] - INFO - Success #id 21239207
+2026-07-09 21:24:09,245 - [ qwen3-14b ] - INFO - Success #id 32365343
+2026-07-09 21:24:09,712 - [ qwen3-14b ] - INFO - Success #id 30894994
+2026-07-09 21:24:12,582 - [ qwen3-14b ] - INFO - Success #id 29795276
+2026-07-09 21:24:13,164 - [ qwen3-14b ] - INFO - Success #id 28442425
+2026-07-09 21:24:14,805 - [ qwen3-14b ] - INFO - Success #id 15357614
+2026-07-09 21:24:14,923 - [ qwen3-14b ] - INFO - Success #id 14965615
+2026-07-09 21:24:15,078 - [ qwen3-14b ] - INFO - Success #id 19177096
+2026-07-09 21:24:16,985 - [ qwen3-14b ] - INFO - Success #id 21353640
+2026-07-09 21:24:17,577 - [ qwen3-14b ] - INFO - Success #id 24739975
+2026-07-09 21:24:18,208 - [ qwen3-14b ] - INFO - Success #id 25718361
+2026-07-09 21:24:19,143 - [ qwen3-14b ] - INFO - Success #id 20895739
+2026-07-09 21:24:23,534 - [ qwen3-14b ] - INFO - Success #id 22884249
+2026-07-09 21:24:24,318 - [ qwen3-14b ] - INFO - Success #id 11719836
+2026-07-09 21:24:25,582 - [ qwen3-14b ] - INFO - Success #id 25723001
+2026-07-09 21:24:26,374 - [ qwen3-14b ] - INFO - Success #id 28829532
+2026-07-09 21:24:26,494 - [ qwen3-14b ] - INFO - Success #id 33975397
+2026-07-09 21:24:28,657 - [ qwen3-14b ] - INFO - Success #id 17418547
+2026-07-09 21:24:30,292 - [ qwen3-14b ] - INFO - Success #id 18163146
+2026-07-09 21:24:32,335 - [ qwen3-14b ] - INFO - Success #id 28599340
+2026-07-09 21:24:32,342 - [ qwen3-14b ] - INFO - Success #id 25519479
+2026-07-09 21:24:33,528 - [ qwen3-14b ] - INFO - Success #id 22059331
+2026-07-09 21:24:33,697 - [ qwen3-14b ] - INFO - Success #id 29911371
+2026-07-09 21:24:34,119 - [ qwen3-14b ] - INFO - Success #id 16070773
+2026-07-09 21:24:34,490 - [ qwen3-14b ] - INFO - Success #id 47894934
+2026-07-09 21:24:35,516 - [ qwen3-14b ] - INFO - Success #id 22424325
+2026-07-09 21:24:37,631 - [ qwen3-14b ] - INFO - Success #id 27102387
+2026-07-09 21:24:39,610 - [ qwen3-14b ] - INFO - Success #id 12230095
+2026-07-09 21:24:40,123 - [ qwen3-14b ] - INFO - Success #id 10723602
+2026-07-09 21:24:41,484 - [ qwen3-14b ] - INFO - Success #id 80020033
+2026-07-09 21:24:44,590 - [ qwen3-14b ] - INFO - Success #id 33264101
+2026-07-09 21:24:45,447 - [ qwen3-14b ] - INFO - Success #id 51155708
+2026-07-09 21:24:46,445 - [ qwen3-14b ] - INFO - Success #id 15809194
+2026-07-09 21:24:48,336 - [ qwen3-14b ] - INFO - Success #id 89926158
+2026-07-09 21:24:48,393 - [ qwen3-14b ] - INFO - Success #id 24443716
+2026-07-09 21:24:49,559 - [ qwen3-14b ] - INFO - Success #id 12447001
+2026-07-09 21:24:50,725 - [ qwen3-14b ] - INFO - Success #id 11279321
+2026-07-09 21:24:51,845 - [ qwen3-14b ] - INFO - Success #id 25005170
+2026-07-09 21:24:53,742 - [ qwen3-14b ] - INFO - Success #id 25283317
+2026-07-09 21:24:56,205 - [ qwen3-14b ] - INFO - Success #id 11043756
+2026-07-09 21:24:56,743 - [ qwen3-14b ] - INFO - Success #id 21965571
+2026-07-09 21:24:59,203 - [ qwen3-14b ] - INFO - Success #id 15750481
+2026-07-09 21:25:01,254 - [ qwen3-14b ] - INFO - Success #id 84282405
+2026-07-09 21:25:03,232 - [ qwen3-14b ] - INFO - Success #id 33919691
+2026-07-09 21:25:04,360 - [ qwen3-14b ] - INFO - Success #id 14960874
+2026-07-09 21:25:06,646 - [ qwen3-14b ] - INFO - Success #id 18401024
+2026-07-09 21:25:06,774 - [ qwen3-14b ] - INFO - Success #id 45258211
+2026-07-09 21:25:06,824 - [ qwen3-14b ] - INFO - Success #id 30573257
+2026-07-09 21:25:08,619 - [ qwen3-14b ] - INFO - Success #id 33112549
+2026-07-09 21:25:11,602 - [ qwen3-14b ] - INFO - Success #id 26053207
+2026-07-09 21:25:12,529 - [ qwen3-14b ] - INFO - Success #id 27463706
+2026-07-09 21:25:13,729 - [ qwen3-14b ] - INFO - Success #id 14815625
+2026-07-09 21:25:15,567 - [ qwen3-14b ] - INFO - Success #id 33318821
+2026-07-09 21:25:16,158 - [ qwen3-14b ] - INFO - Success #id 45138128
+2026-07-09 21:25:17,427 - [ qwen3-14b ] - INFO - Success #id 22496976
+2026-07-09 21:25:17,829 - [ qwen3-14b ] - INFO - Success #id 12868276
+2026-07-09 21:25:19,747 - [ qwen3-14b ] - INFO - Success #id 78514929
+2026-07-09 21:25:25,308 - [ qwen3-14b ] - INFO - Success #id 16212126
+2026-07-09 21:25:25,543 - [ qwen3-14b ] - INFO - Success #id 22730987
+2026-07-09 21:25:25,612 - [ qwen3-14b ] - INFO - Success #id 27452931
+2026-07-09 21:25:25,622 - [ qwen3-14b ] - INFO - Success #id 13552222
+2026-07-09 21:25:27,611 - [ qwen3-14b ] - INFO - Success #id 13530193
+2026-07-09 21:25:29,586 - [ qwen3-14b ] - INFO - Success #id 14879344
+2026-07-09 21:25:31,343 - [ qwen3-14b ] - INFO - Success #id 22316136
+2026-07-09 21:25:31,896 - [ qwen3-14b ] - INFO - Success #id 15774395
+2026-07-09 21:25:35,521 - [ qwen3-14b ] - INFO - Success #id 13228699
+2026-07-09 21:25:36,442 - [ qwen3-14b ] - INFO - Success #id 31841754
+2026-07-09 21:25:37,543 - [ qwen3-14b ] - INFO - Success #id 19383232
+2026-07-09 21:25:39,027 - [ qwen3-14b ] - INFO - Success #id 29607896
+2026-07-09 21:25:39,070 - [ qwen3-14b ] - INFO - Success #id 32867636
+2026-07-09 21:25:40,532 - [ qwen3-14b ] - INFO - Success #id 89568852
+2026-07-09 21:25:41,013 - [ qwen3-14b ] - INFO - Success #id 10449586
+2026-07-09 21:25:43,116 - [ qwen3-14b ] - INFO - Success #id 13322370
+2026-07-09 21:25:44,841 - [ qwen3-14b ] - INFO - Success #id 67161855
+2026-07-09 21:25:46,943 - [ qwen3-14b ] - INFO - Success #id 25102556
+2026-07-09 21:25:47,234 - [ qwen3-14b ] - INFO - Success #id 22765721
+2026-07-09 21:25:49,038 - [ qwen3-14b ] - INFO - Success #id 20364215
+2026-07-09 21:25:49,346 - [ qwen3-14b ] - INFO - Success #id 90069253
+2026-07-09 21:25:51,524 - [ qwen3-14b ] - INFO - Success #id 37483131
+2026-07-09 21:25:52,667 - [ qwen3-14b ] - INFO - Success #id 18908629
+2026-07-09 21:25:54,187 - [ qwen3-14b ] - INFO - Success #id 32415147
+2026-07-09 21:25:54,244 - [ qwen3-14b ] - INFO - Success #id 31989693
+2026-07-09 21:25:54,262 - [ qwen3-14b ] - INFO - Success #id 25872656
+2026-07-09 21:25:56,085 - [ qwen3-14b ] - INFO - Success #id 33479148
+2026-07-09 21:25:56,233 - [ qwen3-14b ] - INFO - Success #id 21135501
+2026-07-09 21:25:57,640 - [ qwen3-14b ] - INFO - Success #id 20943847
+2026-07-09 21:25:58,311 - [ qwen3-14b ] - INFO - Success #id 11030640
+2026-07-09 21:25:58,440 - [ qwen3-14b ] - INFO - Success #id 30058530
+2026-07-09 21:26:03,587 - [ qwen3-14b ] - INFO - Success #id 15940373
+2026-07-09 21:26:03,665 - [ qwen3-14b ] - INFO - Success #id 50898433
+2026-07-09 21:26:05,667 - [ qwen3-14b ] - INFO - Success #id 31083595
+2026-07-09 21:26:08,522 - [ qwen3-14b ] - INFO - Success #id 24588063
+2026-07-09 21:26:08,966 - [ qwen3-14b ] - INFO - Success #id 13138722
+2026-07-09 21:26:10,850 - [ qwen3-14b ] - INFO - Success #id 22700306
+2026-07-09 21:26:11,977 - [ qwen3-14b ] - INFO - Success #id 28584622
+2026-07-09 21:26:12,955 - [ qwen3-14b ] - INFO - Success #id 71812115
+2026-07-09 21:26:13,134 - [ qwen3-14b ] - INFO - Success #id 31358965
+2026-07-09 21:26:14,347 - [ qwen3-14b ] - INFO - Success #id 14293831
+2026-07-09 21:26:15,526 - [ qwen3-14b ] - INFO - Success #id 65464000
+2026-07-09 21:26:16,062 - [ qwen3-14b ] - INFO - Success #id 21037478
+2026-07-09 21:26:18,838 - [ qwen3-14b ] - INFO - Success #id 26810385
+2026-07-09 21:26:21,559 - [ qwen3-14b ] - INFO - Success #id 27054257
+2026-07-09 21:26:22,830 - [ qwen3-14b ] - INFO - Success #id 32962806
+2026-07-09 21:26:25,954 - [ qwen3-14b ] - INFO - Success #id 20593074
+2026-07-09 21:26:26,197 - [ qwen3-14b ] - INFO - Success #id 21438359
+2026-07-09 21:26:27,903 - [ qwen3-14b ] - INFO - Success #id 17250175
+2026-07-09 21:26:30,679 - [ qwen3-14b ] - INFO - Success #id 28584569
+2026-07-09 21:26:31,024 - [ qwen3-14b ] - INFO - Success #id 32541972
+2026-07-09 21:26:31,202 - [ qwen3-14b ] - INFO - Success #id 14485792
+2026-07-09 21:26:33,204 - [ qwen3-14b ] - INFO - Success #id 22109710
+2026-07-09 21:26:34,297 - [ qwen3-14b ] - INFO - Success #id 92840089
+2026-07-09 21:26:34,531 - [ qwen3-14b ] - INFO - Success #id 17259422
+2026-07-09 21:26:35,528 - [ qwen3-14b ] - INFO - Success #id 24723563
+2026-07-09 21:26:37,886 - [ qwen3-14b ] - INFO - Success #id 18505027
+2026-07-09 21:26:39,112 - [ qwen3-14b ] - INFO - Success #id 20852737
+2026-07-09 21:26:40,367 - [ qwen3-14b ] - INFO - Success #id 10668996
+2026-07-09 21:26:41,982 - [ qwen3-14b ] - INFO - Success #id 32548464
+2026-07-09 21:26:42,109 - [ qwen3-14b ] - INFO - Success #id 10123444
+2026-07-09 21:26:42,272 - [ qwen3-14b ] - INFO - Success #id 18649647
+2026-07-09 21:26:42,275 - [ qwen3-14b ] - INFO - Success #id 22061785
+2026-07-09 21:26:44,835 - [ qwen3-14b ] - INFO - Success #id 16279427
+2026-07-09 21:26:45,767 - [ qwen3-14b ] - INFO - Success #id 30529057
+2026-07-09 21:26:48,284 - [ qwen3-14b ] - INFO - Success #id 29518420
+2026-07-09 21:26:48,525 - [ qwen3-14b ] - INFO - Success #id 25985287
+2026-07-09 21:26:51,562 - [ qwen3-14b ] - INFO - Success #id 11092844
+2026-07-09 21:26:53,616 - [ qwen3-14b ] - INFO - Success #id 49492180
+2026-07-09 21:26:58,773 - [ qwen3-14b ] - INFO - Success #id 23223147
+2026-07-09 21:26:59,285 - [ qwen3-14b ] - INFO - Success #id 21790625
+2026-07-09 21:27:01,523 - [ qwen3-14b ] - INFO - Success #id 15884759
+2026-07-09 21:27:01,700 - [ qwen3-14b ] - INFO - Success #id 20072101
+2026-07-09 21:27:02,714 - [ qwen3-14b ] - INFO - Success #id 85835626
+2026-07-09 21:27:05,914 - [ qwen3-14b ] - INFO - Success #id 80368022
+2026-07-09 21:27:06,731 - [ qwen3-14b ] - INFO - Success #id 18169589
+2026-07-09 21:27:09,722 - [ qwen3-14b ] - INFO - Success #id 69864984
+2026-07-09 21:27:12,046 - [ qwen3-14b ] - INFO - Success #id 18960093
+2026-07-09 21:27:12,265 - [ qwen3-14b ] - INFO - Success #id 69835722
+2026-07-09 21:27:12,869 - [ qwen3-14b ] - INFO - Success #id 11039675
+2026-07-09 21:27:15,878 - [ qwen3-14b ] - INFO - Success #id 26633860
+2026-07-09 21:27:15,974 - [ qwen3-14b ] - INFO - Success #id 63999641
+2026-07-09 21:27:20,279 - [ qwen3-14b ] - INFO - Success #id 11194048
+2026-07-09 21:27:20,585 - [ qwen3-14b ] - INFO - Success #id 90198806
+2026-07-09 21:27:22,838 - [ qwen3-14b ] - INFO - Success #id 19088738
+2026-07-09 21:27:24,443 - [ qwen3-14b ] - INFO - Success #id 16501728
+2026-07-09 21:27:24,656 - [ qwen3-14b ] - INFO - Success #id 30523125
+2026-07-09 21:27:24,988 - [ qwen3-14b ] - INFO - Success #id 96593772
+2026-07-09 21:27:26,626 - [ qwen3-14b ] - INFO - Success #id 60831017
+2026-07-09 21:27:29,855 - [ qwen3-14b ] - INFO - Success #id 30280569
+2026-07-09 21:27:30,417 - [ qwen3-14b ] - INFO - Success #id 23460833
+2026-07-09 21:27:33,095 - [ qwen3-14b ] - INFO - Success #id 57085117
+2026-07-09 21:27:33,235 - [ qwen3-14b ] - INFO - Success #id 19953474
+2026-07-09 21:27:35,456 - [ qwen3-14b ] - INFO - Success #id 27656803
+2026-07-09 21:27:35,579 - [ qwen3-14b ] - INFO - Success #id 16972439
+2026-07-09 21:27:37,585 - [ qwen3-14b ] - INFO - Success #id 82001537
+2026-07-09 21:27:37,992 - [ qwen3-14b ] - INFO - Success #id 80764000
+2026-07-09 21:27:41,668 - [ qwen3-14b ] - INFO - Success #id 56383695
+2026-07-09 21:27:43,216 - [ qwen3-14b ] - INFO - Success #id 12807715
+2026-07-09 21:27:43,855 - [ qwen3-14b ] - INFO - Success #id 14440030
+2026-07-09 21:27:45,198 - [ qwen3-14b ] - INFO - Success #id 15511580
+2026-07-09 21:27:46,084 - [ qwen3-14b ] - INFO - Success #id 24429832
+2026-07-09 21:27:46,964 - [ qwen3-14b ] - INFO - Success #id 30622081
+2026-07-09 21:27:49,260 - [ qwen3-14b ] - INFO - Success #id 89501937
+2026-07-09 21:27:49,407 - [ qwen3-14b ] - INFO - Success #id 22531284
+2026-07-09 21:27:51,310 - [ qwen3-14b ] - INFO - Success #id 16551168
+2026-07-09 21:27:51,907 - [ qwen3-14b ] - INFO - Success #id 29404651
+2026-07-09 21:27:52,215 - [ qwen3-14b ] - INFO - Success #id 21326446
+2026-07-09 21:27:52,422 - [ qwen3-14b ] - INFO - Success #id 23718276
+2026-07-09 21:27:54,312 - [ qwen3-14b ] - INFO - Success #id 11613817
+2026-07-09 21:27:54,426 - [ qwen3-14b ] - INFO - Success #id 12825282
+2026-07-09 21:27:57,654 - [ qwen3-14b ] - INFO - Success #id 33446906
+2026-07-09 21:27:58,678 - [ qwen3-14b ] - INFO - Success #id 20316691
+2026-07-09 21:28:00,726 - [ qwen3-14b ] - INFO - Success #id 92645949
+2026-07-09 21:28:03,281 - [ qwen3-14b ] - INFO - Success #id 30962807
+2026-07-09 21:28:03,364 - [ qwen3-14b ] - INFO - Success #id 20449210
+2026-07-09 21:28:04,514 - [ qwen3-14b ] - INFO - Success #id 71306697
+2026-07-09 21:28:07,282 - [ qwen3-14b ] - INFO - Success #id 14532621
+2026-07-09 21:28:09,329 - [ qwen3-14b ] - INFO - Success #id 29533374
+2026-07-09 21:28:11,098 - [ qwen3-14b ] - INFO - Success #id 25019450
+2026-07-09 21:28:12,196 - [ qwen3-14b ] - INFO - Success #id 12610783
+2026-07-09 21:28:12,477 - [ qwen3-14b ] - INFO - Success #id 30413053
+2026-07-09 21:28:13,998 - [ qwen3-14b ] - INFO - Success #id 31626264
+2026-07-09 21:28:18,989 - [ qwen3-14b ] - INFO - Success #id 24408278
+2026-07-09 21:28:19,911 - [ qwen3-14b ] - INFO - Success #id 21983098
+2026-07-09 21:28:20,765 - [ qwen3-14b ] - INFO - Success #id 12148984
+2026-07-09 21:28:21,002 - [ qwen3-14b ] - INFO - Success #id 24991762
+2026-07-09 21:28:23,430 - [ qwen3-14b ] - INFO - Success #id 62441232
+2026-07-09 21:28:25,302 - [ qwen3-14b ] - INFO - Success #id 24808622
+2026-07-09 21:28:27,258 - [ qwen3-14b ] - INFO - Success #id 14299670
+2026-07-09 21:28:27,745 - [ qwen3-14b ] - INFO - Success #id 41172676
+2026-07-09 21:28:29,755 - [ qwen3-14b ] - INFO - Success #id 13274608
+2026-07-09 21:28:29,869 - [ qwen3-14b ] - INFO - Success #id 12848687
+2026-07-09 21:28:32,073 - [ qwen3-14b ] - INFO - Success #id 27333717
+2026-07-09 21:28:32,194 - [ qwen3-14b ] - INFO - Success #id 34291377
+2026-07-09 21:28:32,593 - [ qwen3-14b ] - INFO - Success #id 30846256
+2026-07-09 21:28:33,507 - [ qwen3-14b ] - INFO - Success #id 49499370
+2026-07-09 21:28:34,447 - [ qwen3-14b ] - INFO - Success #id 96088441
+2026-07-09 21:28:36,899 - [ qwen3-14b ] - INFO - Success #id 11924717
+2026-07-09 21:28:37,016 - [ qwen3-14b ] - INFO - Success #id 33780705
+2026-07-09 21:28:40,863 - [ qwen3-14b ] - INFO - Success #id 16061572
+2026-07-09 21:28:42,711 - [ qwen3-14b ] - INFO - Success #id 17554838
+2026-07-09 21:28:43,236 - [ qwen3-14b ] - INFO - Success #id 21595444
+2026-07-09 21:28:44,144 - [ qwen3-14b ] - INFO - Success #id 13533558
+2026-07-09 21:28:45,508 - [ qwen3-14b ] - INFO - Success #id 13441679
+2026-07-09 21:28:49,428 - [ qwen3-14b ] - INFO - Success #id 33138948
+2026-07-09 21:28:51,038 - [ qwen3-14b ] - INFO - Success #id 25119755
+2026-07-09 21:28:51,769 - [ qwen3-14b ] - INFO - Success #id 27795790
+2026-07-09 21:28:52,556 - [ qwen3-14b ] - INFO - Success #id 94628693
+2026-07-09 21:28:53,284 - [ qwen3-14b ] - INFO - Success #id 11714517
+2026-07-09 21:28:53,693 - [ qwen3-14b ] - INFO - Success #id 29548568
+2026-07-09 21:28:54,795 - [ qwen3-14b ] - INFO - Success #id 20533047
+2026-07-09 21:28:57,510 - [ qwen3-14b ] - INFO - Success #id 50284050
+2026-07-09 21:29:00,017 - [ qwen3-14b ] - INFO - Success #id 16296421
+2026-07-09 21:29:00,631 - [ qwen3-14b ] - INFO - Success #id 23339618
+2026-07-09 21:29:02,453 - [ qwen3-14b ] - INFO - Success #id 15075864
+2026-07-09 21:29:03,305 - [ qwen3-14b ] - INFO - Success #id 11393129
+2026-07-09 21:29:07,392 - [ qwen3-14b ] - INFO - Success #id 52629086
+2026-07-09 21:29:08,249 - [ qwen3-14b ] - INFO - Success #id 11397110
+2026-07-09 21:29:09,227 - [ qwen3-14b ] - INFO - Success #id 21955858
+2026-07-09 21:29:10,597 - [ qwen3-14b ] - INFO - Success #id 32774643
+2026-07-09 21:29:14,344 - [ qwen3-14b ] - INFO - Success #id 19104289
+2026-07-09 21:29:14,582 - [ qwen3-14b ] - INFO - Success #id 15747739
+2026-07-09 21:29:15,545 - [ qwen3-14b ] - INFO - Success #id 30113486
+2026-07-09 21:29:15,742 - [ qwen3-14b ] - INFO - Success #id 11265827
+2026-07-09 21:29:17,530 - [ qwen3-14b ] - INFO - Success #id 49516546
+2026-07-09 21:29:20,710 - [ qwen3-14b ] - INFO - Success #id 13142779
+2026-07-09 21:29:23,255 - [ qwen3-14b ] - INFO - Success #id 70253162
+2026-07-09 21:29:24,204 - [ qwen3-14b ] - INFO - Success #id 25919792
+2026-07-09 21:29:24,833 - [ qwen3-14b ] - INFO - Success #id 16936903
+2026-07-09 21:29:25,119 - [ qwen3-14b ] - INFO - Success #id 84011914
+2026-07-09 21:29:26,695 - [ qwen3-14b ] - INFO - Success #id 18186013
+2026-07-09 21:29:28,183 - [ qwen3-14b ] - INFO - Success #id 27471798
+2026-07-09 21:29:32,778 - [ qwen3-14b ] - INFO - Success #id 15592937
+2026-07-09 21:29:33,521 - [ qwen3-14b ] - INFO - Success #id 15000632
+2026-07-09 21:29:33,630 - [ qwen3-14b ] - INFO - Success #id 21970313
+2026-07-09 21:29:34,529 - [ qwen3-14b ] - INFO - Success #id 10992118
+2026-07-09 21:29:35,346 - [ qwen3-14b ] - INFO - Success #id 17165062
+2026-07-09 21:29:37,814 - [ qwen3-14b ] - INFO - Success #id 57854255
+2026-07-09 21:29:38,980 - [ qwen3-14b ] - INFO - Success #id 18687148
+2026-07-09 21:29:41,183 - [ qwen3-14b ] - INFO - Success #id 31997654
+2026-07-09 21:29:41,247 - [ qwen3-14b ] - INFO - Success #id 33455161
+2026-07-09 21:29:42,515 - [ qwen3-14b ] - INFO - Success #id 21969070
+2026-07-09 21:29:44,070 - [ qwen3-14b ] - INFO - Success #id 97429636
+2026-07-09 21:29:45,668 - [ qwen3-14b ] - INFO - Success #id 21604833
+2026-07-09 21:29:49,166 - [ qwen3-14b ] - INFO - Success #id 32844876
+2026-07-09 21:29:51,292 - [ qwen3-14b ] - INFO - Success #id 94436290
+2026-07-09 21:29:51,911 - [ qwen3-14b ] - INFO - Success #id 14534648
+2026-07-09 21:29:53,322 - [ qwen3-14b ] - INFO - Success #id 20459370
+2026-07-09 21:29:55,314 - [ qwen3-14b ] - INFO - Success #id 16348546
+2026-07-09 21:29:57,085 - [ qwen3-14b ] - INFO - Success #id 30907497
+2026-07-09 21:29:58,387 - [ qwen3-14b ] - INFO - Success #id 32839408
+2026-07-09 21:30:00,784 - [ qwen3-14b ] - INFO - Success #id 20296014
+2026-07-09 21:30:01,874 - [ qwen3-14b ] - INFO - Success #id 14574306
+2026-07-09 21:30:03,752 - [ qwen3-14b ] - INFO - Success #id 32697936
+2026-07-09 21:30:04,601 - [ qwen3-14b ] - INFO - Success #id 29095326
+2026-07-09 21:30:06,556 - [ qwen3-14b ] - INFO - Success #id 14203474
+2026-07-09 21:30:06,621 - [ qwen3-14b ] - INFO - Success #id 32095182
+2026-07-09 21:30:07,262 - [ qwen3-14b ] - INFO - Success #id 13298148
+2026-07-09 21:30:11,288 - [ qwen3-14b ] - INFO - Success #id 22505171
+2026-07-09 21:30:14,228 - [ qwen3-14b ] - INFO - Success #id 26034492
+2026-07-09 21:30:14,771 - [ qwen3-14b ] - INFO - Success #id 10193749
+2026-07-09 21:30:15,776 - [ qwen3-14b ] - INFO - Success #id 32877577
+2026-07-09 21:30:18,326 - [ qwen3-14b ] - INFO - Success #id 32173403
+2026-07-09 21:30:19,558 - [ qwen3-14b ] - INFO - Success #id 59191485
+2026-07-09 21:30:20,321 - [ qwen3-14b ] - INFO - Success #id 16479247
+2026-07-09 21:30:22,247 - [ qwen3-14b ] - INFO - Success #id 99746356
+2026-07-09 21:30:28,791 - [ qwen3-14b ] - INFO - Success #id 20421462
+2026-07-09 21:30:29,166 - [ qwen3-14b ] - INFO - Success #id 15209044
+2026-07-09 21:30:29,724 - [ qwen3-14b ] - INFO - Success #id 18889434
+2026-07-09 21:30:31,647 - [ qwen3-14b ] - INFO - Success #id 31122290
+2026-07-09 21:30:32,177 - [ qwen3-14b ] - INFO - Success #id 78696894
+2026-07-09 21:30:34,429 - [ qwen3-14b ] - INFO - Success #id 11501998
+2026-07-09 21:30:36,318 - [ qwen3-14b ] - INFO - Success #id 18523190
+2026-07-09 21:30:37,549 - [ qwen3-14b ] - INFO - Success #id 33867048
+2026-07-09 21:30:38,196 - [ qwen3-14b ] - INFO - Success #id 71988921
+2026-07-09 21:30:40,645 - [ qwen3-14b ] - INFO - Success #id 33711070
+2026-07-09 21:30:41,988 - [ qwen3-14b ] - INFO - Success #id 29807318
+2026-07-09 21:30:43,320 - [ qwen3-14b ] - INFO - Success #id 92023696
+2026-07-09 21:30:43,990 - [ qwen3-14b ] - INFO - Success #id 59838833
+2026-07-09 21:30:44,567 - [ qwen3-14b ] - INFO - Success #id 16272753
+2026-07-09 21:30:49,365 - [ qwen3-14b ] - INFO - Success #id 15216393
+2026-07-09 21:30:52,807 - [ qwen3-14b ] - INFO - Success #id 12258358
+2026-07-09 21:30:52,994 - [ qwen3-14b ] - INFO - Success #id 16908970
+2026-07-09 21:30:53,205 - [ qwen3-14b ] - INFO - Success #id 28378400
+2026-07-09 21:30:54,726 - [ qwen3-14b ] - INFO - Success #id 33782593
+2026-07-09 21:30:55,524 - [ qwen3-14b ] - INFO - Success #id 13344592
+2026-07-09 21:30:56,877 - [ qwen3-14b ] - INFO - Success #id 28868528
+2026-07-09 21:30:58,720 - [ qwen3-14b ] - INFO - Success #id 59519281
+2026-07-09 21:31:01,180 - [ qwen3-14b ] - INFO - Success #id 35261140
+2026-07-09 21:31:02,588 - [ qwen3-14b ] - INFO - Success #id 14470875
+2026-07-09 21:31:04,527 - [ qwen3-14b ] - INFO - Success #id 32436687
+2026-07-09 21:31:05,041 - [ qwen3-14b ] - INFO - Success #id 31505214
+2026-07-09 21:31:05,546 - [ qwen3-14b ] - INFO - Success #id 33186293
+2026-07-09 21:31:06,923 - [ qwen3-14b ] - INFO - Success #id 10046237
+2026-07-09 21:31:07,018 - [ qwen3-14b ] - INFO - Success #id 12801450
+2026-07-09 21:31:09,946 - [ qwen3-14b ] - INFO - Success #id 22507212
+2026-07-09 21:31:15,216 - [ qwen3-14b ] - INFO - Success #id 40824958
+2026-07-09 21:31:17,319 - [ qwen3-14b ] - INFO - Success #id 30005172
+2026-07-09 21:31:17,502 - [ qwen3-14b ] - INFO - Success #id 10616371
+2026-07-09 21:31:18,873 - [ qwen3-14b ] - INFO - Success #id 18802420
+2026-07-09 21:31:24,036 - [ qwen3-14b ] - INFO - Success #id 28204850
+2026-07-09 21:31:24,112 - [ qwen3-14b ] - INFO - Success #id 17160809
+2026-07-09 21:31:26,744 - [ qwen3-14b ] - INFO - Success #id 27017603
+2026-07-09 21:31:30,090 - [ qwen3-14b ] - INFO - Success #id 29430299
+2026-07-09 21:31:37,292 - [ qwen3-14b ] - INFO - Success #id 25446687
+2026-07-09 21:31:38,030 - [ qwen3-14b ] - INFO - Success #id 14075020
+2026-07-09 21:31:38,052 - [ qwen3-14b ] - INFO - Success #id 36137048
+2026-07-09 21:31:40,172 - [ qwen3-14b ] - INFO - Success #id 21357313
+2026-07-09 21:31:40,816 - [ qwen3-14b ] - INFO - Success #id 11457985
+2026-07-09 21:31:42,323 - [ qwen3-14b ] - INFO - Success #id 99715560
+2026-07-09 21:31:43,038 - [ qwen3-14b ] - INFO - Success #id 23690726
+2026-07-09 21:31:47,544 - [ qwen3-14b ] - INFO - Success #id 47857468
+2026-07-09 21:31:48,609 - [ qwen3-14b ] - INFO - Success #id 17888990
+2026-07-09 21:31:50,976 - [ qwen3-14b ] - INFO - Success #id 32382233
+2026-07-09 21:31:51,300 - [ qwen3-14b ] - INFO - Success #id 66251623
+2026-07-09 21:31:51,711 - [ qwen3-14b ] - INFO - Success #id 22206964
+2026-07-09 21:31:54,972 - [ qwen3-14b ] - INFO - Success #id 50832683
+2026-07-09 21:31:55,864 - [ qwen3-14b ] - INFO - Success #id 27015971
+2026-07-09 21:31:59,014 - [ qwen3-14b ] - INFO - Success #id 12212420
+2026-07-09 21:32:01,746 - [ qwen3-14b ] - INFO - Success #id 21966519
+2026-07-09 21:32:02,549 - [ qwen3-14b ] - INFO - Success #id 29663142
+2026-07-09 21:32:02,589 - [ qwen3-14b ] - INFO - Success #id 88652065
+2026-07-09 21:32:04,791 - [ qwen3-14b ] - INFO - Success #id 34007928
+2026-07-09 21:32:05,371 - [ qwen3-14b ] - INFO - Success #id 32684318
+2026-07-09 21:32:05,823 - [ qwen3-14b ] - INFO - Success #id 92223394
+2026-07-09 21:32:06,336 - [ qwen3-14b ] - INFO - Success #id 17253945
+2026-07-09 21:32:10,095 - [ qwen3-14b ] - INFO - Success #id 27209181
+2026-07-09 21:32:12,027 - [ qwen3-14b ] - INFO - Success #id 97096429
+2026-07-09 21:32:12,624 - [ qwen3-14b ] - INFO - Success #id 17855657
+2026-07-09 21:32:13,964 - [ qwen3-14b ] - INFO - Success #id 13376272
+2026-07-09 21:32:14,467 - [ qwen3-14b ] - INFO - Success #id 26559773
+2026-07-09 21:32:14,731 - [ qwen3-14b ] - INFO - Success #id 24468541
+2026-07-09 21:32:17,907 - [ qwen3-14b ] - INFO - Success #id 14798933
+2026-07-09 21:32:18,709 - [ qwen3-14b ] - INFO - Success #id 12767677
+2026-07-09 21:32:20,882 - [ qwen3-14b ] - INFO - Success #id 28742364
+2026-07-09 21:32:21,571 - [ qwen3-14b ] - INFO - Success #id 29758172
+2026-07-09 21:32:25,597 - [ qwen3-14b ] - INFO - Success #id 14383208
+2026-07-09 21:32:26,025 - [ qwen3-14b ] - INFO - Success #id 15986102
+2026-07-09 21:32:26,733 - [ qwen3-14b ] - INFO - Success #id 20820098
+2026-07-09 21:32:27,529 - [ qwen3-14b ] - INFO - Success #id 17140604
+2026-07-09 21:32:33,059 - [ qwen3-14b ] - INFO - Success #id 42520146
+2026-07-09 21:32:33,395 - [ qwen3-14b ] - INFO - Success #id 18241731
+2026-07-09 21:32:34,336 - [ qwen3-14b ] - INFO - Success #id 85131168
+2026-07-09 21:32:35,571 - [ qwen3-14b ] - INFO - Success #id 19694851
+2026-07-09 21:32:38,753 - [ qwen3-14b ] - INFO - Success #id 10234598
+2026-07-09 21:32:39,483 - [ qwen3-14b ] - INFO - Success #id 19344092
+2026-07-09 21:32:39,800 - [ qwen3-14b ] - INFO - Success #id 20161024
+2026-07-09 21:32:40,998 - [ qwen3-14b ] - INFO - Success #id 30340086
+2026-07-09 21:32:41,808 - [ qwen3-14b ] - INFO - Success #id 33700715
+2026-07-09 21:32:46,454 - [ qwen3-14b ] - INFO - Success #id 35710823
+2026-07-09 21:32:47,142 - [ qwen3-14b ] - INFO - Success #id 21234124
+2026-07-09 21:32:48,679 - [ qwen3-14b ] - INFO - Success #id 32780398
+2026-07-09 21:32:49,396 - [ qwen3-14b ] - INFO - Success #id 94876926
+2026-07-09 21:32:49,397 - [ qwen3-14b ] - INFO - Success #id 15517790
+2026-07-09 21:32:51,751 - [ qwen3-14b ] - INFO - Success #id 13049897
+2026-07-09 21:32:52,982 - [ qwen3-14b ] - INFO - Success #id 22083131
+2026-07-09 21:32:53,000 - [ qwen3-14b ] - INFO - Success #id 31429152
+2026-07-09 21:32:53,618 - [ qwen3-14b ] - INFO - Success #id 28298440
+2026-07-09 21:32:54,295 - [ qwen3-14b ] - INFO - Success #id 16723275
+2026-07-09 21:32:57,520 - [ qwen3-14b ] - INFO - Success #id 11589349
+2026-07-09 21:32:58,719 - [ qwen3-14b ] - INFO - Success #id 33643070
+2026-07-09 21:33:01,380 - [ qwen3-14b ] - INFO - Success #id 81862745
+2026-07-09 21:33:01,716 - [ qwen3-14b ] - INFO - Success #id 11121876
+2026-07-09 21:33:03,264 - [ qwen3-14b ] - INFO - Success #id 31361237
+2026-07-09 21:33:04,735 - [ qwen3-14b ] - INFO - Success #id 16018021
+2026-07-09 21:33:07,975 - [ qwen3-14b ] - INFO - Success #id 83616175
+2026-07-09 21:33:09,780 - [ qwen3-14b ] - INFO - Success #id 12820350
+2026-07-09 21:33:12,025 - [ qwen3-14b ] - INFO - Success #id 77906071
+2026-07-09 21:33:13,767 - [ qwen3-14b ] - INFO - Success #id 10164138
+2026-07-09 21:33:13,997 - [ qwen3-14b ] - INFO - Success #id 25127075
+2026-07-09 21:33:14,278 - [ qwen3-14b ] - INFO - Success #id 28683876
+2026-07-09 21:33:15,610 - [ qwen3-14b ] - INFO - Success #id 13888841
+2026-07-09 21:33:19,296 - [ qwen3-14b ] - INFO - Success #id 21309301
+2026-07-09 21:33:20,694 - [ qwen3-14b ] - INFO - Success #id 29499124
+2026-07-09 21:33:22,043 - [ qwen3-14b ] - INFO - Success #id 19461336
+2026-07-09 21:33:22,675 - [ qwen3-14b ] - INFO - Success #id 24000997
+2026-07-09 21:33:23,188 - [ qwen3-14b ] - INFO - Success #id 36443715
+2026-07-09 21:33:23,834 - [ qwen3-14b ] - INFO - Success #id 77326771
+2026-07-09 21:33:24,072 - [ qwen3-14b ] - INFO - Success #id 30703133
+2026-07-09 21:33:27,930 - [ qwen3-14b ] - INFO - Success #id 15128231
+2026-07-09 21:33:27,950 - [ qwen3-14b ] - INFO - Success #id 73951043
+2026-07-09 21:33:29,842 - [ qwen3-14b ] - INFO - Success #id 20556972
+2026-07-09 21:33:30,362 - [ qwen3-14b ] - INFO - Success #id 13570389
+2026-07-09 21:33:30,972 - [ qwen3-14b ] - INFO - Success #id 92309086
+2026-07-09 21:33:31,432 - [ qwen3-14b ] - INFO - Success #id 92449798
+2026-07-09 21:33:32,376 - [ qwen3-14b ] - INFO - Success #id 13312030
+2026-07-09 21:33:33,252 - [ qwen3-14b ] - INFO - Success #id 25832374
+2026-07-09 21:33:34,453 - [ qwen3-14b ] - INFO - Success #id 17423018
+2026-07-09 21:33:37,606 - [ qwen3-14b ] - INFO - Success #id 11935957
+2026-07-09 21:33:38,090 - [ qwen3-14b ] - INFO - Success #id 30481355
+2026-07-09 21:33:38,753 - [ qwen3-14b ] - INFO - Success #id 24561458
+2026-07-09 21:33:40,645 - [ qwen3-14b ] - INFO - Success #id 17963441
+2026-07-09 21:33:41,636 - [ qwen3-14b ] - INFO - Success #id 26916535
+2026-07-09 21:33:44,896 - [ qwen3-14b ] - INFO - Success #id 52180879
+2026-07-09 21:33:46,489 - [ qwen3-14b ] - INFO - Success #id 22112968
+2026-07-09 21:33:46,490 - [ qwen3-14b ] - INFO - Success #id 30935728
+2026-07-09 21:33:46,570 - [ qwen3-14b ] - INFO - Success #id 28653034
+2026-07-09 21:33:48,455 - [ qwen3-14b ] - INFO - Success #id 19733897
+2026-07-09 21:33:49,402 - [ qwen3-14b ] - INFO - Success #id 17426998
+2026-07-09 21:33:50,529 - [ qwen3-14b ] - INFO - Success #id 20321998
+2026-07-09 21:33:53,736 - [ qwen3-14b ] - INFO - Success #id 10234542
+2026-07-09 21:33:54,337 - [ qwen3-14b ] - INFO - Success #id 22032689
+2026-07-09 21:33:56,342 - [ qwen3-14b ] - INFO - Success #id 11173362
+2026-07-09 21:33:56,911 - [ qwen3-14b ] - INFO - Success #id 24245824
+2026-07-09 21:33:58,803 - [ qwen3-14b ] - INFO - Success #id 29763702
+2026-07-09 21:33:59,032 - [ qwen3-14b ] - INFO - Success #id 15570432
+2026-07-09 21:34:00,352 - [ qwen3-14b ] - INFO - Success #id 18490219
+2026-07-09 21:34:02,539 - [ qwen3-14b ] - INFO - Success #id 28259409
+2026-07-09 21:34:02,594 - [ qwen3-14b ] - INFO - Success #id 20096033
+2026-07-09 21:34:04,662 - [ qwen3-14b ] - INFO - Success #id 14569977
+2026-07-09 21:34:06,920 - [ qwen3-14b ] - INFO - Success #id 14362396
+2026-07-09 21:34:07,323 - [ qwen3-14b ] - INFO - Success #id 19747040
+2026-07-09 21:34:07,842 - [ qwen3-14b ] - INFO - Success #id 17706504
+2026-07-09 21:34:10,241 - [ qwen3-14b ] - INFO - Success #id 28712032
+2026-07-09 21:34:12,446 - [ qwen3-14b ] - INFO - Success #id 31339515
+2026-07-09 21:34:14,412 - [ qwen3-14b ] - INFO - Success #id 33939316
+2026-07-09 21:34:16,041 - [ qwen3-14b ] - INFO - Success #id 12157866
+2026-07-09 21:34:16,543 - [ qwen3-14b ] - INFO - Success #id 23360423
+2026-07-09 21:34:18,264 - [ qwen3-14b ] - INFO - Success #id 30440259
+2026-07-09 21:34:18,749 - [ qwen3-14b ] - INFO - Success #id 12070402
+2026-07-09 21:34:20,043 - [ qwen3-14b ] - INFO - Success #id 21322416
+2026-07-09 21:34:24,013 - [ qwen3-14b ] - INFO - Success #id 10198862
+2026-07-09 21:34:24,378 - [ qwen3-14b ] - INFO - Success #id 15397071
+2026-07-09 21:34:24,611 - [ qwen3-14b ] - INFO - Success #id 27688661
+2026-07-09 21:34:31,499 - [ qwen3-14b ] - INFO - Success #id 37922646
+2026-07-09 21:34:32,205 - [ qwen3-14b ] - INFO - Success #id 10616021
+2026-07-09 21:34:34,037 - [ qwen3-14b ] - INFO - Success #id 10620456
+2026-07-09 21:34:34,253 - [ qwen3-14b ] - INFO - Success #id 26328637
+2026-07-09 21:34:34,345 - [ qwen3-14b ] - INFO - Success #id 18093183
+2026-07-09 21:34:36,815 - [ qwen3-14b ] - INFO - Success #id 21037669
+2026-07-09 21:34:39,372 - [ qwen3-14b ] - INFO - Success #id 27581763
+2026-07-09 21:34:40,048 - [ qwen3-14b ] - INFO - Success #id 14439564
+2026-07-09 21:34:42,095 - [ qwen3-14b ] - INFO - Success #id 29116376
+2026-07-09 21:34:42,722 - [ qwen3-14b ] - INFO - Success #id 13153974
+2026-07-09 21:34:44,790 - [ qwen3-14b ] - INFO - Success #id 18576067
+2026-07-09 21:34:47,943 - [ qwen3-14b ] - INFO - Success #id 30274553
+2026-07-09 21:34:49,024 - [ qwen3-14b ] - INFO - Success #id 11624016
+2026-07-09 21:34:50,638 - [ qwen3-14b ] - INFO - Success #id 52287923
+2026-07-09 21:34:52,817 - [ qwen3-14b ] - INFO - Success #id 20427944
+2026-07-09 21:34:53,549 - [ qwen3-14b ] - INFO - Success #id 18070782
+2026-07-09 21:34:54,816 - [ qwen3-14b ] - INFO - Success #id 34233977
+2026-07-09 21:34:58,061 - [ qwen3-14b ] - INFO - Success #id 13916672
+2026-07-09 21:35:02,580 - [ qwen3-14b ] - INFO - Success #id 19230316
+2026-07-09 21:35:03,124 - [ qwen3-14b ] - INFO - Success #id 10600808
+2026-07-09 21:35:04,579 - [ qwen3-14b ] - INFO - Success #id 24261327
+2026-07-09 21:35:05,791 - [ qwen3-14b ] - INFO - Success #id 23411945
+2026-07-09 21:35:08,310 - [ qwen3-14b ] - INFO - Success #id 16985283
+2026-07-09 21:35:10,896 - [ qwen3-14b ] - INFO - Success #id 23210049
+2026-07-09 21:35:10,897 - [ qwen3-14b ] - INFO - Completed: 863
+2026-07-09 21:35:10,897 - [ qwen3-14b ] - INFO - Failed: 1
+2026-07-09 21:46:53,740 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 4, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 21:46:53,741 - [ qwen3-14b ] - INFO - Detected 863 has been inferenced,
+2026-07-09 21:46:53,741 - [ qwen3-14b ] - INFO - Start inferencing 1 tasks...
+2026-07-09 21:46:59,017 - [ qwen3-14b ] - INFO - # TASK LIST #:
+{"id": "get_weather", "desc": "Get the weather for a specific city and a specific day", "parameters": ["location", "date"]}
+{"id": "get_news_for_topic", "desc": "Get the news for a specific topic", "parameters": ["topic"]}
+{"id": "stock_operation", "desc": "Do a specific operation on a specific stock", "parameters": ["stock", "operation"]}
+{"id": "book_flight", "desc": "Book a flight for a specific date, from a specific location to a specific destination", "parameters": ["date", "from", "to"]}
+{"id": "book_hotel", "desc": "Book a specific hotel for a specific date", "parameters": ["date", "name"]}
+{"id": "book_restaurant", "desc": "Book a specific restaurant for a specific date", "parameters": ["date", "name"]}
+{"id": "book_car", "desc": "Book a car for a specific date, in a specific location", "parameters": ["date", "location"]}
+{"id": "online_shopping", "desc": "Buy a product from a specific website", "parameters": ["website", "product"]}
+{"id": "send_email", "desc": "Send an email to a specific email address", "parameters": ["email_address", "content"]}
+{"id": "send_sms", "desc": "Send an sms to a specific phone number", "parameters": ["phone_number", "content"]}
+{"id": "share_by_social_network", "desc": "Share a specific content by a specific social network", "parameters": ["content", "social_network"]}
+{"id": "search_by_engine", "desc": "Search a specific query by a specific search engine", "parameters": ["query", "engine"]}
+{"id": "apply_for_job", "desc": "Apply for a specific job", "parameters": ["job"]}
+{"id": "see_doctor_online", "desc": "See a specific doctor for a specific disease", "parameters": ["disease", "doctor"]}
+{"id": "consult_lawyer_online", "desc": "Consult a specific lawyer for a specific legal issue", "parameters": ["issue", "lawyer"]}
+{"id": "enroll_in_course", "desc": "Enroll in a specific course at a specific university", "parameters": ["course", "university"]}
+{"id": "buy_insurance", "desc": "Buy a specific insurance from a specific insurance company", "parameters": ["insurance", "company"]}
+{"id": "online_banking", "desc": "Do a specific banking operation online at a specific bank", "parameters": ["instruction", "bank"]}
+{"id": "daily_bill_payment", "desc": "Pay a specific bill", "parameters": ["bill"]}
+{"id": "sell_item_online", "desc": "Sell a specific item at a specific online store", "parameters": ["item", "store"]}
+{"id": "do_tax_return", "desc": "Do the tax return for a specific year", "parameters": ["year"]}
+{"id": "apply_for_passport", "desc": "Apply for a passport", "parameters": ["country"]}
+{"id": "pay_for_credit_card", "desc": "Pay for a specific credit card", "parameters": ["credit_card"]}
+{"id": "auto_housework_by_robot", "desc": "Let a robot do a housework by following a specific instruction", "parameters": ["instruction"]}
+{"id": "auto_driving_to_destination", "desc": "Let a car drive to a specific destination", "parameters": ["destination"]}
+{"id": "deliver_package", "desc": "Deliver a specific package to a specific destination", "parameters": ["package", "destination"]}
+{"id": "order_food_delivery", "desc": "Order a specific food to be delivered to a specific location at a specific platform", "parameters": ["food", "location", "platform"]}
+{"id": "order_taxi", "desc": "Order a taxi to a specific location at a specific platform", "parameters": ["location", "platform"]}
+{"id": "play_music_by_title", "desc": "Play a specific music by a specific title", "parameters": ["title"]}
+{"id": "play_movie_by_title", "desc": "Play a specific movie by a specific title", "parameters": ["title"]}
+{"id": "take_note", "desc": "Take a note", "parameters": ["content"]}
+{"id": "borrow_book_online", "desc": "Borrow a specific book from a specific library", "parameters": ["book", "library"]}
+{"id": "recording_audio", "desc": "Record an audio", "parameters": ["content"]}
+{"id": "make_video_call", "desc": "Make a video call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "make_voice_call", "desc": "Make a voice call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "organize_meeting_online", "desc": "Organize a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "attend_meeting_online", "desc": "Attend a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "software_management", "desc": "Manage a specific software by a specific instruction", "parameters": ["software", "instruction"]}
+{"id": "print_document", "desc": "Print a specific document", "parameters": ["document"]}
+{"id": "set_alarm", "desc": "Set an alarm for a specific time", "parameters": ["time"]}
+
+# GOAL #:
+Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;
+
+# USER REQUEST #: My friend and I are Butler fans, and I want to recommend they listen to our favorite track called 'Stayin' Alive' by Bee Gees. Can you send a message to them at +1234567890 and suggest the song? After this, can you also play this song for me here?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 21:46:59,019 - [ qwen3-14b ] - INFO - {
+  "task_steps": [
+    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'",
+    "Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"
+  ],
+  "task_nodes": [
+    {
+      "task": "send_sms",
+      "arguments": [
+        {"name": "phone_number", "value": "+1234567890"},
+        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}
+      ]
+    },
+    {
+      "task": "play_music_by_title",
+      "arguments": [
+        {"name": "title", "value": "Stayin' Alive"}
+      ]
+    }
+  ],
+  "task_links": [
+    {"source": "send_sms", "target": "play_music_by_title"}
+  ]
+}
+2026-07-09 21:46:59,019 - [ qwen3-14b ] - INFO - [warning] #id 51723456 Illegal JSON format: {  "task_steps": [    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called "Stayin' Alive" by Bee Gees. It's a classic! Let me know what you think.'",    "Step 2: Call play_music_by_title tool with title: 'Stayin' Alive'"  ],  "task_nodes": [    {      "task": "send_sms",      "arguments": [        {"name": "phone_number", "value": "+1234567890"},        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called "Stayin' Alive" by Bee Gees. It's a classic! Let me know what you think."}      ]    },    {      "task": "play_music_by_title",      "arguments": [        {"name": "title", "value": "Stayin' Alive"}      ]    }  ],  "task_links": [    {"source": "send_sms", "target": "play_music_by_title"}  ]}
+2026-07-09 21:46:59,020 - [ qwen3-14b ] - INFO - [reformat] #id 51723456 Detected illegal JSON format, try to reformat by qwen3-14b...
+2026-07-09 21:47:04,174 - [ qwen3-14b ] - INFO - Please format the result # RESULT # to a strict JSON format # STRICT JSON FORMAT #. 
+Requirements:
+1. Do not change the meaning of task steps, task nodes and task links;
+2. Don't tolerate any possible irregular formatting to ensure that the generated content can be converted by json.loads();
+3. Pay attention to the matching of brackets. Write in a compact format and avoid using too many space formatting controls;
+4. You must output the result in this schema: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+# RESULT #:{  "task_steps": [    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'",    "Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"  ],  "task_nodes": [    {      "task": "send_sms",      "arguments": [        {"name": "phone_number", "value": "+1234567890"},        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}      ]    },    {      "task": "play_music_by_title",      "arguments": [        {"name": "title", "value": "Stayin' Alive"}      ]    }  ],  "task_links": [    {"source": "send_sms", "target": "play_music_by_title"}  ]}
+# STRICT JSON FORMAT #:
+2026-07-09 21:47:04,197 - [ qwen3-14b ] - INFO - {"task_steps": ["Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'","Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"],"task_nodes":[{"task":"send_sms","arguments":[{"name":"phone_number","value":"+1234567890"},{"name":"content","value":"Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}]},{"task":"play_music_by_title","arguments":[{"name":"title","value":"Stayin' Alive"}]}],"task_links":[{"source":"send_sms","target":"play_music_by_title"}]}
+2026-07-09 21:47:04,200 - [ qwen3-14b ] - INFO - Failed #id 51723456: <class '__main__.ContentFormatError'> {"task_steps": ["Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'","Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"],"task_nodes":[{"task":"send_sms","arguments":[{"name":"phone_number","value":"+1234567890"},{"name":"content","value":"Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}]},{"task":"play_music_by_title","arguments":[{"name":"title","value":"Stayin' Alive"}]}],"task_links":[{"source":"send_sms","target":"play_music_by_title"}]}
+2026-07-09 21:47:04,202 - [ qwen3-14b ] - INFO - Completed: 0
+2026-07-09 21:47:04,202 - [ qwen3-14b ] - INFO - Failed: 1
+2026-07-09 21:47:19,406 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 1, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 21:47:19,408 - [ qwen3-14b ] - INFO - Detected 863 has been inferenced,
+2026-07-09 21:47:19,408 - [ qwen3-14b ] - INFO - Start inferencing 1 tasks...
+2026-07-09 21:47:25,846 - [ qwen3-14b ] - INFO - # TASK LIST #:
+{"id": "get_weather", "desc": "Get the weather for a specific city and a specific day", "parameters": ["location", "date"]}
+{"id": "get_news_for_topic", "desc": "Get the news for a specific topic", "parameters": ["topic"]}
+{"id": "stock_operation", "desc": "Do a specific operation on a specific stock", "parameters": ["stock", "operation"]}
+{"id": "book_flight", "desc": "Book a flight for a specific date, from a specific location to a specific destination", "parameters": ["date", "from", "to"]}
+{"id": "book_hotel", "desc": "Book a specific hotel for a specific date", "parameters": ["date", "name"]}
+{"id": "book_restaurant", "desc": "Book a specific restaurant for a specific date", "parameters": ["date", "name"]}
+{"id": "book_car", "desc": "Book a car for a specific date, in a specific location", "parameters": ["date", "location"]}
+{"id": "online_shopping", "desc": "Buy a product from a specific website", "parameters": ["website", "product"]}
+{"id": "send_email", "desc": "Send an email to a specific email address", "parameters": ["email_address", "content"]}
+{"id": "send_sms", "desc": "Send an sms to a specific phone number", "parameters": ["phone_number", "content"]}
+{"id": "share_by_social_network", "desc": "Share a specific content by a specific social network", "parameters": ["content", "social_network"]}
+{"id": "search_by_engine", "desc": "Search a specific query by a specific search engine", "parameters": ["query", "engine"]}
+{"id": "apply_for_job", "desc": "Apply for a specific job", "parameters": ["job"]}
+{"id": "see_doctor_online", "desc": "See a specific doctor for a specific disease", "parameters": ["disease", "doctor"]}
+{"id": "consult_lawyer_online", "desc": "Consult a specific lawyer for a specific legal issue", "parameters": ["issue", "lawyer"]}
+{"id": "enroll_in_course", "desc": "Enroll in a specific course at a specific university", "parameters": ["course", "university"]}
+{"id": "buy_insurance", "desc": "Buy a specific insurance from a specific insurance company", "parameters": ["insurance", "company"]}
+{"id": "online_banking", "desc": "Do a specific banking operation online at a specific bank", "parameters": ["instruction", "bank"]}
+{"id": "daily_bill_payment", "desc": "Pay a specific bill", "parameters": ["bill"]}
+{"id": "sell_item_online", "desc": "Sell a specific item at a specific online store", "parameters": ["item", "store"]}
+{"id": "do_tax_return", "desc": "Do the tax return for a specific year", "parameters": ["year"]}
+{"id": "apply_for_passport", "desc": "Apply for a passport", "parameters": ["country"]}
+{"id": "pay_for_credit_card", "desc": "Pay for a specific credit card", "parameters": ["credit_card"]}
+{"id": "auto_housework_by_robot", "desc": "Let a robot do a housework by following a specific instruction", "parameters": ["instruction"]}
+{"id": "auto_driving_to_destination", "desc": "Let a car drive to a specific destination", "parameters": ["destination"]}
+{"id": "deliver_package", "desc": "Deliver a specific package to a specific destination", "parameters": ["package", "destination"]}
+{"id": "order_food_delivery", "desc": "Order a specific food to be delivered to a specific location at a specific platform", "parameters": ["food", "location", "platform"]}
+{"id": "order_taxi", "desc": "Order a taxi to a specific location at a specific platform", "parameters": ["location", "platform"]}
+{"id": "play_music_by_title", "desc": "Play a specific music by a specific title", "parameters": ["title"]}
+{"id": "play_movie_by_title", "desc": "Play a specific movie by a specific title", "parameters": ["title"]}
+{"id": "take_note", "desc": "Take a note", "parameters": ["content"]}
+{"id": "borrow_book_online", "desc": "Borrow a specific book from a specific library", "parameters": ["book", "library"]}
+{"id": "recording_audio", "desc": "Record an audio", "parameters": ["content"]}
+{"id": "make_video_call", "desc": "Make a video call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "make_voice_call", "desc": "Make a voice call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "organize_meeting_online", "desc": "Organize a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "attend_meeting_online", "desc": "Attend a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "software_management", "desc": "Manage a specific software by a specific instruction", "parameters": ["software", "instruction"]}
+{"id": "print_document", "desc": "Print a specific document", "parameters": ["document"]}
+{"id": "set_alarm", "desc": "Set an alarm for a specific time", "parameters": ["time"]}
+
+# GOAL #:
+Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;
+
+# USER REQUEST #: My friend and I are Butler fans, and I want to recommend they listen to our favorite track called 'Stayin' Alive' by Bee Gees. Can you send a message to them at +1234567890 and suggest the song? After this, can you also play this song for me here?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 21:47:25,847 - [ qwen3-14b ] - INFO - {
+  "task_steps": [
+    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'",
+    "Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"
+  ],
+  "task_nodes": [
+    {
+      "task": "send_sms",
+      "arguments": [
+        {"name": "phone_number", "value": "+1234567890"},
+        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}
+      ]
+    },
+    {
+      "task": "play_music_by_title",
+      "arguments": [
+        {"name": "title", "value": "Stayin' Alive"}
+      ]
+    }
+  ],
+  "task_links": [
+    {"source": "send_sms", "target": "play_music_by_title"}
+  ]
+}
+2026-07-09 21:47:25,848 - [ qwen3-14b ] - INFO - [warning] #id 51723456 Illegal JSON format: {  "task_steps": [    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called "Stayin' Alive" by Bee Gees. It's a classic! Let me know what you think.'",    "Step 2: Call play_music_by_title tool with title: 'Stayin' Alive'"  ],  "task_nodes": [    {      "task": "send_sms",      "arguments": [        {"name": "phone_number", "value": "+1234567890"},        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called "Stayin' Alive" by Bee Gees. It's a classic! Let me know what you think."}      ]    },    {      "task": "play_music_by_title",      "arguments": [        {"name": "title", "value": "Stayin' Alive"}      ]    }  ],  "task_links": [    {"source": "send_sms", "target": "play_music_by_title"}  ]}
+2026-07-09 21:47:25,848 - [ qwen3-14b ] - INFO - [reformat] #id 51723456 Detected illegal JSON format, try to reformat by qwen3-14b...
+2026-07-09 21:47:28,989 - [ qwen3-14b ] - INFO - Please format the result # RESULT # to a strict JSON format # STRICT JSON FORMAT #. 
+Requirements:
+1. Do not change the meaning of task steps, task nodes and task links;
+2. Don't tolerate any possible irregular formatting to ensure that the generated content can be converted by json.loads();
+3. Pay attention to the matching of brackets. Write in a compact format and avoid using too many space formatting controls;
+4. You must output the result in this schema: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+# RESULT #:{  "task_steps": [    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'",    "Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"  ],  "task_nodes": [    {      "task": "send_sms",      "arguments": [        {"name": "phone_number", "value": "+1234567890"},        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}      ]    },    {      "task": "play_music_by_title",      "arguments": [        {"name": "title", "value": "Stayin' Alive"}      ]    }  ],  "task_links": [    {"source": "send_sms", "target": "play_music_by_title"}  ]}
+# STRICT JSON FORMAT #:
+2026-07-09 21:47:28,989 - [ qwen3-14b ] - INFO - {"task_steps": ["Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'","Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"],"task_nodes":[{"task":"send_sms","arguments":[{"name":"phone_number","value":"+1234567890"},{"name":"content","value":"Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}]},{"task":"play_music_by_title","arguments":[{"name":"title","value":"Stayin' Alive"}]}],"task_links":[{"source":"send_sms","target":"play_music_by_title"}]}
+2026-07-09 21:47:28,990 - [ qwen3-14b ] - INFO - Failed #id 51723456: <class '__main__.ContentFormatError'> {"task_steps": ["Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'","Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"],"task_nodes":[{"task":"send_sms","arguments":[{"name":"phone_number","value":"+1234567890"},{"name":"content","value":"Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}]},{"task":"play_music_by_title","arguments":[{"name":"title","value":"Stayin' Alive"}]}],"task_links":[{"source":"send_sms","target":"play_music_by_title"}]}
+2026-07-09 21:47:28,990 - [ qwen3-14b ] - INFO - Completed: 0
+2026-07-09 21:47:28,991 - [ qwen3-14b ] - INFO - Failed: 1
+2026-07-09 21:59:25,051 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 1, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 21:59:25,051 - [ qwen3-14b ] - INFO - Detected 863 has been inferenced,
+2026-07-09 21:59:25,051 - [ qwen3-14b ] - INFO - Start inferencing 1 tasks...
+2026-07-09 21:59:30,848 - [ qwen3-14b ] - INFO - # TASK LIST #:
+{"id": "get_weather", "desc": "Get the weather for a specific city and a specific day", "parameters": ["location", "date"]}
+{"id": "get_news_for_topic", "desc": "Get the news for a specific topic", "parameters": ["topic"]}
+{"id": "stock_operation", "desc": "Do a specific operation on a specific stock", "parameters": ["stock", "operation"]}
+{"id": "book_flight", "desc": "Book a flight for a specific date, from a specific location to a specific destination", "parameters": ["date", "from", "to"]}
+{"id": "book_hotel", "desc": "Book a specific hotel for a specific date", "parameters": ["date", "name"]}
+{"id": "book_restaurant", "desc": "Book a specific restaurant for a specific date", "parameters": ["date", "name"]}
+{"id": "book_car", "desc": "Book a car for a specific date, in a specific location", "parameters": ["date", "location"]}
+{"id": "online_shopping", "desc": "Buy a product from a specific website", "parameters": ["website", "product"]}
+{"id": "send_email", "desc": "Send an email to a specific email address", "parameters": ["email_address", "content"]}
+{"id": "send_sms", "desc": "Send an sms to a specific phone number", "parameters": ["phone_number", "content"]}
+{"id": "share_by_social_network", "desc": "Share a specific content by a specific social network", "parameters": ["content", "social_network"]}
+{"id": "search_by_engine", "desc": "Search a specific query by a specific search engine", "parameters": ["query", "engine"]}
+{"id": "apply_for_job", "desc": "Apply for a specific job", "parameters": ["job"]}
+{"id": "see_doctor_online", "desc": "See a specific doctor for a specific disease", "parameters": ["disease", "doctor"]}
+{"id": "consult_lawyer_online", "desc": "Consult a specific lawyer for a specific legal issue", "parameters": ["issue", "lawyer"]}
+{"id": "enroll_in_course", "desc": "Enroll in a specific course at a specific university", "parameters": ["course", "university"]}
+{"id": "buy_insurance", "desc": "Buy a specific insurance from a specific insurance company", "parameters": ["insurance", "company"]}
+{"id": "online_banking", "desc": "Do a specific banking operation online at a specific bank", "parameters": ["instruction", "bank"]}
+{"id": "daily_bill_payment", "desc": "Pay a specific bill", "parameters": ["bill"]}
+{"id": "sell_item_online", "desc": "Sell a specific item at a specific online store", "parameters": ["item", "store"]}
+{"id": "do_tax_return", "desc": "Do the tax return for a specific year", "parameters": ["year"]}
+{"id": "apply_for_passport", "desc": "Apply for a passport", "parameters": ["country"]}
+{"id": "pay_for_credit_card", "desc": "Pay for a specific credit card", "parameters": ["credit_card"]}
+{"id": "auto_housework_by_robot", "desc": "Let a robot do a housework by following a specific instruction", "parameters": ["instruction"]}
+{"id": "auto_driving_to_destination", "desc": "Let a car drive to a specific destination", "parameters": ["destination"]}
+{"id": "deliver_package", "desc": "Deliver a specific package to a specific destination", "parameters": ["package", "destination"]}
+{"id": "order_food_delivery", "desc": "Order a specific food to be delivered to a specific location at a specific platform", "parameters": ["food", "location", "platform"]}
+{"id": "order_taxi", "desc": "Order a taxi to a specific location at a specific platform", "parameters": ["location", "platform"]}
+{"id": "play_music_by_title", "desc": "Play a specific music by a specific title", "parameters": ["title"]}
+{"id": "play_movie_by_title", "desc": "Play a specific movie by a specific title", "parameters": ["title"]}
+{"id": "take_note", "desc": "Take a note", "parameters": ["content"]}
+{"id": "borrow_book_online", "desc": "Borrow a specific book from a specific library", "parameters": ["book", "library"]}
+{"id": "recording_audio", "desc": "Record an audio", "parameters": ["content"]}
+{"id": "make_video_call", "desc": "Make a video call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "make_voice_call", "desc": "Make a voice call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "organize_meeting_online", "desc": "Organize a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "attend_meeting_online", "desc": "Attend a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "software_management", "desc": "Manage a specific software by a specific instruction", "parameters": ["software", "instruction"]}
+{"id": "print_document", "desc": "Print a specific document", "parameters": ["document"]}
+{"id": "set_alarm", "desc": "Set an alarm for a specific time", "parameters": ["time"]}
+
+# GOAL #:
+Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;
+
+# USER REQUEST #: My friend and I are Butler fans, and I want to recommend they listen to our favorite track called 'Stayin' Alive' by Bee Gees. Can you send a message to them at +1234567890 and suggest the song? After this, can you also play this song for me here?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 21:59:30,849 - [ qwen3-14b ] - INFO - {
+  "task_steps": [
+    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'",
+    "Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"
+  ],
+  "task_nodes": [
+    {
+      "task": "send_sms",
+      "arguments": [
+        {"name": "phone_number", "value": "+1234567890"},
+        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}
+      ]
+    },
+    {
+      "task": "play_music_by_title",
+      "arguments": [
+        {"name": "title", "value": "Stayin' Alive"}
+      ]
+    }
+  ],
+  "task_links": [
+    {"source": "send_sms", "target": "play_music_by_title"}
+  ]
+}
+2026-07-09 21:59:30,850 - [ qwen3-14b ] - INFO - [warning] #id 51723456 Illegal JSON format: {  "task_steps": [    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called "Stayin' Alive" by Bee Gees. It's a classic! Let me know what you think.'",    "Step 2: Call play_music_by_title tool with title: 'Stayin' Alive'"  ],  "task_nodes": [    {      "task": "send_sms",      "arguments": [        {"name": "phone_number", "value": "+1234567890"},        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called "Stayin' Alive" by Bee Gees. It's a classic! Let me know what you think."}      ]    },    {      "task": "play_music_by_title",      "arguments": [        {"name": "title", "value": "Stayin' Alive"}      ]    }  ],  "task_links": [    {"source": "send_sms", "target": "play_music_by_title"}  ]}
+2026-07-09 21:59:30,850 - [ qwen3-14b ] - INFO - [reformat] #id 51723456 Detected illegal JSON format, try to reformat by qwen3-14b...
+2026-07-09 21:59:35,023 - [ qwen3-14b ] - INFO - Please format the result # RESULT # to a strict JSON format # STRICT JSON FORMAT #. 
+Requirements:
+1. Do not change the meaning of task steps, task nodes and task links;
+2. Don't tolerate any possible irregular formatting to ensure that the generated content can be converted by json.loads();
+3. Pay attention to the matching of brackets. Write in a compact format and avoid using too many space formatting controls;
+4. You must output the result in this schema: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+# RESULT #:{  "task_steps": [    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'",    "Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"  ],  "task_nodes": [    {      "task": "send_sms",      "arguments": [        {"name": "phone_number", "value": "+1234567890"},        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}      ]    },    {      "task": "play_music_by_title",      "arguments": [        {"name": "title", "value": "Stayin' Alive"}      ]    }  ],  "task_links": [    {"source": "send_sms", "target": "play_music_by_title"}  ]}
+# STRICT JSON FORMAT #:
+2026-07-09 21:59:35,023 - [ qwen3-14b ] - INFO - {"task_steps": ["Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'","Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"],"task_nodes":[{"task":"send_sms","arguments":[{"name":"phone_number","value":"+1234567890"},{"name":"content","value":"Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}]},{"task":"play_music_by_title","arguments":[{"name":"title","value":"Stayin' Alive"}]}],"task_links":[{"source":"send_sms","target":"play_music_by_title"}]}
+2026-07-09 21:59:35,024 - [ qwen3-14b ] - INFO - Failed #id 51723456: <class '__main__.ContentFormatError'> {"task_steps": ["Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'","Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"],"task_nodes":[{"task":"send_sms","arguments":[{"name":"phone_number","value":"+1234567890"},{"name":"content","value":"Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}]},{"task":"play_music_by_title","arguments":[{"name":"title","value":"Stayin' Alive"}]}],"task_links":[{"source":"send_sms","target":"play_music_by_title"}]}
+2026-07-09 21:59:35,026 - [ qwen3-14b ] - INFO - Completed: 0
+2026-07-09 21:59:35,026 - [ qwen3-14b ] - INFO - Failed: 1
+2026-07-09 21:59:44,181 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 1, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 21:59:44,183 - [ qwen3-14b ] - INFO - Detected 863 has been inferenced,
+2026-07-09 21:59:44,184 - [ qwen3-14b ] - INFO - Start inferencing 1 tasks...
+2026-07-09 21:59:49,815 - [ qwen3-14b ] - INFO - # TASK LIST #:
+{"id": "get_weather", "desc": "Get the weather for a specific city and a specific day", "parameters": ["location", "date"]}
+{"id": "get_news_for_topic", "desc": "Get the news for a specific topic", "parameters": ["topic"]}
+{"id": "stock_operation", "desc": "Do a specific operation on a specific stock", "parameters": ["stock", "operation"]}
+{"id": "book_flight", "desc": "Book a flight for a specific date, from a specific location to a specific destination", "parameters": ["date", "from", "to"]}
+{"id": "book_hotel", "desc": "Book a specific hotel for a specific date", "parameters": ["date", "name"]}
+{"id": "book_restaurant", "desc": "Book a specific restaurant for a specific date", "parameters": ["date", "name"]}
+{"id": "book_car", "desc": "Book a car for a specific date, in a specific location", "parameters": ["date", "location"]}
+{"id": "online_shopping", "desc": "Buy a product from a specific website", "parameters": ["website", "product"]}
+{"id": "send_email", "desc": "Send an email to a specific email address", "parameters": ["email_address", "content"]}
+{"id": "send_sms", "desc": "Send an sms to a specific phone number", "parameters": ["phone_number", "content"]}
+{"id": "share_by_social_network", "desc": "Share a specific content by a specific social network", "parameters": ["content", "social_network"]}
+{"id": "search_by_engine", "desc": "Search a specific query by a specific search engine", "parameters": ["query", "engine"]}
+{"id": "apply_for_job", "desc": "Apply for a specific job", "parameters": ["job"]}
+{"id": "see_doctor_online", "desc": "See a specific doctor for a specific disease", "parameters": ["disease", "doctor"]}
+{"id": "consult_lawyer_online", "desc": "Consult a specific lawyer for a specific legal issue", "parameters": ["issue", "lawyer"]}
+{"id": "enroll_in_course", "desc": "Enroll in a specific course at a specific university", "parameters": ["course", "university"]}
+{"id": "buy_insurance", "desc": "Buy a specific insurance from a specific insurance company", "parameters": ["insurance", "company"]}
+{"id": "online_banking", "desc": "Do a specific banking operation online at a specific bank", "parameters": ["instruction", "bank"]}
+{"id": "daily_bill_payment", "desc": "Pay a specific bill", "parameters": ["bill"]}
+{"id": "sell_item_online", "desc": "Sell a specific item at a specific online store", "parameters": ["item", "store"]}
+{"id": "do_tax_return", "desc": "Do the tax return for a specific year", "parameters": ["year"]}
+{"id": "apply_for_passport", "desc": "Apply for a passport", "parameters": ["country"]}
+{"id": "pay_for_credit_card", "desc": "Pay for a specific credit card", "parameters": ["credit_card"]}
+{"id": "auto_housework_by_robot", "desc": "Let a robot do a housework by following a specific instruction", "parameters": ["instruction"]}
+{"id": "auto_driving_to_destination", "desc": "Let a car drive to a specific destination", "parameters": ["destination"]}
+{"id": "deliver_package", "desc": "Deliver a specific package to a specific destination", "parameters": ["package", "destination"]}
+{"id": "order_food_delivery", "desc": "Order a specific food to be delivered to a specific location at a specific platform", "parameters": ["food", "location", "platform"]}
+{"id": "order_taxi", "desc": "Order a taxi to a specific location at a specific platform", "parameters": ["location", "platform"]}
+{"id": "play_music_by_title", "desc": "Play a specific music by a specific title", "parameters": ["title"]}
+{"id": "play_movie_by_title", "desc": "Play a specific movie by a specific title", "parameters": ["title"]}
+{"id": "take_note", "desc": "Take a note", "parameters": ["content"]}
+{"id": "borrow_book_online", "desc": "Borrow a specific book from a specific library", "parameters": ["book", "library"]}
+{"id": "recording_audio", "desc": "Record an audio", "parameters": ["content"]}
+{"id": "make_video_call", "desc": "Make a video call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "make_voice_call", "desc": "Make a voice call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "organize_meeting_online", "desc": "Organize a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "attend_meeting_online", "desc": "Attend a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "software_management", "desc": "Manage a specific software by a specific instruction", "parameters": ["software", "instruction"]}
+{"id": "print_document", "desc": "Print a specific document", "parameters": ["document"]}
+{"id": "set_alarm", "desc": "Set an alarm for a specific time", "parameters": ["time"]}
+
+# GOAL #:
+Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;
+
+# USER REQUEST #: My friend and I are Butler fans, and I want to recommend they listen to our favorite track called 'Stayin' Alive' by Bee Gees. Can you send a message to them at +1234567890 and suggest the song? After this, can you also play this song for me here?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 21:59:49,816 - [ qwen3-14b ] - INFO - {
+  "task_steps": [
+    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'",
+    "Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"
+  ],
+  "task_nodes": [
+    {
+      "task": "send_sms",
+      "arguments": [
+        {"name": "phone_number", "value": "+1234567890"},
+        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}
+      ]
+    },
+    {
+      "task": "play_music_by_title",
+      "arguments": [
+        {"name": "title", "value": "Stayin' Alive"}
+      ]
+    }
+  ],
+  "task_links": [
+    {"source": "send_sms", "target": "play_music_by_title"}
+  ]
+}
+2026-07-09 21:59:49,817 - [ qwen3-14b ] - INFO - [warning] #id 51723456 Illegal JSON format: {  "task_steps": [    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called "Stayin' Alive" by Bee Gees. It's a classic! Let me know what you think.'",    "Step 2: Call play_music_by_title tool with title: 'Stayin' Alive'"  ],  "task_nodes": [    {      "task": "send_sms",      "arguments": [        {"name": "phone_number", "value": "+1234567890"},        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called "Stayin' Alive" by Bee Gees. It's a classic! Let me know what you think."}      ]    },    {      "task": "play_music_by_title",      "arguments": [        {"name": "title", "value": "Stayin' Alive"}      ]    }  ],  "task_links": [    {"source": "send_sms", "target": "play_music_by_title"}  ]}
+2026-07-09 21:59:49,817 - [ qwen3-14b ] - INFO - [reformat] #id 51723456 Detected illegal JSON format, try to reformat by qwen3-14b...
+2026-07-09 21:59:53,375 - [ qwen3-14b ] - INFO - Please format the result # RESULT # to a strict JSON format # STRICT JSON FORMAT #. 
+Requirements:
+1. Do not change the meaning of task steps, task nodes and task links;
+2. Don't tolerate any possible irregular formatting to ensure that the generated content can be converted by json.loads();
+3. Pay attention to the matching of brackets. Write in a compact format and avoid using too many space formatting controls;
+4. You must output the result in this schema: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+# RESULT #:{  "task_steps": [    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'",    "Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"  ],  "task_nodes": [    {      "task": "send_sms",      "arguments": [        {"name": "phone_number", "value": "+1234567890"},        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}      ]    },    {      "task": "play_music_by_title",      "arguments": [        {"name": "title", "value": "Stayin' Alive"}      ]    }  ],  "task_links": [    {"source": "send_sms", "target": "play_music_by_title"}  ]}
+# STRICT JSON FORMAT #:
+2026-07-09 21:59:53,376 - [ qwen3-14b ] - INFO - {"task_steps": ["Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'","Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"],"task_nodes":[{"task":"send_sms","arguments":[{"name":"phone_number","value":"+1234567890"},{"name":"content","value":"Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}]},{"task":"play_music_by_title","arguments":[{"name":"title","value":"Stayin' Alive"}]}],"task_links":[{"source":"send_sms","target":"play_music_by_title"}]}
+2026-07-09 21:59:53,376 - [ qwen3-14b ] - INFO - Failed #id 51723456: <class '__main__.ContentFormatError'> {"task_steps": ["Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'","Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"],"task_nodes":[{"task":"send_sms","arguments":[{"name":"phone_number","value":"+1234567890"},{"name":"content","value":"Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}]},{"task":"play_music_by_title","arguments":[{"name":"title","value":"Stayin' Alive"}]}],"task_links":[{"source":"send_sms","target":"play_music_by_title"}]}
+2026-07-09 21:59:53,377 - [ qwen3-14b ] - INFO - Completed: 0
+2026-07-09 21:59:53,377 - [ qwen3-14b ] - INFO - Failed: 1
+2026-07-09 22:10:36,449 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 1, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 22:10:36,450 - [ qwen3-14b ] - INFO - Detected 863 has been inferenced,
+2026-07-09 22:10:36,450 - [ qwen3-14b ] - INFO - Start inferencing 1 tasks...
+2026-07-09 22:10:42,497 - [ qwen3-14b ] - INFO - # TASK LIST #:
+{"id": "get_weather", "desc": "Get the weather for a specific city and a specific day", "parameters": ["location", "date"]}
+{"id": "get_news_for_topic", "desc": "Get the news for a specific topic", "parameters": ["topic"]}
+{"id": "stock_operation", "desc": "Do a specific operation on a specific stock", "parameters": ["stock", "operation"]}
+{"id": "book_flight", "desc": "Book a flight for a specific date, from a specific location to a specific destination", "parameters": ["date", "from", "to"]}
+{"id": "book_hotel", "desc": "Book a specific hotel for a specific date", "parameters": ["date", "name"]}
+{"id": "book_restaurant", "desc": "Book a specific restaurant for a specific date", "parameters": ["date", "name"]}
+{"id": "book_car", "desc": "Book a car for a specific date, in a specific location", "parameters": ["date", "location"]}
+{"id": "online_shopping", "desc": "Buy a product from a specific website", "parameters": ["website", "product"]}
+{"id": "send_email", "desc": "Send an email to a specific email address", "parameters": ["email_address", "content"]}
+{"id": "send_sms", "desc": "Send an sms to a specific phone number", "parameters": ["phone_number", "content"]}
+{"id": "share_by_social_network", "desc": "Share a specific content by a specific social network", "parameters": ["content", "social_network"]}
+{"id": "search_by_engine", "desc": "Search a specific query by a specific search engine", "parameters": ["query", "engine"]}
+{"id": "apply_for_job", "desc": "Apply for a specific job", "parameters": ["job"]}
+{"id": "see_doctor_online", "desc": "See a specific doctor for a specific disease", "parameters": ["disease", "doctor"]}
+{"id": "consult_lawyer_online", "desc": "Consult a specific lawyer for a specific legal issue", "parameters": ["issue", "lawyer"]}
+{"id": "enroll_in_course", "desc": "Enroll in a specific course at a specific university", "parameters": ["course", "university"]}
+{"id": "buy_insurance", "desc": "Buy a specific insurance from a specific insurance company", "parameters": ["insurance", "company"]}
+{"id": "online_banking", "desc": "Do a specific banking operation online at a specific bank", "parameters": ["instruction", "bank"]}
+{"id": "daily_bill_payment", "desc": "Pay a specific bill", "parameters": ["bill"]}
+{"id": "sell_item_online", "desc": "Sell a specific item at a specific online store", "parameters": ["item", "store"]}
+{"id": "do_tax_return", "desc": "Do the tax return for a specific year", "parameters": ["year"]}
+{"id": "apply_for_passport", "desc": "Apply for a passport", "parameters": ["country"]}
+{"id": "pay_for_credit_card", "desc": "Pay for a specific credit card", "parameters": ["credit_card"]}
+{"id": "auto_housework_by_robot", "desc": "Let a robot do a housework by following a specific instruction", "parameters": ["instruction"]}
+{"id": "auto_driving_to_destination", "desc": "Let a car drive to a specific destination", "parameters": ["destination"]}
+{"id": "deliver_package", "desc": "Deliver a specific package to a specific destination", "parameters": ["package", "destination"]}
+{"id": "order_food_delivery", "desc": "Order a specific food to be delivered to a specific location at a specific platform", "parameters": ["food", "location", "platform"]}
+{"id": "order_taxi", "desc": "Order a taxi to a specific location at a specific platform", "parameters": ["location", "platform"]}
+{"id": "play_music_by_title", "desc": "Play a specific music by a specific title", "parameters": ["title"]}
+{"id": "play_movie_by_title", "desc": "Play a specific movie by a specific title", "parameters": ["title"]}
+{"id": "take_note", "desc": "Take a note", "parameters": ["content"]}
+{"id": "borrow_book_online", "desc": "Borrow a specific book from a specific library", "parameters": ["book", "library"]}
+{"id": "recording_audio", "desc": "Record an audio", "parameters": ["content"]}
+{"id": "make_video_call", "desc": "Make a video call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "make_voice_call", "desc": "Make a voice call to a specific phone number", "parameters": ["phone_number"]}
+{"id": "organize_meeting_online", "desc": "Organize a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "attend_meeting_online", "desc": "Attend a meeting online about a specific topic", "parameters": ["topic"]}
+{"id": "software_management", "desc": "Manage a specific software by a specific instruction", "parameters": ["software", "instruction"]}
+{"id": "print_document", "desc": "Print a specific document", "parameters": ["document"]}
+{"id": "set_alarm", "desc": "Set an alarm for a specific time", "parameters": ["time"]}
+
+# GOAL #:
+Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ "concrete steps, format as Step x: Call xxx tool with xxx: 'xxx' and xxx: 'xxx'" ], "task_nodes": [{"task": "task name must be from # TASK LIST #", "arguments": [ {"name": "parameter name", "value": "parameter value, either user-specified text or the specific name of the tool whose result is required by this node"} ]}], "task_links": [{"source": "task name i", "target": "task name j"}]}
+
+# REQUIREMENTS #: 
+1. the generated task steps and task nodes can resolve the given user request # USER REQUEST # perfectly. Task name must be selected from # TASK LIST #; 
+2. the task steps should strictly aligned with the task nodes, and the number of task steps should be same with the task nodes; 
+3. The task links (task_links) should reflect the temporal dependencies among task nodes, i.e. the order in which the APIs are invoked;
+
+# USER REQUEST #: My friend and I are Butler fans, and I want to recommend they listen to our favorite track called 'Stayin' Alive' by Bee Gees. Can you send a message to them at +1234567890 and suggest the song? After this, can you also play this song for me here?
+now please generate your result in a strict JSON format:
+# RESULT #:
+2026-07-09 22:10:42,499 - [ qwen3-14b ] - INFO - {
+  "task_steps": [
+    "Step 1: Call send_sms tool with phone_number: '+1234567890' and content: 'Hey, I want to recommend you listen to our favorite track called \"Stayin\' Alive\" by Bee Gees. It\'s a classic! Let me know what you think.'",
+    "Step 2: Call play_music_by_title tool with title: 'Stayin\' Alive'"
+  ],
+  "task_nodes": [
+    {
+      "task": "send_sms",
+      "arguments": [
+        {"name": "phone_number", "value": "+1234567890"},
+        {"name": "content", "value": "Hey, I want to recommend you listen to our favorite track called \"Stayin' Alive\" by Bee Gees. It's a classic! Let me know what you think."}
+      ]
+    },
+    {
+      "task": "play_music_by_title",
+      "arguments": [
+        {"name": "title", "value": "Stayin' Alive"}
+      ]
+    }
+  ],
+  "task_links": [
+    {"source": "send_sms", "target": "play_music_by_title"}
+  ]
+}
+2026-07-09 22:10:42,500 - [ qwen3-14b ] - INFO - Success #id 51723456
+2026-07-09 22:10:42,500 - [ qwen3-14b ] - INFO - Completed: 1
+2026-07-09 22:10:42,501 - [ qwen3-14b ] - INFO - Failed: 0
+2026-07-09 23:45:35,591 - [ qwen3-14b ] - INFO - Arguments: {'data_dir': 'taskbench/data_dailylifeapis', 'temperature': 0.0, 'top_p': 0.1, 'api_addr': 'localhost', 'api_key': 'sk-ws-H.EMRLMRR.Xb1V.MEUCIG6s4P7SJZpYdPJmp-A4ICcXyDboOdl3CfgN37xjSwegAiEAi8ItdxsyzJvUYsSvFn8Ww89uBDcusv5GEsguA8BSdoc', 'api_port': 4000, 'base_url': 'https://dashscope.aliyuncs.com/compatible-mode/v1', 'multiworker': 1, 'llm': 'qwen3-14b', 'use_demos': 0, 'reformat': True, 'reformat_by': 'self', 'tag': True, 'dependency_type': 'temporal', 'log_first_detail': True, 'max_tokens': 2000}
+2026-07-09 23:45:35,592 - [ qwen3-14b ] - INFO - All Completed!

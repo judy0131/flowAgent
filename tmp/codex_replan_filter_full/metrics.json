@@ -1,0 +1,87 @@
+{
+  "evaluation_scope": "common-with-prediction",
+  "original": {
+    "sample_ids": 597,
+    "gold_ids": 553,
+    "prediction_ids": 597,
+    "common_ids": 553,
+    "support": 553,
+    "skipped": 0,
+    "node_micro_precision": 0.9339576145884673,
+    "node_micro_recall": 0.8959810874704491,
+    "node_micro_f1": 0.9145752895752896,
+    "edge_micro_precision": 0.7373396353814989,
+    "edge_micro_recall": 0.7551867219917012,
+    "edge_micro_f1": 0.7461564742056713,
+    "ned": 0.12034095069676387
+  },
+  "intent_replan": {
+    "sample_ids": 597,
+    "gold_ids": 553,
+    "prediction_ids": 597,
+    "common_ids": 553,
+    "support": 553,
+    "skipped": 0,
+    "node_micro_precision": 0.9340551181102362,
+    "node_micro_recall": 0.8973995271867612,
+    "node_micro_f1": 0.9153605015673981,
+    "edge_micro_precision": 0.7457511896668932,
+    "edge_micro_recall": 0.7586445366528354,
+    "edge_micro_f1": 0.7521426122728831,
+    "ned": 0.11901054511681042
+  },
+  "edge_repaired": {
+    "sample_ids": 597,
+    "gold_ids": 553,
+    "prediction_ids": 597,
+    "common_ids": 553,
+    "support": 553,
+    "skipped": 0,
+    "node_micro_precision": 0.9340551181102362,
+    "node_micro_recall": 0.8973995271867612,
+    "node_micro_f1": 0.9153605015673981,
+    "edge_micro_precision": 0.7486449864498645,
+    "edge_micro_recall": 0.76417704011065,
+    "edge_micro_f1": 0.756331279945243,
+    "ned": 0.11901054511681042
+  },
+  "replan_summary": {
+    "rows": 597,
+    "decision_counts": {
+      "KEEP_ORIGINAL": 464,
+      "DRY_RUN": 133
+    },
+    "source_counts": {
+      "previous_workflow": 597
+    },
+    "retryable_failed": 0
+  },
+  "edge_repair_summary": {
+    "rows": 597,
+    "changed_rows": 589,
+    "operation_counts": {
+      "global_keep_original_edge": 1605,
+      "sync_arguments_with_edges": 165,
+      "global_select_graph_edge": 16
+    },
+    "validation_counts": {
+      "passed": 559,
+      "failed": 38
+    }
+  },
+  "delta_replan_vs_original": {
+    "node_micro_f1": 0.0007852119921085698,
+    "edge_micro_f1": 0.005986138067211821,
+    "ned": -0.001330405579953453
+  },
+  "delta_edge_vs_replan": {
+    "node_micro_f1": 0.0,
+    "edge_micro_f1": 0.004188667672359814,
+    "ned": 0.0
+  },
+  "delta_final_vs_original": {
+    "node_micro_f1": 0.0007852119921085698,
+    "edge_micro_f1": 0.010174805739571635,
+    "ned": -0.001330405579953453
+  }
+}

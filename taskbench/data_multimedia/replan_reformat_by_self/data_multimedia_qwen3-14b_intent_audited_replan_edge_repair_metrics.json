@@ -1,0 +1,953 @@
+{
+  "evaluation_scope": "all",
+  "evaluation_engine": "taskbench.evaluate",
+  "metric_reader": "print_evaluate_metrics_table.extract_metric_row",
+  "original_metric_source": "existing",
+  "taskbench_data_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia",
+  "taskbench_prediction_dir": "replan_reformat_by_self/data_multimedia_qwen3-14b_intent_audited_replan_edge_repair_metrics_eval_inputs",
+  "taskbench_metric_dir": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\replan_reformat_by_self\\data_multimedia_qwen3-14b_intent_audited_replan_edge_repair_metrics_eval_metrics",
+  "taskbench_stage_prediction_files": {
+    "original": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\predictions_reformat_by_self\\qwen3-14b.json",
+    "intent_replan": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\replan_reformat_by_self\\data_multimedia_qwen3-14b_intent_audited_replan_edge_repair_metrics_eval_inputs\\intent_replan.json",
+    "edge_repaired": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\replan_reformat_by_self\\data_multimedia_qwen3-14b_intent_audited_replan_edge_repair_metrics_eval_inputs\\edge_repaired.json"
+  },
+  "taskbench_stage_metric_files": {
+    "intent_replan": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\replan_reformat_by_self\\data_multimedia_qwen3-14b_intent_audited_replan_edge_repair_metrics_eval_metrics\\intent_replan.json",
+    "edge_repaired": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\replan_reformat_by_self\\data_multimedia_qwen3-14b_intent_audited_replan_edge_repair_metrics_eval_metrics\\edge_repaired.json",
+    "original": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\metrics_reformat_by_self\\qwen3-14b.json"
+  },
+  "original": {
+    "engine": "taskbench.evaluate",
+    "metric_reader": "print_evaluate_metrics_table.extract_metric_row",
+    "prediction_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\predictions_reformat_by_self\\qwen3-14b.json",
+    "metric_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\metrics_reformat_by_self\\qwen3-14b.json",
+    "input_rows": 1111,
+    "prediction_ids": 1111,
+    "common_ids": 1111,
+    "support": 1111,
+    "node_micro_precision": 0.8166881443298969,
+    "node_micro_recall": 0.833607365998027,
+    "node_micro_f1": 0.8250610252237591,
+    "edge_micro_f1": 0.5299323269130661,
+    "ned": 0.19543991523792636,
+    "print_evaluate_metrics_table_row": {
+      "file": "qwen3-14b",
+      "n_f1": 0.8250610252237591,
+      "e_f1": 0.5299323269130661,
+      "ned": 0.19543991523792636
+    },
+    "taskbench_metric": {
+      "all_samples": 1111,
+      "step_supports": 0,
+      "node_supports": 1111,
+      "link_supports": 1111,
+      "argument_supports": 1111,
+      "node_micro_precision_no_matching": 0.8166881443298969,
+      "node_micro_recall_no_matching": 0.833607365998027,
+      "node_micro_f1_no_matching": 0.8250610252237591,
+      "node_macro_precision_no_matching": 0.8438618740728412,
+      "node_macro_recall_no_matching": 0.8396508856305228,
+      "node_macro_f1_no_matching": 0.8272625281404025,
+      "node_per_type_no_matchcing": {
+        "Image Downloader": {
+          "precision": 0.7540983606557377,
+          "recall": 0.9387755102040817,
+          "f1-score": 0.8363636363636363,
+          "support": 49
+        },
+        "Video Downloader": {
+          "precision": 0.7837837837837838,
+          "recall": 0.9206349206349206,
+          "f1-score": 0.8467153284671532,
+          "support": 63
+        },
+        "Audio Downloader": {
+          "precision": 0.9047619047619048,
+          "recall": 0.890625,
+          "f1-score": 0.8976377952755905,
+          "support": 64
+        },
+        "Text Downloader": {
+          "precision": 0.7662337662337663,
+          "recall": 0.8939393939393939,
+          "f1-score": 0.8251748251748252,
+          "support": 66
+        },
+        "Text Search": {
+          "precision": 0.6962025316455697,
+          "recall": 0.7534246575342466,
+          "f1-score": 0.7236842105263158,
+          "support": 73
+        },
+        "Image Search": {
+          "precision": 0.7037037037037037,
+          "recall": 0.8837209302325582,
+          "f1-score": 0.7835051546391752,
+          "support": 43
+        },
+        "Image Search (by Image)": {
+          "precision": 0.8615384615384616,
+          "recall": 0.8115942028985508,
+          "f1-score": 0.835820895522388,
+          "support": 69
+        },
+        "URL Extractor": {
+          "precision": 0.9873417721518988,
+          "recall": 0.7647058823529411,
+          "f1-score": 0.861878453038674,
+          "support": 102
+        },
+        "Video Search": {
+          "precision": 0.9,
+          "recall": 0.8571428571428571,
+          "f1-score": 0.8780487804878049,
+          "support": 63
+        },
+        "Text-to-Image": {
+          "precision": 0.7252747252747253,
+          "recall": 0.9295774647887324,
+          "f1-score": 0.8148148148148148,
+          "support": 71
+        },
+        "Text-to-Video": {
+          "precision": 0.9534883720930233,
+          "recall": 0.6949152542372882,
+          "f1-score": 0.803921568627451,
+          "support": 59
+        },
+        "Text-to-Audio": {
+          "precision": 0.6403508771929824,
+          "recall": 0.948051948051948,
+          "f1-score": 0.7643979057591623,
+          "support": 77
+        },
+        "Image-to-Text": {
+          "precision": 0.952755905511811,
+          "recall": 0.968,
+          "f1-score": 0.9603174603174603,
+          "support": 125
+        },
+        "Audio-to-Text": {
+          "precision": 0.5675675675675675,
+          "recall": 0.9230769230769231,
+          "f1-score": 0.702928870292887,
+          "support": 91
+        },
+        "Video-to-Text": {
+          "precision": 0.8863636363636364,
+          "recall": 0.3644859813084112,
+          "f1-score": 0.5165562913907285,
+          "support": 107
+        },
+        "Audio Noise Reduction": {
+          "precision": 0.9672131147540983,
+          "recall": 0.9365079365079365,
+          "f1-score": 0.9516129032258065,
+          "support": 63
+        },
+        "Audio Effects": {
+          "precision": 0.8395061728395061,
+          "recall": 0.9444444444444444,
+          "f1-score": 0.8888888888888888,
+          "support": 72
+        },
+        "Audio Splicer": {
+          "precision": 0.9104477611940298,
+          "recall": 0.953125,
+          "f1-score": 0.9312977099236641,
+          "support": 64
+        },
+        "Voice Changer": {
+          "precision": 0.9423076923076923,
+          "recall": 0.7538461538461538,
+          "f1-score": 0.8376068376068376,
+          "support": 65
+        },
+        "Text Summarizer": {
+          "precision": 0.6770833333333334,
+          "recall": 0.9027777777777778,
+          "f1-score": 0.7738095238095238,
+          "support": 72
+        },
+        "Text Translator": {
+          "precision": 0.927536231884058,
+          "recall": 0.9411764705882353,
+          "f1-score": 0.9343065693430657,
+          "support": 68
+        },
+        "Text Sentiment Analysis": {
+          "precision": 0.9411764705882353,
+          "recall": 0.8533333333333334,
+          "f1-score": 0.8951048951048951,
+          "support": 75
+        },
+        "Text Grammar Checker": {
+          "precision": 0.9821428571428571,
+          "recall": 0.7638888888888888,
+          "f1-score": 0.859375,
+          "support": 72
+        },
+        "Text Simplifier": {
+          "precision": 0.8513513513513513,
+          "recall": 0.863013698630137,
+          "f1-score": 0.8571428571428571,
+          "support": 73
+        },
+        "Text Expander": {
+          "precision": 0.8541666666666666,
+          "recall": 0.5774647887323944,
+          "f1-score": 0.6890756302521008,
+          "support": 71
+        },
+        "Keyword Extractor": {
+          "precision": 0.6989247311827957,
+          "recall": 0.6632653061224489,
+          "f1-score": 0.680628272251309,
+          "support": 98
+        },
+        "Text Paraphraser": {
+          "precision": 0.5376344086021505,
+          "recall": 0.6097560975609756,
+          "f1-score": 0.5714285714285714,
+          "support": 82
+        },
+        "Article Spinner": {
+          "precision": 0.8823529411764706,
+          "recall": 0.35714285714285715,
+          "f1-score": 0.5084745762711864,
+          "support": 84
+        },
+        "Topic Generator": {
+          "precision": 0.9807692307692307,
+          "recall": 0.6375,
+          "f1-score": 0.7727272727272727,
+          "support": 80
+        },
+        "Audio-to-Image": {
+          "precision": 1.0,
+          "recall": 0.9680851063829787,
+          "f1-score": 0.9837837837837838,
+          "support": 94
+        },
+        "Image-to-Video": {
+          "precision": 0.7894736842105263,
+          "recall": 0.9375,
+          "f1-score": 0.8571428571428571,
+          "support": 80
+        },
+        "Video-to-Audio": {
+          "precision": 0.45161290322580644,
+          "recall": 0.8974358974358975,
+          "f1-score": 0.6008583690987125,
+          "support": 78
+        },
+        "Video-to-Image": {
+          "precision": 0.9722222222222222,
+          "recall": 0.9459459459459459,
+          "f1-score": 0.958904109589041,
+          "support": 74
+        },
+        "Image Stitcher": {
+          "precision": 0.9,
+          "recall": 0.9863013698630136,
+          "f1-score": 0.9411764705882353,
+          "support": 73
+        },
+        "Image Colorizer": {
+          "precision": 0.9807692307692307,
+          "recall": 0.85,
+          "f1-score": 0.9107142857142857,
+          "support": 60
+        },
+        "Image Style Transfer": {
+          "precision": 0.9880952380952381,
+          "recall": 0.9540229885057471,
+          "f1-score": 0.9707602339181286,
+          "support": 87
+        },
+        "Video Stabilizer": {
+          "precision": 0.9545454545454546,
+          "recall": 0.9130434782608695,
+          "f1-score": 0.9333333333333333,
+          "support": 69
+        },
+        "Video Speed Changer": {
+          "precision": 0.9761904761904762,
+          "recall": 0.9761904761904762,
+          "f1-score": 0.9761904761904762,
+          "support": 84
+        },
+        "Video Synchronization": {
+          "precision": 0.8541666666666666,
+          "recall": 0.8913043478260869,
+          "f1-score": 0.8723404255319149,
+          "support": 92
+        },
+        "Video Voiceover": {
+          "precision": 0.8113207547169812,
+          "recall": 0.9662921348314607,
+          "f1-score": 0.882051282051282,
+          "support": 89
+        }
+      },
+      "argument_task_argname_binary_f1_no_matching": 0.7232602618802413,
+      "argument_task_argname_value_binary_f1_no_matching": 0.541185940434666,
+      "edit_distance": 0.19543991523792636,
+      "link_binary_f1": 0.5299323269130661
+    }
+  },
+  "intent_replan": {
+    "engine": "taskbench.evaluate",
+    "metric_reader": "print_evaluate_metrics_table.extract_metric_row",
+    "prediction_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\replan_reformat_by_self\\data_multimedia_qwen3-14b_intent_audited_replan_edge_repair_metrics_eval_inputs\\intent_replan.json",
+    "metric_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\replan_reformat_by_self\\data_multimedia_qwen3-14b_intent_audited_replan_edge_repair_metrics_eval_metrics\\intent_replan.json",
+    "input_rows": 1111,
+    "prediction_ids": 1111,
+    "common_ids": 1111,
+    "support": 1111,
+    "node_micro_precision": 0.8231228400879673,
+    "node_micro_recall": 0.8615586977967774,
+    "node_micro_f1": 0.8419023136246787,
+    "edge_micro_f1": 0.5482785399948227,
+    "ned": 0.18756151912423558,
+    "print_evaluate_metrics_table_row": {
+      "file": "intent_replan",
+      "n_f1": 0.8419023136246787,
+      "e_f1": 0.5482785399948227,
+      "ned": 0.18756151912423558
+    },
+    "taskbench_metric": {
+      "all_samples": 1111,
+      "step_supports": 0,
+      "node_supports": 1111,
+      "link_supports": 1111,
+      "argument_supports": 1111,
+      "node_micro_precision_no_matching": 0.8231228400879673,
+      "node_micro_recall_no_matching": 0.8615586977967774,
+      "node_micro_f1_no_matching": 0.8419023136246787,
+      "node_macro_precision_no_matching": 0.843890441804378,
+      "node_macro_recall_no_matching": 0.8667342543775197,
+      "node_macro_f1_no_matching": 0.8443832901553572,
+      "node_per_type_no_matchcing": {
+        "Image Downloader": {
+          "precision": 0.7540983606557377,
+          "recall": 0.9387755102040817,
+          "f1-score": 0.8363636363636363,
+          "support": 49
+        },
+        "Video Downloader": {
+          "precision": 0.7866666666666666,
+          "recall": 0.9365079365079365,
+          "f1-score": 0.855072463768116,
+          "support": 63
+        },
+        "Audio Downloader": {
+          "precision": 0.9076923076923077,
+          "recall": 0.921875,
+          "f1-score": 0.9147286821705426,
+          "support": 64
+        },
+        "Text Downloader": {
+          "precision": 0.7560975609756098,
+          "recall": 0.9393939393939394,
+          "f1-score": 0.8378378378378378,
+          "support": 66
+        },
+        "Text Search": {
+          "precision": 0.7466666666666667,
+          "recall": 0.7671232876712328,
+          "f1-score": 0.7567567567567568,
+          "support": 73
+        },
+        "Image Search": {
+          "precision": 0.76,
+          "recall": 0.8837209302325582,
+          "f1-score": 0.8172043010752689,
+          "support": 43
+        },
+        "Image Search (by Image)": {
+          "precision": 0.8732394366197183,
+          "recall": 0.8985507246376812,
+          "f1-score": 0.8857142857142857,
+          "support": 69
+        },
+        "URL Extractor": {
+          "precision": 0.8762886597938144,
+          "recall": 0.8333333333333334,
+          "f1-score": 0.8542713567839196,
+          "support": 102
+        },
+        "Video Search": {
+          "precision": 0.9104477611940298,
+          "recall": 0.9682539682539683,
+          "f1-score": 0.9384615384615385,
+          "support": 63
+        },
+        "Text-to-Image": {
+          "precision": 0.7444444444444445,
+          "recall": 0.9436619718309859,
+          "f1-score": 0.8322981366459627,
+          "support": 71
+        },
+        "Text-to-Video": {
+          "precision": 0.8775510204081632,
+          "recall": 0.7288135593220338,
+          "f1-score": 0.7962962962962963,
+          "support": 59
+        },
+        "Text-to-Audio": {
+          "precision": 0.6403508771929824,
+          "recall": 0.948051948051948,
+          "f1-score": 0.7643979057591623,
+          "support": 77
+        },
+        "Image-to-Text": {
+          "precision": 0.9603174603174603,
+          "recall": 0.968,
+          "f1-score": 0.9641434262948207,
+          "support": 125
+        },
+        "Audio-to-Text": {
+          "precision": 0.6131386861313869,
+          "recall": 0.9230769230769231,
+          "f1-score": 0.7368421052631579,
+          "support": 91
+        },
+        "Video-to-Text": {
+          "precision": 0.9166666666666666,
+          "recall": 0.514018691588785,
+          "f1-score": 0.6586826347305389,
+          "support": 107
+        },
+        "Audio Noise Reduction": {
+          "precision": 0.9523809523809523,
+          "recall": 0.9523809523809523,
+          "f1-score": 0.9523809523809523,
+          "support": 63
+        },
+        "Audio Effects": {
+          "precision": 0.8433734939759037,
+          "recall": 0.9722222222222222,
+          "f1-score": 0.9032258064516129,
+          "support": 72
+        },
+        "Audio Splicer": {
+          "precision": 0.9104477611940298,
+          "recall": 0.953125,
+          "f1-score": 0.9312977099236641,
+          "support": 64
+        },
+        "Voice Changer": {
+          "precision": 0.9122807017543859,
+          "recall": 0.8,
+          "f1-score": 0.8524590163934426,
+          "support": 65
+        },
+        "Text Summarizer": {
+          "precision": 0.6666666666666666,
+          "recall": 0.9444444444444444,
+          "f1-score": 0.7816091954022989,
+          "support": 72
+        },
+        "Text Translator": {
+          "precision": 0.9154929577464789,
+          "recall": 0.9558823529411765,
+          "f1-score": 0.935251798561151,
+          "support": 68
+        },
+        "Text Sentiment Analysis": {
+          "precision": 0.9420289855072463,
+          "recall": 0.8666666666666667,
+          "f1-score": 0.9027777777777778,
+          "support": 75
+        },
+        "Text Grammar Checker": {
+          "precision": 0.9833333333333333,
+          "recall": 0.8194444444444444,
+          "f1-score": 0.8939393939393939,
+          "support": 72
+        },
+        "Text Simplifier": {
+          "precision": 0.8513513513513513,
+          "recall": 0.863013698630137,
+          "f1-score": 0.8571428571428571,
+          "support": 73
+        },
+        "Text Expander": {
+          "precision": 0.8431372549019608,
+          "recall": 0.6056338028169014,
+          "f1-score": 0.7049180327868853,
+          "support": 71
+        },
+        "Keyword Extractor": {
+          "precision": 0.7386363636363636,
+          "recall": 0.6632653061224489,
+          "f1-score": 0.6989247311827957,
+          "support": 98
+        },
+        "Text Paraphraser": {
+          "precision": 0.5520833333333334,
+          "recall": 0.6463414634146342,
+          "f1-score": 0.5955056179775281,
+          "support": 82
+        },
+        "Article Spinner": {
+          "precision": 0.8857142857142857,
+          "recall": 0.36904761904761907,
+          "f1-score": 0.5210084033613446,
+          "support": 84
+        },
+        "Topic Generator": {
+          "precision": 0.9253731343283582,
+          "recall": 0.775,
+          "f1-score": 0.8435374149659864,
+          "support": 80
+        },
+        "Audio-to-Image": {
+          "precision": 1.0,
+          "recall": 0.9787234042553191,
+          "f1-score": 0.989247311827957,
+          "support": 94
+        },
+        "Image-to-Video": {
+          "precision": 0.8020833333333334,
+          "recall": 0.9625,
+          "f1-score": 0.875,
+          "support": 80
+        },
+        "Video-to-Audio": {
+          "precision": 0.47619047619047616,
+          "recall": 0.8974358974358975,
+          "f1-score": 0.6222222222222222,
+          "support": 78
+        },
+        "Video-to-Image": {
+          "precision": 0.9722222222222222,
+          "recall": 0.9459459459459459,
+          "f1-score": 0.958904109589041,
+          "support": 74
+        },
+        "Image Stitcher": {
+          "precision": 0.9230769230769231,
+          "recall": 0.9863013698630136,
+          "f1-score": 0.9536423841059603,
+          "support": 73
+        },
+        "Image Colorizer": {
+          "precision": 0.9807692307692307,
+          "recall": 0.85,
+          "f1-score": 0.9107142857142857,
+          "support": 60
+        },
+        "Image Style Transfer": {
+          "precision": 0.9883720930232558,
+          "recall": 0.9770114942528736,
+          "f1-score": 0.9826589595375722,
+          "support": 87
+        },
+        "Video Stabilizer": {
+          "precision": 0.9552238805970149,
+          "recall": 0.927536231884058,
+          "f1-score": 0.9411764705882353,
+          "support": 69
+        },
+        "Video Speed Changer": {
+          "precision": 0.9761904761904762,
+          "recall": 0.9761904761904762,
+          "f1-score": 0.9761904761904762,
+          "support": 84
+        },
+        "Video Synchronization": {
+          "precision": 0.8484848484848485,
+          "recall": 0.9130434782608695,
+          "f1-score": 0.8795811518324608,
+          "support": 92
+        },
+        "Video Voiceover": {
+          "precision": 0.7870370370370371,
+          "recall": 0.9550561797752809,
+          "f1-score": 0.8629441624365483,
+          "support": 89
+        }
+      },
+      "argument_task_argname_binary_f1_no_matching": 0.7767370334125542,
+      "argument_task_argname_value_binary_f1_no_matching": 0.5755614769699277,
+      "edit_distance": 0.18756151912423558,
+      "link_binary_f1": 0.5482785399948227
+    }
+  },
+  "edge_repaired": {
+    "engine": "taskbench.evaluate",
+    "metric_reader": "print_evaluate_metrics_table.extract_metric_row",
+    "prediction_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\replan_reformat_by_self\\data_multimedia_qwen3-14b_intent_audited_replan_edge_repair_metrics_eval_inputs\\edge_repaired.json",
+    "metric_file": "D:\\大数据部\\大数据技术创新组\\project\\flowAgent\\taskbench\\data_multimedia\\replan_reformat_by_self\\data_multimedia_qwen3-14b_intent_audited_replan_edge_repair_metrics_eval_metrics\\edge_repaired.json",
+    "input_rows": 1111,
+    "prediction_ids": 1111,
+    "common_ids": 1111,
+    "support": 1111,
+    "node_micro_precision": 0.8231228400879673,
+    "node_micro_recall": 0.8615586977967774,
+    "node_micro_f1": 0.8419023136246787,
+    "edge_micro_f1": 0.5565749235474006,
+    "ned": 0.18756151912423558,
+    "print_evaluate_metrics_table_row": {
+      "file": "edge_repaired",
+      "n_f1": 0.8419023136246787,
+      "e_f1": 0.5565749235474006,
+      "ned": 0.18756151912423558
+    },
+    "taskbench_metric": {
+      "all_samples": 1111,
+      "step_supports": 0,
+      "node_supports": 1111,
+      "link_supports": 1111,
+      "argument_supports": 1111,
+      "node_micro_precision_no_matching": 0.8231228400879673,
+      "node_micro_recall_no_matching": 0.8615586977967774,
+      "node_micro_f1_no_matching": 0.8419023136246787,
+      "node_macro_precision_no_matching": 0.843890441804378,
+      "node_macro_recall_no_matching": 0.8667342543775197,
+      "node_macro_f1_no_matching": 0.8443832901553572,
+      "node_per_type_no_matchcing": {
+        "Image Downloader": {
+          "precision": 0.7540983606557377,
+          "recall": 0.9387755102040817,
+          "f1-score": 0.8363636363636363,
+          "support": 49
+        },
+        "Video Downloader": {
+          "precision": 0.7866666666666666,
+          "recall": 0.9365079365079365,
+          "f1-score": 0.855072463768116,
+          "support": 63
+        },
+        "Audio Downloader": {
+          "precision": 0.9076923076923077,
+          "recall": 0.921875,
+          "f1-score": 0.9147286821705426,
+          "support": 64
+        },
+        "Text Downloader": {
+          "precision": 0.7560975609756098,
+          "recall": 0.9393939393939394,
+          "f1-score": 0.8378378378378378,
+          "support": 66
+        },
+        "Text Search": {
+          "precision": 0.7466666666666667,
+          "recall": 0.7671232876712328,
+          "f1-score": 0.7567567567567568,
+          "support": 73
+        },
+        "Image Search": {
+          "precision": 0.76,
+          "recall": 0.8837209302325582,
+          "f1-score": 0.8172043010752689,
+          "support": 43
+        },
+        "Image Search (by Image)": {
+          "precision": 0.8732394366197183,
+          "recall": 0.8985507246376812,
+          "f1-score": 0.8857142857142857,
+          "support": 69
+        },
+        "URL Extractor": {
+          "precision": 0.8762886597938144,
+          "recall": 0.8333333333333334,
+          "f1-score": 0.8542713567839196,
+          "support": 102
+        },
+        "Video Search": {
+          "precision": 0.9104477611940298,
+          "recall": 0.9682539682539683,
+          "f1-score": 0.9384615384615385,
+          "support": 63
+        },
+        "Text-to-Image": {
+          "precision": 0.7444444444444445,
+          "recall": 0.9436619718309859,
+          "f1-score": 0.8322981366459627,
+          "support": 71
+        },
+        "Text-to-Video": {
+          "precision": 0.8775510204081632,
+          "recall": 0.7288135593220338,
+          "f1-score": 0.7962962962962963,
+          "support": 59
+        },
+        "Text-to-Audio": {
+          "precision": 0.6403508771929824,
+          "recall": 0.948051948051948,
+          "f1-score": 0.7643979057591623,
+          "support": 77
+        },
+        "Image-to-Text": {
+          "precision": 0.9603174603174603,
+          "recall": 0.968,
+          "f1-score": 0.9641434262948207,
+          "support": 125
+        },
+        "Audio-to-Text": {
+          "precision": 0.6131386861313869,
+          "recall": 0.9230769230769231,
+          "f1-score": 0.7368421052631579,
+          "support": 91
+        },
+        "Video-to-Text": {
+          "precision": 0.9166666666666666,
+          "recall": 0.514018691588785,
+          "f1-score": 0.6586826347305389,
+          "support": 107
+        },
+        "Audio Noise Reduction": {
+          "precision": 0.9523809523809523,
+          "recall": 0.9523809523809523,
+          "f1-score": 0.9523809523809523,
+          "support": 63
+        },
+        "Audio Effects": {
+          "precision": 0.8433734939759037,
+          "recall": 0.9722222222222222,
+          "f1-score": 0.9032258064516129,
+          "support": 72
+        },
+        "Audio Splicer": {
+          "precision": 0.9104477611940298,
+          "recall": 0.953125,
+          "f1-score": 0.9312977099236641,
+          "support": 64
+        },
+        "Voice Changer": {
+          "precision": 0.9122807017543859,
+          "recall": 0.8,
+          "f1-score": 0.8524590163934426,
+          "support": 65
+        },
+        "Text Summarizer": {
+          "precision": 0.6666666666666666,
+          "recall": 0.9444444444444444,
+          "f1-score": 0.7816091954022989,
+          "support": 72
+        },
+        "Text Translator": {
+          "precision": 0.9154929577464789,
+          "recall": 0.9558823529411765,
+          "f1-score": 0.935251798561151,
+          "support": 68
+        },
+        "Text Sentiment Analysis": {
+          "precision": 0.9420289855072463,
+          "recall": 0.8666666666666667,
+          "f1-score": 0.9027777777777778,
+          "support": 75
+        },
+        "Text Grammar Checker": {
+          "precision": 0.9833333333333333,
+          "recall": 0.8194444444444444,
+          "f1-score": 0.8939393939393939,
+          "support": 72
+        },
+        "Text Simplifier": {
+          "precision": 0.8513513513513513,
+          "recall": 0.863013698630137,
+          "f1-score": 0.8571428571428571,
+          "support": 73
+        },
+        "Text Expander": {
+          "precision": 0.8431372549019608,
+          "recall": 0.6056338028169014,
+          "f1-score": 0.7049180327868853,
+          "support": 71
+        },
+        "Keyword Extractor": {
+          "precision": 0.7386363636363636,
+          "recall": 0.6632653061224489,
+          "f1-score": 0.6989247311827957,
+          "support": 98
+        },
+        "Text Paraphraser": {
+          "precision": 0.5520833333333334,
+          "recall": 0.6463414634146342,
+          "f1-score": 0.5955056179775281,
+          "support": 82
+        },
+        "Article Spinner": {
+          "precision": 0.8857142857142857,
+          "recall": 0.36904761904761907,
+          "f1-score": 0.5210084033613446,
+          "support": 84
+        },
+        "Topic Generator": {
+          "precision": 0.9253731343283582,
+          "recall": 0.775,
+          "f1-score": 0.8435374149659864,
+          "support": 80
+        },
+        "Audio-to-Image": {
+          "precision": 1.0,
+          "recall": 0.9787234042553191,
+          "f1-score": 0.989247311827957,
+          "support": 94
+        },
+        "Image-to-Video": {
+          "precision": 0.8020833333333334,
+          "recall": 0.9625,
+          "f1-score": 0.875,
+          "support": 80
+        },
+        "Video-to-Audio": {
+          "precision": 0.47619047619047616,
+          "recall": 0.8974358974358975,
+          "f1-score": 0.6222222222222222,
+          "support": 78
+        },
+        "Video-to-Image": {
+          "precision": 0.9722222222222222,
+          "recall": 0.9459459459459459,
+          "f1-score": 0.958904109589041,
+          "support": 74
+        },
+        "Image Stitcher": {
+          "precision": 0.9230769230769231,
+          "recall": 0.9863013698630136,
+          "f1-score": 0.9536423841059603,
+          "support": 73
+        },
+        "Image Colorizer": {
+          "precision": 0.9807692307692307,
+          "recall": 0.85,
+          "f1-score": 0.9107142857142857,
+          "support": 60
+        },
+        "Image Style Transfer": {
+          "precision": 0.9883720930232558,
+          "recall": 0.9770114942528736,
+          "f1-score": 0.9826589595375722,
+          "support": 87
+        },
+        "Video Stabilizer": {
+          "precision": 0.9552238805970149,
+          "recall": 0.927536231884058,
+          "f1-score": 0.9411764705882353,
+          "support": 69
+        },
+        "Video Speed Changer": {
+          "precision": 0.9761904761904762,
+          "recall": 0.9761904761904762,
+          "f1-score": 0.9761904761904762,
+          "support": 84
+        },
+        "Video Synchronization": {
+          "precision": 0.8484848484848485,
+          "recall": 0.9130434782608695,
+          "f1-score": 0.8795811518324608,
+          "support": 92
+        },
+        "Video Voiceover": {
+          "precision": 0.7870370370370371,
+          "recall": 0.9550561797752809,
+          "f1-score": 0.8629441624365483,
+          "support": 89
+        }
+      },
+      "argument_task_argname_binary_f1_no_matching": 0.7767370334125542,
+      "argument_task_argname_value_binary_f1_no_matching": 0.5794510198942332,
+      "edit_distance": 0.18756151912423558,
+      "link_binary_f1": 0.5565749235474006
+    }
+  },
+  "replan_summary": {
+    "rows": 1111,
+    "decision_counts": {
+      "KEEP_ORIGINAL": 890,
+      "ADD_MISSING_TOOLS": 221
+    },
+    "source_counts": {
+      "previous_workflow": 991,
+      "replan": 120
+    },
+    "retryable_failed": 0
+  },
+  "edge_repair_summary": {
+    "rows": 1111,
+    "changed_rows": 616,
+    "operation_counts": {
+      "global_keep_original_edge": 1947,
+      "global_select_graph_edge": 99,
+      "append_argument_ref_for_graph_edge": 99,
+      "final_argument_errors": 57
+    },
+    "validation_counts": {
+      "passed": 948,
+      "rejected_failed": 163
+    }
+  },
+  "delta_replan_vs_original": {
+    "node_micro_f1": 0.016841288400919585,
+    "edge_micro_f1": 0.018346213081756546,
+    "ned": -0.007878396113690789
+  },
+  "delta_edge_vs_replan": {
+    "node_micro_f1": 0.0,
+    "edge_micro_f1": 0.00829638355257789,
+    "ned": 0.0
+  },
+  "delta_final_vs_original": {
+    "node_micro_f1": 0.016841288400919585,
+    "edge_micro_f1": 0.026642596634334437,
+    "ned": -0.007878396113690789
+  },
+  "ablation_table": [
+    {
+      "stage": "original",
+      "intent_auditor": "off",
+      "replan": "off",
+      "edge_repair": "off",
+      "rows": 1111,
+      "support": 1111,
+      "n_f1": 82.5061,
+      "e_f1": 52.9932,
+      "ned": 19.544,
+      "delta_n_f1_vs_prev": "",
+      "delta_e_f1_vs_prev": "",
+      "delta_ned_vs_prev": "",
+      "delta_n_f1_vs_original": 0.0,
+      "delta_e_f1_vs_original": 0.0,
+      "delta_ned_vs_original": 0.0
+    },
+    {
+      "stage": "intent_replan",
+      "intent_auditor": "on",
+      "replan": "on",
+      "edge_repair": "off",
+      "rows": 1111,
+      "support": 1111,
+      "n_f1": 84.1902,
+      "e_f1": 54.8279,
+      "ned": 18.7562,
+      "delta_n_f1_vs_prev": 1.6841,
+      "delta_e_f1_vs_prev": 1.8346,
+      "delta_ned_vs_prev": -0.7878,
+      "delta_n_f1_vs_original": 1.6841,
+      "delta_e_f1_vs_original": 1.8346,
+      "delta_ned_vs_original": -0.7878
+    },
+    {
+      "stage": "edge_repaired",
+      "intent_auditor": "on",
+      "replan": "on",
+      "edge_repair": "on",
+      "rows": 1111,
+      "support": 1111,
+      "n_f1": 84.1902,
+      "e_f1": 55.6575,
+      "ned": 18.7562,
+      "delta_n_f1_vs_prev": 0.0,
+      "delta_e_f1_vs_prev": 0.8296,
+      "delta_ned_vs_prev": 0.0,
+      "delta_n_f1_vs_original": 1.6841,
+      "delta_e_f1_vs_original": 2.6643,
+      "delta_ned_vs_original": -0.7878
+    }
+  ]
+}

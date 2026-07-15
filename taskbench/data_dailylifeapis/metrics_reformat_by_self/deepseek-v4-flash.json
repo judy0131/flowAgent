@@ -1,0 +1,3124 @@
+{
+  "overall_overall": {
+    "all_samples": 854,
+    "step_supports": 0,
+    "node_supports": 854,
+    "link_supports": 854,
+    "argument_supports": 854,
+    "node_micro_precision_no_matching": 0.95702559150169,
+    "node_micro_recall_no_matching": 0.8004846526655897,
+    "node_micro_f1_no_matching": 0.8717835935781835,
+    "node_macro_precision_no_matching": 0.9567072286603244,
+    "node_macro_recall_no_matching": 0.7989455844812781,
+    "node_macro_f1_no_matching": 0.8692130376609828,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 0.9318181818181818,
+        "recall": 0.7321428571428571,
+        "f1-score": 0.82,
+        "support": 56
+      },
+      "get_news_for_topic": {
+        "precision": 0.9767441860465116,
+        "recall": 0.8076923076923077,
+        "f1-score": 0.8842105263157894,
+        "support": 52
+      },
+      "stock_operation": {
+        "precision": 0.9824561403508771,
+        "recall": 0.8235294117647058,
+        "f1-score": 0.896,
+        "support": 68
+      },
+      "book_flight": {
+        "precision": 1.0,
+        "recall": 0.8840579710144928,
+        "f1-score": 0.9384615384615385,
+        "support": 69
+      },
+      "book_hotel": {
+        "precision": 0.9836065573770492,
+        "recall": 0.821917808219178,
+        "f1-score": 0.8955223880597015,
+        "support": 73
+      },
+      "book_restaurant": {
+        "precision": 1.0,
+        "recall": 0.8846153846153846,
+        "f1-score": 0.9387755102040817,
+        "support": 52
+      },
+      "book_car": {
+        "precision": 0.9454545454545454,
+        "recall": 0.8125,
+        "f1-score": 0.8739495798319328,
+        "support": 64
+      },
+      "online_shopping": {
+        "precision": 0.9433962264150944,
+        "recall": 0.7692307692307693,
+        "f1-score": 0.847457627118644,
+        "support": 65
+      },
+      "send_email": {
+        "precision": 0.9803921568627451,
+        "recall": 0.7692307692307693,
+        "f1-score": 0.8620689655172413,
+        "support": 65
+      },
+      "send_sms": {
+        "precision": 1.0,
+        "recall": 0.8225806451612904,
+        "f1-score": 0.9026548672566371,
+        "support": 62
+      },
+      "share_by_social_network": {
+        "precision": 1.0,
+        "recall": 0.803030303030303,
+        "f1-score": 0.8907563025210085,
+        "support": 66
+      },
+      "search_by_engine": {
+        "precision": 0.9047619047619048,
+        "recall": 0.6440677966101694,
+        "f1-score": 0.7524752475247525,
+        "support": 59
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 0.734375,
+        "f1-score": 0.8468468468468469,
+        "support": 64
+      },
+      "see_doctor_online": {
+        "precision": 0.9411764705882353,
+        "recall": 0.8275862068965517,
+        "f1-score": 0.8807339449541285,
+        "support": 58
+      },
+      "consult_lawyer_online": {
+        "precision": 0.9772727272727273,
+        "recall": 0.7962962962962963,
+        "f1-score": 0.8775510204081632,
+        "support": 54
+      },
+      "enroll_in_course": {
+        "precision": 0.9830508474576272,
+        "recall": 0.7631578947368421,
+        "f1-score": 0.8592592592592593,
+        "support": 76
+      },
+      "buy_insurance": {
+        "precision": 0.98,
+        "recall": 0.8166666666666667,
+        "f1-score": 0.8909090909090909,
+        "support": 60
+      },
+      "online_banking": {
+        "precision": 0.8947368421052632,
+        "recall": 0.723404255319149,
+        "f1-score": 0.8,
+        "support": 47
+      },
+      "daily_bill_payment": {
+        "precision": 0.7924528301886793,
+        "recall": 0.8076923076923077,
+        "f1-score": 0.8,
+        "support": 52
+      },
+      "sell_item_online": {
+        "precision": 0.96,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.9056603773584906,
+        "support": 56
+      },
+      "do_tax_return": {
+        "precision": 1.0,
+        "recall": 0.9183673469387755,
+        "f1-score": 0.9574468085106383,
+        "support": 49
+      },
+      "apply_for_passport": {
+        "precision": 0.9791666666666666,
+        "recall": 0.746031746031746,
+        "f1-score": 0.8468468468468469,
+        "support": 63
+      },
+      "pay_for_credit_card": {
+        "precision": 0.86,
+        "recall": 0.7678571428571429,
+        "f1-score": 0.8113207547169812,
+        "support": 56
+      },
+      "auto_housework_by_robot": {
+        "precision": 0.9482758620689655,
+        "recall": 0.8208955223880597,
+        "f1-score": 0.88,
+        "support": 67
+      },
+      "auto_driving_to_destination": {
+        "precision": 1.0,
+        "recall": 0.6727272727272727,
+        "f1-score": 0.8043478260869565,
+        "support": 55
+      },
+      "deliver_package": {
+        "precision": 0.9387755102040817,
+        "recall": 0.7419354838709677,
+        "f1-score": 0.8288288288288288,
+        "support": 62
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 0.8769230769230769,
+        "f1-score": 0.9344262295081968,
+        "support": 65
+      },
+      "order_taxi": {
+        "precision": 0.9482758620689655,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.8870967741935484,
+        "support": 66
+      },
+      "play_music_by_title": {
+        "precision": 0.9672131147540983,
+        "recall": 0.8676470588235294,
+        "f1-score": 0.9147286821705426,
+        "support": 68
+      },
+      "play_movie_by_title": {
+        "precision": 0.9230769230769231,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.8888888888888888,
+        "support": 70
+      },
+      "take_note": {
+        "precision": 0.8913043478260869,
+        "recall": 0.6507936507936508,
+        "f1-score": 0.7522935779816514,
+        "support": 63
+      },
+      "borrow_book_online": {
+        "precision": 0.9818181818181818,
+        "recall": 0.8181818181818182,
+        "f1-score": 0.8925619834710744,
+        "support": 66
+      },
+      "recording_audio": {
+        "precision": 0.9166666666666666,
+        "recall": 0.7333333333333333,
+        "f1-score": 0.8148148148148148,
+        "support": 45
+      },
+      "make_video_call": {
+        "precision": 0.9666666666666667,
+        "recall": 0.8656716417910447,
+        "f1-score": 0.9133858267716536,
+        "support": 67
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 0.7857142857142857,
+        "f1-score": 0.88,
+        "support": 56
+      },
+      "organize_meeting_online": {
+        "precision": 0.9264705882352942,
+        "recall": 0.863013698630137,
+        "f1-score": 0.8936170212765957,
+        "support": 73
+      },
+      "attend_meeting_online": {
+        "precision": 0.9565217391304348,
+        "recall": 0.6875,
+        "f1-score": 0.8,
+        "support": 64
+      },
+      "software_management": {
+        "precision": 0.9482758620689655,
+        "recall": 0.7638888888888888,
+        "f1-score": 0.8461538461538461,
+        "support": 72
+      },
+      "print_document": {
+        "precision": 0.9384615384615385,
+        "recall": 0.8970588235294118,
+        "f1-score": 0.9172932330827067,
+        "support": 68
+      },
+      "set_alarm": {
+        "precision": 1.0,
+        "recall": 0.8888888888888888,
+        "f1-score": 0.9411764705882353,
+        "support": 63
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.8289034326165353,
+    "argument_task_argname_value_binary_f1_no_matching": 0.5514754973961811,
+    "edit_distance": 0.19762247575479475,
+    "link_binary_f1": 0.4687246141348497
+  },
+  "single_overall": {
+    "all_samples": 251,
+    "step_supports": 0,
+    "node_supports": 251,
+    "link_supports": 251,
+    "argument_supports": 251,
+    "node_micro_precision_no_matching": 0.9606299212598425,
+    "node_micro_recall_no_matching": 0.9959183673469387,
+    "node_micro_f1_no_matching": 0.9779559118236473,
+    "node_macro_precision_no_matching": 0.9496717171717173,
+    "node_macro_recall_no_matching": 0.996875,
+    "node_macro_f1_no_matching": 0.9665972222222223,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7
+      },
+      "get_news_for_topic": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1-score": 0.8571428571428571,
+        "support": 3
+      },
+      "stock_operation": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 11
+      },
+      "book_flight": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "book_hotel": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7
+      },
+      "book_restaurant": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "book_car": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "online_shopping": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "send_email": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "send_sms": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "share_by_social_network": {
+        "precision": 1.0,
+        "recall": 0.875,
+        "f1-score": 0.9333333333333333,
+        "support": 8
+      },
+      "search_by_engine": {
+        "precision": 0.7777777777777778,
+        "recall": 1.0,
+        "f1-score": 0.875,
+        "support": 7
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7
+      },
+      "see_doctor_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "consult_lawyer_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "enroll_in_course": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6
+      },
+      "buy_insurance": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "online_banking": {
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1-score": 0.8,
+        "support": 4
+      },
+      "daily_bill_payment": {
+        "precision": 0.3333333333333333,
+        "recall": 1.0,
+        "f1-score": 0.5,
+        "support": 1
+      },
+      "sell_item_online": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1-score": 0.8571428571428571,
+        "support": 3
+      },
+      "do_tax_return": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "apply_for_passport": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "pay_for_credit_card": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "auto_housework_by_robot": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "auto_driving_to_destination": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "deliver_package": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 9
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "order_taxi": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7
+      },
+      "play_music_by_title": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 11
+      },
+      "play_movie_by_title": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 11
+      },
+      "take_note": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 9
+      },
+      "borrow_book_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "recording_audio": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "make_video_call": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "organize_meeting_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "attend_meeting_online": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1-score": 0.8888888888888888,
+        "support": 4
+      },
+      "software_management": {
+        "precision": 0.9090909090909091,
+        "recall": 1.0,
+        "f1-score": 0.9523809523809523,
+        "support": 10
+      },
+      "print_document": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 13
+      },
+      "set_alarm": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.9395807644882861,
+    "argument_task_argname_value_binary_f1_no_matching": 0.7127003699136868,
+    "edit_distance": 0.03320053120849942,
+    "link_binary_f1": 0.0
+  },
+  "chain_overall": {
+    "all_samples": 548,
+    "step_supports": 0,
+    "node_supports": 548,
+    "link_supports": 548,
+    "argument_supports": 548,
+    "node_micro_precision_no_matching": 0.9585834333733494,
+    "node_micro_recall_no_matching": 0.7700096432015429,
+    "node_micro_f1_no_matching": 0.8540106951871658,
+    "node_macro_precision_no_matching": 0.9591569453696114,
+    "node_macro_recall_no_matching": 0.7678717098004391,
+    "node_macro_f1_no_matching": 0.8507386234528717,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 0.9142857142857143,
+        "recall": 0.6808510638297872,
+        "f1-score": 0.7804878048780488,
+        "support": 47
+      },
+      "get_news_for_topic": {
+        "precision": 1.0,
+        "recall": 0.7619047619047619,
+        "f1-score": 0.8648648648648649,
+        "support": 42
+      },
+      "stock_operation": {
+        "precision": 1.0,
+        "recall": 0.78,
+        "f1-score": 0.8764044943820225,
+        "support": 50
+      },
+      "book_flight": {
+        "precision": 1.0,
+        "recall": 0.8688524590163934,
+        "f1-score": 0.9298245614035088,
+        "support": 61
+      },
+      "book_hotel": {
+        "precision": 1.0,
+        "recall": 0.7868852459016393,
+        "f1-score": 0.8807339449541285,
+        "support": 61
+      },
+      "book_restaurant": {
+        "precision": 1.0,
+        "recall": 0.8775510204081632,
+        "f1-score": 0.9347826086956522,
+        "support": 49
+      },
+      "book_car": {
+        "precision": 0.9555555555555556,
+        "recall": 0.7818181818181819,
+        "f1-score": 0.86,
+        "support": 55
+      },
+      "online_shopping": {
+        "precision": 0.9302325581395349,
+        "recall": 0.7272727272727273,
+        "f1-score": 0.8163265306122449,
+        "support": 55
+      },
+      "send_email": {
+        "precision": 0.9782608695652174,
+        "recall": 0.75,
+        "f1-score": 0.8490566037735849,
+        "support": 60
+      },
+      "send_sms": {
+        "precision": 1.0,
+        "recall": 0.78,
+        "f1-score": 0.8764044943820225,
+        "support": 50
+      },
+      "share_by_social_network": {
+        "precision": 1.0,
+        "recall": 0.7857142857142857,
+        "f1-score": 0.88,
+        "support": 56
+      },
+      "search_by_engine": {
+        "precision": 0.9310344827586207,
+        "recall": 0.5869565217391305,
+        "f1-score": 0.72,
+        "support": 46
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 0.6792452830188679,
+        "f1-score": 0.8089887640449438,
+        "support": 53
+      },
+      "see_doctor_online": {
+        "precision": 0.9333333333333333,
+        "recall": 0.8076923076923077,
+        "f1-score": 0.865979381443299,
+        "support": 52
+      },
+      "consult_lawyer_online": {
+        "precision": 0.972972972972973,
+        "recall": 0.7659574468085106,
+        "f1-score": 0.8571428571428571,
+        "support": 47
+      },
+      "enroll_in_course": {
+        "precision": 0.9787234042553191,
+        "recall": 0.71875,
+        "f1-score": 0.8288288288288288,
+        "support": 64
+      },
+      "buy_insurance": {
+        "precision": 1.0,
+        "recall": 0.7962962962962963,
+        "f1-score": 0.8865979381443299,
+        "support": 54
+      },
+      "online_banking": {
+        "precision": 0.9354838709677419,
+        "recall": 0.7073170731707317,
+        "f1-score": 0.8055555555555556,
+        "support": 41
+      },
+      "daily_bill_payment": {
+        "precision": 0.8163265306122449,
+        "recall": 0.8,
+        "f1-score": 0.8080808080808081,
+        "support": 50
+      },
+      "sell_item_online": {
+        "precision": 0.972972972972973,
+        "recall": 0.8181818181818182,
+        "f1-score": 0.8888888888888888,
+        "support": 44
+      },
+      "do_tax_return": {
+        "precision": 1.0,
+        "recall": 0.9,
+        "f1-score": 0.9473684210526315,
+        "support": 40
+      },
+      "apply_for_passport": {
+        "precision": 0.975609756097561,
+        "recall": 0.7272727272727273,
+        "f1-score": 0.8333333333333334,
+        "support": 55
+      },
+      "pay_for_credit_card": {
+        "precision": 0.875,
+        "recall": 0.7446808510638298,
+        "f1-score": 0.8045977011494253,
+        "support": 47
+      },
+      "auto_housework_by_robot": {
+        "precision": 0.9433962264150944,
+        "recall": 0.8064516129032258,
+        "f1-score": 0.8695652173913043,
+        "support": 62
+      },
+      "auto_driving_to_destination": {
+        "precision": 1.0,
+        "recall": 0.6304347826086957,
+        "f1-score": 0.7733333333333333,
+        "support": 46
+      },
+      "deliver_package": {
+        "precision": 0.9444444444444444,
+        "recall": 0.68,
+        "f1-score": 0.7906976744186046,
+        "support": 50
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 0.8461538461538461,
+        "f1-score": 0.9166666666666666,
+        "support": 52
+      },
+      "order_taxi": {
+        "precision": 0.9375,
+        "recall": 0.8035714285714286,
+        "f1-score": 0.8653846153846154,
+        "support": 56
+      },
+      "play_music_by_title": {
+        "precision": 0.9545454545454546,
+        "recall": 0.8235294117647058,
+        "f1-score": 0.8842105263157894,
+        "support": 51
+      },
+      "play_movie_by_title": {
+        "precision": 0.8979591836734694,
+        "recall": 0.8148148148148148,
+        "f1-score": 0.8543689320388349,
+        "support": 54
+      },
+      "take_note": {
+        "precision": 0.8787878787878788,
+        "recall": 0.6041666666666666,
+        "f1-score": 0.7160493827160493,
+        "support": 48
+      },
+      "borrow_book_online": {
+        "precision": 0.98,
+        "recall": 0.8166666666666667,
+        "f1-score": 0.8909090909090909,
+        "support": 60
+      },
+      "recording_audio": {
+        "precision": 0.9285714285714286,
+        "recall": 0.6842105263157895,
+        "f1-score": 0.7878787878787878,
+        "support": 38
+      },
+      "make_video_call": {
+        "precision": 0.9583333333333334,
+        "recall": 0.8518518518518519,
+        "f1-score": 0.9019607843137255,
+        "support": 54
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 0.7333333333333333,
+        "f1-score": 0.8461538461538461,
+        "support": 45
+      },
+      "organize_meeting_online": {
+        "precision": 0.9298245614035088,
+        "recall": 0.8548387096774194,
+        "f1-score": 0.8907563025210085,
+        "support": 62
+      },
+      "attend_meeting_online": {
+        "precision": 0.9736842105263158,
+        "recall": 0.6607142857142857,
+        "f1-score": 0.7872340425531915,
+        "support": 56
+      },
+      "software_management": {
+        "precision": 0.9545454545454546,
+        "recall": 0.7241379310344828,
+        "f1-score": 0.8235294117647058,
+        "support": 58
+      },
+      "print_document": {
+        "precision": 0.9148936170212766,
+        "recall": 0.86,
+        "f1-score": 0.8865979381443299,
+        "support": 50
+      },
+      "set_alarm": {
+        "precision": 1.0,
+        "recall": 0.8867924528301887,
+        "f1-score": 0.94,
+        "support": 53
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.810565548533463,
+    "argument_task_argname_value_binary_f1_no_matching": 0.5261623197796857,
+    "edit_distance": 0.27324135211908884,
+    "link_binary_f1": 0.4650959860383944
+  },
+  "dag_overall": {
+    "all_samples": 55,
+    "step_supports": 0,
+    "node_supports": 55,
+    "link_supports": 55,
+    "argument_supports": 55,
+    "node_micro_precision_no_matching": 0.9337748344370861,
+    "node_micro_recall_no_matching": 0.8980891719745223,
+    "node_micro_f1_no_matching": 0.9155844155844156,
+    "node_macro_precision_no_matching": 0.9226785714285715,
+    "node_macro_recall_no_matching": 0.8801785714285714,
+    "node_macro_f1_no_matching": 0.8896320346320348,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "get_news_for_topic": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7
+      },
+      "stock_operation": {
+        "precision": 0.8571428571428571,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.8571428571428571,
+        "support": 7
+      },
+      "book_flight": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "book_hotel": {
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "f1-score": 0.9090909090909091,
+        "support": 5
+      },
+      "book_restaurant": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "book_car": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1-score": 0.8888888888888888,
+        "support": 4
+      },
+      "online_shopping": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "send_email": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "send_sms": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "share_by_social_network": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "search_by_engine": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 6
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "see_doctor_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "consult_lawyer_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "enroll_in_course": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6
+      },
+      "buy_insurance": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1-score": 0.6666666666666666,
+        "support": 1
+      },
+      "online_banking": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 2
+      },
+      "daily_bill_payment": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "sell_item_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 9
+      },
+      "do_tax_return": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "apply_for_passport": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 3
+      },
+      "pay_for_credit_card": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "auto_housework_by_robot": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "auto_driving_to_destination": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 4
+      },
+      "deliver_package": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1-score": 0.8571428571428571,
+        "support": 3
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "order_taxi": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "play_music_by_title": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6
+      },
+      "play_movie_by_title": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "take_note": {
+        "precision": 0.75,
+        "recall": 0.5,
+        "f1-score": 0.6,
+        "support": 6
+      },
+      "borrow_book_online": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 2
+      },
+      "recording_audio": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1-score": 0.8571428571428571,
+        "support": 3
+      },
+      "make_video_call": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1-score": 0.8888888888888888,
+        "support": 5
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6
+      },
+      "organize_meeting_online": {
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.6666666666666666,
+        "support": 3
+      },
+      "attend_meeting_online": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 4
+      },
+      "software_management": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 4
+      },
+      "print_document": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "set_alarm": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1-score": 0.8888888888888888,
+        "support": 5
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.8752475247524752,
+    "argument_task_argname_value_binary_f1_no_matching": 0.601980198019802,
+    "edit_distance": 0.19454545454545458,
+    "link_binary_f1": 0.5333333333333333
+  },
+  "overall_1": {
+    "all_samples": 251,
+    "step_supports": 0,
+    "node_supports": 251,
+    "link_supports": 251,
+    "argument_supports": 251,
+    "node_micro_precision_no_matching": 0.9606299212598425,
+    "node_micro_recall_no_matching": 0.9959183673469387,
+    "node_micro_f1_no_matching": 0.9779559118236473,
+    "node_macro_precision_no_matching": 0.9496717171717173,
+    "node_macro_recall_no_matching": 0.996875,
+    "node_macro_f1_no_matching": 0.9665972222222223,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7
+      },
+      "get_news_for_topic": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1-score": 0.8571428571428571,
+        "support": 3
+      },
+      "stock_operation": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 11
+      },
+      "book_flight": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "book_hotel": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7
+      },
+      "book_restaurant": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "book_car": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "online_shopping": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "send_email": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "send_sms": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "share_by_social_network": {
+        "precision": 1.0,
+        "recall": 0.875,
+        "f1-score": 0.9333333333333333,
+        "support": 8
+      },
+      "search_by_engine": {
+        "precision": 0.7777777777777778,
+        "recall": 1.0,
+        "f1-score": 0.875,
+        "support": 7
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7
+      },
+      "see_doctor_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "consult_lawyer_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "enroll_in_course": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6
+      },
+      "buy_insurance": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "online_banking": {
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1-score": 0.8,
+        "support": 4
+      },
+      "daily_bill_payment": {
+        "precision": 0.3333333333333333,
+        "recall": 1.0,
+        "f1-score": 0.5,
+        "support": 1
+      },
+      "sell_item_online": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1-score": 0.8571428571428571,
+        "support": 3
+      },
+      "do_tax_return": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "apply_for_passport": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "pay_for_credit_card": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "auto_housework_by_robot": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "auto_driving_to_destination": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "deliver_package": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 9
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "order_taxi": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7
+      },
+      "play_music_by_title": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 11
+      },
+      "play_movie_by_title": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 11
+      },
+      "take_note": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 9
+      },
+      "borrow_book_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "recording_audio": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "make_video_call": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "organize_meeting_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "attend_meeting_online": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1-score": 0.8888888888888888,
+        "support": 4
+      },
+      "software_management": {
+        "precision": 0.9090909090909091,
+        "recall": 1.0,
+        "f1-score": 0.9523809523809523,
+        "support": 10
+      },
+      "print_document": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 13
+      },
+      "set_alarm": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.9395807644882861,
+    "argument_task_argname_value_binary_f1_no_matching": 0.7127003699136868,
+    "edit_distance": 0.03320053120849942,
+    "link_binary_f1": 0.0
+  },
+  "overall_2": {
+    "all_samples": 59,
+    "step_supports": 0,
+    "node_supports": 59,
+    "link_supports": 59,
+    "argument_supports": 59,
+    "node_micro_precision_no_matching": 0.9217391304347826,
+    "node_micro_recall_no_matching": 0.9298245614035088,
+    "node_micro_f1_no_matching": 0.925764192139738,
+    "node_macro_precision_no_matching": 0.8533333333333335,
+    "node_macro_recall_no_matching": 0.8903571428571428,
+    "node_macro_f1_no_matching": 0.8593985181485181,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "get_news_for_topic": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 0
+      },
+      "stock_operation": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "book_flight": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "book_hotel": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "book_restaurant": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "book_car": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "online_shopping": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1-score": 0.6666666666666666,
+        "support": 1
+      },
+      "send_email": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "send_sms": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "share_by_social_network": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "search_by_engine": {
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1-score": 0.8,
+        "support": 2
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 4
+      },
+      "see_doctor_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "consult_lawyer_online": {
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1-score": 0.8,
+        "support": 2
+      },
+      "enroll_in_course": {
+        "precision": 0.8333333333333334,
+        "recall": 0.7142857142857143,
+        "f1-score": 0.7692307692307693,
+        "support": 7
+      },
+      "buy_insurance": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "online_banking": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "daily_bill_payment": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 0
+      },
+      "sell_item_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "do_tax_return": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "apply_for_passport": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "pay_for_credit_card": {
+        "precision": 0.3333333333333333,
+        "recall": 1.0,
+        "f1-score": 0.5,
+        "support": 1
+      },
+      "auto_housework_by_robot": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "auto_driving_to_destination": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "deliver_package": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "order_taxi": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "play_music_by_title": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6
+      },
+      "play_movie_by_title": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "take_note": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "borrow_book_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "recording_audio": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "make_video_call": {
+        "precision": 0.8,
+        "recall": 0.8,
+        "f1-score": 0.8,
+        "support": 5
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "organize_meeting_online": {
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "f1-score": 0.9090909090909091,
+        "support": 5
+      },
+      "attend_meeting_online": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1-score": 0.75,
+        "support": 5
+      },
+      "software_management": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 4
+      },
+      "print_document": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1-score": 0.6666666666666666,
+        "support": 1
+      },
+      "set_alarm": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.8564102564102564,
+    "argument_task_argname_value_binary_f1_no_matching": 0.5421994884910486,
+    "edit_distance": 0.11242937853107349,
+    "link_binary_f1": 0.6262626262626263
+  },
+  "overall_3": {
+    "all_samples": 246,
+    "step_supports": 0,
+    "node_supports": 246,
+    "link_supports": 246,
+    "argument_supports": 246,
+    "node_micro_precision_no_matching": 0.952959028831563,
+    "node_micro_recall_no_matching": 0.8870056497175142,
+    "node_micro_f1_no_matching": 0.9188002926115582,
+    "node_macro_precision_no_matching": 0.9534081926845085,
+    "node_macro_recall_no_matching": 0.8821118448899778,
+    "node_macro_f1_no_matching": 0.9123199473356287,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 1.0,
+        "recall": 0.8666666666666667,
+        "f1-score": 0.9285714285714286,
+        "support": 15
+      },
+      "get_news_for_topic": {
+        "precision": 1.0,
+        "recall": 0.9285714285714286,
+        "f1-score": 0.9629629629629629,
+        "support": 14
+      },
+      "stock_operation": {
+        "precision": 0.95,
+        "recall": 0.9047619047619048,
+        "f1-score": 0.926829268292683,
+        "support": 21
+      },
+      "book_flight": {
+        "precision": 1.0,
+        "recall": 0.9523809523809523,
+        "f1-score": 0.975609756097561,
+        "support": 21
+      },
+      "book_hotel": {
+        "precision": 0.95,
+        "recall": 0.9047619047619048,
+        "f1-score": 0.926829268292683,
+        "support": 21
+      },
+      "book_restaurant": {
+        "precision": 1.0,
+        "recall": 0.875,
+        "f1-score": 0.9333333333333333,
+        "support": 16
+      },
+      "book_car": {
+        "precision": 0.9166666666666666,
+        "recall": 1.0,
+        "f1-score": 0.9565217391304348,
+        "support": 22
+      },
+      "online_shopping": {
+        "precision": 1.0,
+        "recall": 0.9,
+        "f1-score": 0.9473684210526315,
+        "support": 20
+      },
+      "send_email": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 16
+      },
+      "send_sms": {
+        "precision": 1.0,
+        "recall": 0.9375,
+        "f1-score": 0.967741935483871,
+        "support": 16
+      },
+      "share_by_social_network": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 17
+      },
+      "search_by_engine": {
+        "precision": 1.0,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.9090909090909091,
+        "support": 18
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 16
+      },
+      "see_doctor_online": {
+        "precision": 0.8571428571428571,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.8571428571428571,
+        "support": 14
+      },
+      "consult_lawyer_online": {
+        "precision": 1.0,
+        "recall": 0.9375,
+        "f1-score": 0.967741935483871,
+        "support": 16
+      },
+      "enroll_in_course": {
+        "precision": 1.0,
+        "recall": 0.8695652173913043,
+        "f1-score": 0.9302325581395349,
+        "support": 23
+      },
+      "buy_insurance": {
+        "precision": 0.9285714285714286,
+        "recall": 1.0,
+        "f1-score": 0.9629629629629629,
+        "support": 13
+      },
+      "online_banking": {
+        "precision": 1.0,
+        "recall": 0.46153846153846156,
+        "f1-score": 0.631578947368421,
+        "support": 13
+      },
+      "daily_bill_payment": {
+        "precision": 0.8666666666666667,
+        "recall": 0.8666666666666667,
+        "f1-score": 0.8666666666666667,
+        "support": 15
+      },
+      "sell_item_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 24
+      },
+      "do_tax_return": {
+        "precision": 1.0,
+        "recall": 0.9333333333333333,
+        "f1-score": 0.9655172413793104,
+        "support": 15
+      },
+      "apply_for_passport": {
+        "precision": 1.0,
+        "recall": 0.8636363636363636,
+        "f1-score": 0.926829268292683,
+        "support": 22
+      },
+      "pay_for_credit_card": {
+        "precision": 0.6153846153846154,
+        "recall": 0.5714285714285714,
+        "f1-score": 0.5925925925925926,
+        "support": 14
+      },
+      "auto_housework_by_robot": {
+        "precision": 0.9090909090909091,
+        "recall": 0.9523809523809523,
+        "f1-score": 0.9302325581395349,
+        "support": 21
+      },
+      "auto_driving_to_destination": {
+        "precision": 1.0,
+        "recall": 0.7692307692307693,
+        "f1-score": 0.8695652173913043,
+        "support": 13
+      },
+      "deliver_package": {
+        "precision": 0.8333333333333334,
+        "recall": 0.8823529411764706,
+        "f1-score": 0.8571428571428571,
+        "support": 17
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 16
+      },
+      "order_taxi": {
+        "precision": 1.0,
+        "recall": 0.95,
+        "f1-score": 0.9743589743589743,
+        "support": 20
+      },
+      "play_music_by_title": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 13
+      },
+      "play_movie_by_title": {
+        "precision": 0.9047619047619048,
+        "recall": 0.95,
+        "f1-score": 0.926829268292683,
+        "support": 20
+      },
+      "take_note": {
+        "precision": 0.8461538461538461,
+        "recall": 0.6111111111111112,
+        "f1-score": 0.7096774193548387,
+        "support": 18
+      },
+      "borrow_book_online": {
+        "precision": 1.0,
+        "recall": 0.9285714285714286,
+        "f1-score": 0.9629629629629629,
+        "support": 14
+      },
+      "recording_audio": {
+        "precision": 0.9285714285714286,
+        "recall": 0.8666666666666667,
+        "f1-score": 0.896551724137931,
+        "support": 15
+      },
+      "make_video_call": {
+        "precision": 0.9444444444444444,
+        "recall": 0.85,
+        "f1-score": 0.8947368421052632,
+        "support": 20
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 0.8823529411764706,
+        "f1-score": 0.9375,
+        "support": 17
+      },
+      "organize_meeting_online": {
+        "precision": 0.8421052631578947,
+        "recall": 0.8888888888888888,
+        "f1-score": 0.8648648648648649,
+        "support": 18
+      },
+      "attend_meeting_online": {
+        "precision": 0.9444444444444444,
+        "recall": 0.85,
+        "f1-score": 0.8947368421052632,
+        "support": 20
+      },
+      "software_management": {
+        "precision": 0.9444444444444444,
+        "recall": 0.7391304347826086,
+        "f1-score": 0.8292682926829268,
+        "support": 23
+      },
+      "print_document": {
+        "precision": 0.9545454545454546,
+        "recall": 1.0,
+        "f1-score": 0.9767441860465116,
+        "support": 21
+      },
+      "set_alarm": {
+        "precision": 1.0,
+        "recall": 0.95,
+        "f1-score": 0.9743589743589743,
+        "support": 20
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.8649362076550814,
+    "argument_task_argname_value_binary_f1_no_matching": 0.5684117905851298,
+    "edit_distance": 0.1964963221060777,
+    "link_binary_f1": 0.5248990578734859
+  },
+  "overall_4": {
+    "all_samples": 144,
+    "step_supports": 0,
+    "node_supports": 144,
+    "link_supports": 144,
+    "argument_supports": 144,
+    "node_micro_precision_no_matching": 0.9664570230607966,
+    "node_micro_recall_no_matching": 0.8246869409660107,
+    "node_micro_f1_no_matching": 0.88996138996139,
+    "node_macro_precision_no_matching": 0.965640552795158,
+    "node_macro_recall_no_matching": 0.8275347982555801,
+    "node_macro_f1_no_matching": 0.8857821695405885,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 0.8181818181818182,
+        "recall": 0.8181818181818182,
+        "f1-score": 0.8181818181818182,
+        "support": 11
+      },
+      "get_news_for_topic": {
+        "precision": 1.0,
+        "recall": 0.875,
+        "f1-score": 0.9333333333333333,
+        "support": 16
+      },
+      "stock_operation": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "book_flight": {
+        "precision": 1.0,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.9230769230769231,
+        "support": 21
+      },
+      "book_hotel": {
+        "precision": 1.0,
+        "recall": 0.9047619047619048,
+        "f1-score": 0.95,
+        "support": 21
+      },
+      "book_restaurant": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 20
+      },
+      "book_car": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 15
+      },
+      "online_shopping": {
+        "precision": 1.0,
+        "recall": 0.8666666666666667,
+        "f1-score": 0.9285714285714286,
+        "support": 15
+      },
+      "send_email": {
+        "precision": 1.0,
+        "recall": 0.7857142857142857,
+        "f1-score": 0.88,
+        "support": 14
+      },
+      "send_sms": {
+        "precision": 1.0,
+        "recall": 0.9090909090909091,
+        "f1-score": 0.9523809523809523,
+        "support": 11
+      },
+      "share_by_social_network": {
+        "precision": 1.0,
+        "recall": 0.7727272727272727,
+        "f1-score": 0.8717948717948718,
+        "support": 22
+      },
+      "search_by_engine": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 14
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 0.7272727272727273,
+        "f1-score": 0.8421052631578947,
+        "support": 11
+      },
+      "see_doctor_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 13
+      },
+      "consult_lawyer_online": {
+        "precision": 1.0,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.9090909090909091,
+        "support": 18
+      },
+      "enroll_in_course": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 18
+      },
+      "buy_insurance": {
+        "precision": 1.0,
+        "recall": 0.7333333333333333,
+        "f1-score": 0.8461538461538461,
+        "support": 15
+      },
+      "online_banking": {
+        "precision": 0.9230769230769231,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.8888888888888888,
+        "support": 14
+      },
+      "daily_bill_payment": {
+        "precision": 0.8125,
+        "recall": 0.8125,
+        "f1-score": 0.8125,
+        "support": 16
+      },
+      "sell_item_online": {
+        "precision": 0.8333333333333334,
+        "recall": 0.7142857142857143,
+        "f1-score": 0.7692307692307693,
+        "support": 7
+      },
+      "do_tax_return": {
+        "precision": 1.0,
+        "recall": 0.8888888888888888,
+        "f1-score": 0.9411764705882353,
+        "support": 9
+      },
+      "apply_for_passport": {
+        "precision": 0.9090909090909091,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.8695652173913043,
+        "support": 12
+      },
+      "pay_for_credit_card": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1-score": 0.8888888888888888,
+        "support": 10
+      },
+      "auto_housework_by_robot": {
+        "precision": 0.9333333333333333,
+        "recall": 1.0,
+        "f1-score": 0.9655172413793104,
+        "support": 14
+      },
+      "auto_driving_to_destination": {
+        "precision": 1.0,
+        "recall": 0.7333333333333333,
+        "f1-score": 0.8461538461538461,
+        "support": 15
+      },
+      "deliver_package": {
+        "precision": 1.0,
+        "recall": 0.7142857142857143,
+        "f1-score": 0.8333333333333334,
+        "support": 14
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 0.7857142857142857,
+        "f1-score": 0.88,
+        "support": 14
+      },
+      "order_taxi": {
+        "precision": 0.8181818181818182,
+        "recall": 0.6,
+        "f1-score": 0.6923076923076923,
+        "support": 15
+      },
+      "play_music_by_title": {
+        "precision": 0.9473684210526315,
+        "recall": 0.9473684210526315,
+        "f1-score": 0.9473684210526315,
+        "support": 19
+      },
+      "play_movie_by_title": {
+        "precision": 0.9333333333333333,
+        "recall": 0.9333333333333333,
+        "f1-score": 0.9333333333333333,
+        "support": 15
+      },
+      "take_note": {
+        "precision": 0.8888888888888888,
+        "recall": 0.7272727272727273,
+        "f1-score": 0.8,
+        "support": 11
+      },
+      "borrow_book_online": {
+        "precision": 1.0,
+        "recall": 0.7647058823529411,
+        "f1-score": 0.8666666666666667,
+        "support": 17
+      },
+      "recording_audio": {
+        "precision": 0.875,
+        "recall": 0.875,
+        "f1-score": 0.875,
+        "support": 8
+      },
+      "make_video_call": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 16
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 0.8181818181818182,
+        "f1-score": 0.9,
+        "support": 11
+      },
+      "organize_meeting_online": {
+        "precision": 0.9333333333333333,
+        "recall": 0.9333333333333333,
+        "f1-score": 0.9333333333333333,
+        "support": 15
+      },
+      "attend_meeting_online": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1-score": 0.75,
+        "support": 15
+      },
+      "software_management": {
+        "precision": 1.0,
+        "recall": 0.8461538461538461,
+        "f1-score": 0.9166666666666666,
+        "support": 13
+      },
+      "print_document": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 9
+      },
+      "set_alarm": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 11
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.8339140534262486,
+    "argument_task_argname_value_binary_f1_no_matching": 0.5365853658536586,
+    "edit_distance": 0.2616347001763667,
+    "link_binary_f1": 0.5337423312883436
+  },
+  "overall_5": {
+    "all_samples": 73,
+    "step_supports": 0,
+    "node_supports": 73,
+    "link_supports": 73,
+    "argument_supports": 73,
+    "node_micro_precision_no_matching": 0.967741935483871,
+    "node_micro_recall_no_matching": 0.7648725212464589,
+    "node_micro_f1_no_matching": 0.8544303797468354,
+    "node_macro_precision_no_matching": 0.9729058441558441,
+    "node_macro_recall_no_matching": 0.7653821872571872,
+    "node_macro_f1_no_matching": 0.8505947122025163,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 6
+      },
+      "get_news_for_topic": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 8
+      },
+      "stock_operation": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 8
+      },
+      "book_flight": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 9
+      },
+      "book_hotel": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 8
+      },
+      "book_restaurant": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1-score": 0.8888888888888888,
+        "support": 5
+      },
+      "book_car": {
+        "precision": 0.9090909090909091,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.8695652173913043,
+        "support": 12
+      },
+      "online_shopping": {
+        "precision": 0.9166666666666666,
+        "recall": 0.9166666666666666,
+        "f1-score": 0.9166666666666666,
+        "support": 12
+      },
+      "send_email": {
+        "precision": 1.0,
+        "recall": 0.7142857142857143,
+        "f1-score": 0.8333333333333334,
+        "support": 7
+      },
+      "send_sms": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 12
+      },
+      "share_by_social_network": {
+        "precision": 1.0,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.9090909090909091,
+        "support": 6
+      },
+      "search_by_engine": {
+        "precision": 1.0,
+        "recall": 0.5714285714285714,
+        "f1-score": 0.7272727272727273,
+        "support": 7
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1-score": 0.8888888888888888,
+        "support": 10
+      },
+      "see_doctor_online": {
+        "precision": 1.0,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.9230769230769231,
+        "support": 7
+      },
+      "consult_lawyer_online": {
+        "precision": 1.0,
+        "recall": 0.625,
+        "f1-score": 0.7692307692307693,
+        "support": 8
+      },
+      "enroll_in_course": {
+        "precision": 1.0,
+        "recall": 0.7,
+        "f1-score": 0.8235294117647058,
+        "support": 10
+      },
+      "buy_insurance": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1-score": 0.8888888888888888,
+        "support": 10
+      },
+      "online_banking": {
+        "precision": 0.8333333333333334,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.8333333333333334,
+        "support": 6
+      },
+      "daily_bill_payment": {
+        "precision": 0.9,
+        "recall": 0.75,
+        "f1-score": 0.8181818181818182,
+        "support": 12
+      },
+      "sell_item_online": {
+        "precision": 1.0,
+        "recall": 0.7777777777777778,
+        "f1-score": 0.875,
+        "support": 9
+      },
+      "do_tax_return": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5
+      },
+      "apply_for_passport": {
+        "precision": 1.0,
+        "recall": 0.5714285714285714,
+        "f1-score": 0.7272727272727273,
+        "support": 7
+      },
+      "pay_for_credit_card": {
+        "precision": 1.0,
+        "recall": 0.9090909090909091,
+        "f1-score": 0.9523809523809523,
+        "support": 11
+      },
+      "auto_housework_by_robot": {
+        "precision": 1.0,
+        "recall": 0.8461538461538461,
+        "f1-score": 0.9166666666666666,
+        "support": 13
+      },
+      "auto_driving_to_destination": {
+        "precision": 1.0,
+        "recall": 0.7142857142857143,
+        "f1-score": 0.8333333333333334,
+        "support": 7
+      },
+      "deliver_package": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1-score": 0.75,
+        "support": 10
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 0.9,
+        "f1-score": 0.9473684210526315,
+        "support": 10
+      },
+      "order_taxi": {
+        "precision": 1.0,
+        "recall": 0.9,
+        "f1-score": 0.9473684210526315,
+        "support": 10
+      },
+      "play_music_by_title": {
+        "precision": 0.8571428571428571,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.8571428571428571,
+        "support": 7
+      },
+      "play_movie_by_title": {
+        "precision": 1.0,
+        "recall": 0.7,
+        "f1-score": 0.8235294117647058,
+        "support": 10
+      },
+      "take_note": {
+        "precision": 0.75,
+        "recall": 0.5,
+        "f1-score": 0.6,
+        "support": 12
+      },
+      "borrow_book_online": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1-score": 0.8888888888888888,
+        "support": 10
+      },
+      "recording_audio": {
+        "precision": 1.0,
+        "recall": 0.7142857142857143,
+        "f1-score": 0.8333333333333334,
+        "support": 7
+      },
+      "make_video_call": {
+        "precision": 1.0,
+        "recall": 0.8888888888888888,
+        "f1-score": 0.9411764705882353,
+        "support": 9
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6
+      },
+      "organize_meeting_online": {
+        "precision": 1.0,
+        "recall": 0.7777777777777778,
+        "f1-score": 0.875,
+        "support": 9
+      },
+      "attend_meeting_online": {
+        "precision": 1.0,
+        "recall": 0.625,
+        "f1-score": 0.7692307692307693,
+        "support": 8
+      },
+      "software_management": {
+        "precision": 0.875,
+        "recall": 0.875,
+        "f1-score": 0.875,
+        "support": 8
+      },
+      "print_document": {
+        "precision": 0.875,
+        "recall": 0.7777777777777778,
+        "f1-score": 0.8235294117647058,
+        "support": 9
+      },
+      "set_alarm": {
+        "precision": 1.0,
+        "recall": 0.8461538461538461,
+        "f1-score": 0.9166666666666666,
+        "support": 13
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.8227228207639569,
+    "argument_task_argname_value_binary_f1_no_matching": 0.5504407443682664,
+    "edit_distance": 0.3477168949771692,
+    "link_binary_f1": 0.37
+  },
+  "overall_6": {
+    "all_samples": 47,
+    "step_supports": 0,
+    "node_supports": 47,
+    "link_supports": 47,
+    "argument_supports": 47,
+    "node_micro_precision_no_matching": 0.9414893617021277,
+    "node_micro_recall_no_matching": 0.6679245283018868,
+    "node_micro_f1_no_matching": 0.7814569536423841,
+    "node_macro_precision_no_matching": 0.9552380952380952,
+    "node_macro_recall_no_matching": 0.6661751443001444,
+    "node_macro_f1_no_matching": 0.7646655086399669,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 0.75,
+        "recall": 0.42857142857142855,
+        "f1-score": 0.5454545454545454,
+        "support": 7
+      },
+      "get_news_for_topic": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 6
+      },
+      "stock_operation": {
+        "precision": 1.0,
+        "recall": 0.7142857142857143,
+        "f1-score": 0.8333333333333334,
+        "support": 14
+      },
+      "book_flight": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6
+      },
+      "book_hotel": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 4
+      },
+      "book_restaurant": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 3
+      },
+      "book_car": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 2
+      },
+      "online_shopping": {
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1-score": 0.4,
+        "support": 8
+      },
+      "send_email": {
+        "precision": 0.8333333333333334,
+        "recall": 0.45454545454545453,
+        "f1-score": 0.5882352941176471,
+        "support": 11
+      },
+      "send_sms": {
+        "precision": 1.0,
+        "recall": 0.8888888888888888,
+        "f1-score": 0.9411764705882353,
+        "support": 9
+      },
+      "share_by_social_network": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1-score": 0.75,
+        "support": 5
+      },
+      "search_by_engine": {
+        "precision": 0.75,
+        "recall": 0.42857142857142855,
+        "f1-score": 0.5454545454545454,
+        "support": 7
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1-score": 0.75,
+        "support": 10
+      },
+      "see_doctor_online": {
+        "precision": 0.8333333333333334,
+        "recall": 0.625,
+        "f1-score": 0.7142857142857143,
+        "support": 8
+      },
+      "consult_lawyer_online": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 3
+      },
+      "enroll_in_course": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 6
+      },
+      "buy_insurance": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 8
+      },
+      "online_banking": {
+        "precision": 1.0,
+        "recall": 0.5714285714285714,
+        "f1-score": 0.7272727272727273,
+        "support": 7
+      },
+      "daily_bill_payment": {
+        "precision": 0.5714285714285714,
+        "recall": 0.8,
+        "f1-score": 0.6666666666666666,
+        "support": 5
+      },
+      "sell_item_online": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 4
+      },
+      "do_tax_return": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 7
+      },
+      "apply_for_passport": {
+        "precision": 1.0,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.9090909090909091,
+        "support": 6
+      },
+      "pay_for_credit_card": {
+        "precision": 1.0,
+        "recall": 0.42857142857142855,
+        "f1-score": 0.6,
+        "support": 7
+      },
+      "auto_housework_by_robot": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 6
+      },
+      "auto_driving_to_destination": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 6
+      },
+      "deliver_package": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 6
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 8
+      },
+      "order_taxi": {
+        "precision": 1.0,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.9230769230769231,
+        "support": 7
+      },
+      "play_music_by_title": {
+        "precision": 1.0,
+        "recall": 0.5714285714285714,
+        "f1-score": 0.7272727272727273,
+        "support": 7
+      },
+      "play_movie_by_title": {
+        "precision": 0.7142857142857143,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.7692307692307693,
+        "support": 6
+      },
+      "take_note": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 6
+      },
+      "borrow_book_online": {
+        "precision": 0.9,
+        "recall": 1.0,
+        "f1-score": 0.9473684210526315,
+        "support": 9
+      },
+      "recording_audio": {
+        "precision": 1.0,
+        "recall": 0.4,
+        "f1-score": 0.5714285714285714,
+        "support": 5
+      },
+      "make_video_call": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1-score": 0.75,
+        "support": 5
+      },
+      "organize_meeting_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 8
+      },
+      "attend_meeting_online": {
+        "precision": 1.0,
+        "recall": 0.5714285714285714,
+        "f1-score": 0.7272727272727273,
+        "support": 7
+      },
+      "software_management": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 8
+      },
+      "print_document": {
+        "precision": 0.8571428571428571,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.8571428571428571,
+        "support": 7
+      },
+      "set_alarm": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 8
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.7620320855614974,
+    "argument_task_argname_value_binary_f1_no_matching": 0.4993324432576769,
+    "edit_distance": 0.4323662153449387,
+    "link_binary_f1": 0.36893203883495146
+  },
+  "overall_7": {
+    "all_samples": 27,
+    "step_supports": 0,
+    "node_supports": 27,
+    "link_supports": 27,
+    "argument_supports": 27,
+    "node_micro_precision_no_matching": 0.96,
+    "node_micro_recall_no_matching": 0.4090909090909091,
+    "node_micro_f1_no_matching": 0.5737051792828686,
+    "node_macro_precision_no_matching": 0.8291666666666666,
+    "node_macro_recall_no_matching": 0.4167361111111111,
+    "node_macro_f1_no_matching": 0.5289804639804639,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 1.0,
+        "recall": 0.2,
+        "f1-score": 0.3333333333333333,
+        "support": 5
+      },
+      "get_news_for_topic": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 4
+      },
+      "stock_operation": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 6
+      },
+      "book_flight": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "book_hotel": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 6
+      },
+      "book_restaurant": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "book_car": {
+        "precision": 1.0,
+        "recall": 0.4,
+        "f1-score": 0.5714285714285714,
+        "support": 5
+      },
+      "online_shopping": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3
+      },
+      "send_email": {
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1-score": 0.4,
+        "support": 4
+      },
+      "send_sms": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3
+      },
+      "share_by_social_network": {
+        "precision": 1.0,
+        "recall": 0.4,
+        "f1-score": 0.5714285714285714,
+        "support": 5
+      },
+      "search_by_engine": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 0.4,
+        "f1-score": 0.5714285714285714,
+        "support": 5
+      },
+      "see_doctor_online": {
+        "precision": 1.0,
+        "recall": 0.625,
+        "f1-score": 0.7692307692307693,
+        "support": 8
+      },
+      "consult_lawyer_online": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 3
+      },
+      "enroll_in_course": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 6
+      },
+      "buy_insurance": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 6
+      },
+      "online_banking": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 0
+      },
+      "daily_bill_payment": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 2
+      },
+      "sell_item_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "do_tax_return": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 3
+      },
+      "apply_for_passport": {
+        "precision": 1.0,
+        "recall": 0.2857142857142857,
+        "f1-score": 0.4444444444444444,
+        "support": 7
+      },
+      "pay_for_credit_card": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4
+      },
+      "auto_housework_by_robot": {
+        "precision": 1.0,
+        "recall": 0.42857142857142855,
+        "f1-score": 0.6,
+        "support": 7
+      },
+      "auto_driving_to_destination": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 6
+      },
+      "deliver_package": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 3
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 4
+      },
+      "order_taxi": {
+        "precision": 0.6666666666666666,
+        "recall": 0.5,
+        "f1-score": 0.5714285714285714,
+        "support": 4
+      },
+      "play_music_by_title": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 3
+      },
+      "play_movie_by_title": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 4
+      },
+      "take_note": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3
+      },
+      "borrow_book_online": {
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1-score": 0.2857142857142857,
+        "support": 6
+      },
+      "recording_audio": {
+        "precision": 0.5,
+        "recall": 0.25,
+        "f1-score": 0.3333333333333333,
+        "support": 4
+      },
+      "make_video_call": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 3
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 0.2857142857142857,
+        "f1-score": 0.4444444444444444,
+        "support": 7
+      },
+      "organize_meeting_online": {
+        "precision": 1.0,
+        "recall": 0.4444444444444444,
+        "f1-score": 0.6153846153846154,
+        "support": 9
+      },
+      "attend_meeting_online": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 4
+      },
+      "software_management": {
+        "precision": 1.0,
+        "recall": 0.2,
+        "f1-score": 0.3333333333333333,
+        "support": 5
+      },
+      "print_document": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 6
+      },
+      "set_alarm": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1-score": 0.8571428571428571,
+        "support": 4
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.57356608478803,
+    "argument_task_argname_value_binary_f1_no_matching": 0.34413965087281795,
+    "edit_distance": 0.655921855921856,
+    "link_binary_f1": 0.3939393939393939
+  },
+  "overall_8": {
+    "all_samples": 7,
+    "step_supports": 0,
+    "node_supports": 7,
+    "link_supports": 7,
+    "argument_supports": 7,
+    "node_micro_precision_no_matching": 1.0,
+    "node_micro_recall_no_matching": 0.42857142857142855,
+    "node_micro_f1_no_matching": 0.6,
+    "node_macro_precision_no_matching": 0.475,
+    "node_macro_recall_no_matching": 0.36875,
+    "node_macro_f1_no_matching": 0.4,
+    "node_per_type_no_matchcing": {
+      "get_weather": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 2
+      },
+      "get_news_for_topic": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "stock_operation": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "book_flight": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "book_hotel": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "book_restaurant": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2
+      },
+      "book_car": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "online_shopping": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "send_email": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "send_sms": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "share_by_social_network": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "search_by_engine": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "apply_for_job": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "see_doctor_online": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "consult_lawyer_online": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 2
+      },
+      "enroll_in_course": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 0
+      },
+      "buy_insurance": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "online_banking": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "daily_bill_payment": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "sell_item_online": {
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1-score": 0.4,
+        "support": 4
+      },
+      "do_tax_return": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "apply_for_passport": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 3
+      },
+      "pay_for_credit_card": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "auto_housework_by_robot": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 3
+      },
+      "auto_driving_to_destination": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "deliver_package": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 0
+      },
+      "order_food_delivery": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 2
+      },
+      "order_taxi": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 0
+      },
+      "play_music_by_title": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2
+      },
+      "play_movie_by_title": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2
+      },
+      "take_note": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 0
+      },
+      "borrow_book_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3
+      },
+      "recording_audio": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "make_video_call": {
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.5,
+        "support": 3
+      },
+      "make_voice_call": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 3
+      },
+      "organize_meeting_online": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1
+      },
+      "attend_meeting_online": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "software_management": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      },
+      "print_document": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 2
+      },
+      "set_alarm": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 1
+      }
+    },
+    "argument_task_argname_binary_f1_no_matching": 0.5619834710743802,
+    "argument_task_argname_value_binary_f1_no_matching": 0.4132231404958678,
+    "edit_distance": 0.625,
+    "link_binary_f1": 0.25
+  },
+  "overall_9": {
+    "all_samples": 0,
+    "step_supports": 0,
+    "node_supports": 0,
+    "link_supports": 0,
+    "argument_supports": 0
+  },
+  "overall_10": {
+    "all_samples": 0,
+    "step_supports": 0,
+    "node_supports": 0,
+    "link_supports": 0,
+    "argument_supports": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "semantic_tool_families": {},
+  "coverage_prompt_variables": {
+    "dataset": "taskbench/data_dailylifeapis",
+    "tool_taxonomy": "daily_life_api"
+  },
+  "coverage_prompt_rules": [
+    "Treat each allowed intent as a daily-life API action, not a media or ML model task.",
+    "Use the requested real-world service domain to disambiguate similar actions: booking, buying, paying, applying, consulting, sending, sharing, searching, playing, calling, recording, printing, or setting reminders.",
+    "Cover an intent when the request asks to perform that service action even if the exact API name is not used, for example reserve/book, purchase/buy/order, pay/settle, call/contact, message/send, search/look up, or schedule/set.",
+    "Do not add adjacent service intents just because their entities appear. A hotel name does not imply book_hotel unless the request asks to reserve it; a restaurant name does not imply book_restaurant unless reservation or ordering is requested.",
+    "When one request contains multiple independent daily-life actions, return all independently covered intents, for example book flight plus book hotel plus order taxi.",
+    "Use required slot evidence from candidate tool descriptions to distinguish similar intents: date, location, destination, platform, product, recipient, content, doctor/lawyer/course/bank/company, or operation."
+  ],
+  "replan_prompt_variables": {
+    "dataset": "taskbench/data_dailylifeapis",
+    "tool_taxonomy": "daily_life_api"
+  },
+  "replan_prompt_rules": [
+    "Prefer a direct API tool for each requested daily-life action.",
+    "Keep separate tools for separate service actions such as booking travel, booking lodging, ordering food, sending messages, and paying bills.",
+    "Do not insert media or ML-style preprocessing steps unless the allowed daily-life API explicitly requires them."
+  ]
+}

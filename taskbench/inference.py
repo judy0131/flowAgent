@@ -5,8 +5,7 @@ import click
 import asyncio
 import aiohttp
 import logging
-import importlib.util
-from pathlib import Path
+import re
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -19,6 +18,39 @@ class RateLimitError(Exception):
 class ContentFormatError(Exception):
     def __init__(self, message):
         super().__init__(message)
+
+def extract_model_json_text(raw_content, markers=("RESULT #:", "STRICT JSON FORMAT #:")):
+    content = str(raw_content or "").replace("\n", "").replace("\\_", "_").strip()
+    for marker in markers:
+        start_pos = content.find(marker)
+        if start_pos != -1:
+            content = content[start_pos + len(marker):]
+    start = content.find("{")
+    end = content.rfind("}")
+    if start == -1 or end == -1 or end < start:
+        return content
+    return content[start:end + 1]
+
+def repair_invalid_json_escapes(json_text):
+    # JSON allows escapes like \" and \\ but not \'. Some models emit English
+    # apostrophes as \' inside JSON strings; remove only invalid escape slashes.
+    return re.sub(r'\\([^"\\/bfnrtu])', r'\1', json_text)
+
+def loads_model_json_content(raw_content, markers=("RESULT #:", "STRICT JSON FORMAT #:")):
+    json_text = extract_model_json_text(raw_content, markers=markers)
+    try:
+        content = json.loads(json_text)
+    except json.JSONDecodeError:
+        content = json.loads(repair_invalid_json_escapes(json_text))
+    if isinstance(content, list) and len(content):
+        merge_content = {}
+        for item in content:
+            if not isinstance(item, dict):
+                continue
+            for key, value in item.items():
+                merge_content[key].extend(value) if key in merge_content else merge_content.update({key: value})
+        return merge_content
+    return content
 
 def load_demo_field(data, primary_key, fallback_key=None):
     value = data.get(primary_key)
@@ -34,14 +66,14 @@ def load_demo_field(data, primary_key, fallback_key=None):
             return value
     return value
 
-def load_pipeline_agent_backend():
-    path = Path(__file__).resolve().parent / "pipelineOrchastration" / "run_with_pipeline_agent_base.py"
-    spec = importlib.util.spec_from_file_location("run_with_pipeline_agent_base", path)
-    if spec is None or spec.loader is None:
-        raise ImportError(f"Cannot load pipeline agent backend from: {path}")
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+def apply_non_streaming_model_options(payload):
+    model = str(payload.get("model") or "").strip().lower()
+    if model.startswith("qwen3") and payload.get("stream") is False:
+        payload["enable_thinking"] = False
+    else:
+        payload.pop("enable_thinking", None)
+    return payload
+
 
 @click.command()
 @click.option("--data_dir", default="data_huggingface", help="The directory of the data.")
@@ -59,23 +91,11 @@ def load_pipeline_agent_backend():
 @click.option("--tag", type=bool, default=False)
 @click.option("--dependency_type", type=str, default="resource")
 @click.option("--log_first_detail", type=bool, default=False)
-def main(data_dir, temperature, top_p, api_addr, api_key, api_port, base_url, multiworker, llm, use_demos, reformat, reformat_by, tag, dependency_type, log_first_detail):
+@click.option("--max_tokens", type=int, default=2000, help="Maximum completion tokens requested from the model.")
+def main(data_dir, temperature, top_p, api_addr, api_key, api_port, base_url, multiworker, llm, use_demos, reformat, reformat_by, tag, dependency_type, log_first_detail, max_tokens):
     assert dependency_type in ["resource", "temporal"], "Dependency type not supported"
     if dependency_type == "resource":
         assert data_dir != "data_dailylifeapis", "Resource dependency type only support data_huggingface and data_multimedia"
-
-    if str(llm or "").strip().lower() in {"pipeline_agent", "pipeline_orchestrator_agent"}:
-        pipeline_agent_backend = load_pipeline_agent_backend()
-        asyncio.run(
-            pipeline_agent_backend.run_from_taskbench_inference(
-                data_dir=data_dir,
-                llm=llm,
-                multiworker=multiworker,
-                dependency_type=dependency_type,
-                use_demos=use_demos,
-            )
-        )
-        return
 
     arguments = locals()
     if base_url:
@@ -99,13 +119,13 @@ def main(data_dir, temperature, top_p, api_addr, api_key, api_port, base_url, mu
 
     has_inferenced = []
     if os.path.exists(wf_name):
-        rf = open(wf_name, "r")
+        rf = open(wf_name, "r", encoding="utf-8-sig")
         for line in rf:
             data = json.loads(line)
             has_inferenced.append(data["id"])
         rf.close()
 
-    rf_ur = open(f"{data_dir}/user_requests.json", "r")
+    rf_ur = open(f"{data_dir}/user_requests.json", "r", encoding="utf-8-sig")
     inputs = []
     for line in rf_ur:
         input = json.loads(line)
@@ -113,9 +133,9 @@ def main(data_dir, temperature, top_p, api_addr, api_key, api_port, base_url, mu
             inputs.append(input)
     rf_ur.close()
 
-    wf = open(wf_name, "a")
+    wf = open(wf_name, "a", encoding="utf-8")
     
-    tool_list = json.load(open(f"{data_dir}/tool_desc.json", "r"))["nodes"]
+    tool_list = json.load(open(f"{data_dir}/tool_desc.json", "r", encoding="utf-8-sig"))["nodes"]
     if "input-type" not in tool_list[0]:
         assert dependency_type == "temporal", "Tool type is not ignored, but the tool list does not contain input-type and output-type"
     if dependency_type == "temporal":
@@ -132,7 +152,7 @@ def main(data_dir, temperature, top_p, api_addr, api_key, api_port, base_url, mu
     console_handler.setLevel(logging.INFO)
     logger.addHandler(console_handler)
 
-    file_handler = logging.FileHandler(f"{prediction_dir}/{llm}.log")
+    file_handler = logging.FileHandler(f"{prediction_dir}/{llm}.log", encoding="utf-8")
     file_handler.setFormatter(formatter)
     file_handler.setLevel(logging.INFO)
     logger.addHandler(file_handler)
@@ -151,7 +171,7 @@ def main(data_dir, temperature, top_p, api_addr, api_key, api_port, base_url, mu
                 demos_id = [ "30934207", "20566230", "19003517"]
         demos_id = demos_id[:use_demos]
         logger.info(f"Use {len(demos_id)} demos: {demos_id}")
-        demos_rf = open(f"{data_dir}/data.json", "r")
+        demos_rf = open(f"{data_dir}/data.json", "r", encoding="utf-8-sig")
         for line in demos_rf:
             data = json.loads(line)
             if data["id"] in demos_id:
@@ -185,9 +205,9 @@ def main(data_dir, temperature, top_p, api_addr, api_key, api_port, base_url, mu
     
     sem = asyncio.Semaphore(multiworker)
 
-    async def inference_wrapper(input, url, header, temperature, top_p, tool_string, wf, llm, demos, reformat, reformat_by, dependency_type, log_detail = False):
+    async def inference_wrapper(input, url, header, temperature, top_p, tool_string, wf, llm, demos, reformat, reformat_by, dependency_type, max_tokens, log_detail = False):
         async with sem:
-            await inference(input, url, header, temperature, top_p, tool_string, wf, llm, demos, reformat, reformat_by, dependency_type, log_detail)
+            await inference(input, url, header, temperature, top_p, tool_string, wf, llm, demos, reformat, reformat_by, dependency_type, max_tokens, log_detail)
 
     if len(inputs) == 0:
         logger.info("All Completed!")
@@ -199,13 +219,13 @@ def main(data_dir, temperature, top_p, api_addr, api_key, api_port, base_url, mu
     loop = asyncio.get_event_loop()
 
     if log_first_detail:
-        tasks = [inference_wrapper(inputs[0], url, header, temperature, top_p, tool_string, wf, llm, demos, reformat, reformat_by, dependency_type, log_detail=True)]
+        tasks = [inference_wrapper(inputs[0], url, header, temperature, top_p, tool_string, wf, llm, demos, reformat, reformat_by, dependency_type, max_tokens, log_detail=True)]
         results = loop.run_until_complete(asyncio.gather(*tasks, return_exceptions=True))
         inputs = inputs[1:]
 
     tasks = []
     for input in inputs:
-        tasks.append(inference_wrapper(input, url, header, temperature, top_p, tool_string, wf, llm, demos, reformat, reformat_by, dependency_type))
+        tasks.append(inference_wrapper(input, url, header, temperature, top_p, tool_string, wf, llm, demos, reformat, reformat_by, dependency_type, max_tokens))
 
     results += loop.run_until_complete(asyncio.gather(*tasks, return_exceptions=True))
     failed = []
@@ -219,7 +239,7 @@ def main(data_dir, temperature, top_p, api_addr, api_key, api_port, base_url, mu
     logger.info(f"Failed: {len(failed)}")
     loop.close()
 
-async def inference(input, url, header, temperature, top_p, tool_string, wf, llm, demos, reformat, reformat_by, dependency_type, log_detail = False):
+async def inference(input, url, header, temperature, top_p, tool_string, wf, llm, demos, reformat, reformat_by, dependency_type, max_tokens, log_detail = False):
     user_request = input["user_request"]
     if dependency_type == "resource":
         prompt = """\n# GOAL #: Based on the above tools, I want you generate task steps and task nodes to solve the # USER REQUEST #. The format must in a strict JSON format, like: {"task_steps": [ step description of one or more steps ], "task_nodes": [{"task": "tool name must be from # TOOL LIST #", "arguments": [ a concise list of arguments for the tool. Either original text, or user-mentioned filename, or tag '<node-j>' (start from 0) to refer to the output of the j-th node. ]}]} """
@@ -236,7 +256,7 @@ async def inference(input, url, header, temperature, top_p, tool_string, wf, llm
     prompt += """\n\n# USER REQUEST #: {{user_request}}\nnow please generate your result in a strict JSON format:\n# RESULT #:"""
 
     final_prompt = tool_string + prompt.replace("{{user_request}}", user_request)
-    payload = json.dumps({
+    payload_dict = {
         "model": f"{llm}",
         "messages": [
             {
@@ -248,10 +268,11 @@ async def inference(input, url, header, temperature, top_p, tool_string, wf, llm
         "top_p": top_p,
         "frequency_penalty": 0,
         "presence_penalty": 1.05,
-        "max_tokens": 2000,
+        "max_tokens": max_tokens,
         "stream": False,
         "stop": None
-    })
+    }
+    payload = json.dumps(apply_non_streaming_model_options(payload_dict))
     try:
         result = await get_response(url, header, payload, input['id'], reformat, reformat_by, dependency_type, log_detail)
     except Exception as e:
@@ -262,14 +283,73 @@ async def inference(input, url, header, temperature, top_p, tool_string, wf, llm
     wf.write(json.dumps(input) + "\n")
     wf.flush()
 
-async def get_response(url, header, payload, id, reformat, reformat_by, dependency_type, log_detail=False):
-    async with aiohttp.ClientSession() as session:
-        async with session.post(url, headers=header, data=payload, timeout=300) as response:
-            resp = await response.json()
+async def post_json_with_context_retry(url, header, payload, timeout, id, phase):
+    current_payload = payload
+    last_status = None
+    last_resp = None
+    for _attempt in range(8):
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url, headers=header, data=current_payload, timeout=timeout) as response:
+                last_status = response.status
+                try:
+                    last_resp = await response.json()
+                except Exception:
+                    last_resp = {"raw_response": await response.text()}
+        if last_status == 400:
+            reduced = reduce_max_tokens_for_context_error(current_payload, last_resp)
+            if reduced is not None:
+                current_payload, old_max_tokens, new_max_tokens = reduced
+                logger.info(
+                    f"[context_retry] #id {id} {phase}: max_tokens {old_max_tokens} -> {new_max_tokens}"
+                )
+                continue
+        return last_status, last_resp, current_payload
+    return last_status, last_resp, current_payload
 
-    if response.status == 429:
+
+def reduce_max_tokens_for_context_error(payload, resp):
+    message = str(resp.get("error", {}).get("message", "") if isinstance(resp, dict) else "")
+    if "maximum context length" not in message or "input tokens" not in message:
+        return None
+
+    limit_match = re.search(r"maximum context length is\s+(\d+)\s+tokens", message)
+    input_match = re.search(r"prompt contains at least\s+(\d+)\s+input tokens", message)
+    if input_match is None:
+        input_match = re.search(r"value=(\d+)", message)
+    if limit_match is None or input_match is None:
+        return None
+
+    try:
+        payload_dict = json.loads(payload)
+        old_max_tokens = int(payload_dict.get("max_tokens") or 0)
+        context_limit = int(limit_match.group(1))
+        input_tokens = int(input_match.group(1))
+    except (TypeError, ValueError, json.JSONDecodeError):
+        return None
+
+    available_tokens = context_limit - input_tokens - 96
+    if available_tokens < 128:
+        return None
+    new_max_tokens = available_tokens
+    if new_max_tokens <= 0 or new_max_tokens >= old_max_tokens:
+        return None
+    payload_dict["max_tokens"] = new_max_tokens
+    return json.dumps(payload_dict), old_max_tokens, new_max_tokens
+
+
+async def get_response(url, header, payload, id, reformat, reformat_by, dependency_type, log_detail=False):
+    status, resp, payload = await post_json_with_context_retry(
+        url=url,
+        header=header,
+        payload=payload,
+        timeout=300,
+        id=id,
+        phase="initial",
+    )
+
+    if status == 429:
         raise RateLimitError(f"{resp}")
-    if response.status != 200:
+    if status != 200:
         raise Exception(f"{resp}")
     
     if log_detail:
@@ -277,23 +357,9 @@ async def get_response(url, header, payload, id, reformat, reformat_by, dependen
         logger.info(resp["choices"][0]["message"]["content"])
 
     oring_content = resp["choices"][0]["message"]["content"]
-    oring_content = oring_content.replace("\n", "")
-    oring_content = oring_content.replace("\\_", "_")
-    content = oring_content.replace("\\", "")
-
-    start_pos = content.find("RESULT #:")
-    if start_pos!=-1:
-        content = content[start_pos+len("RESULT #:"):]
-        
-    content = content[content.find("{"):content.rfind("}")+1]
+    content = extract_model_json_text(oring_content, markers=("RESULT #:",))
     try:
-        content = json.loads(content)
-        if isinstance(content, list) and len(content):
-            merge_content = {}
-            for c in content:
-                for k, v in c.items():
-                    merge_content[k].extend(v) if k in merge_content else merge_content.update({k: v})
-        return content
+        return loads_model_json_content(oring_content, markers=("RESULT #:",))
     except json.JSONDecodeError as e:
         if reformat:
             if dependency_type == "resource":
@@ -310,15 +376,20 @@ async def get_response(url, header, payload, id, reformat, reformat_by, dependen
                 logger.info(f"[reformat] #id {id} Detected illegal JSON format, try to reformat by {payload['model']}...")
 
             payload["messages"][0]["content"] = prompt
-            payload = json.dumps(payload)
+            payload = json.dumps(apply_non_streaming_model_options(payload))
             
-            async with aiohttp.ClientSession() as session:
-                async with session.post(url, headers=header, data=payload, timeout=120) as response:
-                    resp = await response.json()
+            status, resp, payload = await post_json_with_context_retry(
+                url=url,
+                header=header,
+                payload=payload,
+                timeout=120,
+                id=id,
+                phase="reformat",
+            )
 
-            if response.status == 429:
+            if status == 429:
                 raise RateLimitError(f"{resp}")
-            if response.status != 200:
+            if status != 200:
                 raise Exception(f"{resp}")
             
             if log_detail:
@@ -326,18 +397,10 @@ async def get_response(url, header, payload, id, reformat, reformat_by, dependen
                 logger.info(resp["choices"][0]["message"]["content"])
 
             content = resp["choices"][0]["message"]["content"]
-            content = content.replace("\n", "")
-            content = content.replace("\\_", "_")
-            start_pos = content.find("STRICT JSON FORMAT #:")
-            if start_pos!=-1:
-                content = content[start_pos+len("STRICT JSON FORMAT #:"):]
-
-            content = content[content.find("{"):content.rfind("}")+1]
             try:
-                content = json.loads(content)
-                return content
+                return loads_model_json_content(content, markers=("STRICT JSON FORMAT #:",))
             except json.JSONDecodeError as e:
-                raise ContentFormatError(f"{content}")
+                raise ContentFormatError(f"{extract_model_json_text(content, markers=('STRICT JSON FORMAT #:',))}")
         else:
             raise ContentFormatError(f"{content}")
 
