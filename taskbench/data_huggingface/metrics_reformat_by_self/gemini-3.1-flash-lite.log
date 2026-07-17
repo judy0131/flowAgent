@@ -541,3 +541,546 @@
 2026-07-14 15:39:29,810 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 0 / 0
 2026-07-14 15:39:29,811 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 0 / 0
 2026-07-14 15:39:29,811 - [ gemini-3.1-flash-lite ] - INFO - No supports, skip
+2026-07-15 18:26:37,858 - [ gemini-3.1-flash-lite ] - INFO - Starts with: {'data_dir': 'taskbench/data_huggingface', 'prediction_dir': 'predictions_reformat_by_self', 'save_dir': None, 'splits': ('all',), 'n_tools': ('all',), 'mode': 'add', 'metric': ('f1', 'ed', 'link', 'argument'), 'llm': 'gemini-3.1-flash-lite', 'dependency_type': 'resource', 'alignment': None, 'prompting': 'cot'}
+2026-07-15 18:26:37,859 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:37,859 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: overall, Task Split: overall
+2026-07-15 18:26:38,023 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 1492
+2026-07-15 18:26:38,024 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 1492 / 1492
+2026-07-15 18:26:38,024 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 1492 / 1492
+2026-07-15 18:26:38,024 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 1492 / 1492
+2026-07-15 18:26:38,059 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.7795056928630936
+2026-07-15 18:26:38,061 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.7779933481152993
+2026-07-15 18:26:38,061 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.7787487862394229
+2026-07-15 18:26:38,061 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.8030868076305175
+2026-07-15 18:26:38,062 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.7678015167795283
+2026-07-15 18:26:38,062 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.7691392567514866
+2026-07-15 18:26:38,062 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:38,062 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:38,063 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification        87.29        71.03        78.33          145
+2026-07-15 18:26:38,063 - [ gemini-3.1-flash-lite ] - INFO -                    Translation        97.25        98.88        98.06          179
+2026-07-15 18:26:38,063 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        66.13        90.11        76.28          182
+2026-07-15 18:26:38,063 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering        66.06        51.06        57.60          141
+2026-07-15 18:26:38,063 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational        79.61        75.62        77.56          160
+2026-07-15 18:26:38,063 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation        70.37        58.28        63.76          163
+2026-07-15 18:26:38,064 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity        95.28        90.30        92.72          134
+2026-07-15 18:26:38,064 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification        83.04        76.23        79.49          122
+2026-07-15 18:26:38,064 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection        66.67        85.53        74.93          159
+2026-07-15 18:26:38,064 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification        75.00        60.37        66.89          164
+2026-07-15 18:26:38,064 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image        64.56        52.58        57.95           97
+2026-07-15 18:26:38,064 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        44.44        93.25        60.20          163
+2026-07-15 18:26:38,064 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        90.86        95.72        93.23          187
+2026-07-15 18:26:38,065 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video        96.69        98.32        97.50          119
+2026-07-15 18:26:38,065 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering        68.00        47.49        55.92          179
+2026-07-15 18:26:38,065 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering        80.00        39.26        52.67          163
+2026-07-15 18:26:38,065 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation        98.98        61.78        76.08          157
+2026-07-15 18:26:38,065 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation        99.33        90.24        94.57          164
+2026-07-15 18:26:38,065 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech        97.98        95.10        96.52          204
+2026-07-15 18:26:38,065 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        61.80        98.63        75.99          146
+2026-07-15 18:26:38,065 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio        81.08        84.91        82.95          106
+2026-07-15 18:26:38,066 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification        90.12        56.15        69.19          130
+2026-07-15 18:26:38,066 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing        86.57        95.08        90.62          244
+2026-07-15 18:26:38,066 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:38,066 - [ gemini-3.1-flash-lite ] - INFO -                          micro        77.95        77.80        77.87         3608
+2026-07-15 18:26:38,066 - [ gemini-3.1-flash-lite ] - INFO -                          macro        80.31        76.78        76.91         3608
+2026-07-15 18:26:38,078 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6939451277199622
+2026-07-15 18:26:38,091 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.47797786938598397
+2026-07-15 18:26:38,100 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.24226523216134543
+2026-07-15 18:26:38,113 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.43031784841075793
+2026-07-15 18:26:38,122 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:38,122 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: overall, Task Split: single
+2026-07-15 18:26:38,259 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 613
+2026-07-15 18:26:38,260 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 613 / 613
+2026-07-15 18:26:38,260 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 613 / 613
+2026-07-15 18:26:38,261 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 613 / 613
+2026-07-15 18:26:38,275 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.7912408759124088
+2026-07-15 18:26:38,275 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.9217687074829932
+2026-07-15 18:26:38,276 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.8515318146111548
+2026-07-15 18:26:38,276 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.8200890498650367
+2026-07-15 18:26:38,276 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.8936585330523144
+2026-07-15 18:26:38,277 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.8320772734837037
+2026-07-15 18:26:38,277 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:38,277 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:38,277 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification        97.37       100.00        98.67           37
+2026-07-15 18:26:38,278 - [ gemini-3.1-flash-lite ] - INFO -                    Translation        95.83       100.00        97.87           23
+2026-07-15 18:26:38,278 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        55.17       100.00        71.11           32
+2026-07-15 18:26:38,278 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering        84.00        87.50        85.71           24
+2026-07-15 18:26:38,278 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational        83.87        86.67        85.25           30
+2026-07-15 18:26:38,279 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation        64.71        95.65        77.19           23
+2026-07-15 18:26:38,279 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity       100.00       100.00       100.00           36
+2026-07-15 18:26:38,279 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification        69.57       100.00        82.05           16
+2026-07-15 18:26:38,279 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection        67.44       100.00        80.56           29
+2026-07-15 18:26:38,279 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification        89.29        86.21        87.72           29
+2026-07-15 18:26:38,279 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image        50.00        40.00        44.44            5
+2026-07-15 18:26:38,280 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        51.56       100.00        68.04           33
+2026-07-15 18:26:38,280 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        90.62       100.00        95.08           29
+2026-07-15 18:26:38,280 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video       100.00        95.00        97.44           20
+2026-07-15 18:26:38,280 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering       100.00        55.56        71.43           18
+2026-07-15 18:26:38,281 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering        83.33        20.83        33.33           24
+2026-07-15 18:26:38,281 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation       100.00       100.00       100.00           24
+2026-07-15 18:26:38,281 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation       100.00       100.00       100.00           28
+2026-07-15 18:26:38,281 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech       100.00       100.00       100.00           30
+2026-07-15 18:26:38,282 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        57.50       100.00        73.02           23
+2026-07-15 18:26:38,282 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio        80.77       100.00        89.36           21
+2026-07-15 18:26:38,282 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification        84.62        88.00        86.27           25
+2026-07-15 18:26:38,282 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing        80.56       100.00        89.23           29
+2026-07-15 18:26:38,282 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:38,282 - [ gemini-3.1-flash-lite ] - INFO -                          micro        79.12        92.18        85.15          588
+2026-07-15 18:26:38,282 - [ gemini-3.1-flash-lite ] - INFO -                          macro        82.01        89.37        83.21          588
+2026-07-15 18:26:38,289 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8030619345859429
+2026-07-15 18:26:38,295 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6307210031347963
+2026-07-15 18:26:38,299 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.14806960304513261
+2026-07-15 18:26:38,304 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.0
+2026-07-15 18:26:38,307 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:38,307 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: overall, Task Split: chain
+2026-07-15 18:26:38,367 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 720
+2026-07-15 18:26:38,367 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 720 / 720
+2026-07-15 18:26:38,367 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 720 / 720
+2026-07-15 18:26:38,368 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 720 / 720
+2026-07-15 18:26:38,377 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.7745516652433817
+2026-07-15 18:26:38,378 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.7477328936521023
+2026-07-15 18:26:38,378 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.7609060402684564
+2026-07-15 18:26:38,378 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.7954979676972043
+2026-07-15 18:26:38,378 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.7371268916865773
+2026-07-15 18:26:38,378 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.7472181510618983
+2026-07-15 18:26:38,378 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:38,378 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification        83.61        60.00        69.86           85
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -                    Translation        97.69        98.45        98.07          129
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        71.15        88.10        78.72          126
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering        62.69        43.75        51.53           96
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational        80.20        76.42        78.26          106
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation        71.25        49.57        58.46          115
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity        92.19        83.10        87.41           71
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification        85.53        73.86        79.27           88
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection        66.15        81.90        73.19          105
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification        73.75        59.00        65.56          100
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image        65.22        54.22        59.21           83
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        43.36        91.59        58.86          107
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        91.24        94.70        92.94          132
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video        94.67        98.61        96.60           72
+2026-07-15 18:26:38,379 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering        61.63        45.30        52.22          117
+2026-07-15 18:26:38,380 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering        76.36        37.17        50.00          113
+2026-07-15 18:26:38,380 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation        98.39        53.98        69.71          113
+2026-07-15 18:26:38,380 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation        98.95        88.68        93.53          106
+2026-07-15 18:26:38,380 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech        97.10        95.04        96.06          141
+2026-07-15 18:26:38,380 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        61.07        98.91        75.52           92
+2026-07-15 18:26:38,380 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio        79.45        81.69        80.56           71
+2026-07-15 18:26:38,380 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification        90.70        48.15        62.90           81
+2026-07-15 18:26:38,380 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing        87.30        93.22        90.16          177
+2026-07-15 18:26:38,380 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:38,380 - [ gemini-3.1-flash-lite ] - INFO -                          micro        77.46        74.77        76.09         2426
+2026-07-15 18:26:38,381 - [ gemini-3.1-flash-lite ] - INFO -                          macro        79.55        73.71        74.72         2426
+2026-07-15 18:26:38,387 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6660746003552398
+2026-07-15 18:26:38,394 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4401178010471204
+2026-07-15 18:26:38,399 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.30910977525560834
+2026-07-15 18:26:38,406 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.43319097010372176
+2026-07-15 18:26:38,409 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:38,410 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: overall, Task Split: dag
+2026-07-15 18:26:38,532 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 159
+2026-07-15 18:26:38,534 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 159 / 159
+2026-07-15 18:26:38,534 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 159 / 159
+2026-07-15 18:26:38,535 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 159 / 159
+2026-07-15 18:26:38,547 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.7857142857142857
+2026-07-15 18:26:38,547 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.7592592592592593
+2026-07-15 18:26:38,548 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.7722602739726028
+2026-07-15 18:26:38,548 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.8108745868981224
+2026-07-15 18:26:38,548 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.7469289594867373
+2026-07-15 18:26:38,548 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.760050955439826
+2026-07-15 18:26:38,549 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:38,549 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:38,549 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification        78.95        65.22        71.43           23
+2026-07-15 18:26:38,550 - [ gemini-3.1-flash-lite ] - INFO -                    Translation        96.43       100.00        98.18           27
+2026-07-15 18:26:38,550 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        61.76        87.50        72.41           24
+2026-07-15 18:26:38,550 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering        52.94        42.86        47.37           21
+2026-07-15 18:26:38,550 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational        70.00        58.33        63.64           24
+2026-07-15 18:26:38,550 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation        76.19        64.00        69.57           25
+2026-07-15 18:26:38,550 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity        96.30        96.30        96.30           27
+2026-07-15 18:26:38,550 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification        92.31        66.67        77.42           18
+2026-07-15 18:26:38,550 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection        67.74        84.00        75.00           25
+2026-07-15 18:26:38,550 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification        62.50        42.86        50.85           35
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image        66.67        44.44        53.33            9
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        40.38        91.30        56.00           23
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        89.29        96.15        92.59           26
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video       100.00       100.00       100.00           27
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering        75.86        50.00        60.27           44
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering        89.47        65.38        75.56           26
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation       100.00        60.00        75.00           20
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation       100.00        86.67        92.86           30
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech       100.00        90.91        95.24           33
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        68.18        96.77        80.00           31
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio        91.67        78.57        84.62           14
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification       100.00        50.00        66.67           24
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing        88.37       100.00        93.83           38
+2026-07-15 18:26:38,551 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:38,552 - [ gemini-3.1-flash-lite ] - INFO -                          micro        78.57        75.93        77.23          594
+2026-07-15 18:26:38,552 - [ gemini-3.1-flash-lite ] - INFO -                          macro        81.09        74.69        76.01          594
+2026-07-15 18:26:38,554 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6940244780417567
+2026-07-15 18:26:38,556 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4698874917273329
+2026-07-15 18:26:38,557 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.30272969518252546
+2026-07-15 18:26:38,559 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.4509283819628647
+2026-07-15 18:26:38,560 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:38,560 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: 1, Task Split: overall
+2026-07-15 18:26:38,611 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 613
+2026-07-15 18:26:38,611 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 613 / 613
+2026-07-15 18:26:38,612 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 613 / 613
+2026-07-15 18:26:38,612 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 613 / 613
+2026-07-15 18:26:38,623 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.7912408759124088
+2026-07-15 18:26:38,624 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.9217687074829932
+2026-07-15 18:26:38,624 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.8515318146111548
+2026-07-15 18:26:38,624 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.8200890498650367
+2026-07-15 18:26:38,625 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.8936585330523144
+2026-07-15 18:26:38,625 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.8320772734837037
+2026-07-15 18:26:38,625 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:38,625 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:38,626 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification        97.37       100.00        98.67           37
+2026-07-15 18:26:38,626 - [ gemini-3.1-flash-lite ] - INFO -                    Translation        95.83       100.00        97.87           23
+2026-07-15 18:26:38,626 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        55.17       100.00        71.11           32
+2026-07-15 18:26:38,626 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering        84.00        87.50        85.71           24
+2026-07-15 18:26:38,626 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational        83.87        86.67        85.25           30
+2026-07-15 18:26:38,626 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation        64.71        95.65        77.19           23
+2026-07-15 18:26:38,627 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity       100.00       100.00       100.00           36
+2026-07-15 18:26:38,627 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification        69.57       100.00        82.05           16
+2026-07-15 18:26:38,627 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection        67.44       100.00        80.56           29
+2026-07-15 18:26:38,627 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification        89.29        86.21        87.72           29
+2026-07-15 18:26:38,627 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image        50.00        40.00        44.44            5
+2026-07-15 18:26:38,627 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        51.56       100.00        68.04           33
+2026-07-15 18:26:38,627 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        90.62       100.00        95.08           29
+2026-07-15 18:26:38,627 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video       100.00        95.00        97.44           20
+2026-07-15 18:26:38,627 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering       100.00        55.56        71.43           18
+2026-07-15 18:26:38,627 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering        83.33        20.83        33.33           24
+2026-07-15 18:26:38,628 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation       100.00       100.00       100.00           24
+2026-07-15 18:26:38,628 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation       100.00       100.00       100.00           28
+2026-07-15 18:26:38,628 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech       100.00       100.00       100.00           30
+2026-07-15 18:26:38,628 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        57.50       100.00        73.02           23
+2026-07-15 18:26:38,628 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio        80.77       100.00        89.36           21
+2026-07-15 18:26:38,628 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification        84.62        88.00        86.27           25
+2026-07-15 18:26:38,628 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing        80.56       100.00        89.23           29
+2026-07-15 18:26:38,628 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:38,628 - [ gemini-3.1-flash-lite ] - INFO -                          micro        79.12        92.18        85.15          588
+2026-07-15 18:26:38,629 - [ gemini-3.1-flash-lite ] - INFO -                          macro        82.01        89.37        83.21          588
+2026-07-15 18:26:38,634 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.8030619345859429
+2026-07-15 18:26:38,641 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.6307210031347963
+2026-07-15 18:26:38,644 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.14806960304513261
+2026-07-15 18:26:38,649 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.0
+2026-07-15 18:26:38,651 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:38,651 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: 2, Task Split: overall
+2026-07-15 18:26:38,698 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 103
+2026-07-15 18:26:38,698 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 103 / 103
+2026-07-15 18:26:38,699 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 103 / 103
+2026-07-15 18:26:38,699 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 103 / 103
+2026-07-15 18:26:38,706 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.7718446601941747
+2026-07-15 18:26:38,707 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.828125
+2026-07-15 18:26:38,707 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.7989949748743719
+2026-07-15 18:26:38,707 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.8287423006093083
+2026-07-15 18:26:38,707 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.7978948587644241
+2026-07-15 18:26:38,708 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.7755531756487934
+2026-07-15 18:26:38,708 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:38,708 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:38,708 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification       100.00        25.00        40.00            4
+2026-07-15 18:26:38,709 - [ gemini-3.1-flash-lite ] - INFO -                    Translation       100.00       100.00       100.00           14
+2026-07-15 18:26:38,709 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        81.25       100.00        89.66           13
+2026-07-15 18:26:38,709 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering        42.86        75.00        54.55            4
+2026-07-15 18:26:38,709 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational        66.67        60.00        63.16           10
+2026-07-15 18:26:38,709 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation        68.75        91.67        78.57           12
+2026-07-15 18:26:38,709 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity       100.00       100.00       100.00            9
+2026-07-15 18:26:38,709 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification       100.00        66.67        80.00            3
+2026-07-15 18:26:38,709 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection        90.91        90.91        90.91           11
+2026-07-15 18:26:38,710 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification       100.00        42.86        60.00            7
+2026-07-15 18:26:38,710 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image        83.33        71.43        76.92            7
+2026-07-15 18:26:38,710 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        29.41       100.00        45.45            5
+2026-07-15 18:26:38,710 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        88.89       100.00        94.12            8
+2026-07-15 18:26:38,710 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video        88.89       100.00        94.12            8
+2026-07-15 18:26:38,710 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering       100.00        66.67        80.00           12
+2026-07-15 18:26:38,710 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering        66.67        46.15        54.55           13
+2026-07-15 18:26:38,710 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation       100.00        75.00        85.71            4
+2026-07-15 18:26:38,711 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation       100.00       100.00       100.00            7
+2026-07-15 18:26:38,711 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech       100.00       100.00       100.00           12
+2026-07-15 18:26:38,711 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        50.00       100.00        66.67           10
+2026-07-15 18:26:38,711 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio        66.67        66.67        66.67            3
+2026-07-15 18:26:38,712 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification       100.00        57.14        72.73            7
+2026-07-15 18:26:38,712 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing        81.82       100.00        90.00            9
+2026-07-15 18:26:38,712 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:38,712 - [ gemini-3.1-flash-lite ] - INFO -                          micro        77.18        82.81        79.90          192
+2026-07-15 18:26:38,712 - [ gemini-3.1-flash-lite ] - INFO -                          macro        82.87        79.79        77.56          192
+2026-07-15 18:26:38,715 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.720682302771855
+2026-07-15 18:26:38,717 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.5497076023391813
+2026-07-15 18:26:38,717 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.24595469255663438
+2026-07-15 18:26:38,719 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.5567010309278351
+2026-07-15 18:26:38,720 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:38,720 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: 3, Task Split: overall
+2026-07-15 18:26:38,763 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 305
+2026-07-15 18:26:38,763 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 305 / 305
+2026-07-15 18:26:38,763 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 305 / 305
+2026-07-15 18:26:38,765 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 305 / 305
+2026-07-15 18:26:38,771 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.7648484848484849
+2026-07-15 18:26:38,771 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.7602409638554217
+2026-07-15 18:26:38,772 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.7625377643504532
+2026-07-15 18:26:38,772 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.7975508932691014
+2026-07-15 18:26:38,773 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.7568826703556862
+2026-07-15 18:26:38,773 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.7600474266931322
+2026-07-15 18:26:38,773 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:38,773 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:38,773 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification        79.17        63.33        70.37           30
+2026-07-15 18:26:38,774 - [ gemini-3.1-flash-lite ] - INFO -                    Translation       100.00       100.00       100.00           35
+2026-07-15 18:26:38,774 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        71.43        86.54        78.26           52
+2026-07-15 18:26:38,774 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering        62.50        52.63        57.14           38
+2026-07-15 18:26:38,774 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational        85.71        81.08        83.33           37
+2026-07-15 18:26:38,775 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation        66.67        50.00        57.14           40
+2026-07-15 18:26:38,775 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity        86.96        83.33        85.11           24
+2026-07-15 18:26:38,775 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification        78.79        81.25        80.00           32
+2026-07-15 18:26:38,775 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection        71.79        82.35        76.71           34
+2026-07-15 18:26:38,775 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification        80.00        58.82        67.80           34
+2026-07-15 18:26:38,775 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image        61.11        52.38        56.41           21
+2026-07-15 18:26:38,775 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        43.16        91.11        58.57           45
+2026-07-15 18:26:38,775 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        91.43        96.97        94.12           33
+2026-07-15 18:26:38,775 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video        96.77       100.00        98.36           30
+2026-07-15 18:26:38,776 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering        64.52        43.48        51.95           46
+2026-07-15 18:26:38,776 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering        76.92        42.55        54.79           47
+2026-07-15 18:26:38,776 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation       100.00        54.55        70.59           33
+2026-07-15 18:26:38,776 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation       100.00        93.55        96.67           31
+2026-07-15 18:26:38,776 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech        96.15        96.15        96.15           52
+2026-07-15 18:26:38,776 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        67.27        97.37        79.57           38
+2026-07-15 18:26:38,776 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio        77.78        91.30        84.00           23
+2026-07-15 18:26:38,776 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification        92.31        46.15        61.54           26
+2026-07-15 18:26:38,777 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing        83.93        95.92        89.52           49
+2026-07-15 18:26:38,777 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:38,777 - [ gemini-3.1-flash-lite ] - INFO -                          micro        76.48        76.02        76.25          830
+2026-07-15 18:26:38,777 - [ gemini-3.1-flash-lite ] - INFO -                          macro        79.76        75.69        76.00          830
+2026-07-15 18:26:38,780 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6690355329949239
+2026-07-15 18:26:38,783 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.45615671641791045
+2026-07-15 18:26:38,785 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.31203747072599464
+2026-07-15 18:26:38,792 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.44332998996990974
+2026-07-15 18:26:38,795 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:38,796 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: 4, Task Split: overall
+2026-07-15 18:26:38,904 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 268
+2026-07-15 18:26:38,905 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 268 / 268
+2026-07-15 18:26:38,905 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 268 / 268
+2026-07-15 18:26:38,905 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 268 / 268
+2026-07-15 18:26:38,919 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.8010471204188482
+2026-07-15 18:26:38,920 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.7673019057171514
+2026-07-15 18:26:38,920 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.7838114754098361
+2026-07-15 18:26:38,920 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.8234889267339124
+2026-07-15 18:26:38,920 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.7516128473105013
+2026-07-15 18:26:38,920 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.7679848519281861
+2026-07-15 18:26:38,921 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:38,921 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:38,921 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification        86.49        72.73        79.01           44
+2026-07-15 18:26:38,921 - [ gemini-3.1-flash-lite ] - INFO -                    Translation        98.18       100.00        99.08           54
+2026-07-15 18:26:38,921 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        65.00        90.70        75.73           43
+2026-07-15 18:26:38,921 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering        70.00        42.42        52.83           33
+2026-07-15 18:26:38,921 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational        77.14        64.29        70.13           42
+2026-07-15 18:26:38,921 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation        75.00        55.10        63.53           49
+2026-07-15 18:26:38,921 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity        97.14        89.47        93.15           38
+2026-07-15 18:26:38,921 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification        86.21        69.44        76.92           36
+2026-07-15 18:26:38,921 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection        69.09        86.36        76.77           44
+2026-07-15 18:26:38,922 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification        65.79        53.19        58.82           47
+2026-07-15 18:26:38,922 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image        60.00        55.56        57.69           27
+2026-07-15 18:26:38,922 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        43.59        87.18        58.12           39
+2026-07-15 18:26:38,922 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        96.30        96.30        96.30           54
+2026-07-15 18:26:38,922 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video       100.00       100.00       100.00           30
+2026-07-15 18:26:38,923 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering        69.23        52.94        60.00           51
+2026-07-15 18:26:38,923 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering        93.75        45.45        61.22           33
+2026-07-15 18:26:38,923 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation        96.55        58.33        72.73           48
+2026-07-15 18:26:38,923 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation        97.56        90.91        94.12           44
+2026-07-15 18:26:38,923 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech       100.00        94.34        97.09           53
+2026-07-15 18:26:38,923 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        65.67        97.78        78.57           45
+2026-07-15 18:26:38,923 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio        92.31        82.76        87.27           29
+2026-07-15 18:26:38,924 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification       100.00        48.65        65.45           37
+2026-07-15 18:26:38,924 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing        89.02        94.81        91.82           77
+2026-07-15 18:26:38,924 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:38,924 - [ gemini-3.1-flash-lite ] - INFO -                          micro        80.10        76.73        78.38          997
+2026-07-15 18:26:38,924 - [ gemini-3.1-flash-lite ] - INFO -                          macro        82.35        75.16        76.80          997
+2026-07-15 18:26:38,930 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.7045951859956237
+2026-07-15 18:26:38,938 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4667472793228537
+2026-07-15 18:26:38,942 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.28811892916370474
+2026-07-15 18:26:38,949 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.4730229120473023
+2026-07-15 18:26:38,951 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:38,952 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: 5, Task Split: overall
+2026-07-15 18:26:39,013 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 115
+2026-07-15 18:26:39,014 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 115 / 115
+2026-07-15 18:26:39,014 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 115 / 115
+2026-07-15 18:26:39,014 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 115 / 115
+2026-07-15 18:26:39,020 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.7463617463617463
+2026-07-15 18:26:39,020 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.7066929133858267
+2026-07-15 18:26:39,020 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.7259858442871587
+2026-07-15 18:26:39,020 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.7640062521019927
+2026-07-15 18:26:39,021 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.6918207792971363
+2026-07-15 18:26:39,021 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.697028269667843
+2026-07-15 18:26:39,021 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:39,021 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:39,021 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification        60.00        50.00        54.55           12
+2026-07-15 18:26:39,021 - [ gemini-3.1-flash-lite ] - INFO -                    Translation        96.00        96.00        96.00           25
+2026-07-15 18:26:39,021 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        75.00        84.00        79.25           25
+2026-07-15 18:26:39,021 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering        44.44        20.00        27.59           20
+2026-07-15 18:26:39,021 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational        70.83        94.44        80.95           18
+2026-07-15 18:26:39,021 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation        80.00        40.00        53.33           20
+2026-07-15 18:26:39,021 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity       100.00        81.25        89.66           16
+2026-07-15 18:26:39,022 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification        93.75        62.50        75.00           24
+2026-07-15 18:26:39,022 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection        50.00        70.83        58.62           24
+2026-07-15 18:26:39,022 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification        60.87        63.64        62.22           22
+2026-07-15 18:26:39,022 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image        66.67        42.11        51.61           19
+2026-07-15 18:26:39,022 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        42.55        95.24        58.82           21
+2026-07-15 18:26:39,022 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        84.85        93.33        88.89           30
+2026-07-15 18:26:39,023 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video        93.33       100.00        96.55           14
+2026-07-15 18:26:39,023 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering        50.00        33.33        40.00           27
+2026-07-15 18:26:39,023 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering        75.00        31.58        44.44           19
+2026-07-15 18:26:39,023 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation       100.00        46.15        63.16           26
+2026-07-15 18:26:39,023 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation       100.00        83.87        91.23           31
+2026-07-15 18:26:39,023 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech        96.55        96.55        96.55           29
+2026-07-15 18:26:39,023 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        56.00       100.00        71.79           14
+2026-07-15 18:26:39,023 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio        75.00        69.23        72.00           13
+2026-07-15 18:26:39,023 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification       100.00        44.44        61.54           18
+2026-07-15 18:26:39,024 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing        86.36        92.68        89.41           41
+2026-07-15 18:26:39,024 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:39,024 - [ gemini-3.1-flash-lite ] - INFO -                          micro        74.64        70.67        72.60          508
+2026-07-15 18:26:39,024 - [ gemini-3.1-flash-lite ] - INFO -                          macro        76.40        69.18        69.70          508
+2026-07-15 18:26:39,029 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6218057921635435
+2026-07-15 18:26:39,033 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.389937106918239
+2026-07-15 18:26:39,034 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.36809210113557944
+2026-07-15 18:26:39,037 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.38492597577388965
+2026-07-15 18:26:39,038 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:39,038 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: 6, Task Split: overall
+2026-07-15 18:26:39,073 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 53
+2026-07-15 18:26:39,074 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 53 / 53
+2026-07-15 18:26:39,074 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 53 / 53
+2026-07-15 18:26:39,074 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 53 / 53
+2026-07-15 18:26:39,083 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.789272030651341
+2026-07-15 18:26:39,084 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.7383512544802867
+2026-07-15 18:26:39,084 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.762962962962963
+2026-07-15 18:26:39,085 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.7972547852273751
+2026-07-15 18:26:39,085 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.7266804673841287
+2026-07-15 18:26:39,085 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.7383660763358205
+2026-07-15 18:26:39,085 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:39,085 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:39,085 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification       100.00        50.00        66.67           12
+2026-07-15 18:26:39,086 - [ gemini-3.1-flash-lite ] - INFO -                    Translation        93.75        93.75        93.75           16
+2026-07-15 18:26:39,086 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        61.54        88.89        72.73            9
+2026-07-15 18:26:39,087 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering        85.71        42.86        57.14           14
+2026-07-15 18:26:39,087 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational        85.71        60.00        70.59           10
+2026-07-15 18:26:39,087 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation        75.00        40.00        52.17           15
+2026-07-15 18:26:39,087 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity        85.71        85.71        85.71            7
+2026-07-15 18:26:39,087 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification       100.00        75.00        85.71            4
+2026-07-15 18:26:39,088 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection        61.54        88.89        72.73            9
+2026-07-15 18:26:39,088 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification        91.67        78.57        84.62           14
+2026-07-15 18:26:39,088 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image        50.00        44.44        47.06            9
+2026-07-15 18:26:39,088 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        65.22       100.00        78.95           15
+2026-07-15 18:26:39,088 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        90.00        94.74        92.31           19
+2026-07-15 18:26:39,088 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video       100.00        92.31        96.00           13
+2026-07-15 18:26:39,088 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering        58.33        53.85        56.00           13
+2026-07-15 18:26:39,090 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering        76.92        62.50        68.97           16
+2026-07-15 18:26:39,090 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation       100.00        54.55        70.59           11
+2026-07-15 18:26:39,090 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation       100.00        78.57        88.00           14
+2026-07-15 18:26:39,090 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech        90.91        90.91        90.91           11
+2026-07-15 18:26:39,090 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        50.00       100.00        66.67            7
+2026-07-15 18:26:39,090 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio        60.00        66.67        63.16            9
+2026-07-15 18:26:39,090 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification        60.00        37.50        46.15            8
+2026-07-15 18:26:39,090 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing        91.67        91.67        91.67           24
+2026-07-15 18:26:39,090 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:39,091 - [ gemini-3.1-flash-lite ] - INFO -                          micro        78.93        73.84        76.30          279
+2026-07-15 18:26:39,091 - [ gemini-3.1-flash-lite ] - INFO -                          macro        79.73        72.67        73.84          279
+2026-07-15 18:26:39,095 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.659606656580938
+2026-07-15 18:26:39,100 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.4329608938547486
+2026-07-15 18:26:39,101 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.32147757902474905
+2026-07-15 18:26:39,103 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.3953488372093023
+2026-07-15 18:26:39,104 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:39,104 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: 7, Task Split: overall
+2026-07-15 18:26:39,146 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 25
+2026-07-15 18:26:39,146 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 25 / 25
+2026-07-15 18:26:39,147 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 25 / 25
+2026-07-15 18:26:39,147 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 25 / 25
+2026-07-15 18:26:39,154 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.765625
+2026-07-15 18:26:39,154 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.6712328767123288
+2026-07-15 18:26:39,154 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.7153284671532847
+2026-07-15 18:26:39,155 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.792273668360625
+2026-07-15 18:26:39,155 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.6530883367839889
+2026-07-15 18:26:39,155 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.6721335917190003
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification       100.00        33.33        50.00            3
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO -                    Translation        88.89       100.00        94.12            8
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        66.67        80.00        72.73            5
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering        28.57        40.00        33.33            5
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational       100.00        66.67        80.00            9
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation       100.00        33.33        50.00            3
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity        50.00        50.00        50.00            2
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification       100.00        83.33        90.91            6
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection        57.14        80.00        66.67            5
+2026-07-15 18:26:39,156 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification        50.00        14.29        22.22            7
+2026-07-15 18:26:39,157 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image       100.00        75.00        85.71            8
+2026-07-15 18:26:39,157 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        18.18        66.67        28.57            3
+2026-07-15 18:26:39,157 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        88.89        80.00        84.21           10
+2026-07-15 18:26:39,157 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video        75.00       100.00        85.71            3
+2026-07-15 18:26:39,157 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering        60.00        37.50        46.15            8
+2026-07-15 18:26:39,157 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering       100.00        12.50        22.22            8
+2026-07-15 18:26:39,157 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation       100.00        62.50        76.92            8
+2026-07-15 18:26:39,157 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation       100.00        71.43        83.33            7
+2026-07-15 18:26:39,158 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech       100.00        83.33        90.91           12
+2026-07-15 18:26:39,158 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        75.00       100.00        85.71            6
+2026-07-15 18:26:39,158 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio       100.00        83.33        90.91            6
+2026-07-15 18:26:39,158 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification        75.00        60.00        66.67            5
+2026-07-15 18:26:39,158 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing        88.89        88.89        88.89            9
+2026-07-15 18:26:39,158 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:39,158 - [ gemini-3.1-flash-lite ] - INFO -                          micro        76.56        67.12        71.53          146
+2026-07-15 18:26:39,158 - [ gemini-3.1-flash-lite ] - INFO -                          macro        79.23        65.31        67.21          146
+2026-07-15 18:26:39,160 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.5968253968253968
+2026-07-15 18:26:39,164 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.35777126099706746
+2026-07-15 18:26:39,165 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.4062837162837163
+2026-07-15 18:26:39,166 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.37383177570093457
+2026-07-15 18:26:39,167 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:39,167 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: 8, Task Split: overall
+2026-07-15 18:26:39,203 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 10
+2026-07-15 18:26:39,204 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 10 / 10
+2026-07-15 18:26:39,204 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 10 / 10
+2026-07-15 18:26:39,204 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 10 / 10
+2026-07-15 18:26:39,208 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Precision [ No Matching ]: 0.7833333333333333
+2026-07-15 18:26:39,208 - [ gemini-3.1-flash-lite ] - INFO - Node Micro Recall [ No Matching ]: 0.6911764705882353
+2026-07-15 18:26:39,208 - [ gemini-3.1-flash-lite ] - INFO - Node Micro F1 [ No Matching ]: 0.734375
+2026-07-15 18:26:39,208 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Precision [ No Matching ]: 0.7580745341614907
+2026-07-15 18:26:39,208 - [ gemini-3.1-flash-lite ] - INFO - Node Macro Recall [ No Matching ]: 0.6760869565217391
+2026-07-15 18:26:39,209 - [ gemini-3.1-flash-lite ] - INFO - Node Macro F1 [ No Matching ]: 0.6786059351276742
+2026-07-15 18:26:39,209 - [ gemini-3.1-flash-lite ] - INFO - Node Detailed Report [ No Matching ]: 
+2026-07-15 18:26:39,209 - [ gemini-3.1-flash-lite ] - INFO -                           type    precision       recall     f1-score      support
+2026-07-15 18:26:39,209 - [ gemini-3.1-flash-lite ] - INFO -           Token Classification       100.00        33.33        50.00            3
+2026-07-15 18:26:39,210 - [ gemini-3.1-flash-lite ] - INFO -                    Translation       100.00       100.00       100.00            4
+2026-07-15 18:26:39,210 - [ gemini-3.1-flash-lite ] - INFO -                  Summarization        50.00        66.67        57.14            3
+2026-07-15 18:26:39,210 - [ gemini-3.1-flash-lite ] - INFO -             Question Answering       100.00        66.67        80.00            3
+2026-07-15 18:26:39,210 - [ gemini-3.1-flash-lite ] - INFO -                 Conversational        60.00        75.00        66.67            4
+2026-07-15 18:26:39,210 - [ gemini-3.1-flash-lite ] - INFO -                Text Generation         0.00         0.00         0.00            1
+2026-07-15 18:26:39,210 - [ gemini-3.1-flash-lite ] - INFO -            Sentence Similarity       100.00       100.00       100.00            2
+2026-07-15 18:26:39,211 - [ gemini-3.1-flash-lite ] - INFO -         Tabular Classification       100.00       100.00       100.00            1
+2026-07-15 18:26:39,211 - [ gemini-3.1-flash-lite ] - INFO -               Object Detection       100.00        66.67        80.00            3
+2026-07-15 18:26:39,211 - [ gemini-3.1-flash-lite ] - INFO -           Image Classification         0.00         0.00         0.00            4
+2026-07-15 18:26:39,212 - [ gemini-3.1-flash-lite ] - INFO -                 Image-to-Image         0.00         0.00         0.00            1
+2026-07-15 18:26:39,212 - [ gemini-3.1-flash-lite ] - INFO -                  Image-to-Text        28.57       100.00        44.44            2
+2026-07-15 18:26:39,212 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Image        80.00       100.00        88.89            4
+2026-07-15 18:26:39,212 - [ gemini-3.1-flash-lite ] - INFO -                  Text-to-Video       100.00       100.00       100.00            1
+2026-07-15 18:26:39,212 - [ gemini-3.1-flash-lite ] - INFO -      Visual Question Answering        50.00        25.00        33.33            4
+2026-07-15 18:26:39,213 - [ gemini-3.1-flash-lite ] - INFO -    Document Question Answering       100.00        33.33        50.00            3
+2026-07-15 18:26:39,213 - [ gemini-3.1-flash-lite ] - INFO -             Image Segmentation       100.00        33.33        50.00            3
+2026-07-15 18:26:39,213 - [ gemini-3.1-flash-lite ] - INFO -               Depth Estimation       100.00       100.00       100.00            2
+2026-07-15 18:26:39,213 - [ gemini-3.1-flash-lite ] - INFO -                 Text-to-Speech       100.00        80.00        88.89            5
+2026-07-15 18:26:39,213 - [ gemini-3.1-flash-lite ] - INFO -   Automatic Speech Recognition        75.00       100.00        85.71            3
+2026-07-15 18:26:39,213 - [ gemini-3.1-flash-lite ] - INFO -                 Audio-to-Audio       100.00       100.00       100.00            2
+2026-07-15 18:26:39,214 - [ gemini-3.1-flash-lite ] - INFO -           Audio Classification       100.00        75.00        85.71            4
+2026-07-15 18:26:39,214 - [ gemini-3.1-flash-lite ] - INFO -                  Image Editing       100.00       100.00       100.00            6
+2026-07-15 18:26:39,214 - [ gemini-3.1-flash-lite ] - INFO - 
+2026-07-15 18:26:39,215 - [ gemini-3.1-flash-lite ] - INFO -                          micro        78.33        69.12        73.44           68
+2026-07-15 18:26:39,215 - [ gemini-3.1-flash-lite ] - INFO -                          macro        75.81        67.61        67.86           68
+2026-07-15 18:26:39,217 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName Binary F1: [ No Matching ]: 0.6482758620689655
+2026-07-15 18:26:39,219 - [ gemini-3.1-flash-lite ] - INFO - Argument Task-ArgName-Value Binary F1 [ No Matching ]: 0.34615384615384615
+2026-07-15 18:26:39,219 - [ gemini-3.1-flash-lite ] - INFO - Edit Distance: 0.34464285714285725
+2026-07-15 18:26:39,221 - [ gemini-3.1-flash-lite ] - INFO - Link Binary F1: 0.33663366336633666
+2026-07-15 18:26:39,222 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:39,222 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: 9, Task Split: overall
+2026-07-15 18:26:39,246 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 0
+2026-07-15 18:26:39,246 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 0 / 0
+2026-07-15 18:26:39,247 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 0 / 0
+2026-07-15 18:26:39,247 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 0 / 0
+2026-07-15 18:26:39,247 - [ gemini-3.1-flash-lite ] - INFO - No supports, skip
+2026-07-15 18:26:39,248 - [ gemini-3.1-flash-lite ] - INFO - ---------------
+2026-07-15 18:26:39,248 - [ gemini-3.1-flash-lite ] - INFO - Tools Number: 10, Task Split: overall
+2026-07-15 18:26:39,321 - [ gemini-3.1-flash-lite ] - INFO - Step Supports: 0 / 0
+2026-07-15 18:26:39,322 - [ gemini-3.1-flash-lite ] - INFO - Node Support: 0 / 0
+2026-07-15 18:26:39,322 - [ gemini-3.1-flash-lite ] - INFO - Link Support: 0 / 0
+2026-07-15 18:26:39,322 - [ gemini-3.1-flash-lite ] - INFO - Argument Support: 0 / 0
+2026-07-15 18:26:39,322 - [ gemini-3.1-flash-lite ] - INFO - No supports, skip

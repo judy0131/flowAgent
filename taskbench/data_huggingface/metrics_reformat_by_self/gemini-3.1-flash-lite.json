@@ -153,7 +153,7 @@
     },
     "argument_task_argname_binary_f1_no_matching": 0.6939451277199622,
     "argument_task_argname_value_binary_f1_no_matching": 0.47797786938598397,
-    "edit_distance": 0.2422652321613461,
+    "edit_distance": 0.24226523216134543,
     "link_binary_f1": 0.43031784841075793
   },
   "single_overall": {
@@ -467,7 +467,7 @@
     },
     "argument_task_argname_binary_f1_no_matching": 0.6660746003552398,
     "argument_task_argname_value_binary_f1_no_matching": 0.4401178010471204,
-    "edit_distance": 0.3091097752556081,
+    "edit_distance": 0.30910977525560834,
     "link_binary_f1": 0.43319097010372176
   },
   "dag_overall": {
@@ -624,7 +624,7 @@
     },
     "argument_task_argname_binary_f1_no_matching": 0.6940244780417567,
     "argument_task_argname_value_binary_f1_no_matching": 0.4698874917273329,
-    "edit_distance": 0.30272969518252524,
+    "edit_distance": 0.30272969518252546,
     "link_binary_f1": 0.4509283819628647
   },
   "overall_1": {
@@ -1095,7 +1095,7 @@
     },
     "argument_task_argname_binary_f1_no_matching": 0.6690355329949239,
     "argument_task_argname_value_binary_f1_no_matching": 0.45615671641791045,
-    "edit_distance": 0.31203747072599486,
+    "edit_distance": 0.31203747072599464,
     "link_binary_f1": 0.44332998996990974
   },
   "overall_4": {
@@ -1252,7 +1252,7 @@
     },
     "argument_task_argname_binary_f1_no_matching": 0.7045951859956237,
     "argument_task_argname_value_binary_f1_no_matching": 0.4667472793228537,
-    "edit_distance": 0.28811892916370496,
+    "edit_distance": 0.28811892916370474,
     "link_binary_f1": 0.4730229120473023
   },
   "overall_5": {
@@ -1409,7 +1409,7 @@
     },
     "argument_task_argname_binary_f1_no_matching": 0.6218057921635435,
     "argument_task_argname_value_binary_f1_no_matching": 0.389937106918239,
-    "edit_distance": 0.3680921011355798,
+    "edit_distance": 0.36809210113557944,
     "link_binary_f1": 0.38492597577388965
   },
   "overall_6": {
@@ -1880,7 +1880,7 @@
     },
     "argument_task_argname_binary_f1_no_matching": 0.6482758620689655,
     "argument_task_argname_value_binary_f1_no_matching": 0.34615384615384615,
-    "edit_distance": 0.34464285714285714,
+    "edit_distance": 0.34464285714285725,
     "link_binary_f1": 0.33663366336633666
   },
   "overall_9": {

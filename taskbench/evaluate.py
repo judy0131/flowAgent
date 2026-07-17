@@ -432,14 +432,14 @@ def _materialize_resource_graph(nodes, task_links, tool_output_type_map):
 
 @click.command()
 @click.option("--data_dir", default="data_multimedia", help="The directory of the data.")
-@click.option("--prediction_dir", default="predictions_pipeline_agent", help="The directory of the data.")
+@click.option("--prediction_dir", default="predictions_reformat_by_self", help="The directory of the data.")
 @click.option("--save_dir", default=None, help="The directory to save the evaluation results")
 @click.option("--alignment", default=None)
 @click.option("--splits", "-s", multiple=True, default=["all"])
 @click.option("--n_tools", "-n", multiple=True, default=["all"])
 @click.option("--mode", default="add")
 @click.option("--metric", "-m", multiple=True, default=["f1", "ed", "link", "argument"])
-@click.option("--llm", default="pipeline_orchestrator_agent")
+@click.option("--llm", default="model")
 @click.option("--dependency_type", type=str, default="resource")
 @click.option("--prompting", default="cot")
 def main(data_dir, prediction_dir, save_dir, splits, n_tools, mode, metric, llm, dependency_type, alignment, prompting):

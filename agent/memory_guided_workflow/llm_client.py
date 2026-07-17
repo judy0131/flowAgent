@@ -71,7 +71,6 @@ class OpenAICompatibleLLMClient:
         selected_profile = (
             self.llm_profile
             or os.getenv("TASK_UNDERSTANDING_LLM_PROFILE")
-            or os.getenv("PIPELINE_ORCHESTRATOR_LLM_PROFILE")
         )
 
         if profiles:
@@ -129,7 +128,6 @@ class OpenAICompatibleLLMClient:
         raw_path = (
             self.llm_config_path
             or os.getenv("TASK_UNDERSTANDING_LLM_CONFIG")
-            or os.getenv("PIPELINE_ORCHESTRATOR_LLM_CONFIG")
             or self.default_config_path
         )
         path = self.resolve_config_path(raw_path)
